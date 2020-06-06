@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlNLVSI+PEZpZWxkIE5hbWU9IlNLVVNZU0lEIiBUeXBlPSJJbnQ2NCIgLz48RmllbGQgTmFtZT0iU0tVU1lTREFURSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IlNLVUZOWVIiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iU0tVQ09ERSIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9IlNLVVZPVUNITk8iIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJTS1VQUk9EVUNUQ09ERSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTS1VBUlROTyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTS1VBUlRJRCIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9IlNLVUNPTE4iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iU0tVQ09MSUQiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJTS1VTSVpOIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlNLVVNJWklEIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iU0tVRkVEUVRZIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJTS1VHRU5NT0RBVVRPIiBUeXBlPSJCb29sZWFuIiAvPjxGaWVsZCBOYW1lPSJTS1VDT0RTQ0hFTSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IlNLVVdTUCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU0tVTVJQIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJTS1VXU1BWQUwiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlNLVU1SUFZBTCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU0tVTVJLRlhQUkMiIFR5cGU9IkJvb2xlYW4iIC8+PEZpZWxkIE5hbWU9IlNLVUFTT1JEUiIgVHlwZT0iQm9vbGVhbiIgLz48RmllbGQgTmFtZT0iU0tVTk1BSU5UU1RLIiBUeXBlPSJCb29sZWFuIiAvPjxGaWVsZCBOYW1lPSJTS1VBUlRDT0xTRVQiIFR5cGU9IkJvb2xlYW4iIC8+PEZpZWxkIE5hbWU9IlNLVUFSVFNJWlNFVCIgVHlwZT0iQm9vbGVhbiIgLz48RmllbGQgTmFtZT0iU0tVU0laSU5EWCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IlNLVUNITk8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iU0tVUE9OTyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTS1VEQU5PIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlNLVVBBUlRZQ09ERSIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9IlNLVUlOUVRZIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJTS1VTTFNRVFkiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlNLVVJUTlFUWSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU0tVU1RLUVRZIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJTS1VJTkFDVCIgVHlwZT0iQm9vbGVhbiIgLz48RmllbGQgTmFtZT0iU0tVQlkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iU0tVRElTQ1BSQ04iIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlNLVUZMQVRSVCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU0tVUFBSSUNFIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJTS1VTQlNFQ1RJT05JRCIgVHlwZT0iSW50MzIiIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
+  </data>
+  <data name="$this.DataSourceSchema" xml:space="preserve">
+    <value>&lt;?xml version="1.0"?&gt;
+&lt;xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"&gt;
+  &lt;xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
+        &lt;xs:element name="Table"&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+              &lt;xs:element name="SKUSYSID" type="xs:long" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUSYSDATE" type="xs:dateTime" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUFNYR" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUCODE" type="xs:long" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUVOUCHNO" type="xs:long" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUPRODUCTCODE" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUARTNO" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUARTID" type="xs:long" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUCOLN" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUCOLID" type="xs:int" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUSIZN" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUSIZID" type="xs:int" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUFEDQTY" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUGENMODAUTO" type="xs:boolean" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUCODSCHEM" type="xs:int" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUWSP" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUMRP" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUWSPVAL" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUMRPVAL" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUMRKFXPRC" type="xs:boolean" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUASORDR" type="xs:boolean" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUNMAINTSTK" type="xs:boolean" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUARTCOLSET" type="xs:boolean" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUARTSIZSET" type="xs:boolean" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUSIZINDX" type="xs:int" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUCHNO" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUPONO" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUDANO" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUPARTYCODE" type="xs:long" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUINQTY" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUSLSQTY" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKURTNQTY" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUSTKQTY" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUINACT" type="xs:boolean" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUBY" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUDISCPRCN" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUFLATRT" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUPPRICE" type="xs:decimal" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUSBSECTIONID" type="xs:int" minOccurs="0" /&gt;
+              &lt;xs:element name="SKUPrintTag" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="UnitCode" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="Used" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="GrpHSNCode" type="xs:string" minOccurs="0" /&gt;
+              &lt;xs:element name="GrpSubDesc" type="xs:string" minOccurs="0" /&gt;
+            &lt;/xs:sequence&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:choice&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</value>
+  </data>
+</root>

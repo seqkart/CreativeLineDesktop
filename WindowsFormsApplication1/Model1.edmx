@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'test.dbo.SKU' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SKU">
+          <Key>
+            <PropertyRef Name="SKUSYSID" />
+          </Key>
+          <Property Name="SKUSYSID" Type="bigint" Nullable="false" />
+          <Property Name="SKUSYSDATE" Type="datetime" />
+          <Property Name="SKUFNYR" Type="varchar" MaxLength="9" />
+          <Property Name="SKUCODE" Type="bigint" />
+          <Property Name="SKUVOUCHNO" Type="bigint" />
+          <Property Name="SKUPRODUCTCODE" Type="varchar" MaxLength="25" />
+          <Property Name="SKUARTNO" Type="varchar" MaxLength="25" />
+          <Property Name="SKUARTID" Type="bigint" />
+          <Property Name="SKUCOLN" Type="varchar" MaxLength="25" />
+          <Property Name="SKUCOLID" Type="int" />
+          <Property Name="SKUSIZN" Type="varchar" MaxLength="15" />
+          <Property Name="SKUSIZID" Type="int" />
+          <Property Name="SKUFEDQTY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKUGENMODAUTO" Type="bit" />
+          <Property Name="SKUCODSCHEM" Type="int" />
+          <Property Name="SKUWSP" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKUMRP" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKUWSPVAL" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKUMRPVAL" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKUMRKFXPRC" Type="bit" />
+          <Property Name="SKUASORDR" Type="bit" />
+          <Property Name="SKUNMAINTSTK" Type="bit" />
+          <Property Name="SKUARTCOLSET" Type="bit" />
+          <Property Name="SKUARTSIZSET" Type="bit" />
+          <Property Name="SKUSIZINDX" Type="int" />
+          <Property Name="SKUCHNO" Type="varchar" MaxLength="25" />
+          <Property Name="SKUPONO" Type="varchar" MaxLength="25" />
+          <Property Name="SKUDANO" Type="varchar" MaxLength="25" />
+          <Property Name="SKUPARTYCODE" Type="bigint" />
+          <Property Name="SKUINQTY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKUSLSQTY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKURTNQTY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKUSTKQTY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SKUINACT" Type="bit" />
+          <Property Name="SKUBY" Type="varchar" MaxLength="25" />
+          <Property Name="SKUDISCPRCN" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="SKUFLATRT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SKUPPRICE" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SKUSBSECTIONID" Type="int" />
+          <Property Name="SKUPrintTag" Type="varchar" MaxLength="2" />
+          <Property Name="UnitCode" Type="varchar" MaxLength="2" />
+          <Property Name="Used" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityContainer Name="testModelStoreContainer">
+          <EntitySet Name="SKU" EntityType="Self.SKU" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SKU].[SKUSYSID] AS [SKUSYSID], 
+[SKU].[SKUSYSDATE] AS [SKUSYSDATE], 
+[SKU].[SKUFNYR] AS [SKUFNYR], 
+[SKU].[SKUCODE] AS [SKUCODE], 
+[SKU].[SKUVOUCHNO] AS [SKUVOUCHNO], 
+[SKU].[SKUPRODUCTCODE] AS [SKUPRODUCTCODE], 
+[SKU].[SKUARTNO] AS [SKUARTNO], 
+[SKU].[SKUARTID] AS [SKUARTID], 
+[SKU].[SKUCOLN] AS [SKUCOLN], 
+[SKU].[SKUCOLID] AS [SKUCOLID], 
+[SKU].[SKUSIZN] AS [SKUSIZN], 
+[SKU].[SKUSIZID] AS [SKUSIZID], 
+[SKU].[SKUFEDQTY] AS [SKUFEDQTY], 
+[SKU].[SKUGENMODAUTO] AS [SKUGENMODAUTO], 
+[SKU].[SKUCODSCHEM] AS [SKUCODSCHEM], 
+[SKU].[SKUWSP] AS [SKUWSP], 
+[SKU].[SKUMRP] AS [SKUMRP], 
+[SKU].[SKUWSPVAL] AS [SKUWSPVAL], 
+[SKU].[SKUMRPVAL] AS [SKUMRPVAL], 
+[SKU].[SKUMRKFXPRC] AS [SKUMRKFXPRC], 
+[SKU].[SKUASORDR] AS [SKUASORDR], 
+[SKU].[SKUNMAINTSTK] AS [SKUNMAINTSTK], 
+[SKU].[SKUARTCOLSET] AS [SKUARTCOLSET], 
+[SKU].[SKUARTSIZSET] AS [SKUARTSIZSET], 
+[SKU].[SKUSIZINDX] AS [SKUSIZINDX], 
+[SKU].[SKUCHNO] AS [SKUCHNO], 
+[SKU].[SKUPONO] AS [SKUPONO], 
+[SKU].[SKUDANO] AS [SKUDANO], 
+[SKU].[SKUPARTYCODE] AS [SKUPARTYCODE], 
+[SKU].[SKUINQTY] AS [SKUINQTY], 
+[SKU].[SKUSLSQTY] AS [SKUSLSQTY], 
+[SKU].[SKURTNQTY] AS [SKURTNQTY], 
+[SKU].[SKUSTKQTY] AS [SKUSTKQTY], 
+[SKU].[SKUINACT] AS [SKUINACT], 
+[SKU].[SKUBY] AS [SKUBY], 
+[SKU].[SKUDISCPRCN] AS [SKUDISCPRCN], 
+[SKU].[SKUFLATRT] AS [SKUFLATRT], 
+[SKU].[SKUPPRICE] AS [SKUPPRICE], 
+[SKU].[SKUSBSECTIONID] AS [SKUSBSECTIONID], 
+[SKU].[SKUPrintTag] AS [SKUPrintTag], 
+[SKU].[UnitCode] AS [UnitCode], 
+[SKU].[Used] AS [Used]
+FROM [dbo].[SKU] AS [SKU]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SKU">
+          <Key>
+            <PropertyRef Name="SKUSYSID" />
+          </Key>
+          <Property Name="SKUSYSID" Type="Int64" Nullable="false" />
+          <Property Name="SKUSYSDATE" Type="DateTime" Precision="3" />
+          <Property Name="SKUFNYR" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="SKUCODE" Type="Int64" />
+          <Property Name="SKUVOUCHNO" Type="Int64" />
+          <Property Name="SKUPRODUCTCODE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SKUARTNO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SKUARTID" Type="Int64" />
+          <Property Name="SKUCOLN" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SKUCOLID" Type="Int32" />
+          <Property Name="SKUSIZN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="SKUSIZID" Type="Int32" />
+          <Property Name="SKUFEDQTY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKUGENMODAUTO" Type="Boolean" />
+          <Property Name="SKUCODSCHEM" Type="Int32" />
+          <Property Name="SKUWSP" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKUMRP" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKUWSPVAL" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKUMRPVAL" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKUMRKFXPRC" Type="Boolean" />
+          <Property Name="SKUASORDR" Type="Boolean" />
+          <Property Name="SKUNMAINTSTK" Type="Boolean" />
+          <Property Name="SKUARTCOLSET" Type="Boolean" />
+          <Property Name="SKUARTSIZSET" Type="Boolean" />
+          <Property Name="SKUSIZINDX" Type="Int32" />
+          <Property Name="SKUCHNO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SKUPONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SKUDANO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SKUPARTYCODE" Type="Int64" />
+          <Property Name="SKUINQTY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKUSLSQTY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKURTNQTY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKUSTKQTY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SKUINACT" Type="Boolean" />
+          <Property Name="SKUBY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SKUDISCPRCN" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="SKUFLATRT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SKUPPRICE" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SKUSBSECTIONID" Type="Int32" />
+          <Property Name="SKUPrintTag" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="UnitCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Used" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="testEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SKUs" EntityType="Self.SKU" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testModelStoreContainer" CdmEntityContainer="testEntities">
+          <EntitySetMapping Name="SKUs">
+            <EntityTypeMapping TypeName="testModel.SKU">
+              <MappingFragment StoreEntitySet="SKU">
+                <ScalarProperty Name="SKUSYSID" ColumnName="SKUSYSID" />
+                <ScalarProperty Name="SKUSYSDATE" ColumnName="SKUSYSDATE" />
+                <ScalarProperty Name="SKUFNYR" ColumnName="SKUFNYR" />
+                <ScalarProperty Name="SKUCODE" ColumnName="SKUCODE" />
+                <ScalarProperty Name="SKUVOUCHNO" ColumnName="SKUVOUCHNO" />
+                <ScalarProperty Name="SKUPRODUCTCODE" ColumnName="SKUPRODUCTCODE" />
+                <ScalarProperty Name="SKUARTNO" ColumnName="SKUARTNO" />
+                <ScalarProperty Name="SKUARTID" ColumnName="SKUARTID" />
+                <ScalarProperty Name="SKUCOLN" ColumnName="SKUCOLN" />
+                <ScalarProperty Name="SKUCOLID" ColumnName="SKUCOLID" />
+                <ScalarProperty Name="SKUSIZN" ColumnName="SKUSIZN" />
+                <ScalarProperty Name="SKUSIZID" ColumnName="SKUSIZID" />
+                <ScalarProperty Name="SKUFEDQTY" ColumnName="SKUFEDQTY" />
+                <ScalarProperty Name="SKUGENMODAUTO" ColumnName="SKUGENMODAUTO" />
+                <ScalarProperty Name="SKUCODSCHEM" ColumnName="SKUCODSCHEM" />
+                <ScalarProperty Name="SKUWSP" ColumnName="SKUWSP" />
+                <ScalarProperty Name="SKUMRP" ColumnName="SKUMRP" />
+                <ScalarProperty Name="SKUWSPVAL" ColumnName="SKUWSPVAL" />
+                <ScalarProperty Name="SKUMRPVAL" ColumnName="SKUMRPVAL" />
+                <ScalarProperty Name="SKUMRKFXPRC" ColumnName="SKUMRKFXPRC" />
+                <ScalarProperty Name="SKUASORDR" ColumnName="SKUASORDR" />
+                <ScalarProperty Name="SKUNMAINTSTK" ColumnName="SKUNMAINTSTK" />
+                <ScalarProperty Name="SKUARTCOLSET" ColumnName="SKUARTCOLSET" />
+                <ScalarProperty Name="SKUARTSIZSET" ColumnName="SKUARTSIZSET" />
+                <ScalarProperty Name="SKUSIZINDX" ColumnName="SKUSIZINDX" />
+                <ScalarProperty Name="SKUCHNO" ColumnName="SKUCHNO" />
+                <ScalarProperty Name="SKUPONO" ColumnName="SKUPONO" />
+                <ScalarProperty Name="SKUDANO" ColumnName="SKUDANO" />
+                <ScalarProperty Name="SKUPARTYCODE" ColumnName="SKUPARTYCODE" />
+                <ScalarProperty Name="SKUINQTY" ColumnName="SKUINQTY" />
+                <ScalarProperty Name="SKUSLSQTY" ColumnName="SKUSLSQTY" />
+                <ScalarProperty Name="SKURTNQTY" ColumnName="SKURTNQTY" />
+                <ScalarProperty Name="SKUSTKQTY" ColumnName="SKUSTKQTY" />
+                <ScalarProperty Name="SKUINACT" ColumnName="SKUINACT" />
+                <ScalarProperty Name="SKUBY" ColumnName="SKUBY" />
+                <ScalarProperty Name="SKUDISCPRCN" ColumnName="SKUDISCPRCN" />
+                <ScalarProperty Name="SKUFLATRT" ColumnName="SKUFLATRT" />
+                <ScalarProperty Name="SKUPPRICE" ColumnName="SKUPPRICE" />
+                <ScalarProperty Name="SKUSBSECTIONID" ColumnName="SKUSBSECTIONID" />
+                <ScalarProperty Name="SKUPrintTag" ColumnName="SKUPrintTag" />
+                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+                <ScalarProperty Name="Used" ColumnName="Used" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
