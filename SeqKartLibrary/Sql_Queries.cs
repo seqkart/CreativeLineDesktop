@@ -8,6 +8,16 @@ namespace SeqKartLibrary
 {
     public class SQL_QUERIES
     {
+        public static string SP_LoadUserAllocatedWork2()
+        {
+            return "sp_LoadUserAllocatedWork2";
+        }
+        /// <summary>
+        /// ////////////////
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <param name="UserPwd"></param>
+        /// <returns></returns>
         public static string SQL_USERMASTER(object UserName, object UserPwd)
         {
             return "Select UserName,UserPwd from UserMaster WHere UserName='" + UserName.ToString().Trim() + "' And UserPwd='" + UserPwd.ToString().Trim() + "'";

@@ -136,7 +136,7 @@
             // 
             // defaultLookAndFeel1
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Sharp Plus";
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2019 Colorful";
             // 
             // label2
             // 

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeqKartLibrary", "SeqKartLibrary\SeqKartLibrary.csproj", "{3AAED41C-013F-4F65-8376-4D221C32D390}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeqKartWeb", "SeqKartWeb\SeqKartWeb.csproj", "{05159B85-9C78-4A05-A038-E3C580BD2039}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,14 @@ Global
 		{3AAED41C-013F-4F65-8376-4D221C32D390}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3AAED41C-013F-4F65-8376-4D221C32D390}.Release|x86.ActiveCfg = Release|Any CPU
 		{3AAED41C-013F-4F65-8376-4D221C32D390}.Release|x86.Build.0 = Release|Any CPU
+		{05159B85-9C78-4A05-A038-E3C580BD2039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05159B85-9C78-4A05-A038-E3C580BD2039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05159B85-9C78-4A05-A038-E3C580BD2039}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{05159B85-9C78-4A05-A038-E3C580BD2039}.Debug|x86.Build.0 = Debug|Any CPU
+		{05159B85-9C78-4A05-A038-E3C580BD2039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05159B85-9C78-4A05-A038-E3C580BD2039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05159B85-9C78-4A05-A038-E3C580BD2039}.Release|x86.ActiveCfg = Release|Any CPU
+		{05159B85-9C78-4A05-A038-E3C580BD2039}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

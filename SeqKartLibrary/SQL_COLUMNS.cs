@@ -19,6 +19,21 @@ namespace SeqKartLibrary
             public const string _COMEID = "COMEID";
             public const string _COMZIP = "COMZIP";
             public const string _COMWEBSITE = "COMWEBSITE";
+            public const string _COMSYSID = "COMSYSID";
+        }
+
+        public static class FN_YEAR
+        {
+            public const string _FNYearCode = "FNYearCode";
+            public const string _FNStartDate = "FNStartDate";
+            public const string _FNEndDate = "FNEndDate";
+        }
+
+        public static class UNITS
+        {
+            public const string _UNITID = "UNITID";
+            public const string _UNITNAME = "UNITNAME";
+            
         }
     }
 }

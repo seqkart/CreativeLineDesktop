@@ -17,6 +17,7 @@ using System.Net;
 using System.Speech.Synthesis;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SeqKartLibrary;
 
 namespace WindowsFormsApplication1
 {
@@ -25,7 +26,7 @@ namespace WindowsFormsApplication1
     {
 
         public static SpeechSynthesizer _synthesizer = new SpeechSynthesizer();
-        public static String ConnectionString = @"Data Source=DESKTOP-1I98CVU\SQLEXPRESS;Initial Catalog=SEQKART;User ID=sa;pwd=admin@123";
+        public static String ConnectionString = ProjectFunctionsUtils.ConnectionString;////@"Data Source=DESKTOP-1I98CVU\SQLEXPRESS;Initial Catalog=SEQKART;User ID=sa;pwd=admin@123";
         //public static String ConnectionString = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\server.txt");
 
         //public static void SendSMS(string uid, string password, string message, string no)

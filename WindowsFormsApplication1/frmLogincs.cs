@@ -95,9 +95,9 @@ namespace WindowsFormsApplication1
 
                     GlobalVariables.CUnitID = txtUnit.SelectedValue.ToString().PadLeft(2, '0');
 
-                    GlobalVariables.FinancialYear = drFY["FNYearCode"].ToString();
-                    GlobalVariables.FinYearStartDate = Convert.ToDateTime(drFY["FNStartDate"]).Date;
-                    GlobalVariables.FinYearEndDate = Convert.ToDateTime(drFY["FNEndDate"]).Date;
+                    GlobalVariables.FinancialYear = drFY[SQL_COLUMNS.FN_YEAR._FNYearCode].ToString();
+                    GlobalVariables.FinYearStartDate = Convert.ToDateTime(drFY[SQL_COLUMNS.FN_YEAR._FNStartDate]).Date;
+                    GlobalVariables.FinYearEndDate = Convert.ToDateTime(drFY[SQL_COLUMNS.FN_YEAR._FNEndDate]).Date;
 
                     GlobalVariables.BarCodePreFix = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_UNITS(GlobalVariables.CUnitID)).Tables[0].Rows[0][0].ToString();
 
@@ -156,16 +156,16 @@ namespace WindowsFormsApplication1
             if (dsCompany.Tables[0].Rows.Count > 0)
             {
                 txtCompany.DataSource = dsCompany.Tables[0];
-                txtCompany.ValueMember = "COMSYSID";
-                txtCompany.DisplayMember = "COMNAME";
+                txtCompany.ValueMember = SQL_COLUMNS.COMCONF._COMSYSID;// "COMSYSID";
+                txtCompany.DisplayMember = SQL_COLUMNS.COMCONF._COMNAME;// "COMNAME";
             }
 
             DataSet dsFNYear = ProjectFunctionsUtils.GetDataSet(SQL_QUERIES.SQL_FN_YEAR_ACTIVE("Y"));
             if (dsFNYear.Tables[0].Rows.Count > 0)
             {                
                 txtFNYear.DataSource = dsFNYear.Tables[0];
-                txtFNYear.ValueMember = "FNYearCode";
-                txtFNYear.DisplayMember = "FNYearCode";
+                txtFNYear.ValueMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
+                txtFNYear.DisplayMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
             }
 
             //MessageBox.Show(dsFNYear.Tables[0].Rows.Count.ToString());
@@ -184,15 +184,15 @@ namespace WindowsFormsApplication1
                     if (dsUnit.Tables[0].Rows.Count > 0)
                     {
                         txtUnit.DataSource = dsUnit.Tables[0];
-                        txtUnit.ValueMember = "UNITID";
-                        txtUnit.DisplayMember = "UNITNAME";
+                        txtUnit.ValueMember = SQL_COLUMNS.UNITS._UNITID;
+                        txtUnit.DisplayMember = SQL_COLUMNS.UNITS._UNITNAME;
                     }
                     DataSet dsFNYear = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_USER_FN_ACCESS_BY_USER(txtUserName.Text));
                     if (dsFNYear.Tables[0].Rows.Count > 0)
                     {
                         txtFNYear.DataSource = dsFNYear.Tables[0];
-                        txtFNYear.ValueMember = "FNYearCode";
-                        txtFNYear.DisplayMember = "FNYearCode";
+                        txtFNYear.ValueMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
+                        txtFNYear.DisplayMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
                     }
                 }
                 else
