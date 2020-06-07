@@ -147,7 +147,7 @@ namespace WindowsFormsApplication1.Transaction
         private bool ValidateDataForSaving()
         {
 
-            if (InfoGrid.DataSource==null)
+            if (InfoGrid.DataSource == null)
             {
                 ProjectFunctions.SpeakError("Blank Bill Cannot Be Saved");
                 txtCustMobileNo.Focus();

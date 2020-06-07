@@ -393,6 +393,7 @@
             this.BarCodeGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.BarCodeGridView});
             this.BarCodeGrid.Click += new System.EventHandler(this.BarCodeGrid_Click);
+            this.BarCodeGrid.DoubleClick += new System.EventHandler(this.BarCodeGrid_DoubleClick);
             this.BarCodeGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BarCodeGrid_KeyDown);
             // 
             // Panel2
@@ -440,7 +441,7 @@
             this.Label8.AutoSize = true;
             this.Label8.Location = new System.Drawing.Point(239, 11);
             this.Label8.Name = "Label8";
-            this.Label8.Size = new System.Drawing.Size(46, 13);
+            this.Label8.Size = new System.Drawing.Size(47, 13);
             this.Label8.TabIndex = 0;
             this.Label8.Text = "DATED :";
             // 
@@ -544,7 +545,7 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(43, 116);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(48, 13);
+            this.labelControl8.Size = new System.Drawing.Size(49, 13);
             this.labelControl8.TabIndex = 725;
             this.labelControl8.Text = "GST NO. :";
             this.labelControl8.Click += new System.EventHandler(this.labelControl4_Click);
@@ -553,7 +554,7 @@
             // 
             this.labelControl7.Location = new System.Drawing.Point(31, 95);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(60, 13);
+            this.labelControl7.Size = new System.Drawing.Size(62, 13);
             this.labelControl7.TabIndex = 725;
             this.labelControl7.Text = "CITY / SATE :";
             this.labelControl7.Click += new System.EventHandler(this.labelControl4_Click);

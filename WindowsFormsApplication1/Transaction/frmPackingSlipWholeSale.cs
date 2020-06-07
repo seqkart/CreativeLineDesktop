@@ -172,6 +172,7 @@ namespace WindowsFormsApplication1.Transaction
             try
             {
                 ProjectFunctions.GirdViewVisualize(BarCodeGridView);
+                ProjectFunctions.GirdViewVisualize(BarCodeGridView);
                 ProjectFunctions.GirdViewVisualize(HelpGridView);
                 ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
                 ProjectFunctions.TextBoxVisualize(Panel1);
@@ -834,15 +835,28 @@ namespace WindowsFormsApplication1.Transaction
             }
         }
 
-        private void BarCodeGridView_PopupMenuShowing(object sender,
-                                                      DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        private void BarCodeGridView_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
             try
             {
                 BarCodeGridView.CloseEditor();
                 BarCodeGridView.UpdateCurrentRow();
-                e.Menu.Items
-                    .Add(new DevExpress.Utils.Menu.DXMenuItem("Delete Current Row",
+                e.Menu.Items.Add(new DevExpress.Utils.Menu.DXMenuItem("Update Quantity", (o1, e1) =>
+                {
+
+                    DataRow currentrow = BarCodeGridView.GetDataRow(BarCodeGridView.FocusedRowHandle);
+                    DataSet ds = ProjectFunctions.GetDataSet("select top 1 * from sku_fix where SKUPRODUCTCODE='" + currentrow["SIDBARCODE"].ToString() + "'");
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        gridColumn7.OptionsColumn.AllowEdit = true;
+                    }
+                    else
+                    {
+                        gridColumn7.OptionsColumn.AllowEdit = false;
+                    }
+                }));
+
+                e.Menu.Items.Add(new DevExpress.Utils.Menu.DXMenuItem("Delete Current Row",
                                                               (o1, e1) =>
                 {
                     BarCodeGridView.DeleteRow(BarCodeGridView.FocusedRowHandle);
@@ -950,18 +964,16 @@ namespace WindowsFormsApplication1.Transaction
         private void HelpGridView_PopupMenuShowing(object sender,
                                                    DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
-            e.Menu.Items
-                .Add(new DevExpress.Utils.Menu.DXMenuItem("Select All Records",
-                                                          (o1, e1) =>
-            {
-#pragma warning disable CS0618 // 'GridControl.KeyboardFocusView' is obsolete: 'Use the FocusedView property instead.'
-                var MaxRow = ((HelpGrid.KeyboardFocusView as GridView).RowCount);
-#pragma warning restore CS0618 // 'GridControl.KeyboardFocusView' is obsolete: 'Use the FocusedView property instead.'
-                for (var i = 0; i < MaxRow; i++)
-                {
-                    HelpGridView.SetRowCellValue(i, HelpGridView.Columns["Select"], true);
-                }
-            }));
+
+
+            e.Menu.Items.Add(new DevExpress.Utils.Menu.DXMenuItem("Select All Records", (o1, e1) =>
+             {
+                 var MaxRow = ((HelpGrid.KeyboardFocusView as GridView).RowCount);
+                 for (var i = 0; i < MaxRow; i++)
+                 {
+                     HelpGridView.SetRowCellValue(i, HelpGridView.Columns["Select"], true);
+                 }
+             }));
         }
 
         private void FrmPackingSlipWholeSale_KeyDown(object sender, KeyEventArgs e)
@@ -970,5 +982,10 @@ namespace WindowsFormsApplication1.Transaction
         private void label5_Click(object sender, EventArgs e) { }
 
         private void labelControl4_Click(object sender, EventArgs e) { }
+
+        private void BarCodeGrid_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

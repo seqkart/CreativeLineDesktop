@@ -16,12 +16,12 @@ namespace WindowsFormsApplication1.Administration
         private void SetMyControls()
         {
             try
-            { 
-            ProjectFunctions.TextBoxVisualize(this);
-            ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
-            txtRoleDesc.Properties.MaxLength = 40;
+            {
+                ProjectFunctions.TextBoxVisualize(this);
+                ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
+                txtRoleDesc.Properties.MaxLength = 40;
 
-            txtRoleCode.Enabled = false;
+                txtRoleCode.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -41,21 +41,22 @@ namespace WindowsFormsApplication1.Administration
         }
         private bool ValidateData()
         {
-            try { 
-            if (txtRoleCode.Text.Trim().Length == 0)
+            try
             {
-                ProjectFunctions.SpeakError("Invalid Role Code");
-                txtRoleCode.Focus();
-                return false;
-            }
-            if (txtRoleDesc.Text.Trim().Length == 0)
-            {
-                ProjectFunctions.SpeakError("Invalid Role Description");
-                txtRoleDesc.Focus();
-                return false;
-            }
+                if (txtRoleCode.Text.Trim().Length == 0)
+                {
+                    ProjectFunctions.SpeakError("Invalid Role Code");
+                    txtRoleCode.Focus();
+                    return false;
+                }
+                if (txtRoleDesc.Text.Trim().Length == 0)
+                {
+                    ProjectFunctions.SpeakError("Invalid Role Description");
+                    txtRoleDesc.Focus();
+                    return false;
+                }
 
-            return true;
+                return true;
             }
             catch (Exception ex)
             {

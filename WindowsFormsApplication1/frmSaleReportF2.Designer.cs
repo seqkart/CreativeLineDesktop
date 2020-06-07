@@ -72,6 +72,7 @@
             this.Menu_ToolStrip.Size = new System.Drawing.Size(694, 26);
             this.Menu_ToolStrip.TabIndex = 686;
             this.Menu_ToolStrip.Text = "Options";
+            this.Menu_ToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Menu_ToolStrip_ItemClicked);
             // 
             // btnQuit
             // 
@@ -91,7 +92,7 @@
             this.label1.Font = new System.Drawing.Font("Bahnschrift", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(512, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 23);
+            this.label1.Size = new System.Drawing.Size(114, 23);
             this.label1.TabIndex = 692;
             this.label1.Text = "TOTAL SALE";
             // 
@@ -101,7 +102,7 @@
             this.label2.Font = new System.Drawing.Font("Bahnschrift", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(512, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 23);
+            this.label2.Size = new System.Drawing.Size(152, 23);
             this.label2.TabIndex = 693;
             this.label2.Text = "TOTAL QTY SOLD";
             // 
@@ -111,7 +112,7 @@
             this.label3.Font = new System.Drawing.Font("Bahnschrift", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(512, 207);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 23);
+            this.label3.Size = new System.Drawing.Size(140, 23);
             this.label3.TabIndex = 694;
             this.label3.Text = "AVERAGE SALE";
             // 
@@ -121,7 +122,7 @@
             this.label4.Font = new System.Drawing.Font("Bahnschrift", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(512, 150);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 23);
+            this.label4.Size = new System.Drawing.Size(119, 23);
             this.label4.TabIndex = 695;
             this.label4.Text = "TOTAL BILLS";
             // 

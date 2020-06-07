@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Master
 {
-    
+
     public partial class frmMeasurementMapping : DevExpress.XtraEditors.XtraForm
     {
         public String s1 { get; set; }
@@ -40,7 +40,7 @@ namespace WindowsFormsApplication1.Master
                 txtMDesc.Focus();
                 return false;
             }
-            
+
 
             return true;
         }
@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1.Master
             if (s1 == "&Add")
             {
                 txtMDesc.Focus();
-               
+
             }
             if (s1 == "Edit")
             {

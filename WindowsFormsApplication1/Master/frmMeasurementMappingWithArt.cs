@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 
 namespace WindowsFormsApplication1.Master
 {
@@ -51,11 +45,11 @@ namespace WindowsFormsApplication1.Master
                     item.CheckState = CheckState.Unchecked;
                     txtMeasurement.Properties.Items.Add(item);
                 }
-                if(dsData.Tables[0].Rows.Count>0)
+                if (dsData.Tables[0].Rows.Count > 0)
                 {
 
                 }
-                
+
 
             }
             DataSet dsSize = ProjectFunctions.GetDataSet("select SZSYSID,SZNAME from SIZEMAST");
@@ -63,7 +57,7 @@ namespace WindowsFormsApplication1.Master
             {
                 txtSize.Properties.Items.Clear();
                 InfoGridView.Columns.Clear();
-              
+
                 DevExpress.XtraGrid.Columns.GridColumn FieldA = new DevExpress.XtraGrid.Columns.GridColumn();
                 FieldA.Caption = "MCode";
                 FieldA.FieldName = "MCode";
@@ -131,12 +125,12 @@ namespace WindowsFormsApplication1.Master
                         }
                     }
                 }
-            }     
+            }
 
             DataTable dt = new DataTable();
             foreach (DevExpress.XtraGrid.Columns.GridColumn col in InfoGridView.Columns)
             {
-                if(col.Visible)
+                if (col.Visible)
                 {
                     dt.Columns.Add(col.FieldName, typeof(String));
                 }
@@ -152,7 +146,7 @@ namespace WindowsFormsApplication1.Master
 
                 }
             }
-            if(dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
                 InfoGrid.DataSource = dt;
                 InfoGridView.BestFitColumns();

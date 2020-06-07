@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1
                     Transaction.Pos.Schemesetup frm = new Transaction.Pos.Schemesetup() { s1 = btnAdd.Text, Text = "Scheme Setup Addition" };
 
                     frm.StartPosition = FormStartPosition.CenterScreen;
-                    
+
                     //var P = ProjectFunctions.GetPositionInForm(this);
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
@@ -927,9 +927,9 @@ namespace WindowsFormsApplication1
 
         private void FrmMaster_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.F2)
+            if (e.KeyCode == Keys.F2)
             {
-                frmSaleReportF2 frm = new frmSaleReportF2() { Text = "Sale Report",WorkingTag= "Today" };
+                frmSaleReportF2 frm = new frmSaleReportF2() { Text = "Sale Report", WorkingTag = "Today" };
                 var P = ProjectFunctions.GetPositionInForm(this);
                 frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                 frm.ShowDialog(Parent);

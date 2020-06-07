@@ -14,19 +14,19 @@ namespace WindowsFormsApplication1.Model1.edmx.Model1.Context.tt
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class testEntities : DbContext
     {
         public testEntities()
             : base("name=testEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public DbSet<SKU> SKUs { get; set; }
     }
 }

@@ -3,7 +3,7 @@
 using System;
 
 #pragma warning restore CS0105 // The using directive for 'System' appeared previously in this namespace
-using System;
+
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;

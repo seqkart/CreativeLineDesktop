@@ -125,7 +125,8 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                if (xtraTabControl1.SelectedTabPage.Name != string.Empty)
+                //MessageBox.Show(String.IsNullOrEmpty(xtraTabControl1.SelectedTabPage.Name) ? "0":"1");
+                if (!String.IsNullOrEmpty(xtraTabControl1.SelectedTabPage.Name))
                 {
                     GlobalVariables.ProgCode = xtraTabControl1.SelectedTabPage.Name;
                 }
@@ -134,7 +135,8 @@ namespace WindowsFormsApplication1
             catch (Exception ex)
 #pragma warning restore CS0168 // The variable 'ex' is declared but never used
             {
-
+                
+                //MessageBox.Show(ex.Message);
             }
         }
         private void RunProgAccordin(string myitem, string itemcaption)
@@ -1372,7 +1374,7 @@ namespace WindowsFormsApplication1
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
                 case "PROG171":
-                    var PROG171 = new  Transaction.frmBarPrinting() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG171 = new Transaction.frmBarPrinting() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG171.Show();
                     PROG171.BringToFront();
                     PROG171.Parent = Page;

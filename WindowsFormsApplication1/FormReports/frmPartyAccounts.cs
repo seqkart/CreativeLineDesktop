@@ -16,12 +16,12 @@ namespace WindowsFormsApplication1.FormReports
         private void FrmPartyAccounts_Load(object sender, EventArgs e)
         {
             try
-            { 
-            _SelectRange = new RangeSelectorLedger() { StartDate = GlobalVariables.FinYearStartDate, EndDate = GlobalVariables.FinYearEndDate };
-            ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
-            _SelectRange.BtnLoad.Click += BtnLoad_Click;
-            this.Controls.Add(_SelectRange);
-            _SelectRange.BringToFront();
+            {
+                _SelectRange = new RangeSelectorLedger() { StartDate = GlobalVariables.FinYearStartDate, EndDate = GlobalVariables.FinYearEndDate };
+                ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
+                _SelectRange.BtnLoad.Click += BtnLoad_Click;
+                this.Controls.Add(_SelectRange);
+                _SelectRange.BringToFront();
             }
             catch (Exception ex)
             {

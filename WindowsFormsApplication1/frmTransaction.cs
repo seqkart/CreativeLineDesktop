@@ -59,7 +59,7 @@ namespace WindowsFormsApplication1
             {
                 if (GlobalVariables.ProgCode == "PROG168")
                 {
-                    BNPL.frm_Asset_AddUpd frm = new BNPL.frm_Asset_AddUpd { IsUpdate=false, Text = "Asset Master Addition" };
+                    BNPL.frm_Asset_AddUpd frm = new BNPL.frm_Asset_AddUpd { IsUpdate = false, Text = "Asset Master Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     frm.ShowDialog(Parent);
                 }

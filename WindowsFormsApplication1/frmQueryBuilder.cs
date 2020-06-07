@@ -37,12 +37,12 @@ namespace WindowsFormsApplication1
                 {
                     string[] rows = sr.ReadLine().Split(',');
 
-                   
+
 
                     DataRow dr = dt.NewRow();
                     for (int ii = 0; ii < rows.Count(); ii++)
                     {
-                        if(ii>= dt.Columns.Count)
+                        if (ii >= dt.Columns.Count)
                         {
 
                         }
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
                         {
                             dr[ii] = rows[ii];
                         }
-                       
+
                     }
                     dt.Rows.Add(dr);
                 }

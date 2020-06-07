@@ -46,6 +46,7 @@
             this.txtUnit = new System.Windows.Forms.ComboBox();
             this.txtFNYear = new System.Windows.Forms.ComboBox();
             this.btnBackup = new DevExpress.XtraEditors.SimpleButton();
+            this.stepProgressBarItem1 = new DevExpress.XtraEditors.StepProgressBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             this.SuspendLayout();
@@ -55,6 +56,9 @@
             this.txtUserName.EnterMoveNextControl = true;
             this.txtUserName.Location = new System.Drawing.Point(163, 46);
             this.txtUserName.Name = "txtUserName";
+            // 
+            // 
+            // 
             this.txtUserName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUserName.Properties.MaxLength = 30;
             this.txtUserName.Size = new System.Drawing.Size(229, 20);
@@ -77,6 +81,9 @@
             this.txtPassword.EnterMoveNextControl = true;
             this.txtPassword.Location = new System.Drawing.Point(163, 71);
             this.txtPassword.Name = "txtPassword";
+            // 
+            // 
+            // 
             this.txtPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPassword.Properties.MaxLength = 30;
             this.txtPassword.Properties.PasswordChar = '*';
@@ -129,7 +136,7 @@
             // 
             // defaultLookAndFeel1
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2019 Colorful";
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Sharp Plus";
             // 
             // label2
             // 
@@ -180,15 +187,18 @@
             // 
             // txtCompany
             // 
+            this.txtCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtCompany.FormattingEnabled = true;
             this.txtCompany.Location = new System.Drawing.Point(163, 100);
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.Size = new System.Drawing.Size(229, 21);
             this.txtCompany.TabIndex = 2;
+            this.txtCompany.SelectedIndexChanged += new System.EventHandler(this.txtCompany_SelectedIndexChanged);
             this.txtCompany.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCompany_KeyDown);
             // 
             // txtUnit
             // 
+            this.txtUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtUnit.FormattingEnabled = true;
             this.txtUnit.Location = new System.Drawing.Point(163, 125);
             this.txtUnit.Name = "txtUnit";
@@ -198,11 +208,13 @@
             // 
             // txtFNYear
             // 
+            this.txtFNYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtFNYear.FormattingEnabled = true;
             this.txtFNYear.Location = new System.Drawing.Point(163, 149);
             this.txtFNYear.Name = "txtFNYear";
             this.txtFNYear.Size = new System.Drawing.Size(229, 21);
             this.txtFNYear.TabIndex = 4;
+            this.txtFNYear.SelectedIndexChanged += new System.EventHandler(this.txtFNYear_SelectedIndexChanged);
             this.txtFNYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFNYear_KeyDown);
             // 
             // btnBackup
@@ -222,6 +234,11 @@
             this.btnBackup.TabIndex = 56;
             this.btnBackup.Text = "BackUp";
             this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
+            // 
+            // stepProgressBarItem1
+            // 
+            this.stepProgressBarItem1.ContentBlock2.Caption = "Item1";
+            this.stepProgressBarItem1.Name = "stepProgressBarItem1";
             // 
             // frmLogincs
             // 
@@ -277,5 +294,6 @@
         private System.Windows.Forms.ComboBox txtUnit;
         private System.Windows.Forms.ComboBox txtFNYear;
         private DevExpress.XtraEditors.SimpleButton btnBackup;
+        private DevExpress.XtraEditors.StepProgressBarItem stepProgressBarItem1;
     }
 }

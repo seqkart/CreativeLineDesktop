@@ -10,8 +10,7 @@
 namespace WindowsFormsApplication1.Model1.edmx.Model1.tt
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class SKU
     {
         public long SKUSYSID { get; set; }

@@ -352,8 +352,8 @@ namespace WindowsFormsApplication1
         {
             BeginInvoke(new MethodInvoker(delegate
             {
-                    UserGridView.PostEditor();
-                    UserGridView.UpdateCurrentRow();
+                UserGridView.PostEditor();
+                UserGridView.UpdateCurrentRow();
             }));
         }
 
@@ -638,7 +638,7 @@ namespace WindowsFormsApplication1
             {
                 ProjectFunctions.SpeakError(ex.Message);
             }
-}
+        }
 
         private void UserGridView_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {

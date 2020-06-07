@@ -28,10 +28,10 @@ namespace WindowsFormsApplication1.FormReports
         void BtnLoad_Click(object sender, EventArgs e)
         {
             try
-            { 
-            ProjectFunctions.BindReportToPivotGrid(ProjectFunctions.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString(), _RangeSelector.DtFrom.DateTime.Date, _RangeSelector.DtEnd.DateTime.Date, PivotGridControl);
-            _RangeSelector.Visible = false;
-            HelpGrid.Visible = false;
+            {
+                ProjectFunctions.BindReportToPivotGrid(ProjectFunctions.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString(), _RangeSelector.DtFrom.DateTime.Date, _RangeSelector.DtEnd.DateTime.Date, PivotGridControl);
+                _RangeSelector.Visible = false;
+                HelpGrid.Visible = false;
             }
             catch (Exception ex)
             {

@@ -20,11 +20,13 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
+
     class ProjectFunctions
     {
+
         public static SpeechSynthesizer _synthesizer = new SpeechSynthesizer();
-        //public static String ConnectionString = @"Data Source=DESKTOP-PS2NCPJ;Initial Catalog=SEQKART;User ID=sa;pwd=123";
-        public static String ConnectionString = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\server.txt");
+        public static String ConnectionString = @"Data Source=DESKTOP-1I98CVU\SQLEXPRESS;Initial Catalog=SEQKART;User ID=sa;pwd=admin@123";
+        //public static String ConnectionString = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\server.txt");
 
         //public static void SendSMS(string uid, string password, string message, string no)
         //{

@@ -534,7 +534,7 @@
             // 
             this.labelControl28.Location = new System.Drawing.Point(23, 88);
             this.labelControl28.Name = "labelControl28";
-            this.labelControl28.Size = new System.Drawing.Size(79, 13);
+            this.labelControl28.Size = new System.Drawing.Size(80, 13);
             this.labelControl28.TabIndex = 540;
             this.labelControl28.Text = "Transporter Key";
             // 
@@ -542,7 +542,7 @@
             // 
             this.labelControl24.Location = new System.Drawing.Point(43, 65);
             this.labelControl24.Name = "labelControl24";
-            this.labelControl24.Size = new System.Drawing.Size(59, 13);
+            this.labelControl24.Size = new System.Drawing.Size(60, 13);
             this.labelControl24.TabIndex = 540;
             this.labelControl24.Text = "Transporter";
             // 
@@ -804,7 +804,7 @@
             // 
             this.labelControl22.Location = new System.Drawing.Point(15, 107);
             this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(75, 13);
+            this.labelControl22.Size = new System.Drawing.Size(74, 13);
             this.labelControl22.TabIndex = 540;
             this.labelControl22.Text = "Agent / Broker";
             // 
@@ -812,7 +812,7 @@
             // 
             this.labelControl20.Location = new System.Drawing.Point(12, 82);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(78, 13);
+            this.labelControl20.Size = new System.Drawing.Size(77, 13);
             this.labelControl20.TabIndex = 540;
             this.labelControl20.Text = "Ledger Balance";
             // 
@@ -827,7 +827,7 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(51, 56);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(37, 13);
+            this.labelControl10.Size = new System.Drawing.Size(38, 13);
             this.labelControl10.TabIndex = 524;
             this.labelControl10.Text = "GST No";
             // 
@@ -1190,7 +1190,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl10);
             this.xtraTabPage2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage2.ImageOptions.Image")));
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1220, 589);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1218, 589);
             this.xtraTabPage2.Text = "Invoice Data";
             // 
             // panelControl1
@@ -1894,7 +1894,7 @@
             // 
             this.labelControl40.Location = new System.Drawing.Point(95, 32);
             this.labelControl40.Name = "labelControl40";
-            this.labelControl40.Size = new System.Drawing.Size(72, 13);
+            this.labelControl40.Size = new System.Drawing.Size(73, 13);
             this.labelControl40.TabIndex = 542;
             this.labelControl40.Text = "Discount Type";
             // 
@@ -1910,7 +1910,7 @@
             // 
             this.labelControl43.Location = new System.Drawing.Point(2, 54);
             this.labelControl43.Name = "labelControl43";
-            this.labelControl43.Size = new System.Drawing.Size(88, 13);
+            this.labelControl43.Size = new System.Drawing.Size(90, 13);
             this.labelControl43.TabIndex = 542;
             this.labelControl43.Text = "Total Tax Amount";
             // 
@@ -1926,7 +1926,7 @@
             // 
             this.labelControl38.Location = new System.Drawing.Point(21, 10);
             this.labelControl38.Name = "labelControl38";
-            this.labelControl38.Size = new System.Drawing.Size(70, 13);
+            this.labelControl38.Size = new System.Drawing.Size(71, 13);
             this.labelControl38.TabIndex = 542;
             this.labelControl38.Text = "Taxable Value";
             // 
@@ -2102,7 +2102,7 @@
             this.xtraTabPage6.Controls.Add(this.TaxCodeGrid);
             this.xtraTabPage6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage6.ImageOptions.Image")));
             this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(517, 154);
+            this.xtraTabPage6.Size = new System.Drawing.Size(515, 154);
             this.xtraTabPage6.Text = "GST Tax Details";
             // 
             // TaxCodeGrid
@@ -2111,7 +2111,7 @@
             this.TaxCodeGrid.Location = new System.Drawing.Point(0, 0);
             this.TaxCodeGrid.MainView = this.gridView3;
             this.TaxCodeGrid.Name = "TaxCodeGrid";
-            this.TaxCodeGrid.Size = new System.Drawing.Size(517, 154);
+            this.TaxCodeGrid.Size = new System.Drawing.Size(515, 154);
             this.TaxCodeGrid.TabIndex = 476;
             this.TaxCodeGrid.TabStop = false;
             this.TaxCodeGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2221,7 +2221,7 @@
             // 
             this.xtraTabPage9.Controls.Add(this.HSNGrid);
             this.xtraTabPage9.Name = "xtraTabPage9";
-            this.xtraTabPage9.Size = new System.Drawing.Size(517, 154);
+            this.xtraTabPage9.Size = new System.Drawing.Size(515, 154);
             this.xtraTabPage9.Text = "HSN WISE GST DETAILS";
             // 
             // HSNGrid
@@ -2230,7 +2230,7 @@
             this.HSNGrid.Location = new System.Drawing.Point(0, 0);
             this.HSNGrid.MainView = this.gridView6;
             this.HSNGrid.Name = "HSNGrid";
-            this.HSNGrid.Size = new System.Drawing.Size(517, 154);
+            this.HSNGrid.Size = new System.Drawing.Size(515, 154);
             this.HSNGrid.TabIndex = 477;
             this.HSNGrid.TabStop = false;
             this.HSNGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2343,7 +2343,7 @@
             this.xtraTabPage7.Controls.Add(this.TXMAINREMARKS);
             this.xtraTabPage7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage7.ImageOptions.Image")));
             this.xtraTabPage7.Name = "xtraTabPage7";
-            this.xtraTabPage7.Size = new System.Drawing.Size(517, 154);
+            this.xtraTabPage7.Size = new System.Drawing.Size(515, 154);
             this.xtraTabPage7.Text = "Remarks";
             // 
             // labelControl51
@@ -2510,7 +2510,7 @@
             // 
             this.labelControl37.Location = new System.Drawing.Point(207, 78);
             this.labelControl37.Name = "labelControl37";
-            this.labelControl37.Size = new System.Drawing.Size(73, 13);
+            this.labelControl37.Size = new System.Drawing.Size(72, 13);
             this.labelControl37.TabIndex = 542;
             this.labelControl37.Text = "Builty Amount";
             // 
@@ -2634,7 +2634,7 @@
             this.xtraTabPage4.Controls.Add(this.labelControl3);
             this.xtraTabPage4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage4.ImageOptions.Image")));
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(402, 154);
+            this.xtraTabPage4.Size = new System.Drawing.Size(400, 154);
             this.xtraTabPage4.Text = "Bank Details";
             // 
             // txtBankName
@@ -2661,7 +2661,7 @@
             // 
             this.labelControl30.Location = new System.Drawing.Point(17, 20);
             this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(58, 13);
+            this.labelControl30.Size = new System.Drawing.Size(57, 13);
             this.labelControl30.TabIndex = 542;
             this.labelControl30.Text = "Bank Name";
             // 
@@ -2676,7 +2676,7 @@
             // xtraTabPage8
             // 
             this.xtraTabPage8.Name = "xtraTabPage8";
-            this.xtraTabPage8.Size = new System.Drawing.Size(402, 154);
+            this.xtraTabPage8.Size = new System.Drawing.Size(400, 154);
             this.xtraTabPage8.Text = "Documents Attached";
             // 
             // groupControl10

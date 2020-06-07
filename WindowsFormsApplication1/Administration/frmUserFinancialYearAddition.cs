@@ -10,11 +10,11 @@ namespace WindowsFormsApplication1
         private void SetMyControls()
         {
             try
-            { 
-            ProjectFunctions.TextBoxVisualize(this);
-            ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
-            ProjectFunctions.TextBoxVisualize(this);
-            ProjectFunctions.ButtonVisualize(this);
+            {
+                ProjectFunctions.TextBoxVisualize(this);
+                ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
+                ProjectFunctions.TextBoxVisualize(this);
+                ProjectFunctions.ButtonVisualize(this);
             }
             catch (Exception ex)
             {
@@ -31,14 +31,15 @@ namespace WindowsFormsApplication1
         }
         private void frmUserFinancialYearAddition_Load(object sender, EventArgs e)
         {
-            try { 
-            SetMyControls();
+            try
+            {
+                SetMyControls();
 
-            cmbSelectUser.DataSource = ProjectFunctions.GetDataSet("Select Distinct  UserName from UserMaster").Tables[0];
-            cmbSelectUser.DisplayMember = "UserName";
-            cmbSelectFY.DataSource = ProjectFunctions.GetDataSet("select  distinct FNYearCode,TransID from FNYear").Tables[0];
-            cmbSelectFY.DisplayMember = "FNYearCode";
-            cmbSelectFY.ValueMember = "TransID";
+                cmbSelectUser.DataSource = ProjectFunctions.GetDataSet("Select Distinct  UserName from UserMaster").Tables[0];
+                cmbSelectUser.DisplayMember = "UserName";
+                cmbSelectFY.DataSource = ProjectFunctions.GetDataSet("select  distinct FNYearCode,TransID from FNYear").Tables[0];
+                cmbSelectFY.DisplayMember = "FNYearCode";
+                cmbSelectFY.ValueMember = "TransID";
             }
             catch (Exception ex)
             {
@@ -58,19 +59,19 @@ namespace WindowsFormsApplication1
         private bool ValidateData()
         {
             try
-            { 
-            if (cmbSelectFY.Text.Trim().Length == 0)
             {
-                ProjectFunctions.SpeakError("Invalid Financial Year");
-                cmbSelectFY.Focus();
-                return false;
-            }
-            if (cmbSelectUser.Text.Trim().Length == 0)
-            {
-                ProjectFunctions.SpeakError("Invalid User Name");
-                cmbSelectUser.Focus();
-                return false;
-            }
+                if (cmbSelectFY.Text.Trim().Length == 0)
+                {
+                    ProjectFunctions.SpeakError("Invalid Financial Year");
+                    cmbSelectFY.Focus();
+                    return false;
+                }
+                if (cmbSelectUser.Text.Trim().Length == 0)
+                {
+                    ProjectFunctions.SpeakError("Invalid User Name");
+                    cmbSelectUser.Focus();
+                    return false;
+                }
             }
             catch (Exception ex)
             {

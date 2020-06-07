@@ -107,7 +107,7 @@ namespace WindowsFormsApplication1
             txtInsuranceAmount.Text = ((Convert.ToDecimal(txtValueOfGoods.Text) * Convert.ToDecimal(txtInsurancePer.Text)) / 100).ToString("0.00");
             Decimal NetAmount = 0;
             NetAmount = (SumValueOfGoods + SumCGSTAmount + SumSGSTAmount + SumIGSTAmount + Convert.ToDecimal(txtInsuranceAmount.Text) + Convert.ToDecimal(txtPKGFrt.Text) + Convert.ToDecimal(txtOctoriAmount.Text));
-            txtRNetAmount.Text = Math.Round(NetAmount+Convert.ToDecimal(txtRound2.Text), 0).ToString("0.00");
+            txtRNetAmount.Text = Math.Round(NetAmount + Convert.ToDecimal(txtRound2.Text), 0).ToString("0.00");
             txtRoundOffAmount.Text = (Convert.ToDecimal(txtRNetAmount.Text) - NetAmount).ToString("0.00");
 
 
@@ -391,7 +391,7 @@ namespace WindowsFormsApplication1
                 txtDebitNoteAmount.Text = ds.Tables[0].Rows[0]["SIMDebitNoteAmount"].ToString();
                 txtReason.Text = ds.Tables[0].Rows[0]["SIMReason"].ToString();
                 txtOtherReason.Text = ds.Tables[0].Rows[0]["SIMOtherReason"].ToString();
-                TXMAINREMARKS.Text= ds.Tables[0].Rows[0]["SIMRemarks"].ToString();
+                TXMAINREMARKS.Text = ds.Tables[0].Rows[0]["SIMRemarks"].ToString();
                 txtbox.Text = ds.Tables[0].Rows[0]["SIMTOTBOXES"].ToString();
 
 
@@ -1070,7 +1070,7 @@ namespace WindowsFormsApplication1
 
 
                     }
-                    if (dt.Rows.Count > 1)
+                    if (dt.Rows.Count > 0)
                     {
                         InfoGrid.DataSource = dt;
                         InfoGridView.BestFitColumns();
@@ -1135,6 +1135,11 @@ namespace WindowsFormsApplication1
             {
                 calculation();
             }
+        }
+
+        private void txtBarCode_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

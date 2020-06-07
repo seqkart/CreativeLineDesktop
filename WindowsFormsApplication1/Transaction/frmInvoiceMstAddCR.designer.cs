@@ -732,6 +732,7 @@
             this.txtBarCode.Properties.MaxLength = 60;
             this.txtBarCode.Size = new System.Drawing.Size(252, 20);
             this.txtBarCode.TabIndex = 548;
+            this.txtBarCode.EditValueChanged += new System.EventHandler(this.txtBarCode_EditValueChanged);
             this.txtBarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarCode_KeyDown);
             // 
             // labelControl1
@@ -1277,7 +1278,7 @@
             this.xtraTabPage5.Controls.Add(this.txtInsuranceAmount);
             this.xtraTabPage5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage5.ImageOptions.Image")));
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(561, 154);
+            this.xtraTabPage5.Size = new System.Drawing.Size(563, 156);
             this.xtraTabPage5.Text = "Bill Sundries";
             // 
             // btnCalculate
@@ -1564,7 +1565,7 @@
             this.xtraTabPage6.Controls.Add(this.TaxCodeGrid);
             this.xtraTabPage6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage6.ImageOptions.Image")));
             this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(561, 154);
+            this.xtraTabPage6.Size = new System.Drawing.Size(563, 156);
             this.xtraTabPage6.Text = "GST Tax Details";
             // 
             // TaxCodeGrid
@@ -1573,7 +1574,7 @@
             this.TaxCodeGrid.Location = new System.Drawing.Point(0, 0);
             this.TaxCodeGrid.MainView = this.gridView3;
             this.TaxCodeGrid.Name = "TaxCodeGrid";
-            this.TaxCodeGrid.Size = new System.Drawing.Size(561, 154);
+            this.TaxCodeGrid.Size = new System.Drawing.Size(563, 156);
             this.TaxCodeGrid.TabIndex = 476;
             this.TaxCodeGrid.TabStop = false;
             this.TaxCodeGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1683,7 +1684,7 @@
             // 
             this.xtraTabPage9.Controls.Add(this.HSNGrid);
             this.xtraTabPage9.Name = "xtraTabPage9";
-            this.xtraTabPage9.Size = new System.Drawing.Size(561, 154);
+            this.xtraTabPage9.Size = new System.Drawing.Size(563, 156);
             this.xtraTabPage9.Text = "HSN WISE GST DETAILS";
             // 
             // HSNGrid
@@ -1692,7 +1693,7 @@
             this.HSNGrid.Location = new System.Drawing.Point(0, 0);
             this.HSNGrid.MainView = this.gridView6;
             this.HSNGrid.Name = "HSNGrid";
-            this.HSNGrid.Size = new System.Drawing.Size(561, 154);
+            this.HSNGrid.Size = new System.Drawing.Size(563, 156);
             this.HSNGrid.TabIndex = 477;
             this.HSNGrid.TabStop = false;
             this.HSNGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1805,7 +1806,7 @@
             this.xtraTabPage7.Controls.Add(this.TXMAINREMARKS);
             this.xtraTabPage7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage7.ImageOptions.Image")));
             this.xtraTabPage7.Name = "xtraTabPage7";
-            this.xtraTabPage7.Size = new System.Drawing.Size(561, 154);
+            this.xtraTabPage7.Size = new System.Drawing.Size(563, 156);
             this.xtraTabPage7.Text = "Remarks";
             // 
             // labelControl51
@@ -1865,7 +1866,7 @@
             this.xtraTabPage8.Controls.Add(this.labelControl7);
             this.xtraTabPage8.Controls.Add(this.txtRound2);
             this.xtraTabPage8.Name = "xtraTabPage8";
-            this.xtraTabPage8.Size = new System.Drawing.Size(369, 157);
+            this.xtraTabPage8.Size = new System.Drawing.Size(371, 159);
             this.xtraTabPage8.Text = "Documents Attached";
             // 
             // labelControl7
@@ -1902,7 +1903,7 @@
             this.chMultiParty.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.chMultiParty.Properties.Appearance.Options.UseForeColor = true;
             this.chMultiParty.Properties.Caption = "Multi Party";
-            this.chMultiParty.Size = new System.Drawing.Size(75, 19);
+            this.chMultiParty.Size = new System.Drawing.Size(75, 18);
             this.chMultiParty.TabIndex = 558;
             // 
             // frmInvoiceMstAddCR

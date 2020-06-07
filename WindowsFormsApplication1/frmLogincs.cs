@@ -1,14 +1,17 @@
 ﻿using DevExpress.XtraSplashScreen;
+using SeqKartLibrary;
 using System;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace WindowsFormsApplication1
 {
     public partial class frmLogincs : DevExpress.XtraEditors.XtraForm
     {
+
         public frmLogincs()
         {
             InitializeComponent();
@@ -33,7 +36,8 @@ namespace WindowsFormsApplication1
                 txtPassword.Focus();
                 return false;
             }
-            DataSet dsGetUser = ProjectFunctions.GetDataSet("Select UserName,UserPwd from UserMaster WHere UserName='" + txtUserName.Text.Trim() + "' And UserPwd='" + txtPassword.Text.Trim() + "'");
+            
+            DataSet dsGetUser = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_USERMASTER(txtUserName.Text.Trim(), txtPassword.Text.Trim()));
             if (dsGetUser.Tables[0].Rows.Count > 0)
             {
                 GlobalVariables.CurrentUser = txtUserName.Text;
@@ -47,9 +51,11 @@ namespace WindowsFormsApplication1
             }
             if (DateTime.Now.Date <= GlobalVariables.LicenseToExpireDate.Date)
             {
-                if (DateTime.Now.Date >= Convert.ToDateTime("2020-03-16").Date && DateTime.Now.Date <= Convert.ToDateTime("2020-03-31").Date)
+                if (DateTime.Now.Date >= Convert.ToDateTime("2020-04-1").Date && DateTime.Now.Date <= Convert.ToDateTime("2022-03-31").Date)
                 {
-                    ProjectFunctions.SpeakError("Only " + Math.Abs((DateTime.Now.Date - GlobalVariables.LicenseToExpireDate.Date).Days) + " Days Left For Liscense To Expire,Please Recharge Immediately");
+                    if (Math.Abs((DateTime.Now.Date - GlobalVariables.LicenseToExpireDate.Date).Days) < 30)
+
+                        ProjectFunctions.SpeakError("Only " + Math.Abs((DateTime.Now.Date - GlobalVariables.LicenseToExpireDate.Date).Days) + " Days Left For Liscense To Expire,Please Recharge Immediately");
                 }
                 else
                 {
@@ -68,36 +74,32 @@ namespace WindowsFormsApplication1
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
-
             {
                 if (validateData())
                 {
-                    DataSet dsCompany = ProjectFunctions.GetDataSet("Select * from COMCONF");
-                    GlobalVariables.CAddress1 = dsCompany.Tables[0].Rows[0]["COMADD"].ToString();
-                    GlobalVariables.CAddress2 = dsCompany.Tables[0].Rows[0]["COMADD1"].ToString();
-                    GlobalVariables.CAddress3 = dsCompany.Tables[0].Rows[0]["COMADD2"].ToString();
-                    GlobalVariables.CmpGSTNo = dsCompany.Tables[0].Rows[0]["COMGST"].ToString();
-                    GlobalVariables.CompanyName = dsCompany.Tables[0].Rows[0]["COMNAME"].ToString();
-                    GlobalVariables.TelNo = dsCompany.Tables[0].Rows[0]["COMPHONE"].ToString();
-                    GlobalVariables.CmpEmailID = dsCompany.Tables[0].Rows[0]["COMEID"].ToString();
-                    GlobalVariables.CmpZipCode = dsCompany.Tables[0].Rows[0]["COMZIP"].ToString();
-                    GlobalVariables.CmpWebSite = dsCompany.Tables[0].Rows[0]["COMWEBSITE"].ToString();
-                    DataSet dsFY = ProjectFunctions.GetDataSet("select * from FNYear Where FNYearCode='" + txtFNYear.Text + "' ");
+                    DataSet dsCompany = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_COMCONF_ALL());
+                    DataRow dr = dsCompany.Tables[0].Rows[0];
+
+                    GlobalVariables.CAddress1 = dr[SQL_COLUMNS.COMCONF._COMADD].ToString();
+                    GlobalVariables.CAddress2 = dr[SQL_COLUMNS.COMCONF._COMADD1].ToString();
+                    GlobalVariables.CAddress3 = dr[SQL_COLUMNS.COMCONF._COMADD2].ToString();
+                    GlobalVariables.CmpGSTNo = dr[SQL_COLUMNS.COMCONF._COMGST].ToString();
+                    GlobalVariables.CompanyName = dr[SQL_COLUMNS.COMCONF._COMNAME].ToString();
+                    GlobalVariables.TelNo = dr[SQL_COLUMNS.COMCONF._COMPHONE].ToString();
+                    GlobalVariables.CmpEmailID = dr[SQL_COLUMNS.COMCONF._COMEID].ToString();
+                    GlobalVariables.CmpZipCode = dr[SQL_COLUMNS.COMCONF._COMZIP].ToString();
+                    GlobalVariables.CmpWebSite = dr[SQL_COLUMNS.COMCONF._COMWEBSITE].ToString();
+
+                    DataSet dsFY = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_FN_YEAR(txtFNYear.Text));
+                    DataRow drFY = dsFY.Tables[0].Rows[0];
+
                     GlobalVariables.CUnitID = txtUnit.SelectedValue.ToString().PadLeft(2, '0');
 
-                    GlobalVariables.FinancialYear = dsFY.Tables[0].Rows[0]["FNYearCode"].ToString();
-                    GlobalVariables.FinYearStartDate = Convert.ToDateTime(dsFY.Tables[0].Rows[0]["FNStartDate"]).Date;
-                    GlobalVariables.FinYearEndDate = Convert.ToDateTime(dsFY.Tables[0].Rows[0]["FNEndDate"]).Date;
+                    GlobalVariables.FinancialYear = drFY["FNYearCode"].ToString();
+                    GlobalVariables.FinYearStartDate = Convert.ToDateTime(drFY["FNStartDate"]).Date;
+                    GlobalVariables.FinYearEndDate = Convert.ToDateTime(drFY["FNEndDate"]).Date;
 
-                    GlobalVariables.BarCodePreFix = ProjectFunctions.GetDataSet("Select isnull(BarCodePreFix,'V') as BarCodePreFix from UNITS where UNITID='" + GlobalVariables.CUnitID + "'").Tables[0].Rows[0][0].ToString();
-
-
-
-                    
-
-
-
-
+                    GlobalVariables.BarCodePreFix = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_UNITS(GlobalVariables.CUnitID)).Tables[0].Rows[0][0].ToString();
 
 
                     WindowsFormsApplication1.XtraForm1 frm = new WindowsFormsApplication1.XtraForm1();
@@ -150,7 +152,7 @@ namespace WindowsFormsApplication1
             ProjectFunctions.ButtonVisualize(this);
 
 
-            DataSet dsCompany = ProjectFunctions.GetDataSet("SELECT COMSYSID,COMNAME FROM COMCONF ");
+            DataSet dsCompany = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_COMCONF());
             if (dsCompany.Tables[0].Rows.Count > 0)
             {
                 txtCompany.DataSource = dsCompany.Tables[0];
@@ -158,7 +160,15 @@ namespace WindowsFormsApplication1
                 txtCompany.DisplayMember = "COMNAME";
             }
 
+            DataSet dsFNYear = ProjectFunctionsUtils.GetDataSet(SQL_QUERIES.SQL_FN_YEAR_ACTIVE("Y"));
+            if (dsFNYear.Tables[0].Rows.Count > 0)
+            {                
+                txtFNYear.DataSource = dsFNYear.Tables[0];
+                txtFNYear.ValueMember = "FNYearCode";
+                txtFNYear.DisplayMember = "FNYearCode";
+            }
 
+            //MessageBox.Show(dsFNYear.Tables[0].Rows.Count.ToString());
 
         }
 
@@ -166,18 +176,18 @@ namespace WindowsFormsApplication1
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-                DataSet dsGetUser = ProjectFunctions.GetDataSet("Select UserName from UserMaster WHere UserName='" + txtUserName.Text.Trim() + "'");
+                DataSet dsGetUser = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_USERMASTER_BY_USER(txtUserName.Text.Trim()));
                 if (dsGetUser.Tables[0].Rows.Count > 0)
                 {
                     GlobalVariables.CurrentUser = txtUserName.Text;
-                    DataSet dsUnit = ProjectFunctions.GetDataSet("SELECT        UNITS.UNITID, UNITS.UNITNAME FROM  UNITS INNER JOIN UserUnitAccess ON UNITS.UNITID = UserUnitAccess.UnitCode Where UserName='" + txtUserName.Text + "'");
+                    DataSet dsUnit = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_UNITS_BY_USER(txtUserName.Text));
                     if (dsUnit.Tables[0].Rows.Count > 0)
                     {
                         txtUnit.DataSource = dsUnit.Tables[0];
                         txtUnit.ValueMember = "UNITID";
                         txtUnit.DisplayMember = "UNITNAME";
                     }
-                    DataSet dsFNYear = ProjectFunctions.GetDataSet("SELECT        FNYear.FNYearCode FROM  UserFNAccess INNER JOIN FNYear ON UserFNAccess.FNTransID = FNYear.TransID  Where UserName='" + txtUserName.Text + "'");
+                    DataSet dsFNYear = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_USER_FN_ACCESS_BY_USER(txtUserName.Text));
                     if (dsFNYear.Tables[0].Rows.Count > 0)
                     {
                         txtFNYear.DataSource = dsFNYear.Tables[0];
@@ -227,17 +237,28 @@ namespace WindowsFormsApplication1
         {
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false, true);
             DevExpress.XtraSplashScreen.SplashScreenManager.Default.SetWaitFormDescription("Backing Up Initialized");
-            if (System.IO.Directory.Exists(@"\\cserver\New Software\Backup\" + DateTime.Now.DayOfWeek.ToString()))
+            if (System.IO.Directory.Exists(Application.StartupPath + "\\Backup" + DateTime.Now.DayOfWeek.ToString()))
             {
 
             }
             else
             {
-                System.IO.Directory.CreateDirectory(@"\\cserver\New Software\Backup\" + DateTime.Now.DayOfWeek.ToString());
+                System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Backup" + DateTime.Now.DayOfWeek.ToString());
+                // System.IO.Directory.CreateDirectory(@"\\cserver\New Software\Backup\" + DateTime.Now.DayOfWeek.ToString());
             }
 
-            Task.Run(() => ProjectFunctions.GetDataSet("BACKUP DATABASE SEQKARTNew TO DISK ='" + @"\\cserver\New Software\Backup\" + DateTime.Now.DayOfWeek.ToString() + @"\SEQKARTNEW.bak'"));
+            Task.Run(() => ProjectFunctions.GetDataSet("BACKUP DATABASE SEQKARTNew TO DISK ='" + Application.StartupPath + "\\Backup" + DateTime.Now.DayOfWeek.ToString() + @"\SEQKARTNEW.bak'"));
             SplashScreenManager.CloseForm();
+        }
+
+        private void txtFNYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCompany_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

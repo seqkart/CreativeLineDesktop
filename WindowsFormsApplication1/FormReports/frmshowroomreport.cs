@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using DevExpress.XtraSplashScreen;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using System.Data.SqlClient;
-using DevExpress.XtraSplashScreen;
+using System.Linq;
 
 namespace WindowsFormsApplication1.FormReports
 {
@@ -22,7 +15,7 @@ namespace WindowsFormsApplication1.FormReports
         {
             InitializeComponent();
         }
-        public static DataSet GetDataSet(string Query,string conn)
+        public static DataSet GetDataSet(string Query, string conn)
         {
             using (var _VarDataSet = new DataSet())
             {
@@ -254,7 +247,7 @@ namespace WindowsFormsApplication1.FormReports
 
 
                     SplashScreenManager.CloseForm(false);
-                    
+
                 }
             }
             catch (Exception ex)
@@ -267,7 +260,7 @@ namespace WindowsFormsApplication1.FormReports
         //public void SaveData(DataTable table)
         //{
 
-           
+
         //    using (AdventureWorksDataContext ctx = new AdventureWorksDataContext())
         //    {
         //        foreach (DataRow row in table.Rows)
@@ -281,7 +274,7 @@ namespace WindowsFormsApplication1.FormReports
 
         private void chSale1_CheckedChanged(object sender, EventArgs e)
         {
-            if(chSale1.Checked)
+            if (chSale1.Checked)
             {
                 chSale2.Checked = false;
             }
@@ -301,7 +294,7 @@ namespace WindowsFormsApplication1.FormReports
             //if(ds.Tables[0].Rows.Count>0)
             //{
             //    gridControl1.DataSource = ds.Tables[0];
-                
+
             //}
             //else
             //{

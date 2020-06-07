@@ -196,5 +196,10 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void Menu_ToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

@@ -725,7 +725,7 @@ namespace WindowsFormsApplication1.Transaction
                 RBDIRECT.Checked = true;
                 panelControl1.Visible = false;
 
-                if(GlobalVariables.ProgCode=="PROG171")
+                if (GlobalVariables.ProgCode == "PROG171")
                 {
                     txtBarCode.Visible = true;
                     label2.Visible = true;
@@ -988,7 +988,7 @@ namespace WindowsFormsApplication1.Transaction
 
         private void txtBarCode_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 try
                 {
@@ -997,7 +997,7 @@ namespace WindowsFormsApplication1.Transaction
                         DataSet dsCheck = ProjectFunctions.GetDataSet("Select * from SKU Where SKUPRODUCTCODE='" + txtBarCode.Text + "' And UnitCode='" + GlobalVariables.CUnitID + "'");
                         if (dsCheck.Tables[0].Rows.Count > 0)
                         {
-                           
+
                             foreach (DataRow dr in dt.Rows)
                             {
                                 if (dr["SKUPRODUCTCODE"].ToString().ToUpper() == txtBarCode.Text.Trim().ToUpper())
@@ -1014,7 +1014,7 @@ namespace WindowsFormsApplication1.Transaction
                                 dt.ImportRow(dr);
                             }
 
-                               
+
                             if (dt.Rows.Count > 0)
                             {
                                 BarCodeGrid.DataSource = dt;
@@ -1052,7 +1052,7 @@ namespace WindowsFormsApplication1.Transaction
             DataTable dtNew = new DataTable();
             foreach (DataRow dr in (BarCodeGrid.DataSource as DataTable).Rows)
             {
-               
+
                 DataSet ds = ProjectFunctions.GetDataSet("[sp_PrintBarCodeDuplicate] '" + dr["SKUPRODUCTCODE"].ToString() + "','" + GlobalVariables.CUnitID + "'");
                 if (i == 0)
                 {
@@ -1064,7 +1064,7 @@ namespace WindowsFormsApplication1.Transaction
                 {
                     dtNew.Merge(ds.Tables[0]);
                 }
-                
+
             }
             if (dtNew.Rows.Count > 0)
             {
