@@ -78,6 +78,9 @@
             this._ribbonControl.AutoHideEmptyItems = true;
             this._ribbonControl.AutoSaveLayoutToXml = true;
             this._ribbonControl.AutoSizeItems = true;
+            // 
+            // 
+            // 
             this._ribbonControl.ExpandCollapseItem.CloseRadialMenuOnItemClick = true;
             this._ribbonControl.ExpandCollapseItem.Id = 0;
             this._ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
@@ -99,15 +102,13 @@
             this._ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this._ribbonControl.Name = "_ribbonControl";
             this._ribbonControl.OptionsAnimation.PageCategoryShowAnimation = DevExpress.Utils.DefaultBoolean.True;
-            this._ribbonControl.PageHeaderItemLinks.Add(this.btnMenuType1);
-            this._ribbonControl.PageHeaderItemLinks.Add(this.btnMenuType2);
             this._ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage,
             this.ribbonPage1,
             this.ribbonPage2});
             this._ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this._ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this._ribbonControl.Size = new System.Drawing.Size(993, 159);
+            this._ribbonControl.Size = new System.Drawing.Size(993, 160);
             this._ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
             // skinRibbonGalleryBarItem
@@ -213,7 +214,6 @@
             // 
             // ribbonPageGroupNavigation
             // 
-            this.ribbonPageGroupNavigation.ItemLinks.Add(this.barSubItemNavigation);
             this.ribbonPageGroupNavigation.Name = "ribbonPageGroupNavigation";
             this.ribbonPageGroupNavigation.Text = "Module";
             // 
@@ -221,7 +221,6 @@
             // 
             this.ribbonPageGroup.AllowTextClipping = false;
             this.ribbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
             this.ribbonPageGroup.Name = "ribbonPageGroup";
             this.ribbonPageGroup.Text = "Appearance";
             // 
@@ -254,7 +253,7 @@
             this.accordionControl1.ResizeMode = DevExpress.XtraBars.Navigation.AccordionControlResizeMode.OuterResizeZone;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Fluent;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            this.accordionControl1.Size = new System.Drawing.Size(181, 621);
+            this.accordionControl1.Size = new System.Drawing.Size(181, 620);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.Text = "accordionControl1";
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
@@ -271,7 +270,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.PageImagePosition = DevExpress.XtraTab.TabPageImagePosition.Center;
-            this.xtraTabControl1.Size = new System.Drawing.Size(808, 621);
+            this.xtraTabControl1.Size = new System.Drawing.Size(808, 620);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.Transition.EasingMode = DevExpress.Data.Utils.EasingMode.EaseInOut;
             this.xtraTabControl1.Transition.TransitionType = combTransition1;
@@ -286,7 +285,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 159);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 160);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -297,7 +296,7 @@
             // 
             this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.splitContainer1.Panel2.Controls.Add(this.xtraTabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(993, 621);
+            this.splitContainer1.Size = new System.Drawing.Size(993, 620);
             this.splitContainer1.SplitterDistance = 181;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -308,7 +307,6 @@
             // 
             // radialMenu1
             // 
-            this.radialMenu1.ItemLinks.Add(this.barButtonItem3);
             this.radialMenu1.Name = "radialMenu1";
             this.radialMenu1.Ribbon = this._ribbonControl;
             // 

@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1.Transaction.challans
         DataSet dsPopUps = new DataSet();
         int RowIndex = 0;
         String UpdateTag = "N";
+
         public frm_ChallanOutward()
         {
             InitializeComponent();
@@ -350,6 +351,9 @@ namespace WindowsFormsApplication1.Transaction.challans
                 ProjectFunctions.GirdViewVisualize(HelpGridView);
                 ProjectFunctions.GirdViewVisualize(BarCodeGridView);
                 ProjectFunctions.TextBoxVisualize(this);
+
+                PrintLogWin.PrintLog(s1);
+
                 if (s1 == "&Add")
                 {
                     groupControl1.Focus();
@@ -358,7 +362,11 @@ namespace WindowsFormsApplication1.Transaction.challans
                 }
                 if (s1 == "Edit")
                 {
-                    DataSet ds = ProjectFunctions.GetDataSet("sp_LoadChallanOutMstFEdit '" + ImNo + "' ,'" + ImDate.ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "' ");
+                    string loadChallan_Query = "sp_LoadChallanOutMstFEdit '" + ImNo + "' ,'" + ImDate.ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "' ";
+                    PrintLogWin.PrintLog("sp_LoadChallanOutMstFEdit => " + loadChallan_Query);
+
+                    DataSet ds = ProjectFunctions.GetDataSet(loadChallan_Query);
+
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         txtChallanNo.Text = ds.Tables[0].Rows[0]["CHONO"].ToString();

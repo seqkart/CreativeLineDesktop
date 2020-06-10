@@ -29,8 +29,7 @@ namespace WindowsFormsApplication1.FormReports
                     return _VarDataSet;
                 }
 
-                catch (Exception ex)
-
+                catch //(Exception ex)
                 {
 
                     return null;

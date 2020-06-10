@@ -3,6 +3,7 @@ using SeqKartLibrary;
 using System;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,6 +12,22 @@ namespace WindowsFormsApplication1
 {
     public partial class frmLogincs : DevExpress.XtraEditors.XtraForm
     {
+        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+
+        public static extern IntPtr FindWindow(IntPtr ZeroOnly, string lpWindowName);
+
+
+
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, IntPtr dwExtraInfo);
+
+
+
+        [DllImport("user32.dll")]
+
+        [return: MarshalAs(UnmanagedType.Bool)]
+
+        static extern bool SetForegroundWindow(IntPtr hWnd);
 
         public frmLogincs()
         {
@@ -169,12 +186,21 @@ namespace WindowsFormsApplication1
             }
 
             //MessageBox.Show(dsFNYear.Tables[0].Rows.Count.ToString());
+            txtPassword.Text = "123";
+            txtUserName.Text = "HAPPY";
+            SendKeys.Send("{Enter}");
+            txtUserName.Focus();
+            
+
+            txtUserName_KeyDown(null, null);
+            btnLogin_Click(null, null);
+
 
         }
-
+        
         private void txtUserName_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            //if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
                 DataSet dsGetUser = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_USERMASTER_BY_USER(txtUserName.Text.Trim()));
                 if (dsGetUser.Tables[0].Rows.Count > 0)

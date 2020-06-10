@@ -37,6 +37,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraEditors.v20.1">
       <HintPath>..\WindowsFormsApplication1\bin\Debug\DevExpress.XtraEditors.v20.1.dll</HintPath>
     </Reference>
@@ -52,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrudTask\ChallanOutMain_Concrete.cs" />
+    <Compile Include="Interfaces\IFrmTransaction.cs" />
+    <Compile Include="Models\ChallanOutMain_Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectFunctionsUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HelperClass\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -231,7 +231,112 @@ namespace SeqKartLibrary
                 }
             }
         }
-        
+
+        public DataSet GetDataSet_New(string sqlQuery)
+        {
+            DataSet ds = null;
+            try
+            {
+                using (SqlConnection dbconn = new SqlConnection(GetConnection()))
+                {
+                    dbconn.Open();
+                    bool openConn = (dbconn.State == ConnectionState.Open);
+                    if (openConn)
+                    {
+                        SqlCommand cmd = new SqlCommand(sqlQuery, dbconn);
+                        SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                        adp.Fill(ds);
+                        adp.Dispose();
+                        dbconn.Dispose();
+                    }                    
+                }
+
+            }
+            catch// (Exception ex)
+            {
+                
+            }
+            return ds;
+        }
+
+        public Tuple<bool, DataSet> GetDataSet_T(string sqlQuery)
+        {
+            DataSet ds = null;
+            try
+            {
+                using (SqlConnection dbconn = new SqlConnection(GetConnection()))
+                {
+                    dbconn.Open();
+                    bool openConn = (dbconn.State == ConnectionState.Open);
+                    if (openConn)
+                    {
+                        SqlCommand cmd = new SqlCommand(sqlQuery, dbconn);
+                        SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                        adp.Fill(ds);
+                        adp.Dispose();
+                        dbconn.Dispose();
+                    }
+                }
+
+            }
+            catch// (Exception ex)
+            {
+
+            }
+
+            bool hasData = false;
+            try
+            {
+                if (ds!= null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        hasData = true;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return new Tuple<bool, DataSet>(hasData, ds);
+        }
+
+        public int InsertQuery(String sqlQuery)
+        {
+            int intResult = -1;
+            try
+            {
+                using (SqlConnection dbconn = new SqlConnection(GetConnection()))
+                {
+                    dbconn.Open();
+                    bool openConn = (dbconn.State == ConnectionState.Open);
+                    if (openConn)
+                    {
+                        SqlCommand cmd = new SqlCommand(sqlQuery, dbconn);
+
+                        intResult = cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+
+                        dbconn.Dispose();
+                    }
+                }
+
+                //SqlConnection sqlconn = new SqlConnection(GetConnection());
+                //sqlconn.Open();
+                //SqlCommand cmd = new SqlCommand(sqlQuery, sqlconn);
+                //cmd.ExecuteNonQuery();
+                //cmd.Dispose();
+                //sqlconn.Close();
+                //sqlconn.Dispose();
+            }
+            catch// (Exception ex)
+            {
+                
+            }
+            return intResult;
+        }
+
         public static String SqlString(string Text)
         {
             return string.Concat(Text.Select(c => @"'()%#!<>{};:?/\-[]+@".IndexOf(c) >= 0 ? '_' : c));

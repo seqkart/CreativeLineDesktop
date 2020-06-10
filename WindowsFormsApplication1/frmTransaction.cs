@@ -1,10 +1,12 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.Import.Import.PRINTS;
 using DevExpress.XtraReports.UI;
+using SeqKartLibrary;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -30,12 +32,19 @@ namespace WindowsFormsApplication1
                 _RangeSelector.DtEnd.EditValue = DateTime.Now;
             }
 
-            ProjectFunctions.BindTransactionDataToGrid(ProjectFunctions.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString(), _RangeSelector.DtFrom.DateTime.Date, _RangeSelector.DtEnd.DateTime.Date, InvoiceGrid, InvoiceGridView);
-            lbl.Text = ProjectFunctions.GetDataSet("select ProCaption from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProCaption"].ToString() + " From " + _RangeSelector.StartDate.Date.ToString("dd-MM-yyyy") + " To " + _RangeSelector.EndDate.Date.ToString("dd-MM-yyyy");
+            string ProcedureName = ProjectFunctionsUtils.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString();
+            ProcedureName = ProcedureName + "'" + _RangeSelector.DtFrom.DateTime.Date.Date.ToString("yyyy-MM-dd") + "','" + _RangeSelector.DtEnd.DateTime.Date.Date.ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "'";
+            DataSet dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName);
+            
+            //ProjectFunctions.BindTransactionDataToGrid(ProjectFunctions.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString(), _RangeSelector.DtFrom.DateTime.Date, _RangeSelector.DtEnd.DateTime.Date, InvoiceGrid, InvoiceGridView);
+            ProjectFunctions.BindTransactionDataToGrid(dsMaster, InvoiceGrid, InvoiceGridView);
 
+            lbl.Text = ProjectFunctionsUtils.GetDataSet("select ProCaption from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProCaption"].ToString() + " From " + _RangeSelector.StartDate.Date.ToString("dd-MM-yyyy") + " To " + _RangeSelector.EndDate.Date.ToString("dd-MM-yyyy");
+            PrintLogWin.PrintLog("ProcedureName : " + ProcedureName);
         }
         private void frmTransaction_Load(object sender, EventArgs e)
         {
+            PrintLogWin.PrintLog("frmTransaction_Load ********** " + GlobalVariables.ProgCode);
 
             ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
             ProjectFunctions.GirdViewVisualize(InvoiceGridView);
@@ -1131,13 +1140,24 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        void BtnLoad_Click(object sender, EventArgs e)
+        private async void BtnLoad_Click(object sender, EventArgs e)
         {
-            ProjectFunctions.BindTransactionDataToGrid(ProjectFunctions.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString(), _RangeSelector.DtFrom.DateTime.Date, _RangeSelector.DtEnd.DateTime.Date, InvoiceGrid, InvoiceGridView);
-            lbl.Text = ProjectFunctions.GetDataSet("select ProCaption from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProCaption"].ToString() + " From " + _RangeSelector.DtFrom.DateTime.Date.ToString("dd-MM-yyyy") + " To " + _RangeSelector.DtEnd.DateTime.Date.ToString("dd-MM-yyyy");
-
             _RangeSelector.Visible = false;
+            await TransactionTask();           
         }
+
+        public async Task TransactionTask()
+        {
+            await Task.Run(() =>
+            {
+                string ProcedureName = ProjectFunctionsUtils.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString();
+                DataSet dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName + "'" + _RangeSelector.DtEnd.DateTime.Date.ToString("yyyy-MM-dd") + "','" + _RangeSelector.DtEnd.DateTime.Date.ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "'");
+
+                ProjectFunctions.BindTransactionDataToGrid(dsMaster, InvoiceGrid, InvoiceGridView);
+                lbl.Text = ProjectFunctions.GetDataSet("select ProCaption from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProCaption"].ToString() + " From " + _RangeSelector.DtFrom.DateTime.Date.ToString("dd-MM-yyyy") + " To " + _RangeSelector.DtEnd.DateTime.Date.ToString("dd-MM-yyyy");
+                
+            });
+        }        
 
         private void InvoiceGrid_Click(object sender, EventArgs e)
         {
@@ -1173,9 +1193,6 @@ namespace WindowsFormsApplication1
                                 {
                                     CopyText = "Extra Copy";
                                 }
-
-
-
 
                                 DataTable dt = new DataTable();
                                 DataSet ds = ProjectFunctions.GetDataSet("sp_LoadChallanOutPrint '" + dr["CHONO"].ToString() + "','" + Convert.ToDateTime(dr["CHODATE"]).ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "'");

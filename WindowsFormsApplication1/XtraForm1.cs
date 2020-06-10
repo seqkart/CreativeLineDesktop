@@ -12,15 +12,10 @@ namespace WindowsFormsApplication1
 {
     public partial class XtraForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-
-
         public XtraForm1()
         {
             InitializeComponent();
-
         }
-
-
 
         private void XtraForm1_Load(object sender, EventArgs e)
         {
@@ -165,6 +160,10 @@ namespace WindowsFormsApplication1
             Page.Text = GlobalVariables.ProgDesc;
             Page.Name = GlobalVariables.ProgCode;
 
+            //MessageBox.Show(myitem);
+            Console.WriteLine("WriteLine ********** " + myitem);
+            PrintLogWin.PrintLog("Write ********** " + myitem);
+
             switch (myitem)
             {
 
@@ -183,7 +182,7 @@ namespace WindowsFormsApplication1
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
 
-
+                //User Master Tab
                 case "PROG3":
                     var PROG3 = new frmMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG3.Show();

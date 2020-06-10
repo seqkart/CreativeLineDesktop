@@ -8,9 +8,20 @@ namespace SeqKartLibrary
 {
     public class SQL_QUERIES
     {
-        public static string SP_LoadUserAllocatedWork2()
+        public static class _frm_Chng_Pswd
         {
-            return "sp_LoadUserAllocatedWork2";
+            public static string SQL_UserMaster(object UserName, object UserPwd)
+            {
+                return "SELECT UserName FROM UserMaster Where UserName='" + UserName + "' AND UserPwd='" + UserPwd + "'";
+            }
+            public static string SQL_UserMaster_Update_Pass(object UserName, object UserPwd)
+            {
+                return String.Format("Update UserMaster Set UserPwd='{0}' where UserName='{1}'", UserPwd, UserName);
+            }
+        }
+        public static string SP_LoadUserAllocatedWork2(object UserName)
+        {
+            return "sp_LoadUserAllocatedWork2 '" + UserName + "'";
         }
         /// <summary>
         /// ////////////////

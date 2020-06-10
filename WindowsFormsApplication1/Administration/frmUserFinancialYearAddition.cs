@@ -83,6 +83,16 @@ namespace WindowsFormsApplication1
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void txtstatusTag_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void btnSaveFY_Click(object sender, EventArgs e)
+        {
             try
             {
                 if (ValidateData())
@@ -107,11 +117,6 @@ namespace WindowsFormsApplication1
             {
                 ProjectFunctions.SpeakError(ex.Message);
             }
-        }
-
-        private void txtstatusTag_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
         }
     }
 }

@@ -18,6 +18,7 @@ using System.Speech.Synthesis;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SeqKartLibrary;
+using DevExpress.DataProcessing;
 
 namespace WindowsFormsApplication1
 {
@@ -1194,13 +1195,67 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        public static void BindTransactionDataToGrid(String ProcedureName, DateTime From, DateTime To, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView)
+        public static void BindTransactionDataToGrid1(String ProcedureName, DateTime From, DateTime To, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView)
         {
             if (From.ToString().Trim().Length > 0 && From.ToString().Trim().Length > 0)
             {
                 ReportGridView.OptionsBehavior.Editable = true;
                 ReportGridView.Columns.Clear();
                 DataSet dsMaster = GetDataSet(ProcedureName + "'" + From.Date.ToString("yyyy-MM-dd") + "','" + To.Date.ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "'");
+                if (dsMaster.Tables[0].Rows.Count > 0)
+                {
+                    int Count = 0;
+                    if (dsMaster.Tables[0].Columns.Count > 0)
+                    {
+
+                        foreach (DataColumn dr in dsMaster.Tables[0].Columns)
+                        {
+                            ReportGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+                            ReportGridView.Columns[Count].OptionsColumn.AllowEdit = false;
+                            ReportGridView.Columns[Count].Visible = true;
+                            ReportGridView.Columns[Count].Caption = dr.ColumnName;
+                            ReportGridView.Columns[Count].FieldName = dr.ColumnName;
+                            if (Count == 0)
+                            {
+                                ReportGridView.Columns[Count].Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] { new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, dr.ColumnName, "{0}") });
+                            }
+                            Count = Count + 1;
+                        }
+                    }
+                    if (dsMaster.Tables[0].Rows.Count > 0)
+                    {
+                        dsMaster.Tables[0].Columns.Add("Select", typeof(bool));
+                        foreach (DataRow dr in dsMaster.Tables[0].Rows)
+                        {
+                            dr["Select"] = false;
+                        }
+                        ReportGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+                        ReportGridView.Columns[Count].OptionsColumn.AllowEdit = true;
+                        ReportGridView.Columns[Count].Visible = true;
+                        ReportGridView.Columns[Count].Caption = "Select";
+                        ReportGridView.Columns[Count].FieldName = "Select";
+                        ReportGrid.DataSource = dsMaster.Tables[0];
+                        ReportGridView.BestFitColumns();
+                    }
+                    else
+                    {
+                        ReportGrid.DataSource = null;
+                    }
+                }
+            }
+            else
+            {
+                ProjectFunctions.SpeakError("Please Select Data Range First");
+            }
+        }
+
+        public static void BindTransactionDataToGrid(DataSet dsMaster, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView)
+        {
+            if (dsMaster != null)
+            {
+                ReportGridView.OptionsBehavior.Editable = true;
+                ReportGridView.Columns.Clear();
+                //DataSet dsMaster = GetDataSet(ProcedureName + "'" + From.Date.ToString("yyyy-MM-dd") + "','" + To.Date.ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "'");
                 if (dsMaster.Tables[0].Rows.Count > 0)
                 {
                     int Count = 0;

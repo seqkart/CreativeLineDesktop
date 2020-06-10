@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbSelectFY = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSaveFY = new System.Windows.Forms.Button();
             this.Menu_ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,10 +75,12 @@
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(35, 22);
             this.btnQuit.Text = "&Quit";
+            this.btnQuit.Visible = false;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnSave
             // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -85,6 +88,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(38, 22);
             this.btnSave.Text = "&Save";
+            this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label3
@@ -114,6 +118,16 @@
             this.label1.TabIndex = 341;
             this.label1.Text = "Select FY";
             // 
+            // btnSaveFY
+            // 
+            this.btnSaveFY.Location = new System.Drawing.Point(317, 143);
+            this.btnSaveFY.Name = "btnSaveFY";
+            this.btnSaveFY.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveFY.TabIndex = 342;
+            this.btnSaveFY.Text = "SAVE";
+            this.btnSaveFY.UseVisualStyleBackColor = true;
+            this.btnSaveFY.Click += new System.EventHandler(this.btnSaveFY_Click);
+            // 
             // frmUserFinancialYearAddition
             // 
             this.Appearance.BackColor = System.Drawing.Color.Gainsboro;
@@ -122,6 +136,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(445, 209);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSaveFY);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbSelectFY);
             this.Controls.Add(this.cmbSelectUser);
@@ -147,5 +162,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbSelectFY;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSaveFY;
     }
 }
