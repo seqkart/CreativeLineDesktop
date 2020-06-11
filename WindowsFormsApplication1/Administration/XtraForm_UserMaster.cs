@@ -116,11 +116,10 @@ namespace WindowsFormsApplication1.Administration
 
 
                 //ProjectFunctions.BindMasterFormToGrid(ProcedureName, gridControl_UserMaster, gridView_UserMaster);
-                
-                                DataSet dsMaster = ProjectFunctions.GetDataSet(ProcedureName);
+
+                DataSet dsMaster = ProjectFunctions.GetDataSet(ProcedureName);
                 FillTable(dsMaster);
-                AddUnboundColumn();
-                
+                AddUnboundColumn();                
                 AddRepository();
 
                 
