@@ -183,6 +183,7 @@
             this.OptionsGrid.TabIndex = 318;
             this.OptionsGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.OptionsGridView});
+            this.OptionsGrid.Click += new System.EventHandler(this.OptionsGrid_Click);
             this.OptionsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OptionsGrid_KeyDown);
             // 
             // OptionsGridView

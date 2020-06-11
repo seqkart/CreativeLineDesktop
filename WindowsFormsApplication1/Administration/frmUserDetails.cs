@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1
                 ProjectFunctions.SpeakError(ex.Message);
             }
         }
+
         public frmUserDetails()
         {
             InitializeComponent();

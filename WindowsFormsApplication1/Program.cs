@@ -29,6 +29,7 @@ namespace WindowsFormsApplication1
             DevExpress.Skins.SkinManager.EnableFormSkins();
 
 
+            //
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Sharp");
 
             //System.Diagnostics.Process.Start(@"D:\New folder\IsoBuster 2.8.5\isobuster_all_lang.exe");

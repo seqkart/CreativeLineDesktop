@@ -35,5 +35,14 @@ namespace SeqKartLibrary
             public const string _UNITNAME = "UNITNAME";
             
         }
+
+        public static class USER_MASTER
+        {
+            public const string _UserName = "UserName";
+            public const string _LoginAs = "Login_As";
+            public const string _UserActive = "UserActive";
+
+        }
     }
+
 }

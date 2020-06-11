@@ -6,11 +6,13 @@ using System.Data;
 
 using System.Linq;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Administration;
 using WindowsFormsApplication1.FormReports;
 
 namespace WindowsFormsApplication1
 {
-    public partial class XtraForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class 
+        XtraForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         public XtraForm1()
         {
@@ -63,6 +65,7 @@ namespace WindowsFormsApplication1
                 }
                 Refresh();
             }
+
 
 
             _ribbonControl.Minimized = true;
@@ -167,14 +170,14 @@ namespace WindowsFormsApplication1
             switch (myitem)
             {
 
-                case "PROG1":
+                case WIN_APP_TABS._frmNewFormAAddEdit:
                     var PROG1 = new frmMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG1.Show();
                     PROG1.BringToFront();
                     PROG1.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
-                case "PROG2":
+                case WIN_APP_TABS._frm_Chng_Pswd:
                     var PROG2 = new frm_Chng_Pswd() { Dock = DockStyle.Fill };
                     PROG2.Show();
                     PROG2.BringToFront();
@@ -182,22 +185,27 @@ namespace WindowsFormsApplication1
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
 
-                //User Master Tab
-                case "PROG3":
-                    var PROG3 = new frmMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                //USER MASTER
+
+
+
+
+                case WIN_APP_TABS._frmUserDetails:
+                    //var PROG3 = new frmMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG3 = new XtraForm_UserMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG3.Show();
                     PROG3.BringToFront();
                     PROG3.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
-                case "PROG4":
+                case WIN_APP_TABS._frmUserFinancialYearAddition:
                     var PROG4 = new frmUserFinancialYearAddition() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG4.Show();
                     PROG4.BringToFront();
                     PROG4.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
-                case "PROG5":
+                case WIN_APP_TABS._frmWorkAllocation:
                     var PROG5 = new frmWorkAllocation() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
 
                     PROG5.Show();
@@ -988,7 +996,7 @@ namespace WindowsFormsApplication1
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
 
-                case "PROG115":
+                case WIN_APP_TABS._frmRoleMst:
                     var PROG115 = new frmMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG115.Show();
                     PROG115.BringToFront();

@@ -118,6 +118,7 @@
             this.Menu_ToolStrip.Size = new System.Drawing.Size(947, 26);
             this.Menu_ToolStrip.TabIndex = 197;
             this.Menu_ToolStrip.Text = "Options";
+            this.Menu_ToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Menu_ToolStrip_ItemClicked);
             // 
             // lbl
             // 

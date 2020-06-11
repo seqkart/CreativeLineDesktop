@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SeqKartLibrary;
 using DevExpress.DataProcessing;
+using DevExpress.XtraEditors.Repository;
 
 namespace WindowsFormsApplication1
 {
@@ -810,8 +811,10 @@ namespace WindowsFormsApplication1
             return No;
         }
 
+
         public static void BindMasterFormToGrid(String ProcedureName, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView)
         {
+            bool editBtn = true;
             ReportGridView.Columns.Clear();
             DataSet dsMaster = GetDataSet(ProcedureName);
             if (dsMaster.Tables[0].Rows.Count > 0)
@@ -832,11 +835,32 @@ namespace WindowsFormsApplication1
                         }
                         Count = Count + 1;
                     }
+                    if(editBtn)
+                    {
+                        ReportGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+                        ReportGridView.Columns[Count].OptionsColumn.AllowEdit = false;
+                        ReportGridView.Columns[Count].Visible = true;
+                        ReportGridView.Columns[Count].Caption = "Edit_Link";
+                        ReportGridView.Columns[Count].FieldName = "Edit_Link";
+                        
+
+                    }
+
                 }
                 if (dsMaster.Tables[0].Rows.Count > 0)
                 {
                     ReportGrid.DataSource = dsMaster.Tables[0];
                     ReportGridView.BestFitColumns();
+                    ReportGridView.UserCellPadding = new Padding(5, 
+                        5, 5, 5);
+
+                    //RepositoryItemButtonEdit tran = new RepositoryItemButtonEdit();
+                    //tran.Name = "TranButton";
+                    //tran.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+                    //tran.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Right;
+                    //tran.Buttons[0].IsLeft = true;
+                    //
+                    
                 }
                 else
                 {
@@ -1575,6 +1599,8 @@ namespace WindowsFormsApplication1
             C.Appearance.HeaderPanel.ForeColor = Color.Black;
             C.Appearance.HeaderPanel.FontSizeDelta = 1;
             C.Appearance.HeaderPanel.FontStyleDelta = FontStyle.Bold;
+
+            C.UserCellPadding = new Padding(5, 5, 5, 5);
 
         }
 

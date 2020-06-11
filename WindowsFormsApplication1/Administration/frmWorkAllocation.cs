@@ -318,6 +318,7 @@ namespace WindowsFormsApplication1
                         }
                         else
                         {
+
                             cmd.Parameters.Add("@dAdministratorMenu", SqlDbType.SmallInt).Value = 0;
                         }
                         if (currentrow["REPORT"].ToString() == "True")
@@ -709,6 +710,12 @@ namespace WindowsFormsApplication1
             {
                 ProjectFunctions.SpeakError(ex.Message);
             }
+        }
+
+        private void OptionsGrid_Click(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

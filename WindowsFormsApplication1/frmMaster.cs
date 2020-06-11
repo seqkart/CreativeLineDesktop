@@ -19,9 +19,26 @@ namespace WindowsFormsApplication1
         }
         private void FillGrid()
         {
-            DataSet ds = ProjectFunctions.GetDataSet("Select ProgProcName,ProgDesc from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'");
-            ProjectFunctions.BindMasterFormToGrid(ds.Tables[0].Rows[0]["ProgProcName"].ToString(), InvoiceGrid, InvoiceGridView);
-            lbl.Text = ds.Tables[0].Rows[0]["ProgDesc"].ToString();
+            PrintLogWin.PrintLog("FillGrid ******************** " + GlobalVariables.ProgCode);
+
+            try
+            {
+                DataSet ds = ProjectFunctions.GetDataSet("Select ProgProcName,ProgDesc from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'");
+                string ProcedureName = ds.Tables[0].Rows[0]["ProgProcName"].ToString();
+
+
+                PrintLogWin.PrintLog("FillGrid => ProcedureName ******************** " + ProcedureName
+                    );
+
+                ProjectFunctions.BindMasterFormToGrid(ProcedureName, InvoiceGrid, InvoiceGridView);
+                lbl.Text = ds.Tables[0].Rows[0]["ProgDesc"].ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox_Debug.ShowBox("frmMaster => FillGrid() => " + ex);
+            }
+
+            
         }
         private void InvoiceGrid_Load(object sender, EventArgs e)
         {
@@ -181,15 +198,16 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG1")
+                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmNewFormAAddEdit))                    
                 {
                     frmNewFormAAddEdit frm = new frmNewFormAAddEdit() { s1 = btnAdd.Text, Text = "Program Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     //var P = ProjectFunctions.GetPositionInForm(this);
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
+                    
                 }
-                if (GlobalVariables.ProgCode == "PROG3")
+                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmUserDetails))               
                 {
                     frmUserDetails frm = new frmUserDetails() { s1 = btnAdd.Text, Text = "User Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
@@ -263,6 +281,7 @@ namespace WindowsFormsApplication1
                 }
                 if (GlobalVariables.ProgCode == "PROG15")
                 {
+
                     frmCostMstAddEdit frm = new frmCostMstAddEdit() { s1 = btnAdd.Text, Text = "Cost Head Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     //var P = ProjectFunctions.GetPositionInForm(this);
@@ -533,7 +552,7 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG115")
+                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmRoleMst))                
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
 
@@ -561,14 +580,17 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG3")
+                //*******************//
+                //This Code Moved To XtraForm_UserMaster
+                if (GlobalVariables.ProgCode == WIN_APP_TABS._frmUserDetails)
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
                     frmUserDetails frm = new frmUserDetails() { s1 = btnEdit.Text, Text = "User Editing", UserName = CurrentRow["UserName"].ToString() };
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     //var P = ProjectFunctions.GetPositionInForm(this);
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
+                    /////
+                    ///frm.ShowDialog(Parent);
                 }
                 if (GlobalVariables.ProgCode == "PROG6")
                 {
@@ -923,6 +945,7 @@ namespace WindowsFormsApplication1
         private void InvoiceGrid_Click(object sender, EventArgs e)
         {
 
+
         }
 
         private void FrmMaster_KeyDown(object sender, KeyEventArgs e)
@@ -948,6 +971,11 @@ namespace WindowsFormsApplication1
                 frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                 frm.ShowDialog(Parent);
             }
+        }
+
+        private void Menu_ToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

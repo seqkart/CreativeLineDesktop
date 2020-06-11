@@ -388,6 +388,12 @@
     <Compile Include="Administration\frm_Chng_Pswd.designer.cs">
       <DependentUpon>frm_Chng_Pswd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administration\XtraForm_UserMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\XtraForm_UserMaster.Designer.cs">
+      <DependentUpon>XtraForm_UserMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="BarPrintOut.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -406,6 +412,7 @@
     <Compile Include="Dashboard1.Designer.cs">
       <DependentUpon>Dashboard1.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBindings\UserMaster_Data.cs" />
     <Compile Include="FormReports\BasePrint.cs" />
     <Compile Include="FormReports\CommonTemplate.cs">
       <SubType>Form</SubType>
@@ -523,6 +530,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GlobalVariables.cs" />
+    <Compile Include="HelperClass\MessageBox_Debug.cs" />
     <Compile Include="HelperClass\PrintLogWin.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
@@ -749,6 +757,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Pos\ApprovaLIssue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1309,6 +1318,9 @@
     <EmbeddedResource Include="Administration\frm_Chng_Pswd.resx">
       <DependentUpon>frm_Chng_Pswd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administration\XtraForm_UserMaster.resx">
+      <DependentUpon>XtraForm_UserMaster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BarPrintOut.resx">
       <DependentUpon>BarPrintOut.cs</DependentUpon>
     </EmbeddedResource>
@@ -1770,6 +1782,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DataBindings.UserMaster_Data.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1799,10 +1812,14 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\AMExpress.png" />
+    <EmbeddedResource Include="Resources\close_button.png" />
     <Content Include="Resources\DINNER.png" />
+    <EmbeddedResource Include="Resources\edit_icon.png" />
     <Content Include="Resources\fm.jpg" />
     <Content Include="Resources\Maestro.png" />
     <Content Include="Resources\MASTERCARD.png" />
+    <EmbeddedResource Include="Resources\pencil_edit_button.png" />
+    <EmbeddedResource Include="Resources\pencil_edit_button_s.jpg" />
     <Content Include="Resources\VISA.png" />
     <None Include="Resources\fm1.jpg" />
     <Content Include="Resources\login.jpg" />
@@ -1823,7 +1840,6 @@
   <ItemGroup>
     <Folder Include="CrudTask\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
     <Folder Include="Promotion\" />
   </ItemGroup>
   <ItemGroup>
