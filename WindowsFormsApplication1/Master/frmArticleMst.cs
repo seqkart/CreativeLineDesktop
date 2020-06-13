@@ -19,7 +19,6 @@ namespace WindowsFormsApplication1
         }
 
 
-
         private void TxtUMCode_EditValueChanged(object sender, EventArgs e)
         {
             txtUMDesc.Text = String.Empty;

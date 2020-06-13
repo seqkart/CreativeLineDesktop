@@ -35,6 +35,7 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.btnLoad = new System.Windows.Forms.ToolStripButton();
+            this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.SFeedingGrid = new DevExpress.XtraGrid.GridControl();
             this.SFeedingGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,12 +66,13 @@
             this.btnSave,
             this.toolStripButton1,
             this.btnRefresh,
-            this.btnLoad});
+            this.btnLoad,
+            this.btnAdd});
             this.Menu_ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
             this.Menu_ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.Menu_ToolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 26);
+            this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 27);
             this.Menu_ToolStrip.TabIndex = 200;
             this.Menu_ToolStrip.Text = "Options";
             // 
@@ -81,7 +83,7 @@
             this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnQuit.Size = new System.Drawing.Size(45, 23);
+            this.btnQuit.Size = new System.Drawing.Size(45, 24);
             this.btnQuit.Text = "Quit";
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
@@ -92,7 +94,7 @@
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnSave.Size = new System.Drawing.Size(48, 23);
+            this.btnSave.Size = new System.Drawing.Size(48, 24);
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -104,7 +106,7 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.toolStripButton1.Size = new System.Drawing.Size(66, 23);
+            this.toolStripButton1.Size = new System.Drawing.Size(65, 24);
             this.toolStripButton1.Text = "Validate";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -116,7 +118,7 @@
             this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnRefresh.Size = new System.Drawing.Size(65, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(65, 24);
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -128,17 +130,27 @@
             this.btnLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnLoad.Size = new System.Drawing.Size(47, 23);
+            this.btnLoad.Size = new System.Drawing.Size(47, 24);
             this.btnLoad.Text = "Load";
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::WindowsFormsApplication1.Properties.Resources.Add;
+            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.btnAdd.Size = new System.Drawing.Size(59, 24);
+            this.btnAdd.Text = "Add";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // SFeedingGrid
             // 
             this.SFeedingGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SFeedingGrid.Location = new System.Drawing.Point(0, 26);
+            this.SFeedingGrid.Location = new System.Drawing.Point(0, 27);
             this.SFeedingGrid.MainView = this.SFeedingGridView;
             this.SFeedingGrid.Name = "SFeedingGrid";
-            this.SFeedingGrid.Size = new System.Drawing.Size(804, 451);
+            this.SFeedingGrid.Size = new System.Drawing.Size(804, 450);
             this.SFeedingGrid.TabIndex = 11;
             this.SFeedingGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.SFeedingGridView,
@@ -290,5 +302,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private System.Windows.Forms.ToolStripButton btnAdd;
     }
 }

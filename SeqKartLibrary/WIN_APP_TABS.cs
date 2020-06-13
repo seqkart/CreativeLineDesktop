@@ -6,4 +6,6 @@
     public const string _frm_Chng_Pswd = "PROG2";//CHANGE PASSWORD
     public const string _frmNewFormAAddEdit = "PROG1";//PROGRAM MASTER
     public const string _frmRoleMst = "PROG115";//ROLE MASTER
+
+    public const string _frmArticleMst = "PROG125";//ROLE MASTER
 }

@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-
+using System.Windows.Forms;
 using WindowsFormsApplication1;
+using WindowsFormsApplication1.Time_Office;
+
 namespace BNPL.Forms_Master
 {
     public partial class frmAttendenceLaoding : DevExpress.XtraEditors.XtraForm
@@ -24,7 +26,6 @@ namespace BNPL.Forms_Master
             dt.Columns.Add("EmpCL", typeof(Decimal));
             dt.Columns.Add("EmpSL", typeof(Decimal));
             dt.Columns.Add("EmpPymtMode", typeof(String));
-
 
         }
 
@@ -185,6 +186,16 @@ namespace BNPL.Forms_Master
                 }
             }
             SFeedingGrid.DataSource = null;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { s1 = btnAdd.Text, Text = "User Addition" }; ;
+            xtraForm_EmployeeAttendence.StartPosition = FormStartPosition.CenterScreen;
+            
+            xtraForm_EmployeeAttendence.ShowDialog(Parent);
+
+
         }
     }
 }

@@ -259,7 +259,7 @@ namespace SeqKartLibrary
             return ds;
         }
 
-        public Tuple<bool, DataSet> GetDataSet_T(string sqlQuery)
+        public static Tuple<bool, DataSet> GetDataSet_T(string sqlQuery)
         {
             DataSet ds = null;
             try
@@ -302,7 +302,7 @@ namespace SeqKartLibrary
             return new Tuple<bool, DataSet>(hasData, ds);
         }
 
-        public int InsertQuery(String sqlQuery)
+        public static int InsertQuery(String sqlQuery)
         {
             int intResult = -1;
             try

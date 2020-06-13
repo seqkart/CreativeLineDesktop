@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BNPL.Forms_Master;
+using System;
 using System.Linq;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Time_Office;
 
 namespace WindowsFormsApplication1
 {
@@ -34,7 +36,13 @@ namespace WindowsFormsApplication1
 
             //System.Diagnostics.Process.Start(@"D:\New folder\IsoBuster 2.8.5\isobuster_all_lang.exe");
 
-            Application.Run(new frmLogincs());
+            //Application.Run(new frmLogincs());
+
+            var PROG153 = new BNPL.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+            PROG153.Show();
+            PROG153.BringToFront();
+            //Application.Run(new frmAttendenceLaoding());
+            Application.Run(new XtraForm_EmployeeAttendence());
         }
     }
 }

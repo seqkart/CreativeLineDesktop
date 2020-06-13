@@ -814,7 +814,7 @@ namespace WindowsFormsApplication1
 
         public static void BindMasterFormToGrid(String ProcedureName, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView)
         {
-            bool editBtn = true;
+            bool editBtn = false;
             ReportGridView.Columns.Clear();
             DataSet dsMaster = GetDataSet(ProcedureName);
             if (dsMaster.Tables[0].Rows.Count > 0)

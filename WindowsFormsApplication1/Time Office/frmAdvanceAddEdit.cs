@@ -74,6 +74,8 @@ namespace BNPL.Forms_Transaction
                 qr = qr + "      actmst ON ExMst.ExPostHead = actmst.AccCode ";
                 qr = qr + " WHERE ExId='" + ExId + "'";
                 var ds = ProjectFunctions.GetDataSet(qr);
+                
+                
                 txtAdvanceNo.Text = ds.Tables[0].Rows[0]["ExNo"].ToString();
                 DtDate.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExDate"]);
                 DtDateforMonth.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExDatePost"]);

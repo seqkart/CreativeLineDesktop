@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using SeqKartLibrary;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -124,104 +125,114 @@ namespace WindowsFormsApplication1
             }
             if (s1 == "Edit")
             {
+
                 txtEmpName.Enabled = false;
-                DataSet ds = ProjectFunctions.GetDataSet(" sp_LoadEmpMstFEditing '" + EmpCode + "'");
-                if (ds.Tables[0].Rows.Count > 0)
+                PrintLogWin.PrintLog("frmEmloyeeMstAddEdit_Load =========> Line 131 => sp_LoadEmpMstFEditing '" + EmpCode + "'");
+
+                var dsResult = ProjectFunctionsUtils.GetDataSet_T("sp_LoadEmpMstFEditing '" + EmpCode + "'");
+                if (dsResult.Item1)
                 {
-                    txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
-                    txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
-                    txtRelationTag.Text = ds.Tables[0].Rows[0]["EmpFHRelationTag"].ToString();
-                    txtFHName.Text = ds.Tables[0].Rows[0]["EmpFHName"].ToString();
-                    txtDeptCode.Text = ds.Tables[0].Rows[0]["EmpDeptCode"].ToString();
-                    txtDeptDesc.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
-                    txtDesgCode.Text = ds.Tables[0].Rows[0]["EmpDesgCode"].ToString();
-                    txtDesgDesc.Text = ds.Tables[0].Rows[0]["DesgDesc"].ToString();
-                    txtEmpSex.Text = ds.Tables[0].Rows[0]["EmpSex"].ToString();
-                    if (ds.Tables[0].Rows[0]["EmpDOJ"].ToString() == string.Empty)
+                    DataSet ds = dsResult.Item2;
+
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
+                        txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
+                        txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                        txtRelationTag.Text = ds.Tables[0].Rows[0]["EmpFHRelationTag"].ToString();
+                        txtFHName.Text = ds.Tables[0].Rows[0]["EmpFHName"].ToString();
+                        txtDeptCode.Text = ds.Tables[0].Rows[0]["EmpDeptCode"].ToString();
+                        txtDeptDesc.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
+                        txtDesgCode.Text = ds.Tables[0].Rows[0]["EmpDesgCode"].ToString();
+                        txtDesgDesc.Text = ds.Tables[0].Rows[0]["DesgDesc"].ToString();
+                        txtEmpSex.Text = ds.Tables[0].Rows[0]["EmpSex"].ToString();
+                        if (ds.Tables[0].Rows[0]["EmpDOJ"].ToString() == string.Empty)
+                        {
 
+                        }
+                        else
+                        {
+                            txtDOJ.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDOJ"]);
+                        }
+                        if (ds.Tables[0].Rows[0]["EmpDOL"].ToString() == string.Empty)
+                        {
+
+                        }
+                        else
+                        {
+                            txtDOL.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDOL"]);
+                        }
+
+                        txtEPFTag.Text = ds.Tables[0].Rows[0]["EmpPFDTag"].ToString();
+                        txtESIDTag.Text = ds.Tables[0].Rows[0]["EmpESIDTag"].ToString();
+                        txtEPFNo.Text = ds.Tables[0].Rows[0]["EmpPFno"].ToString();
+                        txtESICNo.Text = ds.Tables[0].Rows[0]["EmpESIno"].ToString();
+                        txtBasicPay.Text = ds.Tables[0].Rows[0]["EmpBasic"].ToString();
+                        txtHRA.Text = ds.Tables[0].Rows[0]["EmpHRA"].ToString();
+                        txtConvenyance.Text = ds.Tables[0].Rows[0]["EmpConv"].ToString();
+                        txtPetrol.Text = ds.Tables[0].Rows[0]["EmpPET"].ToString();
+                        txtTDS.Text = ds.Tables[0].Rows[0]["EmpTDS"].ToString();
+                        txtEmpLeft.Text = ds.Tables[0].Rows[0]["EmpLeft"].ToString();
+                        txtRemarks.Text = ds.Tables[0].Rows[0]["EmpRemarks"].ToString();
+                        txtMotherName.Text = ds.Tables[0].Rows[0]["EmpMotherNm"].ToString();
+
+                        txtState.Text = ds.Tables[0].Rows[0]["EmpPerState"].ToString();
+                        txtState.Text = ds.Tables[0].Rows[0]["EmpPerCountry"].ToString();
+
+                        txtNationality.Text = ds.Tables[0].Rows[0]["EmpNationality"].ToString();
+                        txtEmail.Text = ds.Tables[0].Rows[0]["EmpEmail"].ToString();
+                        txtCategoryCode.Text = ds.Tables[0].Rows[0]["EmpCategory"].ToString();
+
+                        txtCategoryDesc.Text = ds.Tables[0].Rows[0]["CatgDesc"].ToString();
+
+                        txtDOB.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDoB"]);
+                        txtPanNo.Text = ds.Tables[0].Rows[0]["EmpPanNo"].ToString();
+                        txtPassPortNo.Text = ds.Tables[0].Rows[0]["EmpPassportNo"].ToString();
+
+                        txtEmpSplAlw.Text = ds.Tables[0].Rows[0]["EmpSplAlw"].ToString();
+                        txtEmployeeReligion.Text = ds.Tables[0].Rows[0]["EmpReligion"].ToString();
+                        txtMaritalStatus.Text = ds.Tables[0].Rows[0]["EmpMaritalStatus"].ToString();
+                        txtPaymentMode.Text = ds.Tables[0].Rows[0]["EmpPymtMode"].ToString();
+                        txtIfscCode.Text = ds.Tables[0].Rows[0]["EmpBankIFSCode"].ToString();
+                        txtBankAccountNo.Text = ds.Tables[0].Rows[0]["EmpBankAcNo"].ToString();
+                        txtBankName.Text = ds.Tables[0].Rows[0]["EmpBankName"].ToString();
+                        txtNomineeName.Text = ds.Tables[0].Rows[0]["EmpNominee"].ToString();
+                        txtNomineeRelation.Text = ds.Tables[0].Rows[0]["EmpNomineeRelation"].ToString();
+                        if (ds.Tables[0].Rows[0]["EmpNomineeDOB"].ToString() == string.Empty)
+                        {
+
+                        }
+                        else
+                        {
+                            txtNomineeDOB.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpNomineeDOB"]);
+                        }
+
+
+
+                        txtAdharCardNo.Text = ds.Tables[0].Rows[0]["EmpAdharCardNo"].ToString();
+
+                        txtHealthInsurance.Text = ds.Tables[0].Rows[0]["EmpGHISDed"].ToString();
+
+                        txtMiscDed.Text = ds.Tables[0].Rows[0]["EmpMscD1"].ToString();
+
+                        txtAddress1.Text = ds.Tables[0].Rows[0]["EmpAddress1"].ToString();
+                        txtAddress2.Text = ds.Tables[0].Rows[0]["EmpAddress2"].ToString();
+                        txtAddress3.Text = ds.Tables[0].Rows[0]["EmpAddress3"].ToString();
+                        txtDistCity.Text = ds.Tables[0].Rows[0]["EmpDistCity"].ToString();
+                        txtState.Text = ds.Tables[0].Rows[0]["EmpState"].ToString();
+                        txtCountry.Text = ds.Tables[0].Rows[0]["EmpCountry"].ToString();
+
+                        txtEFPFTag.Text = ds.Tables[0].Rows[0]["EmpFpfDTag"].ToString();
+                        txtUANNo.Text = ds.Tables[0].Rows[0]["EmpUANNo"].ToString();
+                        //txtUnitCode.Text = ds.Tables[0].Rows[0]["UnitCode"].ToString();
+                        //txtUnitName.Text = ds.Tables[0].Rows[0]["UnitName"].ToString();
+                        //txtAccCode.Text = ds.Tables[0].Rows[0]["EmpPartyCode"].ToString();
+                        //txtBankBranchCode.Text = ds.Tables[0].Rows[0]["EmpBankBranchCode"].ToString();
+
+                        txtCategoryCode.Focus();
                     }
-                    else
-                    {
-                        txtDOJ.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDOJ"]);
-                    }
-                    if (ds.Tables[0].Rows[0]["EmpDOL"].ToString() == string.Empty)
-                    {
-
-                    }
-                    else
-                    {
-                        txtDOL.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDOL"]);
-                    }
-
-                    txtEPFTag.Text = ds.Tables[0].Rows[0]["EmpPFDTag"].ToString();
-                    txtESIDTag.Text = ds.Tables[0].Rows[0]["EmpESIDTag"].ToString();
-                    txtEPFNo.Text = ds.Tables[0].Rows[0]["EmpPFno"].ToString();
-                    txtESICNo.Text = ds.Tables[0].Rows[0]["EmpESIno"].ToString();
-                    txtBasicPay.Text = ds.Tables[0].Rows[0]["EmpBasic"].ToString();
-                    txtHRA.Text = ds.Tables[0].Rows[0]["EmpHRA"].ToString();
-                    txtConvenyance.Text = ds.Tables[0].Rows[0]["EmpConv"].ToString();
-                    txtPetrol.Text = ds.Tables[0].Rows[0]["EmpPET"].ToString();
-                    txtTDS.Text = ds.Tables[0].Rows[0]["EmpTDS"].ToString();
-                    txtEmpLeft.Text = ds.Tables[0].Rows[0]["EmpLeft"].ToString();
-                    txtRemarks.Text = ds.Tables[0].Rows[0]["EmpRemarks"].ToString();
-                    txtMotherName.Text = ds.Tables[0].Rows[0]["EmpMotherNm"].ToString();
-
-                    txtState.Text = ds.Tables[0].Rows[0]["EmpPerState"].ToString();
-                    txtState.Text = ds.Tables[0].Rows[0]["EmpPerCountry"].ToString();
-
-                    txtNationality.Text = ds.Tables[0].Rows[0]["EmpNationality"].ToString();
-                    txtEmail.Text = ds.Tables[0].Rows[0]["EmpEmail"].ToString();
-                    txtCategoryCode.Text = ds.Tables[0].Rows[0]["EmpCategory"].ToString();
-
-                    txtCategoryDesc.Text = ds.Tables[0].Rows[0]["CatgDesc"].ToString();
-
-                    txtDOB.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDoB"]);
-                    txtPanNo.Text = ds.Tables[0].Rows[0]["EmpPanNo"].ToString();
-                    txtPassPortNo.Text = ds.Tables[0].Rows[0]["EmpPassportNo"].ToString();
-
-                    txtEmpSplAlw.Text = ds.Tables[0].Rows[0]["EmpSplAlw"].ToString();
-                    txtEmployeeReligion.Text = ds.Tables[0].Rows[0]["EmpReligion"].ToString();
-                    txtMaritalStatus.Text = ds.Tables[0].Rows[0]["EmpMaritalStatus"].ToString();
-                    txtPaymentMode.Text = ds.Tables[0].Rows[0]["EmpPymtMode"].ToString();
-                    txtIfscCode.Text = ds.Tables[0].Rows[0]["EmpBankIFSCode"].ToString();
-                    txtBankAccountNo.Text = ds.Tables[0].Rows[0]["EmpBankAcNo"].ToString();
-                    txtBankName.Text = ds.Tables[0].Rows[0]["EmpBankName"].ToString();
-                    txtNomineeName.Text = ds.Tables[0].Rows[0]["EmpNominee"].ToString();
-                    txtNomineeRelation.Text = ds.Tables[0].Rows[0]["EmpNomineeRelation"].ToString();
-                    if (ds.Tables[0].Rows[0]["EmpNomineeDOB"].ToString() == string.Empty)
-                    {
-
-                    }
-                    else
-                    {
-                        txtNomineeDOB.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpNomineeDOB"]);
-                    }
-
-
-
-                    txtAdharCardNo.Text = ds.Tables[0].Rows[0]["EmpAdharCardNo"].ToString();
-
-                    txtHealthInsurance.Text = ds.Tables[0].Rows[0]["EmpGHISDed"].ToString();
-
-                    txtMiscDed.Text = ds.Tables[0].Rows[0]["EmpMscD1"].ToString();
-
-                    txtAddress1.Text = ds.Tables[0].Rows[0]["EmpAddress1"].ToString();
-                    txtAddress2.Text = ds.Tables[0].Rows[0]["EmpAddress2"].ToString();
-                    txtAddress3.Text = ds.Tables[0].Rows[0]["EmpAddress3"].ToString();
-                    txtDistCity.Text = ds.Tables[0].Rows[0]["EmpDistCity"].ToString();
-                    txtState.Text = ds.Tables[0].Rows[0]["EmpState"].ToString();
-                    txtCountry.Text = ds.Tables[0].Rows[0]["EmpCountry"].ToString();
-
-                    txtEFPFTag.Text = ds.Tables[0].Rows[0]["EmpFpfDTag"].ToString();
-                    txtUANNo.Text = ds.Tables[0].Rows[0]["EmpUANNo"].ToString();
-                    //txtUnitCode.Text = ds.Tables[0].Rows[0]["UnitCode"].ToString();
-                    //txtUnitName.Text = ds.Tables[0].Rows[0]["UnitName"].ToString();
-                    //txtAccCode.Text = ds.Tables[0].Rows[0]["EmpPartyCode"].ToString();
-                    //txtBankBranchCode.Text = ds.Tables[0].Rows[0]["EmpBankBranchCode"].ToString();
-
-                    txtCategoryCode.Focus();
                 }
+
+                
             }
         }
 

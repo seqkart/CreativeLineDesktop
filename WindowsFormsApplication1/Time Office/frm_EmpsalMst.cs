@@ -13,7 +13,6 @@ namespace BNPL.Forms_Master
 {
     public partial class frm_EmpsalMst : XtraForm
     {
-
         public bool IsUpdate { get; set; }
 
         private string EmpCode;

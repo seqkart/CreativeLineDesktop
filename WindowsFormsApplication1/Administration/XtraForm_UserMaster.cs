@@ -35,9 +35,6 @@ namespace WindowsFormsApplication1.Administration
             try
             {
                 SetMyControls();
-
-                
-
             }
             catch
             {
@@ -65,6 +62,13 @@ namespace WindowsFormsApplication1.Administration
             edit.Buttons[0].Appearance.BackColor = Color.Red;
             edit.Buttons[0].Appearance.Options.UseBackColor = true;
             edit.Buttons[0].Appearance.BorderColor = Color.Transparent;
+            edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+
+            edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+                ;
+            edit.Buttons[0].Appearance.Options.UseBackColor = true;
+            edit.Buttons[0].Appearance.BackColor = Color.Transparent;
+
 
 
             gridView_UserMaster.Columns["Action"].ColumnEdit = edit;

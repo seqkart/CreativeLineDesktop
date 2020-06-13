@@ -1027,6 +1027,12 @@
     <Compile Include="Time Office\frm_EmpsalMst.designer.cs">
       <DependentUpon>frm_EmpsalMst.cs</DependentUpon>
     </Compile>
+    <Compile Include="Time Office\XtraForm_EmployeeAttendence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Time Office\XtraForm_EmployeeAttendence.Designer.cs">
+      <DependentUpon>XtraForm_EmployeeAttendence.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\Cashmemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1632,6 +1638,9 @@
     <EmbeddedResource Include="Time Office\frm_EmpsalMst.resx">
       <DependentUpon>frm_EmpsalMst.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Time Office\XtraForm_EmployeeAttendence.resx">
+      <DependentUpon>XtraForm_EmployeeAttendence.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\Cashmemo.resx">
       <DependentUpon>Cashmemo.cs</DependentUpon>
     </EmbeddedResource>
@@ -1811,15 +1820,167 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\Zoom.png" />
+    <None Include="Resources\Yes.png" />
+    <None Include="Resources\Wrench.png" />
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\3d bar chart.png" />
+    <None Include="Resources\Abort.png" />
+    <None Include="Resources\About.png" />
     <Content Include="Resources\AMExpress.png" />
     <EmbeddedResource Include="Resources\close_button.png" />
+    <None Include="Resources\Anchor.png" />
+    <None Include="Resources\Application.png" />
+    <None Include="Resources\Apply.png" />
+    <None Include="Resources\Back.png" />
+    <None Include="Resources\Bad mark.png" />
+    <None Include="Resources\Blue key.png" />
+    <None Include="Resources\Blue tag.png" />
+    <None Include="Resources\Boss.png" />
+    <None Include="Resources\Bottom.png" />
+    <None Include="Resources\Calculator.png" />
+    <None Include="Resources\Calendar.png" />
+    <None Include="Resources\Car key.png" />
+    <None Include="Resources\CD.png" />
+    <None Include="Resources\Clipboard.png" />
+    <None Include="Resources\Clock.png" />
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\Compass.png" />
+    <None Include="Resources\Component.png" />
+    <None Include="Resources\Copy.png" />
+    <None Include="Resources\Create.png" />
+    <None Include="Resources\Cut.png" />
+    <None Include="Resources\Danger.png" />
+    <None Include="Resources\Database.png" />
+    <None Include="Resources\Delete.png" />
+    <None Include="Resources\Delivery.png" />
+    <None Include="Resources\Dial.png" />
     <Content Include="Resources\DINNER.png" />
     <EmbeddedResource Include="Resources\edit_icon.png" />
+    <None Include="Resources\Disaster.png" />
+    <None Include="Resources\Dollar.png" />
+    <None Include="Resources\Down.png" />
+    <None Include="Resources\Download.png" />
+    <None Include="Resources\Eject.png" />
+    <None Include="Resources\E-mail.png" />
+    <None Include="Resources\Erase.png" />
+    <None Include="Resources\Error.png" />
+    <None Include="Resources\Euro.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\Fall.png" />
+    <None Include="Resources\Fast-forward.png" />
+    <None Include="Resources\Favourites.png" />
+    <None Include="Resources\Female.png" />
+    <None Include="Resources\Filter.png" />
+    <None Include="Resources\Find.png" />
+    <None Include="Resources\First record.png" />
+    <None Include="Resources\First.png" />
+    <None Include="Resources\Flag.png" />
     <Content Include="Resources\fm.jpg" />
+    <None Include="Resources\Folder.png" />
+    <None Include="Resources\Forbidden.png" />
+    <None Include="Resources\Forward.png" />
+    <None Include="Resources\Free bsd.png" />
+    <None Include="Resources\Go back.png" />
+    <None Include="Resources\Go forward.png" />
+    <None Include="Resources\Go.png" />
+    <None Include="Resources\Good-mark.png" />
+    <None Include="Resources\Green tag.png" />
+    <None Include="Resources\Heart.png" />
+    <None Include="Resources\Help book 3d.png" />
+    <None Include="Resources\Help book.png" />
+    <None Include="Resources\Help.png" />
+    <None Include="Resources\Hint.png" />
+    <None Include="Resources\Home.png" />
+    <None Include="Resources\How-to.png" />
+    <None Include="Resources\Hungup.png" />
+    <None Include="Resources\Info.png" />
+    <None Include="Resources\Key.png" />
+    <None Include="Resources\Last recor.png" />
+    <None Include="Resources\Last.png" />
+    <None Include="Resources\Left-right.png" />
+    <None Include="Resources\Lightning.png" />
+    <None Include="Resources\Linux.png" />
+    <None Include="Resources\List.png" />
+    <None Include="Resources\Load.png" />
+    <None Include="Resources\Lock.png" />
+    <None Include="Resources\Low rating.png" />
     <Content Include="Resources\Maestro.png" />
+    <None Include="Resources\Mail.png" />
+    <None Include="Resources\Male.png" />
     <Content Include="Resources\MASTERCARD.png" />
     <EmbeddedResource Include="Resources\pencil_edit_button.png" />
     <EmbeddedResource Include="Resources\pencil_edit_button_s.jpg" />
+    <None Include="Resources\Medium rating.png" />
+    <None Include="Resources\Message.png" />
+    <None Include="Resources\Mobile-phone.png" />
+    <None Include="Resources\Modify.png" />
+    <None Include="Resources\Movie.png" />
+    <None Include="Resources\Music.png" />
+    <None Include="Resources\New document.png" />
+    <None Include="Resources\New.png" />
+    <None Include="Resources\Next track.png" />
+    <None Include="Resources\Next.png" />
+    <None Include="Resources\No.png" />
+    <None Include="Resources\No-entry.png" />
+    <None Include="Resources\Notes.png" />
+    <None Include="Resources\OK.png" />
+    <None Include="Resources\Paste.png" />
+    <None Include="Resources\Pause.png" />
+    <None Include="Resources\People.png" />
+    <None Include="Resources\Person.png" />
+    <None Include="Resources\Phone number.png" />
+    <None Include="Resources\Pie chart.png" />
+    <None Include="Resources\Pinion.png" />
+    <None Include="Resources\Play.png" />
+    <None Include="Resources\Playback.png" />
+    <None Include="Resources\Play-music.png" />
+    <None Include="Resources\Previous record.png" />
+    <None Include="Resources\Previous.png" />
+    <None Include="Resources\Problem.png" />
+    <None Include="Resources\Question.png" />
+    <None Include="Resources\Raise.png" />
+    <None Include="Resources\Record.png" />
+    <None Include="Resources\Red mark.png" />
+    <None Include="Resources\Red star.png" />
+    <None Include="Resources\Red tag.png" />
+    <None Include="Resources\Redo.png" />
+    <None Include="Resources\Refresh.png" />
+    <None Include="Resources\Remove.png" />
+    <None Include="Resources\Repair.png" />
+    <None Include="Resources\Report.png" />
+    <None Include="Resources\Retort.png" />
+    <None Include="Resources\Rewind.png" />
+    <None Include="Resources\Sad.png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\Search.png" />
+    <None Include="Resources\Shopping cart.png" />
+    <None Include="Resources\Smile.png" />
+    <None Include="Resources\Sound.png" />
+    <None Include="Resources\Stop sign.png" />
+    <None Include="Resources\Stop.png" />
+    <None Include="Resources\Sync.png" />
+    <None Include="Resources\Table.png" />
+    <None Include="Resources\Target.png" />
+    <None Include="Resources\Taxi.png" />
+    <None Include="Resources\Terminate.png" />
+    <None Include="Resources\Text preview.png" />
+    <None Include="Resources\Text.png" />
+    <None Include="Resources\Thumbs down.png" />
+    <None Include="Resources\Thumbs up.png" />
+    <None Include="Resources\Top.png" />
+    <None Include="Resources\Turn off.png" />
+    <None Include="Resources\Undo.png" />
+    <None Include="Resources\Unlock.png" />
+    <None Include="Resources\Up.png" />
+    <None Include="Resources\Update.png" />
+    <None Include="Resources\Up-down.png" />
+    <None Include="Resources\Upload.png" />
+    <None Include="Resources\User group.png" />
+    <None Include="Resources\View.png" />
+    <None Include="Resources\profile-icon.png" />
+    <None Include="Resources\profile-icon.jpg" />
     <Content Include="Resources\VISA.png" />
     <None Include="Resources\fm1.jpg" />
     <Content Include="Resources\login.jpg" />
@@ -1840,6 +2001,7 @@
   <ItemGroup>
     <Folder Include="CrudTask\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Inventory\" />
     <Folder Include="Promotion\" />
   </ItemGroup>
   <ItemGroup>
