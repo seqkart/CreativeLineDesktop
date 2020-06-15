@@ -56,12 +56,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrudTask\ChallanOutMain_Concrete.cs" />
+    <Compile Include="CrudTask\EmployeeData.cs" />
+    <Compile Include="CrudTask\usersBll.cs" />
     <Compile Include="HelperClass\ComparisonUtils.cs" />
     <Compile Include="Interfaces\IFrmTransaction.cs" />
     <Compile Include="Models\ChallanOutMain_Model.cs" />
+    <Compile Include="Models\EmployeeItem.cs" />
+    <Compile Include="Models\user.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectFunctionsUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\RepGen.cs" />
+    <Compile Include="Repository\RepList.cs" />
     <Compile Include="SQL_COLUMNS.cs" />
     <Compile Include="Sql_Queries.cs" />
     <Compile Include="WIN_APP_TABS.cs" />

@@ -12,6 +12,9 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using DevExpress.XtraLayout.Helpers;
 using DevExpress.XtraLayout;
+using DevExpress.XtraBars.Docking2010;
+using System.Data.SqlClient;
+using HumanResourceManagementSystem;
 
 namespace WindowsFormsApplication1.Time_Office
 {
@@ -19,6 +22,16 @@ namespace WindowsFormsApplication1.Time_Office
     {
         public String s1 { get; set; }
         public String UserName { get; set; }
+
+        SqlConnection con;
+        SqlTransaction objTran = null;
+
+        SqlCommand SqlCommand1;
+        SqlDataAdapter da;
+        int count;
+
+        DataSet myDataSet;
+
         public XtraForm_EmployeeAttendence()
         {
             InitializeComponent();
@@ -29,7 +42,67 @@ namespace WindowsFormsApplication1.Time_Office
             //List<BaseLayoutItem> flatList = new FlatItemsList().GetItemsList(dataLayoutControl1.Root);
             //BaseLayoutItem aboutItem = flatList.First(e => e.Text == "About");
             //aboutItem.TextLocation = DevExpress.Utils.Locations.Top;
+
+            LoadControls();
         }
+
+        private void LoadControls()
+        {
+            con = new SqlConnection(GlobalClass.conn);
+            con.Open();
+
+            txtOvertimeHours.Text = "0";
+
+            string sql = "SELECT EmpID FROM EmployeeSalaryAgreement WHERE EmpID NOT IN('HR001')";
+
+            SqlCommand1 = new SqlCommand(sql, con);
+            SqlDataReader dr = SqlCommand1.ExecuteReader();
+            while (dr.Read())
+            {
+                cbEmpID.Items.Add(dr[0]);
+                count++;
+            }
+
+            dr.Close();
+        }
+
+        private void cbEmpID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = "SELECT * FROM EmployeeDetails WHERE EmpID=@empid";
+                SqlCommand SqlCommand1 = con.CreateCommand();
+                SqlCommand1.CommandText = sql;
+                int res;
+                SqlCommand1.Parameters.Add("@empid", SqlDbType.VarChar, 10);
+                SqlCommand1.Parameters[0].Value = cbEmpID.SelectedItem;
+                da = new SqlDataAdapter();
+                da.SelectCommand = SqlCommand1;
+                myDataSet = new System.Data.DataSet();
+                res = da.Fill(myDataSet, "EmployeeDetails");
+
+                if (res >= 1)
+                {
+
+
+                    txtFName.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["FName"].ToString();
+
+                    txtEmpID.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["EmpID"].ToString();
+
+                    txtDepartment.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["Department"].ToString();
+                    txtDesignation.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["Designation"].ToString();
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Record not found");
+            }
+
+        }
+        /*
         static List<Employee> GetDataSource()
         {
             List<Employee> result = new List<Employee>();
@@ -119,6 +192,37 @@ namespace WindowsFormsApplication1.Time_Office
             {
 
             }
+        }
+        */
+
+        void windowsUIButtonPanelMain_ButtonClick(object sender, ButtonEventArgs e)
+        {
+            string tag = ((WindowsUIButton)e.Button).Tag.ToString();
+
+            MessageBox.Show(tag);
+            switch (tag)
+            {
+                case "save":
+                    /* Navigate to page A */
+                    break;
+                case "save_close":
+                    /* Navigate to page B */
+                    break;
+                case "save_new":
+                    /* Navigate to page C*/
+                    break;
+                case "reset":
+                    /* Navigate to page D */
+                    break;
+                case "delete":
+                    /* Navigate to page E */
+                    break;
+            }
+        }
+
+        private void labelControl_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Back");
         }
     }
 }

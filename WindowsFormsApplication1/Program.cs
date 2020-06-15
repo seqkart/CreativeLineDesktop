@@ -36,13 +36,16 @@ namespace WindowsFormsApplication1
 
             //System.Diagnostics.Process.Start(@"D:\New folder\IsoBuster 2.8.5\isobuster_all_lang.exe");
 
+            
+            
             //Application.Run(new frmLogincs());
-
+            
             var PROG153 = new BNPL.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
             PROG153.Show();
             PROG153.BringToFront();
             //Application.Run(new frmAttendenceLaoding());
             Application.Run(new XtraForm_EmployeeAttendence());
+            /**/
         }
     }
 }

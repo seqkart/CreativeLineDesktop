@@ -23,12 +23,19 @@ namespace WindowsFormsApplication1
         }
         private string GetNewDeptCode()
         {
+            string sql = "SELECT"
+            + " CASE"
+            + " WHEN (isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1) < 10 THEN ('dp0'+CAST(isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1 as varchar(10)))"
+            + " ELSE ('dp'+CAST(isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1 as varchar(10)))"
+            + " END AS NewDeptCode"
+            + " FROM DeptMSt;";
+            //"select isnull(max(Cast(DeptCode as int)),00000) from DeptMSt"
             String s2 = String.Empty;
-            DataSet ds = ProjectFunctions.GetDataSet("select isnull(max(Cast(DeptCode as int)),00000) from DeptMSt");
+            DataSet ds = ProjectFunctions.GetDataSet(sql);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 s2 = ds.Tables[0].Rows[0][0].ToString();
-                s2 = (Convert.ToInt32(s2) + 1).ToString();
+                //s2 = (Convert.ToInt32(s2) + 1).ToString();
             }
             return s2;
         }

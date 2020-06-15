@@ -532,6 +532,13 @@
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="HelperClass\MessageBox_Debug.cs" />
     <Compile Include="HelperClass\PrintLogWin.cs" />
+    <Compile Include="HRMS\AddAttendanceDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HRMS\AddAttendanceDetails.designer.cs">
+      <DependentUpon>AddAttendanceDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HRMS\GlobalClass.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1392,6 +1399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmXtraReportViewer.resx">
       <DependentUpon>frmXtraReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HRMS\AddAttendanceDetails.resx">
+      <DependentUpon>AddAttendanceDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.cs</DependentUpon>

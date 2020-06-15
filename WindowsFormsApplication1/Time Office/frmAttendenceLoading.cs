@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using HumanResourceManagementSystem;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -195,6 +196,18 @@ namespace BNPL.Forms_Master
             
             xtraForm_EmployeeAttendence.ShowDialog(Parent);
 
+
+        }
+
+        private void btnAdd2_Click(object sender, EventArgs e)
+        {
+            //XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { s1 = btnAdd.Text, Text = "User Addition" }; ;
+            
+
+            AddAttendanceDetails addAttendanceDetails = new AddAttendanceDetails() { s1 = btnAdd2.Text, Text = "Add Addendance Details" }; ;
+            addAttendanceDetails.StartPosition = FormStartPosition.CenterScreen;
+
+            addAttendanceDetails.ShowDialog(Parent);
 
         }
     }

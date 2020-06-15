@@ -49,6 +49,7 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnAdd2 = new System.Windows.Forms.ToolStripButton();
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGridView)).BeginInit();
@@ -67,7 +68,8 @@
             this.toolStripButton1,
             this.btnRefresh,
             this.btnLoad,
-            this.btnAdd});
+            this.btnAdd,
+            this.btnAdd2});
             this.Menu_ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
             this.Menu_ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -258,6 +260,16 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // btnAdd2
+            // 
+            this.btnAdd2.Image = global::WindowsFormsApplication1.Properties.Resources.Add;
+            this.btnAdd2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd2.Name = "btnAdd2";
+            this.btnAdd2.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.btnAdd2.Size = new System.Drawing.Size(66, 24);
+            this.btnAdd2.Text = "Add2";
+            this.btnAdd2.Click += new System.EventHandler(this.btnAdd2_Click);
+            // 
             // frmAttendenceLaoding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,5 +315,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private System.Windows.Forms.ToolStripButton btnAdd;
+        private System.Windows.Forms.ToolStripButton btnAdd2;
     }
 }
