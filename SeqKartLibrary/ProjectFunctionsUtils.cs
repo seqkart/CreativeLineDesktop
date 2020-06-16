@@ -261,9 +261,9 @@ namespace SeqKartLibrary
             }
         }
 
-        public DataSet GetDataSet_New(string sqlQuery)
+        public static DataSet GetDataSet_New(string sqlQuery)
         {
-            DataSet ds = null;
+            DataSet ds = new DataSet();
             try
             {
                 using (SqlConnection dbconn = new SqlConnection(GetConnection()))
@@ -281,16 +281,16 @@ namespace SeqKartLibrary
                 }
 
             }
-            catch// (Exception ex)
+            catch (Exception ex)
             {
-                
+                System.Diagnostics.Debug.WriteLine("===========> " + ex);
             }
             return ds;
         }
 
         public static Tuple<bool, DataSet> GetDataSet_T(string sqlQuery)
         {
-            DataSet ds = null;
+            DataSet ds = new DataSet();
             try
             {
                 using (SqlConnection dbconn = new SqlConnection(GetConnection()))
@@ -308,9 +308,9 @@ namespace SeqKartLibrary
                 }
 
             }
-            catch// (Exception ex)
+            catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine("===========> " + ex);
             }
 
             bool hasData = false;
@@ -324,9 +324,9 @@ namespace SeqKartLibrary
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine("===========> " + ex);
             }
             return new Tuple<bool, DataSet>(hasData, ds);
         }
@@ -639,6 +639,47 @@ namespace SeqKartLibrary
                 sqlcom.ExecuteNonQuery();
                 sqlcon.Close();
             }
+        }
+
+        public static string GetNewEmpCode()
+        {
+            string sql = SQL_QUERIES._frmEmployeeMstAddEdit._GetNewEmpCode();
+
+            String s2 = String.Empty;
+            DataSet ds = GetDataSet(sql);//"select isnull(max(Cast(EmpCode as int)),00000) from EmpMst"
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                s2 = ds.Tables[0].Rows[0][0].ToString();
+                //s2 = (Convert.ToInt32(s2) + 1).ToString();
+            }
+            return s2;
+        }
+
+        public static string GetNewDeptCode()
+        {
+            string sql = SQL_QUERIES._frmDepartmentAddUpdate._GetNewDeptCode(); ;
+            //"select isnull(max(Cast(DeptCode as int)),00000) from DeptMSt"
+            String s2 = String.Empty;
+            DataSet ds = GetDataSet(sql);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                s2 = ds.Tables[0].Rows[0][0].ToString();
+                //s2 = (Convert.ToInt32(s2) + 1).ToString();
+            }
+            return s2;
+        }
+
+        public static string GetNewDesgCode()
+        {
+            string sql = SQL_QUERIES._frmDesignationAddUpdate._GetNewDesgCode();
+            String s2 = String.Empty;
+            DataSet ds = GetDataSet(sql);//"select isnull(max(Cast(DesgCode as int)),00000) from DesgMst"
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                s2 = ds.Tables[0].Rows[0][0].ToString();
+                //s2 = (Convert.ToInt32(s2) + 1).ToString();
+            }
+            return s2;
         }
 
 

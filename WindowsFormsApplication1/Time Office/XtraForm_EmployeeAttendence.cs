@@ -15,6 +15,8 @@ using DevExpress.XtraLayout;
 using DevExpress.XtraBars.Docking2010;
 using System.Data.SqlClient;
 using HumanResourceManagementSystem;
+using SeqKartLibrary;
+using SeqKartLibrary.CrudTask;
 
 namespace WindowsFormsApplication1.Time_Office
 {
@@ -48,60 +50,290 @@ namespace WindowsFormsApplication1.Time_Office
 
         private void LoadControls()
         {
-            con = new SqlConnection(GlobalClass.conn);
-            con.Open();
+            //con = new SqlConnection(GlobalClass.conn);
+            //con.Open();
+            DateTime d = new DateTime();
+            d = DateTime.Now;
+            textDate.Text = d.ToString("dd-MM-yyyy HH:mm:ss"); //DateTime.Now.Date.ToShortDateString() + " " + DateTime.Now.TimeOfDay.ToString();// d.ToString("dd.MM.yyyy HH:mm");
 
             txtOvertimeHours.Text = "0";
 
-            string sql = "SELECT EmpID FROM EmployeeSalaryAgreement WHERE EmpID NOT IN('HR001')";
+            string sql = SQL_QUERIES._sp_EmployeesList();
 
-            SqlCommand1 = new SqlCommand(sql, con);
-            SqlDataReader dr = SqlCommand1.ExecuteReader();
-            while (dr.Read())
+            //SqlCommand1 = new SqlCommand(sql, con);
+            //SqlDataReader dr = SqlCommand1.ExecuteReader();
+            //while (dr.Read())
+            //{
+
+            //    cbEmpID.Items.Add(dr[0]);
+            //    count++;
+            //}
+
+            //dr.Close();
+
+
+            PrintLogWin.PrintLog(sql);
+
+            
+            var result = ProjectFunctionsUtils.GetDataSet_T(sql);
+
+            //PrintLogWin.PrintLog("result.Item1 : " + result.Item1);
+
+            DataSet ds = result.Item2;// ProjectFunctionsUtils.GetDataSet_New(sql);
+
+            //PrintLogWin.PrintLog("ds.Tables[0].Rows.Count : " + ds.Tables[0].Rows.Count);
+
+
+            if (ds.Tables[0].Rows.Count > 0)
             {
-                cbEmpID.Items.Add(dr[0]);
-                count++;
+                //PrintLogWin.PrintLog("ds.Tables[0].Rows.Count : " + ds.Tables[0].Rows.Count);
+
+
+                //DataSet ds = result.Item2;
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    PrintLogWin.PrintLog("dr[0] : " + dr[0]);
+                    cbEmpID.Items.Add(dr[0]);
+                    count++;
+                }
             }
 
-            dr.Close();
+            txtFName.Properties.ReadOnly = true;
+            txtEmpID.Properties.ReadOnly = true;
+            txtDepartment.Properties.ReadOnly = true;
+            txtDesignation.Properties.ReadOnly = true;
+            textUnit.Properties.ReadOnly = true;
+            textDate.Properties.ReadOnly = true;
+
+            radioButtonManual.Checked = true;
+            radioButtonMachine.Checked = false;
+            panelControl_Manual_In.BackColor = Color.FromArgb(232, 232, 232);
+            panelControl_Machine_In.BackColor = Color.White;
+
+            textAttStatus_Manual.ReadOnly = false;
+            timeAttIn_First_Manual.ReadOnly = false;
+            timeAttOut_First_Manual.ReadOnly = false;
+            timeAttIn_Last_Manual.ReadOnly = false;
+            timeAttOut_Last_Manual.ReadOnly = false;
+
+            textAttStatus_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            timeAttIn_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            timeAttOut_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            timeAttIn_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
+
+            textAttStatus_Manual.EditValue = null;
+            timeAttIn_First_Manual.EditValue = null;
+            timeAttOut_First_Manual.EditValue = null;
+            timeAttIn_Last_Manual.EditValue = null;
+            timeAttOut_Last_Manual.EditValue = null;
+
+
+            //radioButtonMachine.
         }
 
         private void cbEmpID_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                string sql = "SELECT * FROM EmployeeDetails WHERE EmpID=@empid";
-                SqlCommand SqlCommand1 = con.CreateCommand();
-                SqlCommand1.CommandText = sql;
-                int res;
-                SqlCommand1.Parameters.Add("@empid", SqlDbType.VarChar, 10);
-                SqlCommand1.Parameters[0].Value = cbEmpID.SelectedItem;
-                da = new SqlDataAdapter();
-                da.SelectCommand = SqlCommand1;
-                myDataSet = new System.Data.DataSet();
-                res = da.Fill(myDataSet, "EmployeeDetails");
+                //string sql = "SELECT * FROM EmployeeDetails WHERE EmpID=@empid";
 
-                if (res >= 1)
+                string sql = SQL_QUERIES._sp_EmployeeDetails(cbEmpID.SelectedItem);
+
+                PrintLogWin.PrintLog(sql);
+
+                var result = ProjectFunctionsUtils.GetDataSet_T(sql);
+
+                if (result.Item1)
                 {
-
-
-                    txtFName.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["FName"].ToString();
-
-                    txtEmpID.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["EmpID"].ToString();
-
-                    txtDepartment.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["Department"].ToString();
-                    txtDesignation.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["Designation"].ToString();
-
+                    DataSet ds = result.Item2;
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        txtFName.Text = dr["EmpName"].ToString();
+                        txtEmpID.Text = dr["EmpCode"].ToString();
+                        txtDepartment.Text = dr["DeptDesc"].ToString();
+                        txtDesignation.Text = dr["DesgDesc"].ToString();
+                        textUnit.Text = dr["UnitName" +
+                            ""].ToString();
+                    }
                 }
+
+                
+
+                //SqlCommand SqlCommand1 = con.CreateCommand();
+                //SqlCommand1.CommandText = sql;
+                //int res;
+                ////SqlCommand1.Parameters.Add("@empid", SqlDbType.VarChar, 10);
+                ////SqlCommand1.Parameters[0].Value = cbEmpID.SelectedItem;
+                //da = new SqlDataAdapter();
+                //da.SelectCommand = SqlCommand1;
+                //myDataSet = new System.Data.DataSet();
+                //res = da.Fill(myDataSet, "EmployeeDetails");
+
+                //if (res >= 1)
+                //{
+                //    txtFName.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["EmpName"].ToString();
+
+                //    //txtEmpID.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["EmpID"].ToString();
+
+                //    //txtDepartment.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["Department"].ToString();
+                //    //txtDesignation.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["Designation"].ToString();
+
+                //}
 
             }
 
             catch (Exception ex)
             {
+                PrintLogWin.PrintLog("Exception : " + ex);
+
                 MessageBox.Show("Record not found");
             }
 
         }
+        
+
+        void windowsUIButtonPanelMain_ButtonClick(object sender, ButtonEventArgs e)
+        {
+            string tag = ((WindowsUIButton)e.Button).Tag.ToString();
+
+            //MessageBox.Show(tag);
+            switch (tag)
+            {
+                case "save":
+                    /* Navigate to page A */
+                    SaveData();
+                    break;
+                case "save_close":
+                    /* Navigate to page B */
+                    SaveData();
+                    this.Close();
+                    break;
+                case "save_new":
+                    /* Navigate to page C*/
+                    SaveData();
+                    this.Close();
+                    break;
+                case "reset":
+                    /* Navigate to page D */
+
+                    break;
+                case "delete":
+                    /* Navigate to page E */
+                    break;
+            }
+        }
+
+        private void SaveData()
+        {
+            if (Validate_Form())
+            {
+                AttendanceData attendanceData = new AttendanceData();
+                //
+                
+
+            }
+        }
+
+        private bool Validate_Form()
+        {
+            
+            if (cbEmpID.Text == "")
+            {
+                //MessageBox.Show("Please select an Employee ID first");
+                ProjectFunctionsUtils.SpeakError("Please select an Employee ID first");
+                cbEmpID.Focus();
+
+                return false;
+            }
+            if (timeAttIn_First_Manual.Text == "")
+            {
+                ProjectFunctionsUtils.SpeakError("Please enter time in");
+                timeAttIn_First_Manual.Focus();
+
+                return false;
+
+            }
+            //else if (timeAttOut_First_Manual.Text == "")
+            //{
+            //    MessageBox.Show("Please enter time out");
+            //    timeAttOut_First_Manual.Focus();
+            //}
+            //else if (txtOvertimeHours.Text == "")
+            //{
+            //    MessageBox.Show("Please enter extra time in hours");
+            //    txtOvertimeHours.Focus();
+            //}
+
+            return true;
+        }
+              
+
+        private void windowsUIButtonPanelCloseButton_Click(object sender, ButtonEventArgs e)
+        {
+            string tag = ((WindowsUIButton)e.Button).Tag.ToString();
+
+            this.Close();            
+
+        }
+
+        private void radioButtonManual_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonManual.Checked)
+            {
+                radioButtonMachine.Checked = false;
+                panelControl_Manual_In.BackColor = Color.FromArgb(232, 232, 232);
+                panelControl_Machine_In.BackColor = Color.White;
+
+                textAttStatus_Manual.ReadOnly = false;
+                timeAttIn_First_Manual.ReadOnly = false;
+                timeAttOut_First_Manual.ReadOnly = false;
+                timeAttIn_Last_Manual.ReadOnly = false;
+                timeAttOut_Last_Manual.ReadOnly = false;
+
+                textAttStatus_Manual.BackColor = Color.FromArgb(255, 255, 192);
+                timeAttIn_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
+                timeAttOut_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
+                timeAttIn_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
+                timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
+
+                textAttStatus_Manual.EditValue = null;
+                timeAttIn_First_Manual.EditValue = null;
+                timeAttOut_First_Manual.EditValue = null;
+                timeAttIn_Last_Manual.EditValue = null;
+                timeAttOut_Last_Manual.EditValue = null;
+
+            }
+        }
+
+        private void radioButtonMachine_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonMachine.Checked)
+            {
+                radioButtonManual.Checked = false;
+                panelControl_Manual_In.BackColor = Color.White;
+                panelControl_Machine_In.BackColor = Color.FromArgb(232, 232, 232);
+
+                textAttStatus_Manual.ReadOnly = true;
+                timeAttIn_First_Manual.ReadOnly = true;
+                timeAttOut_First_Manual.ReadOnly = true;
+                timeAttIn_Last_Manual.ReadOnly = true;
+                timeAttOut_Last_Manual.ReadOnly = true;
+
+                textAttStatus_Manual.BackColor = Color.WhiteSmoke;
+                timeAttIn_First_Manual.BackColor = Color.WhiteSmoke;
+                timeAttOut_First_Manual.BackColor = Color.WhiteSmoke;
+                timeAttIn_Last_Manual.BackColor = Color.WhiteSmoke;
+                timeAttOut_Last_Manual.BackColor = Color.WhiteSmoke;
+
+                textAttStatus_Manual.EditValue = null;
+                timeAttIn_First_Manual.EditValue = null;
+                timeAttOut_First_Manual.EditValue = null;
+                timeAttIn_Last_Manual.EditValue = null;
+                timeAttOut_Last_Manual.EditValue = null;
+            }
+        }
+
         /*
         static List<Employee> GetDataSource()
         {
@@ -194,35 +426,5 @@ namespace WindowsFormsApplication1.Time_Office
             }
         }
         */
-
-        void windowsUIButtonPanelMain_ButtonClick(object sender, ButtonEventArgs e)
-        {
-            string tag = ((WindowsUIButton)e.Button).Tag.ToString();
-
-            MessageBox.Show(tag);
-            switch (tag)
-            {
-                case "save":
-                    /* Navigate to page A */
-                    break;
-                case "save_close":
-                    /* Navigate to page B */
-                    break;
-                case "save_new":
-                    /* Navigate to page C*/
-                    break;
-                case "reset":
-                    /* Navigate to page D */
-                    break;
-                case "delete":
-                    /* Navigate to page E */
-                    break;
-            }
-        }
-
-        private void labelControl_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Back");
-        }
     }
 }

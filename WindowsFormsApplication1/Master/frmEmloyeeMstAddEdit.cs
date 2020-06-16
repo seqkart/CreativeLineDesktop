@@ -103,17 +103,20 @@ namespace WindowsFormsApplication1
 
             return true;
         }
-        private string GetNewEmpCode()
-        {
-            String s2 = String.Empty;
-            DataSet ds = ProjectFunctions.GetDataSet("select isnull(max(Cast(EmpCode as int)),00000) from EmpMst");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                s2 = ds.Tables[0].Rows[0][0].ToString();
-                s2 = (Convert.ToInt32(s2) + 1).ToString();
-            }
-            return s2;
-        }
+
+        //private string GetNewEmpCode()
+        //{
+        //    string sql = SQL_QUERIES._frm_Employee_Mst_Add_Edit._GetNewEmpCode();
+
+        //    String s2 = String.Empty;
+        //    DataSet ds = ProjectFunctions.GetDataSet(sql);//"select isnull(max(Cast(EmpCode as int)),00000) from EmpMst"
+        //    if (ds.Tables[0].Rows.Count > 0)
+        //    {
+        //        s2 = ds.Tables[0].Rows[0][0].ToString();
+        //        //s2 = (Convert.ToInt32(s2) + 1).ToString();
+        //    }
+        //    return s2;
+        //}
         private void frmEmloyeeMstAddEdit_Load(object sender, EventArgs e)
 
         {
@@ -121,7 +124,7 @@ namespace WindowsFormsApplication1
             if (s1 == "&Add")
             {
                 txtEmpName.Select();
-                txtEmpCode.Text = GetNewEmpCode().PadLeft(5, '0');
+                txtEmpCode.Text = ProjectFunctionsUtils.GetNewEmpCode();//.PadLeft(5, '0');
             }
             if (s1 == "Edit")
             {

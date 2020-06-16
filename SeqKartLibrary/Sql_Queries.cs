@@ -19,6 +19,51 @@ namespace SeqKartLibrary
                 return String.Format("Update UserMaster Set UserPwd='{0}' where UserName='{1}'", UserPwd, UserName);
             }
         }
+        public static class _frmEmployeeMstAddEdit
+        {
+            public static string _GetNewEmpCode()
+            {
+                string sql = "SELECT"
+                + " CASE"
+                + " WHEN (isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1) < 10 THEN ('emp0'+CAST(isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1 as varchar(10)))"
+                + " ELSE ('emp'+CAST(isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1 as varchar(10)))"
+                + " END AS NewEmpCode"
+                + " FROM EmpMst;";
+
+                return sql;
+            }
+        }
+
+        public static class _frmDepartmentAddUpdate
+        {
+            public static string _GetNewDeptCode()
+            {
+                string sql = "SELECT"
+                + " CASE"
+                + " WHEN (isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1) < 10 THEN ('dp0'+CAST(isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1 as varchar(10)))"
+                + " ELSE ('dp'+CAST(isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1 as varchar(10)))"
+                + " END AS NewDeptCode"
+                + " FROM DeptMSt;";
+
+                return sql;
+            }
+        }
+
+        public static class _frmDesignationAddUpdate
+        {
+            public static string _GetNewDesgCode()
+            {
+                string sql = "SELECT"
+                + " CASE"
+                + " WHEN (isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1) < 10 THEN ('ds0'+CAST(isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1 as varchar(10)))"
+                + " ELSE ('ds'+CAST(isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1 as varchar(10)))"
+                + " END AS NewDesgCode"
+                + " FROM DesgMst;";
+
+                return sql;
+            }
+        }
+
         public static string SP_LoadUserAllocatedWork2(object UserName)
         {
             return "sp_LoadUserAllocatedWork2 '" + UserName + "'";
@@ -73,5 +118,18 @@ namespace SeqKartLibrary
         {
             return "SELECT FNYear.FNYearCode FROM  UserFNAccess INNER JOIN FNYear ON UserFNAccess.FNTransID = FNYear.TransID  Where UserName='" + UserName + "'";
         }
+
+        public static string _sp_EmployeesList()
+        {
+            //return "SELECT * FROM EmpMST";//
+            return "sp_EmployeesList";
+            //sp_EmployeesList";
+        }
+
+        public static string _sp_EmployeeDetails(object EmpCode)
+        {
+            return "sp_EmployeeDetails '" + EmpCode + "'";
+        }
+
     }
 }

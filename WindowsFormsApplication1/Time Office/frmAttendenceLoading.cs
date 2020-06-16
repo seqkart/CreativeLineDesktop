@@ -28,6 +28,8 @@ namespace BNPL.Forms_Master
             dt.Columns.Add("EmpSL", typeof(Decimal));
             dt.Columns.Add("EmpPymtMode", typeof(String));
 
+            btnAdd2.Visible = false;
+
         }
 
         private void SetMyControls()

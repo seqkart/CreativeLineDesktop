@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using SeqKartLibrary;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -27,7 +28,7 @@ namespace WindowsFormsApplication1
             if (s1 == "&Add")
             {
                 txtDesc.Focus();
-                txtDesgCode.Text = GetNewDesgCode().PadLeft(4, '0');
+                txtDesgCode.Text = ProjectFunctionsUtils.GetNewDesgCode();//.PadLeft(4, '0');
             }
             if (s1 == "Edit")
             {
@@ -58,17 +59,17 @@ namespace WindowsFormsApplication1
 
             return true;
         }
-        private string GetNewDesgCode()
-        {
-            String s2 = String.Empty;
-            DataSet ds = ProjectFunctions.GetDataSet("select isnull(max(Cast(DesgCode as int)),00000) from DesgMst");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                s2 = ds.Tables[0].Rows[0][0].ToString();
-                s2 = (Convert.ToInt32(s2) + 1).ToString();
-            }
-            return s2;
-        }
+        //private string GetNewDesgCode()
+        //{
+        //    String s2 = String.Empty;
+        //    DataSet ds = ProjectFunctions.GetDataSet("select isnull(max(Cast(DesgCode as int)),00000) from DesgMst");
+        //    if (ds.Tables[0].Rows.Count > 0)
+        //    {
+        //        s2 = ds.Tables[0].Rows[0][0].ToString();
+        //        s2 = (Convert.ToInt32(s2) + 1).ToString();
+        //    }
+        //    return s2;
+        //}
         private void frmDesignationAddEdit_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up)
@@ -100,21 +101,25 @@ namespace WindowsFormsApplication1
                     sqlcom.CommandType = CommandType.Text;
                     try
                     {
+                        string sql = "";
                         if (s1 == "&Add")
                         {
-                            sqlcom.CommandText = " SET TRANSACTION ISOLATION LEVEL SERIALIZABLE  Begin Transaction "
-                                                    + " Insert into DesgMst"
-                                                    + " (DesgCode,DesgDesc)"
-                                                    + " values((SELECT RIGHT('0000'+ CAST( ISNULL( max(Cast(DesgCode as int)),0)+1 AS VARCHAR(4)),4) from DesgMst),@DesgDesc)"
-                                                    + " Commit ";
+                            sql = "sp_DesignationAddUpdate @DesgCode, @DesgDesc, 'ADD'";
+                            //sqlcom.CommandText = " SET TRANSACTION ISOLATION LEVEL SERIALIZABLE  Begin Transaction "
+                            //                        + " Insert into DesgMst"
+                            //                        + " (DesgCode,DesgDesc)"
+                            //                        + " values((SELECT RIGHT('0000'+ CAST( ISNULL( max(Cast(DesgCode as int)),0)+1 AS VARCHAR(4)),4) from DesgMst),@DesgDesc)"
+                            //                        + " Commit ";
                         }
                         if (s1 == "Edit")
                         {
-                            sqlcom.CommandText = " UPDATE DesgMst SET "
-                                                + " DesgDesc=@DesgDesc"
-                                                + " Where DesgCode=@DesgCode";
+                            sql = "sp_DesignationAddUpdate @DesgCode, @DesgDesc, 'EDIT'";
+                            //sqlcom.CommandText = " UPDATE DesgMst SET "
+                            //                    + " DesgDesc=@DesgDesc"
+                            //                    + " Where DesgCode=@DesgCode";
 
                         }
+                        sqlcom.CommandText = sql;
                         sqlcom.Parameters.AddWithValue("@DesgCode", txtDesgCode.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@DesgDesc", txtDesc.Text.Trim());
                         sqlcom.ExecuteNonQuery();

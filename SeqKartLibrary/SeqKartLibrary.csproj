@@ -55,11 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrudTask\AttendanceData.cs" />
     <Compile Include="CrudTask\ChallanOutMain_Concrete.cs" />
     <Compile Include="CrudTask\EmployeeData.cs" />
     <Compile Include="CrudTask\usersBll.cs" />
     <Compile Include="HelperClass\ComparisonUtils.cs" />
     <Compile Include="Interfaces\IFrmTransaction.cs" />
+    <Compile Include="Models\AttendanceModel.cs" />
     <Compile Include="Models\ChallanOutMain_Model.cs" />
     <Compile Include="Models\EmployeeItem.cs" />
     <Compile Include="Models\user.cs" />
