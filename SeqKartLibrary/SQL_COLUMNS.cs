@@ -43,6 +43,22 @@ namespace SeqKartLibrary
             public const string _UserActive = "UserActive";
 
         }
+
+        public static class _AttendanceStatus
+        {
+            public const string _status_id = "status_id";
+            public const string _status = "status";
+            
+
+        }
+
+        public static class _DailyShifts
+        {
+            public const string _shift_id = "shift_id";
+            public const string _shift_name = "shift_name";
+
+
+        }
     }
 
 }

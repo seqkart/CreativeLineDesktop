@@ -21,9 +21,42 @@ namespace SeqKartLibrary.Repository
             {
                 connection();
                 con.Open();
+                IList<T> Tlista = SqlMapper.Query<T>(con, query, param, null, true, null, commandType: CommandType.Text).ToList();
+                con.Close();
+                return Tlista.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<T> returnListClass_SP(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open();
                 IList<T> Tlista = SqlMapper.Query<T>(con, query, param, null, true, null, commandType: CommandType.StoredProcedure).ToList();
                 con.Close();
                 return Tlista.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public T returnClass_SP(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                //     return this.con.Query( query, param, null, true, null, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                T Tlista = SqlMapper.Query<T>(con, query, param, null, true, null, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                con.Close();
+                return Tlista;
             }
             catch (Exception)
             {
@@ -38,7 +71,7 @@ namespace SeqKartLibrary.Repository
                 connection();
                 con.Open();
                 //     return this.con.Query( query, param, null, true, null, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                T Tlista = SqlMapper.Query<T>(con, query, param, null, true, null, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                T Tlista = SqlMapper.Query<T>(con, query, param, null, true, null, commandType: CommandType.Text).FirstOrDefault();
                 con.Close();
                 return Tlista;
             }

@@ -8,4 +8,13 @@
         }
         return true;
     }
+
+    public static bool IsEmpty(object val)
+    {
+        if (!(val + "").Equals(""))
+        {
+            return false;
+        }
+        return true;
+    }
 }

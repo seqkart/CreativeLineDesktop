@@ -1,23 +1,37 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using HumanResourceManagementSystem;
+using SeqKartLibrary.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 using WindowsFormsApplication1;
 using WindowsFormsApplication1.Time_Office;
 
 namespace BNPL.Forms_Master
 {
-    public partial class frmAttendenceLaoding : DevExpress.XtraEditors.XtraForm
+    public partial class 
+        frmAttendenceLaoding : DevExpress.XtraEditors.XtraForm
     {
         private DataTable dt = new DataTable();
         public frmAttendenceLaoding()
         {
             InitializeComponent();
+
+            btnRefresh.Visible = false;
+            btnLoad.Visible = false;
+            btnSave.Visible = false;
+            btnAdd2.Visible = false;
+
+            //gridView_AttendanceData.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditForm;
+            gridView_AttendanceData.OptionsBehavior.Editable = false;
+
             dt.Columns.Add("MonthYear", typeof(String));
             dt.Columns.Add("EmpCode", typeof(String));
             dt.Columns.Add("EmpName", typeof(String));
@@ -28,7 +42,7 @@ namespace BNPL.Forms_Master
             dt.Columns.Add("EmpSL", typeof(Decimal));
             dt.Columns.Add("EmpPymtMode", typeof(String));
 
-            btnAdd2.Visible = false;
+            
 
         }
 
@@ -50,7 +64,66 @@ namespace BNPL.Forms_Master
 
         private void frmExcelDataLoading_Load(object sender, EventArgs e)
         {
-            SetMyControls();
+            //SetMyControls();
+            
+
+            LoadAttendanceDataGrid();
+
+        }
+
+        private void LoadAttendanceDataGrid()
+        {
+            using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+            {
+                //db.Database.
+                List<EmployeeAttendance> employeeAttendances_List = db.EmployeeAttendances.OrderByDescending(s => s.entry_date).ToList();
+                gridControl_AttendanceData.DataSource = employeeAttendances_List;
+                gridView_AttendanceData.BestFitColumns();
+               
+
+            }
+        }
+
+        
+        
+        private void OpenAttendanceForm(string _employee_code)
+        {
+            XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { selected_employee_code = _employee_code, come_from = "frmAttendenceLoading => Add Button" };
+            xtraForm_EmployeeAttendence.StartPosition = FormStartPosition.CenterScreen;
+
+            xtraForm_EmployeeAttendence.ShowDialog(Parent);
+        }
+
+        private void gridControl_AttendanceData_DoubleClick(object sender, EventArgs e)
+        {
+            //DataRow CurrentRow = gridView_AttendanceData.GetDataRow(gridView_AttendanceData.FocusedRowHandle);
+            int row = (gridControl_AttendanceData.FocusedView as ColumnView).FocusedRowHandle;
+            ColumnView detailView = (ColumnView)gridControl_AttendanceData.FocusedView;
+            string cellValue_employee_code = (string)detailView.GetFocusedRowCellValue("employee_code");//.GetRowCellValue(row, "Edit_Link").ToString();
+            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_employee_code);
+            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
+                );
+
+            //MessageBox.Show(CurrentRow[0] + "");
+
+            OpenAttendanceForm(cellValue_employee_code);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            OpenAttendanceForm("");
+        }
+
+        private void btnAdd2_Click(object sender, EventArgs e)
+        {
+            //XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { s1 = btnAdd.Text, Text = "User Addition" }; ;
+
+
+            AddAttendanceDetails addAttendanceDetails = new AddAttendanceDetails() { s1 = btnAdd2.Text, Text = "Add Addendance Details" }; ;
+            addAttendanceDetails.StartPosition = FormStartPosition.CenterScreen;
+
+            addAttendanceDetails.ShowDialog(Parent);
+
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -191,26 +264,11 @@ namespace BNPL.Forms_Master
             SFeedingGrid.DataSource = null;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        
+
+        private void gridControl_AttendanceData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { s1 = btnAdd.Text, Text = "User Addition" }; ;
-            xtraForm_EmployeeAttendence.StartPosition = FormStartPosition.CenterScreen;
-            
-            xtraForm_EmployeeAttendence.ShowDialog(Parent);
-
-
-        }
-
-        private void btnAdd2_Click(object sender, EventArgs e)
-        {
-            //XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { s1 = btnAdd.Text, Text = "User Addition" }; ;
-            
-
-            AddAttendanceDetails addAttendanceDetails = new AddAttendanceDetails() { s1 = btnAdd2.Text, Text = "Add Addendance Details" }; ;
-            addAttendanceDetails.StartPosition = FormStartPosition.CenterScreen;
-
-            addAttendanceDetails.ShowDialog(Parent);
-
+            MessageBox.Show("show");
         }
     }
 }

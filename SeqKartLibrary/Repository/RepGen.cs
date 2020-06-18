@@ -6,16 +6,16 @@ using Dapper;
 namespace SeqKartLibrary.Repository
 {
     class RepGen
-{
-
-    public SqlConnection con;
-    private void connection()
     {
-        con = new SqlConnection(ProjectFunctionsUtils.ConnectionString);
-    }
+
+        public SqlConnection con;
+        private void connection()
+        {
+            con = new SqlConnection(ProjectFunctionsUtils.ConnectionString);
+        }
 
         public string executeNonQuery(string query, DynamicParameters param)
-    {
+        {
             try
             {
                 connection();
@@ -31,30 +31,30 @@ namespace SeqKartLibrary.Repository
 
         }
 
-    public string returnScalar(string query, DynamicParameters param)
-    {
-        try
+        public string returnScalar(string query, DynamicParameters param)
         {
-            string valor = "";
-            connection();
-            con.Open();
-            valor =  con.ExecuteScalar<string>(query, param, commandType: CommandType.StoredProcedure);
-            con.Close();
-            return valor;
-        }
-        catch (Exception ex)
-        {
-            return ex.Message;
-        }
+            try
+            {
+                string valor = "";
+                connection();
+                con.Open();
+                valor = con.ExecuteScalar<string>(query, param, commandType: CommandType.StoredProcedure);
+                con.Close();
+                return valor;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
 
-    }
+        }
 
         public string returnNumericValue(string query, DynamicParameters param)
         {
             try
             {
                 string valor = "";
-                param.Add("@output", dbType: DbType.Int32 , direction: ParameterDirection.Output);
+                param.Add("@output", dbType: DbType.Int32, direction: ParameterDirection.Output);
                 param.Add("@Returnvalue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
                 // Getting Return value   
                 connection();

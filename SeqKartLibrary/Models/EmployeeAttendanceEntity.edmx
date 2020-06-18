@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SEQKARTNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SEQKARTNew.dbo.AttendanceStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AttendanceStatus">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SEQKARTNew.dbo.DailyShifts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DailyShifts">
+          <Key>
+            <PropertyRef Name="shift_id" />
+          </Key>
+          <Property Name="shift_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shift_name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="EmployeeAttendance">
+          <Key>
+            <PropertyRef Name="serial_id" />
+          </Key>
+          <Property Name="serial_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="entry_date" Type="datetime" />
+          <Property Name="attendance_date" Type="datetime" />
+          <Property Name="employee_code" Type="varchar" MaxLength="10" />
+          <Property Name="status_id" Type="int" />
+          <Property Name="attendance_in" Type="datetime" />
+          <Property Name="attendance_out" Type="datetime" />
+          <Property Name="shift_id" Type="int" />
+          <Property Name="attendance_source" Type="int" />
+          <Property Name="gate_pass_time" Type="datetime" />
+          <Property Name="ot_deducton_time" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="WORKER">
+          <Key>
+            <PropertyRef Name="WRKSYSID" />
+          </Key>
+          <Property Name="WRKSYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WRKSYSDATE" Type="datetime" />
+          <Property Name="WRKCONTID" Type="char" MaxLength="10" />
+          <Property Name="WRKID" Type="char" MaxLength="10" />
+          <Property Name="WRKNAME" Type="char" MaxLength="32" />
+          <Property Name="WRKFLOORID" Type="char" MaxLength="5" />
+          <Property Name="WRKSPECIJOB" Type="bit" />
+          <Property Name="WRKSPECIJOBID" Type="int" />
+          <Property Name="WRKBTCHPREFIX" Type="char" MaxLength="5" />
+          <Property Name="WRKBTCHSUFFIX" Type="char" MaxLength="5" />
+          <Property Name="WRKBATCHNO" Type="bigint" />
+          <Property Name="WRKBTCHANGEOPT" Type="bit" />
+          <Property Name="WRKBTCHANGEEVRY" Type="char" MaxLength="32" />
+          <Property Name="WRKMOBNO" Type="char" MaxLength="10" />
+          <Property Name="WRKALTMOBNO" Type="char" MaxLength="10" />
+          <Property Name="WRKEMAILID" Type="char" MaxLength="55" />
+          <Property Name="WRKIDTYPE" Type="char" MaxLength="25" />
+          <Property Name="WRKIDNO" Type="char" MaxLength="32" />
+          <Property Name="WRKIMAGE" Type="image" />
+          <Property Name="WRKJNDT" Type="datetime" />
+          <Property Name="WRKINACT" Type="bit" />
+          <Property Name="WRKRJDT" Type="datetime" />
+          <Property Name="WRKBY" Type="char" MaxLength="25" />
+          <Property Name="WRKEDTBY" Type="char" MaxLength="25" />
+          <Property Name="WRKEDTON" Type="datetime" />
+          <Property Name="SuncDate" Type="date" />
+          <Property Name="SyncDate" Type="date" />
+        </EntityType>
+        <EntityContainer Name="SEQKARTNewModelStoreContainer">
+          <EntitySet Name="EmployeeAttendance" EntityType="Self.EmployeeAttendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttendanceStatus" EntityType="Self.AttendanceStatus" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AttendanceStatus].[status_id] AS [status_id], 
+    [AttendanceStatus].[status] AS [status]
+    FROM [dbo].[AttendanceStatus] AS [AttendanceStatus]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DailyShifts" EntityType="Self.DailyShifts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DailyShifts].[shift_id] AS [shift_id], 
+    [DailyShifts].[shift_name] AS [shift_name]
+    FROM [dbo].[DailyShifts] AS [DailyShifts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WORKER" EntityType="Self.WORKER" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [WORKER].[WRKSYSID] AS [WRKSYSID], 
+    [WORKER].[WRKSYSDATE] AS [WRKSYSDATE], 
+    [WORKER].[WRKCONTID] AS [WRKCONTID], 
+    [WORKER].[WRKID] AS [WRKID], 
+    [WORKER].[WRKNAME] AS [WRKNAME], 
+    [WORKER].[WRKFLOORID] AS [WRKFLOORID], 
+    [WORKER].[WRKSPECIJOB] AS [WRKSPECIJOB], 
+    [WORKER].[WRKSPECIJOBID] AS [WRKSPECIJOBID], 
+    [WORKER].[WRKBTCHPREFIX] AS [WRKBTCHPREFIX], 
+    [WORKER].[WRKBTCHSUFFIX] AS [WRKBTCHSUFFIX], 
+    [WORKER].[WRKBATCHNO] AS [WRKBATCHNO], 
+    [WORKER].[WRKBTCHANGEOPT] AS [WRKBTCHANGEOPT], 
+    [WORKER].[WRKBTCHANGEEVRY] AS [WRKBTCHANGEEVRY], 
+    [WORKER].[WRKMOBNO] AS [WRKMOBNO], 
+    [WORKER].[WRKALTMOBNO] AS [WRKALTMOBNO], 
+    [WORKER].[WRKEMAILID] AS [WRKEMAILID], 
+    [WORKER].[WRKIDTYPE] AS [WRKIDTYPE], 
+    [WORKER].[WRKIDNO] AS [WRKIDNO], 
+    [WORKER].[WRKIMAGE] AS [WRKIMAGE], 
+    [WORKER].[WRKJNDT] AS [WRKJNDT], 
+    [WORKER].[WRKINACT] AS [WRKINACT], 
+    [WORKER].[WRKRJDT] AS [WRKRJDT], 
+    [WORKER].[WRKBY] AS [WRKBY], 
+    [WORKER].[WRKEDTBY] AS [WRKEDTBY], 
+    [WORKER].[WRKEDTON] AS [WRKEDTON], 
+    [WORKER].[SuncDate] AS [SuncDate], 
+    [WORKER].[SyncDate] AS [SyncDate]
+    FROM [dbo].[WORKER] AS [WORKER]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SEQKARTNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmployeeAttendance">
+          <Key>
+            <PropertyRef Name="serial_id" />
+          </Key>
+          <Property Name="serial_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="entry_date" Type="DateTime" Precision="3" />
+          <Property Name="attendance_date" Type="DateTime" Precision="3" />
+          <Property Name="employee_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="status_id" Type="Int32" />
+          <Property Name="attendance_in" Type="DateTime" Precision="3" />
+          <Property Name="attendance_out" Type="DateTime" Precision="3" />
+          <Property Name="shift_id" Type="Int32" />
+          <Property Name="attendance_source" Type="Int32" />
+          <Property Name="gate_pass_time" Type="DateTime" Precision="3" />
+          <Property Name="ot_deducton_time" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="SEQKARTNewEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployeeAttendances" EntityType="Self.EmployeeAttendance" />
+          <EntitySet Name="WORKERs" EntityType="SEQKARTNewModel.WORKER" />
+          <EntitySet Name="AttendanceStatus" EntityType="SEQKARTNewModel.AttendanceStatu" />
+          <EntitySet Name="DailyShifts" EntityType="SEQKARTNewModel.DailyShift" />
+        </EntityContainer>
+        <EntityType Name="WORKER">
+          <Key>
+            <PropertyRef Name="WRKSYSID" />
+          </Key>
+          <Property Name="WRKSYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WRKSYSDATE" Type="DateTime" Precision="3" />
+          <Property Name="WRKCONTID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WRKID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WRKNAME" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="WRKFLOORID" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="WRKSPECIJOB" Type="Boolean" />
+          <Property Name="WRKSPECIJOBID" Type="Int32" />
+          <Property Name="WRKBTCHPREFIX" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="WRKBTCHSUFFIX" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="WRKBATCHNO" Type="Int64" />
+          <Property Name="WRKBTCHANGEOPT" Type="Boolean" />
+          <Property Name="WRKBTCHANGEEVRY" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="WRKMOBNO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WRKALTMOBNO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WRKEMAILID" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+          <Property Name="WRKIDTYPE" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="WRKIDNO" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="WRKIMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="WRKJNDT" Type="DateTime" Precision="3" />
+          <Property Name="WRKINACT" Type="Boolean" />
+          <Property Name="WRKRJDT" Type="DateTime" Precision="3" />
+          <Property Name="WRKBY" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="WRKEDTBY" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="WRKEDTON" Type="DateTime" Precision="3" />
+          <Property Name="SuncDate" Type="DateTime" Precision="0" />
+          <Property Name="SyncDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="AttendanceStatu">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DailyShift">
+          <Key>
+            <PropertyRef Name="shift_id" />
+          </Key>
+          <Property Name="shift_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shift_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SEQKARTNewModelStoreContainer" CdmEntityContainer="SEQKARTNewEntities">
+          <EntitySetMapping Name="EmployeeAttendances">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.EmployeeAttendance">
+              <MappingFragment StoreEntitySet="EmployeeAttendance">
+                <ScalarProperty Name="serial_id" ColumnName="serial_id" />
+                <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+                <ScalarProperty Name="attendance_date" ColumnName="attendance_date" />
+                <ScalarProperty Name="employee_code" ColumnName="employee_code" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="attendance_in" ColumnName="attendance_in" />
+                <ScalarProperty Name="attendance_out" ColumnName="attendance_out" />
+                <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+                <ScalarProperty Name="attendance_source" ColumnName="attendance_source" />
+                <ScalarProperty Name="gate_pass_time" ColumnName="gate_pass_time" />
+                <ScalarProperty Name="ot_deducton_time" ColumnName="ot_deducton_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WORKERs">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.WORKER">
+              <MappingFragment StoreEntitySet="WORKER">
+                <ScalarProperty Name="SyncDate" ColumnName="SyncDate" />
+                <ScalarProperty Name="SuncDate" ColumnName="SuncDate" />
+                <ScalarProperty Name="WRKEDTON" ColumnName="WRKEDTON" />
+                <ScalarProperty Name="WRKEDTBY" ColumnName="WRKEDTBY" />
+                <ScalarProperty Name="WRKBY" ColumnName="WRKBY" />
+                <ScalarProperty Name="WRKRJDT" ColumnName="WRKRJDT" />
+                <ScalarProperty Name="WRKINACT" ColumnName="WRKINACT" />
+                <ScalarProperty Name="WRKJNDT" ColumnName="WRKJNDT" />
+                <ScalarProperty Name="WRKIMAGE" ColumnName="WRKIMAGE" />
+                <ScalarProperty Name="WRKIDNO" ColumnName="WRKIDNO" />
+                <ScalarProperty Name="WRKIDTYPE" ColumnName="WRKIDTYPE" />
+                <ScalarProperty Name="WRKEMAILID" ColumnName="WRKEMAILID" />
+                <ScalarProperty Name="WRKALTMOBNO" ColumnName="WRKALTMOBNO" />
+                <ScalarProperty Name="WRKMOBNO" ColumnName="WRKMOBNO" />
+                <ScalarProperty Name="WRKBTCHANGEEVRY" ColumnName="WRKBTCHANGEEVRY" />
+                <ScalarProperty Name="WRKBTCHANGEOPT" ColumnName="WRKBTCHANGEOPT" />
+                <ScalarProperty Name="WRKBATCHNO" ColumnName="WRKBATCHNO" />
+                <ScalarProperty Name="WRKBTCHSUFFIX" ColumnName="WRKBTCHSUFFIX" />
+                <ScalarProperty Name="WRKBTCHPREFIX" ColumnName="WRKBTCHPREFIX" />
+                <ScalarProperty Name="WRKSPECIJOBID" ColumnName="WRKSPECIJOBID" />
+                <ScalarProperty Name="WRKSPECIJOB" ColumnName="WRKSPECIJOB" />
+                <ScalarProperty Name="WRKFLOORID" ColumnName="WRKFLOORID" />
+                <ScalarProperty Name="WRKNAME" ColumnName="WRKNAME" />
+                <ScalarProperty Name="WRKID" ColumnName="WRKID" />
+                <ScalarProperty Name="WRKCONTID" ColumnName="WRKCONTID" />
+                <ScalarProperty Name="WRKSYSDATE" ColumnName="WRKSYSDATE" />
+                <ScalarProperty Name="WRKSYSID" ColumnName="WRKSYSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttendanceStatus">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.AttendanceStatu">
+              <MappingFragment StoreEntitySet="AttendanceStatus">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyShifts">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.DailyShift">
+              <MappingFragment StoreEntitySet="DailyShifts">
+                <ScalarProperty Name="shift_name" ColumnName="shift_name" />
+                <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -17,13 +17,16 @@ using System.Data.SqlClient;
 using HumanResourceManagementSystem;
 using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
+using System.Globalization;
+using SeqKartLibrary.HelperClass;
+using SeqKartLibrary.Models;
 
 namespace WindowsFormsApplication1.Time_Office
 {
     public partial class XtraForm_EmployeeAttendence : DevExpress.XtraEditors.XtraForm
     {
-        public String s1 { get; set; }
-        public String UserName { get; set; }
+        public string selected_employee_code { get; set; }
+        public string come_from { get; set; }
 
         SqlConnection con;
         SqlTransaction objTran = null;
@@ -50,12 +53,48 @@ namespace WindowsFormsApplication1.Time_Office
 
         private void LoadControls()
         {
-            //con = new SqlConnection(GlobalClass.conn);
-            //con.Open();
+            if (ComparisonUtils.IsEmpty(selected_employee_code))
+            {
+                labelControl.Text = "Add Attendance";
+
+            }
+            else
+            {
+                labelControl.Text = "Update Attendance of " + selected_employee_code;
+            }
+            
+
+            using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+            {
+                List<AttendanceStatu> attendanceStatu_List = db.AttendanceStatus.OrderBy(s => s.status_id).ToList();
+                comboBox_Status.DataSource = attendanceStatu_List;
+                comboBox_Status.ValueMember = SQL_COLUMNS._AttendanceStatus._status_id;
+                comboBox_Status.DisplayMember = SQL_COLUMNS._AttendanceStatus._status;
+            }
+
+            using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+            {
+                List<DailyShift> dailyShifts_List = db.DailyShifts.OrderBy(s => s.shift_id).ToList();
+                comboBox_Shift.DataSource = dailyShifts_List;
+                comboBox_Shift.ValueMember = SQL_COLUMNS._DailyShifts._shift_id;
+                comboBox_Shift.DisplayMember = SQL_COLUMNS._DailyShifts._shift_name;
+            }
+            //AttendanceData attendanceData = new AttendanceData();
+            //comboBox_Status.DataSource = attendanceData.GetAllAttendanceStatus();
+            //comboBox_Status.ValueMember = SQL_COLUMNS._AttendanceStatus._status_id;
+            //comboBox_Status.DisplayMember = SQL_COLUMNS._AttendanceStatus._status;
+
+            //comboBox_Shift.DataSource = attendanceData.GetAllDailyShifts();
+            
+            //EmployeeAttendance employeeAttendance = db.EmployeeAttendances.OrderBy(s => s.serial_id).FirstOrDefault();
+
+
             DateTime d = new DateTime();
             d = DateTime.Now;
-            textDate.Text = d.ToString("dd-MM-yyyy HH:mm:ss"); //DateTime.Now.Date.ToShortDateString() + " " + DateTime.Now.TimeOfDay.ToString();// d.ToString("dd.MM.yyyy HH:mm");
 
+
+            CultureInfo culture = new CultureInfo("en-US");
+            labelDate_Current.Text= d.ToString("f", culture);
             txtOvertimeHours.Text = "0";
 
             string sql = SQL_QUERIES._sp_EmployeesList();
@@ -72,24 +111,12 @@ namespace WindowsFormsApplication1.Time_Office
             //dr.Close();
 
 
-            PrintLogWin.PrintLog(sql);
-
-            
-            var result = ProjectFunctionsUtils.GetDataSet_T(sql);
-
-            //PrintLogWin.PrintLog("result.Item1 : " + result.Item1);
-
-            DataSet ds = result.Item2;// ProjectFunctionsUtils.GetDataSet_New(sql);
-
-            //PrintLogWin.PrintLog("ds.Tables[0].Rows.Count : " + ds.Tables[0].Rows.Count);
-
+            PrintLogWin.PrintLog(sql);            
+            var result = ProjectFunctionsUtils.GetDataSet_T(sql);  
+            DataSet ds = result.Item2;// ProjectFunctionsUtils.GetDataSet_New(sql);           
 
             if (ds.Tables[0].Rows.Count > 0)
-            {
-                //PrintLogWin.PrintLog("ds.Tables[0].Rows.Count : " + ds.Tables[0].Rows.Count);
-
-
-                //DataSet ds = result.Item2;
+            {                
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     PrintLogWin.PrintLog("dr[0] : " + dr[0]);
@@ -103,30 +130,30 @@ namespace WindowsFormsApplication1.Time_Office
             txtDepartment.Properties.ReadOnly = true;
             txtDesignation.Properties.ReadOnly = true;
             textUnit.Properties.ReadOnly = true;
-            textDate.Properties.ReadOnly = true;
+            
 
             radioButtonManual.Checked = true;
             radioButtonMachine.Checked = false;
             panelControl_Manual_In.BackColor = Color.FromArgb(232, 232, 232);
             panelControl_Machine_In.BackColor = Color.White;
 
-            textAttStatus_Manual.ReadOnly = false;
+            //textAttStatus_Manual.ReadOnly = false;
             timeAttIn_First_Manual.ReadOnly = false;
             timeAttOut_First_Manual.ReadOnly = false;
-            timeAttIn_Last_Manual.ReadOnly = false;
-            timeAttOut_Last_Manual.ReadOnly = false;
+            //timeAttIn_Last_Manual.ReadOnly = false;
+            //timeAttOut_Last_Manual.ReadOnly = false;
 
-            textAttStatus_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            //textAttStatus_Manual.BackColor = Color.FromArgb(255, 255, 192);
             timeAttIn_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
             timeAttOut_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
-            timeAttIn_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
-            timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            //timeAttIn_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            //timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
 
-            textAttStatus_Manual.EditValue = null;
+            //textAttStatus_Manual.EditValue = null;
             timeAttIn_First_Manual.EditValue = null;
             timeAttOut_First_Manual.EditValue = null;
-            timeAttIn_Last_Manual.EditValue = null;
-            timeAttOut_Last_Manual.EditValue = null;
+            //timeAttIn_Last_Manual.EditValue = null;
+            //timeAttOut_Last_Manual.EditValue = null;
 
 
             //radioButtonMachine.
@@ -202,16 +229,16 @@ namespace WindowsFormsApplication1.Time_Office
             {
                 case "save":
                     /* Navigate to page A */
-                    SaveData();
+                    SaveEmployeeAttendanceDetails();
                     break;
                 case "save_close":
                     /* Navigate to page B */
-                    SaveData();
+                    SaveEmployeeAttendanceDetails();
                     this.Close();
                     break;
                 case "save_new":
                     /* Navigate to page C*/
-                    SaveData();
+                    SaveEmployeeAttendanceDetails();
                     this.Close();
                     break;
                 case "reset":
@@ -224,15 +251,46 @@ namespace WindowsFormsApplication1.Time_Office
             }
         }
 
-        private void SaveData()
+        private void SaveEmployeeAttendanceDetails()
         {
+            bool result = false;
             if (Validate_Form())
             {
-                AttendanceData attendanceData = new AttendanceData();
-                //
-                
+                EmployeeAttendance employeeAttendance = new EmployeeAttendance();
+                employeeAttendance.entry_date = DateTime.Now;
+                employeeAttendance.attendance_date = dateAttendance.Value;
+                employeeAttendance.employee_code = txtEmpID.Text;
+                employeeAttendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
+                employeeAttendance.attendance_in = ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue);
+                employeeAttendance.attendance_out = ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue);
+                employeeAttendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue); ;
+                employeeAttendance.attendance_source = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
+                employeeAttendance.gate_pass_time = ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue);
+                employeeAttendance.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
 
+                using (SEQKARTNewEntities _entity = new SEQKARTNewEntities())
+                {
+                    _entity.EmployeeAttendances.Add(employeeAttendance);
+                    _entity.SaveChanges();
+                    result = true;
+                }
+                //    //if (radioButtonMachine.Select.)
+                //    AttendanceData attendanceData = new AttendanceData();
+                ////
+                //AttendanceModel attendanceModel = new AttendanceModel();
+
+                //attendanceModel.attendance_date = dateAttendance.Value;
+                //attendanceModel.employee_code = txtEmpID.Text;
+                //attendanceModel.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
+                //attendanceModel.attendance_in = ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue);
+                //attendanceModel.attendance_out =  ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue);
+                //attendanceModel.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue); ;
+                //attendanceModel.attendance_source = ConvertTo.IntVal(comboBox_Shift.SelectedValue); 
+                //attendanceModel.gate_pass_time = ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue);
+                //attendanceModel.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
             }
+
+            MessageBox.Show(result == true ? "added" : "failed");
         }
 
         private bool Validate_Form()
@@ -285,23 +343,23 @@ namespace WindowsFormsApplication1.Time_Office
                 panelControl_Manual_In.BackColor = Color.FromArgb(232, 232, 232);
                 panelControl_Machine_In.BackColor = Color.White;
 
-                textAttStatus_Manual.ReadOnly = false;
+                //textAttStatus_Manual.ReadOnly = false;
                 timeAttIn_First_Manual.ReadOnly = false;
                 timeAttOut_First_Manual.ReadOnly = false;
-                timeAttIn_Last_Manual.ReadOnly = false;
-                timeAttOut_Last_Manual.ReadOnly = false;
+                //timeAttIn_Last_Manual.ReadOnly = false;
+                //timeAttOut_Last_Manual.ReadOnly = false;
 
-                textAttStatus_Manual.BackColor = Color.FromArgb(255, 255, 192);
+                //textAttStatus_Manual.BackColor = Color.FromArgb(255, 255, 192);
                 timeAttIn_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
                 timeAttOut_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
-                timeAttIn_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
-                timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
+                //timeAttIn_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
+                //timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
 
-                textAttStatus_Manual.EditValue = null;
+                //textAttStatus_Manual.EditValue = null;
                 timeAttIn_First_Manual.EditValue = null;
                 timeAttOut_First_Manual.EditValue = null;
-                timeAttIn_Last_Manual.EditValue = null;
-                timeAttOut_Last_Manual.EditValue = null;
+                //timeAttIn_Last_Manual.EditValue = null;
+                //timeAttOut_Last_Manual.EditValue = null;
 
             }
         }
@@ -314,23 +372,23 @@ namespace WindowsFormsApplication1.Time_Office
                 panelControl_Manual_In.BackColor = Color.White;
                 panelControl_Machine_In.BackColor = Color.FromArgb(232, 232, 232);
 
-                textAttStatus_Manual.ReadOnly = true;
+                //textAttStatus_Manual.ReadOnly = true;
                 timeAttIn_First_Manual.ReadOnly = true;
                 timeAttOut_First_Manual.ReadOnly = true;
-                timeAttIn_Last_Manual.ReadOnly = true;
-                timeAttOut_Last_Manual.ReadOnly = true;
+                //timeAttIn_Last_Manual.ReadOnly = true;
+                //timeAttOut_Last_Manual.ReadOnly = true;
 
-                textAttStatus_Manual.BackColor = Color.WhiteSmoke;
+                //textAttStatus_Manual.BackColor = Color.WhiteSmoke;
                 timeAttIn_First_Manual.BackColor = Color.WhiteSmoke;
                 timeAttOut_First_Manual.BackColor = Color.WhiteSmoke;
-                timeAttIn_Last_Manual.BackColor = Color.WhiteSmoke;
-                timeAttOut_Last_Manual.BackColor = Color.WhiteSmoke;
+                //timeAttIn_Last_Manual.BackColor = Color.WhiteSmoke;
+                //timeAttOut_Last_Manual.BackColor = Color.WhiteSmoke;
 
-                textAttStatus_Manual.EditValue = null;
+                //textAttStatus_Manual.EditValue = null;
                 timeAttIn_First_Manual.EditValue = null;
                 timeAttOut_First_Manual.EditValue = null;
-                timeAttIn_Last_Manual.EditValue = null;
-                timeAttOut_Last_Manual.EditValue = null;
+                //timeAttIn_Last_Manual.EditValue = null;
+                //timeAttOut_Last_Manual.EditValue = null;
             }
         }
 

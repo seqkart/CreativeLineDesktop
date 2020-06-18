@@ -39,14 +39,17 @@ namespace WindowsFormsApplication1
 
 
             
+            
             Application.Run(new frmLogincs());
-            /*
-            var PROG153 = new BNPL.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
-            PROG153.Show();
-            PROG153.BringToFront();
+            
+            //var PROG153 = new BNPL.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+            //PROG153.Show();
+            //PROG153.BringToFront();
+            
             //Application.Run(new frmAttendenceLaoding());
-            Application.Run(new XtraForm_EmployeeAttendence());
-            */
+            
+            //Application.Run(new XtraForm_EmployeeAttendence());
+            /**/
         }
     }
 }

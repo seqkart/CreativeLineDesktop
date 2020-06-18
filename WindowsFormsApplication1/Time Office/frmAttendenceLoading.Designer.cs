@@ -1,4 +1,5 @@
-﻿namespace BNPL.Forms_Master
+﻿
+namespace BNPL.Forms_Master
 {
     partial class frmAttendenceLaoding
     {
@@ -36,6 +37,7 @@
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.btnLoad = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
+            this.btnAdd2 = new System.Windows.Forms.ToolStripButton();
             this.SFeedingGrid = new DevExpress.XtraGrid.GridControl();
             this.SFeedingGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,11 +51,14 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnAdd2 = new System.Windows.Forms.ToolStripButton();
+            this.gridControl_AttendanceData = new DevExpress.XtraGrid.GridControl();
+            this.gridView_AttendanceData = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl_AttendanceData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_AttendanceData)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_ToolStrip
@@ -146,17 +151,27 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnAdd2
+            // 
+            this.btnAdd2.Image = global::WindowsFormsApplication1.Properties.Resources.Add;
+            this.btnAdd2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd2.Name = "btnAdd2";
+            this.btnAdd2.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.btnAdd2.Size = new System.Drawing.Size(66, 24);
+            this.btnAdd2.Text = "Add2";
+            this.btnAdd2.Click += new System.EventHandler(this.btnAdd2_Click);
+            // 
             // SFeedingGrid
             // 
-            this.SFeedingGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SFeedingGrid.Location = new System.Drawing.Point(0, 27);
+            this.SFeedingGrid.Location = new System.Drawing.Point(349, 172);
             this.SFeedingGrid.MainView = this.SFeedingGridView;
             this.SFeedingGrid.Name = "SFeedingGrid";
-            this.SFeedingGrid.Size = new System.Drawing.Size(804, 450);
+            this.SFeedingGrid.Size = new System.Drawing.Size(428, 293);
             this.SFeedingGrid.TabIndex = 11;
             this.SFeedingGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.SFeedingGridView,
             this.gridView3});
+            this.SFeedingGrid.Visible = false;
             // 
             // SFeedingGridView
             // 
@@ -260,15 +275,22 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // btnAdd2
+            // gridControl_AttendanceData
             // 
-            this.btnAdd2.Image = global::WindowsFormsApplication1.Properties.Resources.Add;
-            this.btnAdd2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAdd2.Name = "btnAdd2";
-            this.btnAdd2.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnAdd2.Size = new System.Drawing.Size(66, 24);
-            this.btnAdd2.Text = "Add2";
-            this.btnAdd2.Click += new System.EventHandler(this.btnAdd2_Click);
+            this.gridControl_AttendanceData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl_AttendanceData.Location = new System.Drawing.Point(0, 27);
+            this.gridControl_AttendanceData.MainView = this.gridView_AttendanceData;
+            this.gridControl_AttendanceData.Name = "gridControl_AttendanceData";
+            this.gridControl_AttendanceData.Size = new System.Drawing.Size(804, 450);
+            this.gridControl_AttendanceData.TabIndex = 201;
+            this.gridControl_AttendanceData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView_AttendanceData});
+            this.gridControl_AttendanceData.DoubleClick += new System.EventHandler(this.gridControl_AttendanceData_DoubleClick);
+            // 
+            // gridView_AttendanceData
+            // 
+            this.gridView_AttendanceData.GridControl = this.gridControl_AttendanceData;
+            this.gridView_AttendanceData.Name = "gridView_AttendanceData";
             // 
             // frmAttendenceLaoding
             // 
@@ -276,6 +298,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 477);
             this.ControlBox = false;
+            this.Controls.Add(this.gridControl_AttendanceData);
             this.Controls.Add(this.SFeedingGrid);
             this.Controls.Add(this.Menu_ToolStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -288,6 +311,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl_AttendanceData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_AttendanceData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,5 +341,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private System.Windows.Forms.ToolStripButton btnAdd;
         private System.Windows.Forms.ToolStripButton btnAdd2;
+        private DevExpress.XtraGrid.GridControl gridControl_AttendanceData;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView_AttendanceData;
     }
 }
