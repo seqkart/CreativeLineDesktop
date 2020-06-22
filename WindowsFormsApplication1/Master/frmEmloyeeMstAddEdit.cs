@@ -230,7 +230,6 @@ namespace WindowsFormsApplication1
                         //txtUnitName.Text = ds.Tables[0].Rows[0]["UnitName"].ToString();
                         //txtAccCode.Text = ds.Tables[0].Rows[0]["EmpPartyCode"].ToString();
                         //txtBankBranchCode.Text = ds.Tables[0].Rows[0]["EmpBankBranchCode"].ToString();
-
                         txtCategoryCode.Focus();
                     }
                 }
