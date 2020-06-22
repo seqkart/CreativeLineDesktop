@@ -21,11 +21,11 @@ namespace SeqKartLibrary.CrudTask
             param.Add("@serial_id", attendanceModel.serial_id);
             param.Add("@attendance_date", attendanceModel.attendance_date);
             param.Add("@employee_code", attendanceModel.employee_code);
-            param.Add("@status_id", attendanceModel.status_id);
+            //param.Add("@status_id", attendanceModel.status_id);
             param.Add("@attendance_in", attendanceModel.attendance_in);
             param.Add("@attendance_out", attendanceModel.attendance_out);
-            param.Add("@shift_id", attendanceModel.shift_id);
-            param.Add("@attendance_source", attendanceModel.attendance_source);
+            //param.Add("@shift_id", attendanceModel.shift_id);
+            //param.Add("@attendance_source", attendanceModel.attendance_source);
             param.Add("@gate_pass_time", attendanceModel.gate_pass_time);
             param.Add("@ot_deducton_time", attendanceModel.ot_deducton_time);            
             param.Add("@AddEditTag", AddEditTag);

@@ -19,6 +19,9 @@ using DevExpress.XtraEditors.Controls;
 using System.Reflection;
 using System.IO;
 using WindowsFormsApplication1.Models;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.Utils;
 
 namespace WindowsFormsApplication1.Administration
 {
@@ -28,6 +31,9 @@ namespace WindowsFormsApplication1.Administration
         public XtraForm_UserMaster()
         {
             InitializeComponent();
+
+
+            //gridView_UserMaster.OptionsBehavior.Editable = false;
         }
 
         private void XtraForm_UserMaster_Load(object sender, EventArgs e)
@@ -45,48 +51,15 @@ namespace WindowsFormsApplication1.Administration
         private void SetMyControls()
         {
             ProjectFunctions.GirdViewVisualize(gridView_UserMaster);
-            
-            
-
-
-        }
-
-        private void AddRepository()
-        {
-            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
-            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            edit.ButtonClick += edit_ButtonClick;
-            edit.Buttons[0].Caption = "Edit";
-            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
-
-            edit.Buttons[0].Appearance.BackColor = Color.Red;
-            edit.Buttons[0].Appearance.Options.UseBackColor = true;
-            edit.Buttons[0].Appearance.BorderColor = Color.Transparent;
-            edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-
-            edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-                ;
-            edit.Buttons[0].Appearance.Options.UseBackColor = true;
-            edit.Buttons[0].Appearance.BackColor = Color.Transparent;
-
-
-
-            gridView_UserMaster.Columns["Action"].ColumnEdit = edit;
+            GridEvents();
         }
 
         void edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             //MessageBox.Show("The button from the " + gridView_UserMaster.FocusedRowHandle + " row has been clicked!");
             btnEdit_Click(null, e);
-
         }
 
-        private void AddUnboundColumn()
-        {
-            GridColumn unbColumn = gridView_UserMaster.Columns.AddField("Action");
-            unbColumn.VisibleIndex = gridView_UserMaster.Columns.Count;
-            unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
-        }
 
         private void FillTable(DataSet dsMaster)
         {
@@ -105,27 +78,130 @@ namespace WindowsFormsApplication1.Administration
             gridControl_UserMaster.DataSource = list;
         }
 
-        private void FillGrid()
+        private void AddUnboundColumn()
+        {
+            GridColumn unbColumn = gridView_UserMaster.Columns.AddField("Action");
+            unbColumn.VisibleIndex = gridView_UserMaster.Columns.Count;
+            unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+        }
+
+        private void GridEvents()
+        {
+            //In Non-Editable Mode
+            gridView_UserMaster.ShowingEditor += gridView_UserMaster_ShowingEditor;
+            //gridView_UserMaster.DoubleClick += gridView_DoubleClick;
+
+            gridControl_UserMaster.DoubleClick += gridControl_UserMaster_DoubleClick;
+        }
+
+        private void AddButtonToGrid()
+        {
+            
+
+            //In Editable Mode
+            //gridView_UserMaster.ShownEditor += gridView_ShownEditor;
+
+            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            edit.ButtonClick += edit_ButtonClick;
+            edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+
+            EditorButton button = edit.Buttons[0];
+
+            button.ImageOptions.Image = WindowsFormsApplication1.Properties.Resources.Edit_16x16;
+            button.ImageOptions.Location = ImageLocation.MiddleCenter;
+            button.Caption = "Edit";
+            button.Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph; 
+
+            button.Appearance.BackColor = Color.Red;
+            button.Appearance.Options.UseBackColor = true;
+            button.Appearance.BorderColor = Color.Transparent;
+            //edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            
+            button.Appearance.Options.UseBackColor = true;
+            button.Appearance.BackColor = Color.Transparent;
+
+            GridColumn actionColumn = gridView_UserMaster.Columns["Action"];
+            actionColumn.ColumnEdit = edit;
+            actionColumn.OptionsColumn.AllowEdit = true;
+        }
+
+        private void gridView_DoubleClick(object sender, EventArgs e)
+        {
+            DXMouseEventArgs ea = e as DXMouseEventArgs;
+            GridView view = sender as GridView;
+            GridHitInfo info = view.CalcHitInfo(ea.Location);
+            if (info.InRow || info.InRowCell)
+            {
+                string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
+            }
+        }
+
+        //https://supportcenter.devexpress.com/ticket/details/a2934/how-to-handle-a-double-click-on-a-grid-row-or-cell
+        void gridView_UserMaster_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridView_UserMaster.FocusedColumn == gridView_UserMaster.Columns["Action"])
+            {
+                PrintLogWin.PrintLog("********************* A ");
+                return;
+            }
+            if (gridView_UserMaster.FocusedRowHandle == GridControl.NewItemRowHandle)
+            {
+                PrintLogWin.PrintLog("********************* B ");
+                e.Cancel = false;
+            }
+            else
+            {
+                PrintLogWin.PrintLog("********************* C ");
+                e.Cancel = true;
+            }
+        }
+
+        BaseEdit editor;
+        private void gridView_ShownEditor(object sender, EventArgs e)
+        {
+            GridView view = sender as GridView;
+            editor = view.ActiveEditor;
+            editor.DoubleClick += editor_DoubleClick;
+        }
+
+        void gridView_HiddenEditor(object sender, EventArgs e)
+        {
+            editor.DoubleClick -= editor_DoubleClick;
+            editor = null;
+        }
+
+        void editor_DoubleClick(object sender, EventArgs e)
+        {
+            BaseEdit editor = (BaseEdit)sender;
+            GridControl grid = editor.Parent as GridControl;
+            GridView view = grid.FocusedView as GridView;
+            Point pt = grid.PointToClient(Control.MousePosition);
+            GridHitInfo info = view.CalcHitInfo(pt);
+            if (info.InRow || info.InRowCell)
+            {
+                string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
+            }
+        }
+
+        private void FillDataToGrid()
         {
             PrintLogWin.PrintLog("FillGrid ******************** " + GlobalVariables.ProgCode);
-
             try
             {
                 DataSet ds = ProjectFunctions.GetDataSet("Select ProgProcName,ProgDesc from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'");
                 string ProcedureName = ds.Tables[0].Rows[0]["ProgProcName"].ToString();
 
-
-                PrintLogWin.PrintLog("FillGrid => ProcedureName ******************** " + ProcedureName
-                    );
-
+                PrintLogWin.PrintLog("FillGrid => ProcedureName ******************** " + ProcedureName);
 
                 //ProjectFunctions.BindMasterFormToGrid(ProcedureName, gridControl_UserMaster, gridView_UserMaster);
 
-                DataSet dsMaster = ProjectFunctions.GetDataSet(ProcedureName);
+                DataSet dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName);
                 FillTable(dsMaster);
-                AddUnboundColumn();                
-                AddRepository();
-
+                AddUnboundColumn();
+                AddButtonToGrid();
                 
                 //userMasterBindingSource.DataSource = Binding_DataHelper.GetData(dsMaster);
 
@@ -136,13 +212,6 @@ namespace WindowsFormsApplication1.Administration
 
                 //pictureEdit.Click += gridControl_UserMaster_Click
                 //    ;
-
-
-
-
-
-
-
                 //gridControl_UserMaster.DataSource = CreateData(dsMaster);
                 //gridView_UserMaster.Columns["Edit_Link"].ColumnEdit = pictureEdit                    ;
                 //gridView_UserMaster.Columns["Edit_Link"].Visible = false;
@@ -150,9 +219,7 @@ namespace WindowsFormsApplication1.Administration
                 //col.UnboundType = DevExpress.Data.UnboundColumnType.Object;
                 //col.ColumnEdit = pictureEdit;// repositoryItemPictureEdit1;
 
-
                 //gridView_UserMaster.CustomUnboundColumnData += gridView1_CustomUnboundColumnData;
-
 
                 toolStrip_lbl.Text = ds.Tables[0].Rows[0]["ProgDesc"].ToString();
             }
@@ -160,8 +227,6 @@ namespace WindowsFormsApplication1.Administration
             {
                 MessageBox_Debug.ShowBox("frmMaster => FillGrid() => " + ex);
             }
-
-
         }
 
         void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -219,7 +284,7 @@ namespace WindowsFormsApplication1.Administration
                 }
             }
 
-            FillGrid();
+            FillDataToGrid();
         }        
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -255,15 +320,15 @@ namespace WindowsFormsApplication1.Administration
                 }
             }
 
-            FillGrid();
+            FillDataToGrid();
         }
 
         private void gridControl_UserMaster_Load(object sender, EventArgs e)
         {
 
             //ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
-            ProjectFunctions.GirdViewVisualize(gridView_UserMaster);
-            FillGrid();
+            //ProjectFunctions.GirdViewVisualize(gridView_UserMaster);
+            FillDataToGrid();
         }
 
         private void gridControl_UserMaster_Click(object sender, EventArgs e)

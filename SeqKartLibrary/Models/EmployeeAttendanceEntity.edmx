@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SEQKARTNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AttendanceSource">
+          <Key>
+            <PropertyRef Name="serial_id" />
+          </Key>
+          <Property Name="serial_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="source_name" Type="varchar" MaxLength="20" />
+          <Property Name="source_id" Type="int" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SEQKARTNew.dbo.AttendanceStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="AttendanceStatus">
@@ -38,6 +46,27 @@ warning 6002: The table/view 'SEQKARTNew.dbo.DailyShifts' does not have a primar
           <Property Name="attendance_source" Type="int" />
           <Property Name="gate_pass_time" Type="datetime" />
           <Property Name="ot_deducton_time" Type="int" />
+        </EntityType>
+        <EntityType Name="ProgramMaster">
+          <Key>
+            <PropertyRef Name="ProgAid" />
+          </Key>
+          <Property Name="ProgCode" Type="varchar" MaxLength="10" />
+          <Property Name="ProgDesc" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProgInMenu" Type="nvarchar" MaxLength="25" />
+          <Property Name="ProgInMenuGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProgActive" Type="varchar" MaxLength="2" />
+          <Property Name="ProgOptsType" Type="varchar" MaxLength="4" />
+          <Property Name="ProgAid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgProcName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProgFormLink" Type="varchar" MaxLength="100" />
+          <Property Name="ProgNFA" Type="varchar" MaxLength="2" />
+          <Property Name="ProCaption" Type="varchar" MaxLength="200" />
+          <Property Name="RoleCode" Type="varchar" MaxLength="4" />
+          <Property Name="OrderBy" Type="varchar" MaxLength="4" />
+          <Property Name="ProgPrinterName" Type="varchar" MaxLength="500" />
+          <Property Name="SuncDate" Type="date" />
+          <Property Name="SyncDate" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -74,7 +103,9 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           <Property Name="SyncDate" Type="date" />
         </EntityType>
         <EntityContainer Name="SEQKARTNewModelStoreContainer">
+          <EntitySet Name="AttendanceSource" EntityType="Self.AttendanceSource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeAttendance" EntityType="Self.EmployeeAttendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramMaster" EntityType="Self.ProgramMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AttendanceStatus" EntityType="Self.AttendanceStatus" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [AttendanceStatus].[status_id] AS [status_id], 
@@ -144,6 +175,8 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           <EntitySet Name="WORKERs" EntityType="SEQKARTNewModel.WORKER" />
           <EntitySet Name="AttendanceStatus" EntityType="SEQKARTNewModel.AttendanceStatu" />
           <EntitySet Name="DailyShifts" EntityType="SEQKARTNewModel.DailyShift" />
+          <EntitySet Name="AttendanceSources" EntityType="SEQKARTNewModel.AttendanceSource" />
+          <EntitySet Name="ProgramMasters" EntityType="SEQKARTNewModel.ProgramMaster" />
         </EntityContainer>
         <EntityType Name="WORKER">
           <Key>
@@ -190,6 +223,35 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           </Key>
           <Property Name="shift_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="shift_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AttendanceSource">
+          <Key>
+            <PropertyRef Name="serial_id" />
+          </Key>
+          <Property Name="serial_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="source_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="source_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProgramMaster">
+          <Key>
+            <PropertyRef Name="ProgAid" />
+          </Key>
+          <Property Name="ProgCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProgDesc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProgInMenu" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ProgInMenuGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProgActive" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ProgOptsType" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ProgAid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgProcName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProgFormLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProgNFA" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ProCaption" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RoleCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="OrderBy" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ProgPrinterName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SuncDate" Type="DateTime" Precision="0" />
+          <Property Name="SyncDate" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -260,6 +322,37 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
               <MappingFragment StoreEntitySet="DailyShifts">
                 <ScalarProperty Name="shift_name" ColumnName="shift_name" />
                 <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttendanceSources">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.AttendanceSource">
+              <MappingFragment StoreEntitySet="AttendanceSource">
+                <ScalarProperty Name="source_id" ColumnName="source_id" />
+                <ScalarProperty Name="source_name" ColumnName="source_name" />
+                <ScalarProperty Name="serial_id" ColumnName="serial_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramMasters">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.ProgramMaster">
+              <MappingFragment StoreEntitySet="ProgramMaster">
+                <ScalarProperty Name="SyncDate" ColumnName="SyncDate" />
+                <ScalarProperty Name="SuncDate" ColumnName="SuncDate" />
+                <ScalarProperty Name="ProgPrinterName" ColumnName="ProgPrinterName" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="ProCaption" ColumnName="ProCaption" />
+                <ScalarProperty Name="ProgNFA" ColumnName="ProgNFA" />
+                <ScalarProperty Name="ProgFormLink" ColumnName="ProgFormLink" />
+                <ScalarProperty Name="ProgProcName" ColumnName="ProgProcName" />
+                <ScalarProperty Name="ProgAid" ColumnName="ProgAid" />
+                <ScalarProperty Name="ProgOptsType" ColumnName="ProgOptsType" />
+                <ScalarProperty Name="ProgActive" ColumnName="ProgActive" />
+                <ScalarProperty Name="ProgInMenuGroup" ColumnName="ProgInMenuGroup" />
+                <ScalarProperty Name="ProgInMenu" ColumnName="ProgInMenu" />
+                <ScalarProperty Name="ProgDesc" ColumnName="ProgDesc" />
+                <ScalarProperty Name="ProgCode" ColumnName="ProgCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

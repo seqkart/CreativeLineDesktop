@@ -20,27 +20,34 @@ using SeqKartLibrary.CrudTask;
 using System.Globalization;
 using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
+using static SeqKartLibrary.CrudTask.CrudAction;
+using BNPL.Forms_Master;
 
 namespace WindowsFormsApplication1.Time_Office
 {
     public partial class XtraForm_EmployeeAttendence : DevExpress.XtraEditors.XtraForm
     {
-        public string selected_employee_code { get; set; }
-        public string come_from { get; set; }
+        private frmAttendenceLaoding _frmAttendenceLaoding = null;
 
-        SqlConnection con;
-        SqlTransaction objTran = null;
+        public int selected_serial_id = 0;// { get; set; }
+        public string come_from = "";// { get; set; }
 
-        SqlCommand SqlCommand1;
-        SqlDataAdapter da;
-        int count;
+        //SqlConnection con;
+        //SqlTransaction objTran = null;
 
-        DataSet myDataSet;
+        //SqlCommand SqlCommand1;
+        //SqlDataAdapter da;
+        //int count;
 
-        public XtraForm_EmployeeAttendence()
+        //DataSet myDataSet;
+
+        public XtraForm_EmployeeAttendence(frmAttendenceLaoding parent, int _selected_serial_id, string _come_from)
         {
             InitializeComponent();
 
+            this._frmAttendenceLaoding = parent;
+            this.selected_serial_id = _selected_serial_id;
+            this.come_from = _come_from;
             //dataLayoutControl1.DataSource = GetDataSource();
             //dataLayoutControl1.RetrieveFields();
 
@@ -48,21 +55,37 @@ namespace WindowsFormsApplication1.Time_Office
             //BaseLayoutItem aboutItem = flatList.First(e => e.Text == "About");
             //aboutItem.TextLocation = DevExpress.Utils.Locations.Top;
 
-            LoadControls();
+            //LoadControls();
+            
         }
 
-        private void LoadControls()
+        private CrudAction crudAction = new CrudAction();
+        private void XtraForm_EmployeeAttendence_Load(object sender, EventArgs e)
         {
-            if (ComparisonUtils.IsEmpty(selected_employee_code))
-            {
-                labelControl.Text = "Add Attendance";
-
-            }
-            else
-            {
-                labelControl.Text = "Update Attendance of " + selected_employee_code;
-            }
+            //MessageBox.Show(selected_serial_id + " : 2");
             
+            LoadEmployeeData();
+        }
+
+        //private EmployeeAttendance query_attendance;
+        private void LoadEmployeeData()
+        {
+            LoadControls();
+
+            string sql = SQL_QUERIES._sp_EmployeesList();
+            PrintLogWin.PrintLog(sql);
+            var result = ProjectFunctionsUtils.GetDataSet_T(sql);
+            DataSet ds = result.Item2;// ProjectFunctionsUtils.GetDataSet_New(sql);           
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    PrintLogWin.PrintLog("dr[0] : " + dr[0]);
+                    cbEmpID.Items.Add(dr[0]);
+                    //count++;
+                }
+            }
 
             using (SEQKARTNewEntities db = new SEQKARTNewEntities())
             {
@@ -79,6 +102,93 @@ namespace WindowsFormsApplication1.Time_Office
                 comboBox_Shift.ValueMember = SQL_COLUMNS._DailyShifts._shift_id;
                 comboBox_Shift.DisplayMember = SQL_COLUMNS._DailyShifts._shift_name;
             }
+
+            if (selected_serial_id != 0)
+            {
+                crudAction = CrudAction.Update;
+
+                labelControl.Text = "Update Attendance";
+                using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+                {
+
+                    db.Database.Log = Console.Write;
+
+                    EmployeeAttendance query_attendance =
+                        (from data in db.EmployeeAttendances
+                         where data.serial_id == selected_serial_id
+                         orderby data.entry_date
+                         select data).SingleOrDefault();
+
+                    cbEmpID.SelectedItem = query_attendance.employee_code;
+                    //comboBox_Status.SelectedItem = query_attendance.status_id;
+                    //comboBox_Shift.SelectedItem = query_attendance.shift_id;
+
+
+                    //
+
+                    var sql1 = query_attendance.ToString();
+
+                    PrintLogWin.PrintLog("query_attendance => " + sql1);
+                    PrintLogWin.PrintLog("selected_serial_id => " + selected_serial_id);
+                    PrintLogWin.PrintLog("status_id => " + query_attendance.status_id);
+
+                    ControllerUtils.SelectItemByValue(comboBox_Status, query_attendance.status_id + "");
+                    ControllerUtils.SelectItemByValue(comboBox_Shift, query_attendance.shift_id + "");
+
+                    //DateTime time_in = employeeAttendance.attendance_in.GetValueOrDefault(DateTime.Now);
+
+                    timeAttIn_First_Manual.EditValue = query_attendance.attendance_in;// new DateTime(time_in.Year, time_in.Month, time_in.Day, 23, 59, 00); ;
+                    timeAttOut_First_Manual.EditValue = query_attendance.attendance_out;
+
+                    timeEdit_GatePassTime.EditValue = query_attendance.gate_pass_time;
+                    txtOvertimeHours.EditValue = query_attendance.ot_deducton_time;
+
+                    CultureInfo culture = new CultureInfo("en-US");
+
+                    if (query_attendance.attendance_date != null)
+                    {
+                        DateTime dd = query_attendance.attendance_date.GetValueOrDefault(DateTime.Now);
+                        string label_date = dd.ToString("f", culture);
+                        labelDate_Current.Text = label_date;
+                    }
+
+                    if (query_attendance.attendance_source == 1)
+                    {
+                        radioButtonManual.Checked = true;
+                        radioButtonMachine.Checked = false;
+                    }
+                    else
+                    {
+                        radioButtonManual.Checked = false;
+                        radioButtonMachine.Checked = true;
+                    }
+                    //
+                }
+
+            }
+            else
+            {
+                crudAction = CrudAction.Create;
+
+
+                DateTime d = new DateTime();
+                d = DateTime.Now;
+
+                CultureInfo culture = new CultureInfo("en-US");
+                labelDate_Current.Text = d.ToString("f", culture);
+                txtOvertimeHours.Text = "0";
+
+                timeAttIn_First_Manual.EditValue = null;
+                timeAttOut_First_Manual.EditValue = null;
+
+            }
+        }
+
+       
+        //private 
+        private void LoadControls()
+        {
+            
             //AttendanceData attendanceData = new AttendanceData();
             //comboBox_Status.DataSource = attendanceData.GetAllAttendanceStatus();
             //comboBox_Status.ValueMember = SQL_COLUMNS._AttendanceStatus._status_id;
@@ -88,42 +198,7 @@ namespace WindowsFormsApplication1.Time_Office
             
             //EmployeeAttendance employeeAttendance = db.EmployeeAttendances.OrderBy(s => s.serial_id).FirstOrDefault();
 
-
-            DateTime d = new DateTime();
-            d = DateTime.Now;
-
-
-            CultureInfo culture = new CultureInfo("en-US");
-            labelDate_Current.Text= d.ToString("f", culture);
-            txtOvertimeHours.Text = "0";
-
-            string sql = SQL_QUERIES._sp_EmployeesList();
-
-            //SqlCommand1 = new SqlCommand(sql, con);
-            //SqlDataReader dr = SqlCommand1.ExecuteReader();
-            //while (dr.Read())
-            //{
-
-            //    cbEmpID.Items.Add(dr[0]);
-            //    count++;
-            //}
-
-            //dr.Close();
-
-
-            PrintLogWin.PrintLog(sql);            
-            var result = ProjectFunctionsUtils.GetDataSet_T(sql);  
-            DataSet ds = result.Item2;// ProjectFunctionsUtils.GetDataSet_New(sql);           
-
-            if (ds.Tables[0].Rows.Count > 0)
-            {                
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    PrintLogWin.PrintLog("dr[0] : " + dr[0]);
-                    cbEmpID.Items.Add(dr[0]);
-                    count++;
-                }
-            }
+            
 
             txtFName.Properties.ReadOnly = true;
             txtEmpID.Properties.ReadOnly = true;
@@ -150,8 +225,7 @@ namespace WindowsFormsApplication1.Time_Office
             //timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
 
             //textAttStatus_Manual.EditValue = null;
-            timeAttIn_First_Manual.EditValue = null;
-            timeAttOut_First_Manual.EditValue = null;
+            
             //timeAttIn_Last_Manual.EditValue = null;
             //timeAttOut_Last_Manual.EditValue = null;
 
@@ -185,29 +259,6 @@ namespace WindowsFormsApplication1.Time_Office
                     }
                 }
 
-                
-
-                //SqlCommand SqlCommand1 = con.CreateCommand();
-                //SqlCommand1.CommandText = sql;
-                //int res;
-                ////SqlCommand1.Parameters.Add("@empid", SqlDbType.VarChar, 10);
-                ////SqlCommand1.Parameters[0].Value = cbEmpID.SelectedItem;
-                //da = new SqlDataAdapter();
-                //da.SelectCommand = SqlCommand1;
-                //myDataSet = new System.Data.DataSet();
-                //res = da.Fill(myDataSet, "EmployeeDetails");
-
-                //if (res >= 1)
-                //{
-                //    txtFName.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["EmpName"].ToString();
-
-                //    //txtEmpID.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["EmpID"].ToString();
-
-                //    //txtDepartment.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["Department"].ToString();
-                //    //txtDesignation.Text = myDataSet.Tables["EmployeeDetails"].Rows[0]["Designation"].ToString();
-
-                //}
-
             }
 
             catch (Exception ex)
@@ -220,7 +271,7 @@ namespace WindowsFormsApplication1.Time_Office
         }
         
 
-        void windowsUIButtonPanelMain_ButtonClick(object sender, ButtonEventArgs e)
+        async void windowsUIButtonPanelMain_ButtonClick(object sender, ButtonEventArgs e)
         {
             string tag = ((WindowsUIButton)e.Button).Tag.ToString();
 
@@ -229,68 +280,191 @@ namespace WindowsFormsApplication1.Time_Office
             {
                 case "save":
                     /* Navigate to page A */
-                    SaveEmployeeAttendanceDetails();
+
+                    await CallAsyn_SaveEmployeeAttendanceDetails();
+                    _frmAttendenceLaoding.LoadAttendanceDataGrid();
+
                     break;
                 case "save_close":
                     /* Navigate to page B */
-                    SaveEmployeeAttendanceDetails();
+                    await CallAsyn_SaveEmployeeAttendanceDetails();
+                    _frmAttendenceLaoding.LoadAttendanceDataGrid();
+
                     this.Close();
                     break;
                 case "save_new":
                     /* Navigate to page C*/
-                    SaveEmployeeAttendanceDetails();
-                    this.Close();
+                    await CallAsyn_SaveEmployeeAttendanceDetails();
+                    _frmAttendenceLaoding.LoadAttendanceDataGrid();
+
+                    selected_serial_id = 0;
+                    LoadEmployeeData();
+
                     break;
                 case "reset":
                     /* Navigate to page D */
 
+                    LoadEmployeeData();
+
+
                     break;
                 case "delete":
                     /* Navigate to page E */
+                    if (XtraMessageBox.Show("Do you want to delete this record?", "Confirmation", MessageBoxButtons.YesNo) != DialogResult.No)
+                    {
+                        int result = await DeleteEmployeeAttendanceDetails();
+
+                        if (result > -1)
+                        {
+                            _frmAttendenceLaoding.LoadAttendanceDataGrid();
+
+                            selected_serial_id = 0;
+                            LoadEmployeeData();
+                        }
+                    }
+
                     break;
             }
         }
-
-        private void SaveEmployeeAttendanceDetails()
+        private async Task<int> DeleteEmployeeAttendanceDetails()
         {
-            bool result = false;
-            if (Validate_Form())
+            int result = -1;
+            if (crudAction == CrudAction.Update)
             {
-                EmployeeAttendance employeeAttendance = new EmployeeAttendance();
-                employeeAttendance.entry_date = DateTime.Now;
-                employeeAttendance.attendance_date = dateAttendance.Value;
-                employeeAttendance.employee_code = txtEmpID.Text;
-                employeeAttendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
-                employeeAttendance.attendance_in = ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue);
-                employeeAttendance.attendance_out = ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue);
-                employeeAttendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue); ;
-                employeeAttendance.attendance_source = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
-                employeeAttendance.gate_pass_time = ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue);
-                employeeAttendance.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
-
-                using (SEQKARTNewEntities _entity = new SEQKARTNewEntities())
+                using (SEQKARTNewEntities db = new SEQKARTNewEntities())
                 {
-                    _entity.EmployeeAttendances.Add(employeeAttendance);
-                    _entity.SaveChanges();
-                    result = true;
-                }
-                //    //if (radioButtonMachine.Select.)
-                //    AttendanceData attendanceData = new AttendanceData();
-                ////
-                //AttendanceModel attendanceModel = new AttendanceModel();
+                    EmployeeAttendance query_attendance =
+                            (from data in db.EmployeeAttendances
+                             where data.serial_id == selected_serial_id
+                             orderby data.entry_date
+                             select data).SingleOrDefault();
 
-                //attendanceModel.attendance_date = dateAttendance.Value;
-                //attendanceModel.employee_code = txtEmpID.Text;
-                //attendanceModel.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
-                //attendanceModel.attendance_in = ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue);
-                //attendanceModel.attendance_out =  ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue);
-                //attendanceModel.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue); ;
-                //attendanceModel.attendance_source = ConvertTo.IntVal(comboBox_Shift.SelectedValue); 
-                //attendanceModel.gate_pass_time = ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue);
-                //attendanceModel.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
+                    db.EmployeeAttendances.Remove(query_attendance);
+                    result = await db.SaveChangesAsync();
+
+                    
+                }
             }
 
-            MessageBox.Show(result == true ? "added" : "failed");
+            if (result > -1)
+            {
+                ProjectFunctions.SpeakError("Record has been deleted");
+            }
+            else
+            {
+                ProjectFunctions.SpeakError("There is some problem in deleting record. Please try again.");
+            }
+            return result;
+        }
+
+
+        private async Task CallAsyn_SaveEmployeeAttendanceDetails()
+        {
+            //var result = Task.Run(() => SaveEmployeeAttendanceDetails().Result).Result;
+            //Task.Run(() => SaveEmployeeAttendanceDetails());
+           await SaveEmployeeAttendanceDetails();
+        }
+
+        private async Task SaveEmployeeAttendanceDetails()
+        {
+            
+            if (Validate_Form())
+            {
+                if (crudAction == CrudAction.Create)
+                {
+                    //MessageBox.Show("Create");
+
+                    EmployeeAttendance employeeAttendance = new EmployeeAttendance();
+                    employeeAttendance.entry_date = DateTime.Now;
+                    employeeAttendance.attendance_date = dateAttendance.Value;
+                    employeeAttendance.employee_code = txtEmpID.Text;
+                    employeeAttendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
+                    employeeAttendance.attendance_in = ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue);
+                    employeeAttendance.attendance_out = ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue);
+                    employeeAttendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue); ;
+                    employeeAttendance.attendance_source = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
+                    employeeAttendance.gate_pass_time = ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue);
+                    employeeAttendance.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
+
+                    using (SEQKARTNewEntities _entity = new SEQKARTNewEntities())
+                    {
+                        _entity.EmployeeAttendances.Add(employeeAttendance);
+                        await _entity.SaveChangesAsync();
+                        
+                        ProjectFunctions.SpeakError("Record has been saved");
+                    }
+                }
+                if (crudAction == CrudAction.Update)
+                {
+                    //MessageBox.Show("Update");
+
+                    using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+                    {
+                        EmployeeAttendance query_attendance =
+                            (from data in db.EmployeeAttendances
+                             where data.serial_id == selected_serial_id
+                             orderby data.entry_date
+                             select data).SingleOrDefault();
+
+                        if (query_attendance.attendance_date != dateAttendance.Value)
+                        {
+                            query_attendance.attendance_date = dateAttendance.Value;
+                        }
+                        if (query_attendance.status_id != ConvertTo.IntVal(comboBox_Status.SelectedValue))
+                        {
+                            query_attendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
+                        }
+                        if (query_attendance.attendance_in != ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue))
+                        {
+                            query_attendance.attendance_in = ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue);
+                        }
+                        if (query_attendance.attendance_out != ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue))
+                        {
+                            query_attendance.attendance_out = ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue);
+                        }
+                        if (query_attendance.shift_id != ConvertTo.IntVal(comboBox_Shift.SelectedValue))
+                        {
+                            query_attendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
+                        }
+
+                        int att_source = AttendanceSource(radioButtonManual.Checked, radioButtonMachine.Checked);
+
+                        if (query_attendance.attendance_source != att_source)
+                        {
+                            query_attendance.attendance_source = att_source;
+                        }
+                        if (query_attendance.gate_pass_time != ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue))
+                        {
+                            query_attendance.gate_pass_time = ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue);
+                        }
+                        if (query_attendance.ot_deducton_time != ConvertTo.IntVal(txtOvertimeHours.EditValue))
+                        {
+                            query_attendance.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
+                        }
+
+                        await db.SaveChangesAsync();
+
+                        ProjectFunctions.SpeakError("Record has been updated");
+                    }
+                        
+                    
+                }
+            }
+
+            //MessageBox.Show(result == true ? "added" : "failed");
+        }
+
+        private int AttendanceSource(bool radioManual, bool radioMachine)
+        {
+            if (radioManual)
+            {
+                return 1;
+            }
+            if (radioMachine)
+            {
+                return 2;
+            }
+            return 1;
         }
 
         private bool Validate_Form()
@@ -391,6 +565,8 @@ namespace WindowsFormsApplication1.Time_Office
                 //timeAttOut_Last_Manual.EditValue = null;
             }
         }
+
+        
 
         /*
         static List<Employee> GetDataSource()

@@ -29,5 +29,7 @@ namespace SeqKartLibrary.Models
         public virtual DbSet<WORKER> WORKERs { get; set; }
         public virtual DbSet<AttendanceStatu> AttendanceStatus { get; set; }
         public virtual DbSet<DailyShift> DailyShifts { get; set; }
+        public virtual DbSet<AttendanceSource> AttendanceSources { get; set; }
+        public virtual DbSet<ProgramMaster> ProgramMasters { get; set; }
     }
 }

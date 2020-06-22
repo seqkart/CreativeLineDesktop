@@ -70,12 +70,17 @@
   <ItemGroup>
     <Compile Include="CrudTask\AttendanceData.cs" />
     <Compile Include="CrudTask\ChallanOutMain_Concrete.cs" />
+    <Compile Include="CrudTask\CrudAction.cs" />
     <Compile Include="CrudTask\EmployeeData.cs" />
     <Compile Include="CrudTask\usersBll.cs" />
     <Compile Include="HelperClass\ComparisonUtils.cs" />
+    <Compile Include="HelperClass\ControllerUtils.cs" />
     <Compile Include="HelperClass\ConvertValTo.cs" />
     <Compile Include="Interfaces\IFrmTransaction.cs" />
     <Compile Include="Models\AttendanceModel.cs" />
+    <Compile Include="Models\AttendanceSource.cs">
+      <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AttendanceStatu.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
@@ -104,6 +109,9 @@
       <DependentUpon>EmployeeAttendanceEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeItem.cs" />
+    <Compile Include="Models\ProgramMaster.cs">
+      <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\user.cs" />
     <Compile Include="Models\WORKER.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>

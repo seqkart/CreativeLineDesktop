@@ -25,5 +25,18 @@ namespace SeqKartLibrary.HelperClass
 
             return DateTime.Now;
         }
+
+        public static DateTime Date_NullableToNon(DateTime? val)
+        {
+            try
+            {
+                DateTime date_null = val.GetValueOrDefault(DateTime.Now);
+                return date_null;
+
+            }
+            catch { }
+
+            return DateTime.Now;
+        }
     }
 }
