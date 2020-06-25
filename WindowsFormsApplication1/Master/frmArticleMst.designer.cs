@@ -34,21 +34,20 @@
             this.CHKSAMEMW = new System.Windows.Forms.CheckBox();
             this.CHKSIZSET = new System.Windows.Forms.CheckBox();
             this.DGVSIZSET = new System.Windows.Forms.DataGridView();
-            this.GroupBox15 = new System.Windows.Forms.GroupBox();
-            this.CHKCOLSET = new System.Windows.Forms.CheckBox();
-            this.DGVCOLSET = new System.Windows.Forms.DataGridView();
             this.GroupBox7 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtTaxCodeCDesc = new DevExpress.XtraEditors.TextEdit();
+            this.txtTaxCodeC = new DevExpress.XtraEditors.TextEdit();
+            this.txtTaxCodeLDesc = new DevExpress.XtraEditors.TextEdit();
+            this.txtTaxCodeL = new DevExpress.XtraEditors.TextEdit();
             this.txtMargin = new DevExpress.XtraEditors.TextEdit();
+            this.label17 = new System.Windows.Forms.Label();
             this.txtMRP = new DevExpress.XtraEditors.TextEdit();
-            this.txtMPPer = new DevExpress.XtraEditors.TextEdit();
             this.txtRSP = new DevExpress.XtraEditors.TextEdit();
             this.txtWSP = new DevExpress.XtraEditors.TextEdit();
-            this.txtWPPer = new DevExpress.XtraEditors.TextEdit();
             this.txtPurPrice = new DevExpress.XtraEditors.TextEdit();
             this.Label11 = new System.Windows.Forms.Label();
             this.CHKARTFXPRICE = new System.Windows.Forms.CheckBox();
-            this.Label6 = new System.Windows.Forms.Label();
-            this.Label5 = new System.Windows.Forms.Label();
             this.Label2 = new System.Windows.Forms.Label();
             this.Label15 = new System.Windows.Forms.Label();
             this.Label14 = new System.Windows.Forms.Label();
@@ -101,23 +100,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.ArticleImageBox = new DevExpress.XtraEditors.PictureEdit();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtTaxCodeLDesc = new DevExpress.XtraEditors.TextEdit();
-            this.txtTaxCodeL = new DevExpress.XtraEditors.TextEdit();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtTaxCodeCDesc = new DevExpress.XtraEditors.TextEdit();
-            this.txtTaxCodeC = new DevExpress.XtraEditors.TextEdit();
-            this.label18 = new System.Windows.Forms.Label();
             this.GroupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVSIZSET)).BeginInit();
-            this.GroupBox15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVCOLSET)).BeginInit();
             this.GroupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeCDesc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeLDesc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeL.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMargin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMPPer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRSP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWSP.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWPPer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPurPrice.Properties)).BeginInit();
             this.GroupBox6.SuspendLayout();
             this.GroupBox4.SuspendLayout();
@@ -144,17 +137,13 @@
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSysID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ArticleImageBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeLDesc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeCDesc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeC.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // CHKARTNONMAINT
             // 
             this.CHKARTNONMAINT.AutoSize = true;
             this.CHKARTNONMAINT.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CHKARTNONMAINT.Location = new System.Drawing.Point(432, 354);
+            this.CHKARTNONMAINT.Location = new System.Drawing.Point(441, 71);
             this.CHKARTNONMAINT.Name = "CHKARTNONMAINT";
             this.CHKARTNONMAINT.Size = new System.Drawing.Size(149, 18);
             this.CHKARTNONMAINT.TabIndex = 30;
@@ -168,7 +157,7 @@
             this.GroupBox16.Controls.Add(this.CHKSIZSET);
             this.GroupBox16.Controls.Add(this.DGVSIZSET);
             this.GroupBox16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.GroupBox16.Location = new System.Drawing.Point(431, 378);
+            this.GroupBox16.Location = new System.Drawing.Point(432, 303);
             this.GroupBox16.Name = "GroupBox16";
             this.GroupBox16.Size = new System.Drawing.Size(411, 205);
             this.GroupBox16.TabIndex = 683;
@@ -209,42 +198,6 @@
             this.DGVSIZSET.Size = new System.Drawing.Size(379, 159);
             this.DGVSIZSET.TabIndex = 2;
             // 
-            // GroupBox15
-            // 
-            this.GroupBox15.BackColor = System.Drawing.Color.Transparent;
-            this.GroupBox15.Controls.Add(this.CHKCOLSET);
-            this.GroupBox15.Controls.Add(this.DGVCOLSET);
-            this.GroupBox15.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.GroupBox15.Location = new System.Drawing.Point(31, 414);
-            this.GroupBox15.Name = "GroupBox15";
-            this.GroupBox15.Size = new System.Drawing.Size(392, 169);
-            this.GroupBox15.TabIndex = 681;
-            this.GroupBox15.TabStop = false;
-            this.GroupBox15.Text = "COLOR SET";
-            // 
-            // CHKCOLSET
-            // 
-            this.CHKCOLSET.AutoSize = true;
-            this.CHKCOLSET.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CHKCOLSET.Location = new System.Drawing.Point(10, 139);
-            this.CHKCOLSET.Name = "CHKCOLSET";
-            this.CHKCOLSET.Size = new System.Drawing.Size(81, 18);
-            this.CHKCOLSET.TabIndex = 5;
-            this.CHKCOLSET.Text = "COLOR SET";
-            this.CHKCOLSET.UseVisualStyleBackColor = true;
-            // 
-            // DGVCOLSET
-            // 
-            this.DGVCOLSET.AllowUserToAddRows = false;
-            this.DGVCOLSET.AllowUserToDeleteRows = false;
-            this.DGVCOLSET.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVCOLSET.Location = new System.Drawing.Point(9, 18);
-            this.DGVCOLSET.Name = "DGVCOLSET";
-            this.DGVCOLSET.ReadOnly = true;
-            this.DGVCOLSET.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGVCOLSET.Size = new System.Drawing.Size(369, 100);
-            this.DGVCOLSET.TabIndex = 1;
-            // 
             // GroupBox7
             // 
             this.GroupBox7.Controls.Add(this.label18);
@@ -255,15 +208,11 @@
             this.GroupBox7.Controls.Add(this.txtMargin);
             this.GroupBox7.Controls.Add(this.label17);
             this.GroupBox7.Controls.Add(this.txtMRP);
-            this.GroupBox7.Controls.Add(this.txtMPPer);
             this.GroupBox7.Controls.Add(this.txtRSP);
             this.GroupBox7.Controls.Add(this.txtWSP);
-            this.GroupBox7.Controls.Add(this.txtWPPer);
             this.GroupBox7.Controls.Add(this.txtPurPrice);
             this.GroupBox7.Controls.Add(this.Label11);
             this.GroupBox7.Controls.Add(this.CHKARTFXPRICE);
-            this.GroupBox7.Controls.Add(this.Label6);
-            this.GroupBox7.Controls.Add(this.Label5);
             this.GroupBox7.Controls.Add(this.Label2);
             this.GroupBox7.Controls.Add(this.Label15);
             this.GroupBox7.Controls.Add(this.Label14);
@@ -271,15 +220,70 @@
             this.GroupBox7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.GroupBox7.Location = new System.Drawing.Point(432, 138);
             this.GroupBox7.Name = "GroupBox7";
-            this.GroupBox7.Size = new System.Drawing.Size(410, 219);
+            this.GroupBox7.Size = new System.Drawing.Size(410, 159);
             this.GroupBox7.TabIndex = 682;
             this.GroupBox7.TabStop = false;
             this.GroupBox7.Text = "PRICE DETIALS";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(5, 128);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(62, 14);
+            this.label18.TabIndex = 711;
+            this.label18.Text = "Tax Central";
+            // 
+            // txtTaxCodeCDesc
+            // 
+            this.txtTaxCodeCDesc.Enabled = false;
+            this.txtTaxCodeCDesc.Location = new System.Drawing.Point(161, 125);
+            this.txtTaxCodeCDesc.Name = "txtTaxCodeCDesc";
+            this.txtTaxCodeCDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTaxCodeCDesc.Properties.ReadOnly = true;
+            this.txtTaxCodeCDesc.Size = new System.Drawing.Size(233, 20);
+            this.txtTaxCodeCDesc.TabIndex = 710;
+            this.txtTaxCodeCDesc.TabStop = false;
+            // 
+            // txtTaxCodeC
+            // 
+            this.txtTaxCodeC.EnterMoveNextControl = true;
+            this.txtTaxCodeC.Location = new System.Drawing.Point(72, 125);
+            this.txtTaxCodeC.Name = "txtTaxCodeC";
+            this.txtTaxCodeC.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTaxCodeC.Properties.MaxLength = 4;
+            this.txtTaxCodeC.Size = new System.Drawing.Size(83, 20);
+            this.txtTaxCodeC.TabIndex = 709;
+            this.txtTaxCodeC.EditValueChanged += new System.EventHandler(this.txtTaxCodeC_EditValueChanged);
+            this.txtTaxCodeC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTaxCodeC_KeyDown);
+            // 
+            // txtTaxCodeLDesc
+            // 
+            this.txtTaxCodeLDesc.Enabled = false;
+            this.txtTaxCodeLDesc.Location = new System.Drawing.Point(161, 99);
+            this.txtTaxCodeLDesc.Name = "txtTaxCodeLDesc";
+            this.txtTaxCodeLDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTaxCodeLDesc.Properties.ReadOnly = true;
+            this.txtTaxCodeLDesc.Size = new System.Drawing.Size(233, 20);
+            this.txtTaxCodeLDesc.TabIndex = 707;
+            this.txtTaxCodeLDesc.TabStop = false;
+            // 
+            // txtTaxCodeL
+            // 
+            this.txtTaxCodeL.EnterMoveNextControl = true;
+            this.txtTaxCodeL.Location = new System.Drawing.Point(72, 99);
+            this.txtTaxCodeL.Name = "txtTaxCodeL";
+            this.txtTaxCodeL.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTaxCodeL.Properties.MaxLength = 4;
+            this.txtTaxCodeL.Size = new System.Drawing.Size(83, 20);
+            this.txtTaxCodeL.TabIndex = 706;
+            this.txtTaxCodeL.EditValueChanged += new System.EventHandler(this.txtTaxCodeL_EditValueChanged);
+            this.txtTaxCodeL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTaxCodeL_KeyDown);
+            // 
             // txtMargin
             // 
             this.txtMargin.EnterMoveNextControl = true;
-            this.txtMargin.Location = new System.Drawing.Point(66, 78);
+            this.txtMargin.Location = new System.Drawing.Point(204, 50);
             this.txtMargin.Name = "txtMargin";
             this.txtMargin.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMargin.Properties.DisplayFormat.FormatString = "n2";
@@ -290,14 +294,23 @@
             this.txtMargin.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMargin.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtMargin.Properties.MaxLength = 4;
-            this.txtMargin.Size = new System.Drawing.Size(81, 20);
+            this.txtMargin.Size = new System.Drawing.Size(83, 20);
             this.txtMargin.TabIndex = 6;
             this.txtMargin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPurPrice_KeyPress);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(15, 102);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(52, 14);
+            this.label17.TabIndex = 708;
+            this.label17.Text = "Tax Local";
             // 
             // txtMRP
             // 
             this.txtMRP.EnterMoveNextControl = true;
-            this.txtMRP.Location = new System.Drawing.Point(66, 50);
+            this.txtMRP.Location = new System.Drawing.Point(65, 50);
             this.txtMRP.Name = "txtMRP";
             this.txtMRP.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMRP.Properties.DisplayFormat.FormatString = "n2";
@@ -308,33 +321,16 @@
             this.txtMRP.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMRP.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtMRP.Properties.MaxLength = 4;
-            this.txtMRP.Size = new System.Drawing.Size(81, 20);
+            this.txtMRP.Size = new System.Drawing.Size(83, 20);
             this.txtMRP.TabIndex = 3;
             this.txtMRP.EditValueChanged += new System.EventHandler(this.TxtMRP_EditValueChanged);
             this.txtMRP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMRP_KeyDown);
             this.txtMRP.Leave += new System.EventHandler(this.TxtMRP_Leave);
             // 
-            // txtMPPer
-            // 
-            this.txtMPPer.EnterMoveNextControl = true;
-            this.txtMPPer.Location = new System.Drawing.Point(202, 50);
-            this.txtMPPer.Name = "txtMPPer";
-            this.txtMPPer.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMPPer.Properties.DisplayFormat.FormatString = "n2";
-            this.txtMPPer.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtMPPer.Properties.EditFormat.FormatString = "n2";
-            this.txtMPPer.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtMPPer.Properties.Mask.EditMask = "n2";
-            this.txtMPPer.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtMPPer.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtMPPer.Properties.MaxLength = 4;
-            this.txtMPPer.Size = new System.Drawing.Size(81, 20);
-            this.txtMPPer.TabIndex = 4;
-            // 
             // txtRSP
             // 
             this.txtRSP.EnterMoveNextControl = true;
-            this.txtRSP.Location = new System.Drawing.Point(323, 50);
+            this.txtRSP.Location = new System.Drawing.Point(321, 24);
             this.txtRSP.Name = "txtRSP";
             this.txtRSP.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRSP.Properties.DisplayFormat.FormatString = "n2";
@@ -345,13 +341,13 @@
             this.txtRSP.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtRSP.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtRSP.Properties.MaxLength = 4;
-            this.txtRSP.Size = new System.Drawing.Size(81, 20);
+            this.txtRSP.Size = new System.Drawing.Size(83, 20);
             this.txtRSP.TabIndex = 5;
             // 
             // txtWSP
             // 
             this.txtWSP.EnterMoveNextControl = true;
-            this.txtWSP.Location = new System.Drawing.Point(323, 24);
+            this.txtWSP.Location = new System.Drawing.Point(321, 50);
             this.txtWSP.Name = "txtWSP";
             this.txtWSP.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtWSP.Properties.DisplayFormat.FormatString = "n2";
@@ -362,32 +358,15 @@
             this.txtWSP.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWSP.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtWSP.Properties.MaxLength = 4;
-            this.txtWSP.Size = new System.Drawing.Size(81, 20);
+            this.txtWSP.Size = new System.Drawing.Size(83, 20);
             this.txtWSP.TabIndex = 24;
             this.txtWSP.EditValueChanged += new System.EventHandler(this.TxtWSP_EditValueChanged);
             this.txtWSP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWSP_KeyDown);
             // 
-            // txtWPPer
-            // 
-            this.txtWPPer.EnterMoveNextControl = true;
-            this.txtWPPer.Location = new System.Drawing.Point(202, 24);
-            this.txtWPPer.Name = "txtWPPer";
-            this.txtWPPer.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtWPPer.Properties.DisplayFormat.FormatString = "n2";
-            this.txtWPPer.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtWPPer.Properties.EditFormat.FormatString = "n2";
-            this.txtWPPer.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtWPPer.Properties.Mask.EditMask = "n2";
-            this.txtWPPer.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtWPPer.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtWPPer.Properties.MaxLength = 4;
-            this.txtWPPer.Size = new System.Drawing.Size(81, 20);
-            this.txtWPPer.TabIndex = 1;
-            // 
             // txtPurPrice
             // 
             this.txtPurPrice.EnterMoveNextControl = true;
-            this.txtPurPrice.Location = new System.Drawing.Point(66, 24);
+            this.txtPurPrice.Location = new System.Drawing.Point(65, 24);
             this.txtPurPrice.Name = "txtPurPrice";
             this.txtPurPrice.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPurPrice.Properties.DisplayFormat.FormatString = "n2";
@@ -398,7 +377,7 @@
             this.txtPurPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtPurPrice.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtPurPrice.Properties.MaxLength = 4;
-            this.txtPurPrice.Size = new System.Drawing.Size(81, 20);
+            this.txtPurPrice.Size = new System.Drawing.Size(83, 20);
             this.txtPurPrice.TabIndex = 0;
             this.txtPurPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPurPrice_KeyPress);
             // 
@@ -407,7 +386,7 @@
             this.Label11.AutoSize = true;
             this.Label11.BackColor = System.Drawing.Color.Transparent;
             this.Label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label11.Location = new System.Drawing.Point(293, 53);
+            this.Label11.Location = new System.Drawing.Point(289, 27);
             this.Label11.Name = "Label11";
             this.Label11.Size = new System.Drawing.Size(26, 14);
             this.Label11.TabIndex = 82;
@@ -417,34 +396,12 @@
             // 
             this.CHKARTFXPRICE.AutoSize = true;
             this.CHKARTFXPRICE.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CHKARTFXPRICE.Location = new System.Drawing.Point(202, 79);
+            this.CHKARTFXPRICE.Location = new System.Drawing.Point(202, 77);
             this.CHKARTFXPRICE.Name = "CHKARTFXPRICE";
             this.CHKARTFXPRICE.Size = new System.Drawing.Size(180, 18);
             this.CHKARTFXPRICE.TabIndex = 29;
             this.CHKARTFXPRICE.Text = "MARK ARTICLE AS FIXED PRICE";
             this.CHKARTFXPRICE.UseVisualStyleBackColor = true;
-            // 
-            // Label6
-            // 
-            this.Label6.AutoSize = true;
-            this.Label6.BackColor = System.Drawing.Color.Transparent;
-            this.Label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label6.Location = new System.Drawing.Point(169, 53);
-            this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(32, 14);
-            this.Label6.TabIndex = 77;
-            this.Label6.Text = "MP%";
-            // 
-            // Label5
-            // 
-            this.Label5.AutoSize = true;
-            this.Label5.BackColor = System.Drawing.Color.Transparent;
-            this.Label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label5.Location = new System.Drawing.Point(168, 27);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(33, 14);
-            this.Label5.TabIndex = 76;
-            this.Label5.Text = "WP%";
             // 
             // Label2
             // 
@@ -462,7 +419,7 @@
             this.Label15.AutoSize = true;
             this.Label15.BackColor = System.Drawing.Color.Transparent;
             this.Label15.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label15.Location = new System.Drawing.Point(289, 27);
+            this.Label15.Location = new System.Drawing.Point(289, 53);
             this.Label15.Name = "Label15";
             this.Label15.Size = new System.Drawing.Size(30, 14);
             this.Label15.TabIndex = 2;
@@ -484,11 +441,12 @@
             this.Label12.AutoSize = true;
             this.Label12.BackColor = System.Drawing.Color.Transparent;
             this.Label12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label12.Location = new System.Drawing.Point(14, 81);
+            this.Label12.Location = new System.Drawing.Point(153, 53);
             this.Label12.Name = "Label12";
             this.Label12.Size = new System.Drawing.Size(50, 14);
             this.Label12.TabIndex = 69;
             this.Label12.Text = "MARGIN";
+            this.Label12.Click += new System.EventHandler(this.Label12_Click);
             // 
             // GroupBox6
             // 
@@ -497,9 +455,9 @@
             this.GroupBox6.Controls.Add(this.RBARTUNIQUE);
             this.GroupBox6.Controls.Add(this.RBARTLOT);
             this.GroupBox6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.GroupBox6.Location = new System.Drawing.Point(431, 97);
+            this.GroupBox6.Location = new System.Drawing.Point(32, 414);
             this.GroupBox6.Name = "GroupBox6";
-            this.GroupBox6.Size = new System.Drawing.Size(240, 40);
+            this.GroupBox6.Size = new System.Drawing.Size(393, 40);
             this.GroupBox6.TabIndex = 678;
             this.GroupBox6.TabStop = false;
             this.GroupBox6.Text = "CODING SCHEME";
@@ -509,7 +467,7 @@
             this.RBARTFIXD.AutoSize = true;
             this.RBARTFIXD.BackColor = System.Drawing.Color.Transparent;
             this.RBARTFIXD.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.RBARTFIXD.Location = new System.Drawing.Point(105, 16);
+            this.RBARTFIXD.Location = new System.Drawing.Point(162, 16);
             this.RBARTFIXD.Name = "RBARTFIXD";
             this.RBARTFIXD.Size = new System.Drawing.Size(55, 18);
             this.RBARTFIXD.TabIndex = 19;
@@ -535,7 +493,7 @@
             this.RBARTLOT.AutoSize = true;
             this.RBARTLOT.BackColor = System.Drawing.Color.Transparent;
             this.RBARTLOT.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.RBARTLOT.Location = new System.Drawing.Point(184, 16);
+            this.RBARTLOT.Location = new System.Drawing.Point(298, 16);
             this.RBARTLOT.Name = "RBARTLOT";
             this.RBARTLOT.Size = new System.Drawing.Size(44, 18);
             this.RBARTLOT.TabIndex = 20;
@@ -596,7 +554,7 @@
             this.txtPreFIx.Location = new System.Drawing.Point(93, 128);
             this.txtPreFIx.Name = "txtPreFIx";
             this.txtPreFIx.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPreFIx.Properties.MaxLength = 4;
+            this.txtPreFIx.Properties.MaxLength = 10;
             this.txtPreFIx.Size = new System.Drawing.Size(43, 20);
             this.txtPreFIx.TabIndex = 704;
             this.txtPreFIx.Visible = false;
@@ -607,7 +565,7 @@
             this.txtArtNo.Location = new System.Drawing.Point(93, 103);
             this.txtArtNo.Name = "txtArtNo";
             this.txtArtNo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtArtNo.Properties.MaxLength = 4;
+            this.txtArtNo.Properties.MaxLength = 10;
             this.txtArtNo.Size = new System.Drawing.Size(284, 20);
             this.txtArtNo.TabIndex = 2;
             this.txtArtNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArtNo_KeyDown);
@@ -618,7 +576,7 @@
             this.txtTo.Location = new System.Drawing.Point(297, 128);
             this.txtTo.Name = "txtTo";
             this.txtTo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTo.Properties.MaxLength = 4;
+            this.txtTo.Properties.MaxLength = 10;
             this.txtTo.Size = new System.Drawing.Size(80, 20);
             this.txtTo.TabIndex = 11;
             this.txtTo.Visible = false;
@@ -639,7 +597,7 @@
             this.txtFrom.Location = new System.Drawing.Point(184, 128);
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtFrom.Properties.MaxLength = 4;
+            this.txtFrom.Properties.MaxLength = 10;
             this.txtFrom.Size = new System.Drawing.Size(83, 20);
             this.txtFrom.TabIndex = 10;
             this.txtFrom.Visible = false;
@@ -715,7 +673,7 @@
             this.txtHSNCode.Location = new System.Drawing.Point(93, 78);
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtHSNCode.Properties.MaxLength = 4;
+            this.txtHSNCode.Properties.MaxLength = 9;
             this.txtHSNCode.Size = new System.Drawing.Size(284, 20);
             this.txtHSNCode.TabIndex = 1;
             // 
@@ -930,7 +888,7 @@
             // 
             // HelpGrid
             // 
-            this.HelpGrid.Location = new System.Drawing.Point(416, 39);
+            this.HelpGrid.Location = new System.Drawing.Point(214, 38);
             this.HelpGrid.MainView = this.HelpGridView;
             this.HelpGrid.Name = "HelpGrid";
             this.HelpGrid.Size = new System.Drawing.Size(591, 296);
@@ -956,7 +914,7 @@
             // txtUMDesc
             // 
             this.txtUMDesc.Enabled = false;
-            this.txtUMDesc.Location = new System.Drawing.Point(567, 68);
+            this.txtUMDesc.Location = new System.Drawing.Point(549, 107);
             this.txtUMDesc.Name = "txtUMDesc";
             this.txtUMDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUMDesc.Properties.ReadOnly = true;
@@ -967,10 +925,10 @@
             // txtUMCode
             // 
             this.txtUMCode.EnterMoveNextControl = true;
-            this.txtUMCode.Location = new System.Drawing.Point(496, 68);
+            this.txtUMCode.Location = new System.Drawing.Point(478, 107);
             this.txtUMCode.Name = "txtUMCode";
             this.txtUMCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtUMCode.Properties.MaxLength = 3;
+            this.txtUMCode.Properties.MaxLength = 5;
             this.txtUMCode.Size = new System.Drawing.Size(69, 20);
             this.txtUMCode.TabIndex = 0;
             this.txtUMCode.EditValueChanged += new System.EventHandler(this.TxtUMCode_EditValueChanged);
@@ -1049,7 +1007,7 @@
             // 
             // ArticleImageBox
             // 
-            this.ArticleImageBox.Location = new System.Drawing.Point(860, 179);
+            this.ArticleImageBox.Location = new System.Drawing.Point(865, 151);
             this.ArticleImageBox.Name = "ArticleImageBox";
             this.ArticleImageBox.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.ArticleImageBox.Size = new System.Drawing.Size(259, 323);
@@ -1061,81 +1019,17 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.label4.Location = new System.Drawing.Point(456, 71);
+            this.label4.Location = new System.Drawing.Point(438, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 14);
             this.label4.TabIndex = 74;
             this.label4.Text = "UOM";
             // 
-            // txtTaxCodeLDesc
-            // 
-            this.txtTaxCodeLDesc.Enabled = false;
-            this.txtTaxCodeLDesc.Location = new System.Drawing.Point(171, 103);
-            this.txtTaxCodeLDesc.Name = "txtTaxCodeLDesc";
-            this.txtTaxCodeLDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTaxCodeLDesc.Properties.ReadOnly = true;
-            this.txtTaxCodeLDesc.Size = new System.Drawing.Size(233, 20);
-            this.txtTaxCodeLDesc.TabIndex = 707;
-            this.txtTaxCodeLDesc.TabStop = false;
-            // 
-            // txtTaxCodeL
-            // 
-            this.txtTaxCodeL.EnterMoveNextControl = true;
-            this.txtTaxCodeL.Location = new System.Drawing.Point(65, 103);
-            this.txtTaxCodeL.Name = "txtTaxCodeL";
-            this.txtTaxCodeL.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTaxCodeL.Properties.MaxLength = 4;
-            this.txtTaxCodeL.Size = new System.Drawing.Size(83, 20);
-            this.txtTaxCodeL.TabIndex = 706;
-            this.txtTaxCodeL.EditValueChanged += new System.EventHandler(this.txtTaxCodeL_EditValueChanged);
-            this.txtTaxCodeL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTaxCodeL_KeyDown);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(5, 106);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(52, 14);
-            this.label17.TabIndex = 708;
-            this.label17.Text = "Tax Local";
-            // 
-            // txtTaxCodeCDesc
-            // 
-            this.txtTaxCodeCDesc.Enabled = false;
-            this.txtTaxCodeCDesc.Location = new System.Drawing.Point(171, 129);
-            this.txtTaxCodeCDesc.Name = "txtTaxCodeCDesc";
-            this.txtTaxCodeCDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTaxCodeCDesc.Properties.ReadOnly = true;
-            this.txtTaxCodeCDesc.Size = new System.Drawing.Size(233, 20);
-            this.txtTaxCodeCDesc.TabIndex = 710;
-            this.txtTaxCodeCDesc.TabStop = false;
-            // 
-            // txtTaxCodeC
-            // 
-            this.txtTaxCodeC.EnterMoveNextControl = true;
-            this.txtTaxCodeC.Location = new System.Drawing.Point(65, 129);
-            this.txtTaxCodeC.Name = "txtTaxCodeC";
-            this.txtTaxCodeC.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTaxCodeC.Properties.MaxLength = 4;
-            this.txtTaxCodeC.Size = new System.Drawing.Size(83, 20);
-            this.txtTaxCodeC.TabIndex = 709;
-            this.txtTaxCodeC.EditValueChanged += new System.EventHandler(this.txtTaxCodeC_EditValueChanged);
-            this.txtTaxCodeC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTaxCodeC_KeyDown);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(5, 132);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(62, 14);
-            this.label18.TabIndex = 711;
-            this.label18.Text = "Tax Central";
-            // 
             // frmArticleMst
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1136, 586);
+            this.ClientSize = new System.Drawing.Size(1136, 524);
             this.ControlBox = false;
             this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.ArticleImageBox);
@@ -1146,7 +1040,6 @@
             this.Controls.Add(this.txtUMCode);
             this.Controls.Add(this.CHKARTNONMAINT);
             this.Controls.Add(this.GroupBox16);
-            this.Controls.Add(this.GroupBox15);
             this.Controls.Add(this.GroupBox7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.GroupBox6);
@@ -1162,17 +1055,16 @@
             this.GroupBox16.ResumeLayout(false);
             this.GroupBox16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVSIZSET)).EndInit();
-            this.GroupBox15.ResumeLayout(false);
-            this.GroupBox15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVCOLSET)).EndInit();
             this.GroupBox7.ResumeLayout(false);
             this.GroupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeCDesc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeLDesc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeL.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMargin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMRP.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMPPer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRSP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWSP.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWPPer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPurPrice.Properties)).EndInit();
             this.GroupBox6.ResumeLayout(false);
             this.GroupBox6.PerformLayout();
@@ -1204,10 +1096,6 @@
             this.Menu_ToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSysID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ArticleImageBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeLDesc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeCDesc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaxCodeC.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1220,14 +1108,9 @@
         internal System.Windows.Forms.CheckBox CHKSAMEMW;
         internal System.Windows.Forms.CheckBox CHKSIZSET;
         internal System.Windows.Forms.DataGridView DGVSIZSET;
-        internal System.Windows.Forms.GroupBox GroupBox15;
-        internal System.Windows.Forms.CheckBox CHKCOLSET;
-        internal System.Windows.Forms.DataGridView DGVCOLSET;
         internal System.Windows.Forms.GroupBox GroupBox7;
         internal System.Windows.Forms.Label Label11;
         internal System.Windows.Forms.CheckBox CHKARTFXPRICE;
-        internal System.Windows.Forms.Label Label6;
-        internal System.Windows.Forms.Label Label5;
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.Label Label15;
         internal System.Windows.Forms.Label Label14;
@@ -1269,10 +1152,8 @@
         private DevExpress.XtraEditors.TextEdit txtPurPrice;
         private DevExpress.XtraEditors.TextEdit txtMargin;
         private DevExpress.XtraEditors.TextEdit txtMRP;
-        private DevExpress.XtraEditors.TextEdit txtMPPer;
         private DevExpress.XtraEditors.TextEdit txtRSP;
         private DevExpress.XtraEditors.TextEdit txtWSP;
-        private DevExpress.XtraEditors.TextEdit txtWPPer;
         private DevExpress.XtraGrid.GridControl HelpGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView HelpGridView;
         private DevExpress.XtraEditors.TextEdit txtUMDesc;
