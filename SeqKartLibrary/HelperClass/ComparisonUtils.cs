@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 
 public class ComparisonUtils
 {
@@ -37,6 +38,26 @@ public class ComparisonUtils
 
         }
         
+        return false;
+    }
+
+    public static bool IsNotNull_List<T>(List<T> list)
+    {
+        try
+        {
+            if (list != null)
+            {
+                if (list.Count > 0)
+                {
+                    return true;
+                }
+            }
+        }
+        catch
+        {
+
+        }
+
         return false;
     }
 }

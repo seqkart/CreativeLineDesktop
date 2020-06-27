@@ -81,6 +81,22 @@ namespace SeqKartLibrary.Repository
             }
         }
 
+        public List<T1> returnListClass_1<T1>(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                IList<T1> Tlista = SqlMapper.Query<T1>(con, query, param, null, true, null, commandType: CommandType.Text).ToList();
+                con.Close();
+                return Tlista.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<T1> returnListClass_SP_1<T1>(string query, DynamicParameters param)
         {
             try
@@ -96,8 +112,6 @@ namespace SeqKartLibrary.Repository
                 throw;
             }
         }
-
-
 
 
     }

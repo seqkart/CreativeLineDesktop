@@ -12,9 +12,12 @@ namespace SeqKartLibrary.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DailyShift
+    public partial class DesgMst
     {
-        public string CatgCode { get; set; }
-        public string CatgDesc { get; set; }
+        public long Id { get; set; }
+        public string DesgCode { get; set; }
+        public string DesgDesc { get; set; }
+        public Nullable<System.DateTime> SuncDate { get; set; }
+        public Nullable<System.DateTime> SyncDate { get; set; }
     }
 }
