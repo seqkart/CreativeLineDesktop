@@ -450,7 +450,7 @@ namespace WindowsFormsApplication1
                                                 + " EmpEmail=@EmpEmail,EmpDoB=@EmpDoB,EmpPanNo=@EmpPanNo,EmpPassportNo=@EmpPassportNo,EmpSplAlw=@EmpSplAlw,"
                                                 + " EmpReligion=@EmpReligion,EmpMaritalStatus=@EmpMaritalStatus,EmpPymtMode=@EmpPymtMode,EmpBankIFSCode=@EmpBankIFSCode, "
                                                 + " EmpBankAcNo=@EmpBankAcNo,EmpBankName=@EmpBankName,EmpNominee=@EmpNominee,EmpNomineeRelation=@EmpNomineeRelation,EmpNomineeDOB=@EmpNomineeDOB, "
-                                                + " EmpAdharCardNo=@EmpAdharCardNo,EmpGHISDed=@EmpGHISDed,EmpFPFDTag=@EmpFPFDTag,EmpMscD1=@EmpMscD1,EmpAddress1=@EmpAddress1,EmpAddress2=@EmpAddress2,EmpAddress3=@EmpAddress3,EmpDistCity=@EmpDistCity,EmpState=@EmpState,EmpCountry=@EmpCountry ,EmpUANNo=@EmpUANNo,EmpBankBranchCode=@EmpBankBranchCode " +
+                                                + " EmpAdharCardNo=@EmpAdharCardNo,EmpGHISDed=@EmpGHISDed,EmpFPFDTag=@EmpFPFDTag,EmpMscD1=@EmpMscD1,EmpAddress1=@EmpAddress1,EmpAddress2=@EmpAddress2,EmpAddress3=@EmpAddress3,EmpDistCity=@EmpDistCity,EmpState=@EmpState,EmpCountry=@EmpCountry ,EmpUANNo=@EmpUANNo,EmpBankBranchCode=@EmpBankBranchCode, " +
                                                 "   TimeInFirst = @TimeInFirst," +
                                                 "   TimeOutFirst = @TimeOutFirst," +
                                                 "   TimeInLast = @TimeInLast," +
@@ -489,6 +489,8 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@EmpESIno", txtESICNo.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpBasic", 0);
                         sqlcom.Parameters.AddWithValue("@EmpHRA", 0);
+                        sqlcom.Parameters.AddWithValue("@EmpConv", 0);
+                        sqlcom.Parameters.AddWithValue("@EmpPET", 0);
                         sqlcom.Parameters.AddWithValue("@EmpTDS", Convert.ToDecimal(txtTDS.Text));
                         sqlcom.Parameters.AddWithValue("@EmpLeft", txtEmpLeft.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpRemarks", txtRemarks.Text.Trim());
@@ -505,7 +507,7 @@ namespace WindowsFormsApplication1
                         }
                         sqlcom.Parameters.AddWithValue("@EmpPanNo", txtPanNo.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpPassportNo", txtPassPortNo.Text.Trim());
-                       
+                        sqlcom.Parameters.AddWithValue("@EmpSplAlw", 0);
                         sqlcom.Parameters.AddWithValue("@EmpReligion", txtEmployeeReligion.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpMaritalStatus", txtMaritalStatus.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpPymtMode", txtPaymentMode.Text.Trim());
@@ -529,17 +531,20 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@EmpAddress1", txtAddress1.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpAddress2", txtAddress2.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpAddress3", txtAddress3.Text.Trim());
-                        
+
+                        sqlcom.Parameters.AddWithValue("@EmpDistCity", string.Empty);
+
                         sqlcom.Parameters.AddWithValue("@EmpState", txtState.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpCountry", txtCountry.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpUANNo", txtUANNo.Text.Trim());
 
                         sqlcom.Parameters.AddWithValue("@EmpBankBranchCode", txtBankBranchCode.Text.Trim());
 
-                        sqlcom.Parameters.AddWithValue("@TimeInFirst", timeEdit_Time_In_First.EditValue.ToString().Trim());
-                        sqlcom.Parameters.AddWithValue("@TimeOutFirst", timeEdit_Time_Out_First.EditValue.ToString().Trim());
-                        sqlcom.Parameters.AddWithValue("@TimeInLast", timeEdit_Time_In_Last.EditValue.ToString().Trim());
-                        sqlcom.Parameters.AddWithValue("@TimeOutLast", timeEdit_Time_Out_Last.EditValue.ToString().Trim());
+                        sqlcom.Parameters.AddWithValue("@TimeInFirst", Convert.ToDateTime(timeEdit_Time_In_First.EditValue.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeOutFirst", Convert.ToDateTime(timeEdit_Time_Out_First.EditValue.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeInLast", Convert.ToDateTime(timeEdit_Time_In_Last.EditValue.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeOutLast", Convert.ToDateTime(timeEdit_Time_Out_Last.EditValue.ToString().Trim())
+                            );
 
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();

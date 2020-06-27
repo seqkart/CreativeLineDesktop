@@ -6,7 +6,7 @@ namespace SeqKartLibrary.Models
 {
     public class EmployeeMasterModel 
     {
-        public int ID { get; set; }
+        //public int ID { get; set; }
         public string EmpCode { get; set; }
         public string EmpName { get; set; }
         public string EmpDeptCode { get; set; }
