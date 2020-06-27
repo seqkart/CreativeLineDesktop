@@ -47,8 +47,7 @@ namespace SeqKartLibrary
         public static class _AttendanceStatus
         {
             public const string _status_id = "status_id";
-            public const string _status = "status";
-            
+            public const string _status = "status";           
 
         }
 
@@ -56,9 +55,58 @@ namespace SeqKartLibrary
         {
             public const string _shift_id = "shift_id";
             public const string _shift_name = "shift_name";
+        }        
 
+        public static class _EmployeeAttendance
+        {
+            public const string _serial_id = "serial_id";
+            public const string _entry_date = "entry_date";
+            public const string _employee_code = "employee_code";
+            public const string _attendance_date = "attendance_date";
+            public const string _attendance_in = "attendance_in";
+            public const string _eattendance_out = "attendance_out";
+            public const string _gate_pass_time = "gate_pass_time";
+            public const string _ot_deducton_time = "ot_deducton_time";
+        } 
 
+        public static class _AttendanceSource
+        {
+            public const string _source_name = "source_name";            
         }
+
+
     }
 
+    public class Col
+    {
+        public static class AttendanceStatus
+        {
+            public const string status_id = "status_id";
+            public const string status = "status";
+
+        }
+
+        public static class DailyShifts
+        {
+            public const string shift_id = "shift_id";
+            public const string shift_name = "shift_name";
+        }
+
+        public static class EmployeeAttendance
+        {
+            public const string serial_id = "serial_id";
+            public const string entry_date = "entry_date";
+            public const string employee_code = "employee_code";
+            public const string attendance_date = "attendance_date";
+            public const string attendance_in = "attendance_in";
+            public const string attendance_out = "attendance_out";
+            public const string gate_pass_time = "gate_pass_time";
+            public const string ot_deducton_time = "ot_deducton_time";
+        }
+
+        public static class AttendanceSource
+        {
+            public const string source_name = "source_name";
+        }
+    }
 }

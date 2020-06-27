@@ -22,6 +22,7 @@ using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
 using static SeqKartLibrary.CrudTask.CrudAction;
 using BNPL.Forms_Master;
+using SeqKartLibrary.Repository;
 
 namespace WindowsFormsApplication1.Time_Office
 {
@@ -62,6 +63,7 @@ namespace WindowsFormsApplication1.Time_Office
         private CrudAction crudAction = new CrudAction();
         private void XtraForm_EmployeeAttendence_Load(object sender, EventArgs e)
         {
+            
             //MessageBox.Show(selected_serial_id + " : 2");
             
             LoadEmployeeData();
@@ -86,22 +88,40 @@ namespace WindowsFormsApplication1.Time_Office
                     //count++;
                 }
             }
+            RepList<object> repObj = new RepList<object>();
+            List<AttendanceStatu> attendanceStatu_List = repObj.returnListClass_1<AttendanceStatu>("SELECT * FROM AttendanceStatus", null);
 
-            using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+            if (ComparisonUtils.IsNotNull_List(attendanceStatu_List))
             {
-                List<AttendanceStatu> attendanceStatu_List = db.AttendanceStatus.OrderBy(s => s.status_id).ToList();
                 comboBox_Status.DataSource = attendanceStatu_List;
                 comboBox_Status.ValueMember = SQL_COLUMNS._AttendanceStatus._status_id;
                 comboBox_Status.DisplayMember = SQL_COLUMNS._AttendanceStatus._status;
             }
 
-            using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+            List<DailyShift> dailyShifts_List = repObj.returnListClass_1<DailyShift>("SELECT * FROM DailyShifts", null);
+            if (ComparisonUtils.IsNotNull_List(attendanceStatu_List))
             {
-                List<DailyShift> dailyShifts_List = db.DailyShifts.OrderBy(s => s.shift_id).ToList();
                 comboBox_Shift.DataSource = dailyShifts_List;
                 comboBox_Shift.ValueMember = SQL_COLUMNS._DailyShifts._shift_id;
                 comboBox_Shift.DisplayMember = SQL_COLUMNS._DailyShifts._shift_name;
             }
+
+
+            //using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+            //{
+            //    List<AttendanceStatu> attendanceStatu_List = db.AttendanceStatus.OrderBy(s => s.status_id).ToList();
+            //    comboBox_Status.DataSource = attendanceStatu_List;
+            //    comboBox_Status.ValueMember = SQL_COLUMNS._AttendanceStatus._status_id;
+            //    comboBox_Status.DisplayMember = SQL_COLUMNS._AttendanceStatus._status;
+            //}
+
+            //using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+            //{
+            //    List<DailyShift> dailyShifts_List = db.DailyShifts.OrderBy(s => s.shift_id).ToList();
+            //    comboBox_Shift.DataSource = dailyShifts_List;
+            //    comboBox_Shift.ValueMember = SQL_COLUMNS._DailyShifts._shift_id;
+            //    comboBox_Shift.DisplayMember = SQL_COLUMNS._DailyShifts._shift_name;
+            //}
 
             if (selected_serial_id != 0)
             {

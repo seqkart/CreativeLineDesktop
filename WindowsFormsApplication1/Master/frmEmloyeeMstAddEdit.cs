@@ -1,6 +1,10 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.XtraEditors;
 using SeqKartLibrary;
+using SeqKartLibrary.Models;
+using SeqKartLibrary.Repository;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -68,26 +72,7 @@ namespace WindowsFormsApplication1
                 return false;
             }
 
-            if (txtBasicPay.Text.Trim().Length == 0)
-            {
-                txtBasicPay.Text = "0";
-            }
-            if (txtHRA.Text.Trim().Length == 0)
-            {
-                txtHRA.Text = "0";
-            }
-            if (txtConvenyance.Text.Trim().Length == 0)
-            {
-                txtConvenyance.Text = "0";
-            }
-            if (txtPetrol.Text.Trim().Length == 0)
-            {
-                txtPetrol.Text = "0";
-            }
-            if (txtEmpSplAlw.Text.Trim().Length == 0)
-            {
-                txtEmpSplAlw.Text = "0";
-            }
+           
             if (txtHealthInsurance.Text.Trim().Length == 0)
             {
                 txtHealthInsurance.Text = "0";
@@ -128,6 +113,114 @@ namespace WindowsFormsApplication1
             }
             if (s1 == "Edit")
             {
+                RepList<EmployeeMasterModel> lista = new RepList<EmployeeMasterModel>();
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@EmpCode", EmpCode);
+
+                EmployeeMasterModel empData = lista.returnClass_SP("sp_LoadEmpMstFEditing", param);
+
+               
+                //PrintLogWin.PrintLog("**************** =========> Line 120 => listData => " + listData.Count + "");
+                if (empData != null)
+                {
+                    txtEmpCode.Text = empData.EmpCode;// ds.Tables[0].Rows[0]["EmpCode"].ToString();
+                    txtEmpName.Text = empData.EmpName;
+                    txtRelationTag.Text = empData.EmpFHRelationTag;//ds.Tables[0].Rows[0]["EmpFHRelationTag"].ToString();
+                    txtFHName.Text = empData.EmpFHName;//ds.Tables[0].Rows[0]["EmpFHName"].ToString();
+                    txtDeptCode.Text = empData.EmpDeptCode;//ds.Tables[0].Rows[0]["EmpDeptCode"].ToString();
+                    txtDeptDesc.Text = empData.DeptDesc;//ds.Tables[0].Rows[0]["DeptDesc"].ToString();
+                    txtDesgCode.Text = empData.EmpDesgCode;//ds.Tables[0].Rows[0]["EmpDesgCode"].ToString();
+                    txtDesgDesc.Text = empData.DesgDesc;//ds.Tables[0].Rows[0]["DesgDesc"].ToString();
+                    txtEmpSex.Text = empData.EmpSex;//ds.Tables[0].Rows[0]["EmpSex"].ToString();
+                    if (empData.EmpDOJ.ToString() == string.Empty)
+                    {
+
+                    }
+                    else
+                    {
+                        txtDOJ.EditValue = Convert.ToDateTime(empData.EmpDOJ);
+                    }
+                    if (empData.EmpDOL.ToString() == string.Empty)
+                    {
+
+                    }
+                    else
+                    {
+                        txtDOL.EditValue = Convert.ToDateTime(empData.EmpDOL);
+                    }
+
+                    txtEPFTag.Text = empData.EmpPFDTag;//ds.Tables[0].Rows[0]["EmpPFDTag"].ToString();
+                    txtESIDTag.Text = empData.EmpESIDTag;//ds.Tables[0].Rows[0]["EmpESIDTag"].ToString();
+                    txtEPFNo.Text = empData.EmpPFno;//ds.Tables[0].Rows[0]["EmpPFno"].ToString();
+                    txtESICNo.Text = empData.EmpESIno;//ds.Tables[0].Rows[0]["EmpESIno"].ToString();
+
+                    txtTDS.Text = empData.EmpTDS.ToString();//ds.Tables[0].Rows[0]["EmpTDS"].ToString();
+                    txtEmpLeft.Text = empData.EmpLeft;//ds.Tables[0].Rows[0]["EmpLeft"].ToString();
+                    txtRemarks.Text = empData.EmpRemarks;//ds.Tables[0].Rows[0]["EmpRemarks"].ToString();
+                    txtMotherName.Text = empData.EmpMotherNm;//ds.Tables[0].Rows[0]["EmpMotherNm"].ToString();
+
+                    txtState.Text = empData.EmpPerState;//ds.Tables[0].Rows[0]["EmpPerState"].ToString();
+                    txtState.Text = empData.EmpPerCountry;//ds.Tables[0].Rows[0]["EmpPerCountry"].ToString();
+
+                    txtNationality.Text = empData.EmpNationality;//ds.Tables[0].Rows[0]["EmpNationality"].ToString();
+                    txtEmail.Text = empData.EmpEmail;//ds.Tables[0].Rows[0]["EmpEmail"].ToString();
+                    txtCategoryCode.Text = empData.EmpCategory;//ds.Tables[0].Rows[0]["EmpCategory"].ToString();
+
+                    txtCategoryDesc.Text = empData.CatgDesc;//ds.Tables[0].Rows[0]["CatgDesc"].ToString();
+
+                    txtDOB.EditValue = Convert.ToDateTime(empData.EmpDoB);
+                    txtPanNo.Text = empData.EmpPanNo;//ds.Tables[0].Rows[0]["EmpPanNo"].ToString();
+                    txtPassPortNo.Text = empData.EmpPassportNo;//ds.Tables[0].Rows[0]["EmpPassportNo"].ToString();
+
+
+                    txtEmployeeReligion.Text = empData.EmpReligion;//ds.Tables[0].Rows[0]["EmpReligion"].ToString();
+                    txtMaritalStatus.Text = empData.EmpMaritalStatus;//ds.Tables[0].Rows[0]["EmpMaritalStatus"].ToString();
+                    txtPaymentMode.Text = empData.EmpPymtMode;//ds.Tables[0].Rows[0]["EmpPymtMode"].ToString();
+                    txtIfscCode.Text = empData.EmpBankIFSCode;//ds.Tables[0].Rows[0]["EmpBankIFSCode"].ToString();
+                    txtBankAccountNo.Text = empData.EmpBankAcNo;//ds.Tables[0].Rows[0]["EmpBankAcNo"].ToString();
+                    txtBankName.Text = empData.EmpBankName;//ds.Tables[0].Rows[0]["EmpBankName"].ToString();
+                    txtNomineeName.Text = empData.EmpNominee;//ds.Tables[0].Rows[0]["EmpNominee"].ToString();
+                    txtNomineeRelation.Text = empData.EmpNomineeRelation;//ds.Tables[0].Rows[0]["EmpNomineeRelation"].ToString();
+                    if (empData.EmpNomineeDOB.ToString() == string.Empty)
+                    {
+
+                    }
+                    else
+                    {
+                        txtNomineeDOB.EditValue = Convert.ToDateTime(empData.EmpNomineeDOB);
+                    }
+
+
+
+                    txtAdharCardNo.Text = empData.EmpAdharCardNo;//ds.Tables[0].Rows[0]["EmpAdharCardNo"].ToString();
+
+                    txtHealthInsurance.Text = empData.EmpGHISDed.ToString();//ds.Tables[0].Rows[0]["EmpGHISDed"].ToString();
+
+                    txtMiscDed.Text = empData.EmpMscD1.ToString();//ds.Tables[0].Rows[0]["EmpMscD1"].ToString();
+
+                    txtAddress1.Text = empData.EmpAddress1;//ds.Tables[0].Rows[0]["EmpAddress1"].ToString();
+                    txtAddress2.Text = empData.EmpAddress2;//ds.Tables[0].Rows[0]["EmpAddress2"].ToString();
+                    txtAddress3.Text = empData.EmpAddress3;//ds.Tables[0].Rows[0]["EmpAddress3"].ToString();
+
+                    txtState.Text = empData.EmpState;//ds.Tables[0].Rows[0]["EmpState"].ToString();
+                    txtCountry.Text = empData.EmpCountry;//ds.Tables[0].Rows[0]["EmpCountry"].ToString();
+
+                    txtEFPFTag.Text = empData.EmpFpfDTag;//ds.Tables[0].Rows[0]["EmpFpfDTag"].ToString();
+
+                    //NULL Exception
+                    //txtUANNo.Text = ds.Tables[0].Rows[0]["EmpUANNo"].ToString();
+                    //txtUnitCode.Text = ds.Tables[0].Rows[0]["UnitCode"].ToString();
+                    //txtUnitName.Text = ds.Tables[0].Rows[0]["UnitName"].ToString();
+                    //txtAccCode.Text = ds.Tables[0].Rows[0]["EmpPartyCode"].ToString();
+                    //txtBankBranchCode.Text = ds.Tables[0].Rows[0]["EmpBankBranchCode"].ToString();
+                    txtCategoryCode.Focus();
+
+                    timeEdit_Time_In_First.EditValue = empData.TimeInFirst;
+                    timeEdit_Time_Out_First.EditValue = empData.TimeOutFirst;
+                    timeEdit_Time_In_Last.EditValue = empData.TimeInLast;
+                    timeEdit_Time_Out_Last.EditValue = empData.TimeOutLast;
+                }
+
 
                 txtEmpName.Enabled = false;
                 PrintLogWin.PrintLog("frmEmloyeeMstAddEdit_Load =========> Line 131 => sp_LoadEmpMstFEditing '" + EmpCode + "'");
@@ -137,9 +230,9 @@ namespace WindowsFormsApplication1
                 {
                     DataSet ds = dsResult.Item2;
 
-                    if (ds.Tables[0].Rows.Count > 0)
+                    if (ds.Tables[0].Rows.Count > 10000)
                     {
-                        txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
+
                         txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
                         txtRelationTag.Text = ds.Tables[0].Rows[0]["EmpFHRelationTag"].ToString();
                         txtFHName.Text = ds.Tables[0].Rows[0]["EmpFHName"].ToString();
@@ -169,10 +262,7 @@ namespace WindowsFormsApplication1
                         txtESIDTag.Text = ds.Tables[0].Rows[0]["EmpESIDTag"].ToString();
                         txtEPFNo.Text = ds.Tables[0].Rows[0]["EmpPFno"].ToString();
                         txtESICNo.Text = ds.Tables[0].Rows[0]["EmpESIno"].ToString();
-                        txtBasicPay.Text = ds.Tables[0].Rows[0]["EmpBasic"].ToString();
-                        txtHRA.Text = ds.Tables[0].Rows[0]["EmpHRA"].ToString();
-                        txtConvenyance.Text = ds.Tables[0].Rows[0]["EmpConv"].ToString();
-                        txtPetrol.Text = ds.Tables[0].Rows[0]["EmpPET"].ToString();
+                        
                         txtTDS.Text = ds.Tables[0].Rows[0]["EmpTDS"].ToString();
                         txtEmpLeft.Text = ds.Tables[0].Rows[0]["EmpLeft"].ToString();
                         txtRemarks.Text = ds.Tables[0].Rows[0]["EmpRemarks"].ToString();
@@ -191,7 +281,7 @@ namespace WindowsFormsApplication1
                         txtPanNo.Text = ds.Tables[0].Rows[0]["EmpPanNo"].ToString();
                         txtPassPortNo.Text = ds.Tables[0].Rows[0]["EmpPassportNo"].ToString();
 
-                        txtEmpSplAlw.Text = ds.Tables[0].Rows[0]["EmpSplAlw"].ToString();
+                       
                         txtEmployeeReligion.Text = ds.Tables[0].Rows[0]["EmpReligion"].ToString();
                         txtMaritalStatus.Text = ds.Tables[0].Rows[0]["EmpMaritalStatus"].ToString();
                         txtPaymentMode.Text = ds.Tables[0].Rows[0]["EmpPymtMode"].ToString();
@@ -220,12 +310,14 @@ namespace WindowsFormsApplication1
                         txtAddress1.Text = ds.Tables[0].Rows[0]["EmpAddress1"].ToString();
                         txtAddress2.Text = ds.Tables[0].Rows[0]["EmpAddress2"].ToString();
                         txtAddress3.Text = ds.Tables[0].Rows[0]["EmpAddress3"].ToString();
-                        txtDistCity.Text = ds.Tables[0].Rows[0]["EmpDistCity"].ToString();
+                       
                         txtState.Text = ds.Tables[0].Rows[0]["EmpState"].ToString();
                         txtCountry.Text = ds.Tables[0].Rows[0]["EmpCountry"].ToString();
 
                         txtEFPFTag.Text = ds.Tables[0].Rows[0]["EmpFpfDTag"].ToString();
-                        txtUANNo.Text = ds.Tables[0].Rows[0]["EmpUANNo"].ToString();
+                        
+                        //NULL Exception
+                        //txtUANNo.Text = ds.Tables[0].Rows[0]["EmpUANNo"].ToString();
                         //txtUnitCode.Text = ds.Tables[0].Rows[0]["UnitCode"].ToString();
                         //txtUnitName.Text = ds.Tables[0].Rows[0]["UnitName"].ToString();
                         //txtAccCode.Text = ds.Tables[0].Rows[0]["EmpPartyCode"].ToString();
@@ -335,7 +427,8 @@ namespace WindowsFormsApplication1
                                                  + " EmpNationality,EmpEmail,EmpDoB,EmpPanNo,"
                                                  + " EmpPassportNo                           ,"
                                                  + " EmpSplAlw,EmpReligion,EmpMaritalStatus,EmpPymtMode,EmpBankIFSCode,"
-                                                 + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode)"
+                                                 + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode" +
+                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast)"
                                                  + " values((SELECT RIGHT('00000'+ CAST( ISNULL( max(Cast(EmpCode as int)),0)+1 AS VARCHAR(5)),5)from EmpMst),@EmpName,@EmpFHRelationTag,@EmpFHName,@EmpDeptCode,@EmpDesgCode,@EmpCategory,"
                                                  + " @EmpSex,@EmpDOJ,@EmpDOL,@EmpPFDTag,"
                                                  + " @EmpESIDTag,@EmpPFno,@EmpESIno,@EmpBasic,@EmpHRA,@EmpConv,"
@@ -343,7 +436,8 @@ namespace WindowsFormsApplication1
                                                  + " @EmpNationality,@EmpEmail,@EmpDoB,@EmpPanNo,"
                                                  + " @EmpPassportNo,"
                                                  + " @EmpSplAlw,@EmpReligion,@EmpMaritalStatus,@EmpPymtMode,@EmpBankIFSCode,"
-                                                 + " @EmpBankAcNo,@EmpBankName,@EmpNominee,@EmpNomineeRelation,@EmpNomineeDOB,@EmpAdharCardNo,@EmpGHISDed,@EmpFPFDTag,@EmpMscD1,@EmpAddress1,@EmpAddress2,@EmpAddress3,@EmpDistCity,@EmpState,@EmpCountry,@EmpUANNo,@EmpBankBranchCode)"
+                                                 + " @EmpBankAcNo,@EmpBankName,@EmpNominee,@EmpNomineeRelation,@EmpNomineeDOB,@EmpAdharCardNo,@EmpGHISDed,@EmpFPFDTag,@EmpMscD1,@EmpAddress1,@EmpAddress2,@EmpAddress3,@EmpDistCity,@EmpState,@EmpCountry,@EmpUANNo,@EmpBankBranchCode" +
+                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast)"
                                                  + " Commit ";
                         }
                         if (s1 == "Edit")
@@ -356,7 +450,11 @@ namespace WindowsFormsApplication1
                                                 + " EmpEmail=@EmpEmail,EmpDoB=@EmpDoB,EmpPanNo=@EmpPanNo,EmpPassportNo=@EmpPassportNo,EmpSplAlw=@EmpSplAlw,"
                                                 + " EmpReligion=@EmpReligion,EmpMaritalStatus=@EmpMaritalStatus,EmpPymtMode=@EmpPymtMode,EmpBankIFSCode=@EmpBankIFSCode, "
                                                 + " EmpBankAcNo=@EmpBankAcNo,EmpBankName=@EmpBankName,EmpNominee=@EmpNominee,EmpNomineeRelation=@EmpNomineeRelation,EmpNomineeDOB=@EmpNomineeDOB, "
-                                                + " EmpAdharCardNo=@EmpAdharCardNo,EmpGHISDed=@EmpGHISDed,EmpFPFDTag=@EmpFPFDTag,EmpMscD1=@EmpMscD1,EmpAddress1=@EmpAddress1,EmpAddress2=@EmpAddress2,EmpAddress3=@EmpAddress3,EmpDistCity=@EmpDistCity,EmpState=@EmpState,EmpCountry=@EmpCountry ,EmpUANNo=@EmpUANNo,EmpBankBranchCode=@EmpBankBranchCode "
+                                                + " EmpAdharCardNo=@EmpAdharCardNo,EmpGHISDed=@EmpGHISDed,EmpFPFDTag=@EmpFPFDTag,EmpMscD1=@EmpMscD1,EmpAddress1=@EmpAddress1,EmpAddress2=@EmpAddress2,EmpAddress3=@EmpAddress3,EmpDistCity=@EmpDistCity,EmpState=@EmpState,EmpCountry=@EmpCountry ,EmpUANNo=@EmpUANNo,EmpBankBranchCode=@EmpBankBranchCode, " +
+                                                "   TimeInFirst = @TimeInFirst," +
+                                                "   TimeOutFirst = @TimeOutFirst," +
+                                                "   TimeInLast = @TimeInLast," +
+                                                "   TimeOutLast = @TimeOutLast"
                                                 + " Where EmpCode=@EmpCode";
                         }
 
@@ -389,10 +487,10 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@EmpESIDTag", txtESIDTag.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpPFno", txtEPFNo.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpESIno", txtESICNo.Text.Trim());
-                        sqlcom.Parameters.AddWithValue("@EmpBasic", Convert.ToDecimal(txtBasicPay.Text));
-                        sqlcom.Parameters.AddWithValue("@EmpHRA", Convert.ToDecimal(txtHRA.Text));
-                        sqlcom.Parameters.AddWithValue("@EmpConv", Convert.ToDecimal(txtConvenyance.Text));
-                        sqlcom.Parameters.AddWithValue("@EmpPET", Convert.ToDecimal(txtPetrol.Text));
+                        sqlcom.Parameters.AddWithValue("@EmpBasic", 0);
+                        sqlcom.Parameters.AddWithValue("@EmpHRA", 0);
+                        sqlcom.Parameters.AddWithValue("@EmpConv", 0);
+                        sqlcom.Parameters.AddWithValue("@EmpPET", 0);
                         sqlcom.Parameters.AddWithValue("@EmpTDS", Convert.ToDecimal(txtTDS.Text));
                         sqlcom.Parameters.AddWithValue("@EmpLeft", txtEmpLeft.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpRemarks", txtRemarks.Text.Trim());
@@ -409,7 +507,7 @@ namespace WindowsFormsApplication1
                         }
                         sqlcom.Parameters.AddWithValue("@EmpPanNo", txtPanNo.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpPassportNo", txtPassPortNo.Text.Trim());
-                        sqlcom.Parameters.AddWithValue("@EmpSplAlw", Convert.ToDecimal(txtEmpSplAlw.Text));
+                        sqlcom.Parameters.AddWithValue("@EmpSplAlw", 0);
                         sqlcom.Parameters.AddWithValue("@EmpReligion", txtEmployeeReligion.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpMaritalStatus", txtMaritalStatus.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpPymtMode", txtPaymentMode.Text.Trim());
@@ -433,12 +531,21 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@EmpAddress1", txtAddress1.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpAddress2", txtAddress2.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpAddress3", txtAddress3.Text.Trim());
-                        sqlcom.Parameters.AddWithValue("@EmpDistCity", txtDistCity.Text.Trim());
+
+                        sqlcom.Parameters.AddWithValue("@EmpDistCity", string.Empty);
+
                         sqlcom.Parameters.AddWithValue("@EmpState", txtState.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpCountry", txtCountry.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpUANNo", txtUANNo.Text.Trim());
 
                         sqlcom.Parameters.AddWithValue("@EmpBankBranchCode", txtBankBranchCode.Text.Trim());
+
+                        sqlcom.Parameters.AddWithValue("@TimeInFirst", Convert.ToDateTime(timeEdit_Time_In_First.EditValue.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeOutFirst", Convert.ToDateTime(timeEdit_Time_Out_First.EditValue.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeInLast", Convert.ToDateTime(timeEdit_Time_In_Last.EditValue.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeOutLast", Convert.ToDateTime(timeEdit_Time_Out_Last.EditValue.ToString().Trim())
+                            );
+
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
                         sqlcon.Close();
@@ -530,9 +637,5 @@ namespace WindowsFormsApplication1
                 txtESIDTag.Focus();
             }
         }
-
-
-
-
     }
 }

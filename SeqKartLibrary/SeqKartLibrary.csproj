@@ -72,10 +72,15 @@
     <Compile Include="CrudTask\ChallanOutMain_Concrete.cs" />
     <Compile Include="CrudTask\CrudAction.cs" />
     <Compile Include="CrudTask\EmployeeData.cs" />
+    <Compile Include="CrudTask\ProgramMasterData.cs" />
     <Compile Include="CrudTask\usersBll.cs" />
     <Compile Include="HelperClass\ComparisonUtils.cs" />
     <Compile Include="HelperClass\ControllerUtils.cs" />
     <Compile Include="HelperClass\ConvertValTo.cs" />
+    <Compile Include="Interfaces\ICatgMst.cs" />
+    <Compile Include="Interfaces\IDeptMst.cs" />
+    <Compile Include="Interfaces\IDesgMst.cs" />
+    <Compile Include="Interfaces\IEmpMST.cs" />
     <Compile Include="Interfaces\IFrmTransaction.cs" />
     <Compile Include="Models\AttendanceModel.cs" />
     <Compile Include="Models\AttendanceSource.cs">
@@ -85,11 +90,20 @@
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AttendanceStatusModel.cs" />
+    <Compile Include="Models\CatgMst.cs">
+      <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ChallanOutMain_Model.cs" />
     <Compile Include="Models\DailyShift.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DailyShiftModel.cs" />
+    <Compile Include="Models\DeptMst.cs">
+      <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DesgMst.cs">
+      <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EmployeeAttendance.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
@@ -109,9 +123,14 @@
       <DependentUpon>EmployeeAttendanceEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeItem.cs" />
+    <Compile Include="Models\EmployeeMasterModel.cs" />
+    <Compile Include="Models\EmpMST.cs">
+      <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ProgramMaster.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProgramMasterModel.cs" />
     <Compile Include="Models\user.cs" />
     <Compile Include="Models\WORKER.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>

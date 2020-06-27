@@ -1,4 +1,5 @@
-﻿using DevExpress.Utils;
+﻿using Dapper;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
@@ -9,8 +10,10 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using HumanResourceManagementSystem;
 using SeqKartLibrary;
+using SeqKartLibrary.CrudTask;
 using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
+using SeqKartLibrary.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +29,7 @@ using WindowsFormsApplication1.Time_Office;
 
 namespace BNPL.Forms_Master
 {
+
     public partial class frmAttendenceLaoding : XtraForm
     {
         private DataTable dt = new DataTable();
@@ -83,9 +87,52 @@ namespace BNPL.Forms_Master
 
 
         public void LoadAttendanceDataGrid()
-        {
+        {           
+            ProgramMasterModel programMaster = ProgramMasterData.GetProgramMasterModel(GlobalVariables.ProgCode);
+
+            DataSet ds = ProjectFunctions.GetDataSet("Select ProgProcName,ProgDesc from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'");
+            string ProcedureName = ds.Tables[0].Rows[0]["ProgProcName"].ToString();
+
+            PrintLogWin.PrintLog("LoadAttendanceDataGrid => GlobalVariables.ProgCode ******************** " + GlobalVariables.ProgCode);
+            PrintLogWin.PrintLog("LoadAttendanceDataGrid => ProcedureName Dapper ******************** " + programMaster.ProgProcName);
+            PrintLogWin.PrintLog("LoadAttendanceDataGrid => ProcedureName B ******************** " + ProcedureName);
+
+            
+            List<AttendanceModel> att = ProgramMasterData.GetData<AttendanceModel>(GlobalVariables.ProgCode);
+            PrintLogWin.PrintLog("LoadAttendanceDataGrid => att ******************** " + att.Count);
+
+
             gridView_AttendanceData.Columns.Clear();
 
+            DataSet att_ds = ProgramMasterData.GetData(GlobalVariables.ProgCode);
+
+            if (ComparisonUtils.IsNotNull_DataSet(att_ds))
+            {
+                BindingList<object> binding_list = new BindingList<object>();
+
+                foreach (DataRow dr in att_ds.Tables[0].Rows)
+                {
+                    var employeeAttendance = new
+                    {
+                        SerialId = dr[Col.EmployeeAttendance.serial_id],
+                        EntryDate = dr[Col.EmployeeAttendance.entry_date],
+                        Shift = dr[Col.DailyShifts.shift_name],
+                        Status = dr[Col.AttendanceStatus.status],
+                        EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
+                        AttendanceDate = dr[Col.EmployeeAttendance.attendance_date],
+                        TimeIn = ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_in]).ToString("hh:mm tt"),
+                        TimeOut = ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_out]).ToString("hh:mm tt"),
+                        Source = dr[Col.AttendanceSource.source_name],
+                        GatePassTime = ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.gate_pass_time]).ToString("hh:mm tt"),
+                        DeductionTimeOT = dr[Col.EmployeeAttendance.ot_deducton_time]
+                    };
+
+                    binding_list.Add(employeeAttendance);
+                }
+
+                gridControl_AttendanceData.DataSource = binding_list;
+            }
+           /*
             using (SEQKARTNewEntities db = new SEQKARTNewEntities())
             {
                 BindingList<AttendanceModel> binding_list = new BindingList<AttendanceModel>();
@@ -141,7 +188,7 @@ namespace BNPL.Forms_Master
                 gridControl_AttendanceData.DataSource = binding_list;
 
             }
-
+            */
             /*
             gridView_AttendanceData.Columns.Clear();
 
@@ -362,7 +409,7 @@ namespace BNPL.Forms_Master
 
             //ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
             //ProjectFunctions.GirdViewVisualize(gridView_UserMaster);
-            FillDataToGrid();
+            //FillDataToGrid();
         }
 
         private void SetMyControls2()
@@ -435,6 +482,7 @@ namespace BNPL.Forms_Master
         private void GridEvents()
         {
             PrintLogWin.PrintLog("*[ GridEvents ]*");
+
 
             //Disableed
 

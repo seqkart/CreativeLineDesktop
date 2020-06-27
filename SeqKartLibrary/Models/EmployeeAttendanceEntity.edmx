@@ -22,6 +22,16 @@ warning 6002: The table/view 'SEQKARTNew.dbo.AttendanceStatus' does not have a p
           <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="CatgMst">
+          <Key>
+            <PropertyRef Name="CatgId" />
+          </Key>
+          <Property Name="CatgId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatgCode" Type="varchar" MaxLength="4" />
+          <Property Name="CatgDesc" Type="varchar" MaxLength="100" />
+          <Property Name="SuncDate" Type="date" />
+          <Property Name="SyncDate" Type="date" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SEQKARTNew.dbo.DailyShifts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DailyShifts">
@@ -30,6 +40,32 @@ warning 6002: The table/view 'SEQKARTNew.dbo.DailyShifts' does not have a primar
           </Key>
           <Property Name="shift_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="shift_name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SEQKARTNew.dbo.DeptMst' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DeptMst">
+          <Key>
+            <PropertyRef Name="DeptID" />
+          </Key>
+          <Property Name="DeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeptCode" Type="nvarchar" MaxLength="4" />
+          <Property Name="DeptDesc" Type="nvarchar" MaxLength="40" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="60" />
+          <Property Name="UpDtUser" Type="varchar" MaxLength="20" />
+          <Property Name="FeedDt" Type="datetime" />
+          <Property Name="UpDateDt" Type="datetime" />
+          <Property Name="SuncDate" Type="date" />
+          <Property Name="SyncDate" Type="date" />
+        </EntityType>
+        <EntityType Name="DesgMst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="DesgCode" Type="varchar" MaxLength="4" />
+          <Property Name="DesgDesc" Type="varchar" MaxLength="100" />
+          <Property Name="SuncDate" Type="date" />
+          <Property Name="SyncDate" Type="date" />
         </EntityType>
         <EntityType Name="EmployeeAttendance">
           <Key>
@@ -46,6 +82,142 @@ warning 6002: The table/view 'SEQKARTNew.dbo.DailyShifts' does not have a primar
           <Property Name="attendance_source" Type="int" />
           <Property Name="gate_pass_time" Type="datetime" />
           <Property Name="ot_deducton_time" Type="int" />
+        </EntityType>
+        <EntityType Name="EmpMST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpCode" Type="varchar" MaxLength="5" />
+          <Property Name="EmpName" Type="varchar" MaxLength="40" />
+          <Property Name="EmpDeptCode" Type="varchar" MaxLength="10" />
+          <Property Name="EmpDeptCodeSpl" Type="varchar" MaxLength="10" />
+          <Property Name="EmpDesgCode" Type="varchar" MaxLength="10" />
+          <Property Name="UnitCode" Type="varchar" MaxLength="10" />
+          <Property Name="EmpFHRelationTag" Type="varchar" MaxLength="1" />
+          <Property Name="EmpFHName" Type="varchar" MaxLength="40" />
+          <Property Name="EmpSex" Type="varchar" MaxLength="1" />
+          <Property Name="EmpAge" Type="varchar" MaxLength="4" />
+          <Property Name="EmpDOJ" Type="datetime" />
+          <Property Name="EmpDOL" Type="datetime" />
+          <Property Name="EmpShitCode" Type="varchar" MaxLength="2" />
+          <Property Name="EmpDutyHours" Type="float" />
+          <Property Name="EmpOTCalHours" Type="float" />
+          <Property Name="EmpPFDTag" Type="varchar" MaxLength="1" />
+          <Property Name="EmpFpfDTag" Type="varchar" MaxLength="1" />
+          <Property Name="EmpESIDTag" Type="varchar" MaxLength="50" />
+          <Property Name="EmpPFno" Type="varchar" MaxLength="8" />
+          <Property Name="EmpESIno" Type="varchar" MaxLength="10" />
+          <Property Name="EmpBasic" Type="float" />
+          <Property Name="EmpxBasic" Type="float" />
+          <Property Name="EmpHRA" Type="float" />
+          <Property Name="EmpxHRA" Type="float" />
+          <Property Name="EmpConv" Type="float" />
+          <Property Name="EmpxConv" Type="float" />
+          <Property Name="EmpPET" Type="float" />
+          <Property Name="EmpxPET" Type="float" />
+          <Property Name="EmpMscA1" Type="float" />
+          <Property Name="EmpMscA2" Type="float" />
+          <Property Name="EmpTDS" Type="float" />
+          <Property Name="EmpMscD1" Type="float" />
+          <Property Name="EmpESIDespsCd" Type="int" />
+          <Property Name="EmpIncDt" Type="datetime" />
+          <Property Name="EmptTemp" Type="varchar" MaxLength="1" />
+          <Property Name="EmpLeft" Type="varchar" MaxLength="1" />
+          <Property Name="EmpRemarks" Type="varchar" MaxLength="150" />
+          <Property Name="EmpMotherNm" Type="varchar" MaxLength="40" />
+          <Property Name="EmpOtherNm" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPerAdd1" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPerAdd2" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPerAdd3" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPerAdd4" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPerAdd5" Type="varchar" MaxLength="40" />
+          <Property Name="EmpCCAdd1" Type="varchar" MaxLength="40" />
+          <Property Name="EmpCCAdd2" Type="varchar" MaxLength="40" />
+          <Property Name="EmpCCAdd3" Type="varchar" MaxLength="40" />
+          <Property Name="EmpCCAdd4" Type="varchar" MaxLength="40" />
+          <Property Name="EmpCCAdd5" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPOBVlg" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPOBcity" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPerState" Type="varchar" MaxLength="40" />
+          <Property Name="EmpCCState" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPerCountry" Type="varchar" MaxLength="40" />
+          <Property Name="EmpCCCountry" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPOBCState" Type="varchar" MaxLength="40" />
+          <Property Name="EmpPOBCcountry" Type="varchar" MaxLength="40" />
+          <Property Name="EmpNationality" Type="varchar" MaxLength="40" />
+          <Property Name="EmpEmail" Type="varchar" MaxLength="80" />
+          <Property Name="EmpCategory" Type="varchar" MaxLength="4" />
+          <Property Name="EmppfdSplTag" Type="nchar" MaxLength="1" />
+          <Property Name="EmpRejoinTag" Type="varchar" MaxLength="1" />
+          <Property Name="empcodeN" Type="int" />
+          <Property Name="EmpBasicH" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="EMPHRAH" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="EmpPFDMaxSal" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EmpDoB" Type="datetime" />
+          <Property Name="EmpcESIes" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EmpDoJre" Type="datetime" />
+          <Property Name="EmpEsiRepTag" Type="char" MaxLength="1" />
+          <Property Name="EmpEsiNumN" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="EmpELAELLCode" Type="varchar" MaxLength="4" />
+          <Property Name="EmpLunchHrs" Type="int" />
+          <Property Name="EmpEmplrCode" Type="varchar" MaxLength="4" />
+          <Property Name="EmpAreaLoctCode" Type="varchar" MaxLength="4" />
+          <Property Name="EmpSDrqd" Type="varchar" MaxLength="1" />
+          <Property Name="EmpSftPatCode" Type="varchar" MaxLength="5" />
+          <Property Name="EmpSDsdt" Type="datetime" />
+          <Property Name="EmpSDedt" Type="datetime" />
+          <Property Name="EmpFWSC" Type="char" MaxLength="1" />
+          <Property Name="EmpWOff" Type="char" MaxLength="1" />
+          <Property Name="EmpCardNO" Type="varchar" MaxLength="16" />
+          <Property Name="EmpDummy" Type="varchar" MaxLength="10" />
+          <Property Name="EmpNAlw1" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EmpNAlw2" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EmpNAlw3" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EmpNAlw4" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EMPLOC" Type="varchar" MaxLength="20" />
+          <Property Name="EmpHighestQlf" Type="varchar" MaxLength="6" />
+          <Property Name="EmpPOI" Type="varchar" MaxLength="6" />
+          <Property Name="EmpPanNo" Type="varchar" MaxLength="10" />
+          <Property Name="EmpPassportNo" Type="varchar" MaxLength="20" />
+          <Property Name="EmpRefernce" Type="varchar" MaxLength="50" />
+          <Property Name="EmpMWGrade" Type="varchar" MaxLength="5" />
+          <Property Name="EmpDeptN" Type="nvarchar" MaxLength="4" />
+          <Property Name="EmpCHstlAlw" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpProDevAlw" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpNewsPapAlw" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpMedAlw" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpUnformAlw" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpSplAlw" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpLTCalw" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpReligion" Type="varchar" MaxLength="20" />
+          <Property Name="EmpMaritalStatus" Type="varchar" MaxLength="20" />
+          <Property Name="EmpPymtMode" Type="varchar" MaxLength="20" />
+          <Property Name="EmpBankIFSCode" Type="varchar" MaxLength="15" />
+          <Property Name="EmpBankAcNo" Type="varchar" MaxLength="20" />
+          <Property Name="EmpBankName" Type="varchar" MaxLength="40" />
+          <Property Name="EmpNominee" Type="varchar" MaxLength="25" />
+          <Property Name="EmpNomineeRelation" Type="varchar" MaxLength="4" />
+          <Property Name="EmpNomineeDOB" Type="datetime" />
+          <Property Name="EmpAdharCardNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmpCEduAlw" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpGHISDed" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpAddress1" Type="varchar" MaxLength="100" />
+          <Property Name="EmpAddress2" Type="varchar" MaxLength="100" />
+          <Property Name="EmpAddress3" Type="varchar" MaxLength="100" />
+          <Property Name="EmpDistCity" Type="varchar" MaxLength="50" />
+          <Property Name="EmpState" Type="varchar" MaxLength="50" />
+          <Property Name="EmpCountry" Type="varchar" MaxLength="50" />
+          <Property Name="EmpGrossPay" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmpUANNo" Type="varchar" MaxLength="20" />
+          <Property Name="EmpPartyCode" Type="varchar" MaxLength="6" />
+          <Property Name="EmpBankBranchCode" Type="varchar" MaxLength="25" />
+          <Property Name="SuncDate" Type="date" />
+          <Property Name="SyncDate" Type="date" />
+          <Property Name="TimeInFirst" Type="time" Precision="7" />
+          <Property Name="TimeOutFirst" Type="time" Precision="7" />
+          <Property Name="TimeInLast" Type="time" Precision="7" />
+          <Property Name="TimeOutLast" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="ProgramMaster">
           <Key>
@@ -104,7 +276,10 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
         </EntityType>
         <EntityContainer Name="SEQKARTNewModelStoreContainer">
           <EntitySet Name="AttendanceSource" EntityType="Self.AttendanceSource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatgMst" EntityType="Self.CatgMst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DesgMst" EntityType="Self.DesgMst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeAttendance" EntityType="Self.EmployeeAttendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpMST" EntityType="Self.EmpMST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramMaster" EntityType="Self.ProgramMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AttendanceStatus" EntityType="Self.AttendanceStatus" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -117,6 +292,19 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
     [DailyShifts].[shift_id] AS [shift_id], 
     [DailyShifts].[shift_name] AS [shift_name]
     FROM [dbo].[DailyShifts] AS [DailyShifts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DeptMst" EntityType="Self.DeptMst" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DeptMst].[DeptID] AS [DeptID], 
+    [DeptMst].[DeptCode] AS [DeptCode], 
+    [DeptMst].[DeptDesc] AS [DeptDesc], 
+    [DeptMst].[Remarks] AS [Remarks], 
+    [DeptMst].[UpDtUser] AS [UpDtUser], 
+    [DeptMst].[FeedDt] AS [FeedDt], 
+    [DeptMst].[UpDateDt] AS [UpDateDt], 
+    [DeptMst].[SuncDate] AS [SuncDate], 
+    [DeptMst].[SyncDate] AS [SyncDate]
+    FROM [dbo].[DeptMst] AS [DeptMst]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="WORKER" EntityType="Self.WORKER" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -177,6 +365,10 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           <EntitySet Name="DailyShifts" EntityType="SEQKARTNewModel.DailyShift" />
           <EntitySet Name="AttendanceSources" EntityType="SEQKARTNewModel.AttendanceSource" />
           <EntitySet Name="ProgramMasters" EntityType="SEQKARTNewModel.ProgramMaster" />
+          <EntitySet Name="EmpMSTs" EntityType="SEQKARTNewModel.EmpMST" />
+          <EntitySet Name="CatgMsts" EntityType="SEQKARTNewModel.CatgMst" />
+          <EntitySet Name="DesgMsts" EntityType="SEQKARTNewModel.DesgMst" />
+          <EntitySet Name="DeptMsts" EntityType="SEQKARTNewModel.DeptMst" />
         </EntityContainer>
         <EntityType Name="WORKER">
           <Key>
@@ -250,6 +442,176 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           <Property Name="RoleCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="OrderBy" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="ProgPrinterName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SuncDate" Type="DateTime" Precision="0" />
+          <Property Name="SyncDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="EmpMST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="EmpName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDeptCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDeptCodeSpl" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDesgCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UnitCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpFHRelationTag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EmpFHName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpSex" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EmpAge" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDOJ" Type="DateTime" Precision="3" />
+          <Property Name="EmpDOL" Type="DateTime" Precision="3" />
+          <Property Name="EmpShitCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDutyHours" Type="Double" />
+          <Property Name="EmpOTCalHours" Type="Double" />
+          <Property Name="EmpPFDTag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EmpFpfDTag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EmpESIDTag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPFno" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="EmpESIno" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpBasic" Type="Double" />
+          <Property Name="EmpxBasic" Type="Double" />
+          <Property Name="EmpHRA" Type="Double" />
+          <Property Name="EmpxHRA" Type="Double" />
+          <Property Name="EmpConv" Type="Double" />
+          <Property Name="EmpxConv" Type="Double" />
+          <Property Name="EmpPET" Type="Double" />
+          <Property Name="EmpxPET" Type="Double" />
+          <Property Name="EmpMscA1" Type="Double" />
+          <Property Name="EmpMscA2" Type="Double" />
+          <Property Name="EmpTDS" Type="Double" />
+          <Property Name="EmpMscD1" Type="Double" />
+          <Property Name="EmpESIDespsCd" Type="Int32" />
+          <Property Name="EmpIncDt" Type="DateTime" Precision="3" />
+          <Property Name="EmptTemp" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EmpLeft" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EmpRemarks" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EmpMotherNm" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpOtherNm" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPerAdd1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPerAdd2" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPerAdd3" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPerAdd4" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPerAdd5" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCCAdd1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCCAdd2" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCCAdd3" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCCAdd4" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCCAdd5" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPOBVlg" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPOBcity" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPerState" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCCState" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPerCountry" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCCCountry" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPOBCState" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPOBCcountry" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpNationality" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpEmail" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCategory" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EmppfdSplTag" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="EmpRejoinTag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="empcodeN" Type="Int32" />
+          <Property Name="EmpBasicH" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EMPHRAH" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EmpPFDMaxSal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpDoB" Type="DateTime" Precision="3" />
+          <Property Name="EmpcESIes" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpDoJre" Type="DateTime" Precision="3" />
+          <Property Name="EmpEsiRepTag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EmpEsiNumN" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EmpELAELLCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EmpLunchHrs" Type="Int32" />
+          <Property Name="EmpEmplrCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EmpAreaLoctCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EmpSDrqd" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EmpSftPatCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="EmpSDsdt" Type="DateTime" Precision="3" />
+          <Property Name="EmpSDedt" Type="DateTime" Precision="3" />
+          <Property Name="EmpFWSC" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EmpWOff" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EmpCardNO" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDummy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpNAlw1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpNAlw2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpNAlw3" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpNAlw4" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EMPLOC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpHighestQlf" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPOI" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPanNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPassportNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpRefernce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpMWGrade" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDeptN" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="EmpCHstlAlw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpProDevAlw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpNewsPapAlw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpMedAlw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpUnformAlw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpSplAlw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpLTCalw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpReligion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpMaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPymtMode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpBankIFSCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EmpBankAcNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpBankName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmpNominee" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="EmpNomineeRelation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EmpNomineeDOB" Type="DateTime" Precision="3" />
+          <Property Name="EmpAdharCardNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmpCEduAlw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpGHISDed" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpAddress1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmpAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmpAddress3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDistCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpGrossPay" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmpUANNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpPartyCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="EmpBankBranchCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SuncDate" Type="DateTime" Precision="0" />
+          <Property Name="SyncDate" Type="DateTime" Precision="0" />
+          <Property Name="TimeInFirst" Type="Time" Precision="7" />
+          <Property Name="TimeOutFirst" Type="Time" Precision="7" />
+          <Property Name="TimeInLast" Type="Time" Precision="7" />
+          <Property Name="TimeOutLast" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="CatgMst">
+          <Key>
+            <PropertyRef Name="CatgId" />
+          </Key>
+          <Property Name="CatgId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatgCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CatgDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SuncDate" Type="DateTime" Precision="0" />
+          <Property Name="SyncDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="DesgMst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="DesgCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DesgDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SuncDate" Type="DateTime" Precision="0" />
+          <Property Name="SyncDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="DeptMst">
+          <Key>
+            <PropertyRef Name="DeptID" />
+          </Key>
+          <Property Name="DeptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeptCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="DeptDesc" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="UpDtUser" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FeedDt" Type="DateTime" Precision="3" />
+          <Property Name="UpDateDt" Type="DateTime" Precision="3" />
           <Property Name="SuncDate" Type="DateTime" Precision="0" />
           <Property Name="SyncDate" Type="DateTime" Precision="0" />
         </EntityType>
@@ -353,6 +715,180 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
                 <ScalarProperty Name="ProgInMenu" ColumnName="ProgInMenu" />
                 <ScalarProperty Name="ProgDesc" ColumnName="ProgDesc" />
                 <ScalarProperty Name="ProgCode" ColumnName="ProgCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpMSTs">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.EmpMST">
+              <MappingFragment StoreEntitySet="EmpMST">
+                <ScalarProperty Name="TimeOutLast" ColumnName="TimeOutLast" />
+                <ScalarProperty Name="TimeInLast" ColumnName="TimeInLast" />
+                <ScalarProperty Name="TimeOutFirst" ColumnName="TimeOutFirst" />
+                <ScalarProperty Name="TimeInFirst" ColumnName="TimeInFirst" />
+                <ScalarProperty Name="SyncDate" ColumnName="SyncDate" />
+                <ScalarProperty Name="SuncDate" ColumnName="SuncDate" />
+                <ScalarProperty Name="EmpBankBranchCode" ColumnName="EmpBankBranchCode" />
+                <ScalarProperty Name="EmpPartyCode" ColumnName="EmpPartyCode" />
+                <ScalarProperty Name="EmpUANNo" ColumnName="EmpUANNo" />
+                <ScalarProperty Name="EmpGrossPay" ColumnName="EmpGrossPay" />
+                <ScalarProperty Name="EmpCountry" ColumnName="EmpCountry" />
+                <ScalarProperty Name="EmpState" ColumnName="EmpState" />
+                <ScalarProperty Name="EmpDistCity" ColumnName="EmpDistCity" />
+                <ScalarProperty Name="EmpAddress3" ColumnName="EmpAddress3" />
+                <ScalarProperty Name="EmpAddress2" ColumnName="EmpAddress2" />
+                <ScalarProperty Name="EmpAddress1" ColumnName="EmpAddress1" />
+                <ScalarProperty Name="EmpGHISDed" ColumnName="EmpGHISDed" />
+                <ScalarProperty Name="EmpCEduAlw" ColumnName="EmpCEduAlw" />
+                <ScalarProperty Name="EmpAdharCardNo" ColumnName="EmpAdharCardNo" />
+                <ScalarProperty Name="EmpNomineeDOB" ColumnName="EmpNomineeDOB" />
+                <ScalarProperty Name="EmpNomineeRelation" ColumnName="EmpNomineeRelation" />
+                <ScalarProperty Name="EmpNominee" ColumnName="EmpNominee" />
+                <ScalarProperty Name="EmpBankName" ColumnName="EmpBankName" />
+                <ScalarProperty Name="EmpBankAcNo" ColumnName="EmpBankAcNo" />
+                <ScalarProperty Name="EmpBankIFSCode" ColumnName="EmpBankIFSCode" />
+                <ScalarProperty Name="EmpPymtMode" ColumnName="EmpPymtMode" />
+                <ScalarProperty Name="EmpMaritalStatus" ColumnName="EmpMaritalStatus" />
+                <ScalarProperty Name="EmpReligion" ColumnName="EmpReligion" />
+                <ScalarProperty Name="EmpLTCalw" ColumnName="EmpLTCalw" />
+                <ScalarProperty Name="EmpSplAlw" ColumnName="EmpSplAlw" />
+                <ScalarProperty Name="EmpUnformAlw" ColumnName="EmpUnformAlw" />
+                <ScalarProperty Name="EmpMedAlw" ColumnName="EmpMedAlw" />
+                <ScalarProperty Name="EmpNewsPapAlw" ColumnName="EmpNewsPapAlw" />
+                <ScalarProperty Name="EmpProDevAlw" ColumnName="EmpProDevAlw" />
+                <ScalarProperty Name="EmpCHstlAlw" ColumnName="EmpCHstlAlw" />
+                <ScalarProperty Name="EmpDeptN" ColumnName="EmpDeptN" />
+                <ScalarProperty Name="EmpMWGrade" ColumnName="EmpMWGrade" />
+                <ScalarProperty Name="EmpRefernce" ColumnName="EmpRefernce" />
+                <ScalarProperty Name="EmpPassportNo" ColumnName="EmpPassportNo" />
+                <ScalarProperty Name="EmpPanNo" ColumnName="EmpPanNo" />
+                <ScalarProperty Name="EmpPOI" ColumnName="EmpPOI" />
+                <ScalarProperty Name="EmpHighestQlf" ColumnName="EmpHighestQlf" />
+                <ScalarProperty Name="EMPLOC" ColumnName="EMPLOC" />
+                <ScalarProperty Name="EmpNAlw4" ColumnName="EmpNAlw4" />
+                <ScalarProperty Name="EmpNAlw3" ColumnName="EmpNAlw3" />
+                <ScalarProperty Name="EmpNAlw2" ColumnName="EmpNAlw2" />
+                <ScalarProperty Name="EmpNAlw1" ColumnName="EmpNAlw1" />
+                <ScalarProperty Name="EmpDummy" ColumnName="EmpDummy" />
+                <ScalarProperty Name="EmpCardNO" ColumnName="EmpCardNO" />
+                <ScalarProperty Name="EmpWOff" ColumnName="EmpWOff" />
+                <ScalarProperty Name="EmpFWSC" ColumnName="EmpFWSC" />
+                <ScalarProperty Name="EmpSDedt" ColumnName="EmpSDedt" />
+                <ScalarProperty Name="EmpSDsdt" ColumnName="EmpSDsdt" />
+                <ScalarProperty Name="EmpSftPatCode" ColumnName="EmpSftPatCode" />
+                <ScalarProperty Name="EmpSDrqd" ColumnName="EmpSDrqd" />
+                <ScalarProperty Name="EmpAreaLoctCode" ColumnName="EmpAreaLoctCode" />
+                <ScalarProperty Name="EmpEmplrCode" ColumnName="EmpEmplrCode" />
+                <ScalarProperty Name="EmpLunchHrs" ColumnName="EmpLunchHrs" />
+                <ScalarProperty Name="EmpELAELLCode" ColumnName="EmpELAELLCode" />
+                <ScalarProperty Name="EmpEsiNumN" ColumnName="EmpEsiNumN" />
+                <ScalarProperty Name="EmpEsiRepTag" ColumnName="EmpEsiRepTag" />
+                <ScalarProperty Name="EmpDoJre" ColumnName="EmpDoJre" />
+                <ScalarProperty Name="EmpcESIes" ColumnName="EmpcESIes" />
+                <ScalarProperty Name="EmpDoB" ColumnName="EmpDoB" />
+                <ScalarProperty Name="EmpPFDMaxSal" ColumnName="EmpPFDMaxSal" />
+                <ScalarProperty Name="EMPHRAH" ColumnName="EMPHRAH" />
+                <ScalarProperty Name="EmpBasicH" ColumnName="EmpBasicH" />
+                <ScalarProperty Name="empcodeN" ColumnName="empcodeN" />
+                <ScalarProperty Name="EmpRejoinTag" ColumnName="EmpRejoinTag" />
+                <ScalarProperty Name="EmppfdSplTag" ColumnName="EmppfdSplTag" />
+                <ScalarProperty Name="EmpCategory" ColumnName="EmpCategory" />
+                <ScalarProperty Name="EmpEmail" ColumnName="EmpEmail" />
+                <ScalarProperty Name="EmpNationality" ColumnName="EmpNationality" />
+                <ScalarProperty Name="EmpPOBCcountry" ColumnName="EmpPOBCcountry" />
+                <ScalarProperty Name="EmpPOBCState" ColumnName="EmpPOBCState" />
+                <ScalarProperty Name="EmpCCCountry" ColumnName="EmpCCCountry" />
+                <ScalarProperty Name="EmpPerCountry" ColumnName="EmpPerCountry" />
+                <ScalarProperty Name="EmpCCState" ColumnName="EmpCCState" />
+                <ScalarProperty Name="EmpPerState" ColumnName="EmpPerState" />
+                <ScalarProperty Name="EmpPOBcity" ColumnName="EmpPOBcity" />
+                <ScalarProperty Name="EmpPOBVlg" ColumnName="EmpPOBVlg" />
+                <ScalarProperty Name="EmpCCAdd5" ColumnName="EmpCCAdd5" />
+                <ScalarProperty Name="EmpCCAdd4" ColumnName="EmpCCAdd4" />
+                <ScalarProperty Name="EmpCCAdd3" ColumnName="EmpCCAdd3" />
+                <ScalarProperty Name="EmpCCAdd2" ColumnName="EmpCCAdd2" />
+                <ScalarProperty Name="EmpCCAdd1" ColumnName="EmpCCAdd1" />
+                <ScalarProperty Name="EmpPerAdd5" ColumnName="EmpPerAdd5" />
+                <ScalarProperty Name="EmpPerAdd4" ColumnName="EmpPerAdd4" />
+                <ScalarProperty Name="EmpPerAdd3" ColumnName="EmpPerAdd3" />
+                <ScalarProperty Name="EmpPerAdd2" ColumnName="EmpPerAdd2" />
+                <ScalarProperty Name="EmpPerAdd1" ColumnName="EmpPerAdd1" />
+                <ScalarProperty Name="EmpOtherNm" ColumnName="EmpOtherNm" />
+                <ScalarProperty Name="EmpMotherNm" ColumnName="EmpMotherNm" />
+                <ScalarProperty Name="EmpRemarks" ColumnName="EmpRemarks" />
+                <ScalarProperty Name="EmpLeft" ColumnName="EmpLeft" />
+                <ScalarProperty Name="EmptTemp" ColumnName="EmptTemp" />
+                <ScalarProperty Name="EmpIncDt" ColumnName="EmpIncDt" />
+                <ScalarProperty Name="EmpESIDespsCd" ColumnName="EmpESIDespsCd" />
+                <ScalarProperty Name="EmpMscD1" ColumnName="EmpMscD1" />
+                <ScalarProperty Name="EmpTDS" ColumnName="EmpTDS" />
+                <ScalarProperty Name="EmpMscA2" ColumnName="EmpMscA2" />
+                <ScalarProperty Name="EmpMscA1" ColumnName="EmpMscA1" />
+                <ScalarProperty Name="EmpxPET" ColumnName="EmpxPET" />
+                <ScalarProperty Name="EmpPET" ColumnName="EmpPET" />
+                <ScalarProperty Name="EmpxConv" ColumnName="EmpxConv" />
+                <ScalarProperty Name="EmpConv" ColumnName="EmpConv" />
+                <ScalarProperty Name="EmpxHRA" ColumnName="EmpxHRA" />
+                <ScalarProperty Name="EmpHRA" ColumnName="EmpHRA" />
+                <ScalarProperty Name="EmpxBasic" ColumnName="EmpxBasic" />
+                <ScalarProperty Name="EmpBasic" ColumnName="EmpBasic" />
+                <ScalarProperty Name="EmpESIno" ColumnName="EmpESIno" />
+                <ScalarProperty Name="EmpPFno" ColumnName="EmpPFno" />
+                <ScalarProperty Name="EmpESIDTag" ColumnName="EmpESIDTag" />
+                <ScalarProperty Name="EmpFpfDTag" ColumnName="EmpFpfDTag" />
+                <ScalarProperty Name="EmpPFDTag" ColumnName="EmpPFDTag" />
+                <ScalarProperty Name="EmpOTCalHours" ColumnName="EmpOTCalHours" />
+                <ScalarProperty Name="EmpDutyHours" ColumnName="EmpDutyHours" />
+                <ScalarProperty Name="EmpShitCode" ColumnName="EmpShitCode" />
+                <ScalarProperty Name="EmpDOL" ColumnName="EmpDOL" />
+                <ScalarProperty Name="EmpDOJ" ColumnName="EmpDOJ" />
+                <ScalarProperty Name="EmpAge" ColumnName="EmpAge" />
+                <ScalarProperty Name="EmpSex" ColumnName="EmpSex" />
+                <ScalarProperty Name="EmpFHName" ColumnName="EmpFHName" />
+                <ScalarProperty Name="EmpFHRelationTag" ColumnName="EmpFHRelationTag" />
+                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+                <ScalarProperty Name="EmpDesgCode" ColumnName="EmpDesgCode" />
+                <ScalarProperty Name="EmpDeptCodeSpl" ColumnName="EmpDeptCodeSpl" />
+                <ScalarProperty Name="EmpDeptCode" ColumnName="EmpDeptCode" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatgMsts">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.CatgMst">
+              <MappingFragment StoreEntitySet="CatgMst">
+                <ScalarProperty Name="SyncDate" ColumnName="SyncDate" />
+                <ScalarProperty Name="SuncDate" ColumnName="SuncDate" />
+                <ScalarProperty Name="CatgDesc" ColumnName="CatgDesc" />
+                <ScalarProperty Name="CatgCode" ColumnName="CatgCode" />
+                <ScalarProperty Name="CatgId" ColumnName="CatgId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DesgMsts">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.DesgMst">
+              <MappingFragment StoreEntitySet="DesgMst">
+                <ScalarProperty Name="SyncDate" ColumnName="SyncDate" />
+                <ScalarProperty Name="SuncDate" ColumnName="SuncDate" />
+                <ScalarProperty Name="DesgDesc" ColumnName="DesgDesc" />
+                <ScalarProperty Name="DesgCode" ColumnName="DesgCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeptMsts">
+            <EntityTypeMapping TypeName="SEQKARTNewModel.DeptMst">
+              <MappingFragment StoreEntitySet="DeptMst">
+                <ScalarProperty Name="SyncDate" ColumnName="SyncDate" />
+                <ScalarProperty Name="SuncDate" ColumnName="SuncDate" />
+                <ScalarProperty Name="UpDateDt" ColumnName="UpDateDt" />
+                <ScalarProperty Name="FeedDt" ColumnName="FeedDt" />
+                <ScalarProperty Name="UpDtUser" ColumnName="UpDtUser" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="DeptDesc" ColumnName="DeptDesc" />
+                <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
