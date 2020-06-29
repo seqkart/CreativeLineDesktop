@@ -14,7 +14,7 @@ namespace SeqKartLibrary.Models
     
     public partial class DailyShift
     {
-        public string CatgCode { get; set; }
-        public string CatgDesc { get; set; }
+        public int shift_id { get; set; }
+        public string shift_name { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace SeqKartLibrary.Models
 {
     public class EmployeeMasterModel 
     {
-        //public int ID { get; set; }
+        public int ID { get; set; }
         public string EmpCode { get; set; }
         public string EmpName { get; set; }
         public string EmpDeptCode { get; set; }
@@ -138,6 +138,7 @@ namespace SeqKartLibrary.Models
         public Nullable<System.TimeSpan> TimeInLast { get; set; }
         public Nullable<System.TimeSpan> TimeOutLast { get; set; }
 
+        public int WorkingHours { get; set; }
         /////////////////////
         public string CatgCode { get; set; }
         public string CatgDesc { get; set; }        

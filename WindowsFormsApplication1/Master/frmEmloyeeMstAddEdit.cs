@@ -1,12 +1,16 @@
 ﻿using Dapper;
+using DevExpress.DataProcessing;
+using DevExpress.XtraBars.Docking2010;
 using DevExpress.XtraEditors;
 using SeqKartLibrary;
+using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
 using SeqKartLibrary.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1
 {
@@ -26,13 +30,10 @@ namespace WindowsFormsApplication1
             ProjectFunctions.TextBoxVisualize(panelControl3);
             ProjectFunctions.TextBoxVisualize(panelControl4);
             ProjectFunctions.DatePickerVisualize(this);
-            ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
+            //ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
             txtEmpCode.Enabled = false;
         }
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
         private bool ValidateData()
         {
             if (txtEmpCode.Text.Trim().Length == 0)
@@ -72,7 +73,28 @@ namespace WindowsFormsApplication1
                 return false;
             }
 
-           
+
+            //var inTime_First = Convert.ToDateTime(timeEdit_Time_In_First.EditValue);
+            //var outTime_First = Convert.ToDateTime(timeEdit_Time_Out_First.EditValue);
+            ////var totalHours = Convert.ToDateTime(inTime).TimeOfDay.Subtract(outTime);
+            //var totalHrs_First = (outTime_First - inTime_First).TotalHours;
+            //totalWorkingHours_Text.Text = totalHrs_First.ToString();
+
+
+
+            //Action showMethod = delegate () {
+            //    MessageBox.Show("Please Enter TimeIn");
+            //};
+            //timeEdit_Time_In_First.EditValue.IfNull(showMethod);
+
+            //if (timeEdit_Time_In_First.EditValue.Equals(""))
+            //{
+            //    XtraMessageBox.Show("Please ENter TimeIn", "Inalid value", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //    timeEdit_Time_In_First.Focus();
+            //    return false;
+            //}
+
+
             if (txtHealthInsurance.Text.Trim().Length == 0)
             {
                 txtHealthInsurance.Text = "0";
@@ -102,8 +124,13 @@ namespace WindowsFormsApplication1
         //    }
         //    return s2;
         //}
+        private bool form_loaded = false;
         private void frmEmloyeeMstAddEdit_Load(object sender, EventArgs e)
-
+        {
+            
+            employeeFormData_Load();
+        }
+        private void employeeFormData_Load()
         {
             SetMyControls();
             if (s1 == "&Add")
@@ -215,12 +242,15 @@ namespace WindowsFormsApplication1
                     //txtBankBranchCode.Text = ds.Tables[0].Rows[0]["EmpBankBranchCode"].ToString();
                     txtCategoryCode.Focus();
 
-                    timeEdit_Time_In_First.EditValue = empData.TimeInFirst;
-                    timeEdit_Time_Out_First.EditValue = empData.TimeOutFirst;
-                    timeEdit_Time_In_Last.EditValue = empData.TimeInLast;
-                    timeEdit_Time_Out_Last.EditValue = empData.TimeOutLast;
+                    timeEdit_Time_In_First.EditValue = empData.TimeInFirst.ToString();
+                    timeEdit_Time_Out_First.EditValue = empData.TimeOutFirst.ToString();
+                    timeEdit_Time_In_Last.EditValue = empData.TimeInLast.ToString();
+                    timeEdit_Time_Out_Last.EditValue = empData.TimeOutLast.ToString();
+                    totalWorkingHours_Text.EditValue = empData.WorkingHours;
+
                 }
 
+                form_loaded = true;
 
                 txtEmpName.Enabled = false;
                 PrintLogWin.PrintLog("frmEmloyeeMstAddEdit_Load =========> Line 131 => sp_LoadEmpMstFEditing '" + EmpCode + "'");
@@ -402,7 +432,7 @@ namespace WindowsFormsApplication1
             ProjectFunctions.CreatePopUpForTwoBoxes("Select DesgCode,DesgDesc from DesgMst", " Where DesgCode", txtDesgCode, txtDesgDesc, txtRemarks, HelpGrid, HelpGridView, e);
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void saveEmployeeData()
         {
             if (ValidateData())
             {
@@ -428,7 +458,7 @@ namespace WindowsFormsApplication1
                                                  + " EmpPassportNo                           ,"
                                                  + " EmpSplAlw,EmpReligion,EmpMaritalStatus,EmpPymtMode,EmpBankIFSCode,"
                                                  + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode" +
-                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast)"
+                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours)"
                                                  + " values((SELECT RIGHT('00000'+ CAST( ISNULL( max(Cast(EmpCode as int)),0)+1 AS VARCHAR(5)),5)from EmpMst),@EmpName,@EmpFHRelationTag,@EmpFHName,@EmpDeptCode,@EmpDesgCode,@EmpCategory,"
                                                  + " @EmpSex,@EmpDOJ,@EmpDOL,@EmpPFDTag,"
                                                  + " @EmpESIDTag,@EmpPFno,@EmpESIno,@EmpBasic,@EmpHRA,@EmpConv,"
@@ -437,7 +467,7 @@ namespace WindowsFormsApplication1
                                                  + " @EmpPassportNo,"
                                                  + " @EmpSplAlw,@EmpReligion,@EmpMaritalStatus,@EmpPymtMode,@EmpBankIFSCode,"
                                                  + " @EmpBankAcNo,@EmpBankName,@EmpNominee,@EmpNomineeRelation,@EmpNomineeDOB,@EmpAdharCardNo,@EmpGHISDed,@EmpFPFDTag,@EmpMscD1,@EmpAddress1,@EmpAddress2,@EmpAddress3,@EmpDistCity,@EmpState,@EmpCountry,@EmpUANNo,@EmpBankBranchCode" +
-                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast)"
+                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast, @WorkingHours)"
                                                  + " Commit ";
                         }
                         if (s1 == "Edit")
@@ -454,7 +484,8 @@ namespace WindowsFormsApplication1
                                                 "   TimeInFirst = @TimeInFirst," +
                                                 "   TimeOutFirst = @TimeOutFirst," +
                                                 "   TimeInLast = @TimeInLast," +
-                                                "   TimeOutLast = @TimeOutLast"
+                                                "   TimeOutLast = @TimeOutLast," +
+                                                "   WorkingHours = @WorkingHours"
                                                 + " Where EmpCode=@EmpCode";
                         }
 
@@ -540,17 +571,18 @@ namespace WindowsFormsApplication1
 
                         sqlcom.Parameters.AddWithValue("@EmpBankBranchCode", txtBankBranchCode.Text.Trim());
 
-                        sqlcom.Parameters.AddWithValue("@TimeInFirst", Convert.ToDateTime(timeEdit_Time_In_First.EditValue.ToString().Trim()));
-                        sqlcom.Parameters.AddWithValue("@TimeOutFirst", Convert.ToDateTime(timeEdit_Time_Out_First.EditValue.ToString().Trim()));
-                        sqlcom.Parameters.AddWithValue("@TimeInLast", Convert.ToDateTime(timeEdit_Time_In_Last.EditValue.ToString().Trim()));
-                        sqlcom.Parameters.AddWithValue("@TimeOutLast", Convert.ToDateTime(timeEdit_Time_Out_Last.EditValue.ToString().Trim())
-                            );
+                        sqlcom.Parameters.AddWithValue("@TimeInFirst", Convert.ToDateTime(timeEdit_Time_In_First.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeOutFirst", Convert.ToDateTime(timeEdit_Time_Out_First.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeInLast", Convert.ToDateTime(timeEdit_Time_In_Last.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeOutLast", Convert.ToDateTime(timeEdit_Time_Out_Last.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@WorkingHours", Convert.ToInt32(totalWorkingHours_Text.Text.ToString().Trim()));
 
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
                         sqlcon.Close();
-                        XtraMessageBox.Show("Data Saved Successfully");
-                        this.Close();
+                        //XtraMessageBox.Show("Data Saved Successfully");
+                        ProjectFunctions.SpeakError("Data Saved Successfully");
+                        //this.Close();
                     }
                     catch (Exception ex)
                     {
@@ -637,5 +669,191 @@ namespace WindowsFormsApplication1
                 txtESIDTag.Focus();
             }
         }
+
+        private void windowsUIButtonPanelMain_ButtonClick(object sender, ButtonEventArgs e)
+        {
+            string tag = ((WindowsUIButton)e.Button).Tag.ToString();
+
+            switch (tag)
+            {
+                case "save":
+                    /* Navigate to page A */
+                    saveEmployeeData();
+                    break;
+                case "save_close":
+                    /* Navigate to page B */
+                    
+                    break;
+                case "save_new":
+                    /* Navigate to page C*/                    
+
+                    break;
+                case "reset":
+                    /* Navigate to page D */
+                    if (XtraMessageBox.Show("Do you want to reset the form?", "Confirmation", MessageBoxButtons.YesNo) != DialogResult.No)
+                    {
+                        form_loaded = false;
+                        employeeFormData_Load();
+
+                    }
+                        break;
+                case "close":
+                    /* Navigate to page E */
+                    this.Close();
+
+                    break;
+            }
+        }
+
+        private void timeEdit_Time_In_First_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateDUtyHours();
+        }
+
+        private void timeEdit_Time_Out_First_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateDUtyHours();
+
+        }
+        private void timeEdit_Time_In_Last_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateDUtyHours();
+        }
+
+        private void timeEdit_Time_Out_Last_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateDUtyHours();
+        }
+
+        private void CalculateDUtyHours()
+        {
+            //DateTime.ParseExact(Eval("aeStart").ToString(), "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToShortTimeString()
+            int shift_id = 1;
+
+            
+
+            try
+            {
+
+
+                if (!form_loaded)
+                {
+
+                }
+                else
+                {
+                    //string time_In = timeEdit_Time_In_First.Text + "";
+                    //PrintLogWin.PrintLog("1a => " + time_In + "");
+                    //TimeSpan timeSpan_In = TimeSpan.Parse(time_In);
+                    //DateTime dateTime_In = DateTime.Today.Add(timeSpan_In);
+                    DateTime dateTime_In = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + "");
+
+                    PrintLogWin.PrintLog("4a => " + dateTime_In + "");
+                    ///////////////////////////////////
+                    //string time_Out = timeEdit_Time_Out_First.Text + "";
+                    //PrintLogWin.PrintLog("1b => " + time_Out + "");
+                    //TimeSpan timeSpan_Out = TimeSpan.Parse(time_Out);
+                    //DateTime dateTime_Out = DateTime.Today.Add(timeSpan_Out);
+                    DateTime dateTime_Out = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
+
+                    PrintLogWin.PrintLog("4b => " + dateTime_Out + "");
+
+                    if (shift_id == 1)
+                    {
+                        if (dateTime_Out < dateTime_In)
+                        {
+                            ProjectFunctions.SpeakError("Time Out First cannot be less than Time In First in Day Shift");
+                            return;
+                        }
+                    }
+
+                    double totalHrs_First = (dateTime_Out - dateTime_In).TotalHours;
+                    if (totalHrs_First < 0)
+                    {
+                        totalHrs_First = totalHrs_First * -1;
+                    }
+                    PrintLogWin.PrintLog("5 => " + totalHrs_First + "");
+                    //double sinc(DateTime xIn, DateTime yOut) => (xIn - yOut).TotalHours < 0.0 ? (xIn - yOut).TotalHours * -1 : (xIn - yOut).TotalHours;
+
+                    ////////////////////////////////////
+
+                    //string time_In_Last = timeEdit_Time_In_Last.Text + "";
+                    //PrintLogWin.PrintLog("2a => " + time_In_Last + "");
+                    //TimeSpan timeSpan_In_Last = TimeSpan.Parse(time_In_Last);
+                    //DateTime dateTime_In_Last = DateTime.Today.Add(timeSpan_In_Last);
+                    DateTime dateTime_In_Last = ConvertTo.TimeToDate(timeEdit_Time_In_Last.Text + "");
+
+                    if (shift_id == 1)
+                    {
+                        if (dateTime_In_Last < dateTime_Out)
+                        {
+                            ProjectFunctions.SpeakError("Time In Last cannot be less than Time Out First in Day Shift");
+                            return;
+                        }
+                    }
+
+                    PrintLogWin.PrintLog("8a => " + dateTime_In_Last + "");
+                    /////////////////////////////////////
+
+                    //string time_Out_Last = timeEdit_Time_Out_Last.Text + "";
+                    //PrintLogWin.PrintLog("2a => " + time_Out_Last + "");
+                    //TimeSpan timeSpan_Out_Last = TimeSpan.Parse(time_Out_Last);
+                    //DateTime dateTime_Out_Last = DateTime.Today.Add(timeSpan_Out_Last);
+                    DateTime dateTime_Out_Last = ConvertTo.TimeToDate(timeEdit_Time_Out_Last.Text + "");
+
+                    if (shift_id == 1)
+                    {
+                        if (dateTime_Out_Last < dateTime_In_Last)
+                        {
+                            ProjectFunctions.SpeakError("Time Out Last cannot be less than Time In Last in Day Shift");
+                            return;
+                        }
+                    }
+
+                    PrintLogWin.PrintLog("8a => " + dateTime_Out_Last + "");
+
+                    var totalHrs_Last = (dateTime_Out_Last - dateTime_In_Last).TotalHours;
+                    if (totalHrs_Last < 0)
+                    {
+                        totalHrs_Last = totalHrs_Last * -1;
+                    }
+                    PrintLogWin.PrintLog("10 => " + totalHrs_Last + "");
+                    /////////////////////////////////////
+                   
+                    totalWorkingHours_Text.Text = (totalHrs_First + totalHrs_Last).ToString();
+
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + "");
+            }
+            
+
+
+            
+
+
+            //TimeSpan timeSpan_Out = TimeSpan.Parse(timeEdit_Time_Out_First.EditValue + "");
+            //DateTime dateTime_Out = DateTime.Today.Add(timeSpan_Out);
+
+            //string displayTime = time.ToString("hh:mm:ss");
+
+            //string time = "10:48:00";
+            //DateTime dateTime_In = DateTime.ParseExact(timeEdit_Time_In_First.EditValue.ToString(), "HH:mm:ss", CultureInfo.InvariantCulture);
+            //DateTime dateTime_Out = DateTime.ParseExact(timeEdit_Time_Out_First.EditValue.ToString(), "HH:mm:ss", CultureInfo.InvariantCulture);
+            //Console.WriteLine(dateTime.ToShortTimeString());
+
+            //var inTime_First = Convert.ToDateTime(timeEdit_Time_In_First.EditValue);
+            //var outTime_First = Convert.ToDateTime(timeEdit_Time_Out_First.EditValue);
+            //var totalHours = Convert.ToDateTime(inTime).TimeOfDay.Subtract(outTime);
+            
+            
+            //var totalHrs_First = (dateTime_Out - dateTime_In).TotalHours;
+            //totalWorkingHours_Text.Text = totalHrs_First.ToString();
+        }
+
+        
     }
 }
