@@ -131,8 +131,7 @@ namespace WindowsFormsApplication1
         //}
         private bool form_loaded = false;
         private void frmEmloyeeMstAddEdit_Load(object sender, EventArgs e)
-        {
-            
+        {            
             employeeFormData_Load();
         }
         //string fileName1 = "";
