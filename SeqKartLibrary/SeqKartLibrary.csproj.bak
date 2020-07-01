@@ -44,6 +44,7 @@
       <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v20.1">
+      <HintPath>..\WindowsFormsApplication1\bin\Debug\DevExpress.XtraEditors.v20.1.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -144,11 +145,11 @@
     <Compile Include="WIN_APP_TABS.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <EntityDeploy Include="Models\EmployeeAttendanceEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EmployeeAttendanceEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.config" />
     <None Include="Models\EmployeeAttendanceEntity.edmx.diagram">
       <DependentUpon>EmployeeAttendanceEntity.edmx</DependentUpon>
     </None>

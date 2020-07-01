@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
     {
 
         public static SpeechSynthesizer _synthesizer = new SpeechSynthesizer();
-        public static String ConnectionString = ProjectFunctionsUtils.ConnectionString;////@"Data Source=DESKTOP-1I98CVU\SQLEXPRESS;Initial Catalog=SEQKART;User ID=sa;pwd=admin@123";
+        public static String ConnectionString = ProjectFunctionsUtils.ConnectionString;////@"Data Source=CSERVER;Initial Catalog=SEQKART;User ID=sa;pwd=Seq@2021";
         //public static String ConnectionString = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\server.txt");
 
         //public static void SendSMS(string uid, string password, string message, string no)
