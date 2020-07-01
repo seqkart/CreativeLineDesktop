@@ -138,8 +138,8 @@ namespace WindowsFormsApplication1
         //string fileName1 = "";
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            //Read image file
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "JPEG|*.jpg", ValidateNames = true, Multiselect = false })
+            //Read image file //JPEG|*.jpg
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*", ValidateNames = true, Multiselect = false })
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
