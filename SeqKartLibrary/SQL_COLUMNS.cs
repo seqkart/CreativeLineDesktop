@@ -102,6 +102,7 @@ namespace SeqKartLibrary
             public const string attendance_out_first = "attendance_out_first";
             public const string attendance_in_last = "attendance_in_last";
             public const string attendance_out_last = "attendance_out_last";
+            public const string working_hours = "working_hours";
             public const string gate_pass_time = "gate_pass_time";
             public const string ot_deducton_time = "ot_deducton_time";
         }

@@ -27,5 +27,6 @@ namespace SeqKartLibrary.Models
         public Nullable<System.TimeSpan> attendance_out_first { get; set; }
         public Nullable<System.TimeSpan> attendance_in_last { get; set; }
         public Nullable<System.TimeSpan> attendance_out_last { get; set; }
+        public Nullable<int> working_hours { get; set; }
     }
 }

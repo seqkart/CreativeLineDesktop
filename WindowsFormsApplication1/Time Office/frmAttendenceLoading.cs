@@ -116,17 +116,18 @@ namespace BNPL.Forms_Master
                     {
                         SerialId = dr[Col.EmployeeAttendance.serial_id],
                         EntryDate = dr[Col.EmployeeAttendance.entry_date],
-                        Shift = dr[Col.DailyShifts.shift_name],
-                        Status = dr[Col.AttendanceStatus.status],
                         EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
+                        //Shift = dr[Col.DailyShifts.shift_name],
+                        Status = dr[Col.AttendanceStatus.status],                        
                         AttendanceDate = dr[Col.EmployeeAttendance.attendance_date],
                         TimeIn_First = dr[Col.EmployeeAttendance.attendance_in_first],
                         TimeOut_First = dr[Col.EmployeeAttendance.attendance_out_first],
                         TimeIn_Last = dr[Col.EmployeeAttendance.attendance_in_last],
                         TimeOut_Last = dr[Col.EmployeeAttendance.attendance_out_last],
-                        Source = dr[Col.AttendanceSource.source_name],
+                        WorkingHours = dr[Col.EmployeeAttendance.working_hours],                        
                         GatePassTime = ConvertTo.IntVal(dr[Col.EmployeeAttendance.gate_pass_time]),
-                        DeductionTimeOT = dr[Col.EmployeeAttendance.ot_deducton_time]
+                        DeductionTimeOT = dr[Col.EmployeeAttendance.ot_deducton_time],
+                        Source = dr[Col.AttendanceSource.source_name]
                     };
                     //ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_in_first]).ToString("hh:mm tt")
 
@@ -221,6 +222,8 @@ namespace BNPL.Forms_Master
             int row = (gridControl_AttendanceData.FocusedView as ColumnView).FocusedRowHandle;
             ColumnView detailView = (ColumnView)gridControl_AttendanceData.FocusedView;
             int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
+            //
+            string employee_code = detailView.GetFocusedRowCellValue("EmployeeCode").ToString();
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
                 );

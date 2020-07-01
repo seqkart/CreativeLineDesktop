@@ -10,7 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1
 {
@@ -31,6 +33,9 @@ namespace WindowsFormsApplication1
             ProjectFunctions.TextBoxVisualize(panelControl4);
             ProjectFunctions.DatePickerVisualize(this);
             //ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
+
+            lblFilename.Text = null;
+
             txtEmpCode.Enabled = false;
         }
         
@@ -130,6 +135,71 @@ namespace WindowsFormsApplication1
             
             employeeFormData_Load();
         }
+        //string fileName1 = "";
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            //Read image file
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "JPEG|*.jpg", ValidateNames = true, Multiselect = false })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName1 = ofd.FileName;
+                    lblFilename.Text = Path.GetFileName(fileName1);
+                    pictureBox1.Image = Image.FromFile(fileName1);
+                }
+            }
+        }
+
+        //Convert image to binary
+        byte[] ConvertImageToBinary(Image img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
+        //Convert binary to image
+        Image ConvertBinaryToImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
+        private void Page_Load1()
+        {
+            DataSet ds = GetData();
+            SqlConnection con = new SqlConnection(@"data source=.\sqlserver; user id=sa; password=123; database=Sample;");
+            SqlBulkCopy bulk = new SqlBulkCopy(con);
+
+            
+            bulk.DestinationTableName = "tblStudents";
+            foreach (DataColumn col in ds.Tables[0].Columns)
+                bulk.ColumnMappings.Add(col.ColumnName, col.ColumnName);
+            con.Open();
+            bulk.WriteToServer(ds.Tables[0]);
+            con.Close();
+        }
+
+        DataSet GetData()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("StudentID", typeof(int));
+            dt.Columns.Add("StudentName", typeof(string));
+            dt.Columns.Add("RollNumber", typeof(int));
+            dt.Columns.Add("TotalMarks", typeof(int));
+            dt.Rows.Add(1, "Jame's", 101, 900);
+            dt.Rows.Add(2, "Steave Smith", 105, 820);
+            dt.Rows.Add(3, "Mark Waugh", 109, 850);
+            dt.Rows.Add(4, "Steave Waugh", 110, 950);
+            dt.Rows.Add(5, "Smith", 111, 910);
+            dt.Rows.Add(6, "Williams", 115, 864);
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dt);
+            return ds;
+        }
         private void employeeFormData_Load()
         {
             SetMyControls();
@@ -144,7 +214,7 @@ namespace WindowsFormsApplication1
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@EmpCode", EmpCode);
 
-                EmployeeMasterModel empData = lista.returnClass_SP("sp_LoadEmpMstFEditing", param);
+                EmployeeMasterModel empData = lista.returnClass_SP(SQL_QUERIES._frmEmployeeMstAddEdit.sp_LoadEmpMstFEditing(), param);
 
                
                 //PrintLogWin.PrintLog("**************** =========> Line 120 => listData => " + listData.Count + "");
@@ -247,7 +317,7 @@ namespace WindowsFormsApplication1
                     timeEdit_Time_In_Last.EditValue = empData.TimeInLast.ToString();
                     timeEdit_Time_Out_Last.EditValue = empData.TimeOutLast.ToString();
                     totalWorkingHours_Text.EditValue = empData.WorkingHours;
-
+                    pictureBox1.Image = ConvertBinaryToImage(empData.EmpImage);
                 }
 
                 form_loaded = true;
@@ -458,7 +528,7 @@ namespace WindowsFormsApplication1
                                                  + " EmpPassportNo                           ,"
                                                  + " EmpSplAlw,EmpReligion,EmpMaritalStatus,EmpPymtMode,EmpBankIFSCode,"
                                                  + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode" +
-                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours)"
+                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours, EmpImage)"
                                                  + " values((SELECT RIGHT('00000'+ CAST( ISNULL( max(Cast(EmpCode as int)),0)+1 AS VARCHAR(5)),5)from EmpMst),@EmpName,@EmpFHRelationTag,@EmpFHName,@EmpDeptCode,@EmpDesgCode,@EmpCategory,"
                                                  + " @EmpSex,@EmpDOJ,@EmpDOL,@EmpPFDTag,"
                                                  + " @EmpESIDTag,@EmpPFno,@EmpESIno,@EmpBasic,@EmpHRA,@EmpConv,"
@@ -467,7 +537,7 @@ namespace WindowsFormsApplication1
                                                  + " @EmpPassportNo,"
                                                  + " @EmpSplAlw,@EmpReligion,@EmpMaritalStatus,@EmpPymtMode,@EmpBankIFSCode,"
                                                  + " @EmpBankAcNo,@EmpBankName,@EmpNominee,@EmpNomineeRelation,@EmpNomineeDOB,@EmpAdharCardNo,@EmpGHISDed,@EmpFPFDTag,@EmpMscD1,@EmpAddress1,@EmpAddress2,@EmpAddress3,@EmpDistCity,@EmpState,@EmpCountry,@EmpUANNo,@EmpBankBranchCode" +
-                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast, @WorkingHours)"
+                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast, @WorkingHours, @EmpImage)"
                                                  + " Commit ";
                         }
                         if (s1 == "Edit")
@@ -485,8 +555,9 @@ namespace WindowsFormsApplication1
                                                 "   TimeOutFirst = @TimeOutFirst," +
                                                 "   TimeInLast = @TimeInLast," +
                                                 "   TimeOutLast = @TimeOutLast," +
-                                                "   WorkingHours = @WorkingHours"
-                                                + " Where EmpCode=@EmpCode";
+                                                "   WorkingHours = @WorkingHours, " +
+                                                "   EmpImage = @EmpImage" +
+                                                "   Where EmpCode=@EmpCode";
                         }
 
                         sqlcom.Parameters.AddWithValue("@EmpCode", txtEmpCode.Text.Trim());
@@ -576,6 +647,7 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@TimeInLast", Convert.ToDateTime(timeEdit_Time_In_Last.Text.ToString().Trim()));
                         sqlcom.Parameters.AddWithValue("@TimeOutLast", Convert.ToDateTime(timeEdit_Time_Out_Last.Text.ToString().Trim()));
                         sqlcom.Parameters.AddWithValue("@WorkingHours", Convert.ToInt32(totalWorkingHours_Text.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@EmpImage", ConvertImageToBinary(pictureBox1.Image));
 
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
@@ -697,6 +769,12 @@ namespace WindowsFormsApplication1
 
                     }
                         break;
+                case "add_new":
+                    /* Navigate to page C*/
+
+                    
+
+                    break;
                 case "close":
                     /* Navigate to page E */
                     this.Close();

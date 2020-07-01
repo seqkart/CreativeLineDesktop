@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using Dapper;
 
 namespace SeqKartLibrary.Repository
 {
-    class RepGen
+    public class RepGen
     {
 
         public SqlConnection con;
@@ -14,7 +15,24 @@ namespace SeqKartLibrary.Repository
             con = new SqlConnection(ProjectFunctionsUtils.ConnectionString);
         }
 
-        public string executeNonQuery(string query, DynamicParameters param)
+        public async Task<string> executeNonQuery(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                await con.ExecuteAsync(query, param, commandType: CommandType.Text);
+                con.Close();
+                return "0";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        public string executeNonQuery_SP(string query, DynamicParameters param)
         {
             try
             {

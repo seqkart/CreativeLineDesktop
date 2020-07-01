@@ -13,7 +13,7 @@ namespace SeqKartLibrary.CrudTask
     public class AttendanceData
     {
 
-        public string InsertUpdate(AttendanceModel attendanceModel, string AddEditTag)
+        public async Task<string> InsertUpdate(AttendanceModel attendanceModel, string AddEditTag)
         {
             RepGen reposGen = new RepGen();
             DynamicParameters param = new DynamicParameters();
@@ -30,7 +30,7 @@ namespace SeqKartLibrary.CrudTask
             param.Add("@ot_deducton_time", attendanceModel.ot_deducton_time);            
             param.Add("@AddEditTag", AddEditTag);
 
-            return reposGen.executeNonQuery("sp_EmployeeAttendance", param);
+            return await reposGen.executeNonQuery("sp_EmployeeAttendance", param);
         }
 
         public List<AttendanceStatus> GetAllAttendanceStatus()

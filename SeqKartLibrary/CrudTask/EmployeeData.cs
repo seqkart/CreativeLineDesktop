@@ -12,7 +12,7 @@ namespace SeqKartLibrary.CrudTask
 {
     public class EmployeeData
     {
-        public string insertUpdate(EmployeeItem _employee)
+        public async Task<string> insertUpdate(EmployeeItem _employee)
         {
             RepGen reposGen = new Repository.RepGen();
             DynamicParameters param = new DynamicParameters();
@@ -20,7 +20,7 @@ namespace SeqKartLibrary.CrudTask
             //param.Add("@name", _user.name);
             //param.Add("@address", _user.address);
             //param.Add("@status", _user.status);
-            return reposGen.executeNonQuery("users_Insert_Update", param);
+            return await reposGen.executeNonQuery("users_Insert_Update", param);
         }
     }
 }
