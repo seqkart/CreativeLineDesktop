@@ -32,6 +32,11 @@ namespace SeqKartLibrary
 
                 return sql;
             }
+
+            public static string sp_LoadEmpMstFEditing()
+            {
+                return "sp_LoadEmpMstFEditing";
+            }
         }
 
         public static class _frmDepartmentAddUpdate
@@ -128,7 +133,12 @@ namespace SeqKartLibrary
 
         public static string _sp_EmployeeDetails(object EmpCode)
         {
-            return "sp_EmployeeDetails '" + EmpCode + "'";
+            return _sp_EmployeeDetails() + " " + EmpCode + "'";
+        }
+
+        public static string _sp_EmployeeDetails()
+        {
+            return "sp_EmployeeDetails";
         }
 
     }

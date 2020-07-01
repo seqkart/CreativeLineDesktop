@@ -23,6 +23,7 @@ using SeqKartLibrary.Models;
 using static SeqKartLibrary.CrudTask.CrudAction;
 using BNPL.Forms_Master;
 using SeqKartLibrary.Repository;
+using Dapper;
 
 namespace WindowsFormsApplication1.Time_Office
 {
@@ -30,6 +31,7 @@ namespace WindowsFormsApplication1.Time_Office
     {
         private frmAttendenceLaoding _frmAttendenceLaoding = null;
 
+        //private string selected_employee_code = "";
         public int selected_serial_id = 0;// { get; set; }
         public string come_from = "";// { get; set; }
 
@@ -48,6 +50,8 @@ namespace WindowsFormsApplication1.Time_Office
 
             this._frmAttendenceLaoding = parent;
             this.selected_serial_id = _selected_serial_id;
+            //this.selected_employee_code = _selected_employee_code;
+
             this.come_from = _come_from;
             //dataLayoutControl1.DataSource = GetDataSource();
             //dataLayoutControl1.RetrieveFields();
@@ -57,10 +61,14 @@ namespace WindowsFormsApplication1.Time_Office
             //aboutItem.TextLocation = DevExpress.Utils.Locations.Top;
 
             //LoadControls();
-            
+
+            PrintLogWin.PrintLog("selected_serial_id 1 => " + selected_serial_id);
+
         }
 
         private CrudAction crudAction = new CrudAction();
+
+        private bool form_loaded = false;
         private void XtraForm_EmployeeAttendence_Load(object sender, EventArgs e)
         {
             
@@ -69,10 +77,88 @@ namespace WindowsFormsApplication1.Time_Office
             LoadEmployeeData();
         }
 
+        //Convert binary to image
+        Image ConvertBinaryToImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
+        private void employeeFormData_Load(string EmpCode)
+        {
+            PrintLogWin.PrintLog("********************* 2" +
+                " ");
+            PrintLogWin.PrintLog("employeeFormData_Load 1 => ********************");
+
+            RepList<EmployeeMasterModel> lista = new RepList<EmployeeMasterModel>();
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@EmpCode", EmpCode);
+
+            //EmployeeMasterModel empData = lista.returnClass_SP(SQL_QUERIES._frmEmployeeMstAddEdit.sp_LoadEmpMstFEditing(), param);
+            EmployeeMasterModel empData = lista.returnClass_SP(SQL_QUERIES._sp_EmployeeDetails(), param);
+
+            if (empData != null)
+            {
+                timeEdit_Time_In_First_Main.EditValue = empData.TimeInFirst.ToString();
+                timeEdit_Time_Out_First_Main.EditValue = empData.TimeOutFirst.ToString();
+                timeEdit_Time_In_Last_Main.EditValue = empData.TimeInLast.ToString();
+                timeEdit_Time_Out_Last_Main.EditValue = empData.TimeOutLast.ToString();
+                totalWorkingHours_Text_Main.EditValue = empData.WorkingHours;
+
+                txtFName.Text = empData.EmpName;
+                txtEmpID.Text = empData.EmpCode; //dr["EmpCode"].ToString();
+                txtDepartment.Text = empData.DeptDesc; //dr["DeptDesc"].ToString();
+                txtDesignation.Text = empData.DesgDesc; //dr["DesgDesc"].ToString();
+                textUnit.Text = empData.UnitName; //dr["UnitName" + ""].ToString();
+
+                pictureBox1.Image = ConvertBinaryToImage(empData.EmpImage);
+
+                PrintLogWin.PrintLog("employeeFormData_Load 2 => ********************");
+                
+            }
+
+            /////////////////////
+            ///
+            //try
+            //{
+            //    //string sql = "SELECT * FROM EmployeeDetails WHERE EmpID=@empid";
+
+            //    string sql = SQL_QUERIES._sp_EmployeeDetails(cbEmpID.SelectedItem);
+
+            //    PrintLogWin.PrintLog(sql);
+
+            //    var result = ProjectFunctionsUtils.GetDataSet_T(sql);
+
+            //    if (result.Item1)
+            //    {
+            //        DataSet ds = result.Item2;
+            //        foreach (DataRow dr in ds.Tables[0].Rows)
+            //        {
+            //            txtFName.Text = dr["EmpName"].ToString();
+            //            txtEmpID.Text = dr["EmpCode"].ToString();
+            //            txtDepartment.Text = dr["DeptDesc"].ToString();
+            //            txtDesignation.Text = dr["DesgDesc"].ToString();
+            //            textUnit.Text = dr["UnitName" + ""].ToString();
+            //        }
+            //    }
+
+            //}
+
+            //catch (Exception ex)
+            //{
+            //    PrintLogWin.PrintLog("Exception : " + ex);
+
+            //    MessageBox.Show("Record not found");
+            //}
+        }
+
         //private EmployeeAttendance query_attendance;
         private void LoadEmployeeData()
         {
             LoadControls();
+            //employeeFormData_Load(selected_employee_code);
 
             string sql = SQL_QUERIES._sp_EmployeesList();
             PrintLogWin.PrintLog(sql);
@@ -98,13 +184,23 @@ namespace WindowsFormsApplication1.Time_Office
                 comboBox_Status.DisplayMember = SQL_COLUMNS._AttendanceStatus._status;
             }
 
-            List<DailyShift> dailyShifts_List = repObj.returnListClass_1<DailyShift>("SELECT * FROM DailyShifts", null);
-            if (ComparisonUtils.IsNotNull_List(attendanceStatu_List))
+            List<DailyShift> dailyShifts_List = new List<DailyShift>();
+
+            DailyShift dailyShift = new DailyShift();
+            dailyShift.shift_id = 1;
+            dailyShift.shift_name = "Daily Shift";
+            dailyShifts_List.Add(dailyShift);
+            //List<DailyShift> dailyShifts_List = repObj.returnListClass_1<DailyShift>("SELECT * FROM DailyShifts", null);
+            if (ComparisonUtils.IsNotNull_List(dailyShifts_List
+                ))
             {
                 comboBox_Shift.DataSource = dailyShifts_List;
                 comboBox_Shift.ValueMember = SQL_COLUMNS._DailyShifts._shift_id;
                 comboBox_Shift.DisplayMember = SQL_COLUMNS._DailyShifts._shift_name;
             }
+
+            
+            comboBox_Shift.SelectedValue = 1;
 
 
             //using (SEQKARTNewEntities db = new SEQKARTNewEntities())
@@ -128,16 +224,23 @@ namespace WindowsFormsApplication1.Time_Office
                 crudAction = CrudAction.Update;
 
                 labelControl.Text = "Update Attendance";
-                using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+
+                RepList<EmployeeAttendance> lista = new RepList<EmployeeAttendance>();
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@serial_id", selected_serial_id);
+                EmployeeAttendance query_attendance = lista.returnClass("SELECT * FROM EmployeeAttendance WHERE serial_id=@serial_id", param);
+
+                //using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+                if (query_attendance != null)
                 {
 
-                    db.Database.Log = Console.Write;
+                    //db.Database.Log = Console.Write;
 
-                    EmployeeAttendance query_attendance =
-                        (from data in db.EmployeeAttendances
-                         where data.serial_id == selected_serial_id
-                         orderby data.entry_date
-                         select data).SingleOrDefault();
+                    //EmployeeAttendance query_attendance =
+                    //    (from data in db.EmployeeAttendances
+                    //     where data.serial_id == selected_serial_id
+                    //     orderby data.entry_date
+                    //     select data).SingleOrDefault();
 
                     cbEmpID.SelectedItem = query_attendance.employee_code;
                     //comboBox_Status.SelectedItem = query_attendance.status_id;
@@ -157,11 +260,20 @@ namespace WindowsFormsApplication1.Time_Office
 
                     //DateTime time_in = employeeAttendance.attendance_in.GetValueOrDefault(DateTime.Now);
 
-                    timeAttIn_First_Manual.EditValue = query_attendance.attendance_in;// new DateTime(time_in.Year, time_in.Month, time_in.Day, 23, 59, 00); ;
-                    timeAttOut_First_Manual.EditValue = query_attendance.attendance_out;
+                    //timeAttIn_First_Manual.EditValue = query_attendance.attendance_in_first;// new DateTime(time_in.Year, time_in.Month, time_in.Day, 23, 59, 00); ;
+                    //timeAttOut_First_Manual.EditValue = query_attendance.attendance_out_first;
+
+                    timeEdit_Time_In_First.EditValue = query_attendance.attendance_in_first;
+                    timeEdit_Time_Out_First.EditValue = query_attendance.attendance_out_first;
+                    totalWorkingHours_Text.EditValue = query_attendance.working_hours;
+
+                    timeEdit_Time_In_Last.EditValue = query_attendance.attendance_in_last;
+                    timeEdit_Time_Out_Last.EditValue = query_attendance.attendance_out_last;
 
                     timeEdit_GatePassTime.EditValue = query_attendance.gate_pass_time;
                     txtOvertimeHours.EditValue = query_attendance.ot_deducton_time;
+
+                    //pictureBox1.Image
 
                     CultureInfo culture = new CultureInfo("en-US");
 
@@ -183,6 +295,8 @@ namespace WindowsFormsApplication1.Time_Office
                         radioButtonMachine.Checked = true;
                     }
                     //
+
+                    //employeeFormData_Load(string EmpCode)
                 }
 
             }
@@ -194,14 +308,22 @@ namespace WindowsFormsApplication1.Time_Office
                 DateTime d = new DateTime();
                 d = DateTime.Now;
 
-                CultureInfo culture = new CultureInfo("en-US");
-                labelDate_Current.Text = d.ToString("f", culture);
+                //CultureInfo culture = new CultureInfo("en-US");
+                labelDate_Current.Text = d.ToString("f");//culture
                 txtOvertimeHours.Text = "0";
 
-                timeAttIn_First_Manual.EditValue = null;
-                timeAttOut_First_Manual.EditValue = null;
+                //timeAttIn_First_Manual.EditValue = null;
+                //timeAttOut_First_Manual.EditValue = null;
+
+                timeEdit_Time_In_First.EditValue = null;
+                timeEdit_Time_Out_First.EditValue = null;
+                timeEdit_Time_In_Last.EditValue = null;
+                timeEdit_Time_Out_Last.EditValue = null;
 
             }
+            PrintLogWin.PrintLog("********************* 1 ");
+            form_loaded = true;
+            CalculateDUtyHours("all");
         }
 
        
@@ -215,10 +337,10 @@ namespace WindowsFormsApplication1.Time_Office
             //comboBox_Status.DisplayMember = SQL_COLUMNS._AttendanceStatus._status;
 
             //comboBox_Shift.DataSource = attendanceData.GetAllDailyShifts();
-            
+
             //EmployeeAttendance employeeAttendance = db.EmployeeAttendances.OrderBy(s => s.serial_id).FirstOrDefault();
 
-            
+
 
             txtFName.Properties.ReadOnly = true;
             txtEmpID.Properties.ReadOnly = true;
@@ -233,21 +355,37 @@ namespace WindowsFormsApplication1.Time_Office
             panelControl_Machine_In.BackColor = Color.White;
 
             //textAttStatus_Manual.ReadOnly = false;
-            timeAttIn_First_Manual.ReadOnly = false;
-            timeAttOut_First_Manual.ReadOnly = false;
+            //timeAttIn_First_Manual.ReadOnly = false;
+            //timeAttOut_First_Manual.ReadOnly = false;
             //timeAttIn_Last_Manual.ReadOnly = false;
             //timeAttOut_Last_Manual.ReadOnly = false;
 
             //textAttStatus_Manual.BackColor = Color.FromArgb(255, 255, 192);
-            timeAttIn_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
-            timeAttOut_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            //timeAttIn_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
+            //timeAttOut_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
             //timeAttIn_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
             //timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
 
             //textAttStatus_Manual.EditValue = null;
-            
+
             //timeAttIn_Last_Manual.EditValue = null;
             //timeAttOut_Last_Manual.EditValue = null;
+
+
+            timeEdit_Time_In_First.ReadOnly = false;
+            timeEdit_Time_Out_First.ReadOnly = false;
+            timeEdit_Time_In_Last.ReadOnly = false;
+            timeEdit_Time_Out_Last.ReadOnly = false;
+
+            timeEdit_Time_In_First.BackColor = Color.FromArgb(255, 255, 192);
+            timeEdit_Time_Out_First.BackColor = Color.FromArgb(255, 255, 192);
+            timeEdit_Time_In_Last.BackColor = Color.FromArgb(255, 255, 192);
+            timeEdit_Time_Out_Last.BackColor = Color.FromArgb(255, 255, 192);
+
+            timeEdit_Time_In_First.EditValue = null;
+            timeEdit_Time_Out_First.EditValue = null;
+            timeEdit_Time_In_Last.EditValue = null;
+            timeEdit_Time_Out_Last.EditValue = null;
 
 
             //radioButtonMachine.
@@ -255,39 +393,12 @@ namespace WindowsFormsApplication1.Time_Office
 
         private void cbEmpID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (cbEmpID.SelectedItem != null)
             {
-                //string sql = "SELECT * FROM EmployeeDetails WHERE EmpID=@empid";
-
-                string sql = SQL_QUERIES._sp_EmployeeDetails(cbEmpID.SelectedItem);
-
-                PrintLogWin.PrintLog(sql);
-
-                var result = ProjectFunctionsUtils.GetDataSet_T(sql);
-
-                if (result.Item1)
-                {
-                    DataSet ds = result.Item2;
-                    foreach (DataRow dr in ds.Tables[0].Rows)
-                    {
-                        txtFName.Text = dr["EmpName"].ToString();
-                        txtEmpID.Text = dr["EmpCode"].ToString();
-                        txtDepartment.Text = dr["DeptDesc"].ToString();
-                        txtDesignation.Text = dr["DesgDesc"].ToString();
-                        textUnit.Text = dr["UnitName" +
-                            ""].ToString();
-                    }
-                }
+                employeeFormData_Load(cbEmpID.SelectedItem.ToString());
 
             }
-
-            catch (Exception ex)
-            {
-                PrintLogWin.PrintLog("Exception : " + ex);
-
-                MessageBox.Show("Record not found");
-            }
-
+            
         }
         
 
@@ -320,10 +431,10 @@ namespace WindowsFormsApplication1.Time_Office
                     selected_serial_id = 0;
                     LoadEmployeeData();
 
-                    break;
+                    break;                
                 case "reset":
                     /* Navigate to page D */
-
+                    form_loaded = false;
                     LoadEmployeeData();
 
 
@@ -344,6 +455,19 @@ namespace WindowsFormsApplication1.Time_Office
                     }
 
                     break;
+                case "add_new":
+                    /* Navigate to page C*/
+
+                    selected_serial_id = 0;
+                    LoadEmployeeData();
+
+                    break;
+                case "close":
+                    /* Navigate to page E */
+                    this.Close();
+
+                    break;
+
             }
         }
         private async Task<int> DeleteEmployeeAttendanceDetails()
@@ -399,25 +523,124 @@ namespace WindowsFormsApplication1.Time_Office
                     employeeAttendance.attendance_date = dateAttendance.Value;
                     employeeAttendance.employee_code = txtEmpID.Text;
                     employeeAttendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
-                    employeeAttendance.attendance_in = ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue);
-                    employeeAttendance.attendance_out = ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue);
-                    employeeAttendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue); ;
-                    employeeAttendance.attendance_source = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
-                    employeeAttendance.gate_pass_time = ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue);
+                    employeeAttendance.attendance_in_first = ConvertTo.TimeSpanVal(timeEdit_Time_In_First.Text);
+                    employeeAttendance.attendance_out_first = ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.Text);
+                    employeeAttendance.attendance_in_last = ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.Text);
+                    employeeAttendance.attendance_out_last = ConvertTo.TimeSpanVal(timeEdit_Time_Out_Last.Text);
+                    employeeAttendance.working_hours = ConvertTo.IntVal(totalWorkingHours_Text.Text);
+                    employeeAttendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
+                    int att_source = AttendanceSource(radioButtonManual.Checked, radioButtonMachine.Checked);
+                    employeeAttendance.attendance_source = att_source;
+                    employeeAttendance.gate_pass_time = ConvertTo.IntVal(timeEdit_GatePassTime.EditValue);
                     employeeAttendance.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
 
-                    using (SEQKARTNewEntities _entity = new SEQKARTNewEntities())
+                    string str = "INSERT INTO EmployeeAttendance";
+                    str += " (entry_date, attendance_date, employee_code, status_id, attendance_in_first, attendance_out_first, attendance_in_last, attendance_out_last, working_hours, shift_id, attendance_source, gate_pass_time, ot_deducton_time)";
+                    str += " VALUES";
+                    str += " (@entry_date, @attendance_date, @employee_code, @status_id, @attendance_in_first, @attendance_out_first, @attendance_in_last, @attendance_out_last, @working_hours, @shift_id, @attendance_source, @gate_pass_time, @ot_deducton_time)";
+                    
+                    RepGen reposGen = new RepGen();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@entry_date", employeeAttendance.entry_date);
+                    param.Add("@attendance_date", employeeAttendance.attendance_date);
+                    param.Add("@employee_code", employeeAttendance.employee_code);
+                    param.Add("@status_id", employeeAttendance.status_id);
+                    param.Add("@attendance_in_first", employeeAttendance.attendance_in_first);
+                    param.Add("@attendance_out_first", employeeAttendance.attendance_out_first);
+                    param.Add("@attendance_in_last", employeeAttendance.attendance_in_last);
+                    param.Add("@attendance_out_last", employeeAttendance.attendance_out_last);
+                    param.Add("@working_hours", employeeAttendance.working_hours);
+                    param.Add("@shift_id", employeeAttendance.shift_id);
+                    param.Add("@attendance_source", employeeAttendance.attendance_source);
+                    param.Add("@gate_pass_time", employeeAttendance.gate_pass_time);
+                    param.Add("@ot_deducton_time", employeeAttendance.ot_deducton_time);
+
+                    string intResult = await reposGen.executeNonQuery(str, param);
+                    if (intResult.Equals("0"))
                     {
-                        _entity.EmployeeAttendances.Add(employeeAttendance);
-                        await _entity.SaveChangesAsync();
-                        
                         ProjectFunctions.SpeakError("Record has been saved");
                     }
+                    else
+                    {
+                        PrintLogWin.PrintLog(intResult);
+                    }
+
+                    //using (SEQKARTNewEntities _entity = new SEQKARTNewEntities())
+                    //{
+                    //    _entity.EmployeeAttendances.Add(employeeAttendance);
+                    //    await _entity.SaveChangesAsync();
+
+                    //    ProjectFunctions.SpeakError("Record has been saved");
+                    //}
                 }
                 if (crudAction == CrudAction.Update)
                 {
                     //MessageBox.Show("Update");
 
+                    //RepList<EmployeeAttendance> lista = new RepList<EmployeeAttendance>();
+                    //DynamicParameters param = new DynamicParameters();
+                    //param.Add("@serial_id", selected_serial_id);
+
+                    //EmployeeAttendance query_attendance = lista.returnClass("SELECT * FROM EmployeeAttendance WHERE serial_id=@serial_id", param);
+
+                    string str = "";
+
+                    str += "UPDATE EmployeeAttendance SET ";
+                    str += "" +
+                        "attendance_date = @attendance_date, " +
+                        "status_id = @status_id, " +
+                        "attendance_in_first = @attendance_in_first, " +
+                        "attendance_out_first = @attendance_out_first, " +
+                        "attendance_in_last = @attendance_in_last, " +
+                        "attendance_out_last = @attendance_out_last, " +
+                        "working_hours = @working_hours, " +
+                        "shift_id = @shift_id, " +
+                        "attendance_source = @attendance_source, " +
+                        "gate_pass_time = @gate_pass_time, " +
+                        "ot_deducton_time = @ot_deducton_time ";
+                    str += "WHERE serial_id = @serial_id";
+
+                    EmployeeAttendance employeeAttendance = new EmployeeAttendance();
+
+                    employeeAttendance.attendance_date = dateAttendance.Value;
+                    employeeAttendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
+                    employeeAttendance.attendance_in_first = ConvertTo.TimeSpanVal(timeEdit_Time_In_First.Text);
+                    employeeAttendance.attendance_out_first = ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.Text);
+                    employeeAttendance.attendance_in_last = ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.Text);
+                    employeeAttendance.attendance_out_last = ConvertTo.TimeSpanVal(timeEdit_Time_Out_Last.Text);
+                    employeeAttendance.working_hours = ConvertTo.IntVal(totalWorkingHours_Text.Text);
+                    employeeAttendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
+                    int att_source = AttendanceSource(radioButtonManual.Checked, radioButtonMachine.Checked);
+                    employeeAttendance.attendance_source = att_source;
+                    employeeAttendance.gate_pass_time = ConvertTo.IntVal(timeEdit_GatePassTime.EditValue);
+                    employeeAttendance.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
+
+                    RepGen reposGen = new RepGen();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@attendance_date", employeeAttendance.attendance_date);
+                    param.Add("@status_id", employeeAttendance.status_id);
+                    param.Add("@attendance_in_first", employeeAttendance.attendance_in_first);
+                    param.Add("@attendance_out_first", employeeAttendance.attendance_out_first);
+                    param.Add("@attendance_in_last", employeeAttendance.attendance_in_last);
+                    param.Add("@attendance_out_last", employeeAttendance.attendance_out_last);
+                    param.Add("@working_hours", employeeAttendance.working_hours);
+                    param.Add("@shift_id", employeeAttendance.shift_id);
+                    param.Add("@attendance_source", employeeAttendance.attendance_source);
+                    param.Add("@gate_pass_time", employeeAttendance.gate_pass_time);
+                    param.Add("@ot_deducton_time", employeeAttendance.ot_deducton_time);
+                    param.Add("@serial_id", selected_serial_id
+                        );
+
+                    string intResult = await reposGen.executeNonQuery(str, param);
+                    if (intResult.Equals("0"))
+                    {
+                        ProjectFunctions.SpeakError("Record has been updated");
+                    }
+                    else
+                    {
+                        PrintLogWin.PrintLog(intResult);
+                    }
+                    /*
                     using (SEQKARTNewEntities db = new SEQKARTNewEntities())
                     {
                         EmployeeAttendance query_attendance =
@@ -434,14 +657,25 @@ namespace WindowsFormsApplication1.Time_Office
                         {
                             query_attendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
                         }
-                        if (query_attendance.attendance_in != ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue))
+
+                        if (query_attendance.attendance_in_first != ConvertTo.TimeSpanVal(timeEdit_Time_In_First.Text))
                         {
-                            query_attendance.attendance_in = ConvertTo.DateTimeVal(timeAttIn_First_Manual.EditValue);
+                            query_attendance.attendance_in_first = ConvertTo.TimeSpanVal(timeEdit_Time_In_First.Text);
                         }
-                        if (query_attendance.attendance_out != ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue))
+                        if (query_attendance.attendance_out_first != ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.Text))
                         {
-                            query_attendance.attendance_out = ConvertTo.DateTimeVal(timeAttOut_First_Manual.EditValue);
+                            query_attendance.attendance_out_first = ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.Text);
                         }
+
+                        if (query_attendance.attendance_in_last != ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.Text))
+                        {
+                            query_attendance.attendance_in_last = ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.Text);
+                        }
+                        if (query_attendance.attendance_out_last != ConvertTo.TimeSpanVal(timeEdit_Time_Out_Last.Text))
+                        {
+                            query_attendance.attendance_out_last = ConvertTo.TimeSpanVal(timeEdit_Time_Out_Last.Text);
+                        }
+
                         if (query_attendance.shift_id != ConvertTo.IntVal(comboBox_Shift.SelectedValue))
                         {
                             query_attendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
@@ -453,9 +687,9 @@ namespace WindowsFormsApplication1.Time_Office
                         {
                             query_attendance.attendance_source = att_source;
                         }
-                        if (query_attendance.gate_pass_time != ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue))
+                        if (query_attendance.gate_pass_time != ConvertTo.IntVal(timeEdit_GatePassTime.EditValue))
                         {
-                            query_attendance.gate_pass_time = ConvertTo.DateTimeVal(timeEdit_GatePassTime.EditValue);
+                            query_attendance.gate_pass_time = ConvertTo.IntVal(timeEdit_GatePassTime.EditValue);
                         }
                         if (query_attendance.ot_deducton_time != ConvertTo.IntVal(txtOvertimeHours.EditValue))
                         {
@@ -463,10 +697,11 @@ namespace WindowsFormsApplication1.Time_Office
                         }
 
                         await db.SaveChangesAsync();
-
-                        ProjectFunctions.SpeakError("Record has been updated");
-                    }
                         
+
+                        
+                    }
+                    */
                     
                 }
             }
@@ -498,10 +733,10 @@ namespace WindowsFormsApplication1.Time_Office
 
                 return false;
             }
-            if (timeAttIn_First_Manual.Text == "")
+            if (timeEdit_Time_In_First.Text == "")
             {
                 ProjectFunctionsUtils.SpeakError("Please enter time in");
-                timeAttIn_First_Manual.Focus();
+                timeEdit_Time_In_First.Focus();
 
                 return false;
 
@@ -538,22 +773,40 @@ namespace WindowsFormsApplication1.Time_Office
                 panelControl_Machine_In.BackColor = Color.White;
 
                 //textAttStatus_Manual.ReadOnly = false;
-                timeAttIn_First_Manual.ReadOnly = false;
-                timeAttOut_First_Manual.ReadOnly = false;
+                //timeEdit_Time_In_First.ReadOnly = false;
+                //timeEdit_Time_Out_First.ReadOnly = false;
                 //timeAttIn_Last_Manual.ReadOnly = false;
                 //timeAttOut_Last_Manual.ReadOnly = false;
 
                 //textAttStatus_Manual.BackColor = Color.FromArgb(255, 255, 192);
-                timeAttIn_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
-                timeAttOut_First_Manual.BackColor = Color.FromArgb(255, 255, 192);
+                //timeEdit_Time_In_First.BackColor = Color.FromArgb(255, 255, 192);
+                //timeEdit_Time_Out_First.BackColor = Color.FromArgb(255, 255, 192);
                 //timeAttIn_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
                 //timeAttOut_Last_Manual.BackColor = Color.FromArgb(255, 255, 192);
 
                 //textAttStatus_Manual.EditValue = null;
-                timeAttIn_First_Manual.EditValue = null;
-                timeAttOut_First_Manual.EditValue = null;
+                //timeEdit_Time_In_First.EditValue = null;
+                //timeEdit_Time_Out_First.EditValue = null;
                 //timeAttIn_Last_Manual.EditValue = null;
                 //timeAttOut_Last_Manual.EditValue = null;
+
+
+                /////////////////////////////////////////
+                
+                timeEdit_Time_In_First.ReadOnly = false;
+                timeEdit_Time_Out_First.ReadOnly = false;
+                timeEdit_Time_In_Last.ReadOnly = false;
+                timeEdit_Time_Out_Last.ReadOnly = false;
+                
+                timeEdit_Time_In_First.BackColor = Color.FromArgb(255, 255, 192);
+                timeEdit_Time_Out_First.BackColor = Color.FromArgb(255, 255, 192);
+                timeEdit_Time_In_Last.BackColor = Color.FromArgb(255, 255, 192);
+                timeEdit_Time_Out_Last.BackColor = Color.FromArgb(255, 255, 192);
+                
+                timeEdit_Time_In_First.EditValue = null;
+                timeEdit_Time_Out_First.EditValue = null;
+                timeEdit_Time_In_Last.EditValue = null;
+                timeEdit_Time_Out_Last.EditValue = null;
 
             }
         }
@@ -567,26 +820,342 @@ namespace WindowsFormsApplication1.Time_Office
                 panelControl_Machine_In.BackColor = Color.FromArgb(232, 232, 232);
 
                 //textAttStatus_Manual.ReadOnly = true;
-                timeAttIn_First_Manual.ReadOnly = true;
-                timeAttOut_First_Manual.ReadOnly = true;
+                //timeAttIn_First_Manual.ReadOnly = true;
+                //timeAttOut_First_Manual.ReadOnly = true;
                 //timeAttIn_Last_Manual.ReadOnly = true;
                 //timeAttOut_Last_Manual.ReadOnly = true;
 
                 //textAttStatus_Manual.BackColor = Color.WhiteSmoke;
-                timeAttIn_First_Manual.BackColor = Color.WhiteSmoke;
-                timeAttOut_First_Manual.BackColor = Color.WhiteSmoke;
+                //timeAttIn_First_Manual.BackColor = Color.WhiteSmoke;
+                //timeAttOut_First_Manual.BackColor = Color.WhiteSmoke;
                 //timeAttIn_Last_Manual.BackColor = Color.WhiteSmoke;
                 //timeAttOut_Last_Manual.BackColor = Color.WhiteSmoke;
 
                 //textAttStatus_Manual.EditValue = null;
-                timeAttIn_First_Manual.EditValue = null;
-                timeAttOut_First_Manual.EditValue = null;
+                //timeAttIn_First_Manual.EditValue = null;
+                //timeAttOut_First_Manual.EditValue = null;
                 //timeAttIn_Last_Manual.EditValue = null;
                 //timeAttOut_Last_Manual.EditValue = null;
+
+
+                timeEdit_Time_In_First.ReadOnly = true;
+                timeEdit_Time_Out_First.ReadOnly = true;
+                timeEdit_Time_In_Last.ReadOnly = true;
+                timeEdit_Time_Out_Last.ReadOnly = true;
+
+                timeEdit_Time_In_First.BackColor = Color.WhiteSmoke;
+                timeEdit_Time_Out_First.BackColor = Color.WhiteSmoke;
+                timeEdit_Time_In_Last.BackColor = Color.WhiteSmoke;
+                timeEdit_Time_Out_Last.BackColor = Color.WhiteSmoke;
+
+                timeEdit_Time_In_First.EditValue = null;
+                timeEdit_Time_Out_First.EditValue = null;
+                timeEdit_Time_In_Last.EditValue = null;
+                timeEdit_Time_Out_Last.EditValue = null;
             }
         }
 
-        
+        private void timeEdit_Time_In_First_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateDUtyHours("first_in");
+        }
+
+        private void timeEdit_Time_Out_First_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateDUtyHours("first_out");
+
+        }
+        private void timeEdit_Time_In_Last_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateDUtyHours("last_in");
+        }
+
+        private void timeEdit_Time_Out_Last_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateDUtyHours("last_out");
+        }
+
+        private bool hasInputTime(object input)
+        {
+            if ((input + "").Equals(""))
+            {
+
+            }
+            return false;
+        }
+
+        bool first_in = false;
+        bool first_out = false;
+        bool last_in = false;
+        bool last_out = false;
+
+        private void CalculateDUtyHours(string entry)
+        {
+            //DateTime.ParseExact(Eval("aeStart").ToString(), "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToShortTimeString()
+            int shift_id = 1;
+
+            PrintLogWin.PrintLog("************* CalculateDUtyHours => CalculateDUtyHours");
+
+            try
+            {
+
+                PrintLogWin.PrintLog("************* form_loaded => " + form_loaded + "");
+
+                PrintLogWin.PrintLog("************* timeEdit_Time_In_First.EditValue => " + timeEdit_Time_In_First.EditValue + "");
+                PrintLogWin.PrintLog("************* timeEdit_Time_Out_First.EditValue => " + timeEdit_Time_Out_First.EditValue + "");
+                PrintLogWin.PrintLog("************* timeEdit_Time_In_Last.EditValue => " + timeEdit_Time_In_Last.EditValue + "");
+                PrintLogWin.PrintLog("************* timeEdit_Time_Out_Last.EditValue => " + timeEdit_Time_Out_Last.EditValue + "");
+
+
+                if (!form_loaded)
+                {
+
+                }
+                else
+                {
+                    double totalHrs_First = 0;
+                    double totalHrs_Last = 0;
+
+                    if (timeEdit_Time_In_First.EditValue != null && timeEdit_Time_Out_First.EditValue != null)
+                    {
+                        DateTime dateTime_In_2 = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + "");
+                        DateTime dateTime_Out_2 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
+
+                        if (dateTime_Out_2 < dateTime_In_2)
+                        {                            
+                            ProjectFunctions.SpeakError("Time Out First cannot be less than Time In First in Day Shift");
+                            timeEdit_Time_Out_First.EditValue = null;
+                        }
+                        else
+                        {
+                            totalHrs_First = (dateTime_Out_2 - dateTime_In_2).TotalHours;
+                            if (totalHrs_First < 0)
+                            {
+                                totalHrs_First = totalHrs_First * -1;
+                            }
+                        }
+                    }
+
+                    if (timeEdit_Time_In_Last.EditValue != null && timeEdit_Time_Out_Last.EditValue != null)
+                    {
+                        DateTime dateTime_In_Last = ConvertTo.TimeToDate(timeEdit_Time_In_Last.Text + "");
+                        DateTime dateTime_Out_Last = ConvertTo.TimeToDate(timeEdit_Time_Out_Last.Text + "");
+                        if (timeEdit_Time_Out_First.EditValue != null)
+                        {
+                            DateTime dateTime_Out_1 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
+
+                            if (dateTime_In_Last < dateTime_Out_1)
+                            {
+                                ProjectFunctions.SpeakError("Time In Last cannot be less than Time Out First in Day Shift");
+                                timeEdit_Time_In_Last.EditValue = null;
+                            }
+                            else
+                            {
+                                if (dateTime_Out_Last < dateTime_In_Last)
+                                {                                    
+                                    ProjectFunctions.SpeakError("Time Out Last cannot be less than Time In Last in Day Shift");
+                                    timeEdit_Time_Out_Last.EditValue = null;
+                                }
+                                else
+                                {
+                                    totalHrs_Last = (dateTime_Out_Last - dateTime_In_Last).TotalHours;
+                                    if (totalHrs_Last < 0)
+                                    {
+                                        totalHrs_Last = totalHrs_Last * -1;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (dateTime_Out_Last < dateTime_In_Last)
+                            {
+                                ProjectFunctions.SpeakError("Time Out Last cannot be less than Time In Last in Day Shift");
+                                timeEdit_Time_Out_Last.EditValue = null;
+                            }
+                            else
+                            {
+                                totalHrs_Last = (dateTime_Out_Last - dateTime_In_Last).TotalHours;
+                                if (totalHrs_Last < 0)
+                                {
+                                    totalHrs_Last = totalHrs_Last * -1;
+                                }
+                            }
+                        }
+
+                    }
+
+                    double totalHrs_FullDay = totalHrs_First + totalHrs_Last;
+
+                    totalWorkingHours_Text.Text = (totalHrs_FullDay).ToString();
+
+                    if (totalHrs_First > 0 && totalHrs_Last > 0)
+                    {
+                        DateTime dateTime_In_Last_GP = ConvertTo.TimeToDate(timeEdit_Time_In_Last.Text + "");
+                        DateTime dateTime_Out_GP = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
+
+                        timeEdit_GatePassTime.EditValue = (dateTime_In_Last_GP - dateTime_Out_GP).TotalHours;
+
+                        txtOvertimeHours.EditValue = ConvertTo.IntVal(totalWorkingHours_Text.Text) - ConvertTo.IntVal(totalWorkingHours_Text_Main.Text);
+                    }
+                    /*
+                     * 
+                    if ((entry.Equals("first_in") || entry.Equals("all")))
+                    {
+                        first_in = true;
+                    }
+                    //if (entry.Equals("first_out"))
+                    //{
+                    //    first_out = true;
+                    //}
+                    //if (entry.Equals("last_in"))
+                    //{
+                    //    last_in = true;
+                    //}
+                    //if (entry.Equals("last_out"))
+                    //{
+                    //    last_out = true;
+                    //}
+
+                    DateTime dateTime_In = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + "");
+
+                    PrintLogWin.PrintLog("4a => " + dateTime_In + "");
+
+                    ///////////////////////////////////
+                    
+                    DateTime dateTime_Out = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
+
+                    PrintLogWin.PrintLog("4b => " + dateTime_Out + "");
+
+                    PrintLogWin.PrintLog("************* entry => " + entry + "");
+
+                    double totalHrs_First = 0;
+
+                    if (shift_id == 1)
+                    {
+                        if (entry.Equals("first_out") || entry.Equals("all"))
+                        {
+                            if (dateTime_Out < dateTime_In)
+                            {
+                                first_out = false;
+                                ProjectFunctions.SpeakError("Time Out First cannot be less than Time In First in Day Shift");
+                                return;
+                            }
+                            else
+                            {
+                                first_out = true;
+
+                                PrintLogWin.PrintLog("************* first_in => " + first_in + "");
+                                PrintLogWin.PrintLog("************* first_out => " + first_out
+                                    + "");
+
+                                if (first_in && first_out)
+                                {
+                                    totalHrs_First = (dateTime_Out - dateTime_In).TotalHours;
+                                    if (totalHrs_First < 0)
+                                    {
+                                        totalHrs_First = totalHrs_First * -1;
+                                    }
+
+                                    totalWorkingHours_Text.Text = (totalHrs_First).ToString();
+
+                                    PrintLogWin.PrintLog("5 => " + totalHrs_First + "");
+                                }
+                            }
+
+
+                        }
+                            
+
+                        if (first_out)
+                        {
+                            
+
+                            //double s
+
+                            ////////////////////////////////////
+
+                            DateTime dateTime_In_Last = ConvertTo.TimeToDate(timeEdit_Time_In_Last.Text + "");
+
+                            if (shift_id == 1)
+                            {
+                                if (entry.Equals("last_in") || entry.Equals("all"))
+                                {
+                                    if (dateTime_In_Last < dateTime_Out)
+                                    {
+                                        last_in = false;
+                                        ProjectFunctions.SpeakError("Time In Last cannot be less than Time Out First in Day Shift");
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        last_in = true;
+                                    }
+                                }
+                                    
+                            }
+
+                            PrintLogWin.PrintLog("8a => " + dateTime_In_Last + "");
+                            /////////////////////////////////////
+
+                            if (last_in)
+                            {
+
+
+                                DateTime dateTime_Out_Last = ConvertTo.TimeToDate(timeEdit_Time_Out_Last.Text + "");
+
+                                if (shift_id == 1)
+                                {
+                                    if (entry.Equals("last_out") || entry.Equals("all"))
+                                    {
+                                        if (dateTime_Out_Last < dateTime_In_Last)
+                                        {
+                                            last_out = false;
+                                            ProjectFunctions.SpeakError("Time Out Last cannot be less than Time In Last in Day Shift");
+                                            
+
+                                        }
+                                        else
+                                        {
+                                            last_out = true;
+                                        }
+                                    }
+                                        
+                                }
+
+                                PrintLogWin.PrintLog("8a => " + dateTime_Out_Last + "");
+
+                                double totalHrs_Last = 0;
+
+                                if (last_in && last_out)
+                                {
+                                    totalHrs_Last = (dateTime_Out_Last - dateTime_In_Last).TotalHours;
+                                    if (totalHrs_Last < 0)
+                                    {
+                                        totalHrs_Last = totalHrs_Last * -1;
+                                    }
+                                    PrintLogWin.PrintLog("10 => " + totalHrs_Last + "");
+                                }
+
+                                /////////////////////////////////////
+
+                                totalWorkingHours_Text.Text = (totalHrs_First + totalHrs_Last).ToString();
+
+                            }
+
+
+                        }
+                    }
+                    */
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + "");
+            }
+        }
+
+
 
         /*
         static List<Employee> GetDataSource()

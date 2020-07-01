@@ -56,6 +56,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Speech" />
@@ -77,6 +78,7 @@
     <Compile Include="HelperClass\ComparisonUtils.cs" />
     <Compile Include="HelperClass\ControllerUtils.cs" />
     <Compile Include="HelperClass\ConvertValTo.cs" />
+    <Compile Include="HelperClass\HelperUtils.cs" />
     <Compile Include="Interfaces\ICatgMst.cs" />
     <Compile Include="Interfaces\IDeptMst.cs" />
     <Compile Include="Interfaces\IDesgMst.cs" />

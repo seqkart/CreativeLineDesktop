@@ -145,5 +145,6 @@ namespace SeqKartLibrary.Models
         public Nullable<System.TimeSpan> TimeOutFirst { get; set; }
         public Nullable<System.TimeSpan> TimeInLast { get; set; }
         public Nullable<System.TimeSpan> TimeOutLast { get; set; }
+        public Nullable<int> WorkingHours { get; set; }
     }
 }

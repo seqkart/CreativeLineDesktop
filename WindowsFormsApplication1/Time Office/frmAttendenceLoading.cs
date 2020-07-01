@@ -88,18 +88,18 @@ namespace BNPL.Forms_Master
 
         public void LoadAttendanceDataGrid()
         {           
-            ProgramMasterModel programMaster = ProgramMasterData.GetProgramMasterModel(GlobalVariables.ProgCode);
+            //ProgramMasterModel programMaster = ProgramMasterData.GetProgramMasterModel(GlobalVariables.ProgCode);
 
-            DataSet ds = ProjectFunctions.GetDataSet("Select ProgProcName,ProgDesc from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'");
-            string ProcedureName = ds.Tables[0].Rows[0]["ProgProcName"].ToString();
+            //DataSet ds = ProjectFunctions.GetDataSet("Select ProgProcName,ProgDesc from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'");
+            //string ProcedureName = ds.Tables[0].Rows[0]["ProgProcName"].ToString();
 
             PrintLogWin.PrintLog("LoadAttendanceDataGrid => GlobalVariables.ProgCode ******************** " + GlobalVariables.ProgCode);
-            PrintLogWin.PrintLog("LoadAttendanceDataGrid => ProcedureName Dapper ******************** " + programMaster.ProgProcName);
-            PrintLogWin.PrintLog("LoadAttendanceDataGrid => ProcedureName B ******************** " + ProcedureName);
+            //PrintLogWin.PrintLog("LoadAttendanceDataGrid => ProcedureName Dapper ******************** " + programMaster.ProgProcName);
+            //PrintLogWin.PrintLog("LoadAttendanceDataGrid => ProcedureName B ******************** " + ProcedureName);
 
             
-            List<AttendanceModel> att = ProgramMasterData.GetData<AttendanceModel>(GlobalVariables.ProgCode);
-            PrintLogWin.PrintLog("LoadAttendanceDataGrid => att ******************** " + att.Count);
+            //List<AttendanceModel> att = ProgramMasterData.GetData<AttendanceModel>(GlobalVariables.ProgCode);
+            //PrintLogWin.PrintLog("LoadAttendanceDataGrid => att ******************** " + att.Count);
 
 
             gridView_AttendanceData.Columns.Clear();
@@ -116,16 +116,20 @@ namespace BNPL.Forms_Master
                     {
                         SerialId = dr[Col.EmployeeAttendance.serial_id],
                         EntryDate = dr[Col.EmployeeAttendance.entry_date],
-                        Shift = dr[Col.DailyShifts.shift_name],
-                        Status = dr[Col.AttendanceStatus.status],
                         EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
+                        //Shift = dr[Col.DailyShifts.shift_name],
+                        Status = dr[Col.AttendanceStatus.status],                        
                         AttendanceDate = dr[Col.EmployeeAttendance.attendance_date],
-                        TimeIn = ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_in]).ToString("hh:mm tt"),
-                        TimeOut = ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_out]).ToString("hh:mm tt"),
-                        Source = dr[Col.AttendanceSource.source_name],
-                        GatePassTime = ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.gate_pass_time]).ToString("hh:mm tt"),
-                        DeductionTimeOT = dr[Col.EmployeeAttendance.ot_deducton_time]
+                        TimeIn_First = dr[Col.EmployeeAttendance.attendance_in_first],
+                        TimeOut_First = dr[Col.EmployeeAttendance.attendance_out_first],
+                        TimeIn_Last = dr[Col.EmployeeAttendance.attendance_in_last],
+                        TimeOut_Last = dr[Col.EmployeeAttendance.attendance_out_last],
+                        WorkingHours = dr[Col.EmployeeAttendance.working_hours],                        
+                        GatePassTime = ConvertTo.IntVal(dr[Col.EmployeeAttendance.gate_pass_time]),
+                        DeductionTimeOT = dr[Col.EmployeeAttendance.ot_deducton_time],
+                        Source = dr[Col.AttendanceSource.source_name]
                     };
+                    //ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_in_first]).ToString("hh:mm tt")
 
                     binding_list.Add(employeeAttendance);
                 }
@@ -217,7 +221,9 @@ namespace BNPL.Forms_Master
             //DataRow CurrentRow = gridView_AttendanceData.GetDataRow(gridView_AttendanceData.FocusedRowHandle);
             int row = (gridControl_AttendanceData.FocusedView as ColumnView).FocusedRowHandle;
             ColumnView detailView = (ColumnView)gridControl_AttendanceData.FocusedView;
-            int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("serial_id"));//.GetRowCellValue(row, "Edit_Link").ToString();
+            int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
+            //
+            string employee_code = detailView.GetFocusedRowCellValue("EmployeeCode").ToString();
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
                 );
@@ -460,8 +466,8 @@ namespace BNPL.Forms_Master
                     employeeAttendance.status_id = item.status_id;
                     employeeAttendance.employee_code = item.employee_code;
                     employeeAttendance.attendance_date = item.attendance_date;
-                    employeeAttendance.attendance_in = item.attendance_in;
-                    employeeAttendance.attendance_out = item.attendance_out;
+                    employeeAttendance.attendance_in_first = item.attendance_in_first;
+                    employeeAttendance.attendance_out_first = item.attendance_out_first;
                     employeeAttendance.attendance_source = item.attendance_source;
 
                     employeeAttendances_List.Add(employeeAttendance);

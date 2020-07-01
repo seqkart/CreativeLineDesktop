@@ -19,11 +19,14 @@ namespace SeqKartLibrary.Models
         public Nullable<System.DateTime> attendance_date { get; set; }
         public string employee_code { get; set; }
         public Nullable<int> status_id { get; set; }
-        public Nullable<System.DateTime> attendance_in { get; set; }
-        public Nullable<System.DateTime> attendance_out { get; set; }
         public Nullable<int> shift_id { get; set; }
         public Nullable<int> attendance_source { get; set; }
-        public Nullable<System.DateTime> gate_pass_time { get; set; }
+        public Nullable<int> gate_pass_time { get; set; }
         public Nullable<int> ot_deducton_time { get; set; }
+        public Nullable<System.TimeSpan> attendance_in_first { get; set; }
+        public Nullable<System.TimeSpan> attendance_out_first { get; set; }
+        public Nullable<System.TimeSpan> attendance_in_last { get; set; }
+        public Nullable<System.TimeSpan> attendance_out_last { get; set; }
+        public Nullable<int> working_hours { get; set; }
     }
 }

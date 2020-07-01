@@ -76,11 +76,13 @@ warning 6002: The table/view 'SEQKARTNew.dbo.DeptMst' does not have a primary ke
           <Property Name="attendance_date" Type="datetime" />
           <Property Name="employee_code" Type="varchar" MaxLength="10" />
           <Property Name="status_id" Type="int" />
-          <Property Name="attendance_in" Type="datetime" />
-          <Property Name="attendance_out" Type="datetime" />
+          <Property Name="attendance_in_first" Type="time" Precision="0" />
+          <Property Name="attendance_out_first" Type="time" Precision="0" />
+          <Property Name="attendance_in_last" Type="time" Precision="0" />
+          <Property Name="attendance_out_last" Type="time" Precision="0" />
           <Property Name="shift_id" Type="int" />
           <Property Name="attendance_source" Type="int" />
-          <Property Name="gate_pass_time" Type="datetime" />
+          <Property Name="gate_pass_time" Type="int" />
           <Property Name="ot_deducton_time" Type="int" />
         </EntityType>
         <EntityType Name="EmpMST">
@@ -214,10 +216,11 @@ warning 6002: The table/view 'SEQKARTNew.dbo.DeptMst' does not have a primary ke
           <Property Name="EmpBankBranchCode" Type="varchar" MaxLength="25" />
           <Property Name="SuncDate" Type="date" />
           <Property Name="SyncDate" Type="date" />
-          <Property Name="TimeInFirst" Type="time" Precision="7" />
-          <Property Name="TimeOutFirst" Type="time" Precision="7" />
-          <Property Name="TimeInLast" Type="time" Precision="7" />
-          <Property Name="TimeOutLast" Type="time" Precision="7" />
+          <Property Name="TimeInFirst" Type="time" Precision="0" />
+          <Property Name="TimeOutFirst" Type="time" Precision="0" />
+          <Property Name="TimeInLast" Type="time" Precision="0" />
+          <Property Name="TimeOutLast" Type="time" Precision="0" />
+          <Property Name="WorkingHours" Type="int" />
         </EntityType>
         <EntityType Name="ProgramMaster">
           <Key>
@@ -351,12 +354,14 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           <Property Name="attendance_date" Type="DateTime" Precision="3" />
           <Property Name="employee_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="status_id" Type="Int32" />
-          <Property Name="attendance_in" Type="DateTime" Precision="3" />
-          <Property Name="attendance_out" Type="DateTime" Precision="3" />
           <Property Name="shift_id" Type="Int32" />
           <Property Name="attendance_source" Type="Int32" />
-          <Property Name="gate_pass_time" Type="DateTime" Precision="3" />
+          <Property Name="gate_pass_time" Type="Int32" />
           <Property Name="ot_deducton_time" Type="Int32" />
+          <Property Name="attendance_in_first" Type="Time" Precision="0" />
+          <Property Name="attendance_out_first" Type="Time" Precision="0" />
+          <Property Name="attendance_in_last" Type="Time" Precision="0" />
+          <Property Name="attendance_out_last" Type="Time" Precision="0" />
         </EntityType>
         <EntityContainer Name="SEQKARTNewEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EmployeeAttendances" EntityType="Self.EmployeeAttendance" />
@@ -576,10 +581,11 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           <Property Name="EmpBankBranchCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="SuncDate" Type="DateTime" Precision="0" />
           <Property Name="SyncDate" Type="DateTime" Precision="0" />
-          <Property Name="TimeInFirst" Type="Time" Precision="7" />
-          <Property Name="TimeOutFirst" Type="Time" Precision="7" />
-          <Property Name="TimeInLast" Type="Time" Precision="7" />
-          <Property Name="TimeOutLast" Type="Time" Precision="7" />
+          <Property Name="TimeInFirst" Type="Time" Precision="0" />
+          <Property Name="TimeOutFirst" Type="Time" Precision="0" />
+          <Property Name="TimeInLast" Type="Time" Precision="0" />
+          <Property Name="TimeOutLast" Type="Time" Precision="0" />
+          <Property Name="WorkingHours" Type="Int32" />
         </EntityType>
         <EntityType Name="CatgMst">
           <Key>
@@ -624,13 +630,15 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           <EntitySetMapping Name="EmployeeAttendances">
             <EntityTypeMapping TypeName="SEQKARTNewModel.EmployeeAttendance">
               <MappingFragment StoreEntitySet="EmployeeAttendance">
+                <ScalarProperty Name="attendance_out_last" ColumnName="attendance_out_last" />
+                <ScalarProperty Name="attendance_in_last" ColumnName="attendance_in_last" />
+                <ScalarProperty Name="attendance_out_first" ColumnName="attendance_out_first" />
+                <ScalarProperty Name="attendance_in_first" ColumnName="attendance_in_first" />
                 <ScalarProperty Name="serial_id" ColumnName="serial_id" />
                 <ScalarProperty Name="entry_date" ColumnName="entry_date" />
                 <ScalarProperty Name="attendance_date" ColumnName="attendance_date" />
                 <ScalarProperty Name="employee_code" ColumnName="employee_code" />
                 <ScalarProperty Name="status_id" ColumnName="status_id" />
-                <ScalarProperty Name="attendance_in" ColumnName="attendance_in" />
-                <ScalarProperty Name="attendance_out" ColumnName="attendance_out" />
                 <ScalarProperty Name="shift_id" ColumnName="shift_id" />
                 <ScalarProperty Name="attendance_source" ColumnName="attendance_source" />
                 <ScalarProperty Name="gate_pass_time" ColumnName="gate_pass_time" />
@@ -721,6 +729,7 @@ warning 6002: The table/view 'SEQKARTNew.dbo.WORKER' does not have a primary key
           <EntitySetMapping Name="EmpMSTs">
             <EntityTypeMapping TypeName="SEQKARTNewModel.EmpMST">
               <MappingFragment StoreEntitySet="EmpMST">
+                <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
                 <ScalarProperty Name="TimeOutLast" ColumnName="TimeOutLast" />
                 <ScalarProperty Name="TimeInLast" ColumnName="TimeInLast" />
                 <ScalarProperty Name="TimeOutFirst" ColumnName="TimeOutFirst" />

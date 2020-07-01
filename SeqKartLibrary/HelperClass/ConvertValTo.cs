@@ -38,5 +38,30 @@ namespace SeqKartLibrary.HelperClass
 
             return DateTime.Now;
         }
+
+        public static DateTime TimeToDate(string time_In)
+        {
+            try
+            { 
+                TimeSpan timeSpan_In = TimeSpan.Parse(time_In);
+                DateTime dateTime_In = DateTime.Today.Add(timeSpan_In);
+
+                return dateTime_In;
+            }
+            catch { }
+
+            return DateTime.Now;
+        }
+
+        public static TimeSpan TimeSpanVal(object val)
+        {
+            try
+            {
+                return TimeSpan.Parse(val + "");
+            }
+            catch { }
+
+            return TimeSpan.Parse("00:00");
+        }
     }
 }

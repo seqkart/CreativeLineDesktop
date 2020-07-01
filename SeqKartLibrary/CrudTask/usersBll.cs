@@ -13,7 +13,7 @@ namespace SeqKartLibrary.CrudTask
     partial class users
     {
 
-        public string insertUpdate( user _user)
+        public async Task<string> insertUpdate( user _user)
         {
             RepGen  reposGen = new Repository.RepGen();
             DynamicParameters param = new DynamicParameters();
@@ -21,15 +21,15 @@ namespace SeqKartLibrary.CrudTask
             param.Add("@name", _user.name);
             param.Add("@address", _user.address);
             param.Add("@status", _user.status);
-            return reposGen.executeNonQuery ("users_Insert_Update", param);
+            return await reposGen.executeNonQuery ("users_Insert_Update", param);
         }
 
-        public string delete(user _user)
+        public async Task<string> delete(user _user)
         {
             RepGen reposGen = new Repository.RepGen();
             DynamicParameters param = new DynamicParameters();
             param.Add("@id", _user.id);
-            return reposGen.executeNonQuery("users_DeleteRow_By_id", param);
+            return await reposGen.executeNonQuery("users_DeleteRow_By_id", param);
         }
 
         public List<user> allRecords(user _user)
