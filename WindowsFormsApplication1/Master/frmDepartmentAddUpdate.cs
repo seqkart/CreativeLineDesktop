@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
             }
             if (s1 == "Edit")
             {
-                txtDesc.Enabled = false;
+                //txtDesc.Enabled = false;
                 DataSet ds = ProjectFunctions.GetDataSet("SELECT DeptCode,DeptDesc,Remarks FROM DeptMst Where DeptCode='" + DeptCode + "'");
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -131,7 +131,7 @@ namespace WindowsFormsApplication1
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
                         sqlcon.Close();
-                        XtraMessageBox.Show("Data Saved Successfully");
+                        ProjectFunctions.SpeakError("Data Saved Successfully");
                         this.Close();
                     }
                     catch (Exception ex)

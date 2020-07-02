@@ -32,6 +32,23 @@ namespace SeqKartLibrary.Repository
 
         }
 
+        public async Task<string> executeNonQuery_SP_Async(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                await con.ExecuteAsync(query, param, commandType: CommandType.StoredProcedure);
+                con.Close();
+                return "0";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
         public string executeNonQuery_SP(string query, DynamicParameters param)
         {
             try

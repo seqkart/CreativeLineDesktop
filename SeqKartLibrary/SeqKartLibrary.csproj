@@ -72,6 +72,7 @@
     <Compile Include="CrudTask\AttendanceData.cs" />
     <Compile Include="CrudTask\ChallanOutMain_Concrete.cs" />
     <Compile Include="CrudTask\CrudAction.cs" />
+    <Compile Include="CrudTask\DesignationData.cs" />
     <Compile Include="CrudTask\EmployeeData.cs" />
     <Compile Include="CrudTask\ProgramMasterData.cs" />
     <Compile Include="CrudTask\usersBll.cs" />

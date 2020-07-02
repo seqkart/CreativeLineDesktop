@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.XtraBars.Docking2010;
+using DevExpress.XtraEditors;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -67,7 +68,7 @@ namespace WindowsFormsApplication1.Master
             }
             if (s1 == "Edit")
             {
-                txtCatgDesc.Enabled = false;
+                //txtCatgDesc.Enabled = false;
                 DataSet ds = ProjectFunctions.GetDataSet("SELECT CatgCode,CatgDesc FROM CatgMst Where CatgCode='" + CatgCode + "'");
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -76,6 +77,11 @@ namespace WindowsFormsApplication1.Master
                     txtCatgDesc.Focus();
                 }
             }
+        }
+
+        private void windowsUIButtonPanelMain_ButtonClick(object sender, ButtonEventArgs e)
+        {
+
         }
 
         private void frmCategoryMst_KeyDown(object sender, KeyEventArgs e)
@@ -89,8 +95,12 @@ namespace WindowsFormsApplication1.Master
                 btnSave_Click(null, e);
             }
         }
-
         private void btnSave_Click(object sender, EventArgs e)
+        {
+            btnSave_Click_1();
+
+        }
+        private void btnSave_Click_1()
         {
             if (ValidateData())
             {
@@ -124,7 +134,10 @@ namespace WindowsFormsApplication1.Master
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
                         sqlcon.Close();
-                        XtraMessageBox.Show("Data Saved Successfully");
+                        ProjectFunctions.SpeakError("Data Saved Successfully");
+
+
+
                         this.Close();
                     }
                     catch (Exception ex)

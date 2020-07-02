@@ -1,8 +1,11 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraSpreadsheet.Utils.Trees;
 using SeqKartLibrary;
+using SeqKartLibrary.CrudTask;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1
 {
@@ -32,7 +35,7 @@ namespace WindowsFormsApplication1
             }
             if (s1 == "Edit")
             {
-                txtDesc.Enabled = false;
+                //txtDesc.Enabled = false;
                 DataSet ds = ProjectFunctions.GetDataSet("SELECT DesgCode,DesgDesc FROM DesgMst Where DesgCode='" + DesgCode + "'");
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -72,6 +75,7 @@ namespace WindowsFormsApplication1
         //}
         private void frmDesignationAddEdit_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Up)
             {
                 System.Windows.Forms.SendKeys.Send("+{TAB}");
@@ -86,11 +90,32 @@ namespace WindowsFormsApplication1
         {
             this.Close();
         }
-
         private void btnSave_Click(object sender, EventArgs e)
+        {
+            btnSave_Data();            
+        }
+
+        private void btnSave_Data()
         {
             if (ValidateData())
             {
+                PrintLogWin.PrintLog("btnSave_Data : " + txtDesgCode.Text.Trim());
+                PrintLogWin.PrintLog("btnSave_Data : " + txtDesc.Text.Trim());
+                PrintLogWin.PrintLog("btnSave_Data : " + s1);
+
+                DesignationData designationData = new DesignationData();
+                string intResult = designationData.InsertUpdate(txtDesgCode.Text.Trim(), txtDesc.Text.Trim(), s1);
+                if (intResult.Equals("0"))
+                {
+                    ProjectFunctions.SpeakError("Data Saved Successfully");
+                }
+                else
+                {
+                    ProjectFunctions.SpeakError("Some Error in Save Data");
+                }
+                this.Close();
+
+                /*
                 using (var sqlcon = new SqlConnection(ProjectFunctions.GetConnection()))
                 {
                     sqlcon.Open();
@@ -101,10 +126,10 @@ namespace WindowsFormsApplication1
                     sqlcom.CommandType = CommandType.Text;
                     try
                     {
-                        string sql = "";
+                        
                         if (s1 == "&Add")
                         {
-                            sql = "sp_DesignationAddUpdate @DesgCode, @DesgDesc, 'ADD'";
+                            
                             //sqlcom.CommandText = " SET TRANSACTION ISOLATION LEVEL SERIALIZABLE  Begin Transaction "
                             //                        + " Insert into DesgMst"
                             //                        + " (DesgCode,DesgDesc)"
@@ -112,20 +137,25 @@ namespace WindowsFormsApplication1
                             //                        + " Commit ";
                         }
                         if (s1 == "Edit")
-                        {
-                            sql = "sp_DesignationAddUpdate @DesgCode, @DesgDesc, 'EDIT'";
+                        {                            
                             //sqlcom.CommandText = " UPDATE DesgMst SET "
                             //                    + " DesgDesc=@DesgDesc"
                             //                    + " Where DesgCode=@DesgCode";
 
                         }
+
+                        string addEditTag = s1;
+
+                        string sql = "sp_DesignationAddUpdate @DesgCode, @DesgDesc, @AddEditTag";
                         sqlcom.CommandText = sql;
                         sqlcom.Parameters.AddWithValue("@DesgCode", txtDesgCode.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@DesgDesc", txtDesc.Text.Trim());
+                        sqlcom.Parameters.AddWithValue("@AddEditTag", addEditTag);
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
                         sqlcon.Close();
-                        XtraMessageBox.Show("Data Saved Successfully");
+                        ProjectFunctions.SpeakError("Data Saved Successfully");
+
                         this.Close();
                     }
                     catch (Exception ex)
@@ -141,6 +171,7 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
+                */
             }
         }
     }

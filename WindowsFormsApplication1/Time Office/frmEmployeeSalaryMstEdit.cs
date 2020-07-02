@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿
+using DevExpress.XtraEditors;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -33,26 +34,29 @@ namespace BNPL.Forms_Master
         {
             DtStartDate.EditValue = DateTime.Now;
             SetMyControls();
-            var ds = ProjectFunctions.GetDataSet("Select * from empmst where empcode='" + empcode + "'");
+            var ds = ProjectFunctions.GetDataSet("Select * from EmpMst where EmpCode='" + empcode + "'");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
                 txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
                 txtFHName.Text = ds.Tables[0].Rows[0]["EmpFHName"].ToString();
+                //////////////////////////
                 txtBasicPay.Text = ds.Tables[0].Rows[0]["EmpBasic"].ToString();
                 txtHRA.Text = ds.Tables[0].Rows[0]["EmpHRA"].ToString();
                 txtPetrol.Text = ds.Tables[0].Rows[0]["EmpPET"].ToString();
                 txtConvenyance.Text = ds.Tables[0].Rows[0]["EmpConv"].ToString();
                 txtEmpSplAlw.Text = ds.Tables[0].Rows[0]["EmpSplAlw"].ToString();
+
+
+                //////////////////////////
                 txtBasicPay1.Text = ds.Tables[0].Rows[0]["EmpBasic"].ToString();
                 txtHRA1.Text = ds.Tables[0].Rows[0]["EmpHRA"].ToString();
                 txtPetrol1.Text = ds.Tables[0].Rows[0]["EmpPET"].ToString();
                 txtConvenyance1.Text = ds.Tables[0].Rows[0]["EmpConv"].ToString();
-
                 txtEmpSplAlw1.Text = ds.Tables[0].Rows[0]["EmpSplAlw"].ToString();
 
 
-                if (validateData())
+                if (validateData1())
                 {
                     txtTotal2.Text = (Convert.ToDecimal(txtBasicPay1.Text) + Convert.ToDecimal(txtHRA1.Text) + Convert.ToDecimal(txtPetrol1.Text) + Convert.ToDecimal(txtConvenyance1.Text) + Convert.ToDecimal(txtEmpSplAlw1.Text)).ToString();
                 }
@@ -62,7 +66,7 @@ namespace BNPL.Forms_Master
             if (s1 == "Edit")
             {
                 DtStartDate.Properties.ReadOnly = true;
-                var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where empcode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
+                var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where EmpCode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
                 if (ds1.Tables[0].Rows.Count > 0)
                 {
                     txtBasicPay1.Text = ds1.Tables[0].Rows[0]["EmpBasic"].ToString();
@@ -71,7 +75,7 @@ namespace BNPL.Forms_Master
                     txtConvenyance1.Text = ds1.Tables[0].Rows[0]["EmpConv"].ToString();
                     txtEmpSplAlw1.Text = ds1.Tables[0].Rows[0]["EmpSplAlw"].ToString();
                 }
-                if (validateData())
+                if (validateData1())
                 {
                     txtTotal2.Text = (Convert.ToDecimal(txtBasicPay1.Text) + Convert.ToDecimal(txtHRA1.Text) + Convert.ToDecimal(txtPetrol1.Text) + Convert.ToDecimal(txtConvenyance1.Text) + Convert.ToDecimal(txtEmpSplAlw1.Text)).ToString();
                 }
@@ -156,9 +160,37 @@ namespace BNPL.Forms_Master
 
             return true;
         }
+
+        private bool validateData1()
+        {
+            if (txtBasicPay1.Text.Length == 0)
+            {
+                txtBasicPay1.Text = "0";
+            }
+
+            if (txtHRA1.Text.Length == 0)
+            {
+                txtHRA1.Text = "0";
+            }
+            if (txtPetrol1.Text.Length == 0)
+            {
+                txtPetrol1.Text = "0";
+            }
+            if (txtConvenyance1.Text.Length == 0)
+            {
+                txtConvenyance1.Text = "0";
+            }
+
+            if (txtEmpSplAlw1.Text.Length == 0)
+            {
+                txtEmpSplAlw1.Text = "0";
+            }
+
+            return true;
+        }
         private void EditSalary()
         {
-            var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where empcode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
+            var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where EmpCode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
             if (ds1.Tables[0].Rows.Count > 0)
             {
                 var Str = "Update EMPMST_MDATA set ";
@@ -185,7 +217,7 @@ namespace BNPL.Forms_Master
         }
         private void AddSalary()
         {
-            var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where empcode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
+            var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where EmpCode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
             if (ds1.Tables[0].Rows.Count > 0)
             {
                 XtraMessageBox.Show("Entry Already Exists For Same Month Year");
@@ -217,7 +249,7 @@ namespace BNPL.Forms_Master
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (validateData())
+            if (validateData1())
             {
                 if (s1 == "Add")
                 {
@@ -259,14 +291,22 @@ namespace BNPL.Forms_Master
             ProjectFunctions.NumericWithDecimal(e);
         }
 
-
-
-        private void TxtEmpSplAlw1_EditValueChanged(object sender, EventArgs e)
+        private void txtTotal1_EditValueChanged(object sender, EventArgs e)
         {
             if (validateData())
+            {
+                txtTotal1.Text = (Convert.ToDecimal(txtBasicPay.Text) + Convert.ToDecimal(txtHRA.Text) + Convert.ToDecimal(txtPetrol.Text) + Convert.ToDecimal(txtConvenyance.Text) + Convert.ToDecimal(txtEmpSplAlw.Text)).ToString();
+            }
+        }
+
+        private void txtTotal2_EditValueChanged(object sender, EventArgs e)
+        {
+            if (validateData1())
             {
                 txtTotal2.Text = (Convert.ToDecimal(txtBasicPay1.Text) + Convert.ToDecimal(txtHRA1.Text) + Convert.ToDecimal(txtPetrol1.Text) + Convert.ToDecimal(txtConvenyance1.Text) + Convert.ToDecimal(txtEmpSplAlw1.Text)).ToString();
             }
         }
+
+        
     }
 }
