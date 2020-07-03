@@ -23,12 +23,14 @@ namespace SeqKartLibrary
         {
             public static string _GetNewEmpCode()
             {
-                string sql = "SELECT"
-                + " CASE"
-                + " WHEN (isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1) < 10 THEN ('emp0'+CAST(isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1 as varchar(10)))"
-                + " ELSE ('emp'+CAST(isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1 as varchar(10)))"
-                + " END AS NewEmpCode"
-                + " FROM EmpMst;";
+                //string sql = "SELECT"
+                //+ " CASE"
+                //+ " WHEN (isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1) < 10 THEN ('emp0'+CAST(isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1 as varchar(10)))"
+                //+ " ELSE ('emp'+CAST(isnull(max(Cast(REPLACE(EmpCode, 'emp', '') as int)), 00000) + 1 as varchar(10)))"
+                //+ " END AS NewEmpCode"
+                //+ " FROM EmpMst;";
+
+                string sql = "SELECT RIGHT('0000' + CAST((ISNULL(MAX(CAST(EmpCode AS INT)), 0) + 1) AS VARCHAR(4)), 4) AS NewCode FROM EmpMst";
 
                 return sql;
             }
@@ -43,13 +45,14 @@ namespace SeqKartLibrary
         {
             public static string _GetNewDeptCode()
             {
-                string sql = "SELECT"
-                + " CASE"
-                + " WHEN (isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1) < 10 THEN ('dp0'+CAST(isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1 as varchar(10)))"
-                + " ELSE ('dp'+CAST(isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1 as varchar(10)))"
-                + " END AS NewDeptCode"
-                + " FROM DeptMSt;";
+                //string sql1 = "SELECT"
+                //+ " CASE"
+                //+ " WHEN (isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1) < 10 THEN ('dp0'+CAST(isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1 as varchar(10)))"
+                //+ " ELSE ('dp'+CAST(isnull(max(Cast(REPLACE(DeptCode, 'dp', '') as int)), 00000) + 1 as varchar(10)))"
+                //+ " END AS NewDeptCode"
+                //+ " FROM DeptMSt;";
 
+                string sql = "SELECT RIGHT('0000' + CAST((ISNULL(MAX(CAST(DeptCode AS INT)), 0) + 1) AS VARCHAR(4)), 4) AS NewCode FROM DeptMSt";
                 return sql;
             }
         }
@@ -58,14 +61,17 @@ namespace SeqKartLibrary
         {
             public static string _GetNewDesgCode()
             {
-                string sql = "SELECT"
-                + " CASE"
-                + " WHEN (isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1) < 10 THEN ('ds0'+CAST(isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1 as varchar(10)))"
-                + " ELSE ('ds'+CAST(isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1 as varchar(10)))"
-                + " END AS NewDesgCode"
-                + " FROM DesgMst;";
+                //string sql = "SELECT"
+                //+ " CASE"
+                //+ " WHEN (isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1) < 10 THEN ('ds0'+CAST(isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1 as varchar(10)))"
+                //+ " ELSE ('ds'+CAST(isnull(max(Cast(REPLACE(DesgCode, 'ds', '') as int)), 00000) + 1 as varchar(10)))"
+                //+ " END AS NewDesgCode"
+                //+ " FROM DesgMst;";
+
+                string sql = "SELECT RIGHT('0000' + CAST((ISNULL(MAX(CAST(DesgCode AS INT)), 0) + 1) AS VARCHAR(4)), 4) AS NewCode FROM DesgMst";
 
                 return sql;
+
             }
         }
 

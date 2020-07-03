@@ -78,9 +78,6 @@
             this._ribbonControl.AutoHideEmptyItems = true;
             this._ribbonControl.AutoSaveLayoutToXml = true;
             this._ribbonControl.AutoSizeItems = true;
-            // 
-            // 
-            // 
             this._ribbonControl.ExpandCollapseItem.CloseRadialMenuOnItemClick = true;
             this._ribbonControl.ExpandCollapseItem.Id = 0;
             this._ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
@@ -265,7 +262,7 @@
             this.xtraTabControl1.AppearancePage.HeaderHotTracked.Options.UseImage = true;
             this.xtraTabControl1.AppearancePage.PageClient.Options.UseImage = true;
             this.xtraTabControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.xtraTabControl1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPagesAndTabControlHeader;
+            this.xtraTabControl1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";

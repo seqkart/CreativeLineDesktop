@@ -10,8 +10,6 @@ namespace BNPL.Forms_Master
 {
     public partial class frmEmployeeMDataPassing : DevExpress.XtraEditors.XtraForm
     {
-
-
         public frmEmployeeMDataPassing()
         {
             InitializeComponent();

@@ -29,6 +29,8 @@ namespace WindowsFormsApplication1
 
         static extern bool SetForegroundWindow(IntPtr hWnd);
 
+
+        private bool isDebug = true;
         public frmLogincs()
         {
             InitializeComponent();
@@ -184,16 +186,19 @@ namespace WindowsFormsApplication1
                 txtFNYear.ValueMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
                 txtFNYear.DisplayMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
             }
+            if (isDebug)
+            {
+                //MessageBox.Show(dsFNYear.Tables[0].Rows.Count.ToString());
+                txtPassword.Text = "123";
+                txtUserName.Text = "HAPPY";
+                SendKeys.Send("{Enter}");
+                txtUserName.Focus();
 
-            //MessageBox.Show(dsFNYear.Tables[0].Rows.Count.ToString());
-            txtPassword.Text = "123";
-            txtUserName.Text = "HAPPY";
-            SendKeys.Send("{Enter}");
-            txtUserName.Focus();
+
+                txtUserName_KeyDown(null, null);
+                btnLogin_Click(null, null);
+            }
             
-
-            txtUserName_KeyDown(null, null);
-            btnLogin_Click(null, null);
 
 
         }

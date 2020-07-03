@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployeeMDataPAddEdit));
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.DtStartDate = new DevExpress.XtraEditors.DateEdit();
             this.txtFHName = new DevExpress.XtraEditors.TextEdit();
@@ -332,7 +331,7 @@
             // 
             this.labelControl23.Location = new System.Drawing.Point(72, 119);
             this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(46, 13);
+            this.labelControl23.Size = new System.Drawing.Size(45, 13);
             this.labelControl23.TabIndex = 266;
             this.labelControl23.Text = "Basic Pay";
             // 
@@ -364,31 +363,32 @@
             // 
             // btnQuit
             // 
-            this.btnQuit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btnQuit.ForeColor = System.Drawing.Color.White;
-            this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
+            this.btnQuit.Image = global::WindowsFormsApplication1.Properties.Resources.Close;
             this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(35, 22);
-            this.btnQuit.Text = "Quit";
+            this.btnQuit.Size = new System.Drawing.Size(56, 22);
+            this.btnQuit.Text = "Close";
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnSave
             // 
-            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Image = global::WindowsFormsApplication1.Properties.Resources.Add;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(38, 22);
+            this.btnSave.Size = new System.Drawing.Size(54, 22);
             this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // labelControl4
             // 
             this.labelControl4.Location = new System.Drawing.Point(93, 251);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(25, 13);
+            this.labelControl4.Size = new System.Drawing.Size(26, 13);
             this.labelControl4.TabIndex = 348;
             this.labelControl4.Text = "Total";
             // 

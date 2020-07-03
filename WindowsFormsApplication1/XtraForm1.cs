@@ -11,8 +11,7 @@ using WindowsFormsApplication1.FormReports;
 
 namespace WindowsFormsApplication1
 {
-    public partial class 
-        XtraForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class XtraForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         public XtraForm1()
         {

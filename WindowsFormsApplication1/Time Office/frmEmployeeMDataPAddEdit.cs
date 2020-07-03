@@ -60,17 +60,17 @@ namespace BNPL.Forms_Master
 
             DtStartDate.EditValue = empdate;
             SetMyControls();
-            var ds = ProjectFunctions.GetDataSet("Select * from empmst where empcode='" + empcode + "'");
+            var ds = ProjectFunctions.GetDataSet("Select * from EmpMST where EmpCode='" + empcode + "'");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
                 txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
                 txtFHName.Text = ds.Tables[0].Rows[0]["EmpFHName"].ToString();
+
                 txtBasicPay.Text = ds.Tables[0].Rows[0]["EmpBasic"].ToString();
                 txtHRA.Text = ds.Tables[0].Rows[0]["EmpHRA"].ToString();
                 txtPetrol.Text = ds.Tables[0].Rows[0]["EmpPET"].ToString();
                 txtConvenyance.Text = ds.Tables[0].Rows[0]["EmpConv"].ToString();
-
                 txtEmpSplAlw.Text = ds.Tables[0].Rows[0]["EmpSplAlw"].ToString();
             }
             txtTotal1.Text = (Convert.ToDecimal(txtBasicPay.Text) + Convert.ToDecimal(txtHRA.Text) + Convert.ToDecimal(txtPetrol.Text) + Convert.ToDecimal(txtConvenyance.Text) + Convert.ToDecimal(txtEmpSplAlw.Text)).ToString();
@@ -93,9 +93,10 @@ namespace BNPL.Forms_Master
             var Str1 = "Update EmpMst set ";
             Str1 = Str1 + " EmpBasic='" + Convert.ToDecimal(txtBasicPay1.Text) + "',";
             Str1 = Str1 + " EmpHRA='" + Convert.ToDecimal(txtHRA1.Text) + "',";
+            Str1 = Str1 + " EmpPET='" + Convert.ToDecimal(txtPetrol1.Text) + "',";
             Str1 = Str1 + " EmpConv='" + Convert.ToDecimal(txtConvenyance1.Text) + "',";
             Str1 = Str1 + " EmpSplAlw ='" + Convert.ToDecimal(txtEmpSplAlw1.Text.Trim()) + "',";
-            Str1 = Str1 + " EmpGrossPay='" + Convert.ToDecimal(txtTotal2.Text.Trim()) + "' where empcode='" + empcode.ToString() + "'";
+            Str1 = Str1 + " EmpGrossPay='" + Convert.ToDecimal(txtTotal2.Text.Trim()) + "' where EmpCode='" + empcode.ToString() + "'";
             using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
             {
                 sqlcon.Open();
@@ -103,7 +104,7 @@ namespace BNPL.Forms_Master
                 sqlcom.CommandType = CommandType.Text;
                 sqlcom.ExecuteNonQuery();
             }
-            var Str2 = "Update empmst_mData set EmpPassbyUser='" + GlobalVariables.CurrentUser + "',EmpPassbyOn='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm") + "' Where EmpCode='" + empcode + "' And EmpDDate='" + Convert.ToDateTime(empdate).ToString("yyyy-MM-dd") + "'";
+            var Str2 = "Update EMPMST_MDATA set EmpPassbyUser='" + GlobalVariables.CurrentUser + "',EmpPassbyOn='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm") + "' Where EmpCode='" + empcode + "' And EmpDDate='" + Convert.ToDateTime(empdate).ToString("yyyy-MM-dd") + "'";
             using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
             {
                 sqlcon.Open();
@@ -111,6 +112,7 @@ namespace BNPL.Forms_Master
                 sqlcom.CommandType = CommandType.Text;
                 sqlcom.ExecuteNonQuery();
             }
+            ProjectFunctions.SpeakError("Salary Structure Has Been Passed");
             Close();
         }
     }
