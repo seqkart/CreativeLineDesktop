@@ -124,7 +124,7 @@
             this.txtPetrol1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtPetrol1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtPetrol1.Size = new System.Drawing.Size(75, 20);
-            this.txtPetrol1.TabIndex = 12;
+            this.txtPetrol1.TabIndex = 14;
             this.txtPetrol1.EditValueChanged += new System.EventHandler(this.txtTotal2_EditValueChanged);
             this.txtPetrol1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPetrol1_KeyPress);
             // 
@@ -143,8 +143,7 @@
             this.txtPetrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtPetrol.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtPetrol.Size = new System.Drawing.Size(75, 20);
-            this.txtPetrol.TabIndex = 11;
-            this.txtPetrol.TabStop = false;
+            this.txtPetrol.TabIndex = 8;
             this.txtPetrol.EditValueChanged += new System.EventHandler(this.txtTotal1_EditValueChanged);
             // 
             // txtConvenyance1
@@ -162,7 +161,7 @@
             this.txtConvenyance1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtConvenyance1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtConvenyance1.Size = new System.Drawing.Size(75, 20);
-            this.txtConvenyance1.TabIndex = 10;
+            this.txtConvenyance1.TabIndex = 13;
             this.txtConvenyance1.EditValueChanged += new System.EventHandler(this.txtTotal2_EditValueChanged);
             this.txtConvenyance1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConvenyance1_KeyPress);
             // 
@@ -181,8 +180,7 @@
             this.txtConvenyance.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtConvenyance.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtConvenyance.Size = new System.Drawing.Size(75, 20);
-            this.txtConvenyance.TabIndex = 9;
-            this.txtConvenyance.TabStop = false;
+            this.txtConvenyance.TabIndex = 7;
             this.txtConvenyance.EditValueChanged += new System.EventHandler(this.txtTotal1_EditValueChanged);
             // 
             // txtHRA1
@@ -200,7 +198,7 @@
             this.txtHRA1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtHRA1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtHRA1.Size = new System.Drawing.Size(75, 20);
-            this.txtHRA1.TabIndex = 8;
+            this.txtHRA1.TabIndex = 12;
             this.txtHRA1.EditValueChanged += new System.EventHandler(this.txtTotal2_EditValueChanged);
             this.txtHRA1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHRA1_KeyPress);
             // 
@@ -220,7 +218,7 @@
             this.txtBasicPay1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtBasicPay1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtBasicPay1.Size = new System.Drawing.Size(75, 20);
-            this.txtBasicPay1.TabIndex = 6;
+            this.txtBasicPay1.TabIndex = 11;
             this.txtBasicPay1.EditValueChanged += new System.EventHandler(this.txtTotal2_EditValueChanged);
             this.txtBasicPay1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBasicPay1_KeyPress);
             // 
@@ -247,8 +245,7 @@
             this.txtHRA.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtHRA.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtHRA.Size = new System.Drawing.Size(75, 20);
-            this.txtHRA.TabIndex = 7;
-            this.txtHRA.TabStop = false;
+            this.txtHRA.TabIndex = 6;
             this.txtHRA.EditValueChanged += new System.EventHandler(this.txtTotal1_EditValueChanged);
             // 
             // labelControl22
@@ -275,7 +272,6 @@
             this.txtBasicPay.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtBasicPay.Size = new System.Drawing.Size(75, 20);
             this.txtBasicPay.TabIndex = 5;
-            this.txtBasicPay.TabStop = false;
             this.txtBasicPay.EditValueChanged += new System.EventHandler(this.txtTotal1_EditValueChanged);
             // 
             // labelControl23
@@ -416,7 +412,7 @@
             this.txtTotal2.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTotal2.Properties.ReadOnly = true;
             this.txtTotal2.Size = new System.Drawing.Size(74, 20);
-            this.txtTotal2.TabIndex = 350;
+            this.txtTotal2.TabIndex = 16;
             this.txtTotal2.TabStop = false;
             this.txtTotal2.EditValueChanged += new System.EventHandler(this.txtTotal2_EditValueChanged);
             // 
@@ -436,7 +432,7 @@
             this.txtTotal1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTotal1.Properties.ReadOnly = true;
             this.txtTotal1.Size = new System.Drawing.Size(74, 20);
-            this.txtTotal1.TabIndex = 349;
+            this.txtTotal1.TabIndex = 10;
             this.txtTotal1.TabStop = false;
             this.txtTotal1.EditValueChanged += new System.EventHandler(this.txtTotal1_EditValueChanged);
             // 
@@ -464,8 +460,7 @@
             this.txtEmpSplAlw.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtEmpSplAlw.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtEmpSplAlw.Size = new System.Drawing.Size(74, 20);
-            this.txtEmpSplAlw.TabIndex = 358;
-            this.txtEmpSplAlw.TabStop = false;
+            this.txtEmpSplAlw.TabIndex = 9;
             this.txtEmpSplAlw.EditValueChanged += new System.EventHandler(this.txtTotal1_EditValueChanged);
             // 
             // txtEmpSplAlw1
@@ -483,7 +478,7 @@
             this.txtEmpSplAlw1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtEmpSplAlw1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtEmpSplAlw1.Size = new System.Drawing.Size(74, 20);
-            this.txtEmpSplAlw1.TabIndex = 31;
+            this.txtEmpSplAlw1.TabIndex = 15;
             this.txtEmpSplAlw1.EditValueChanged += new System.EventHandler(this.txtTotal2_EditValueChanged);
             // 
             // frmEmployeeSalaryMstEdit

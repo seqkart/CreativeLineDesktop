@@ -66,6 +66,7 @@ namespace BNPL.Forms_Master
             if (s1 == "Edit")
             {
                 DtStartDate.Properties.ReadOnly = true;
+                
                 var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where EmpCode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
                 if (ds1.Tables[0].Rows.Count > 0)
                 {
@@ -78,6 +79,21 @@ namespace BNPL.Forms_Master
                 if (validateData1())
                 {
                     txtTotal2.Text = (Convert.ToDecimal(txtBasicPay1.Text) + Convert.ToDecimal(txtHRA1.Text) + Convert.ToDecimal(txtPetrol1.Text) + Convert.ToDecimal(txtConvenyance1.Text) + Convert.ToDecimal(txtEmpSplAlw1.Text)).ToString();
+                }
+
+                ///////
+                var ds2 = ProjectFunctions.GetDataSet("Select * from  EmpMst where EmpCode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+                    txtBasicPay.Text = ds2.Tables[0].Rows[0]["EmpBasic"].ToString();
+                    txtHRA.Text = ds2.Tables[0].Rows[0]["EmpHRA"].ToString();
+                    txtPetrol.Text = ds2.Tables[0].Rows[0]["EmpPET"].ToString();
+                    txtConvenyance.Text = ds2.Tables[0].Rows[0]["EmpConv"].ToString();
+                    txtEmpSplAlw.Text = ds2.Tables[0].Rows[0]["EmpSplAlw"].ToString();
+                }
+                if (validateData())
+                {
+                    txtTotal1.Text = (Convert.ToDecimal(txtBasicPay.Text) + Convert.ToDecimal(txtHRA.Text) + Convert.ToDecimal(txtPetrol.Text) + Convert.ToDecimal(txtConvenyance.Text) + Convert.ToDecimal(txtEmpSplAlw.Text)).ToString();
                 }
             }
         }
@@ -135,27 +151,27 @@ namespace BNPL.Forms_Master
 
         private bool validateData()
         {
-            if (txtBasicPay1.Text.Length == 0)
+            if (txtBasicPay.Text.Length == 0)
             {
-                txtBasicPay1.Text = "0";
+                txtBasicPay.Text = "0";
             }
 
-            if (txtHRA1.Text.Length == 0)
+            if (txtHRA.Text.Length == 0)
             {
-                txtHRA1.Text = "0";
+                txtHRA.Text = "0";
             }
-            if (txtPetrol1.Text.Length == 0)
+            if (txtPetrol.Text.Length == 0)
             {
-                txtPetrol1.Text = "0";
+                txtPetrol.Text = "0";
             }
-            if (txtConvenyance1.Text.Length == 0)
+            if (txtConvenyance.Text.Length == 0)
             {
-                txtConvenyance1.Text = "0";
+                txtConvenyance.Text = "0";
             }
 
-            if (txtEmpSplAlw1.Text.Length == 0)
+            if (txtEmpSplAlw.Text.Length == 0)
             {
-                txtEmpSplAlw1.Text = "0";
+                txtEmpSplAlw.Text = "0";
             }
 
             return true;
@@ -215,6 +231,37 @@ namespace BNPL.Forms_Master
                 XtraMessageBox.Show("Entry Dose not Exists For This Month Year");
             }
         }
+
+        private void EditSalary_2()
+        {
+            var ds1 = ProjectFunctions.GetDataSet("Select * from  EmpMST where EmpCode='" + empcode + "'");
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                var Str = "Update EmpMST set ";
+                Str = Str + " EmpBasic='" + Convert.ToDecimal(txtBasicPay.Text) + "',";
+                Str = Str + " EmpHRA='" + Convert.ToDecimal(txtHRA.Text) + "',";
+                Str = Str + " EmpPET='" + Convert.ToDecimal(txtPetrol.Text) + "',";
+                Str = Str + " EmpConv='" + Convert.ToDecimal(txtConvenyance.Text) + "',";
+                Str = Str + " EmpDUUserID='" + GlobalVariables.CurrentUser + "',";
+                Str = Str + " EmDUDt='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm") + "',";
+                Str = Str + " EmpSplAlw ='" + Convert.ToDecimal(txtEmpSplAlw.Text.Trim()) + "'";
+                Str = Str + " Where EmpCode='" + empcode + "'";
+                using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
+                {
+                    sqlcon.Open();
+                    var sqlcom = new SqlCommand(Str, sqlcon);
+                    sqlcom.CommandType = CommandType.Text;
+                    sqlcom.ExecuteNonQuery();
+                }
+
+                ProjectFunctions.SpeakError("Salary Structure Updated.");
+            }
+            else
+            {
+                XtraMessageBox.Show("Entry Dose not Exists For This Month Year");
+            }
+        }
+
         private void AddSalary()
         {
             var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where EmpCode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
@@ -247,6 +294,39 @@ namespace BNPL.Forms_Master
                 }
             }
         }
+
+        //private void AddSalary_2()
+        //{
+        //    var ds1 = ProjectFunctions.GetDataSet("Select * from  EmpMst where EmpCode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
+        //    if (ds1.Tables[0].Rows.Count > 0)
+        //    {
+        //        XtraMessageBox.Show("Entry Already Exists For Same Month Year");
+        //    }
+        //    else
+        //    {
+        //        var Str = "insert into  EmpMst(EmpCode,EmpBasic,EmpHRA,EmpPET,EmpConv,EmpDDate,EmpDFUserID,EmDFDt,EmpSplAlw)values(";
+        //        Str = Str + "'" + txtEmpCode.Text.Trim() + "',";
+        //        Str = Str + "'" + Convert.ToDecimal(txtBasicPay.Text) + "',";
+        //        Str = Str + "'" + Convert.ToDecimal(txtHRA.Text) + "',";
+        //        Str = Str + "'" + Convert.ToDecimal(txtPetrol.Text) + "',";
+        //        Str = Str + "'" + Convert.ToDecimal(txtConvenyance.Text) + "',";
+
+        //        Str = Str + "'" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy-MM-dd") + "',";
+        //        Str = Str + "'" + GlobalVariables.CurrentUser + "',";
+        //        Str = Str + "'" + DateTime.Now.ToString("yyyy-MM-dd hh:MM") + "',";
+
+        //        Str = Str + "'" + Convert.ToDecimal(txtEmpSplAlw.Text) + "')";
+
+
+        //        using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
+        //        {
+        //            sqlcon.Open();
+        //            var sqlcom = new SqlCommand(Str, sqlcon);
+        //            sqlcom.CommandType = CommandType.Text;
+        //            sqlcom.ExecuteNonQuery();
+        //        }
+        //    }
+        //}
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (validateData1())
@@ -254,6 +334,7 @@ namespace BNPL.Forms_Master
                 if (s1 == "Add")
                 {
                     AddSalary();
+                    //();//Add in EmpMst
                 }
                 if (s1 == "Edit")
                 {
@@ -271,9 +352,35 @@ namespace BNPL.Forms_Master
                     }
                     else
                     {
-                        XtraMessageBox.Show("No Entry exists For This Month Year");
+                        XtraMessageBox.Show("A => No Entry exists For This Month Year");
                     }
                 }
+
+                    
+                if ((s1 == "Add" || s1 == "Edit") && (txtBasicPay.Text.Length != 0))
+                {
+                    EditSalary_2();
+                    /*
+                    var ds = ProjectFunctions.GetDataSet("Select * from  EmpMST where empcode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        if (ds.Tables[0].Rows[0]["EmpPassbyUser"].ToString() == string.Empty)
+                        {
+                            
+                        }
+
+                        else
+                        {
+                            XtraMessageBox.Show("Entry Has Already Put Effect On Employee Salary");
+                        }
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("B => No Entry exists For This Month Year");
+                    }
+                    */
+                }
+
                 Close();
             }
         }
