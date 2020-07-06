@@ -152,11 +152,38 @@ namespace WindowsFormsApplication1
         //Convert image to binary
         byte[] ConvertImageToBinary(Image img)
         {
-            using (MemoryStream ms = new MemoryStream())
+            try
             {
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return ms.ToArray();
+                if (img != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        return ms.ToArray();
+                    }
+                }
             }
+            catch(Exception ex)
+            {
+                PrintLogWin.PrintLog(ex);
+
+            }
+
+            try
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    Properties.Resources.profile_icon.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    return ms.ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                PrintLogWin.PrintLog(ex);
+
+            }
+
+            return null;
         }
         //Convert binary to image
         Image ConvertBinaryToImage(byte[] data)
@@ -519,6 +546,8 @@ namespace WindowsFormsApplication1
                     {
                         if (s1 == "&Add")
                         {
+                            string empCode_SQL = SQL_QUERIES._frmEmployeeMstAddEdit._GetNewEmpCode(hasRtnCol:false);
+
                             sqlcom.CommandText = " SET TRANSACTION ISOLATION LEVEL SERIALIZABLE  Begin Transaction "
                                                  + " Insert into EmpMst"
                                                  + " (EmpCode,EmpName,EmpFHRelationTag,EmpFHName,EmpDeptCode,EmpDesgCode,EmpCategory,"
@@ -531,7 +560,7 @@ namespace WindowsFormsApplication1
                                                  + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode," +
                                                  "" +
                                                  "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours, EmpImage)"
-                                                 + " values((SELECT RIGHT('00000'+ CAST( ISNULL( max(Cast(EmpCode as int)),0)+1 AS VARCHAR(5)),5)from EmpMst),@EmpName,@EmpFHRelationTag,@EmpFHName,@EmpDeptCode,@EmpDesgCode,@EmpCategory,"
+                                                 + " values(" + empCode_SQL + ",@EmpName,@EmpFHRelationTag,@EmpFHName,@EmpDeptCode,@EmpDesgCode,@EmpCategory,"
                                                  + " @EmpSex,@EmpDOJ,@EmpDOL,@EmpPFDTag,"
                                                  + " @EmpESIDTag,@EmpPFno,@EmpESIno,@EmpBasic,@EmpHRA,@EmpConv,"
                                                  + " @EmpPET,@EmpTDS,@EmpLeft,@EmpRemarks,@EmpMotherNm,"
@@ -649,7 +678,19 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@TimeInLast", Convert.ToDateTime(timeEdit_Time_In_Last.Text.ToString().Trim()));
                         sqlcom.Parameters.AddWithValue("@TimeOutLast", Convert.ToDateTime(timeEdit_Time_Out_Last.Text.ToString().Trim()));
                         sqlcom.Parameters.AddWithValue("@WorkingHours", Convert.ToInt32(totalWorkingHours_Text.Text.ToString().Trim()));
-                        sqlcom.Parameters.AddWithValue("@EmpImage", ConvertImageToBinary(pictureBox1.Image));
+
+                        byte[] byteEmpty = null;
+
+                        
+                        if (ComparisonUtilsWin.PictureBox_IsNullOrEmpty(pictureBox1))
+                        {
+                            sqlcom.Parameters.AddWithValue("@EmpImage", byteEmpty);
+                        }
+                        else
+                        {
+                            sqlcom.Parameters.AddWithValue("@EmpImage", ConvertImageToBinary(pictureBox1.Image));
+                        }
+                        
 
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();

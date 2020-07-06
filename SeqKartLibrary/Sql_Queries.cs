@@ -21,7 +21,7 @@ namespace SeqKartLibrary
         }
         public static class _frmEmployeeMstAddEdit
         {
-            public static string _GetNewEmpCode()
+            public static string _GetNewEmpCode(bool hasRtnCol = true)
             {
                 //string sql = "SELECT"
                 //+ " CASE"
@@ -30,8 +30,15 @@ namespace SeqKartLibrary
                 //+ " END AS NewEmpCode"
                 //+ " FROM EmpMst;";
 
-                string sql = "SELECT RIGHT('0000' + CAST((ISNULL(MAX(CAST(EmpCode AS INT)), 0) + 1) AS VARCHAR(4)), 4) AS NewCode FROM EmpMst";
+                //string sql = "";
+                if (!hasRtnCol)
+                {
+                    string sql1 = "SELECT RIGHT('0000' + CAST((ISNULL(MAX(CAST(EmpCode AS INT)), 0) + 1) AS VARCHAR(4)), 4) FROM EmpMst";
+                    return sql1;
+                }
 
+                string sql = "SELECT RIGHT('0000' + CAST((ISNULL(MAX(CAST(EmpCode AS INT)), 0) + 1) AS VARCHAR(4)), 4) AS NewCode FROM EmpMst";
+                
                 return sql;
             }
 
