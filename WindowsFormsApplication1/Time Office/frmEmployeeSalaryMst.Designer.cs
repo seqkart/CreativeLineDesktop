@@ -38,7 +38,6 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
-            this.btnQuit = new System.Windows.Forms.ToolStripButton();
             this.btnEdit = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
@@ -150,7 +149,6 @@
             this.Menu_ToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Menu_ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnQuit,
             this.btnEdit,
             this.btnAdd,
             this.btnRefresh});
@@ -161,17 +159,6 @@
             this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 26);
             this.Menu_ToolStrip.TabIndex = 194;
             this.Menu_ToolStrip.Text = "Options";
-            // 
-            // btnQuit
-            // 
-            this.btnQuit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnQuit.Size = new System.Drawing.Size(45, 23);
-            this.btnQuit.Text = "Quit";
-            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnEdit
             // 
@@ -236,7 +223,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private System.Windows.Forms.ToolStrip Menu_ToolStrip;
-        private System.Windows.Forms.ToolStripButton btnQuit;
         private System.Windows.Forms.ToolStripButton btnRefresh;
         private System.Windows.Forms.ToolStripButton btnEdit;
         private System.Windows.Forms.ToolStripButton btnAdd;

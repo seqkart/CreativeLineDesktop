@@ -48,9 +48,7 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
-            this.btnQuit = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
-            this.TextAuthenticate = new System.Windows.Forms.ToolStripTextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceSelect.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtStartDate.Properties)).BeginInit();
@@ -73,7 +71,7 @@
             this.ChoiceSelect.Location = new System.Drawing.Point(468, 45);
             this.ChoiceSelect.Name = "ChoiceSelect";
             this.ChoiceSelect.Properties.Caption = "Select &All";
-            this.ChoiceSelect.Size = new System.Drawing.Size(75, 19);
+            this.ChoiceSelect.Size = new System.Drawing.Size(75, 18);
             this.ChoiceSelect.TabIndex = 349;
             this.ChoiceSelect.CheckedChanged += new System.EventHandler(this.ChoiceSelect_CheckedChanged);
             // 
@@ -95,7 +93,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(0, 48);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(100, 13);
+            this.label13.Size = new System.Drawing.Size(99, 13);
             this.label13.TabIndex = 347;
             this.label13.Text = "Select Month/Year";
             // 
@@ -262,9 +260,7 @@
             this.Menu_ToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Menu_ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnQuit,
-            this.btnAdd,
-            this.TextAuthenticate});
+            this.btnAdd});
             this.Menu_ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
             this.Menu_ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -272,17 +268,6 @@
             this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 26);
             this.Menu_ToolStrip.TabIndex = 194;
             this.Menu_ToolStrip.Text = "Options";
-            // 
-            // btnQuit
-            // 
-            this.btnQuit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnQuit.Size = new System.Drawing.Size(45, 23);
-            this.btnQuit.Text = "Quit";
-            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnAdd
             // 
@@ -296,14 +281,6 @@
             this.btnAdd.Size = new System.Drawing.Size(63, 23);
             this.btnAdd.Text = "&Process";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // TextAuthenticate
-            // 
-            this.TextAuthenticate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.TextAuthenticate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextAuthenticate.Name = "TextAuthenticate";
-            this.TextAuthenticate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TextAuthenticate.Size = new System.Drawing.Size(100, 26);
             // 
             // splitter1
             // 
@@ -348,13 +325,11 @@
         private DevExpress.XtraGrid.GridControl SalaryGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView SalaryGridView;
         private System.Windows.Forms.ToolStrip Menu_ToolStrip;
-        private System.Windows.Forms.ToolStripButton btnQuit;
         private DevExpress.XtraEditors.SimpleButton btnLoad;
         private System.Windows.Forms.Label label13;
         private DevExpress.XtraEditors.TextEdit DtStartDate;
         private DevExpress.XtraEditors.CheckEdit ChoiceSelect;
         private System.Windows.Forms.ToolStripButton btnAdd;
-        private System.Windows.Forms.ToolStripTextBox TextAuthenticate;
         private DevExpress.XtraEditors.SimpleButton btnLock;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;

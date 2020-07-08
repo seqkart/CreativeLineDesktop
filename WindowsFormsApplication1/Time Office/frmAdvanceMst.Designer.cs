@@ -201,7 +201,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(161, 59);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(12, 13);
+            this.labelControl2.Size = new System.Drawing.Size(13, 13);
             this.labelControl2.TabIndex = 192;
             this.labelControl2.Text = "To";
             // 
@@ -281,6 +281,7 @@
             this.btnQuit.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.btnQuit.Size = new System.Drawing.Size(45, 23);
             this.btnQuit.Text = "Quit";
+            this.btnQuit.Visible = false;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnPrint

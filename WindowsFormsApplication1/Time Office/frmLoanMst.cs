@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using SeqKartLibrary;
 using System;
 using System.Data;
 using System.Drawing;
@@ -50,13 +51,23 @@ namespace BNPL.Forms_Master
             //ProjectFunctions.GroupCtrlVisualize(panelControl1);
             //ProjectFunctions.ButtonVisualize(panelControl1);
             ProjectFunctions.XtraFormVisualize(this);
-            var Query4Controls = String.Format("SELECT     ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ReportHardcopy,ProgData_Up  FROM         UserProgAccess  WHERE     (ProgActive = 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
-            using (var Tempds = ProjectFunctions.GetDataSet(Query4Controls))
+
+            MainFormButtons.Roles(
+                GlobalVariables.ProgCode,
+                GlobalVariables.CurrentUser,
+                btnAdd, btnEdit, btnDelete, btnPrint);
+            
+            /*
+            var Query4Controls = String.Format("SELECT ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ReportHardcopy,ProgData_Up  FROM UserProgAccess WHERE (ProgActive = 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
+            PrintLogWin.PrintLog(Query4Controls);
+
+            using (var Tempds = ProjectFunctionsUtils.GetDataSet(Query4Controls))
             {
                 if (Tempds != null)
                 {
                     if (Tempds.Tables[0].Rows.Count > 0)
                     {
+                        
                         if (Tempds.Tables[0].Rows[0]["ProgAdd_F"].ToString().Trim() == "-1")
                         {
                             btnAdd.Enabled = true;
@@ -91,9 +102,10 @@ namespace BNPL.Forms_Master
                         }
 
                     }
+                    
                 }
             }
-
+            */
         }
         private void fillGrid()
         {
@@ -104,8 +116,29 @@ namespace BNPL.Forms_Master
                 var ds = new DataSet();
                 var strsql = string.Empty;
                 strsql = strsql + "sp_LoadLoanMst  '" + DtStartDate.DateTime.Date.ToString("yyyy-MM-dd") + "' , '" + DtEndDate.DateTime.Date.ToString("yyyy-MM-dd") + "'";
-                ds = ProjectFunctions.GetDataSet(strsql);
-                EmployeeGrid.DataSource = ds.Tables[0];
+                ds = ProjectFunctionsUtils.GetDataSet(strsql);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    EmployeeGrid.DataSource = ds.Tables[0];
+
+                    btnView.Visible = false;
+                    btnView.Enabled = true;
+                    btnEdit.Enabled = true;
+                    btnDelete.Enabled = true;
+                    btnPrint.Enabled = true;
+                    //btnView.ForeColor = Color.White;//.FromArgb(255, 255, 255);
+
+                }
+                else
+                {
+                    btnView.Enabled = false;
+                    btnEdit.Enabled = false;
+                    btnDelete.Enabled = false;
+                    btnPrint.Enabled = false;
+                    //btnView.ForeColor = Color.WhiteSmoke;//.FromArgb(235, 236, 239);
+                }
+
                 //SplashScreenManager.CloseForm();
             }
             catch (Exception ex)
@@ -117,14 +150,9 @@ namespace BNPL.Forms_Master
         {
             SetMyControls();
             DtEndDate.EditValue = DateTime.Now.Date;
-            DtStartDate.EditValue = DateTime.Now.Date;
+            DtStartDate.EditValue = DateTime.Now.AddYears(-1).Date;
             fillGrid();
-        }
-
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        }        
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -199,19 +227,27 @@ namespace BNPL.Forms_Master
         private void btnView_Click(object sender, EventArgs e)
         {
 
-            var row = gridView3.GetDataRow(gridView3.FocusedRowHandle);
-            var ds = ProjectFunctions.GetDataSet(string.Format(" select LoanPassedBy from LoanMst Where LoanANo='" + row["LoanANo"].ToString() + "'"));
+            try
+            {
+                var row = gridView3.GetDataRow(gridView3.FocusedRowHandle);
+                var ds = ProjectFunctions.GetDataSet(string.Format(" select LoanPassedBy from LoanMst Where LoanANo='" + row["LoanANo"].ToString() + "'"));
 
-            var frm = new frmLoanMstAddEdit() { LoanNo = row["LoanANo"].ToString(), LoanADate = row["LoanADate"].ToString() };
-            var P = ProjectFunctions.GetPositionInForm(this);
-            frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-            s1 = btnView.Text.ToString().Trim();
-            frm.s1 = s1;
-            frm.Text = "Loan View";
-            frm.empcode = row["EmpCode"].ToString();
-            frm.ShowDialog();
+                var frm = new frmLoanMstAddEdit() { LoanNo = row["LoanANo"].ToString(), LoanADate = row["LoanADate"].ToString() };
+                var P = ProjectFunctions.GetPositionInForm(this);
+                frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                s1 = btnView.Text.ToString().Trim();
+                frm.s1 = s1;
+                frm.Text = "Loan View";
+                frm.empcode = row["EmpCode"].ToString();
+                frm.ShowDialog();
 
-            fillGrid();
+                fillGrid();
+            }
+            catch(Exception ex)
+            {
+                PrintLogWin.PrintLog(ex);
+
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -23,6 +23,17 @@ namespace BNPL.Forms_Transaction
             InitializeComponent();
         }
 
+        private void frmProcessSalary_Load(object sender, EventArgs e)
+        {
+            DtStartDate.EditValue = StartDate.Date;
+            SetMyControls();
+            fillGrid();
+        }
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            fillGrid();
+        }
+
         private void SetMyControls()
         {
             //panelControl1.Location = new Point(ClientSize.Width / 2 - panelControl1.Size.Width / 2, ClientSize.Height / 2 - panelControl1.Size.Height / 2);
@@ -36,7 +47,7 @@ namespace BNPL.Forms_Transaction
             DtStartDate.EditValue = DateTime.Now;
 
 
-            var Query4Controls = String.Format("SELECT     ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ProgRep_p,ProgSpl_U FROM         UserProgAccess WHERE     (ProgActive is Null or progActive= 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
+            var Query4Controls = String.Format("SELECT ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ProgRep_p,ProgSpl_U FROM         UserProgAccess WHERE     (ProgActive is Null or progActive= 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
             using (var Tempds = ProjectFunctions.GetDataSet(Query4Controls))
             {
                 if (Tempds != null)
@@ -52,11 +63,6 @@ namespace BNPL.Forms_Transaction
             }
         }
 
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void fillGrid()
         {
             _Mnthyr = String.Format("{0}{1}", DtStartDate.Text.Substring(0, 2), DtStartDate.Text.Substring(DtStartDate.Text.Length - 2, 2));
@@ -70,6 +76,7 @@ namespace BNPL.Forms_Transaction
             //str = str + " order by PayFinal.EmpLockTag DESC ,PayFinal.empcode ";
             var str = "sp_LoadSalaryMstFProcess '" + _Mnthyr + "','" + Convert.ToDateTime(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "'";
 
+            PrintLogWin.PrintLog(str);
 
 
             ds = ProjectFunctions.GetDataSet(str);
@@ -88,18 +95,7 @@ namespace BNPL.Forms_Transaction
                 }
             }
         }
-
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            fillGrid();
-        }
-
-        private void frmProcessSalary_Load(object sender, EventArgs e)
-        {
-            DtStartDate.EditValue = StartDate.Date;
-            SetMyControls();
-            fillGrid();
-        }
+               
 
         private void ChoiceSelect_CheckedChanged(object sender, EventArgs e)
         {

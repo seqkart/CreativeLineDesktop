@@ -24,6 +24,7 @@ using static SeqKartLibrary.CrudTask.CrudAction;
 using BNPL.Forms_Master;
 using SeqKartLibrary.Repository;
 using Dapper;
+using System.Threading;
 
 namespace WindowsFormsApplication1.Time_Office
 {
@@ -191,8 +192,7 @@ namespace WindowsFormsApplication1.Time_Office
             dailyShift.shift_name = "Daily Shift";
             dailyShifts_List.Add(dailyShift);
             //List<DailyShift> dailyShifts_List = repObj.returnListClass_1<DailyShift>("SELECT * FROM DailyShifts", null);
-            if (ComparisonUtils.IsNotNull_List(dailyShifts_List
-                ))
+            if (ComparisonUtils.IsNotNull_List(dailyShifts_List))
             {
                 comboBox_Shift.DataSource = dailyShifts_List;
                 comboBox_Shift.ValueMember = SQL_COLUMNS._DailyShifts._shift_id;
@@ -511,6 +511,70 @@ namespace WindowsFormsApplication1.Time_Office
 
         private async Task SaveEmployeeAttendanceDetails()
         {
+            if (selected_serial_id == 0)
+            {
+                RepList<EmployeeAttendance> repList = new RepList<EmployeeAttendance>();
+
+                DynamicParameters param = new DynamicParameters();
+
+                string sql_chk = "SELECT* FROM EmployeeAttendance WHERE employee_code = '" + txtEmpID.Text + "' AND YEAR(attendance_date)='" + dateAttendance.Value.Year + "' AND MONTH(attendance_date)='" + dateAttendance.Value.Month + "' AND DAY(attendance_date)='" + dateAttendance.Value.Day + "'";
+
+
+                PrintLogWin.PrintLog(sql_chk);
+
+                EmployeeAttendance employeeAttendance = repList.returnClass(sql_chk, param);
+
+                int existing_serial_id = 0;
+                if (employeeAttendance != null)
+                {
+                    if (employeeAttendance.serial_id != 0)
+                    {
+                        existing_serial_id = employeeAttendance.serial_id;
+                        //MessageBox.Show("Update");
+                    }
+                    else
+                    {
+                        //MessageBox.Show("Insert 1");
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("Insert 2");
+                }
+
+                if (existing_serial_id != 0)
+                {
+                    
+                    //selected_serial_id = 0;
+                    //crudAction = CrudAction.Create;
+                    if (XtraMessageBox.Show("Attendance already entered on this date. Do you want to update this record?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        selected_serial_id = existing_serial_id;
+                        crudAction = CrudAction.Update;
+                        await SaveEmployeeAttendanceDetails_OR_Update();
+
+                        //MessageBox.Show("selected_serial_id : " + selected_serial_id);
+                        //MessageBox.Show("crudAction : " + crudAction);
+                        //this.Close();
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("New 1");
+                    await SaveEmployeeAttendanceDetails_OR_Update();
+                }
+            }
+            else
+            {
+                //await Task.Delay(1);
+                await SaveEmployeeAttendanceDetails_OR_Update();
+                //MessageBox.Show("Update");
+            }
+
+        }
+
+        private async Task SaveEmployeeAttendanceDetails_OR_Update()
+        {
             
             if (Validate_Form())
             {
@@ -562,8 +626,10 @@ namespace WindowsFormsApplication1.Time_Office
                     }
                     else
                     {
+                        ProjectFunctions.SpeakError("Error in save record.");
                         PrintLogWin.PrintLog(intResult);
                     }
+                    this.Close();
 
                     //using (SEQKARTNewEntities _entity = new SEQKARTNewEntities())
                     //{
@@ -638,8 +704,10 @@ namespace WindowsFormsApplication1.Time_Office
                     }
                     else
                     {
+                        ProjectFunctions.SpeakError("Error in save record.");
                         PrintLogWin.PrintLog(intResult);
                     }
+                    this.Close();
                     /*
                     using (SEQKARTNewEntities db = new SEQKARTNewEntities())
                     {

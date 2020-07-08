@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SeqKartLibrary;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -111,12 +112,12 @@ namespace BNPL.Forms_Master
         }
 
 
-        private void GetBasicDetail()
-        {
+        //private void GetBasicDetail()
+        //{
 
-            DataSet ds = ProjectFunctions.GetDataSet("Select  isnull(EmpBasic,0) + isnull(EmpHRA,0) +isnull(EmpConv,0) +isnull(EmpPET,0) +isnull(EmpMscA1,0) +isnull(EmpMscA2,0) +isnull(EmpCHstlAlw,0) +isnull(EmpProDevAlw,0) +isnull(EmpNewsPapAlw,0) +isnull(EmpMedAlw,0) +isnull(EmpUnformAlw,0) +isnull(EmpSplAlw,0) as EmpSalary,isnull(EmpxBasic,0) as EmpSalaryC ,EmpDummy,EmpDOL from EmpMst Where EmpCode='" + txtEmpCode.Text + "'");
+        //    DataSet ds = ProjectFunctions.GetDataSet("Select  isnull(EmpBasic,0) + isnull(EmpHRA,0) +isnull(EmpConv,0) +isnull(EmpPET,0) +isnull(EmpMscA1,0) +isnull(EmpMscA2,0) +isnull(EmpCHstlAlw,0) +isnull(EmpProDevAlw,0) +isnull(EmpNewsPapAlw,0) +isnull(EmpMedAlw,0) +isnull(EmpUnformAlw,0) +isnull(EmpSplAlw,0) as EmpSalary,isnull(EmpxBasic,0) as EmpSalaryC ,EmpDummy,EmpDOL from EmpMst Where EmpCode='" + txtEmpCode.Text + "'");
 
-        }
+        //}
 
 
         private void frmLoanMstAddEdit_Load(object sender, EventArgs e)
@@ -141,11 +142,17 @@ namespace BNPL.Forms_Master
                 {
                     btnSave.Enabled = false;
                 }
-                var ds = ProjectFunctions.GetDataSet(string.Format("SELECT   LoanMst.LoanLUyrmn,   LoanMST.LoanPymtMode, LoanMST.LoanADate, LoanMST.LoanANo, LoanMST.LoanID, LoanMST.EmpCode, LoanMST.LoanType, LoanMST.LoanAmt, LoanMST.LoanInstlmnt, LoanMST.LoanVDate, LoanMST.LoanVNo, LoanMST.LoanVType, empmst.EmpName, DeptMst.DeptDesc, LoanMST.LoanBankCode, actmst.AccName FROM         LoanMST LEFT OUTER JOIN actmst ON LoanMST.LoanBankCode = actmst.AccCode LEFT OUTER JOIN empmst ON LoanMST.EmpCode = empmst.EmpCode LEFT OUTER JOIN DeptMst ON empmst.EmpDeptCode = DeptMst.DeptCode Where LoanANo='" + LoanNo + "' And LoanADate='" + Convert.ToDateTime(LoanADate).ToString("yyyy-MM-dd") + "'"));
+                //var ds = ProjectFunctionsUtils.GetDataSet(string.Format("SELECT   LoanMst.LoanLUyrmn,   LoanMST.LoanPymtMode, LoanMST.LoanADate, LoanMST.LoanANo, LoanMST.LoanID, LoanMST.EmpCode, LoanMST.LoanType, LoanMST.LoanAmt, LoanMST.LoanInstlmnt, LoanMST.LoanVDate, LoanMST.LoanVNo, LoanMST.LoanVType, empmst.EmpName, DeptMst.DeptDesc, LoanMST.LoanBankCode, actmst.AccName FROM         LoanMST LEFT OUTER JOIN actmst ON LoanMST.LoanBankCode = actmst.AccCode LEFT OUTER JOIN empmst ON LoanMST.EmpCode = empmst.EmpCode LEFT OUTER JOIN DeptMst ON empmst.EmpDeptCode = DeptMst.DeptCode Where LoanANo='" + LoanNo + "' And LoanADate='" + Convert.ToDateTime(LoanADate).ToString("yyyy-MM-dd") + "'"));
+                string sql_query = "sp_LoadLoan_Details '" + LoanNo + "', '" + Convert.ToDateTime(LoanADate).ToString("yyyy-MM-dd") + "'";
+                PrintLogWin.PrintLog(sql_query);
+
+
+                var ds = ProjectFunctionsUtils.GetDataSet(sql_query);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
+                    PrintLogWin.PrintLog("************* " + ds.Tables[0].Rows[0]["DeptDesc"].ToString());
                     txtLoanNo.Text = ds.Tables[0].Rows[0]["LoanANo"].ToString();
-                    txtDept.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
+                    //txtDept.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
                     txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
                     txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
                     txtLoanAmount.Text = ds.Tables[0].Rows[0]["LoanAmt"].ToString();
@@ -153,8 +160,12 @@ namespace BNPL.Forms_Master
                     txtMonthYear.Text = ds.Tables[0].Rows[0]["LoanLUyrmn"].ToString();
                     txtLoanDate.Text = ds.Tables[0].Rows[0]["LoanADate"].ToString();
 
-                    GetBasicDetail();
+                    txtDept.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
+
+                    //txtDept.Text = "HELOO";
+                    //GetBasicDetail();
                 }
+                
                 txtLoanAmount.Focus();
             }
         }
@@ -229,8 +240,9 @@ namespace BNPL.Forms_Master
                         var sqlcom = new SqlCommand(strQry, sqlcon);
                         sqlcom.CommandType = CommandType.Text;
                         sqlcom.ExecuteNonQuery();
-                        UpDateLoanInstlmnt();
-                        Close();
+                        //UpDateLoanInstlmnt();
+                        ProjectFunctions.SpeakError("Data has been Added");
+                        this.Close();
                     }
                 }
 
@@ -243,13 +255,7 @@ namespace BNPL.Forms_Master
                     strQry = strQry + "LoanInstlmnt ='" + Convert.ToDecimal(txtLoanInstlmnt.Text) + "',";
                     strQry = strQry + "LoanLUyrmn ='" + Convert.ToDateTime(txtMonthYear.Text).ToString("MM-yyyy") + "',";
                     strQry = strQry + "LoanFBy ='" + GlobalVariables.CurrentUser + "',";
-
-
-
                     strQry = strQry + "LoanFDt ='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
-
-
-
                     strQry = strQry + " Where LoanANo='" + LoanNo + "' And LoanADate='" + Convert.ToDateTime(LoanADate).ToString("yyyy-MM-dd") + "'";
                     using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
                     {
@@ -257,8 +263,9 @@ namespace BNPL.Forms_Master
                         var sqlcom = new SqlCommand(strQry, sqlcon);
                         sqlcom.CommandType = CommandType.Text;
                         sqlcom.ExecuteNonQuery();
-                        UpDateLoanInstlmnt();
-                        Close();
+                        //UpDateLoanInstlmnt();
+                        ProjectFunctions.SpeakError("Data has been Updated");
+                        this.Close();
                     }
                 }
             }
@@ -293,7 +300,7 @@ namespace BNPL.Forms_Master
                         txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
                         txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
                         txtDept.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
-                        GetBasicDetail();
+                        //GetBasicDetail();
                         LastInstlmnt();
                         txtLoanAmount.Focus();
                     }
@@ -320,7 +327,7 @@ namespace BNPL.Forms_Master
                 txtDept.Text = row["DeptDesc"].ToString();
                 HelpGrid.Visible = false;
                 txtLoanAmount.Focus();
-                GetBasicDetail();
+                //GetBasicDetail();
                 LastInstlmnt();
             }
 

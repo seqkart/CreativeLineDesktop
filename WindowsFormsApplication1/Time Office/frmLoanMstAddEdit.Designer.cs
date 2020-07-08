@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLoanMstAddEdit));
             this.HelpGrid = new DevExpress.XtraGrid.GridControl();
             this.HelpGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtEmpCode = new DevExpress.XtraEditors.TextEdit();
@@ -43,7 +42,6 @@
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
             this.btnQuit = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
-            this.txtPassword = new System.Windows.Forms.ToolStripTextBox();
             this.txtMonthYear = new DevExpress.XtraEditors.TextEdit();
             this.label9 = new System.Windows.Forms.Label();
             this.txtLoanNo = new DevExpress.XtraEditors.TextEdit();
@@ -107,6 +105,7 @@
             // txtEmpName
             // 
             this.txtEmpName.Enabled = false;
+            this.txtEmpName.EnterMoveNextControl = true;
             this.txtEmpName.Location = new System.Drawing.Point(155, 71);
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -192,46 +191,35 @@
             this.Menu_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Menu_ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnQuit,
-            this.btnSave,
-            this.txtPassword});
+            this.btnSave});
             this.Menu_ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
             this.Menu_ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.Menu_ToolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Menu_ToolStrip.Size = new System.Drawing.Size(426, 26);
+            this.Menu_ToolStrip.Size = new System.Drawing.Size(426, 27);
             this.Menu_ToolStrip.TabIndex = 269;
             this.Menu_ToolStrip.Text = "Options";
             // 
             // btnQuit
             // 
-            this.btnQuit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
+            this.btnQuit.Image = global::WindowsFormsApplication1.Properties.Resources.Close;
             this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnQuit.Size = new System.Drawing.Size(45, 23);
-            this.btnQuit.Text = "Quit";
+            this.btnQuit.Size = new System.Drawing.Size(66, 24);
+            this.btnQuit.Text = "Close";
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnSave
             // 
-            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Image = global::WindowsFormsApplication1.Properties.Resources.Add;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnSave.Size = new System.Drawing.Size(48, 23);
+            this.btnSave.Size = new System.Drawing.Size(64, 24);
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtPassword.Size = new System.Drawing.Size(100, 26);
-            this.txtPassword.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtMonthYear
             // 
@@ -394,7 +382,6 @@
         private System.Windows.Forms.Label label10;
         private DevExpress.XtraEditors.TextEdit txtLoanDate;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ToolStripTextBox txtPassword;
         private DevExpress.XtraEditors.TextEdit txtPreviousInstlmnt;
         private System.Windows.Forms.Label label13;
     }

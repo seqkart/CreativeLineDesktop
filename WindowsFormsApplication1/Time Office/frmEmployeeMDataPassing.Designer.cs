@@ -38,7 +38,6 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployeeMDataPassing));
             this.Btn_RefreshGridData = new DevExpress.XtraEditors.SimpleButton();
             this.DtEndDate = new DevExpress.XtraEditors.DateEdit();
             this.DtStartDate = new DevExpress.XtraEditors.DateEdit();
@@ -59,7 +58,6 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
-            this.btnQuit = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.DtEndDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtEndDate.Properties)).BeginInit();
@@ -68,7 +66,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.InvoiceGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InvoiceGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-            this.Menu_ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // Btn_RefreshGridData
@@ -148,19 +145,19 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(160, 56);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(12, 13);
+            this.labelControl2.Size = new System.Drawing.Size(13, 13);
             this.labelControl2.TabIndex = 0;
             this.labelControl2.Text = "To";
             // 
             // InvoiceGrid
             // 
             this.InvoiceGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InvoiceGrid.Location = new System.Drawing.Point(0, 96);
+            this.InvoiceGrid.Location = new System.Drawing.Point(0, 95);
             this.InvoiceGrid.MainView = this.InvoiceGridView;
             this.InvoiceGrid.Name = "InvoiceGrid";
             this.InvoiceGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-            this.InvoiceGrid.Size = new System.Drawing.Size(804, 449);
+            this.InvoiceGrid.Size = new System.Drawing.Size(804, 450);
             this.InvoiceGrid.TabIndex = 5;
             this.InvoiceGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.InvoiceGridView});
@@ -301,32 +298,18 @@
             this.Menu_ToolStrip.CanOverflow = false;
             this.Menu_ToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.Menu_ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnQuit});
             this.Menu_ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
             this.Menu_ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.Menu_ToolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 26);
+            this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 25);
             this.Menu_ToolStrip.TabIndex = 199;
             this.Menu_ToolStrip.Text = "Options";
-            // 
-            // btnQuit
-            // 
-            this.btnQuit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnQuit.ForeColor = System.Drawing.Color.White;
-            this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnQuit.Size = new System.Drawing.Size(45, 23);
-            this.btnQuit.Text = "Quit";
-            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 26);
+            this.splitter1.Location = new System.Drawing.Point(0, 25);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(804, 70);
             this.splitter1.TabIndex = 201;
@@ -359,8 +342,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.InvoiceGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InvoiceGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-            this.Menu_ToolStrip.ResumeLayout(false);
-            this.Menu_ToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,7 +357,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView InvoiceGridView;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private System.Windows.Forms.ToolStrip Menu_ToolStrip;
-        private System.Windows.Forms.ToolStripButton btnQuit;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;

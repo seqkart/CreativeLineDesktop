@@ -1288,6 +1288,7 @@
     <Compile Include="Transaction\frm_SupplierPaymentVoucherAdd_Upd.designer.cs">
       <DependentUpon>frm_SupplierPaymentVoucherAdd_Upd.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserRoles\MainFormButtons.cs" />
     <Compile Include="WaitForm1.cs">
       <SubType>Form</SubType>
     </Compile>

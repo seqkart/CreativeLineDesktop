@@ -41,6 +41,7 @@ namespace BNPL.Forms_Master
             btnLoad.Visible = false;
             btnSave.Visible = false;
             btnAdd2.Visible = false;
+            btnQuit.Visible = false;
 
             //gridView_AttendanceData.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditForm;
             gridView_AttendanceData.OptionsBehavior.Editable = false;
@@ -116,10 +117,10 @@ namespace BNPL.Forms_Master
                     {
                         SerialId = dr[Col.EmployeeAttendance.serial_id],
                         EntryDate = dr[Col.EmployeeAttendance.entry_date],
+                        AttendanceDate = dr[Col.EmployeeAttendance.attendance_date],
                         EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
                         //Shift = dr[Col.DailyShifts.shift_name],
-                        Status = dr[Col.AttendanceStatus.status],                        
-                        AttendanceDate = dr[Col.EmployeeAttendance.attendance_date],
+                        Status = dr[Col.AttendanceStatus.status], 
                         TimeIn_First = dr[Col.EmployeeAttendance.attendance_in_first],
                         TimeOut_First = dr[Col.EmployeeAttendance.attendance_out_first],
                         TimeIn_Last = dr[Col.EmployeeAttendance.attendance_in_last],

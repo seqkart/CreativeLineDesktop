@@ -26,10 +26,7 @@ namespace BNPL.Forms_Master
             ProjectFunctions.XtraFormVisualize(this);
             //ProjectFunctions.ButtonVisualize(panelControl1);
         }
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        
 
         private void fillGrid()
         {
@@ -53,7 +50,7 @@ namespace BNPL.Forms_Master
         private void frmEmployeeMDataPassing_Load(object sender, EventArgs e)
         {
             SetMyControls();
-            DtStartDate.EditValue = DateTime.Now.AddDays(-1);
+            DtStartDate.EditValue = DateTime.Now.AddMonths(-1);
             DtEndDate.EditValue = DateTime.Now;
             fillGrid();
         }

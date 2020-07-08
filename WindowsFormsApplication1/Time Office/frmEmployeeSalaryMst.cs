@@ -14,10 +14,8 @@ namespace BNPL.Forms_Master
             InitializeComponent();
         }
 
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        
+
         private void SetMyControls()
         {
             //panelControl1.Location = new Point(ClientSize.Width / 2 - panelControl1.Size.Width / 2, ClientSize.Height / 2 - panelControl1.Size.Height / 2);
@@ -28,6 +26,9 @@ namespace BNPL.Forms_Master
             ProjectFunctions.ButtonVisualize(this);
             //ProjectFunctions.GroupCtrlVisualize(panelControl1);
             ProjectFunctions.XtraFormVisualize(this);
+
+            MainFormButtons.Roles(GlobalVariables.ProgCode, GlobalVariables.CurrentUser, btnAdd, btnEdit);
+            /*
             var Query4Controls = String.Format("SELECT     ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ReportHardcopy,ProgData_Up  FROM         UserProgAccess  WHERE     (ProgActive = 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
             using (var Tempds = ProjectFunctions.GetDataSet(Query4Controls))
             {
@@ -54,6 +55,7 @@ namespace BNPL.Forms_Master
                     }
                 }
             }
+            */
         }
         private void fillGrid()
         {

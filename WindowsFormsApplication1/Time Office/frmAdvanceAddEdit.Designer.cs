@@ -158,7 +158,7 @@
             // 
             this.labelControl35.Location = new System.Drawing.Point(53, 130);
             this.labelControl35.Name = "labelControl35";
-            this.labelControl35.Size = new System.Drawing.Size(23, 13);
+            this.labelControl35.Size = new System.Drawing.Size(24, 13);
             this.labelControl35.TabIndex = 29;
             this.labelControl35.Text = "Type";
             // 
@@ -346,7 +346,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 225);
+            this.ClientSize = new System.Drawing.Size(471, 248);
             this.ControlBox = false;
             this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.txtAdvanceNo);

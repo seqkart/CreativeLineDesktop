@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SeqKartLibrary;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
@@ -44,8 +45,25 @@ namespace BNPL.Forms_Transaction
 
         private void GetBasicDetail()
         {
+            string sql = "Select"
+            + " (isnull(EmpBasic,0) "
+            + " + isnull(EmpHRA,0) "
+            + " + isnull(EmpConv,0) "
+            + " + isnull(EmpPET,0) "
+            + " + isnull(EmpMscA1,0) "
+            + " + isnull(EmpMscA2,0) "
+            + " + isnull(EmpCHstlAlw,0) "
+            + " + isnull(EmpProDevAlw,0) "
+            + " + isnull(EmpNewsPapAlw,0) "
+            + " + isnull(EmpMedAlw,0) "
+            + " + isnull(EmpUnformAlw,0) "
+            + " + isnull(EmpSplAlw,0)) as EmpSalary"
+            + " , isnull(EmpxBasic,0) as EmpSalaryC"
+            + " , EmpDummy"
+            + " , EmpDOL from EmpMst Where EmpCode='" + txtEmpCode.Text + "'";
 
-            DataSet ds = ProjectFunctions.GetDataSet("Select  isnull(EmpBasic,0) + isnull(EmpHRA,0) +isnull(EmpConv,0) +isnull(EmpPET,0) +isnull(EmpMscA1,0) +isnull(EmpMscA2,0) +isnull(EmpCHstlAlw,0) +isnull(EmpProDevAlw,0) +isnull(EmpNewsPapAlw,0) +isnull(EmpMedAlw,0) +isnull(EmpUnformAlw,0) +isnull(EmpSplAlw,0) as EmpSalary,isnull(EmpxBasic,0) as EmpSalaryC ,EmpDummy,EmpDOL from EmpMst Where EmpCode='" + txtEmpCode.Text + "'");
+            //DataSet ds = ProjectFunctions.GetDataSet("Select  isnull(EmpBasic,0) + isnull(EmpHRA,0) +isnull(EmpConv,0) +isnull(EmpPET,0) +isnull(EmpMscA1,0) +isnull(EmpMscA2,0) +isnull(EmpCHstlAlw,0) +isnull(EmpProDevAlw,0) +isnull(EmpNewsPapAlw,0) +isnull(EmpMedAlw,0) +isnull(EmpUnformAlw,0) +isnull(EmpSplAlw,0) as EmpSalary,isnull(EmpxBasic,0) as EmpSalaryC ,EmpDummy,EmpDOL from EmpMst Where EmpCode='" + txtEmpCode.Text + "'");
+            DataSet ds = ProjectFunctions.GetDataSet(sql);
             txtSalary.Text = ds.Tables[0].Rows[0][0].ToString();
         }
 
@@ -66,25 +84,59 @@ namespace BNPL.Forms_Transaction
                 DtDateforMonth.Enabled = false;
                 DtDate.Enabled = false;
                 txtType.Enabled = false;
-                var qr = " SELECT     ExMst.ExPostHead, ExMst.ExVoucherType, ExMst.ExVoucherNo, ExMst.ExVoucherDt, ExMst.ExNo, ExMst.ExId, ExMst.ExDate, ExMst.ExEmpCode, ExMst.ExAmt, ExMst.ExTag, ExMst.ExDatePost, ";
-                qr = qr + " ExMst.ExLoadTag, ExMst.ExEmpCCode, ExMst.ExFedDate, ExMst.ExLoadedDate, empmst.EmpName, EmpEmplrRef.ERMDesc, actmst.AccName ";
-                qr = qr + " FROM         ExMst LEFT OUTER JOIN ";
-                qr = qr + "      empmst ON ExMst.ExEmpCode = empmst.EmpCode LEFT OUTER JOIN ";
-                qr = qr + "      EmpEmplrRef ON ExMst.ExEmpCCode = EmpEmplrRef.ERMCode LEFT OUTER JOIN ";
-                qr = qr + "      actmst ON ExMst.ExPostHead = actmst.AccCode ";
-                qr = qr + " WHERE ExId='" + ExId + "'";
-                var ds = ProjectFunctions.GetDataSet(qr);
-                
-                
-                txtAdvanceNo.Text = ds.Tables[0].Rows[0]["ExNo"].ToString();
-                DtDate.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExDate"]);
-                DtDateforMonth.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExDatePost"]);
-                txtEmpCode.Text = ds.Tables[0].Rows[0]["ExEmpCode"].ToString();
-                txtEmpCodeDesc.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
-                txtType.Text = ds.Tables[0].Rows[0]["ExTag"].ToString();
-                txtAmount.Text = ds.Tables[0].Rows[0]["ExAmt"].ToString();
 
-                GetBasicDetail();
+                string str = "SELECT "
+                + " ExMst.ExPostHead, "
+                + " ExMst.ExVoucherType, "
+                + " ExMst.ExVoucherNo, "
+                + " ExMst.ExVoucherDt, "
+                + " ExMst.ExNo, "
+                + " ExMst.ExId, "
+                + " ExMst.ExDate, "
+                + " ExMst.ExEmpCode, "
+                + " ExMst.ExAmt, "
+                + " ExMst.ExTag, "
+                + " ExMst.ExDatePost, "
+                + " ExMst.ExLoadTag, "
+                + " ExMst.ExEmpCCode, "
+                + " ExMst.ExFedDate, "
+                + " ExMst.ExLoadedDate, "
+                + " empmst.EmpName, "                
+                + " actmst.AccName "
+                + " FROM ExMst "
+                + " LEFT OUTER JOIN EmpMST ON ExMst.ExEmpCode = empmst.EmpCode "                
+                + " LEFT OUTER JOIN ActMst ON ExMst.ExPostHead = actmst.AccCode "
+                + " WHERE ExId='" + ExId + "';" +
+                "";
+
+                //var qr = " SELECT     ExMst.ExPostHead, ExMst.ExVoucherType, ExMst.ExVoucherNo, ExMst.ExVoucherDt, ExMst.ExNo, ExMst.ExId, ExMst.ExDate, ExMst.ExEmpCode, ExMst.ExAmt, ExMst.ExTag, ExMst.ExDatePost, ";
+                //qr = qr + " ExMst.ExLoadTag, ExMst.ExEmpCCode, ExMst.ExFedDate, ExMst.ExLoadedDate, empmst.EmpName, EmpEmplrRef.ERMDesc, actmst.AccName ";
+                //qr = qr + " FROM         ExMst LEFT OUTER JOIN ";
+                //qr = qr + "      empmst ON ExMst.ExEmpCode = empmst.EmpCode LEFT OUTER JOIN ";
+                //qr = qr + "      EmpEmplrRef ON ExMst.ExEmpCCode = EmpEmplrRef.ERMCode LEFT OUTER JOIN ";
+                //qr = qr + "      actmst ON ExMst.ExPostHead = actmst.AccCode ";
+                //qr = qr + " WHERE ExId='" + ExId + "'";
+
+                PrintLogWin.PrintLog(str);
+
+                var ds = ProjectFunctionsUtils.GetDataSet(str);
+                
+                try
+                {
+                    txtAdvanceNo.Text = ds.Tables[0].Rows[0]["ExNo"].ToString();
+                    DtDate.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExDate"]);
+                    DtDateforMonth.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExDatePost"]);
+                    txtEmpCode.Text = ds.Tables[0].Rows[0]["ExEmpCode"].ToString();
+                    txtEmpCodeDesc.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                    txtType.Text = ds.Tables[0].Rows[0]["ExTag"].ToString();
+                    txtAmount.Text = ds.Tables[0].Rows[0]["ExAmt"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    PrintLogWin.PrintLog(ex);
+                }
+
+                //GetBasicDetail();
 
             }
         }
@@ -166,8 +218,10 @@ namespace BNPL.Forms_Transaction
                             sqlcom.Parameters.Clear();
 
                             sqlcon.Close();
-                            clear();
+                            //clear();
                         }
+                        ProjectFunctions.SpeakError("Data has been saved.");
+                        this.Close();
                     }
                 }
                 if (s1 == "Edit")
@@ -191,8 +245,11 @@ namespace BNPL.Forms_Transaction
 
 
                             sqlcon.Close();
-                            clear();
+                            //clear();
                         }
+                        ProjectFunctions.SpeakError("Data has been saved.");
+                        this.Close();
+
                     }
                 }
             }
@@ -210,7 +267,7 @@ namespace BNPL.Forms_Transaction
             var ds = new DataSet();
             strsql = strsql + "select isnull(max(Cast(ExNo as int)),00000) from ExMst";
 
-            ds = ProjectFunctions.GetDataSet(strsql);
+            ds = ProjectFunctionsUtils.GetDataSet(strsql);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 s2 = ds.Tables[0].Rows[0][0].ToString().Trim();

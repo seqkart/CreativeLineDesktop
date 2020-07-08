@@ -53,7 +53,6 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
-            this.btnQuit = new System.Windows.Forms.ToolStripButton();
             this.btnPrint = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnEdit = new System.Windows.Forms.ToolStripButton();
@@ -146,7 +145,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(144, 55);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(12, 13);
+            this.labelControl2.Size = new System.Drawing.Size(13, 13);
             this.labelControl2.TabIndex = 192;
             this.labelControl2.Text = "To";
             // 
@@ -250,7 +249,6 @@
             this.Menu_ToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Menu_ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnQuit,
             this.btnPrint,
             this.btnDelete,
             this.btnEdit,
@@ -263,17 +261,6 @@
             this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 26);
             this.Menu_ToolStrip.TabIndex = 194;
             this.Menu_ToolStrip.Text = "Options";
-            // 
-            // btnQuit
-            // 
-            this.btnQuit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.btnQuit.Size = new System.Drawing.Size(45, 23);
-            this.btnQuit.Text = "Quit";
-            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnPrint
             // 
@@ -316,7 +303,7 @@
             // btnView
             // 
             this.btnView.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnView.ForeColor = System.Drawing.Color.White;
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(70)))), ((int)(((byte)(68)))));
             this.btnView.Image = ((System.Drawing.Image)(resources.GetObject("btnView.Image")));
             this.btnView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnView.Name = "btnView";
@@ -370,7 +357,6 @@
         private DevExpress.XtraGrid.GridControl EmployeeGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private System.Windows.Forms.ToolStrip Menu_ToolStrip;
-        private System.Windows.Forms.ToolStripButton btnQuit;
         private System.Windows.Forms.ToolStripButton btnPrint;
         private System.Windows.Forms.ToolStripButton btnDelete;
         private System.Windows.Forms.ToolStripButton btnEdit;
