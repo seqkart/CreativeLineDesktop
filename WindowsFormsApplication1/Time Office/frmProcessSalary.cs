@@ -46,7 +46,8 @@ namespace BNPL.Forms_Transaction
 
             DtStartDate.EditValue = DateTime.Now;
 
-
+            MainFormButtons.Roles(GlobalVariables.ProgCode, GlobalVariables.CurrentUser, btnAdd);
+            /*
             var Query4Controls = String.Format("SELECT ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ProgRep_p,ProgSpl_U FROM         UserProgAccess WHERE     (ProgActive is Null or progActive= 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
             using (var Tempds = ProjectFunctions.GetDataSet(Query4Controls))
             {
@@ -61,6 +62,7 @@ namespace BNPL.Forms_Transaction
                     }
                 }
             }
+            */
         }
 
         private void fillGrid()

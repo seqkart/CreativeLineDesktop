@@ -59,6 +59,7 @@
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnView = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DtEndDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtEndDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtStartDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -173,7 +174,8 @@
             this.gridColumn5,
             this.gridColumn1,
             this.gridColumn7,
-            this.gridColumn2});
+            this.gridColumn2,
+            this.gridColumn6});
             this.gridView3.GridControl = this.EmployeeGrid;
             this.gridView3.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.gridView3.Name = "gridView3";
@@ -321,6 +323,14 @@
             this.splitter1.TabIndex = 196;
             this.splitter1.TabStop = false;
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "LoanInstlmnt";
+            this.gridColumn6.FieldName = "LoanInstlmnt";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 6;
+            // 
             // frmLoanMst
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,5 +384,6 @@
         private System.Windows.Forms.ToolStripButton btnView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private System.Windows.Forms.Splitter splitter1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

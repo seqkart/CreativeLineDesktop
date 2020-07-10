@@ -18,6 +18,15 @@ namespace WindowsFormsApplication1
             ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
 
             txtTaxCode.Enabled = false;
+
+            //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTaxMasterAddEdit));
+
+            //btnSave.Image = resources. //Bitmap.FromFile("c:\\NewItem.bmp");
+            btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.ImageAndText;
+            btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //btnSave.Name = "toolStripButton1";
+            //btnSave.Text = "&New";
+            btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         }
         private string GetNewTaxCode()
         {

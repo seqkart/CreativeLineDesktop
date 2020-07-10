@@ -96,7 +96,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(82, 289);
+            this.label7.Location = new System.Drawing.Point(118, 284);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 13);
             this.label7.TabIndex = 222;
@@ -106,7 +106,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(254, 131);
+            this.label5.Location = new System.Drawing.Point(284, 128);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 13);
             this.label5.TabIndex = 221;
@@ -114,7 +114,7 @@
             // 
             // txtCGSTRate
             // 
-            this.txtCGSTRate.Location = new System.Drawing.Point(153, 128);
+            this.txtCGSTRate.Location = new System.Drawing.Point(183, 124);
             this.txtCGSTRate.Name = "txtCGSTRate";
             this.txtCGSTRate.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCGSTRate.Size = new System.Drawing.Size(85, 20);
@@ -125,7 +125,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(73, 131);
+            this.label3.Location = new System.Drawing.Point(109, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 220;
@@ -135,7 +135,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(105, 101);
+            this.label2.Location = new System.Drawing.Point(141, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 219;
@@ -154,7 +154,7 @@
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
             this.Menu_ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.Menu_ToolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Menu_ToolStrip.Size = new System.Drawing.Size(612, 25);
+            this.Menu_ToolStrip.Size = new System.Drawing.Size(638, 25);
             this.Menu_ToolStrip.TabIndex = 218;
             this.Menu_ToolStrip.Text = "Options";
             // 
@@ -164,32 +164,34 @@
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
             this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(35, 22);
-            this.btnQuit.Text = "Quit";
+            this.btnQuit.Size = new System.Drawing.Size(40, 22);
+            this.btnQuit.Text = "Close";
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnSave
             // 
-            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Image = global::WindowsFormsApplication1.Properties.Resources.Add;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(38, 22);
+            this.btnSave.Size = new System.Drawing.Size(54, 22);
             this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtTaxDesc
             // 
-            this.txtTaxDesc.Location = new System.Drawing.Point(153, 98);
+            this.txtTaxDesc.Location = new System.Drawing.Point(183, 98);
             this.txtTaxDesc.Name = "txtTaxDesc";
             this.txtTaxDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTaxDesc.Properties.MaxLength = 50;
-            this.txtTaxDesc.Size = new System.Drawing.Size(408, 20);
+            this.txtTaxDesc.Size = new System.Drawing.Size(425, 20);
             this.txtTaxDesc.TabIndex = 2;
             // 
             // txtTaxCode
             // 
-            this.txtTaxCode.Location = new System.Drawing.Point(153, 72);
+            this.txtTaxCode.Location = new System.Drawing.Point(183, 72);
             this.txtTaxCode.Name = "txtTaxCode";
             this.txtTaxCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTaxCode.Size = new System.Drawing.Size(84, 20);
@@ -199,7 +201,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(104, 75);
+            this.label1.Location = new System.Drawing.Point(140, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 217;
@@ -207,10 +209,10 @@
             // 
             // txtSGSTRate
             // 
-            this.txtSGSTRate.Location = new System.Drawing.Point(320, 128);
+            this.txtSGSTRate.Location = new System.Drawing.Point(350, 124);
             this.txtSGSTRate.Name = "txtSGSTRate";
             this.txtSGSTRate.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSGSTRate.Size = new System.Drawing.Size(75, 20);
+            this.txtSGSTRate.Size = new System.Drawing.Size(85, 20);
             this.txtSGSTRate.TabIndex = 4;
             this.txtSGSTRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTaxRate_KeyPress);
             // 
@@ -218,7 +220,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(433, 131);
+            this.label4.Location = new System.Drawing.Point(452, 128);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 13);
             this.label4.TabIndex = 225;
@@ -226,7 +228,7 @@
             // 
             // txtCGSTPostingCode
             // 
-            this.txtCGSTPostingCode.Location = new System.Drawing.Point(154, 207);
+            this.txtCGSTPostingCode.Location = new System.Drawing.Point(183, 202);
             this.txtCGSTPostingCode.Name = "txtCGSTPostingCode";
             this.txtCGSTPostingCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCGSTPostingCode.Properties.MaxLength = 6;
@@ -238,27 +240,27 @@
             // 
             // txtCGSTPostingDesc
             // 
-            this.txtCGSTPostingDesc.Location = new System.Drawing.Point(245, 207);
+            this.txtCGSTPostingDesc.Location = new System.Drawing.Point(275, 202);
             this.txtCGSTPostingDesc.Name = "txtCGSTPostingDesc";
             this.txtCGSTPostingDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCGSTPostingDesc.Properties.ReadOnly = true;
-            this.txtCGSTPostingDesc.Size = new System.Drawing.Size(318, 20);
+            this.txtCGSTPostingDesc.Size = new System.Drawing.Size(333, 20);
             this.txtCGSTPostingDesc.TabIndex = 229;
             this.txtCGSTPostingDesc.TabStop = false;
             // 
             // txtSGSTPostingDesc
             // 
-            this.txtSGSTPostingDesc.Location = new System.Drawing.Point(245, 233);
+            this.txtSGSTPostingDesc.Location = new System.Drawing.Point(275, 228);
             this.txtSGSTPostingDesc.Name = "txtSGSTPostingDesc";
             this.txtSGSTPostingDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSGSTPostingDesc.Properties.ReadOnly = true;
-            this.txtSGSTPostingDesc.Size = new System.Drawing.Size(318, 20);
+            this.txtSGSTPostingDesc.Size = new System.Drawing.Size(333, 20);
             this.txtSGSTPostingDesc.TabIndex = 231;
             this.txtSGSTPostingDesc.TabStop = false;
             // 
             // txtSGSTPostingCode
             // 
-            this.txtSGSTPostingCode.Location = new System.Drawing.Point(154, 233);
+            this.txtSGSTPostingCode.Location = new System.Drawing.Point(183, 228);
             this.txtSGSTPostingCode.Name = "txtSGSTPostingCode";
             this.txtSGSTPostingCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSGSTPostingCode.Properties.MaxLength = 6;
@@ -270,17 +272,17 @@
             // 
             // txtIGSTPostingDesc
             // 
-            this.txtIGSTPostingDesc.Location = new System.Drawing.Point(247, 259);
+            this.txtIGSTPostingDesc.Location = new System.Drawing.Point(275, 254);
             this.txtIGSTPostingDesc.Name = "txtIGSTPostingDesc";
             this.txtIGSTPostingDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIGSTPostingDesc.Properties.ReadOnly = true;
-            this.txtIGSTPostingDesc.Size = new System.Drawing.Size(316, 20);
+            this.txtIGSTPostingDesc.Size = new System.Drawing.Size(333, 20);
             this.txtIGSTPostingDesc.TabIndex = 233;
             this.txtIGSTPostingDesc.TabStop = false;
             // 
             // txtIGSTPostingCode
             // 
-            this.txtIGSTPostingCode.Location = new System.Drawing.Point(154, 259);
+            this.txtIGSTPostingCode.Location = new System.Drawing.Point(183, 254);
             this.txtIGSTPostingCode.Name = "txtIGSTPostingCode";
             this.txtIGSTPostingCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIGSTPostingCode.Properties.MaxLength = 6;
@@ -294,7 +296,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(27, 236);
+            this.label10.Location = new System.Drawing.Point(63, 232);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(112, 13);
             this.label10.TabIndex = 235;
@@ -304,7 +306,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(27, 210);
+            this.label11.Location = new System.Drawing.Point(63, 206);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(112, 13);
             this.label11.TabIndex = 236;
@@ -314,7 +316,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(29, 262);
+            this.label9.Location = new System.Drawing.Point(65, 258);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(110, 13);
             this.label9.TabIndex = 237;
@@ -322,18 +324,18 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(152, 286);
+            this.txtMessage.Location = new System.Drawing.Point(183, 280);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMessage.Properties.MaxLength = 40;
-            this.txtMessage.Size = new System.Drawing.Size(411, 20);
+            this.txtMessage.Size = new System.Drawing.Size(425, 20);
             this.txtMessage.TabIndex = 13;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(113, 315);
+            this.label12.Location = new System.Drawing.Point(149, 310);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(26, 13);
             this.label12.TabIndex = 240;
@@ -341,7 +343,7 @@
             // 
             // HelpGrid
             // 
-            this.HelpGrid.Location = new System.Drawing.Point(471, 75);
+            this.HelpGrid.Location = new System.Drawing.Point(501, 75);
             this.HelpGrid.MainView = this.HelpGridView;
             this.HelpGrid.Name = "HelpGrid";
             this.HelpGrid.Size = new System.Drawing.Size(414, 283);
@@ -366,17 +368,17 @@
             // 
             // txtIGSTRate
             // 
-            this.txtIGSTRate.Location = new System.Drawing.Point(503, 128);
+            this.txtIGSTRate.Location = new System.Drawing.Point(523, 124);
             this.txtIGSTRate.Name = "txtIGSTRate";
             this.txtIGSTRate.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtIGSTRate.Size = new System.Drawing.Size(59, 20);
+            this.txtIGSTRate.Size = new System.Drawing.Size(85, 20);
             this.txtIGSTRate.TabIndex = 5;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(-18, 339);
+            this.label6.Location = new System.Drawing.Point(10, 336);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(165, 13);
             this.label6.TabIndex = 247;
@@ -384,17 +386,17 @@
             // 
             // txtSalePostDesc
             // 
-            this.txtSalePostDesc.Location = new System.Drawing.Point(245, 336);
+            this.txtSalePostDesc.Location = new System.Drawing.Point(275, 332);
             this.txtSalePostDesc.Name = "txtSalePostDesc";
             this.txtSalePostDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSalePostDesc.Properties.ReadOnly = true;
-            this.txtSalePostDesc.Size = new System.Drawing.Size(316, 20);
+            this.txtSalePostDesc.Size = new System.Drawing.Size(333, 20);
             this.txtSalePostDesc.TabIndex = 246;
             this.txtSalePostDesc.TabStop = false;
             // 
             // txtSalePostCode
             // 
-            this.txtSalePostCode.Location = new System.Drawing.Point(153, 336);
+            this.txtSalePostCode.Location = new System.Drawing.Point(183, 332);
             this.txtSalePostCode.Name = "txtSalePostCode";
             this.txtSalePostCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSalePostCode.Properties.MaxLength = 6;
@@ -406,7 +408,7 @@
             // txtLCType
             // 
             this.txtLCType.EnterMoveNextControl = true;
-            this.txtLCType.Location = new System.Drawing.Point(153, 310);
+            this.txtLCType.Location = new System.Drawing.Point(183, 306);
             this.txtLCType.Name = "txtLCType";
             this.txtLCType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -418,7 +420,7 @@
             // 
             // txtAboveAmount
             // 
-            this.txtAboveAmount.Location = new System.Drawing.Point(154, 154);
+            this.txtAboveAmount.Location = new System.Drawing.Point(183, 150);
             this.txtAboveAmount.Name = "txtAboveAmount";
             this.txtAboveAmount.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAboveAmount.Size = new System.Drawing.Size(85, 20);
@@ -429,7 +431,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(48, 157);
+            this.label8.Location = new System.Drawing.Point(84, 157);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 13);
             this.label8.TabIndex = 249;
@@ -437,10 +439,10 @@
             // 
             // txtAboveIGSTRate
             // 
-            this.txtAboveIGSTRate.Location = new System.Drawing.Point(503, 181);
+            this.txtAboveIGSTRate.Location = new System.Drawing.Point(523, 176);
             this.txtAboveIGSTRate.Name = "txtAboveIGSTRate";
             this.txtAboveIGSTRate.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAboveIGSTRate.Size = new System.Drawing.Size(59, 20);
+            this.txtAboveIGSTRate.Size = new System.Drawing.Size(85, 20);
             this.txtAboveIGSTRate.TabIndex = 9;
             this.txtAboveIGSTRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTaxRate_KeyPress);
             // 
@@ -448,7 +450,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(433, 184);
+            this.label13.Location = new System.Drawing.Point(452, 180);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 13);
             this.label13.TabIndex = 255;
@@ -456,10 +458,10 @@
             // 
             // txtAboveSGSTRate
             // 
-            this.txtAboveSGSTRate.Location = new System.Drawing.Point(320, 181);
+            this.txtAboveSGSTRate.Location = new System.Drawing.Point(350, 176);
             this.txtAboveSGSTRate.Name = "txtAboveSGSTRate";
             this.txtAboveSGSTRate.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAboveSGSTRate.Size = new System.Drawing.Size(75, 20);
+            this.txtAboveSGSTRate.Size = new System.Drawing.Size(85, 20);
             this.txtAboveSGSTRate.TabIndex = 8;
             this.txtAboveSGSTRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTaxRate_KeyPress);
             // 
@@ -467,7 +469,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label14.Location = new System.Drawing.Point(254, 184);
+            this.label14.Location = new System.Drawing.Point(284, 180);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(66, 13);
             this.label14.TabIndex = 254;
@@ -475,7 +477,7 @@
             // 
             // txtAboveCGSTRate
             // 
-            this.txtAboveCGSTRate.Location = new System.Drawing.Point(153, 181);
+            this.txtAboveCGSTRate.Location = new System.Drawing.Point(183, 176);
             this.txtAboveCGSTRate.Name = "txtAboveCGSTRate";
             this.txtAboveCGSTRate.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAboveCGSTRate.Size = new System.Drawing.Size(85, 20);
@@ -486,7 +488,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(73, 184);
+            this.label15.Location = new System.Drawing.Point(109, 180);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(66, 13);
             this.label15.TabIndex = 253;
@@ -496,7 +498,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 394);
+            this.ClientSize = new System.Drawing.Size(638, 394);
             this.ControlBox = false;
             this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.txtAboveIGSTRate);

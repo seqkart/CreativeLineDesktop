@@ -93,8 +93,8 @@
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
             this.btnQuit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(35, 22);
-            this.btnQuit.Text = "&Quit";
+            this.btnQuit.Size = new System.Drawing.Size(40, 22);
+            this.btnQuit.Text = "Close";
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnSave
@@ -105,6 +105,7 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(38, 22);
             this.btnSave.Text = "&Save";
