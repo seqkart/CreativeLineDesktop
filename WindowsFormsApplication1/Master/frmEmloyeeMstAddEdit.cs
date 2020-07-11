@@ -78,6 +78,19 @@ namespace WindowsFormsApplication1
                 return false;
             }
 
+            if (txtUnitCode.Text.Trim().Length == 0)
+            {
+                XtraMessageBox.Show("Invalid Unit Code", "Inalid value", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                txtUnitCode.Focus();
+                return false;
+            }
+            if (txtUnitDesc.Text.Trim().Length == 0)
+            {
+                XtraMessageBox.Show("Invalid Unit Name", "Inalid value", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                txtUnitDesc.Focus();
+                return false;
+            }
+
 
             //var inTime_First = Convert.ToDateTime(timeEdit_Time_In_First.EditValue);
             //var outTime_First = Convert.ToDateTime(timeEdit_Time_Out_First.EditValue);
@@ -256,6 +269,10 @@ namespace WindowsFormsApplication1
                     txtDeptDesc.Text = empData.DeptDesc;//ds.Tables[0].Rows[0]["DeptDesc"].ToString();
                     txtDesgCode.Text = empData.EmpDesgCode;//ds.Tables[0].Rows[0]["EmpDesgCode"].ToString();
                     txtDesgDesc.Text = empData.DesgDesc;//ds.Tables[0].Rows[0]["DesgDesc"].ToString();
+                    
+                    txtUnitCode.Text = empData.UnitCode;//ds.Tables[0].Rows[0]["EmpDesgCode"].ToString();
+                    txtUnitDesc.Text = empData.UnitName;//ds.Tables[0].Rows[0]["DesgDesc"].ToString();
+
                     txtEmpSex.Text = empData.EmpSex;//ds.Tables[0].Rows[0]["EmpSex"].ToString();
                     if (empData.EmpDOJ.ToString() == string.Empty)
                     {
@@ -507,6 +524,13 @@ namespace WindowsFormsApplication1
                 HelpGrid.Visible = false;
                 txtDOJ.Focus();
             }
+            if (HelpGrid.Text == "txtUnitCode")
+            {
+                txtUnitCode.Text = row["UnitCode"].ToString();
+                txtUnitDesc.Text = row["UnitName"].ToString();
+                HelpGrid.Visible = false;
+                txtDOJ.Focus();
+            }
 
         }
 
@@ -520,6 +544,11 @@ namespace WindowsFormsApplication1
             txtDesgDesc.Text = string.Empty;
         }
 
+        private void txtUnitCode_EditValueChanged(object sender, EventArgs e)
+        {
+            txtUnitDesc.Text = string.Empty;
+        }
+
         private void txtDeptCode_KeyDown(object sender, KeyEventArgs e)
         {
             ProjectFunctions.CreatePopUpForTwoBoxes("Select DeptCode,DeptDesc from DeptMst", " Where DeptCode", txtDeptCode, txtDeptDesc, txtDesgDesc, HelpGrid, HelpGridView, e);
@@ -530,8 +559,14 @@ namespace WindowsFormsApplication1
             ProjectFunctions.CreatePopUpForTwoBoxes("Select DesgCode,DesgDesc from DesgMst", " Where DesgCode", txtDesgCode, txtDesgDesc, txtRemarks, HelpGrid, HelpGridView, e);
         }
 
+        private void txtUnitCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            ProjectFunctions.CreatePopUpForTwoBoxes("Select UnitCode, UnitName from UNITS", " Where UnitCode", txtUnitCode, txtUnitDesc, txtRemarks, HelpGrid, HelpGridView, e);
+        }
+
         private void saveEmployeeData()
         {
+            string sql = "";
             if (ValidateData())
             {
                 using (var sqlcon = new SqlConnection(ProjectFunctions.GetConnection()))
@@ -546,11 +581,11 @@ namespace WindowsFormsApplication1
                     {
                         if (s1 == "&Add")
                         {
-                            string empCode_SQL = SQL_QUERIES._frmEmployeeMstAddEdit._GetNewEmpCode(hasRtnCol:false);
+                            string empCode_SQL = "(SELECT RIGHT('0000' + CAST((ISNULL(MAX(CAST(EmpCode AS INT)), 0) + 1) AS VARCHAR(4)), 4) FROM EmpMst)";// SQL_QUERIES._frmEmployeeMstAddEdit._GetNewEmpCode(hasRtnCol:false);
 
-                            sqlcom.CommandText = " SET TRANSACTION ISOLATION LEVEL SERIALIZABLE  Begin Transaction "
+                            sql = " SET TRANSACTION ISOLATION LEVEL SERIALIZABLE  Begin Transaction "
                                                  + " Insert into EmpMst"
-                                                 + " (EmpCode,EmpName,EmpFHRelationTag,EmpFHName,EmpDeptCode,EmpDesgCode,EmpCategory,"
+                                                 + " (EmpCode,EmpName,EmpFHRelationTag,EmpFHName, UnitCode, EmpDeptCode,EmpDesgCode,EmpCategory,"
                                                  + " EmpSex,EmpDOJ,EmpDOL,EmpPFDTag,"
                                                  + " EmpESIDTag,EmpPFno,EmpESIno,EmpBasic,EmpHRA,EmpConv,"
                                                  + " EmpPET,EmpTDS,EmpLeft,EmpRemarks,EmpMotherNm,"
@@ -560,7 +595,7 @@ namespace WindowsFormsApplication1
                                                  + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode," +
                                                  "" +
                                                  "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours, EmpImage)"
-                                                 + " values(" + empCode_SQL + ",@EmpName,@EmpFHRelationTag,@EmpFHName,@EmpDeptCode,@EmpDesgCode,@EmpCategory,"
+                                                 + " values(" + empCode_SQL + ",@EmpName,@EmpFHRelationTag,@EmpFHName, @UnitCode, @EmpDeptCode,@EmpDesgCode,@EmpCategory,"
                                                  + " @EmpSex,@EmpDOJ,@EmpDOL,@EmpPFDTag,"
                                                  + " @EmpESIDTag,@EmpPFno,@EmpESIno,@EmpBasic,@EmpHRA,@EmpConv,"
                                                  + " @EmpPET,@EmpTDS,@EmpLeft,@EmpRemarks,@EmpMotherNm,"
@@ -570,11 +605,14 @@ namespace WindowsFormsApplication1
                                                  + " @EmpBankAcNo,@EmpBankName,@EmpNominee,@EmpNomineeRelation,@EmpNomineeDOB,@EmpAdharCardNo,@EmpGHISDed,@EmpFPFDTag,@EmpMscD1,@EmpAddress1,@EmpAddress2,@EmpAddress3,@EmpDistCity,@EmpState,@EmpCountry,@EmpUANNo,@EmpBankBranchCode," +
                                                     "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast, @WorkingHours, @EmpImage)"
                                                  + " Commit ";
+                            sqlcom.CommandText = sql;
+
+                            PrintLogWin.PrintLog(sql);
                         }
                         if (s1 == "Edit")
                         {
-                            sqlcom.CommandText = " UPDATE EmpMst SET "
-                                                + " EmpFHRelationTag=@EmpFHRelationTag,EmpFHName=@EmpFHName,EmpDeptCode=@EmpDeptCode,EmpDesgCode=@EmpDesgCode,EmpCategory=@EmpCategory, "
+                            sql= " UPDATE EmpMst SET "
+                                                + " EmpFHRelationTag=@EmpFHRelationTag,EmpFHName=@EmpFHName, UnitCode=@UnitCode, EmpDeptCode=@EmpDeptCode,EmpDesgCode=@EmpDesgCode,EmpCategory=@EmpCategory, "
                                                 + " EmpSex=@EmpSex,EmpDOJ=@EmpDOJ,EmpDOL=@EmpDOL,EmpPFDTag=@EmpPFDTag, "
                                                 + " EmpESIDTag=@EmpESIDTag,EmpPFno=@EmpPFno,EmpESIno=@EmpESIno,EmpBasic=@EmpBasic,EmpHRA=@EmpHRA,EmpConv=@EmpConv, "
                                                 + " EmpPET=@EmpPET,EmpTDS=@EmpTDS,EmpLeft=@EmpLeft,EmpRemarks=@EmpRemarks,EmpMotherNm=@EmpMotherNm,EmpNationality=@EmpNationality, "
@@ -589,12 +627,19 @@ namespace WindowsFormsApplication1
                                                 "   WorkingHours = @WorkingHours, " +
                                                 "   EmpImage = @EmpImage" +
                                                 "   Where EmpCode=@EmpCode";
+
+                            sqlcom.CommandText = sql;
+
+                            PrintLogWin.PrintLog(sql);
                         }
 
                         sqlcom.Parameters.AddWithValue("@EmpCode", txtEmpCode.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpName", txtEmpName.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpFHRelationTag", txtRelationTag.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpFHName", txtFHName.Text.Trim());
+
+                        sqlcom.Parameters.AddWithValue("@UnitCode", txtUnitCode.Text.Trim());
+
                         sqlcom.Parameters.AddWithValue("@EmpDeptCode", txtDeptCode.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpDesgCode", txtDesgCode.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpCategory", txtCategoryCode.Text.Trim());
@@ -606,7 +651,7 @@ namespace WindowsFormsApplication1
                         }
                         else
                         {
-                            sqlcom.Parameters.AddWithValue("@EmpDOJ", Convert.ToDateTime(txtDOJ.Text));
+                            sqlcom.Parameters.AddWithValue("@EmpDOJ", ConvertTo.DateTimeVal(txtDOJ.Text));
                         }
                         if (txtDOL.Text.Length == 0)
                         {
@@ -614,7 +659,7 @@ namespace WindowsFormsApplication1
                         }
                         else
                         {
-                            sqlcom.Parameters.AddWithValue("@EmpDOL", Convert.ToDateTime(txtDOL.Text));
+                            sqlcom.Parameters.AddWithValue("@EmpDOL", ConvertTo.DateTimeVal(txtDOL.Text));
                         }
                         sqlcom.Parameters.AddWithValue("@EmpPFDTag", txtEPFTag.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpESIDTag", txtESIDTag.Text.Trim());
@@ -624,7 +669,7 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@EmpHRA", 0);
                         sqlcom.Parameters.AddWithValue("@EmpConv", 0);
                         sqlcom.Parameters.AddWithValue("@EmpPET", 0);
-                        sqlcom.Parameters.AddWithValue("@EmpTDS", Convert.ToDecimal(txtTDS.Text));
+                        sqlcom.Parameters.AddWithValue("@EmpTDS", ConvertTo.DecimalVal(txtTDS.Text));
                         sqlcom.Parameters.AddWithValue("@EmpLeft", txtEmpLeft.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpRemarks", txtRemarks.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpMotherNm", txtMotherName.Text.Trim());
@@ -632,11 +677,11 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@EmpEmail", txtEmail.Text.Trim());
                         if (txtDOB.Text.Length == 0)
                         {
-                            sqlcom.Parameters.AddWithValue("@EmpDoB", Convert.ToDateTime(txtDOB.Text));
+                            sqlcom.Parameters.AddWithValue("@EmpDoB", ConvertTo.DateTimeVal(txtDOB.Text));
                         }
                         else
                         {
-                            sqlcom.Parameters.AddWithValue("@EmpDoB", Convert.ToDateTime(txtDOB.Text));
+                            sqlcom.Parameters.AddWithValue("@EmpDoB", ConvertTo.DateTimeVal(txtDOB.Text));
                         }
                         sqlcom.Parameters.AddWithValue("@EmpPanNo", txtPanNo.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpPassportNo", txtPassPortNo.Text.Trim());
@@ -655,12 +700,12 @@ namespace WindowsFormsApplication1
                         }
                         else
                         {
-                            sqlcom.Parameters.AddWithValue("@EmpNomineeDOB", Convert.ToDateTime(txtNomineeDOB.Text));
+                            sqlcom.Parameters.AddWithValue("@EmpNomineeDOB", ConvertTo.DateTimeVal(txtNomineeDOB.Text));
                         }
                         sqlcom.Parameters.AddWithValue("@EmpAdharCardNo", txtAdharCardNo.Text.Trim());
-                        sqlcom.Parameters.AddWithValue("@EmpGHISDed", Convert.ToDecimal(txtHealthInsurance.Text));
+                        sqlcom.Parameters.AddWithValue("@EmpGHISDed", ConvertTo.DecimalVal(txtHealthInsurance.Text));
                         sqlcom.Parameters.AddWithValue("@EmpFPFDTag", txtEFPFTag.Text.Trim());
-                        sqlcom.Parameters.AddWithValue("@EmpMscD1", Convert.ToDecimal(txtMiscDed.Text));
+                        sqlcom.Parameters.AddWithValue("@EmpMscD1", ConvertTo.DecimalVal(txtMiscDed.Text));
                         sqlcom.Parameters.AddWithValue("@EmpAddress1", txtAddress1.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpAddress2", txtAddress2.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@EmpAddress3", txtAddress3.Text.Trim());
@@ -673,11 +718,11 @@ namespace WindowsFormsApplication1
 
                         sqlcom.Parameters.AddWithValue("@EmpBankBranchCode", txtBankBranchCode.Text.Trim());
 
-                        sqlcom.Parameters.AddWithValue("@TimeInFirst", Convert.ToDateTime(timeEdit_Time_In_First.Text.ToString().Trim()));
-                        sqlcom.Parameters.AddWithValue("@TimeOutFirst", Convert.ToDateTime(timeEdit_Time_Out_First.Text.ToString().Trim()));
-                        sqlcom.Parameters.AddWithValue("@TimeInLast", Convert.ToDateTime(timeEdit_Time_In_Last.Text.ToString().Trim()));
-                        sqlcom.Parameters.AddWithValue("@TimeOutLast", Convert.ToDateTime(timeEdit_Time_Out_Last.Text.ToString().Trim()));
-                        sqlcom.Parameters.AddWithValue("@WorkingHours", Convert.ToInt32(totalWorkingHours_Text.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeInFirst", ConvertTo.DateTimeVal(timeEdit_Time_In_First.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeOutFirst", ConvertTo.DateTimeVal(timeEdit_Time_Out_First.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeInLast", ConvertTo.DateTimeVal(timeEdit_Time_In_Last.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@TimeOutLast", ConvertTo.DateTimeVal(timeEdit_Time_Out_Last.Text.ToString().Trim()));
+                        sqlcom.Parameters.AddWithValue("@WorkingHours", ConvertTo.IntVal(totalWorkingHours_Text.Text.ToString().Trim()));
 
                         byte[] byteEmpty = null;
 
@@ -697,10 +742,13 @@ namespace WindowsFormsApplication1
                         sqlcon.Close();
                         //XtraMessageBox.Show("Data Saved Successfully");
                         ProjectFunctions.SpeakError("Data Saved Successfully");
-                        //this.Close();
+                        this.Close();
                     }
                     catch (Exception ex)
                     {
+                        PrintLogWin.PrintLog(sql);
+
+
                         PrintLogWin.PrintLog("Line 663 : " + ex);
                         XtraMessageBox.Show("Something Wrong. \n I am going to Roll Back." + ex.Message, ex.GetType().ToString());
                         try

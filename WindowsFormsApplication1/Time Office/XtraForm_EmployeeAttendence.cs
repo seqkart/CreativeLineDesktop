@@ -619,7 +619,7 @@ namespace WindowsFormsApplication1.Time_Office
                     param.Add("@gate_pass_time", employeeAttendance.gate_pass_time);
                     param.Add("@ot_deducton_time", employeeAttendance.ot_deducton_time);
 
-                    string intResult = await reposGen.executeNonQuery(str, param);
+                    string intResult = await reposGen.executeNonQuery_Async(str, param);
                     if (intResult.Equals("0"))
                     {
                         ProjectFunctions.SpeakError("Record has been saved");
@@ -697,7 +697,7 @@ namespace WindowsFormsApplication1.Time_Office
                     param.Add("@serial_id", selected_serial_id
                         );
 
-                    string intResult = await reposGen.executeNonQuery(str, param);
+                    string intResult = await reposGen.executeNonQuery_Async(str, param);
                     if (intResult.Equals("0"))
                     {
                         ProjectFunctions.SpeakError("Record has been updated");

@@ -980,7 +980,7 @@ namespace WindowsFormsApplication1
                 ReportGrid.Text = TextBox1.Name;
                 if (TextBox1.Text.Trim().Length == 0)
                 {
-                    DataSet ds = ProjectFunctions.GetDataSet(Query);
+                    DataSet ds = ProjectFunctionsUtils.GetDataSet(Query);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         ReportGrid.DataSource = ds.Tables[0];
@@ -996,7 +996,7 @@ namespace WindowsFormsApplication1
                 }
                 else
                 {
-                    DataSet ds = ProjectFunctions.GetDataSet(Query + WhereClause + "='" + TextBox1.Text + "'");
+                    DataSet ds = ProjectFunctionsUtils.GetDataSet(Query + WhereClause + "='" + TextBox1.Text + "'");
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         TextBox1.Text = ds.Tables[0].Rows[0][0].ToString();
@@ -1005,7 +1005,7 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-                        DataSet ds1 = ProjectFunctions.GetDataSet(Query);
+                        DataSet ds1 = ProjectFunctionsUtils.GetDataSet(Query);
                         if (ds1.Tables[0].Rows.Count > 0)
                         {
                             ReportGrid.DataSource = ds1.Tables[0];

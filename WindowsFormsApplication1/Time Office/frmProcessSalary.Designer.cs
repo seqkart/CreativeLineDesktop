@@ -50,29 +50,36 @@
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.gridControl_SalaryProcess = new DevExpress.XtraGrid.GridControl();
+            this.gridView_SalaryProcess = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnProcessSalary = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceSelect.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SalaryGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SalaryGridView)).BeginInit();
             this.Menu_ToolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl_SalaryProcess)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_SalaryProcess)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLock
             // 
-            this.btnLock.Location = new System.Drawing.Point(353, 43);
+            this.btnLock.Location = new System.Drawing.Point(552, 43);
             this.btnLock.Name = "btnLock";
             this.btnLock.Size = new System.Drawing.Size(95, 23);
             this.btnLock.TabIndex = 351;
             this.btnLock.Text = "Lock";
+            this.btnLock.Visible = false;
             this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
             // 
             // ChoiceSelect
             // 
-            this.ChoiceSelect.Location = new System.Drawing.Point(468, 45);
+            this.ChoiceSelect.Location = new System.Drawing.Point(667, 45);
             this.ChoiceSelect.Name = "ChoiceSelect";
             this.ChoiceSelect.Properties.Caption = "Select &All";
-            this.ChoiceSelect.Size = new System.Drawing.Size(75, 18);
+            this.ChoiceSelect.Size = new System.Drawing.Size(75, 20);
             this.ChoiceSelect.TabIndex = 349;
+            this.ChoiceSelect.Visible = false;
             this.ChoiceSelect.CheckedChanged += new System.EventHandler(this.ChoiceSelect_CheckedChanged);
             // 
             // DtStartDate
@@ -108,14 +115,13 @@
             // 
             // SalaryGrid
             // 
-            this.SalaryGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SalaryGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SalaryGrid.Location = new System.Drawing.Point(0, 101);
+            this.SalaryGrid.Location = new System.Drawing.Point(467, 393);
             this.SalaryGrid.LookAndFeel.SkinName = "Seven Classic";
             this.SalaryGrid.LookAndFeel.UseDefaultLookAndFeel = false;
             this.SalaryGrid.MainView = this.SalaryGridView;
             this.SalaryGrid.Name = "SalaryGrid";
-            this.SalaryGrid.Size = new System.Drawing.Size(804, 503);
+            this.SalaryGrid.Size = new System.Drawing.Size(325, 199);
             this.SalaryGrid.TabIndex = 2;
             this.SalaryGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.SalaryGridView});
@@ -265,7 +271,7 @@
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
             this.Menu_ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.Menu_ToolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 26);
+            this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 25);
             this.Menu_ToolStrip.TabIndex = 194;
             this.Menu_ToolStrip.Text = "Options";
             // 
@@ -280,16 +286,44 @@
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.btnAdd.Size = new System.Drawing.Size(63, 23);
             this.btnAdd.Text = "&Process";
+            this.btnAdd.Visible = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 26);
+            this.splitter1.Location = new System.Drawing.Point(0, 25);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(804, 75);
             this.splitter1.TabIndex = 196;
             this.splitter1.TabStop = false;
+            // 
+            // gridControl_SalaryProcess
+            // 
+            this.gridControl_SalaryProcess.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl_SalaryProcess.Location = new System.Drawing.Point(0, 100);
+            this.gridControl_SalaryProcess.MainView = this.gridView_SalaryProcess;
+            this.gridControl_SalaryProcess.Name = "gridControl_SalaryProcess";
+            this.gridControl_SalaryProcess.Size = new System.Drawing.Size(804, 504);
+            this.gridControl_SalaryProcess.TabIndex = 352;
+            this.gridControl_SalaryProcess.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView_SalaryProcess});
+            // 
+            // gridView_SalaryProcess
+            // 
+            this.gridView_SalaryProcess.GridControl = this.gridControl_SalaryProcess;
+            this.gridView_SalaryProcess.Name = "gridView_SalaryProcess";
+            this.gridView_SalaryProcess.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_SalaryProcess_KeyDown);
+            // 
+            // btnProcessSalary
+            // 
+            this.btnProcessSalary.Location = new System.Drawing.Point(354, 42);
+            this.btnProcessSalary.Name = "btnProcessSalary";
+            this.btnProcessSalary.Size = new System.Drawing.Size(95, 23);
+            this.btnProcessSalary.TabIndex = 353;
+            this.btnProcessSalary.Text = "Process Salary";
+            this.btnProcessSalary.Visible = false;
+            this.btnProcessSalary.Click += new System.EventHandler(this.btnProcessSalary_Click);
             // 
             // frmProcessSalary
             // 
@@ -297,6 +331,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 604);
             this.ControlBox = false;
+            this.Controls.Add(this.btnProcessSalary);
+            this.Controls.Add(this.gridControl_SalaryProcess);
             this.Controls.Add(this.SalaryGrid);
             this.Controls.Add(this.ChoiceSelect);
             this.Controls.Add(this.btnLock);
@@ -316,6 +352,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.SalaryGridView)).EndInit();
             this.Menu_ToolStrip.ResumeLayout(false);
             this.Menu_ToolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl_SalaryProcess)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_SalaryProcess)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,5 +381,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private System.Windows.Forms.Splitter splitter1;
+        private DevExpress.XtraGrid.GridControl gridControl_SalaryProcess;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView_SalaryProcess;
+        private DevExpress.XtraEditors.SimpleButton btnProcessSalary;
     }
 }

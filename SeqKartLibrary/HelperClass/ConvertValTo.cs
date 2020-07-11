@@ -15,6 +15,28 @@ namespace SeqKartLibrary.HelperClass
             return 0;
         }
 
+        public static decimal DecimalVal(object val)
+        {
+            try
+            {
+                return Convert.ToDecimal(val);
+            }
+            catch { }
+
+            return 0;
+        }
+
+        public static double DoubleVal(object val)
+        {
+            try
+            {
+                return Convert.ToDouble(val);
+            }
+            catch { }
+
+            return 0;
+        }
+
         public static DateTime DateTimeVal(object val)
         {
             try

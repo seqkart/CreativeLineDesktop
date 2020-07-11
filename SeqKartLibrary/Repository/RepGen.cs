@@ -15,7 +15,7 @@ namespace SeqKartLibrary.Repository
             con = new SqlConnection(ProjectFunctionsUtils.ConnectionString);
         }
 
-        public async Task<string> executeNonQuery(string query, DynamicParameters param)
+        public async Task<string> executeNonQuery_Async(string query, DynamicParameters param)
         {
             try
             {
@@ -39,6 +39,23 @@ namespace SeqKartLibrary.Repository
                 connection();
                 con.Open();
                 await con.ExecuteAsync(query, param, commandType: CommandType.StoredProcedure);
+                con.Close();
+                return "0";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        public string executeNonQuery(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                con.Execute(query, param, commandType: CommandType.StoredProcedure);
                 con.Close();
                 return "0";
             }

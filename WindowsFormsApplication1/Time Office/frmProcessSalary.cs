@@ -1,6 +1,11 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
+using SeqKartLibrary;
+using SeqKartLibrary.Repository;
 using System;
 using System.Data;
 using System.Linq;
@@ -47,25 +52,129 @@ namespace BNPL.Forms_Transaction
             DtStartDate.EditValue = DateTime.Now;
 
             MainFormButtons.Roles(GlobalVariables.ProgCode, GlobalVariables.CurrentUser, btnAdd);
-            /*
-            var Query4Controls = String.Format("SELECT ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ProgRep_p,ProgSpl_U FROM         UserProgAccess WHERE     (ProgActive is Null or progActive= 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
-            using (var Tempds = ProjectFunctions.GetDataSet(Query4Controls))
-            {
-                if (Tempds != null)
-                {
-                    if (Tempds.Tables[0].Rows.Count > 0)
-                    {
-                        if (Tempds.Tables[0].Rows[0]["ProgAdd_F"].ToString() == "-1")
-                        {
-                            btnAdd.Enabled = true;
-                        }
-                    }
-                }
-            }
-            */
+            
         }
 
         private void fillGrid()
+        {
+            //DECLARE @Salary_Month DATETIME = '2020-06-01 00:00:00';
+            var str = "sp_Salary_Process '','" + Convert.ToDateTime(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "', 1, 1";
+
+            PrintLogWin.PrintLog(str);
+
+
+            DataSet ds = ProjectFunctionsUtils.GetDataSet(str);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                gridControl_SalaryProcess.DataSource = ds.Tables[0];
+                gridView_SalaryProcess.BestFitColumns();
+            }
+            gridView_SalaryProcess.OptionsBehavior.Editable = true;
+
+            foreach (DevExpress.XtraGrid.Columns.GridColumn Col in gridView_SalaryProcess.Columns)
+            {
+                if (Col.FieldName != "SalaryCalculated")
+                {
+                    Col.OptionsColumn.AllowEdit = false;
+                }
+            }
+        }
+
+
+        void gridView_SalaryProcess_KeyDown(object sender, KeyEventArgs e)
+        {
+            //PrintLogWin.PrintLog("===============");
+            GridView view = sender as GridView;
+
+            ColumnView detailView = (ColumnView)gridControl_SalaryProcess.FocusedView;
+            string cellValue_EmpCode = (string)detailView.GetFocusedRowCellValue("EmpCode");
+
+            if (view.FocusedColumn.FieldName == "SalaryCalculated")
+            {
+                if (e.KeyData == Keys.Enter)
+                {
+                    if (XtraMessageBox.Show("Do you want to process Salary for [ " + cellValue_EmpCode + " ]", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        string str = "" +
+                            "INSERT INTO tbl_Process_Salary (" +
+                            "SalaryMonth, " +
+                            "EmpCode, " +
+                            "WorkingDays, " +
+                            "WorkingHours, " +
+                            "AttendanceDays, " +
+                            "OT_DeducationTime, " +
+                            "EmpSalary, " +
+                            "SalaryPerDay, " +
+                            "SalaryPerHour, " +
+                            "OT_Salary, " +
+                            "AdvanceSalary, " +
+                            "LoanIntsallment, " +
+                            "SalaryCalculated, " +
+                            "Arrears) " +
+                            "VALUES(" +
+                            "@SalaryMonth, " +
+                            "@EmpCode, " +
+                            "@WorkingDays, " +
+                            "@WorkingHours, " +
+                            "@AttendanceDays, " +
+                            "@OT_DeducationTime, " +
+                            "@EmpSalary, " +
+                            "@SalaryPerDay, " +
+                            "@SalaryPerHour, " +
+                            "@OT_Salary, " +
+                            "@AdvanceSalary, " +
+                            "@LoanIntsallment, " +
+                            "@SalaryCalculated, " +
+                            "@Arrears)";
+
+                        RepGen reposGen = new RepGen();
+                        DynamicParameters param = new DynamicParameters();
+
+                        string intResult = "";// reposGen.executeNonQuery(str, param);
+
+                        if (intResult.Equals("0"))
+                        {
+                            ProjectFunctions.SpeakError("Record has been saved");
+                        }
+                        else
+                        {
+                            ProjectFunctions.SpeakError("Error in save record.");
+                            PrintLogWin.PrintLog(intResult);
+                        }
+
+                        //param.Add("@entry_date", employeeAttendance.entry_date);
+
+                        PrintLogWin.PrintLog(">>>>>>>>>>>>>>>>>>");
+                    }
+                    
+                }
+            }
+
+            //canShowEditor = e.KeyData == Keys.Enter;
+        }
+
+        private void btnProcessSalary_Click(object sender, EventArgs e)
+        {
+
+        }
+        /*
+        private void gridControl_SalaryProcess_ProcessGridKey(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        // Fires when no in-place editor is active
+        private void gridView_SalaryProcess_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+        // Fires when an in-place editor is active
+        private void gridControl_SalaryProcess_EditorKeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+        */
+        private void fillGrid_OLD()
         {
             _Mnthyr = String.Format("{0}{1}", DtStartDate.Text.Substring(0, 2), DtStartDate.Text.Substring(DtStartDate.Text.Length - 2, 2));
 
@@ -124,6 +233,7 @@ namespace BNPL.Forms_Transaction
                 }
             }
         }
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -242,6 +352,8 @@ namespace BNPL.Forms_Transaction
             }
             fillGrid();
         }
+
+        
     }
 
 }

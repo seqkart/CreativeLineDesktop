@@ -20,7 +20,7 @@ namespace SeqKartLibrary.CrudTask
             //param.Add("@name", _user.name);
             //param.Add("@address", _user.address);
             //param.Add("@status", _user.status);
-            return await reposGen.executeNonQuery("users_Insert_Update", param);
+            return await reposGen.executeNonQuery_Async("users_Insert_Update", param);
         }
     }
 }

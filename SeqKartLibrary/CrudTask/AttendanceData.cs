@@ -30,7 +30,7 @@ namespace SeqKartLibrary.CrudTask
             param.Add("@ot_deducton_time", attendanceModel.ot_deducton_time);            
             param.Add("@AddEditTag", AddEditTag);
 
-            return await reposGen.executeNonQuery("sp_EmployeeAttendance", param);
+            return await reposGen.executeNonQuery_Async("sp_EmployeeAttendance", param);
         }
 
         public List<AttendanceStatus> GetAllAttendanceStatus()

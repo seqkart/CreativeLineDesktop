@@ -162,6 +162,9 @@
             this.windowsUIButtonPanelCloseButton = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.labelControl = new DevExpress.XtraEditors.LabelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
+            this.txtUnitDesc = new DevExpress.XtraEditors.TextEdit();
+            this.txtUnitCode = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.RelationShipGrid123)).BeginInit();
             this.RelationShipGrid123.SuspendLayout();
             this.BasicInfoTab.SuspendLayout();
@@ -238,11 +241,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpLeft.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategoryDesc.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUnitDesc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUnitCode.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // RelationShipGrid123
             // 
-            this.RelationShipGrid123.Location = new System.Drawing.Point(60, 223);
+            this.RelationShipGrid123.Location = new System.Drawing.Point(60, 248);
             this.RelationShipGrid123.Name = "RelationShipGrid123";
             this.RelationShipGrid123.SelectedTabPage = this.BasicInfoTab;
             this.RelationShipGrid123.Size = new System.Drawing.Size(598, 300);
@@ -257,7 +262,7 @@
             // 
             this.BasicInfoTab.Controls.Add(this.panelControl1);
             this.BasicInfoTab.Name = "BasicInfoTab";
-            this.BasicInfoTab.Size = new System.Drawing.Size(596, 277);
+            this.BasicInfoTab.Size = new System.Drawing.Size(596, 275);
             this.BasicInfoTab.Text = "Personel";
             // 
             // panelControl1
@@ -286,7 +291,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(596, 277);
+            this.panelControl1.Size = new System.Drawing.Size(596, 275);
             this.panelControl1.TabIndex = 0;
             // 
             // labelControl23
@@ -340,7 +345,7 @@
             this.txtNationality.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtNationality.Size = new System.Drawing.Size(100, 20);
-            this.txtNationality.TabIndex = 384;
+            this.txtNationality.TabIndex = 18;
             // 
             // txtMotherName
             // 
@@ -350,7 +355,7 @@
             this.txtMotherName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMotherName.Properties.MaxLength = 40;
             this.txtMotherName.Size = new System.Drawing.Size(220, 20);
-            this.txtMotherName.TabIndex = 382;
+            this.txtMotherName.TabIndex = 17;
             this.txtMotherName.Visible = false;
             // 
             // labelControl25
@@ -374,7 +379,7 @@
             "M",
             "F"});
             this.txtEmpSex.Size = new System.Drawing.Size(78, 20);
-            this.txtEmpSex.TabIndex = 5;
+            this.txtEmpSex.TabIndex = 14;
             // 
             // txtRelationTag
             // 
@@ -387,7 +392,7 @@
             "F",
             "H"});
             this.txtRelationTag.Size = new System.Drawing.Size(79, 20);
-            this.txtRelationTag.TabIndex = 11;
+            this.txtRelationTag.TabIndex = 16;
             // 
             // txtEmail
             // 
@@ -397,7 +402,7 @@
             this.txtEmail.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmail.Properties.MaxLength = 80;
             this.txtEmail.Size = new System.Drawing.Size(220, 20);
-            this.txtEmail.TabIndex = 20;
+            this.txtEmail.TabIndex = 19;
             // 
             // labelControl43
             // 
@@ -437,7 +442,7 @@
             this.txtRemarks.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemarks.Properties.MaxLength = 150;
             this.txtRemarks.Size = new System.Drawing.Size(220, 20);
-            this.txtRemarks.TabIndex = 18;
+            this.txtRemarks.TabIndex = 20;
             // 
             // txtDOB
             // 
@@ -450,7 +455,7 @@
             this.txtDOB.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtDOB.Size = new System.Drawing.Size(79, 20);
-            this.txtDOB.TabIndex = 9;
+            this.txtDOB.TabIndex = 13;
             // 
             // txtFHName
             // 
@@ -460,7 +465,7 @@
             this.txtFHName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtFHName.Properties.MaxLength = 40;
             this.txtFHName.Size = new System.Drawing.Size(220, 20);
-            this.txtFHName.TabIndex = 10;
+            this.txtFHName.TabIndex = 15;
             // 
             // label3
             // 
@@ -506,7 +511,7 @@
             // 
             this.AdditionalInfoTab.Controls.Add(this.panelControl2);
             this.AdditionalInfoTab.Name = "AdditionalInfoTab";
-            this.AdditionalInfoTab.Size = new System.Drawing.Size(596, 277);
+            this.AdditionalInfoTab.Size = new System.Drawing.Size(596, 275);
             this.AdditionalInfoTab.Text = "Details";
             // 
             // panelControl2
@@ -547,7 +552,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(596, 277);
+            this.panelControl2.Size = new System.Drawing.Size(596, 275);
             this.panelControl2.TabIndex = 248;
             // 
             // labelControl22
@@ -610,7 +615,7 @@
             this.timeEdit_Time_Out_Last.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.timeEdit_Time_Out_Last.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_Out_Last.Size = new System.Drawing.Size(65, 20);
-            this.timeEdit_Time_Out_Last.TabIndex = 220;
+            this.timeEdit_Time_Out_Last.TabIndex = 33;
             this.timeEdit_Time_Out_Last.EditValueChanged += new System.EventHandler(this.timeEdit_Time_Out_Last_EditValueChanged);
             // 
             // timeEdit_Time_In_Last
@@ -633,7 +638,7 @@
             this.timeEdit_Time_In_Last.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.timeEdit_Time_In_Last.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_In_Last.Size = new System.Drawing.Size(65, 20);
-            this.timeEdit_Time_In_Last.TabIndex = 219;
+            this.timeEdit_Time_In_Last.TabIndex = 32;
             this.timeEdit_Time_In_Last.EditValueChanged += new System.EventHandler(this.timeEdit_Time_In_Last_EditValueChanged);
             // 
             // timeEdit_Time_Out_First
@@ -656,7 +661,7 @@
             this.timeEdit_Time_Out_First.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.timeEdit_Time_Out_First.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_Out_First.Size = new System.Drawing.Size(65, 20);
-            this.timeEdit_Time_Out_First.TabIndex = 218;
+            this.timeEdit_Time_Out_First.TabIndex = 31;
             this.timeEdit_Time_Out_First.EditValueChanged += new System.EventHandler(this.timeEdit_Time_Out_First_EditValueChanged);
             // 
             // totalWorkingHours_Text
@@ -679,7 +684,8 @@
             this.totalWorkingHours_Text.Properties.MaxLength = 10;
             this.totalWorkingHours_Text.Properties.UseReadOnlyAppearance = false;
             this.totalWorkingHours_Text.Size = new System.Drawing.Size(65, 20);
-            this.totalWorkingHours_Text.TabIndex = 216;
+            this.totalWorkingHours_Text.TabIndex = 34;
+            this.totalWorkingHours_Text.TabStop = false;
             // 
             // labelControl16
             // 
@@ -739,7 +745,7 @@
             this.txtUANNo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUANNo.Properties.MaxLength = 10;
             this.txtUANNo.Size = new System.Drawing.Size(116, 20);
-            this.txtUANNo.TabIndex = 214;
+            this.txtUANNo.TabIndex = 26;
             // 
             // labelControl4
             // 
@@ -764,7 +770,7 @@
             this.txtMiscDed.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMiscDed.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtMiscDed.Size = new System.Drawing.Size(85, 20);
-            this.txtMiscDed.TabIndex = 41;
+            this.txtMiscDed.TabIndex = 29;
             // 
             // labelControl2
             // 
@@ -798,7 +804,7 @@
             this.txtHealthInsurance.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtHealthInsurance.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtHealthInsurance.Size = new System.Drawing.Size(85, 20);
-            this.txtHealthInsurance.TabIndex = 39;
+            this.txtHealthInsurance.TabIndex = 27;
             // 
             // txtESICNo
             // 
@@ -808,7 +814,7 @@
             this.txtESICNo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtESICNo.Properties.MaxLength = 10;
             this.txtESICNo.Size = new System.Drawing.Size(116, 20);
-            this.txtESICNo.TabIndex = 38;
+            this.txtESICNo.TabIndex = 25;
             // 
             // labelControl40
             // 
@@ -826,7 +832,7 @@
             this.txtEPFNo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEPFNo.Properties.MaxLength = 8;
             this.txtEPFNo.Size = new System.Drawing.Size(116, 20);
-            this.txtEPFNo.TabIndex = 37;
+            this.txtEPFNo.TabIndex = 24;
             // 
             // labelControl41
             // 
@@ -852,7 +858,7 @@
             this.txtESIDTag.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtESIDTag.Properties.MaxLength = 1;
             this.txtESIDTag.Size = new System.Drawing.Size(116, 20);
-            this.txtESIDTag.TabIndex = 36;
+            this.txtESIDTag.TabIndex = 23;
             this.txtESIDTag.Validating += new System.ComponentModel.CancelEventHandler(this.txtESIDTag_Validating);
             // 
             // labelControl38
@@ -871,7 +877,7 @@
             this.txtEFPFTag.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEFPFTag.Properties.MaxLength = 1;
             this.txtEFPFTag.Size = new System.Drawing.Size(116, 20);
-            this.txtEFPFTag.TabIndex = 35;
+            this.txtEFPFTag.TabIndex = 22;
             // 
             // labelControl36
             // 
@@ -896,7 +902,7 @@
             this.txtTDS.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtTDS.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTDS.Size = new System.Drawing.Size(85, 20);
-            this.txtTDS.TabIndex = 40;
+            this.txtTDS.TabIndex = 28;
             // 
             // labelControl34
             // 
@@ -914,7 +920,7 @@
             this.txtEPFTag.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEPFTag.Properties.MaxLength = 1;
             this.txtEPFTag.Size = new System.Drawing.Size(116, 20);
-            this.txtEPFTag.TabIndex = 34;
+            this.txtEPFTag.TabIndex = 21;
             this.txtEPFTag.Validating += new System.ComponentModel.CancelEventHandler(this.txtEPFTag_Validating);
             // 
             // timeEdit_Time_In_First
@@ -939,14 +945,14 @@
             this.timeEdit_Time_In_First.Properties.NullValuePrompt = "00:00";
             this.timeEdit_Time_In_First.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_In_First.Size = new System.Drawing.Size(65, 20);
-            this.timeEdit_Time_In_First.TabIndex = 216;
+            this.timeEdit_Time_In_First.TabIndex = 30;
             this.timeEdit_Time_In_First.EditValueChanged += new System.EventHandler(this.timeEdit_Time_In_First_EditValueChanged);
             // 
             // AdditionalInfo1Tab
             // 
             this.AdditionalInfo1Tab.Controls.Add(this.panelControl3);
             this.AdditionalInfo1Tab.Name = "AdditionalInfo1Tab";
-            this.AdditionalInfo1Tab.Size = new System.Drawing.Size(596, 277);
+            this.AdditionalInfo1Tab.Size = new System.Drawing.Size(596, 275);
             this.AdditionalInfo1Tab.Text = "Additional";
             // 
             // panelControl3
@@ -981,7 +987,7 @@
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(596, 277);
+            this.panelControl3.Size = new System.Drawing.Size(596, 275);
             this.panelControl3.TabIndex = 172;
             // 
             // txtBankBranchCode
@@ -992,7 +998,7 @@
             this.txtBankBranchCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBankBranchCode.Properties.MaxLength = 40;
             this.txtBankBranchCode.Size = new System.Drawing.Size(120, 20);
-            this.txtBankBranchCode.TabIndex = 266;
+            this.txtBankBranchCode.TabIndex = 41;
             // 
             // label9
             // 
@@ -1011,7 +1017,7 @@
             this.txtAdharCardNo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAdharCardNo.Properties.MaxLength = 25;
             this.txtAdharCardNo.Size = new System.Drawing.Size(120, 20);
-            this.txtAdharCardNo.TabIndex = 59;
+            this.txtAdharCardNo.TabIndex = 39;
             // 
             // label34
             // 
@@ -1030,7 +1036,7 @@
             this.txtNomineeRelation.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNomineeRelation.Properties.MaxLength = 20;
             this.txtNomineeRelation.Size = new System.Drawing.Size(120, 20);
-            this.txtNomineeRelation.TabIndex = 57;
+            this.txtNomineeRelation.TabIndex = 45;
             // 
             // label31
             // 
@@ -1056,7 +1062,7 @@
             this.txtNomineeDOB.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtNomineeDOB.Properties.MaxLength = 20;
             this.txtNomineeDOB.Size = new System.Drawing.Size(120, 20);
-            this.txtNomineeDOB.TabIndex = 58;
+            this.txtNomineeDOB.TabIndex = 46;
             // 
             // label32
             // 
@@ -1075,7 +1081,7 @@
             this.txtNomineeName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNomineeName.Properties.MaxLength = 25;
             this.txtNomineeName.Size = new System.Drawing.Size(120, 20);
-            this.txtNomineeName.TabIndex = 56;
+            this.txtNomineeName.TabIndex = 38;
             // 
             // label33
             // 
@@ -1094,7 +1100,7 @@
             this.txtBankName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBankName.Properties.MaxLength = 40;
             this.txtBankName.Size = new System.Drawing.Size(193, 20);
-            this.txtBankName.TabIndex = 55;
+            this.txtBankName.TabIndex = 37;
             // 
             // label30
             // 
@@ -1113,7 +1119,7 @@
             this.txtBankAccountNo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBankAccountNo.Properties.MaxLength = 20;
             this.txtBankAccountNo.Size = new System.Drawing.Size(120, 20);
-            this.txtBankAccountNo.TabIndex = 53;
+            this.txtBankAccountNo.TabIndex = 43;
             // 
             // label29
             // 
@@ -1132,7 +1138,7 @@
             this.txtIfscCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIfscCode.Properties.MaxLength = 15;
             this.txtIfscCode.Size = new System.Drawing.Size(120, 20);
-            this.txtIfscCode.TabIndex = 54;
+            this.txtIfscCode.TabIndex = 44;
             // 
             // label28
             // 
@@ -1178,7 +1184,7 @@
             this.txtPassPortNo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPassPortNo.Properties.MaxLength = 20;
             this.txtPassPortNo.Size = new System.Drawing.Size(120, 20);
-            this.txtPassPortNo.TabIndex = 61;
+            this.txtPassPortNo.TabIndex = 47;
             // 
             // label20
             // 
@@ -1207,7 +1213,7 @@
             this.txtPanNo.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPanNo.Properties.MaxLength = 10;
             this.txtPanNo.Size = new System.Drawing.Size(120, 20);
-            this.txtPanNo.TabIndex = 60;
+            this.txtPanNo.TabIndex = 40;
             // 
             // txtEmployeeReligion
             // 
@@ -1226,7 +1232,7 @@
             "Buddh"});
             this.txtEmployeeReligion.Properties.MaxLength = 20;
             this.txtEmployeeReligion.Size = new System.Drawing.Size(118, 20);
-            this.txtEmployeeReligion.TabIndex = 50;
+            this.txtEmployeeReligion.TabIndex = 35;
             // 
             // txtMaritalStatus
             // 
@@ -1241,7 +1247,7 @@
             "Unmarried"});
             this.txtMaritalStatus.Properties.MaxLength = 20;
             this.txtMaritalStatus.Size = new System.Drawing.Size(120, 20);
-            this.txtMaritalStatus.TabIndex = 51;
+            this.txtMaritalStatus.TabIndex = 42;
             // 
             // txtPaymentMode
             // 
@@ -1257,7 +1263,7 @@
             "By Transfer"});
             this.txtPaymentMode.Properties.MaxLength = 20;
             this.txtPaymentMode.Size = new System.Drawing.Size(120, 20);
-            this.txtPaymentMode.TabIndex = 52;
+            this.txtPaymentMode.TabIndex = 36;
             // 
             // OtherSpecinfoTab
             // 
@@ -1267,7 +1273,7 @@
             this.OtherSpecinfoTab.Controls.Add(this.label5);
             this.OtherSpecinfoTab.Controls.Add(this.textEdit10);
             this.OtherSpecinfoTab.Name = "OtherSpecinfoTab";
-            this.OtherSpecinfoTab.Size = new System.Drawing.Size(596, 277);
+            this.OtherSpecinfoTab.Size = new System.Drawing.Size(596, 275);
             this.OtherSpecinfoTab.Text = "Address ";
             // 
             // panelControl4
@@ -1290,7 +1296,7 @@
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(596, 277);
+            this.panelControl4.Size = new System.Drawing.Size(596, 275);
             this.panelControl4.TabIndex = 153;
             // 
             // txtCountry
@@ -1301,7 +1307,7 @@
             this.txtCountry.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCountry.Properties.MaxLength = 100;
             this.txtCountry.Size = new System.Drawing.Size(143, 20);
-            this.txtCountry.TabIndex = 460;
+            this.txtCountry.TabIndex = 54;
             this.txtCountry.TabStop = false;
             // 
             // label1
@@ -1323,7 +1329,7 @@
             this.txtCityName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCityName.Properties.MaxLength = 100;
             this.txtCityName.Size = new System.Drawing.Size(367, 20);
-            this.txtCityName.TabIndex = 458;
+            this.txtCityName.TabIndex = 52;
             this.txtCityName.TabStop = false;
             // 
             // txtState
@@ -1334,7 +1340,7 @@
             this.txtState.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtState.Properties.MaxLength = 100;
             this.txtState.Size = new System.Drawing.Size(241, 20);
-            this.txtState.TabIndex = 457;
+            this.txtState.TabIndex = 53;
             this.txtState.TabStop = false;
             // 
             // txtCityCode
@@ -1344,7 +1350,7 @@
             this.txtCityCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCityCode.Properties.MaxLength = 100;
             this.txtCityCode.Size = new System.Drawing.Size(69, 20);
-            this.txtCityCode.TabIndex = 456;
+            this.txtCityCode.TabIndex = 51;
             // 
             // label6
             // 
@@ -1392,7 +1398,7 @@
             this.txtAddress1.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddress1.Properties.MaxLength = 40;
             this.txtAddress1.Size = new System.Drawing.Size(441, 20);
-            this.txtAddress1.TabIndex = 84;
+            this.txtAddress1.TabIndex = 48;
             // 
             // txtAddress2
             // 
@@ -1402,7 +1408,7 @@
             this.txtAddress2.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddress2.Properties.MaxLength = 40;
             this.txtAddress2.Size = new System.Drawing.Size(441, 20);
-            this.txtAddress2.TabIndex = 85;
+            this.txtAddress2.TabIndex = 49;
             // 
             // txtAddress3
             // 
@@ -1412,7 +1418,7 @@
             this.txtAddress3.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddress3.Properties.MaxLength = 40;
             this.txtAddress3.Size = new System.Drawing.Size(441, 20);
-            this.txtAddress3.TabIndex = 86;
+            this.txtAddress3.TabIndex = 50;
             // 
             // labelControl28
             // 
@@ -1475,7 +1481,7 @@
             this.txtDesgCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDesgCode.Properties.MaxLength = 4;
             this.txtDesgCode.Size = new System.Drawing.Size(78, 20);
-            this.txtDesgCode.TabIndex = 16;
+            this.txtDesgCode.TabIndex = 6;
             this.txtDesgCode.EditValueChanged += new System.EventHandler(this.txtDesgCode_EditValueChanged);
             this.txtDesgCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDesgCode_KeyDown);
             // 
@@ -1487,7 +1493,7 @@
             this.txtDesgDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDesgDesc.Properties.ReadOnly = true;
             this.txtDesgDesc.Size = new System.Drawing.Size(176, 20);
-            this.txtDesgDesc.TabIndex = 17;
+            this.txtDesgDesc.TabIndex = 7;
             this.txtDesgDesc.TabStop = false;
             // 
             // labelControl17
@@ -1508,7 +1514,7 @@
             this.txtDeptCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDeptCode.Properties.MaxLength = 4;
             this.txtDeptCode.Size = new System.Drawing.Size(78, 20);
-            this.txtDeptCode.TabIndex = 12;
+            this.txtDeptCode.TabIndex = 4;
             this.txtDeptCode.EditValueChanged += new System.EventHandler(this.txtDeptCode_EditValueChanged);
             this.txtDeptCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDeptCode_KeyDown);
             // 
@@ -1520,7 +1526,7 @@
             this.txtDeptDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDeptDesc.Properties.ReadOnly = true;
             this.txtDeptDesc.Size = new System.Drawing.Size(176, 20);
-            this.txtDeptDesc.TabIndex = 13;
+            this.txtDeptDesc.TabIndex = 5;
             this.txtDeptDesc.TabStop = false;
             // 
             // labelControl6
@@ -1535,7 +1541,7 @@
             // 
             // HelpGrid
             // 
-            this.HelpGrid.Location = new System.Drawing.Point(155, 176);
+            this.HelpGrid.Location = new System.Drawing.Point(155, 201);
             this.HelpGrid.MainView = this.HelpGridView;
             this.HelpGrid.Name = "HelpGrid";
             this.HelpGrid.Size = new System.Drawing.Size(420, 360);
@@ -1599,7 +1605,7 @@
             this.txtDOJ.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtDOJ.Size = new System.Drawing.Size(99, 20);
-            this.txtDOJ.TabIndex = 4;
+            this.txtDOJ.TabIndex = 10;
             // 
             // labelControl5
             // 
@@ -1622,7 +1628,7 @@
             this.txtDOL.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtDOL.Size = new System.Drawing.Size(99, 20);
-            this.txtDOL.TabIndex = 6;
+            this.txtDOL.TabIndex = 11;
             // 
             // labelControl15
             // 
@@ -1664,7 +1670,7 @@
             this.txtEmpLeft.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmpLeft.Properties.MaxLength = 1;
             this.txtEmpLeft.Size = new System.Drawing.Size(99, 20);
-            this.txtEmpLeft.TabIndex = 5;
+            this.txtEmpLeft.TabIndex = 12;
             this.txtEmpLeft.TabStop = false;
             this.txtEmpLeft.Visible = false;
             this.txtEmpLeft.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmpLeft_Validating);
@@ -1721,13 +1727,13 @@
             this.windowsUIButtonPanelMain.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.windowsUIButtonPanelMain.EnableImageTransparency = true;
             this.windowsUIButtonPanelMain.ForeColor = System.Drawing.Color.White;
-            this.windowsUIButtonPanelMain.Location = new System.Drawing.Point(0, 545);
+            this.windowsUIButtonPanelMain.Location = new System.Drawing.Point(0, 608);
             this.windowsUIButtonPanelMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.windowsUIButtonPanelMain.MaximumSize = new System.Drawing.Size(0, 60);
             this.windowsUIButtonPanelMain.MinimumSize = new System.Drawing.Size(60, 60);
             this.windowsUIButtonPanelMain.Name = "windowsUIButtonPanelMain";
             this.windowsUIButtonPanelMain.Size = new System.Drawing.Size(718, 60);
-            this.windowsUIButtonPanelMain.TabIndex = 246;
+            this.windowsUIButtonPanelMain.TabIndex = 55;
             this.windowsUIButtonPanelMain.Text = "windowsUIButtonPanelMain";
             this.windowsUIButtonPanelMain.UseButtonBackgroundImages = false;
             this.windowsUIButtonPanelMain.ButtonClick += new DevExpress.XtraBars.Docking2010.ButtonEventHandler(this.windowsUIButtonPanelMain_ButtonClick);
@@ -1747,7 +1753,7 @@
             this.windowsUIButtonPanelCloseButton.Name = "windowsUIButtonPanelCloseButton";
             this.windowsUIButtonPanelCloseButton.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.windowsUIButtonPanelCloseButton.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.windowsUIButtonPanelCloseButton.Size = new System.Drawing.Size(45, 545);
+            this.windowsUIButtonPanelCloseButton.Size = new System.Drawing.Size(45, 608);
             this.windowsUIButtonPanelCloseButton.TabIndex = 247;
             this.windowsUIButtonPanelCloseButton.Text = "windowsUIButtonPanel1";
             this.windowsUIButtonPanelCloseButton.UseButtonBackgroundImages = false;
@@ -1772,6 +1778,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelControl24);
+            this.groupBox1.Controls.Add(this.txtUnitDesc);
+            this.groupBox1.Controls.Add(this.txtUnitCode);
             this.groupBox1.Controls.Add(this.txtEmpCode);
             this.groupBox1.Controls.Add(this.labelControl6);
             this.groupBox1.Controls.Add(this.txtDeptDesc);
@@ -1792,9 +1801,42 @@
             this.groupBox1.Controls.Add(this.txtDOJ);
             this.groupBox1.Location = new System.Drawing.Point(60, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(598, 150);
+            this.groupBox1.Size = new System.Drawing.Size(598, 180);
             this.groupBox1.TabIndex = 249;
             this.groupBox1.TabStop = false;
+            // 
+            // labelControl24
+            // 
+            this.labelControl24.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl24.Appearance.Options.UseFont = true;
+            this.labelControl24.Location = new System.Drawing.Point(56, 138);
+            this.labelControl24.Name = "labelControl24";
+            this.labelControl24.Size = new System.Drawing.Size(22, 13);
+            this.labelControl24.TabIndex = 238;
+            this.labelControl24.Text = "Unit";
+            // 
+            // txtUnitDesc
+            // 
+            this.txtUnitDesc.EnterMoveNextControl = true;
+            this.txtUnitDesc.Location = new System.Drawing.Point(181, 134);
+            this.txtUnitDesc.Name = "txtUnitDesc";
+            this.txtUnitDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUnitDesc.Properties.ReadOnly = true;
+            this.txtUnitDesc.Size = new System.Drawing.Size(176, 20);
+            this.txtUnitDesc.TabIndex = 9;
+            this.txtUnitDesc.TabStop = false;
+            // 
+            // txtUnitCode
+            // 
+            this.txtUnitCode.EnterMoveNextControl = true;
+            this.txtUnitCode.Location = new System.Drawing.Point(95, 134);
+            this.txtUnitCode.Name = "txtUnitCode";
+            this.txtUnitCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUnitCode.Properties.MaxLength = 4;
+            this.txtUnitCode.Size = new System.Drawing.Size(78, 20);
+            this.txtUnitCode.TabIndex = 8;
+            this.txtUnitCode.EditValueChanged += new System.EventHandler(this.txtUnitCode_EditValueChanged);
+            this.txtUnitCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUnitCode_KeyDown);
             // 
             // frmEmloyeeMstAddEdit
             // 
@@ -1804,7 +1846,7 @@
             this.Appearance.Options.UseForeColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 605);
+            this.ClientSize = new System.Drawing.Size(718, 668);
             this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelControl);
@@ -1901,6 +1943,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCategoryDesc.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUnitDesc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUnitCode.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2038,5 +2082,8 @@
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Label lblFilename;
         private DevExpress.XtraEditors.LabelControl labelControl23;
+        private DevExpress.XtraEditors.LabelControl labelControl24;
+        private DevExpress.XtraEditors.TextEdit txtUnitDesc;
+        private DevExpress.XtraEditors.TextEdit txtUnitCode;
     }
 }
