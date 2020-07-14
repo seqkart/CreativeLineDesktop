@@ -262,7 +262,7 @@
             // 
             this.BasicInfoTab.Controls.Add(this.panelControl1);
             this.BasicInfoTab.Name = "BasicInfoTab";
-            this.BasicInfoTab.Size = new System.Drawing.Size(596, 275);
+            this.BasicInfoTab.Size = new System.Drawing.Size(596, 277);
             this.BasicInfoTab.Text = "Personel";
             // 
             // panelControl1
@@ -291,7 +291,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(596, 275);
+            this.panelControl1.Size = new System.Drawing.Size(596, 277);
             this.panelControl1.TabIndex = 0;
             // 
             // labelControl23

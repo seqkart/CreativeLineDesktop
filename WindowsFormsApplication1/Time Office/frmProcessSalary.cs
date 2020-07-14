@@ -5,9 +5,11 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using SeqKartLibrary;
+using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Repository;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -58,7 +60,7 @@ namespace BNPL.Forms_Transaction
         private void fillGrid()
         {
             //DECLARE @Salary_Month DATETIME = '2020-06-01 00:00:00';
-            var str = "sp_Salary_Process '','" + Convert.ToDateTime(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "', 1, 1";
+            var str = "sp_Salary_Process '','" + ConvertTo.DateTimeVal(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "', 1, 1";
 
             PrintLogWin.PrintLog(str);
 
@@ -73,11 +75,14 @@ namespace BNPL.Forms_Transaction
 
             foreach (DevExpress.XtraGrid.Columns.GridColumn Col in gridView_SalaryProcess.Columns)
             {
-                if (Col.FieldName != "SalaryCalculated")
+                if (Col.FieldName != "SalaryPaid")
                 {
                     Col.OptionsColumn.AllowEdit = false;
                 }
             }
+
+
+            
         }
 
 
@@ -87,75 +92,79 @@ namespace BNPL.Forms_Transaction
             GridView view = sender as GridView;
 
             ColumnView detailView = (ColumnView)gridControl_SalaryProcess.FocusedView;
+
             string cellValue_EmpCode = (string)detailView.GetFocusedRowCellValue("EmpCode");
 
             if (view.FocusedColumn.FieldName == "SalaryCalculated")
             {
                 if (e.KeyData == Keys.Enter)
                 {
-                    if (XtraMessageBox.Show("Do you want to process Salary for [ " + cellValue_EmpCode + " ]", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        string str = "" +
-                            "INSERT INTO tbl_Process_Salary (" +
-                            "SalaryMonth, " +
-                            "EmpCode, " +
-                            "WorkingDays, " +
-                            "WorkingHours, " +
-                            "AttendanceDays, " +
-                            "OT_DeducationTime, " +
-                            "EmpSalary, " +
-                            "SalaryPerDay, " +
-                            "SalaryPerHour, " +
-                            "OT_Salary, " +
-                            "AdvanceSalary, " +
-                            "LoanIntsallment, " +
-                            "SalaryCalculated, " +
-                            "Arrears) " +
-                            "VALUES(" +
-                            "@SalaryMonth, " +
-                            "@EmpCode, " +
-                            "@WorkingDays, " +
-                            "@WorkingHours, " +
-                            "@AttendanceDays, " +
-                            "@OT_DeducationTime, " +
-                            "@EmpSalary, " +
-                            "@SalaryPerDay, " +
-                            "@SalaryPerHour, " +
-                            "@OT_Salary, " +
-                            "@AdvanceSalary, " +
-                            "@LoanIntsallment, " +
-                            "@SalaryCalculated, " +
-                            "@Arrears)";
-
-                        RepGen reposGen = new RepGen();
-                        DynamicParameters param = new DynamicParameters();
-
-                        string intResult = "";// reposGen.executeNonQuery(str, param);
-
-                        if (intResult.Equals("0"))
-                        {
-                            ProjectFunctions.SpeakError("Record has been saved");
-                        }
-                        else
-                        {
-                            ProjectFunctions.SpeakError("Error in save record.");
-                            PrintLogWin.PrintLog(intResult);
-                        }
-
-                        //param.Add("@entry_date", employeeAttendance.entry_date);
-
-                        PrintLogWin.PrintLog(">>>>>>>>>>>>>>>>>>");
-                    }
-                    
+                                        
                 }
             }
+
 
             //canShowEditor = e.KeyData == Keys.Enter;
         }
 
         private void btnProcessSalary_Click(object sender, EventArgs e)
         {
+            
 
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("EmpCode", typeof(string));
+                dt.Columns.Add("SalaryMonth", typeof(DateTime));
+                dt.Columns.Add("SalaryPaid", typeof(decimal));
+
+                for (int rowIndex = 0; rowIndex != gridView_SalaryProcess.RowCount; rowIndex++)
+                {
+                    int intRow = gridView_SalaryProcess.GetVisibleRowHandle(rowIndex);
+                    string strSalaryMonth = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryMonth").ToString();
+                    string strEmpCode = gridView_SalaryProcess.GetRowCellValue(intRow, "EmpCode").ToString();
+                    string strSalaryPaid = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryPaid").ToString();
+
+                    PrintLogWin.PrintLog("strSalaryMonth => " + strSalaryMonth);
+                    PrintLogWin.PrintLog("strEmpCode => " + strEmpCode);
+                    PrintLogWin.PrintLog("strSalaryPaid => " + strSalaryPaid);
+                    PrintLogWin.PrintLog("------------------------------");
+
+                    if (strSalaryPaid != null)
+                    {
+                        if (!strSalaryPaid.Equals(""))
+                        {
+                            dt.Rows.Add(strEmpCode, ConvertTo.DateTimeVal(strSalaryMonth), ConvertTo.DecimalVal(strSalaryPaid));
+                        }
+                    }
+                    
+
+                    //cn.Execute(@"Insert INTO #routineUpdatedRecords VALUES('" + strEmpCode + "', '" + strSalaryMonth + "', " + strSalaryPaid + ")");
+                }
+
+                PrintLogWin.PrintLog("*******************************" + "");
+
+                using (SqlConnection con = new SqlConnection(ProjectFunctionsUtils.ConnectionString))
+                {
+                    con.Open();
+                    using (SqlCommand com = new SqlCommand("sp_UpdateSalaryPaid", con))
+                    {
+                        com.CommandType = CommandType.StoredProcedure;
+                        com.Parameters.AddWithValue("@TableParam", dt);
+                        com.ExecuteNonQuery();
+
+                        ProjectFunctions.SpeakError("Salary Has Been Processed");
+                        fillGrid();
+                    }
+                    
+                }
+            }
+            catch(Exception ex)
+            {
+                PrintLogWin.PrintLog(ex);
+            }
+            
+            
         }
         /*
         private void gridControl_SalaryProcess_ProcessGridKey(object sender, KeyEventArgs e)

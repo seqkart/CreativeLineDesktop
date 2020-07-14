@@ -64,9 +64,9 @@
             // 
             // btnLock
             // 
-            this.btnLock.Location = new System.Drawing.Point(552, 43);
+            this.btnLock.Location = new System.Drawing.Point(552, 45);
             this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(95, 23);
+            this.btnLock.Size = new System.Drawing.Size(95, 20);
             this.btnLock.TabIndex = 351;
             this.btnLock.Text = "Lock";
             this.btnLock.Visible = false;
@@ -84,7 +84,7 @@
             // 
             // DtStartDate
             // 
-            this.DtStartDate.Location = new System.Drawing.Point(106, 45);
+            this.DtStartDate.Location = new System.Drawing.Point(110, 52);
             this.DtStartDate.Name = "DtStartDate";
             this.DtStartDate.Properties.EditFormat.FormatString = "MM-yyyy";
             this.DtStartDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -92,13 +92,13 @@
             this.DtStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
             this.DtStartDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.DtStartDate.Properties.MaxLength = 6;
-            this.DtStartDate.Size = new System.Drawing.Size(91, 20);
+            this.DtStartDate.Size = new System.Drawing.Size(95, 20);
             this.DtStartDate.TabIndex = 0;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(0, 48);
+            this.label13.Location = new System.Drawing.Point(4, 56);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(99, 13);
             this.label13.TabIndex = 347;
@@ -106,9 +106,9 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(219, 43);
+            this.btnLoad.Location = new System.Drawing.Point(225, 52);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(95, 23);
+            this.btnLoad.Size = new System.Drawing.Size(95, 20);
             this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load";
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -317,12 +317,11 @@
             // 
             // btnProcessSalary
             // 
-            this.btnProcessSalary.Location = new System.Drawing.Point(354, 42);
+            this.btnProcessSalary.Location = new System.Drawing.Point(340, 52);
             this.btnProcessSalary.Name = "btnProcessSalary";
-            this.btnProcessSalary.Size = new System.Drawing.Size(95, 23);
+            this.btnProcessSalary.Size = new System.Drawing.Size(95, 20);
             this.btnProcessSalary.TabIndex = 353;
             this.btnProcessSalary.Text = "Process Salary";
-            this.btnProcessSalary.Visible = false;
             this.btnProcessSalary.Click += new System.EventHandler(this.btnProcessSalary_Click);
             // 
             // frmProcessSalary

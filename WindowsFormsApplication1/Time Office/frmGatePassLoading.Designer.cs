@@ -1,7 +1,7 @@
 ﻿
 namespace BNPL.Forms_Master
 {
-    partial class frmAttendenceLaoding
+    partial class frmGatePassLaoding
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace BNPL.Forms_Master
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAttendenceLaoding));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGatePassLaoding));
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
             this.btnQuit = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
@@ -391,7 +391,7 @@ namespace BNPL.Forms_Master
             this.HelpGridView.OptionsView.ShowIndicator = false;
             this.HelpGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             // 
-            // frmAttendenceLaoding
+            // frmGatePassLaoding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -408,9 +408,9 @@ namespace BNPL.Forms_Master
             this.Controls.Add(this.SFeedingGrid);
             this.Controls.Add(this.Menu_ToolStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "frmAttendenceLaoding";
+            this.Name = "frmGatePassLaoding";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmExcelDataLoading_Load);
+            this.Load += new System.EventHandler(this.frmGatePassLaoding_Load);
             this.Menu_ToolStrip.ResumeLayout(false);
             this.Menu_ToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGrid)).EndInit();

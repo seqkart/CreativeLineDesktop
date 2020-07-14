@@ -56,19 +56,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox_Shift = new System.Windows.Forms.ComboBox();
-            this.comboBox_Status = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtOvertimeHours = new DevExpress.XtraEditors.TextEdit();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.radioButtonManual = new System.Windows.Forms.RadioButton();
-            this.panelControlManual = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl_Manual_In = new DevExpress.XtraEditors.PanelControl();
-            this.panelControlMachine = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl_Machine_In = new DevExpress.XtraEditors.PanelControl();
-            this.radioButtonMachine = new System.Windows.Forms.RadioButton();
-            this.labelDate_Current = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.totalWorkingHours_Text_Main = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
@@ -83,21 +78,26 @@
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.timeEdit_Time_In_First = new DevExpress.XtraEditors.TimeEdit();
-            this.timeEdit_GatePassTime = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit_ForTime = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.totalWorkingHours_Text_Main = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.label18 = new System.Windows.Forms.Label();
+            this.comboBox_Status = new System.Windows.Forms.ComboBox();
             this.timeEdit_Time_In_First_Main = new DevExpress.XtraEditors.TextEdit();
             this.timeEdit_Time_Out_First_Main = new DevExpress.XtraEditors.TextEdit();
             this.timeEdit_Time_In_Last_Main = new DevExpress.XtraEditors.TextEdit();
             this.timeEdit_Time_Out_Last_Main = new DevExpress.XtraEditors.TextEdit();
+            this.comboBox_Shift = new System.Windows.Forms.ComboBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textEdit_ForTime = new DevExpress.XtraEditors.TextEdit();
+            this.txtOvertimeHours = new DevExpress.XtraEditors.TextEdit();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.timeEdit_GatePassTime = new DevExpress.XtraEditors.TextEdit();
+            this.radioButtonManual = new System.Windows.Forms.RadioButton();
+            this.panelControlManual = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl_Manual_In = new DevExpress.XtraEditors.PanelControl();
+            this.panelControlMachine = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl_Machine_In = new DevExpress.XtraEditors.PanelControl();
+            this.radioButtonMachine = new System.Windows.Forms.RadioButton();
+            this.labelDate_Current = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textUnit.Properties)).BeginInit();
@@ -106,8 +106,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpID.Properties)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text_Main.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_Last.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_Last.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_First.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_First.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_First_Main.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_First_Main.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_Last_Main.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_Last_Main.Properties)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit_ForTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOvertimeHours.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_GatePassTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlManual)).BeginInit();
             this.panelControlManual.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_Manual_In)).BeginInit();
@@ -116,18 +128,6 @@
             this.panelControlMachine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_Machine_In)).BeginInit();
             this.panelControl_Machine_In.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_Last.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_Last.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_First.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_First.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_GatePassTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit_ForTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text_Main.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_First_Main.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_First_Main.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_Last_Main.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_Last_Main.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // windowsUIButtonPanelCloseButton
@@ -455,155 +455,107 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Manual Attendance";
             // 
-            // comboBox_Shift
+            // label18
             // 
-            this.comboBox_Shift.FormattingEnabled = true;
-            this.comboBox_Shift.Location = new System.Drawing.Point(369, 66);
-            this.comboBox_Shift.Name = "comboBox_Shift";
-            this.comboBox_Shift.Size = new System.Drawing.Size(100, 21);
-            this.comboBox_Shift.TabIndex = 20;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label18.ForeColor = System.Drawing.Color.Silver;
+            this.label18.Location = new System.Drawing.Point(49, 38);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(114, 13);
+            this.label18.TabIndex = 251;
+            this.label18.Text = "Employee Duty Time";
             // 
-            // comboBox_Status
+            // totalWorkingHours_Text_Main
             // 
-            this.comboBox_Status.FormattingEnabled = true;
-            this.comboBox_Status.Location = new System.Drawing.Point(23, 100);
-            this.comboBox_Status.Name = "comboBox_Status";
-            this.comboBox_Status.Size = new System.Drawing.Size(140, 21);
-            this.comboBox_Status.TabIndex = 19;
+            this.totalWorkingHours_Text_Main.EnterMoveNextControl = true;
+            this.totalWorkingHours_Text_Main.Location = new System.Drawing.Point(519, 34);
+            this.totalWorkingHours_Text_Main.Name = "totalWorkingHours_Text_Main";
+            this.totalWorkingHours_Text_Main.Properties.Appearance.BackColor = System.Drawing.Color.Gainsboro;
+            this.totalWorkingHours_Text_Main.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.totalWorkingHours_Text_Main.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.totalWorkingHours_Text_Main.Properties.Appearance.Options.UseBackColor = true;
+            this.totalWorkingHours_Text_Main.Properties.Appearance.Options.UseFont = true;
+            this.totalWorkingHours_Text_Main.Properties.Appearance.Options.UseForeColor = true;
+            this.totalWorkingHours_Text_Main.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.totalWorkingHours_Text_Main.Properties.AppearanceDisabled.Options.UseBackColor = true;
+            this.totalWorkingHours_Text_Main.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.totalWorkingHours_Text_Main.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.totalWorkingHours_Text_Main.Properties.MaxLength = 10;
+            this.totalWorkingHours_Text_Main.Properties.ReadOnly = true;
+            this.totalWorkingHours_Text_Main.Properties.UseReadOnlyAppearance = false;
+            this.totalWorkingHours_Text_Main.Size = new System.Drawing.Size(65, 18);
+            this.totalWorkingHours_Text_Main.TabIndex = 241;
             // 
-            // groupBox4
+            // labelControl6
             // 
-            this.groupBox4.Controls.Add(this.groupBox5);
-            this.groupBox4.Controls.Add(this.textEdit_ForTime);
-            this.groupBox4.Controls.Add(this.txtOvertimeHours);
-            this.groupBox4.Controls.Add(this.label27);
-            this.groupBox4.Controls.Add(this.label26);
-            this.groupBox4.Controls.Add(this.timeEdit_GatePassTime);
-            this.groupBox4.Controls.Add(this.comboBox_Shift);
-            this.groupBox4.Location = new System.Drawing.Point(52, 511);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(610, 110);
-            this.groupBox4.TabIndex = 14;
-            this.groupBox4.TabStop = false;
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Silver;
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Appearance.Options.UseForeColor = true;
+            this.labelControl6.Location = new System.Drawing.Point(534, 15);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(34, 13);
+            this.labelControl6.TabIndex = 243;
+            this.labelControl6.Text = "TOTAL";
             // 
-            // txtOvertimeHours
+            // labelControl7
             // 
-            this.txtOvertimeHours.Location = new System.Drawing.Point(171, 62);
-            this.txtOvertimeHours.Name = "txtOvertimeHours";
-            this.txtOvertimeHours.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtOvertimeHours.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtOvertimeHours.Properties.Appearance.Options.UseBackColor = true;
-            this.txtOvertimeHours.Properties.Appearance.Options.UseForeColor = true;
-            this.txtOvertimeHours.Size = new System.Drawing.Size(120, 20);
-            this.txtOvertimeHours.TabIndex = 4;
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Silver;
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Appearance.Options.UseForeColor = true;
+            this.labelControl7.Location = new System.Drawing.Point(450, 15);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(23, 13);
+            this.labelControl7.TabIndex = 244;
+            this.labelControl7.Text = "OUT";
             // 
-            // label27
+            // labelControl8
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label27.Location = new System.Drawing.Point(9, 66);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(111, 13);
-            this.label27.TabIndex = 1;
-            this.label27.Text = "OT/Deduction Time:";
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Silver;
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Appearance.Options.UseForeColor = true;
+            this.labelControl8.Location = new System.Drawing.Point(380, 15);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(12, 13);
+            this.labelControl8.TabIndex = 245;
+            this.labelControl8.Text = "IN";
             // 
-            // label26
+            // labelControl9
             // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label26.Location = new System.Drawing.Point(9, 40);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(88, 13);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "Gate Pass Time:";
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Silver;
+            this.labelControl9.Appearance.Options.UseFont = true;
+            this.labelControl9.Appearance.Options.UseForeColor = true;
+            this.labelControl9.Location = new System.Drawing.Point(283, 15);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(23, 13);
+            this.labelControl9.TabIndex = 246;
+            this.labelControl9.Text = "OUT";
             // 
-            // radioButtonManual
+            // labelControl11
             // 
-            this.radioButtonManual.AutoSize = true;
-            this.radioButtonManual.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonManual.Checked = true;
-            this.radioButtonManual.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radioButtonManual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.radioButtonManual.Location = new System.Drawing.Point(5, 6);
-            this.radioButtonManual.Name = "radioButtonManual";
-            this.radioButtonManual.Size = new System.Drawing.Size(128, 17);
-            this.radioButtonManual.TabIndex = 15;
-            this.radioButtonManual.TabStop = true;
-            this.radioButtonManual.Text = "Manual Attendance";
-            this.radioButtonManual.UseVisualStyleBackColor = false;
-            this.radioButtonManual.CheckedChanged += new System.EventHandler(this.radioButtonManual_CheckedChanged);
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Silver;
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Appearance.Options.UseForeColor = true;
+            this.labelControl11.Location = new System.Drawing.Point(216, 15);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(12, 13);
+            this.labelControl11.TabIndex = 247;
+            this.labelControl11.Text = "IN";
             // 
-            // panelControlManual
+            // labelControl1
             // 
-            this.panelControlManual.Appearance.BackColor = System.Drawing.Color.MistyRose;
-            this.panelControlManual.Appearance.Options.UseBackColor = true;
-            this.panelControlManual.Controls.Add(this.panelControl_Manual_In);
-            this.panelControlManual.Location = new System.Drawing.Point(53, 293);
-            this.panelControlManual.Name = "panelControlManual";
-            this.panelControlManual.Size = new System.Drawing.Size(140, 30);
-            this.panelControlManual.TabIndex = 17;
-            // 
-            // panelControl_Manual_In
-            // 
-            this.panelControl_Manual_In.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.panelControl_Manual_In.Appearance.Options.UseBackColor = true;
-            this.panelControl_Manual_In.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl_Manual_In.Controls.Add(this.radioButtonManual);
-            this.panelControl_Manual_In.Location = new System.Drawing.Point(1, 1);
-            this.panelControl_Manual_In.Name = "panelControl_Manual_In";
-            this.panelControl_Manual_In.Size = new System.Drawing.Size(138, 28);
-            this.panelControl_Manual_In.TabIndex = 18;
-            // 
-            // panelControlMachine
-            // 
-            this.panelControlMachine.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.panelControlMachine.Appearance.Options.UseBackColor = true;
-            this.panelControlMachine.Controls.Add(this.panelControl_Machine_In);
-            this.panelControlMachine.Location = new System.Drawing.Point(192, 293);
-            this.panelControlMachine.Name = "panelControlMachine";
-            this.panelControlMachine.Size = new System.Drawing.Size(140, 30);
-            this.panelControlMachine.TabIndex = 18;
-            // 
-            // panelControl_Machine_In
-            // 
-            this.panelControl_Machine_In.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.panelControl_Machine_In.Appearance.Options.UseBackColor = true;
-            this.panelControl_Machine_In.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl_Machine_In.Controls.Add(this.radioButtonMachine);
-            this.panelControl_Machine_In.Location = new System.Drawing.Point(1, 1);
-            this.panelControl_Machine_In.Name = "panelControl_Machine_In";
-            this.panelControl_Machine_In.Size = new System.Drawing.Size(138, 28);
-            this.panelControl_Machine_In.TabIndex = 19;
-            // 
-            // radioButtonMachine
-            // 
-            this.radioButtonMachine.AutoSize = true;
-            this.radioButtonMachine.Checked = true;
-            this.radioButtonMachine.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radioButtonMachine.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.radioButtonMachine.Location = new System.Drawing.Point(5, 6);
-            this.radioButtonMachine.Name = "radioButtonMachine";
-            this.radioButtonMachine.Size = new System.Drawing.Size(133, 17);
-            this.radioButtonMachine.TabIndex = 15;
-            this.radioButtonMachine.TabStop = true;
-            this.radioButtonMachine.Text = "Machine Attendance";
-            this.radioButtonMachine.UseVisualStyleBackColor = true;
-            this.radioButtonMachine.CheckedChanged += new System.EventHandler(this.radioButtonMachine_CheckedChanged);
-            // 
-            // labelDate_Current
-            // 
-            this.labelDate_Current.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelDate_Current.AutoSize = true;
-            this.labelDate_Current.Location = new System.Drawing.Point(486, 39);
-            this.labelDate_Current.Name = "labelDate_Current";
-            this.labelDate_Current.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labelDate_Current.Size = new System.Drawing.Size(176, 20);
-            this.labelDate_Current.TabIndex = 19;
-            this.labelDate_Current.Text = "Wednesday, June17, 2020 1:42 PM";
-            this.labelDate_Current.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelDate_Current.UseCompatibleTextRendering = true;
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(513, 126);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(77, 13);
+            this.labelControl1.TabIndex = 240;
+            this.labelControl1.Text = "WORKING HRS";
             // 
             // labelControl22
             // 
@@ -811,141 +763,13 @@
             this.timeEdit_Time_In_First.TabIndex = 226;
             this.timeEdit_Time_In_First.EditValueChanged += new System.EventHandler(this.timeEdit_Time_In_First_EditValueChanged);
             // 
-            // timeEdit_GatePassTime
+            // comboBox_Status
             // 
-            this.timeEdit_GatePassTime.EditValue = "";
-            this.timeEdit_GatePassTime.Location = new System.Drawing.Point(171, 33);
-            this.timeEdit_GatePassTime.Name = "timeEdit_GatePassTime";
-            this.timeEdit_GatePassTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.timeEdit_GatePassTime.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.timeEdit_GatePassTime.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.timeEdit_GatePassTime.Properties.Appearance.Options.UseBackColor = true;
-            this.timeEdit_GatePassTime.Properties.Appearance.Options.UseForeColor = true;
-            this.timeEdit_GatePassTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.timeEdit_GatePassTime.Properties.Mask.EditMask = "T";
-            this.timeEdit_GatePassTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.timeEdit_GatePassTime.Size = new System.Drawing.Size(120, 20);
-            this.timeEdit_GatePassTime.TabIndex = 21;
-            // 
-            // textEdit_ForTime
-            // 
-            this.textEdit_ForTime.EditValue = new System.DateTime(2020, 6, 13, 0, 0, 0, 0);
-            this.textEdit_ForTime.Location = new System.Drawing.Point(369, 33);
-            this.textEdit_ForTime.Name = "textEdit_ForTime";
-            this.textEdit_ForTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.textEdit_ForTime.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textEdit_ForTime.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textEdit_ForTime.Properties.Appearance.Options.UseBackColor = true;
-            this.textEdit_ForTime.Properties.Appearance.Options.UseForeColor = true;
-            this.textEdit_ForTime.Properties.DisplayFormat.FormatString = "HH:mm";
-            this.textEdit_ForTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.textEdit_ForTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.textEdit_ForTime.Properties.Mask.EditMask = "T";
-            this.textEdit_ForTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.textEdit_ForTime.Size = new System.Drawing.Size(120, 20);
-            this.textEdit_ForTime.TabIndex = 22;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(513, 126);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(77, 13);
-            this.labelControl1.TabIndex = 240;
-            this.labelControl1.Text = "WORKING HRS";
-            // 
-            // totalWorkingHours_Text_Main
-            // 
-            this.totalWorkingHours_Text_Main.EnterMoveNextControl = true;
-            this.totalWorkingHours_Text_Main.Location = new System.Drawing.Point(519, 34);
-            this.totalWorkingHours_Text_Main.Name = "totalWorkingHours_Text_Main";
-            this.totalWorkingHours_Text_Main.Properties.Appearance.BackColor = System.Drawing.Color.Gainsboro;
-            this.totalWorkingHours_Text_Main.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.totalWorkingHours_Text_Main.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.totalWorkingHours_Text_Main.Properties.Appearance.Options.UseBackColor = true;
-            this.totalWorkingHours_Text_Main.Properties.Appearance.Options.UseFont = true;
-            this.totalWorkingHours_Text_Main.Properties.Appearance.Options.UseForeColor = true;
-            this.totalWorkingHours_Text_Main.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.totalWorkingHours_Text_Main.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.totalWorkingHours_Text_Main.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.totalWorkingHours_Text_Main.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.totalWorkingHours_Text_Main.Properties.MaxLength = 10;
-            this.totalWorkingHours_Text_Main.Properties.ReadOnly = true;
-            this.totalWorkingHours_Text_Main.Properties.UseReadOnlyAppearance = false;
-            this.totalWorkingHours_Text_Main.Size = new System.Drawing.Size(65, 18);
-            this.totalWorkingHours_Text_Main.TabIndex = 241;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Silver;
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(534, 15);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(34, 13);
-            this.labelControl6.TabIndex = 243;
-            this.labelControl6.Text = "TOTAL";
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Silver;
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Appearance.Options.UseForeColor = true;
-            this.labelControl7.Location = new System.Drawing.Point(450, 15);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(23, 13);
-            this.labelControl7.TabIndex = 244;
-            this.labelControl7.Text = "OUT";
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Silver;
-            this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Appearance.Options.UseForeColor = true;
-            this.labelControl8.Location = new System.Drawing.Point(380, 15);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(12, 13);
-            this.labelControl8.TabIndex = 245;
-            this.labelControl8.Text = "IN";
-            // 
-            // labelControl9
-            // 
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Silver;
-            this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(283, 15);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(23, 13);
-            this.labelControl9.TabIndex = 246;
-            this.labelControl9.Text = "OUT";
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Silver;
-            this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Appearance.Options.UseForeColor = true;
-            this.labelControl11.Location = new System.Drawing.Point(216, 15);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(12, 13);
-            this.labelControl11.TabIndex = 247;
-            this.labelControl11.Text = "IN";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label18.ForeColor = System.Drawing.Color.Silver;
-            this.label18.Location = new System.Drawing.Point(49, 38);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(114, 13);
-            this.label18.TabIndex = 251;
-            this.label18.Text = "Employee Duty Time";
+            this.comboBox_Status.FormattingEnabled = true;
+            this.comboBox_Status.Location = new System.Drawing.Point(23, 100);
+            this.comboBox_Status.Name = "comboBox_Status";
+            this.comboBox_Status.Size = new System.Drawing.Size(140, 21);
+            this.comboBox_Status.TabIndex = 19;
             // 
             // timeEdit_Time_In_First_Main
             // 
@@ -1045,6 +869,29 @@
             this.timeEdit_Time_Out_Last_Main.Size = new System.Drawing.Size(65, 18);
             this.timeEdit_Time_Out_Last_Main.TabIndex = 250;
             // 
+            // comboBox_Shift
+            // 
+            this.comboBox_Shift.FormattingEnabled = true;
+            this.comboBox_Shift.Location = new System.Drawing.Point(369, 66);
+            this.comboBox_Shift.Name = "comboBox_Shift";
+            this.comboBox_Shift.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Shift.TabIndex = 20;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.groupBox5);
+            this.groupBox4.Controls.Add(this.textEdit_ForTime);
+            this.groupBox4.Controls.Add(this.txtOvertimeHours);
+            this.groupBox4.Controls.Add(this.label27);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.timeEdit_GatePassTime);
+            this.groupBox4.Controls.Add(this.comboBox_Shift);
+            this.groupBox4.Location = new System.Drawing.Point(52, 511);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(610, 110);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            // 
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Transparent;
@@ -1054,6 +901,159 @@
             this.groupBox5.Size = new System.Drawing.Size(200, 66);
             this.groupBox5.TabIndex = 23;
             this.groupBox5.TabStop = false;
+            // 
+            // textEdit_ForTime
+            // 
+            this.textEdit_ForTime.EditValue = new System.DateTime(2020, 6, 13, 0, 0, 0, 0);
+            this.textEdit_ForTime.Location = new System.Drawing.Point(369, 33);
+            this.textEdit_ForTime.Name = "textEdit_ForTime";
+            this.textEdit_ForTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.textEdit_ForTime.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textEdit_ForTime.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEdit_ForTime.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit_ForTime.Properties.Appearance.Options.UseForeColor = true;
+            this.textEdit_ForTime.Properties.DisplayFormat.FormatString = "HH:mm";
+            this.textEdit_ForTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.textEdit_ForTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.textEdit_ForTime.Properties.Mask.EditMask = "T";
+            this.textEdit_ForTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.textEdit_ForTime.Size = new System.Drawing.Size(120, 20);
+            this.textEdit_ForTime.TabIndex = 22;
+            // 
+            // txtOvertimeHours
+            // 
+            this.txtOvertimeHours.Location = new System.Drawing.Point(171, 62);
+            this.txtOvertimeHours.Name = "txtOvertimeHours";
+            this.txtOvertimeHours.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtOvertimeHours.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtOvertimeHours.Properties.Appearance.Options.UseBackColor = true;
+            this.txtOvertimeHours.Properties.Appearance.Options.UseForeColor = true;
+            this.txtOvertimeHours.Size = new System.Drawing.Size(120, 20);
+            this.txtOvertimeHours.TabIndex = 4;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label27.Location = new System.Drawing.Point(9, 66);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(111, 13);
+            this.label27.TabIndex = 1;
+            this.label27.Text = "OT/Deduction Time:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label26.Location = new System.Drawing.Point(9, 40);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(88, 13);
+            this.label26.TabIndex = 0;
+            this.label26.Text = "Gate Pass Time:";
+            // 
+            // timeEdit_GatePassTime
+            // 
+            this.timeEdit_GatePassTime.EditValue = "";
+            this.timeEdit_GatePassTime.Location = new System.Drawing.Point(171, 33);
+            this.timeEdit_GatePassTime.Name = "timeEdit_GatePassTime";
+            this.timeEdit_GatePassTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.timeEdit_GatePassTime.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.timeEdit_GatePassTime.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.timeEdit_GatePassTime.Properties.Appearance.Options.UseBackColor = true;
+            this.timeEdit_GatePassTime.Properties.Appearance.Options.UseForeColor = true;
+            this.timeEdit_GatePassTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.timeEdit_GatePassTime.Properties.Mask.EditMask = "T";
+            this.timeEdit_GatePassTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.timeEdit_GatePassTime.Size = new System.Drawing.Size(120, 20);
+            this.timeEdit_GatePassTime.TabIndex = 21;
+            // 
+            // radioButtonManual
+            // 
+            this.radioButtonManual.AutoSize = true;
+            this.radioButtonManual.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonManual.Checked = true;
+            this.radioButtonManual.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radioButtonManual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.radioButtonManual.Location = new System.Drawing.Point(5, 6);
+            this.radioButtonManual.Name = "radioButtonManual";
+            this.radioButtonManual.Size = new System.Drawing.Size(128, 17);
+            this.radioButtonManual.TabIndex = 15;
+            this.radioButtonManual.TabStop = true;
+            this.radioButtonManual.Text = "Manual Attendance";
+            this.radioButtonManual.UseVisualStyleBackColor = false;
+            this.radioButtonManual.CheckedChanged += new System.EventHandler(this.radioButtonManual_CheckedChanged);
+            // 
+            // panelControlManual
+            // 
+            this.panelControlManual.Appearance.BackColor = System.Drawing.Color.MistyRose;
+            this.panelControlManual.Appearance.Options.UseBackColor = true;
+            this.panelControlManual.Controls.Add(this.panelControl_Manual_In);
+            this.panelControlManual.Location = new System.Drawing.Point(53, 293);
+            this.panelControlManual.Name = "panelControlManual";
+            this.panelControlManual.Size = new System.Drawing.Size(140, 30);
+            this.panelControlManual.TabIndex = 17;
+            // 
+            // panelControl_Manual_In
+            // 
+            this.panelControl_Manual_In.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panelControl_Manual_In.Appearance.Options.UseBackColor = true;
+            this.panelControl_Manual_In.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl_Manual_In.Controls.Add(this.radioButtonManual);
+            this.panelControl_Manual_In.Location = new System.Drawing.Point(1, 1);
+            this.panelControl_Manual_In.Name = "panelControl_Manual_In";
+            this.panelControl_Manual_In.Size = new System.Drawing.Size(138, 28);
+            this.panelControl_Manual_In.TabIndex = 18;
+            // 
+            // panelControlMachine
+            // 
+            this.panelControlMachine.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panelControlMachine.Appearance.Options.UseBackColor = true;
+            this.panelControlMachine.Controls.Add(this.panelControl_Machine_In);
+            this.panelControlMachine.Location = new System.Drawing.Point(192, 293);
+            this.panelControlMachine.Name = "panelControlMachine";
+            this.panelControlMachine.Size = new System.Drawing.Size(140, 30);
+            this.panelControlMachine.TabIndex = 18;
+            // 
+            // panelControl_Machine_In
+            // 
+            this.panelControl_Machine_In.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panelControl_Machine_In.Appearance.Options.UseBackColor = true;
+            this.panelControl_Machine_In.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl_Machine_In.Controls.Add(this.radioButtonMachine);
+            this.panelControl_Machine_In.Location = new System.Drawing.Point(1, 1);
+            this.panelControl_Machine_In.Name = "panelControl_Machine_In";
+            this.panelControl_Machine_In.Size = new System.Drawing.Size(138, 28);
+            this.panelControl_Machine_In.TabIndex = 19;
+            // 
+            // radioButtonMachine
+            // 
+            this.radioButtonMachine.AutoSize = true;
+            this.radioButtonMachine.Checked = true;
+            this.radioButtonMachine.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radioButtonMachine.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.radioButtonMachine.Location = new System.Drawing.Point(5, 6);
+            this.radioButtonMachine.Name = "radioButtonMachine";
+            this.radioButtonMachine.Size = new System.Drawing.Size(133, 17);
+            this.radioButtonMachine.TabIndex = 15;
+            this.radioButtonMachine.TabStop = true;
+            this.radioButtonMachine.Text = "Machine Attendance";
+            this.radioButtonMachine.UseVisualStyleBackColor = true;
+            this.radioButtonMachine.CheckedChanged += new System.EventHandler(this.radioButtonMachine_CheckedChanged);
+            // 
+            // labelDate_Current
+            // 
+            this.labelDate_Current.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.labelDate_Current.AutoSize = true;
+            this.labelDate_Current.Location = new System.Drawing.Point(486, 39);
+            this.labelDate_Current.Name = "labelDate_Current";
+            this.labelDate_Current.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelDate_Current.Size = new System.Drawing.Size(176, 20);
+            this.labelDate_Current.TabIndex = 19;
+            this.labelDate_Current.Text = "Wednesday, June17, 2020 1:42 PM";
+            this.labelDate_Current.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelDate_Current.UseCompatibleTextRendering = true;
             // 
             // XtraForm_EmployeeAttendence
             // 
@@ -1086,9 +1086,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpID.Properties)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text_Main.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_Last.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_Last.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_First.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_First.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_First_Main.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_First_Main.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_Last_Main.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_Last_Main.Properties)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit_ForTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOvertimeHours.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_GatePassTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlManual)).EndInit();
             this.panelControlManual.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_Manual_In)).EndInit();
@@ -1099,18 +1111,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_Machine_In)).EndInit();
             this.panelControl_Machine_In.ResumeLayout(false);
             this.panelControl_Machine_In.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_Last.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_Last.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_First.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_First.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_GatePassTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit_ForTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text_Main.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_First_Main.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_First_Main.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_Last_Main.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_Last_Main.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -48,7 +48,7 @@ namespace SeqKartLibrary.CrudTask
             return null;
         }
 
-        public static DataSet GetData(string _ProgCode)
+        public static DataSet GetData(string _ProgCode, string _Parameters = "")
         {
             DataSet dsMaster = null;
             try
@@ -58,7 +58,14 @@ namespace SeqKartLibrary.CrudTask
                 ProgramMasterModel storedProcObj = GetProgramMasterModel(_ProgCode);
                 string ProcedureName = storedProcObj.ProgProcName;
 
-                dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName);                
+                if (!_Parameters.Equals(""))
+                {
+                    _Parameters = _Parameters.Trim();
+                    _Parameters = " " + _Parameters;
+                }
+                System.Diagnostics.Debug.WriteLine("ProcedureName ********** " + ProcedureName + _Parameters);
+                //PrintLogWin.PrintLog("ProcedureName ********** " + ProcedureName + _Parameters);
+                dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName + _Parameters);                
             }
             catch (Exception)
             {

@@ -1595,10 +1595,10 @@ namespace WindowsFormsApplication1
             }
 
             C.Appearance.Row.FontSizeDelta = 1;
-            C.Appearance.Row.FontStyleDelta = FontStyle.Bold;
+            C.Appearance.Row.FontStyleDelta = FontStyle.Regular;
             C.Appearance.HeaderPanel.ForeColor = Color.Black;
             C.Appearance.HeaderPanel.FontSizeDelta = 1;
-            C.Appearance.HeaderPanel.FontStyleDelta = FontStyle.Bold;
+            C.Appearance.HeaderPanel.FontStyleDelta = FontStyle.Regular;
 
             C.UserCellPadding = new Padding(5, 5, 5, 5);
 

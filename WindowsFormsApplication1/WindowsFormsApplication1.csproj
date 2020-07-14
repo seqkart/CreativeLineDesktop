@@ -934,6 +934,12 @@
     <Compile Include="Resources\frmImportImage.Designer.cs">
       <DependentUpon>frmImportImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Time Office\frmGatePassTimeAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Time Office\frmGatePassTimeAddEdit.Designer.cs">
+      <DependentUpon>frmGatePassTimeAddEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Time Office\frmAdvanceAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -945,6 +951,12 @@
     </Compile>
     <Compile Include="Time Office\frmAdvanceMst.Designer.cs">
       <DependentUpon>frmAdvanceMst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Time Office\frmGatePassLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Time Office\frmGatePassLoading.Designer.cs">
+      <DependentUpon>frmGatePassLoading.cs</DependentUpon>
     </Compile>
     <Compile Include="Time Office\frmAttendenceLoading.cs">
       <SubType>Form</SubType>
@@ -1594,11 +1606,17 @@
     <EmbeddedResource Include="Resources\frmImportImage.resx">
       <DependentUpon>frmImportImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Time Office\frmGatePassTimeAddEdit.resx">
+      <DependentUpon>frmGatePassTimeAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Time Office\frmAdvanceAddEdit.resx">
       <DependentUpon>frmAdvanceAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Time Office\frmAdvanceMst.resx">
       <DependentUpon>frmAdvanceMst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Time Office\frmGatePassLoading.resx">
+      <DependentUpon>frmGatePassLoading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Time Office\frmAttendenceLoading.resx">
       <DependentUpon>frmAttendenceLoading.cs</DependentUpon>

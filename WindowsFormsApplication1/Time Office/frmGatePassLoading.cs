@@ -30,10 +30,10 @@ using WindowsFormsApplication1.Time_Office;
 namespace BNPL.Forms_Master
 {
 
-    public partial class frmAttendenceLaoding : XtraForm
+    public partial class frmGatePassLaoding : XtraForm
     {
         private DataTable dt = new DataTable();
-        public frmAttendenceLaoding()
+        public frmGatePassLaoding()
         {
             InitializeComponent();
 
@@ -75,27 +75,57 @@ namespace BNPL.Forms_Master
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Close();
-        }
+        }        
 
-        private void frmExcelDataLoading_Load(object sender, EventArgs e)
+        private void frmGatePassLaoding_Load(object sender, EventArgs e)
         {
-            PrintLogWin.PrintLog("*[ frmExcelDataLoading_Load ]*");
+            PrintLogWin.PrintLog("*[ frmGatePassLaoding_Load ]*");
             //SetMyControls();
             SetMyControls2();
 
-            LoadAttendanceDataGrid();
-
+            LoadGatePassDataGrid(true);
+            
         }
 
+        public void LoadGatePassDataGrid(bool onFormLoad)
+        {
+            PrintLogWin.PrintLog("LoadGatePassDataGrid => GlobalVariables.ProgCode ******************** : " + GlobalVariables.ProgCode);
+            try
+            {
+                gridView_AttendanceData.Columns.Clear();
 
-        public void LoadAttendanceDataGrid()
+                string _params = "'" + txtEmpCode.EditValue + "', '" + ConvertTo.DateTimeVal(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "'";
+                DataSet ds = ProgramMasterData.GetData(GlobalVariables.ProgCode, _params);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    gridControl_AttendanceData.DataSource = ds.Tables[0];
+                    gridView_AttendanceData.BestFitColumns();
+                }
+                else
+                {
+                    gridControl_AttendanceData.DataSource = null;
+
+                    if (!onFormLoad)
+                    {
+                        ProjectFunctions.SpeakError("There is no data in this Query");
+                    }                    
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString().Trim());
+            }
+        }
+        public void LoadGatePassDataGrid_Obsoulete()
         {
             //ProgramMasterModel programMaster = ProgramMasterData.GetProgramMasterModel(GlobalVariables.ProgCode);
 
             //DataSet ds = ProjectFunctions.GetDataSet("Select ProgProcName,ProgDesc from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'");
             //string ProcedureName = ds.Tables[0].Rows[0]["ProgProcName"].ToString();
 
-            PrintLogWin.PrintLog("LoadAttendanceDataGrid => GlobalVariables.ProgCode ******************** " + GlobalVariables.ProgCode);
+            PrintLogWin.PrintLog("LoadGatePassDataGrid => GlobalVariables.ProgCode ******************** " + GlobalVariables.ProgCode);
             //PrintLogWin.PrintLog("LoadAttendanceDataGrid => ProcedureName Dapper ******************** " + programMaster.ProgProcName);
             //PrintLogWin.PrintLog("LoadAttendanceDataGrid => ProcedureName B ******************** " + ProcedureName);
 
@@ -111,6 +141,8 @@ namespace BNPL.Forms_Master
 
             if (ComparisonUtils.IsNotNull_DataSet(att_ds))
             {
+                gridControl_AttendanceData.DataSource = att_ds;
+                /*
                 BindingList<object> binding_list = new BindingList<object>();
 
                 foreach (DataRow dr in att_ds.Tables[0].Rows)
@@ -135,9 +167,11 @@ namespace BNPL.Forms_Master
                     //ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_in_first]).ToString("hh:mm tt")
 
                     binding_list.Add(employeeAttendance);
+                    
                 }
 
                 gridControl_AttendanceData.DataSource = binding_list;
+                */
             }
             /*
              using (SEQKARTNewEntities db = new SEQKARTNewEntities())
@@ -212,11 +246,28 @@ namespace BNPL.Forms_Master
 
         private void OpenAttendanceForm(int _serial_id)
         {
+            if (btnAdd.Enabled)
+            {
+                try
+                {
+                    var frm = new Forms_Transaction.frmGatePassTimeAddEdit() { s1 = btnAdd.Text, serial_id = _serial_id };
+                    var P = ProjectFunctions.GetPositionInForm(this);
+                    frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                    frm.Text = "Time Office Payment Addition";
 
-            XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence(this, _serial_id, "frmAttendenceLoading => Add Button");
-            xtraForm_EmployeeAttendence.StartPosition = FormStartPosition.CenterScreen;
+                    frm.ShowDialog();
+                    //fillGrid();
+                    LoadGatePassDataGrid(onFormLoad: false);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            //XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence(this, _serial_id, "frmAttendenceLoading => Add Button");
+            //xtraForm_EmployeeAttendence.StartPosition = FormStartPosition.CenterScreen;
 
-            xtraForm_EmployeeAttendence.ShowDialog(Parent);
+            //xtraForm_EmployeeAttendence.ShowDialog(Parent);
         }
 
         private void OnClickRow()
@@ -226,7 +277,7 @@ namespace BNPL.Forms_Master
             ColumnView detailView = (ColumnView)gridControl_AttendanceData.FocusedView;
             int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
             //
-            string employee_code = detailView.GetFocusedRowCellValue("EmployeeCode").ToString();
+            string employee_code = detailView.GetFocusedRowCellValue("EmpCode").ToString();
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
                 );
@@ -251,6 +302,7 @@ namespace BNPL.Forms_Master
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OpenAttendanceForm(0);
+            
         }
 
         private void btnAdd2_Click(object sender, EventArgs e)
@@ -694,8 +746,7 @@ namespace BNPL.Forms_Master
         {
             if (ValidateData_GridLoad())
             {
-                LoadAttendanceDataGrid();
-
+                LoadGatePassDataGrid(onFormLoad:false);
             }
             
         }

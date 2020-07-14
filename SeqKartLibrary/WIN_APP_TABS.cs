@@ -8,4 +8,6 @@
     public const string _frmRoleMst = "PROG115";//ROLE MASTER
 
     public const string _frmArticleMst = "PROG125";//ROLE MASTER
+
+    public const string _frmGatePassLaoding = "PROG172";//ROLE MASTER
 }

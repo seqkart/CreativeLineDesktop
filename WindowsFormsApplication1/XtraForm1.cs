@@ -1,4 +1,5 @@
 ﻿using BNPL.Crystal_Reports;
+using BNPL.Forms_Master;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using System;
@@ -183,12 +184,22 @@ namespace WindowsFormsApplication1
                     PROG2.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
+                case WIN_APP_TABS._frmGatePassLaoding:
+                    ////var PROG3 = new frmMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    //var PROG172 = new frmGatePassLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    //PROG172.Show();
+                    //PROG172.BringToFront();
+                    //PROG172.Parent = Page;
+                    //xtraTabControl1.SelectedTabPage = Page;
 
+                    var PROG172 = new frmGatePassLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    PROG172.Show();
+                    PROG172.BringToFront();
+                    PROG172.Parent = Page;
+                    xtraTabControl1.SelectedTabPage = Page;
+
+                    break;
                 //USER MASTER
-
-
-
-
                 case WIN_APP_TABS._frmUserDetails:
                     //var PROG3 = new frmMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     var PROG3 = new XtraForm_UserMaster() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };

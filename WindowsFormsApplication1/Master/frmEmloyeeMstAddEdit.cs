@@ -556,7 +556,7 @@ namespace WindowsFormsApplication1
 
         private void txtDesgCode_KeyDown(object sender, KeyEventArgs e)
         {
-            ProjectFunctions.CreatePopUpForTwoBoxes("Select DesgCode,DesgDesc from DesgMst", " Where DesgCode", txtDesgCode, txtDesgDesc, txtRemarks, HelpGrid, HelpGridView, e);
+            ProjectFunctions.CreatePopUpForTwoBoxes("Select DesgCode,DesgDesc from DesgMst", " Where DesgCode", txtDesgCode, txtDesgDesc, txtUnitCode, HelpGrid, HelpGridView, e);
         }
 
         private void txtUnitCode_KeyDown(object sender, KeyEventArgs e)
