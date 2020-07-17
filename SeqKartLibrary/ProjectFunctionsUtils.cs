@@ -1,7 +1,6 @@
 ﻿using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
-
-
+using SeqKartLibrary.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -255,7 +254,7 @@ namespace SeqKartLibrary
                 catch (Exception ex)
 #pragma warning restore CS0168 // The variable 'ex' is declared but never used
                 {
-
+                    System.Diagnostics.Debug.WriteLine("ProjectFunctionUtils => GetDataSet => " + ex);
                     return null;
                 }
             }
@@ -681,7 +680,15 @@ namespace SeqKartLibrary
             }
             return s2;
         }
+        public static string GetDateChangePassword()
+        {
+            RepGen repGen = new RepGen();
 
+            string pass = repGen.returnScalar("SELECT password FROM tbl_Passwords WHERE p_type='entry_date_edit'", new Dapper.DynamicParameters());
+
+            return pass;
+
+        }
 
     }
 }

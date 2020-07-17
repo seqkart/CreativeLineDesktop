@@ -1,5 +1,8 @@
 ﻿using Dapper;
+using DevExpress.XtraGrid.Views.Base;
 using SeqKartLibrary;
+using SeqKartLibrary.CrudTask;
+using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Repository;
 using System;
 using System.ComponentModel;
@@ -27,7 +30,10 @@ namespace BNPL.Forms_Transaction
 
 
         public string s1 { get; set; }
-        public int serial_id { get; set; }
+        public string employee_code { get; set; }
+        public string attendance_date { get; set; }
+
+        private string securityPassword = "";
         public frmGatePassTimeAddEdit()
         {
             InitializeComponent();
@@ -42,39 +48,22 @@ namespace BNPL.Forms_Transaction
             ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
             ProjectFunctions.TextBoxVisualize(this);
             ProjectFunctions.ButtonVisualize(this);
+
+            ProjectFunctions.GirdViewVisualize(gridView_GatePassData);
+
+
         }
 
-
-        //private void GetBasicDetail()
-        //{
-        //    string sql = "Select"
-        //    + " (isnull(EmpBasic,0) "
-        //    + " + isnull(EmpHRA,0) "
-        //    + " + isnull(EmpConv,0) "
-        //    + " + isnull(EmpPET,0) "
-        //    + " + isnull(EmpMscA1,0) "
-        //    + " + isnull(EmpMscA2,0) "
-        //    + " + isnull(EmpCHstlAlw,0) "
-        //    + " + isnull(EmpProDevAlw,0) "
-        //    + " + isnull(EmpNewsPapAlw,0) "
-        //    + " + isnull(EmpMedAlw,0) "
-        //    + " + isnull(EmpUnformAlw,0) "
-        //    + " + isnull(EmpSplAlw,0)) as EmpSalary"
-        //    + " , isnull(EmpxBasic,0) as EmpSalaryC"
-        //    + " , EmpDummy"
-        //    + " , EmpDOL from EmpMst Where EmpCode='" + txtEmpCode.Text + "'";
-
-        //    //DataSet ds = ProjectFunctions.GetDataSet("Select  isnull(EmpBasic,0) + isnull(EmpHRA,0) +isnull(EmpConv,0) +isnull(EmpPET,0) +isnull(EmpMscA1,0) +isnull(EmpMscA2,0) +isnull(EmpCHstlAlw,0) +isnull(EmpProDevAlw,0) +isnull(EmpNewsPapAlw,0) +isnull(EmpMedAlw,0) +isnull(EmpUnformAlw,0) +isnull(EmpSplAlw,0) as EmpSalary,isnull(EmpxBasic,0) as EmpSalaryC ,EmpDummy,EmpDOL from EmpMst Where EmpCode='" + txtEmpCode.Text + "'");
-        //    //DataSet ds = ProjectFunctions.GetDataSet(sql);
-        //    //txtSalary.Text = ds.Tables[0].Rows[0][0].ToString();
-        //}
-
+        //private DataSet dsMain;
         private void frmGatePassTimeAddEdit_Load(object sender, EventArgs e)
         {
+            securityPassword = ProjectFunctionsUtils.GetDateChangePassword();
+            PrintLogWin.PrintLog(securityPassword);
+
             SetMyControls();
             if (s1 == "Add")
             {
-                DtDate.Enabled = false;
+                //DtDate.Enabled = false;
                 DtDate.EditValue = DateTime.Now;
                 //DtDateforMonth.EditValue = DateTime.Now;
                 //txtAdvanceNo.Text = getNewLoanPassNo().PadLeft(6, '0');
@@ -85,57 +74,81 @@ namespace BNPL.Forms_Transaction
             {
                 //DtDateforMonth.Enabled = false;
                 DtDate.Enabled = false;
-                txtStatusCode.Enabled = false;
+                txtEmpCode.Enabled = false;
 
-                //string str = "SELECT "
-                //+ " ExMst.ExPostHead, "
-                //+ " ExMst.ExVoucherType, "
-                //+ " ExMst.ExVoucherNo, "
-                //+ " ExMst.ExVoucherDt, "
-                //+ " ExMst.ExNo, "
-                //+ " ExMst.ExId, "
-                //+ " ExMst.ExDate, "
-                //+ " ExMst.ExEmpCode, "
-                //+ " ExMst.ExAmt, "
-                //+ " ExMst.ExTag, "
-                //+ " ExMst.ExDatePost, "
-                //+ " ExMst.ExLoadTag, "
-                //+ " ExMst.ExEmpCCode, "
-                //+ " ExMst.ExFedDate, "
-                //+ " ExMst.ExLoadedDate, "
-                //+ " empmst.EmpName, "                
-                //+ " actmst.AccName "
-                //+ " FROM ExMst "
-                //+ " LEFT OUTER JOIN EmpMST ON ExMst.ExEmpCode = empmst.EmpCode "                
-                //+ " LEFT OUTER JOIN ActMst ON ExMst.ExPostHead = actmst.AccCode "
-                //+ " WHERE ExId='" + ExId + "';" +
-                //"";
+                DtDate.EditValue = attendance_date;
+                txtEmpCode.EditValue = employee_code;
 
-                string str = "sp_GatePassData_Single " + serial_id + "";
-
-                PrintLogWin.PrintLog(str);
-
-                var ds = ProjectFunctionsUtils.GetDataSet(str);
-                
                 try
                 {
-                    //txtAdvanceNo.Text = ds.Tables[0].Rows[0]["ExNo"].ToString();
-                    DtDate.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["AttendanceDate"]);
-                    //DtDateforMonth.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExDatePost"]);
-                    txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
-                    txtEmpCodeDesc.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
-                    txtStatusCode.Text = ds.Tables[0].Rows[0]["StatusCode"].ToString();
-                    txtStatusCodeDesc.Text = ds.Tables[0].Rows[0]["Status"].ToString();
+                    SetFormValues(0, employee_code, attendance_date, 0);
+                    //if (ComparisonUtils.IsNotNull_DataSet(dsMain))
+                    //{
+                        //gridControl_GatePassData.DataSource = dsMain.Tables[0];
+                        //gridView_GatePassData.BestFitColumns();
+
+                        
+                        //DtDate.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["AttendanceDate"]);
+                        //txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
+                        //txtEmpCodeDesc.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                        //txtStatusCode.Text = ds.Tables[0].Rows[0]["StatusCode"].ToString();
+                        //txtStatusCodeDesc.Text = ds.Tables[0].Rows[0]["Status"].ToString();
+                    //}
+                    
                 }
                 catch(Exception ex)
                 {
                     PrintLogWin.PrintLog(ex);
                 }
 
-                //GetBasicDetail();
+                
 
             }
         }
+
+        private void SetFormValues(int rowIndex, string _employee_code, string _attendance_date, int _serial_id)
+        {
+            
+            try
+            {
+                string str = "sp_GatePassData_Single '" + _employee_code + "', '" + ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(_attendance_date)) + "', " + _serial_id + "";
+
+                PrintLogWin.PrintLog(str);
+
+                DataSet _ds = ProjectFunctionsUtils.GetDataSet(str);
+
+                if (ComparisonUtils.IsNotNull_DataSet(_ds))
+                {
+                    DataRow dr = _ds.Tables[0].Rows[rowIndex];
+                    DtDate.EditValue = Convert.ToDateTime(dr["AttendanceDate"]);
+                    txtEmpCode.Text = dr["EmpCode"].ToString();
+                    txtEmpCode.Tag = dr["SerialId"].ToString();
+
+                    txtEmpCodeDesc.Text = dr["EmpName"].ToString();
+                    txtStatusCode.Text = dr["StatusCode"].ToString();
+                    txtStatusCodeDesc.Text = dr["Status"].ToString();
+
+                    timeEdit_Time_Out.EditValue = dr["TimeOut"].ToString();
+                    timeEdit_Time_In.EditValue = dr["TimeIn"].ToString();
+
+                    pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])dr["EmpImage"]);
+
+                    PrintLogWin.PrintLog("TimeOut " + dr["TimeOut"].ToString());
+                    PrintLogWin.PrintLog("TimeIn " + dr["TimeIn"].ToString());
+                }
+                else
+                {                    
+                    //clear();
+                }
+                   
+            }
+            catch(Exception ex)
+            {
+                PrintLogWin.PrintLog(ex);
+                //                clear();
+            }
+        }
+
         private bool ValidateData()
         {
 
@@ -172,32 +185,32 @@ namespace BNPL.Forms_Transaction
         {
             try
             {
-
-
+                int serial_id = ConvertTo.IntVal(txtEmpCode.Tag);
 
                 var str = "sp_GatePassData_AddEdit";
                 RepGen reposGen = new RepGen();
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@serial_id", serial_id);
-                param.Add("@entry_date", Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd"));
+                param.Add("@entry_date", ConvertTo.DateFormatDb(DateTime.Now));//Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd")
                 param.Add("@status_id", txtStatusCode.Text);
                 param.Add("@employee_code", txtEmpCode.Text);
-                param.Add("@attendance_date", Convert.ToDateTime(DtDate.Text).ToString("yyyy-MM-dd"));
+                param.Add("@attendance_date", ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(DtDate.Text)));//Convert.ToDateTime(DtDate.Text).ToString("yyyy-MM-dd")
                 param.Add("@attendance_out", timeEdit_Time_Out.Text);
-                param.Add("@attendance_in", timeEdit_Time_In.Text);
-                param.Add("@gate_pass_time", 1);                
+                param.Add("@attendance_in", timeEdit_Time_In.Text);                              
 
                 string intResult = reposGen.executeNonQuery_SP(str, param);
                 if (intResult.Equals("0"))
                 {
                     ProjectFunctions.SpeakError("Record has been saved");
+                    LoadGatePassDataGrid();
+
                 }
                 else
                 {
                     ProjectFunctions.SpeakError("Error in save record.");
                     PrintLogWin.PrintLog(intResult);
                 }
-                this.Close();
+                //this.Close();
             }
             catch(Exception ex)
             {
@@ -205,103 +218,19 @@ namespace BNPL.Forms_Transaction
                 PrintLogWin.PrintLog(ex);
             }
         }
-        private void btnSave1_Click(object sender, EventArgs e)
-        {
-            /*
-            try
-            {
-                if (s1 == "Add")
-                {
-                    if (ValidateData())
-                    {
-                        String DocNo = getNewLoanPassNo().PadLeft(6, '0');
-                        var str = "Insert into ExMst(ExDate,ExEmpCode,ExAmt,ExTag,ExDatePost,ExFedDate,ExNo";
-                        str = str + ")values(";
-                        str = str + "'" + Convert.ToDateTime(DtDate.Text).ToString("yyyy-MM-dd") + "',";
-                        str = str + "'" + txtEmpCode.Text.Trim() + "',";
-                        str = str + "'" + Convert.ToDecimal(txtAmount.Text) + "',";
-                        str = str + "'" + txtStatus.Text.Trim() + "',";
-                        str = str + "'" + Convert.ToDateTime(DtDateforMonth.Text).ToString("yyyy-MM-dd") + "',";
-                        str = str + "'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + DocNo + "')";
-                                               
-
-                        using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
-                        {
-                            sqlcon.Open();
-                            var sqlcom = new SqlCommand(str, sqlcon);
-                            sqlcom.CommandType = CommandType.Text;
-                            sqlcom.ExecuteNonQuery();
-                            sqlcom.Parameters.Clear();
-
-                            sqlcon.Close();
-                            //clear();
-                        }
-                        ProjectFunctions.SpeakError("Data has been saved.");
-                        this.Close();
-                    }
-                }
-                if (s1 == "Edit")
-                {
-                    if (ValidateData())
-                    {
-                        var str = " UPDATE    ExMst";
-                        str = str + " SET  ";
-                        str = str + " ExEmpCode='" + txtEmpCode.Text.Trim() + "',";
-                        str = str + " ExAmt='" + Convert.ToDecimal(txtAmount.Text) + "',";
-                        str = str + " ExTag='" + txtStatus.Text.Trim() + "',";
-
-                        str = str + " ExFedDate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' where ExId='" + serial_id + "'";
-                        using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
-                        {
-                            sqlcon.Open();
-                            var sqlcom = new SqlCommand(str, sqlcon);
-                            sqlcom.CommandType = CommandType.Text;
-                            sqlcom.ExecuteNonQuery();
-                            sqlcom.Parameters.Clear();
-
-
-                            sqlcon.Close();
-                            //clear();
-                        }
-                        ProjectFunctions.SpeakError("Data has been saved.");
-                        this.Close();
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            */
-        }
-
-        private string getNewLoanPassNo()
-        {
-            var s2 = string.Empty;
-
-            var strsql = string.Empty;
-            var ds = new DataSet();
-            strsql = strsql + "select isnull(max(Cast(ExNo as int)),00000) from ExMst";
-
-            ds = ProjectFunctionsUtils.GetDataSet(strsql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                s2 = ds.Tables[0].Rows[0][0].ToString().Trim();
-                s2 = (Convert.ToInt32(s2) + 1).ToString().Trim();
-            }
-            return s2;
-        }
-
 
         private void clear()
         {
             txtEmpCode.Text = string.Empty;
+            txtEmpCode.Tag = null;
             txtEmpCodeDesc.Text = string.Empty;
-            //txtAmount.Text = string.Empty;
-            //txtSalary.Text = string.Empty;
-            //txtType.Text = string.Empty;
+
+            txtStatusCode.Text = string.Empty;
+            txtStatusCodeDesc.Text = string.Empty;
+
             s1 = "Add";
+            employee_code = "";
+            attendance_date = "";
             txtEmpCode.Focus();
             Text = "GatePass Time Addition";
         }
@@ -323,16 +252,26 @@ namespace BNPL.Forms_Transaction
         private void txtEmpCode_EditValueChanged(object sender, EventArgs e)
         {
             txtEmpCodeDesc.Text = string.Empty;
+
+            if (txtEmpCode.Text.Length >= 4 && DtDate.Text.Length >= 8)
+            {
+                LoadGatePassDataGrid();
+            }
+        }
+
+        private void DtDate_EditValueChanged(object sender, EventArgs e)
+        {
+            if (txtEmpCode.Text.Length >= 4 && DtDate.Text.Length >= 8)
+            {
+                LoadGatePassDataGrid();
+            }
+
         }
 
         private void txtStatusCode_EditValueChanged(object sender, EventArgs e)
         {
             txtStatusCodeDesc.Text = string.Empty;
         }
-
-
-
-
 
         private void PrepareEmpGrid()
         {
@@ -367,29 +306,32 @@ namespace BNPL.Forms_Transaction
                 {
                     if (txtEmpCode.Text.Length == 0)
                     {
-                        strQry = strQry + "select Empcode as Code,Empname as Description,EmpFHName from EmpMst  order by Empname";
+                        strQry = strQry + "select Empcode as Code,Empname as Description,EmpImage from EmpMst  order by Empname";
                         ds = ProjectFunctions.GetDataSet(strQry);
-                        HelpGrid.DataSource = ds.Tables[0];
+                        HelpGrid.DataSource = ds.Tables[0];                        
                         HelpGridView.BestFitColumns();
                         HelpGrid.Show();
                         HelpGrid.Focus();
                     }
                     else
                     {
-                        strQry = strQry + "select empcode as Code,empname as Description,EmpFHName from EmpMst wHERE  empcode= '" + txtEmpCode.Text.ToString().Trim() + "' ";
+                        strQry = strQry + "select empcode as Code,empname as Description,EmpImage from EmpMst wHERE  empcode= '" + txtEmpCode.Text.ToString().Trim() + "' ";
 
                         ds = ProjectFunctions.GetDataSet(strQry);
                         if (ds.Tables[0].Rows.Count > 0)
+
                         {
-                            txtEmpCode.Text = ds.Tables[0].Rows[0]["Code"].ToString().Trim().ToUpper();
-                            txtEmpCodeDesc.Text = ds.Tables[0].Rows[0]["Description"].ToString().Trim().ToUpper();
+                            DataRow dr = ds.Tables[0].Rows[0];
+                            txtEmpCode.Text = dr["Code"].ToString().Trim().ToUpper();
+                            txtEmpCodeDesc.Text = dr["Description"].ToString().Trim().ToUpper();
+                            pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])dr["EmpImage"]);
                             txtStatusCode.Focus();
                             
                         }
                         else
                         {
                             var strQry1 = string.Empty;
-                            strQry1 = strQry1 + "select empcode as Code,empname as Description,EmpFHName from EmpMst  order by Empname";
+                            strQry1 = strQry1 + "select empcode as Code,empname as Description,EmpImage from EmpMst  order by Empname";
                             var ds1 = ProjectFunctions.GetDataSet(strQry1);
                             HelpGrid.DataSource = ds1.Tables[0];
                             HelpGridView.BestFitColumns();
@@ -431,6 +373,8 @@ namespace BNPL.Forms_Transaction
             {
                 txtEmpCode.Text = row["Code"].ToString().Trim();
                 txtEmpCodeDesc.Text = row["Description"].ToString().Trim();
+                pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])row["EmpImage"]);
+
                 HelpGrid.Visible = false;
                 txtStatusCode.Focus();
             }
@@ -440,28 +384,10 @@ namespace BNPL.Forms_Transaction
                 txtStatusCodeDesc.Text = row["Description"].ToString().Trim();
                 HelpGrid.Visible = false;
                 timeEdit_Time_Out.Focus();
-            }
-            //if (HelpGrid.Text == "ERMCode")
-            //{
-            //    txtContCode.Text = row["ERMCode"].ToString().Trim();
-            //    txtContCodeDesc.Text = row["ERMDesc"].ToString().Trim();
-            //    HelpGrid.Visible = false;
-            //    txtEmpCode.Focus();
-            //}
+            }            
 
         }
-
-        //private void txtType_Validating(object sender, CancelEventArgs e)
-        //{
-        //    if (txtStatusCode.Text == "A" || txtStatusCode.Text == "C" || txtStatusCode.Text == "F" || txtStatusCode.Text == "L" || txtStatusCode.Text == "T")
-        //    {
-        //    }
-        //    else
-        //    {
-        //        DevExpress.XtraEditors.XtraMessageBox.Show("Valid Values are Advance(a),Fine(F),Coupon(C),Telephone(T),Lunch(L)", "Save", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-        //        txtStatusCode.Focus();
-        //    }
-        //}
+              
 
         private void frmGatePassTimeAddEdit_KeyDown(object sender, KeyEventArgs e)
         {
@@ -487,116 +413,35 @@ namespace BNPL.Forms_Transaction
         {
             //txtContCodeDesc.Text = string.Empty;
         }
-        private void PrepareContGrid()
-        {
-            HelpGridView.Columns.Clear();
-            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
-            HelpGridView.Columns[0].Visible = true;
-            HelpGridView.Columns[0].Caption = "ERMDesc";
-            HelpGridView.Columns[0].FieldName = "ERMDesc";
-            HelpGridView.Columns[0].OptionsColumn.AllowEdit = false;
-            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
-            HelpGridView.Columns[1].Visible = true;
-            HelpGridView.Columns[1].Caption = "ERMCode";
-            HelpGridView.Columns[1].FieldName = "ERMCode";
-            HelpGridView.Columns[1].OptionsColumn.AllowEdit = false;
-        }
+        
 
 
-        private void txtContCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    PrepareContGrid();
-            //    var strQry = string.Empty;
-            //    HelpGrid.Text = "ERMCode";
-            //    var ds = new DataSet();
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        if (txtContCode.Text.Length == 0)
-            //        {
-            //            strQry = strQry + "select * from EmpEmplrRef ";
-            //            ds = ProjectFunctions.GetDataSet(strQry);
-            //            HelpGrid.DataSource = ds.Tables[0];
-            //            HelpGridView.BestFitColumns();
-            //            HelpGrid.Show();
-            //            HelpGrid.Focus();
-            //        }
-            //        else
-            //        {
-            //            strQry = strQry + "select * from EmpEmplrRef  wHERE  ERMCode= '" + txtContCode.Text.ToString().Trim() + "'";
-
-            //            ds = ProjectFunctions.GetDataSet(strQry);
-            //            if (ds.Tables[0].Rows.Count > 0)
-            //            {
-            //                txtContCode.Text = ds.Tables[0].Rows[0]["ERMCode"].ToString().Trim();
-            //                txtContCodeDesc.Text = ds.Tables[0].Rows[0]["ERMDesc"].ToString().Trim();
-            //                txtEmpCode.Focus();
-            //            }
-            //            else
-            //            {
-            //                var strQry1 = string.Empty;
-            //                strQry1 = strQry1 + "select * from EmpEmplrRef ";
-            //                var ds1 = ProjectFunctions.GetDataSet(strQry1);
-            //                HelpGrid.DataSource = ds1.Tables[0];
-            //                HelpGridView.BestFitColumns();
-            //                HelpGrid.Show();
-            //                HelpGrid.Focus();
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //e.Handled = true;
-        }
+        
 
         private void txtPostHeadCode_EditValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void txtPostHeadCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                HelpGridView.Columns.Clear();
-                var strQry = string.Empty;
-                HelpGrid.Text = "POST";
-                var ds = new DataSet();
-                if (e.KeyCode == Keys.Enter)
-                {
-                    strQry = strQry + "SELECT   AccCode, ActMst.AccName from ActMst ";
-                    ds = ProjectFunctions.GetDataSet(strQry);
-                    HelpGrid.DataSource = ds.Tables[0];
-                    HelpGridView.BestFitColumns();
-                    HelpGrid.Show();
-                    HelpGrid.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            e.Handled = true;
-        }
+        
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if (s1 == "Add")
-            {
-                if (txtPassword.Text == "ADV123")
-                {
-                    DtDate.Enabled = true;
-                }
-            }
+            
         }
 
-        private void txtEmpCode_Leave(object sender, EventArgs e)
+        
+
+        private void DtDate_MouseLeave(object sender, EventArgs e)
         {
+
         }
+
+        private void txtEmpCode_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
 
         private void txtEmpCode_Enter(object sender, EventArgs e)
         {
@@ -620,5 +465,93 @@ namespace BNPL.Forms_Transaction
                 btnSave_Click(null, e);
             }
         }
+
+        private void txtPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (s1 == "Add")
+            {
+                if (txtPassword.Text == securityPassword)
+                {
+                    
+                   
+                }
+            }
+
+        }
+
+        public void LoadGatePassDataGrid()
+        {
+            PrintLogWin.PrintLog("LoadGatePassDataGrid => GlobalVariables.ProgCode ******************** : " + GlobalVariables.ProgCode);
+            try
+            {
+                gridView_GatePassData.Columns.Clear();
+
+                string _storedProcedre = SQL_QUERIES.sp_GatePassData_Daily_List() + " '" + txtEmpCode.EditValue + "', '" + ConvertTo.DateFormatDb(DtDate.EditValue) + "'";
+                //DataSet ds = ProgramMasterData.GetData(GlobalVariables.ProgCode, _params);
+                DataSet _ds = ProjectFunctionsUtils.GetDataSet(_storedProcedre);
+
+                if (_ds.Tables[0].Rows.Count > 0)
+                {
+                    gridControl_GatePassData.DataSource = _ds.Tables[0];
+                    gridView_GatePassData.BestFitColumns();
+                }
+                else
+                {
+                    gridControl_GatePassData.DataSource = null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString().Trim());
+            }
+        }
+
+        private void OnClickRow()
+        {
+            try
+            {
+                int row = (gridControl_GatePassData.FocusedView as ColumnView).FocusedRowHandle;
+                ColumnView detailView = (ColumnView)gridControl_GatePassData.FocusedView;
+                int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
+                                                                                                          //
+                //string employee_code = detailView.GetFocusedRowCellValue("EmpCode").ToString();
+                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
+                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
+                    );
+
+                //MessageBox.Show(CurrentRow[0] + "");
+
+
+                
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
+        }
+
+        private void gridControl_GatePassData_DoubleClick(object sender, EventArgs e)
+        {
+           try
+            {
+                //int rowIndex = (gridControl_GatePassData.FocusedView as ColumnView).FocusedRowHandle;
+
+                ColumnView detailView = (ColumnView)gridControl_GatePassData.FocusedView;
+
+                int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));
+                string date_value = detailView.GetFocusedRowCellValue("Date") + "";
+
+
+                SetFormValues(0, employee_code, date_value, cellValue_serial_id);
+            }
+            catch (Exception ex)
+            {
+                PrintLogWin.PrintLog(ex);
+
+            }
+        }
+        
     }
 }

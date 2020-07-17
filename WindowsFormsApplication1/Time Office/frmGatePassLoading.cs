@@ -244,13 +244,13 @@ namespace BNPL.Forms_Master
             */
         }
 
-        private void OpenAttendanceForm(int _serial_id)
+        private void OpenAttendanceForm(string _s1, string _employee_code, string _attendance_date)
         {
             if (btnAdd.Enabled)
             {
                 try
                 {
-                    var frm = new Forms_Transaction.frmGatePassTimeAddEdit() { s1 = btnAdd.Text, serial_id = _serial_id };
+                    var frm = new Forms_Transaction.frmGatePassTimeAddEdit() { s1 = _s1, employee_code = _employee_code, attendance_date = _attendance_date };
                     var P = ProjectFunctions.GetPositionInForm(this);
                     frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.Text = "Time Office Payment Addition";
@@ -275,17 +275,21 @@ namespace BNPL.Forms_Master
             //DataRow CurrentRow = gridView_AttendanceData.GetDataRow(gridView_AttendanceData.FocusedRowHandle);
             int row = (gridControl_AttendanceData.FocusedView as ColumnView).FocusedRowHandle;
             ColumnView detailView = (ColumnView)gridControl_AttendanceData.FocusedView;
-            int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
+            //int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
             //
             string employee_code = detailView.GetFocusedRowCellValue("EmpCode").ToString();
-            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
-            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
-                );
+            string gate_pass_date = detailView.GetFocusedRowCellValue("GatePassDate").ToString();
+            //
+            //PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
+            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row                );
+
+            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% employee_code " + employee_code);
+            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% gate_pass_date " + gate_pass_date);
 
             //MessageBox.Show(CurrentRow[0] + "");
 
 
-            OpenAttendanceForm(cellValue_serial_id);
+            OpenAttendanceForm("Edit", employee_code, gate_pass_date);
         }
 
         private void gridControl_AttendanceData_DoubleClick(object sender, EventArgs e)
@@ -299,9 +303,11 @@ namespace BNPL.Forms_Master
             OnClickRow();
         }
 
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            OpenAttendanceForm(0);
+            OpenAttendanceForm(btnAdd.Text, "", DateTime.Now + "");
+
             
         }
 

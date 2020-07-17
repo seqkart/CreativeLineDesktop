@@ -90,6 +90,24 @@ namespace SeqKartLibrary.Repository
                 string valor = "";
                 connection();
                 con.Open();
+                valor = con.ExecuteScalar<string>(query, param, commandType: CommandType.Text);
+                con.Close();
+                return valor;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        public string returnScalar_SP(string query, DynamicParameters param)
+        {
+            try
+            {
+                string valor = "";
+                connection();
+                con.Open();
                 valor = con.ExecuteScalar<string>(query, param, commandType: CommandType.StoredProcedure);
                 con.Close();
                 return valor;

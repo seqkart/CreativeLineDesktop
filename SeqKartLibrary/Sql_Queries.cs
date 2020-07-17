@@ -154,5 +154,9 @@ namespace SeqKartLibrary
             return "sp_EmployeeDetails";
         }
 
+        public static string sp_GatePassData_Daily_List()
+        {
+            return "sp_GatePassData_Daily_List";
+        }
     }
 }

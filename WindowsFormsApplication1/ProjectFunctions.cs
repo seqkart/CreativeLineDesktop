@@ -1573,7 +1573,7 @@ namespace WindowsFormsApplication1
         {
             C.RowCellClick += new RowCellClickEventHandler(C_RowCellClick);
             C.GridControl.LookAndFeel.UseDefaultLookAndFeel = true;
-            //C.OptionsBehavior.Editable = false;
+            C.OptionsBehavior.Editable = false;
             C.OptionsBehavior.AllowIncrementalSearch = true;
             C.OptionsSelection.EnableAppearanceFocusedCell = true;
             C.FocusRectStyle = DrawFocusRectStyle.RowFocus;
@@ -1600,7 +1600,7 @@ namespace WindowsFormsApplication1
             C.Appearance.HeaderPanel.FontSizeDelta = 1;
             C.Appearance.HeaderPanel.FontStyleDelta = FontStyle.Regular;
 
-            C.UserCellPadding = new Padding(5, 5, 5, 5);
+            C.UserCellPadding = new Padding(1, 1, 1, 1);
 
         }
 

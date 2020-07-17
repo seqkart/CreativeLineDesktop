@@ -85,5 +85,49 @@ namespace SeqKartLibrary.HelperClass
 
             return TimeSpan.Parse("00:00");
         }
+
+        public static string DateFormatApp(DateTime dateTime)
+        {
+            try
+            {
+                return dateTime.ToString("dd-MM-yyyy");
+            }
+            catch { }
+
+            return dateTime.ToString();
+        }
+
+        public static string DateFormatApp(object dateTime)
+        {
+            try
+            {
+                return DateTimeVal(dateTime).ToString("dd-MM-yyyy");
+            }
+            catch { }
+
+            return dateTime.ToString();
+        }
+
+        public static string DateFormatDb(DateTime dateTime)
+        {
+            try
+            {
+                return dateTime.ToString("yyyy-MM-dd");
+            }
+            catch { }
+
+            return dateTime.ToString();
+        }
+
+        public static string DateFormatDb(object dateTime)
+        {
+            try
+            {
+                return DateTimeVal(dateTime).ToString("yyyy-MM-dd");
+            }
+            catch { }
+
+            return dateTime.ToString();
+        }
     }
 }

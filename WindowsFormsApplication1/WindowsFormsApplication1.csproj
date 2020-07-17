@@ -538,6 +538,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="HelperClass\ComparisonUtilsWin.cs" />
+    <Compile Include="HelperClass\ImageUtils.cs" />
     <Compile Include="HelperClass\MessageBox_Debug.cs" />
     <Compile Include="HelperClass\PrintLogWin.cs" />
     <Compile Include="HRMS\AddAttendanceDetails.cs">

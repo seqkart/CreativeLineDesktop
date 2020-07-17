@@ -79,13 +79,13 @@ namespace WindowsFormsApplication1.Time_Office
         }
 
         //Convert binary to image
-        Image ConvertBinaryToImage(byte[] data)
-        {
-            using (MemoryStream ms = new MemoryStream(data))
-            {
-                return Image.FromStream(ms);
-            }
-        }
+        //Image ConvertBinaryToImage(byte[] data)
+        //{
+        //    using (MemoryStream ms = new MemoryStream(data))
+        //    {
+        //        return Image.FromStream(ms);
+        //    }
+        //}
 
         private void employeeFormData_Load(string EmpCode)
         {
@@ -114,7 +114,7 @@ namespace WindowsFormsApplication1.Time_Office
                 txtDesignation.Text = empData.DesgDesc; //dr["DesgDesc"].ToString();
                 textUnit.Text = empData.UnitName; //dr["UnitName" + ""].ToString();
 
-                pictureBox1.Image = ConvertBinaryToImage(empData.EmpImage);
+                pictureBox1.Image = ImageUtils.ConvertBinaryToImage(empData.EmpImage);
 
                 PrintLogWin.PrintLog("employeeFormData_Load 2 => ********************");
                 

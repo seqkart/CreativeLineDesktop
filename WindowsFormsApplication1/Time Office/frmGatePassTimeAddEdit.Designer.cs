@@ -49,6 +49,11 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.timeEdit_Time_Out = new DevExpress.XtraEditors.TimeEdit();
             this.txtStatusCodeDesc = new DevExpress.XtraEditors.TextEdit();
+            this.gridControl_GatePassData = new DevExpress.XtraGrid.GridControl();
+            this.gridView_GatePassData = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStatusCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpCode.Properties)).BeginInit();
@@ -62,6 +67,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStatusCodeDesc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl_GatePassData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_GatePassData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_ToolStrip
@@ -74,7 +82,7 @@
             this.txtPassword});
             this.Menu_ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
-            this.Menu_ToolStrip.Size = new System.Drawing.Size(471, 25);
+            this.Menu_ToolStrip.Size = new System.Drawing.Size(558, 25);
             this.Menu_ToolStrip.TabIndex = 16;
             this.Menu_ToolStrip.Text = "toolStrip1";
             // 
@@ -111,7 +119,9 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtPassword.Size = new System.Drawing.Size(100, 25);
+            this.txtPassword.Visible = false;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
+            this.txtPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyUp);
             // 
             // txtStatusCode
             // 
@@ -121,7 +131,7 @@
             this.txtStatusCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtStatusCode.Properties.MaxLength = 6;
             this.txtStatusCode.Size = new System.Drawing.Size(100, 20);
-            this.txtStatusCode.TabIndex = 10;
+            this.txtStatusCode.TabIndex = 13;
             this.txtStatusCode.EditValueChanged += new System.EventHandler(this.txtStatusCode_EditValueChanged);
             this.txtStatusCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStatusCode_KeyDown);
             // 
@@ -132,7 +142,7 @@
             this.txtEmpCode.Name = "txtEmpCode";
             this.txtEmpCode.Properties.MaxLength = 6;
             this.txtEmpCode.Size = new System.Drawing.Size(100, 20);
-            this.txtEmpCode.TabIndex = 8;
+            this.txtEmpCode.TabIndex = 11;
             this.txtEmpCode.EditValueChanged += new System.EventHandler(this.txtEmpCode_EditValueChanged);
             this.txtEmpCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpCode_KeyDown);
             // 
@@ -167,7 +177,7 @@
             this.txtEmpCodeDesc.Name = "txtEmpCodeDesc";
             this.txtEmpCodeDesc.Properties.MaxLength = 6;
             this.txtEmpCodeDesc.Size = new System.Drawing.Size(200, 20);
-            this.txtEmpCodeDesc.TabIndex = 9;
+            this.txtEmpCodeDesc.TabIndex = 12;
             this.txtEmpCodeDesc.TabStop = false;
             // 
             // DtDate
@@ -187,11 +197,12 @@
             this.DtDate.Properties.Mask.EditMask = "dd-MM-yyyy";
             this.DtDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.DtDate.Size = new System.Drawing.Size(100, 20);
-            this.DtDate.TabIndex = 32;
+            this.DtDate.TabIndex = 10;
+            this.DtDate.EditValueChanged += new System.EventHandler(this.DtDate_EditValueChanged);
             // 
             // HelpGrid
             // 
-            this.HelpGrid.Location = new System.Drawing.Point(80, 328);
+            this.HelpGrid.Location = new System.Drawing.Point(80, 28);
             this.HelpGrid.MainView = this.HelpGridView;
             this.HelpGrid.Name = "HelpGrid";
             this.HelpGrid.Size = new System.Drawing.Size(391, 197);
@@ -254,7 +265,7 @@
             this.timeEdit_Time_In.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.timeEdit_Time_In.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_In.Size = new System.Drawing.Size(100, 20);
-            this.timeEdit_Time_In.TabIndex = 372;
+            this.timeEdit_Time_In.TabIndex = 16;
             // 
             // labelControl12
             // 
@@ -298,7 +309,7 @@
             this.timeEdit_Time_Out.Properties.NullValuePrompt = "00:00";
             this.timeEdit_Time_Out.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_Out.Size = new System.Drawing.Size(100, 20);
-            this.timeEdit_Time_Out.TabIndex = 369;
+            this.timeEdit_Time_Out.TabIndex = 15;
             // 
             // txtStatusCodeDesc
             // 
@@ -307,21 +318,72 @@
             this.txtStatusCodeDesc.Name = "txtStatusCodeDesc";
             this.txtStatusCodeDesc.Properties.MaxLength = 6;
             this.txtStatusCodeDesc.Size = new System.Drawing.Size(200, 20);
-            this.txtStatusCodeDesc.TabIndex = 373;
+            this.txtStatusCodeDesc.TabIndex = 14;
             this.txtStatusCodeDesc.TabStop = false;
+            // 
+            // gridControl_GatePassData
+            // 
+            this.gridControl_GatePassData.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gridControl_GatePassData.Location = new System.Drawing.Point(0, 245);
+            this.gridControl_GatePassData.MainView = this.gridView_GatePassData;
+            this.gridControl_GatePassData.Name = "gridControl_GatePassData";
+            this.gridControl_GatePassData.Size = new System.Drawing.Size(558, 303);
+            this.gridControl_GatePassData.TabIndex = 374;
+            this.gridControl_GatePassData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView_GatePassData});
+            this.gridControl_GatePassData.DoubleClick += new System.EventHandler(this.gridControl_GatePassData_DoubleClick);
+            // 
+            // gridView_GatePassData
+            // 
+            this.gridView_GatePassData.GridControl = this.gridControl_GatePassData;
+            this.gridView_GatePassData.Name = "gridView_GatePassData";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 203);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 375;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.ErrorImage = global::WindowsFormsApplication1.Properties.Resources.Add;
+            this.pictureBox1.Image = global::WindowsFormsApplication1.Properties.Resources.profile_icon;
+            this.pictureBox1.InitialImage = global::WindowsFormsApplication1.Properties.Resources.Previous;
+            this.pictureBox1.Location = new System.Drawing.Point(406, 46);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(130, 170);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 376;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(82, 203);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 23);
+            this.button1.TabIndex = 377;
+            this.button1.Text = "Print Gatepass";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmGatePassTimeAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 548);
+            this.ClientSize = new System.Drawing.Size(558, 548);
             this.ControlBox = false;
+            this.Controls.Add(this.HelpGrid);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.gridControl_GatePassData);
             this.Controls.Add(this.txtStatusCodeDesc);
             this.Controls.Add(this.timeEdit_Time_In);
             this.Controls.Add(this.labelControl12);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.timeEdit_Time_Out);
-            this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.DtDate);
             this.Controls.Add(this.txtStatusCode);
             this.Controls.Add(this.txtEmpCode);
@@ -350,6 +412,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStatusCodeDesc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl_GatePassData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_GatePassData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,5 +442,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.TimeEdit timeEdit_Time_Out;
         private DevExpress.XtraEditors.TextEdit txtStatusCodeDesc;
+        private DevExpress.XtraGrid.GridControl gridControl_GatePassData;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView_GatePassData;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
