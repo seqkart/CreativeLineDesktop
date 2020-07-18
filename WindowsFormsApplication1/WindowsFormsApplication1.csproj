@@ -475,6 +475,12 @@
     <Compile Include="FormReports\ReportFormatName.designer.cs">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReports\XtraReportGatePass.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormReports\XtraReportGatePass.designer.cs">
+      <DependentUpon>XtraReportGatePass.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDataTransfer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1374,6 +1380,9 @@
     <EmbeddedResource Include="FormReports\ReportFormatName.resx">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReports\XtraReportGatePass.resx">
+      <DependentUpon>XtraReportGatePass.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDataTransfer.resx">
       <DependentUpon>frmDataTransfer.cs</DependentUpon>
     </EmbeddedResource>
@@ -2032,6 +2041,12 @@
     <None Include="Resources\Reset2_16x16.png" />
     <None Include="Resources\Reset2_32x32.png" />
     <None Include="Resources\Trash_16x16.png" />
+    <None Include="Resources\Print_32x32.png" />
+    <None Include="Resources\Preview_16x16.png" />
+    <None Include="Resources\Preview_32x32.png" />
+    <None Include="Resources\Print_16x16.png" />
+    <None Include="Resources\photo.jpg" />
+    <None Include="Resources\profile_icon.jpg" />
     <Content Include="Resources\VISA.png" />
     <None Include="Resources\fm1.jpg" />
     <Content Include="Resources\login.jpg" />

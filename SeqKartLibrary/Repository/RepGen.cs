@@ -70,6 +70,7 @@ namespace SeqKartLibrary.Repository
         {
             try
             {
+                
                 connection();
                 con.Open();
                 con.Execute(query, param, commandType: CommandType.StoredProcedure);
@@ -80,6 +81,31 @@ namespace SeqKartLibrary.Repository
             {
                 return ex.Message;
             }
+
+        }
+
+        public int executeNonQuery_SP(string query, DynamicParameters param, bool hasOutput, out int outputVal)
+        {
+            outputVal = 0;
+            try
+            {
+                param.Add("@output", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                param.Add("@Returnvalue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                connection();
+                con.Open();
+                con.Execute(query, param, commandType: CommandType.StoredProcedure);
+                con.Close();
+
+                outputVal = param.Get<int>("@output");
+                var returnVal = param.Get<int>("@Returnvalue");
+                return returnVal;
+            }
+            catch (Exception ex)
+            {
+                //return ex.Message;
+            }
+            return -1;
 
         }
 

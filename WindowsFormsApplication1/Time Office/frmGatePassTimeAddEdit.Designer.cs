@@ -35,9 +35,9 @@
             this.txtPassword = new System.Windows.Forms.ToolStripTextBox();
             this.txtStatusCode = new DevExpress.XtraEditors.TextEdit();
             this.txtEmpCode = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl34 = new DevExpress.XtraEditors.LabelControl();
+            this.lblStatusCode = new DevExpress.XtraEditors.LabelControl();
+            this.lblDate = new DevExpress.XtraEditors.LabelControl();
+            this.lblEmpCode = new DevExpress.XtraEditors.LabelControl();
             this.txtEmpCodeDesc = new DevExpress.XtraEditors.TextEdit();
             this.DtDate = new DevExpress.XtraEditors.DateEdit();
             this.HelpGrid = new DevExpress.XtraGrid.GridControl();
@@ -45,15 +45,18 @@
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.timeEdit_Time_In = new DevExpress.XtraEditors.TimeEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.lblTimeIn = new DevExpress.XtraEditors.LabelControl();
+            this.lblTimeOut = new DevExpress.XtraEditors.LabelControl();
             this.timeEdit_Time_Out = new DevExpress.XtraEditors.TimeEdit();
             this.txtStatusCodeDesc = new DevExpress.XtraEditors.TextEdit();
             this.gridControl_GatePassData = new DevExpress.XtraGrid.GridControl();
             this.gridView_GatePassData = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.PrintPrivewButton = new System.Windows.Forms.Button();
+            this.PrintButton = new System.Windows.Forms.Button();
+            this.DVPrintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this.DVPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStatusCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpCode.Properties)).BeginInit();
@@ -116,6 +119,7 @@
             // txtPassword
             // 
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtPassword.Size = new System.Drawing.Size(100, 25);
@@ -146,29 +150,29 @@
             this.txtEmpCode.EditValueChanged += new System.EventHandler(this.txtEmpCode_EditValueChanged);
             this.txtEmpCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpCode_KeyDown);
             // 
-            // labelControl35
+            // lblStatusCode
             // 
-            this.labelControl35.Location = new System.Drawing.Point(42, 131);
-            this.labelControl35.Name = "labelControl35";
-            this.labelControl35.Size = new System.Drawing.Size(32, 13);
-            this.labelControl35.TabIndex = 29;
-            this.labelControl35.Text = "Status";
+            this.lblStatusCode.Location = new System.Drawing.Point(42, 131);
+            this.lblStatusCode.Name = "lblStatusCode";
+            this.lblStatusCode.Size = new System.Drawing.Size(32, 13);
+            this.lblStatusCode.TabIndex = 29;
+            this.lblStatusCode.Text = "Status";
             // 
-            // labelControl33
+            // lblDate
             // 
-            this.labelControl33.Location = new System.Drawing.Point(50, 72);
-            this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(24, 13);
-            this.labelControl33.TabIndex = 30;
-            this.labelControl33.Text = "Date";
+            this.lblDate.Location = new System.Drawing.Point(50, 72);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(24, 13);
+            this.lblDate.TabIndex = 30;
+            this.lblDate.Text = "Date";
             // 
-            // labelControl34
+            // lblEmpCode
             // 
-            this.labelControl34.Location = new System.Drawing.Point(22, 101);
-            this.labelControl34.Name = "labelControl34";
-            this.labelControl34.Size = new System.Drawing.Size(52, 13);
-            this.labelControl34.TabIndex = 27;
-            this.labelControl34.Text = "Emp Code";
+            this.lblEmpCode.Location = new System.Drawing.Point(22, 101);
+            this.lblEmpCode.Name = "lblEmpCode";
+            this.lblEmpCode.Size = new System.Drawing.Size(52, 13);
+            this.lblEmpCode.TabIndex = 27;
+            this.lblEmpCode.Text = "Emp Code";
             // 
             // txtEmpCodeDesc
             // 
@@ -202,7 +206,7 @@
             // 
             // HelpGrid
             // 
-            this.HelpGrid.Location = new System.Drawing.Point(80, 28);
+            this.HelpGrid.Location = new System.Drawing.Point(80, 328);
             this.HelpGrid.MainView = this.HelpGridView;
             this.HelpGrid.Name = "HelpGrid";
             this.HelpGrid.Size = new System.Drawing.Size(391, 197);
@@ -267,25 +271,25 @@
             this.timeEdit_Time_In.Size = new System.Drawing.Size(100, 20);
             this.timeEdit_Time_In.TabIndex = 16;
             // 
-            // labelControl12
+            // lblTimeIn
             // 
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Location = new System.Drawing.Point(210, 158);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(38, 13);
-            this.labelControl12.TabIndex = 370;
-            this.labelControl12.Text = "Time In";
+            this.lblTimeIn.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblTimeIn.Appearance.Options.UseFont = true;
+            this.lblTimeIn.Location = new System.Drawing.Point(210, 158);
+            this.lblTimeIn.Name = "lblTimeIn";
+            this.lblTimeIn.Size = new System.Drawing.Size(38, 13);
+            this.lblTimeIn.TabIndex = 370;
+            this.lblTimeIn.Text = "Time In";
             // 
-            // labelControl10
+            // lblTimeOut
             // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(27, 158);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(47, 13);
-            this.labelControl10.TabIndex = 371;
-            this.labelControl10.Text = "Time Out";
+            this.lblTimeOut.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblTimeOut.Appearance.Options.UseFont = true;
+            this.lblTimeOut.Location = new System.Drawing.Point(27, 158);
+            this.lblTimeOut.Name = "lblTimeOut";
+            this.lblTimeOut.Size = new System.Drawing.Size(47, 13);
+            this.lblTimeOut.TabIndex = 371;
+            this.lblTimeOut.Text = "Time Out";
             // 
             // timeEdit_Time_Out
             // 
@@ -359,14 +363,45 @@
             this.pictureBox1.TabIndex = 376;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // PrintPrivewButton
             // 
-            this.button1.Location = new System.Drawing.Point(82, 203);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 23);
-            this.button1.TabIndex = 377;
-            this.button1.Text = "Print Gatepass";
-            this.button1.UseVisualStyleBackColor = true;
+            this.PrintPrivewButton.Image = global::WindowsFormsApplication1.Properties.Resources.Preview_16x16;
+            this.PrintPrivewButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PrintPrivewButton.Location = new System.Drawing.Point(236, 193);
+            this.PrintPrivewButton.Name = "PrintPrivewButton";
+            this.PrintPrivewButton.Size = new System.Drawing.Size(73, 23);
+            this.PrintPrivewButton.TabIndex = 377;
+            this.PrintPrivewButton.Text = "Preview";
+            this.PrintPrivewButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.PrintPrivewButton.UseVisualStyleBackColor = true;
+            this.PrintPrivewButton.Click += new System.EventHandler(this.PrintPrivewButton_Click);
+            // 
+            // PrintButton
+            // 
+            this.PrintButton.Image = global::WindowsFormsApplication1.Properties.Resources.Print_16x16;
+            this.PrintButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PrintButton.Location = new System.Drawing.Point(329, 193);
+            this.PrintButton.Name = "PrintButton";
+            this.PrintButton.Size = new System.Drawing.Size(59, 23);
+            this.PrintButton.TabIndex = 378;
+            this.PrintButton.Text = "Print";
+            this.PrintButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.PrintButton.UseVisualStyleBackColor = true;
+            this.PrintButton.Click += new System.EventHandler(this.PrintButton_Click);
+            // 
+            // DVPrintPreviewDialog
+            // 
+            this.DVPrintPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.DVPrintPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.DVPrintPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+            this.DVPrintPreviewDialog.Enabled = true;
+            this.DVPrintPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("DVPrintPreviewDialog.Icon")));
+            this.DVPrintPreviewDialog.Name = "DVPrintPreviewDialog";
+            this.DVPrintPreviewDialog.Visible = false;
+            // 
+            // DVPrintDocument
+            // 
+            this.DVPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.DVPrintDocument_PrintPage);
             // 
             // frmGatePassTimeAddEdit
             // 
@@ -374,23 +409,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 548);
             this.ControlBox = false;
+            this.Controls.Add(this.PrintButton);
             this.Controls.Add(this.HelpGrid);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.PrintPrivewButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gridControl_GatePassData);
             this.Controls.Add(this.txtStatusCodeDesc);
             this.Controls.Add(this.timeEdit_Time_In);
-            this.Controls.Add(this.labelControl12);
-            this.Controls.Add(this.labelControl10);
+            this.Controls.Add(this.lblTimeIn);
+            this.Controls.Add(this.lblTimeOut);
             this.Controls.Add(this.timeEdit_Time_Out);
             this.Controls.Add(this.DtDate);
             this.Controls.Add(this.txtStatusCode);
             this.Controls.Add(this.txtEmpCode);
             this.Controls.Add(this.txtEmpCodeDesc);
-            this.Controls.Add(this.labelControl35);
-            this.Controls.Add(this.labelControl33);
-            this.Controls.Add(this.labelControl34);
+            this.Controls.Add(this.lblStatusCode);
+            this.Controls.Add(this.lblDate);
+            this.Controls.Add(this.lblEmpCode);
             this.Controls.Add(this.Menu_ToolStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
@@ -428,9 +464,9 @@
         private System.Windows.Forms.ToolStripTextBox txtPassword;
         private DevExpress.XtraEditors.TextEdit txtStatusCode;
         private DevExpress.XtraEditors.TextEdit txtEmpCode;
-        private DevExpress.XtraEditors.LabelControl labelControl35;
-        private DevExpress.XtraEditors.LabelControl labelControl33;
-        private DevExpress.XtraEditors.LabelControl labelControl34;
+        private DevExpress.XtraEditors.LabelControl lblStatusCode;
+        private DevExpress.XtraEditors.LabelControl lblDate;
+        private DevExpress.XtraEditors.LabelControl lblEmpCode;
         private DevExpress.XtraEditors.TextEdit txtEmpCodeDesc;
         private DevExpress.XtraEditors.DateEdit DtDate;
         private DevExpress.XtraGrid.GridControl HelpGrid;
@@ -438,14 +474,17 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private DevExpress.XtraEditors.TimeEdit timeEdit_Time_In;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl lblTimeIn;
+        private DevExpress.XtraEditors.LabelControl lblTimeOut;
         private DevExpress.XtraEditors.TimeEdit timeEdit_Time_Out;
         private DevExpress.XtraEditors.TextEdit txtStatusCodeDesc;
         private DevExpress.XtraGrid.GridControl gridControl_GatePassData;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView_GatePassData;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button PrintPrivewButton;
+        private System.Windows.Forms.Button PrintButton;
+        private System.Windows.Forms.PrintPreviewDialog DVPrintPreviewDialog;
+        private System.Drawing.Printing.PrintDocument DVPrintDocument;
     }
 }

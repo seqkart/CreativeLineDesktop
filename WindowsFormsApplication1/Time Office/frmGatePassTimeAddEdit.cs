@@ -1,5 +1,7 @@
 ﻿using Dapper;
+using DevExpress.DataAccess;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraReports.UI;
 using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
 using SeqKartLibrary.HelperClass;
@@ -8,9 +10,12 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 using WindowsFormsApplication1;
+using WindowsFormsApplication1.FormReports;
+
 namespace BNPL.Forms_Transaction
 {
     public partial class frmGatePassTimeAddEdit : DevExpress.XtraEditors.XtraForm
@@ -34,6 +39,8 @@ namespace BNPL.Forms_Transaction
         public string attendance_date { get; set; }
 
         private string securityPassword = "";
+
+        
         public frmGatePassTimeAddEdit()
         {
             InitializeComponent();
@@ -59,6 +66,10 @@ namespace BNPL.Forms_Transaction
         {
             securityPassword = ProjectFunctionsUtils.GetDateChangePassword();
             PrintLogWin.PrintLog(securityPassword);
+
+            PrintPrivewButton.Enabled = false;
+            PrintButton.Enabled = false;
+
 
             SetMyControls();
             if (s1 == "Add")
@@ -125,7 +136,11 @@ namespace BNPL.Forms_Transaction
                     txtEmpCode.Tag = dr["SerialId"].ToString();
 
                     txtEmpCodeDesc.Text = dr["EmpName"].ToString();
+                    txtEmpCodeDesc.Tag = dr["DeptDesc"].ToString();
+
                     txtStatusCode.Text = dr["StatusCode"].ToString();
+                    txtStatusCode.Tag = dr["UnitName"].ToString();
+
                     txtStatusCodeDesc.Text = dr["Status"].ToString();
 
                     timeEdit_Time_Out.EditValue = dr["TimeOut"].ToString();
@@ -135,6 +150,21 @@ namespace BNPL.Forms_Transaction
 
                     PrintLogWin.PrintLog("TimeOut " + dr["TimeOut"].ToString());
                     PrintLogWin.PrintLog("TimeIn " + dr["TimeIn"].ToString());
+
+                    ////////////////////////
+                    /*XtraReportGatePass report = new XtraReportGatePass(
+                    dr["EmpCode"].ToString(),
+                    ConvertTo.IntVal(dr["SerialId"].ToString()),
+                    dr["EmpName"].ToString(),
+                    dr["DeptDesc"].ToString() + "",
+                    dr["UnitName"].ToString() + "",
+                    "",
+                    dr["Status"].ToString(),
+                    timeEdit_Time_Out.EditValue + "",
+                    timeEdit_Time_In.EditValue + "",
+                    pictureBox1.Image
+                    );*/
+
                 }
                 else
                 {                    
@@ -196,11 +226,21 @@ namespace BNPL.Forms_Transaction
                 param.Add("@employee_code", txtEmpCode.Text);
                 param.Add("@attendance_date", ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(DtDate.Text)));//Convert.ToDateTime(DtDate.Text).ToString("yyyy-MM-dd")
                 param.Add("@attendance_out", timeEdit_Time_Out.Text);
-                param.Add("@attendance_in", timeEdit_Time_In.Text);                              
+                param.Add("@attendance_in", timeEdit_Time_In.Text);
+
+                param.Add("@output", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                param.Add("@Returnvalue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 string intResult = reposGen.executeNonQuery_SP(str, param);
                 if (intResult.Equals("0"))
                 {
+                    int outputVal = param.Get<int>("@output");
+                    int returnVal = param.Get<int>("@Returnvalue");
+
+                    PrintLogWin.PrintLog("outputVal => " + outputVal);
+                    PrintLogWin.PrintLog("returnVal => " + returnVal);
+
+                    txtEmpCode.Tag = outputVal;
                     ProjectFunctions.SpeakError("Record has been saved");
                     LoadGatePassDataGrid();
 
@@ -224,8 +264,11 @@ namespace BNPL.Forms_Transaction
             txtEmpCode.Text = string.Empty;
             txtEmpCode.Tag = null;
             txtEmpCodeDesc.Text = string.Empty;
+            txtEmpCodeDesc.Tag = null;
 
             txtStatusCode.Text = string.Empty;
+            txtStatusCode.Tag = null;
+
             txtStatusCodeDesc.Text = string.Empty;
 
             s1 = "Add";
@@ -494,6 +537,13 @@ namespace BNPL.Forms_Transaction
                 {
                     gridControl_GatePassData.DataSource = _ds.Tables[0];
                     gridView_GatePassData.BestFitColumns();
+
+                    ////////////////////
+                    
+
+                    PrintPrivewButton.Enabled = true;
+                    PrintButton.Enabled = true;
+
                 }
                 else
                 {
@@ -552,6 +602,73 @@ namespace BNPL.Forms_Transaction
 
             }
         }
-        
+
+        private void PrintPrivewButton_Click(object sender, EventArgs e)
+        {
+            //DVPrintPreviewDialog.Document = DVPrintDocument;
+            //DVPrintPreviewDialog.ShowDialog();
+            
+            XtraReportGatePass report = new XtraReportGatePass(
+                txtEmpCode.Text,
+                ConvertTo.IntVal(txtEmpCode.Tag),
+                txtEmpCodeDesc.Text,
+                txtEmpCodeDesc.Tag + "",
+                txtStatusCode.Tag + "",
+                "",
+                txtStatusCodeDesc.Text,
+                timeEdit_Time_Out.EditValue + "",
+                timeEdit_Time_In.EditValue + "",
+                pictureBox1.Image
+                );
+            
+            //report.Parameters["EmpCode"].Value = txtEmpCode.Text;
+            //report.Parameters["employee_name"].Value = txtEmpCodeDesc.Text;
+            ReportPrintTool tool = new ReportPrintTool(report);
+            tool.ShowPreview();
+        }
+
+        private void DVPrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Font fontStyle = new Font("Segoe UI", 8.25f, FontStyle.Regular);
+            Brush colorBrush = Brushes.Black;
+
+            e.Graphics.DrawString(lblDate.Text, fontStyle, colorBrush, new Point(lblDate.Location.X, lblDate.Location.Y));
+            e.Graphics.DrawString(DtDate.Text, fontStyle, colorBrush, new Point(DtDate.Location.X, DtDate.Location.Y));
+
+            e.Graphics.DrawString(lblEmpCode.Text, fontStyle, colorBrush, new Point(lblEmpCode.Location.X, lblEmpCode.Location.Y));
+            e.Graphics.DrawString(txtEmpCode.Text, fontStyle, colorBrush, new Point(txtEmpCode.Location.X, txtEmpCode.Location.Y));
+            e.Graphics.DrawString(txtEmpCodeDesc.Text, fontStyle, colorBrush, new Point(txtEmpCodeDesc.Location.X, txtEmpCodeDesc.Location.Y));
+
+            e.Graphics.DrawString(lblStatusCode.Text, fontStyle, colorBrush, new Point(lblStatusCode.Location.X, lblStatusCode.Location.Y));
+            e.Graphics.DrawString(txtStatusCode.Text, fontStyle, colorBrush, new Point(txtStatusCode.Location.X, txtStatusCode.Location.Y));
+            e.Graphics.DrawString(txtStatusCodeDesc.Text, fontStyle, colorBrush, new Point(txtStatusCodeDesc.Location.X, txtStatusCodeDesc.Location.Y));
+
+            e.Graphics.DrawString(lblTimeOut.Text, fontStyle, colorBrush, new Point(lblTimeOut.Location.X, lblTimeOut.Location.Y));
+            e.Graphics.DrawString(timeEdit_Time_Out.Text, fontStyle, colorBrush, new Point(timeEdit_Time_Out.Location.X, timeEdit_Time_Out.Location.Y));
+
+            e.Graphics.DrawString(lblTimeIn.Text, fontStyle, colorBrush, new Point(lblTimeIn.Location.X, lblTimeIn.Location.Y));
+            e.Graphics.DrawString(timeEdit_Time_In.Text, fontStyle, colorBrush, new Point(timeEdit_Time_In.Location.X, timeEdit_Time_In.Location.Y));
+        }
+
+        private void PrintButton_Click(object sender, EventArgs e)
+        {
+            XtraReportGatePass report = new XtraReportGatePass(
+                txtEmpCode.Text,
+                ConvertTo.IntVal(txtEmpCode.Tag),
+                txtEmpCodeDesc.Text,
+                txtEmpCodeDesc.Tag + "",
+                txtStatusCode.Tag + "",
+                "",
+                txtStatusCodeDesc.Text,
+                timeEdit_Time_Out.EditValue + "",
+                timeEdit_Time_In.EditValue + "",
+                pictureBox1.Image
+                );
+            ReportPrintTool printTool = new ReportPrintTool(report);
+            // Invoke the Print dialog.
+            printTool.PrintDialog();
+            // Send the report to the default printer.
+            //printTool.Print();
+        }
     }
 }
