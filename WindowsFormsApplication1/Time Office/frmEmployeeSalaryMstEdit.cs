@@ -25,6 +25,7 @@ namespace BNPL.Forms_Master
             ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
             ProjectFunctions.TextBoxVisualize(this);
             ProjectFunctions.ButtonVisualize(this);
+
         }
         private void btnQuit_Click(object sender, EventArgs e)
         {

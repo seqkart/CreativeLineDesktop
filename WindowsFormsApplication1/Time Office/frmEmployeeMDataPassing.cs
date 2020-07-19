@@ -25,6 +25,8 @@ namespace BNPL.Forms_Master
             //ProjectFunctions.GroupCtrlVisualize(panelControl1);
             ProjectFunctions.XtraFormVisualize(this);
             //ProjectFunctions.ButtonVisualize(panelControl1);
+
+            ProjectFunctions.GirdViewVisualize(InvoiceGridView);
         }
         
 

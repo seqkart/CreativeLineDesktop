@@ -27,6 +27,8 @@ namespace BNPL.Forms_Master
             //ProjectFunctions.GroupCtrlVisualize(panelControl1);
             ProjectFunctions.XtraFormVisualize(this);
 
+            ProjectFunctions.GirdViewVisualize(EmployeeGridView);
+
             MainFormButtons.Roles(GlobalVariables.ProgCode, GlobalVariables.CurrentUser, btnAdd, btnEdit);
             /*
             var Query4Controls = String.Format("SELECT     ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ReportHardcopy,ProgData_Up  FROM         UserProgAccess  WHERE     (ProgActive = 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);

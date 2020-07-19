@@ -52,60 +52,12 @@ namespace BNPL.Forms_Master
             //ProjectFunctions.ButtonVisualize(panelControl1);
             ProjectFunctions.XtraFormVisualize(this);
 
+            ProjectFunctions.GirdViewVisualize(gridView3);
+
             MainFormButtons.Roles(
                 GlobalVariables.ProgCode,
                 GlobalVariables.CurrentUser,
                 btnAdd, btnEdit, btnDelete, btnPrint);
-            
-            /*
-            var Query4Controls = String.Format("SELECT ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ReportHardcopy,ProgData_Up  FROM UserProgAccess WHERE (ProgActive = 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
-            PrintLogWin.PrintLog(Query4Controls);
-
-            using (var Tempds = ProjectFunctionsUtils.GetDataSet(Query4Controls))
-            {
-                if (Tempds != null)
-                {
-                    if (Tempds.Tables[0].Rows.Count > 0)
-                    {
-                        
-                        if (Tempds.Tables[0].Rows[0]["ProgAdd_F"].ToString().Trim() == "-1")
-                        {
-                            btnAdd.Enabled = true;
-                        }
-                        else
-                        {
-                            btnAdd.Enabled = false;
-                        }
-                        if (Tempds.Tables[0].Rows[0]["ProgUpd_F"].ToString().Trim() == "-1")
-                        {
-                            btnEdit.Enabled = true;
-                        }
-                        else
-                        {
-                            btnEdit.Enabled = false;
-                        }
-                        if (Tempds.Tables[0].Rows[0]["ProgDel_F"].ToString().Trim() == "-1")
-                        {
-                            btnDelete.Enabled = true;
-                        }
-                        else
-                        {
-                            btnDelete.Enabled = false;
-                        }
-                        if (Tempds.Tables[0].Rows[0]["ReportHardcopy"].ToString().Trim() == "-1")
-                        {
-                            btnPrint.Enabled = true;
-                        }
-                        else
-                        {
-                            btnPrint.Enabled = false;
-                        }
-
-                    }
-                    
-                }
-            }
-            */
         }
         private void fillGrid()
         {

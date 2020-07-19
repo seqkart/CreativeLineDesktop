@@ -851,8 +851,7 @@ namespace WindowsFormsApplication1
                 {
                     ReportGrid.DataSource = dsMaster.Tables[0];
                     ReportGridView.BestFitColumns();
-                    ReportGridView.UserCellPadding = new Padding(5, 
-                        5, 5, 5);
+                    ReportGridView.UserCellPadding = new Padding(1, 1, 1, 1);
 
                     //RepositoryItemButtonEdit tran = new RepositoryItemButtonEdit();
                     //tran.Name = "TranButton";

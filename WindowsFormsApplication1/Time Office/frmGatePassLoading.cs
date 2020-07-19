@@ -253,7 +253,7 @@ namespace BNPL.Forms_Master
                     var frm = new Forms_Transaction.frmGatePassTimeAddEdit() { s1 = _s1, employee_code = _employee_code, attendance_date = _attendance_date };
                     var P = ProjectFunctions.GetPositionInForm(this);
                     frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.Text = "Time Office Payment Addition";
+                    frm.Text = "Gate Pass Entry";
 
                     frm.ShowDialog();
                     //fillGrid();

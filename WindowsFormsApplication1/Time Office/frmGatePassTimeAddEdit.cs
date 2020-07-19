@@ -275,7 +275,7 @@ namespace BNPL.Forms_Transaction
             employee_code = "";
             attendance_date = "";
             txtEmpCode.Focus();
-            Text = "GatePass Time Addition";
+            Text = "Gate Pass Time Addition";
         }
         private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
