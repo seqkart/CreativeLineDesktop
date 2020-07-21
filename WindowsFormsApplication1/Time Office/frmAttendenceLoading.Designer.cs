@@ -309,7 +309,7 @@ namespace BNPL.Forms_Master
             this.btnLoad_Data.Location = new System.Drawing.Point(395, 52);
             this.btnLoad_Data.Name = "btnLoad_Data";
             this.btnLoad_Data.Size = new System.Drawing.Size(95, 20);
-            this.btnLoad_Data.TabIndex = 355;
+            this.btnLoad_Data.TabIndex = 3;
             this.btnLoad_Data.Text = "Load";
             this.btnLoad_Data.Click += new System.EventHandler(this.btnLoad_Data_Click);
             // 
@@ -324,7 +324,7 @@ namespace BNPL.Forms_Master
             this.DtStartDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.DtStartDate.Properties.MaxLength = 6;
             this.DtStartDate.Size = new System.Drawing.Size(90, 20);
-            this.DtStartDate.TabIndex = 354;
+            this.DtStartDate.TabIndex = 1;
             // 
             // label13
             // 
@@ -352,7 +352,7 @@ namespace BNPL.Forms_Master
             this.txtEmpCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmpCode.Properties.MaxLength = 6;
             this.txtEmpCode.Size = new System.Drawing.Size(90, 20);
-            this.txtEmpCode.TabIndex = 358;
+            this.txtEmpCode.TabIndex = 2;
             this.txtEmpCode.EditValueChanged += new System.EventHandler(this.txtEmpCode_EditValueChanged);
             this.txtEmpCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpCode_KeyDown);
             // 

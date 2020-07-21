@@ -361,6 +361,7 @@ namespace BNPL.Forms_Master
 
                         //LastInstlmnt();
                         //txtLoanAmount.Focus();
+                        btnLoad_Data.Focus();
                     }
                     else
                     {
@@ -384,7 +385,7 @@ namespace BNPL.Forms_Master
                 //txtEmpName.Text = row["EmpName"].ToString();
                 //txtDept.Text = row["DeptDesc"].ToString();
                 HelpGrid.Visible = false;
-                //txtLoanAmount.Focus();
+                btnLoad_Data.Focus();
 
                 //LastInstlmnt();
             }

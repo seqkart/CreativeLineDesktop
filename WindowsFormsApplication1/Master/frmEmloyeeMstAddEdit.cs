@@ -503,12 +503,12 @@ namespace WindowsFormsApplication1
         {
             DataRow row = HelpGridView.GetDataRow(HelpGridView.FocusedRowHandle);
 
-            if (HelpGrid.Text == "txtDesgCode")
+            if (HelpGrid.Text == "txtCategoryCode")
             {
-                txtDesgCode.Text = row["DesgCode"].ToString();
-                txtDesgDesc.Text = row["DesgDesc"].ToString();
+                txtCategoryCode.Text = row["CatgCode"].ToString();
+                txtCategoryDesc.Text = row["CatgDesc"].ToString();
                 HelpGrid.Visible = false;
-                txtRemarks.Focus();
+                txtDeptCode.Focus();
             }
             if (HelpGrid.Text == "txtDeptCode")
             {
@@ -517,13 +517,15 @@ namespace WindowsFormsApplication1
                 HelpGrid.Visible = false;
                 txtDesgCode.Focus();
             }
-            if (HelpGrid.Text == "txtCategoryCode")
+            if (HelpGrid.Text == "txtDesgCode")
             {
-                txtCategoryCode.Text = row["CatgCode"].ToString();
-                txtCategoryDesc.Text = row["CatgDesc"].ToString();
+                txtDesgCode.Text = row["DesgCode"].ToString();
+                txtDesgDesc.Text = row["DesgDesc"].ToString();
                 HelpGrid.Visible = false;
-                txtDOJ.Focus();
+                txtUnitCode.Focus();
             }
+            
+            
             if (HelpGrid.Text == "txtUnitCode")
             {
                 txtUnitCode.Text = row["UnitCode"].ToString();

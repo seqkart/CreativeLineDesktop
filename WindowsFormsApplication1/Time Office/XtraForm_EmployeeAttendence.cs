@@ -161,20 +161,20 @@ namespace WindowsFormsApplication1.Time_Office
             LoadControls();
             //employeeFormData_Load(selected_employee_code);
 
-            string sql = SQL_QUERIES._sp_EmployeesList();
-            PrintLogWin.PrintLog(sql);
-            var result = ProjectFunctionsUtils.GetDataSet_T(sql);
-            DataSet ds = result.Item2;// ProjectFunctionsUtils.GetDataSet_New(sql);           
+            //string sql = SQL_QUERIES._sp_EmployeesList();
+            //PrintLogWin.PrintLog(sql);
+            //var result = ProjectFunctionsUtils.GetDataSet_T(sql);
+            //DataSet ds = result.Item2;// ProjectFunctionsUtils.GetDataSet_New(sql);           
 
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    PrintLogWin.PrintLog("dr[0] : " + dr[0]);
-                    cbEmpID.Items.Add(dr[0]);
-                    //count++;
-                }
-            }
+            //if (ds.Tables[0].Rows.Count > 0)
+            //{
+            //    foreach (DataRow dr in ds.Tables[0].Rows)
+            //    {
+            //        PrintLogWin.PrintLog("dr[0] : " + dr[0]);
+            //        cbEmpID.Items.Add(dr[0]);
+            //        //count++;
+            //    }
+            //}
             RepList<object> repObj = new RepList<object>();
             List<AttendanceStatu> attendanceStatu_List = repObj.returnListClass_1<AttendanceStatu>("SELECT * FROM AttendanceStatus", null);
 
@@ -242,7 +242,8 @@ namespace WindowsFormsApplication1.Time_Office
                     //     orderby data.entry_date
                     //     select data).SingleOrDefault();
 
-                    cbEmpID.SelectedItem = query_attendance.employee_code;
+                    //cbEmpID.SelectedItem = query_attendance.employee_code;
+                    txtEmpID.Text = query_attendance.employee_code;
                     //comboBox_Status.SelectedItem = query_attendance.status_id;
                     //comboBox_Shift.SelectedItem = query_attendance.shift_id;
 
@@ -343,7 +344,7 @@ namespace WindowsFormsApplication1.Time_Office
 
 
             txtFName.Properties.ReadOnly = true;
-            txtEmpID.Properties.ReadOnly = true;
+            txtEmpID.Properties.ReadOnly = false;
             txtDepartment.Properties.ReadOnly = true;
             txtDesignation.Properties.ReadOnly = true;
             textUnit.Properties.ReadOnly = true;
@@ -391,13 +392,25 @@ namespace WindowsFormsApplication1.Time_Office
             //radioButtonMachine.
         }
 
+        //private void txtEmpCode_EditValueChanged(object sender, EventArgs e)
+        //{
+        //    //txtEmpCodeDesc.Text = string.Empty;
+
+        //    //if (txtEmpCode.Text.Length >= 4 && DtDate.Text.Length >= 8)
+        //    //{
+        //    //    LoadGatePassDataGrid();
+        //    //}
+
+            
+        //}
+
         private void cbEmpID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbEmpID.SelectedItem != null)
-            {
-                employeeFormData_Load(cbEmpID.SelectedItem.ToString());
+            //if (cbEmpID.SelectedItem != null)
+            //{
+            //    employeeFormData_Load(cbEmpID.SelectedItem.ToString());
 
-            }
+            //}
             
         }
         
@@ -793,11 +806,11 @@ namespace WindowsFormsApplication1.Time_Office
         private bool Validate_Form()
         {
             
-            if (cbEmpID.Text == "")
+            if (txtEmpID.Text == "")
             {
                 //MessageBox.Show("Please select an Employee ID first");
-                ProjectFunctionsUtils.SpeakError("Please select an Employee ID first");
-                cbEmpID.Focus();
+                ProjectFunctionsUtils.SpeakError("Please Enter an Employee ID first");
+                txtEmpID.Focus();
 
                 return false;
             }
@@ -922,6 +935,8 @@ namespace WindowsFormsApplication1.Time_Office
                 timeEdit_Time_Out_Last.EditValue = null;
             }
         }
+
+        
 
         private void timeEdit_Time_In_First_EditValueChanged(object sender, EventArgs e)
         {
@@ -1221,6 +1236,131 @@ namespace WindowsFormsApplication1.Time_Office
             {
                 MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + "");
             }
+        }
+
+        private void PrepareEmpGrid()
+        {
+            HelpGridView.Columns.Clear();
+            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+            HelpGridView.Columns[0].Visible = true;
+            HelpGridView.Columns[0].Caption = "Description";
+            HelpGridView.Columns[0].FieldName = "Description";
+            HelpGridView.Columns[0].OptionsColumn.AllowEdit = false;
+            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+            HelpGridView.Columns[1].Visible = true;
+            HelpGridView.Columns[1].Caption = "EmpFHName";
+            HelpGridView.Columns[1].FieldName = "EmpFHName";
+            HelpGridView.Columns[1].OptionsColumn.AllowEdit = false;
+            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+            HelpGridView.Columns[2].Visible = true;
+            HelpGridView.Columns[2].Caption = "Code";
+            HelpGridView.Columns[2].FieldName = "Code";
+            HelpGridView.Columns[2].OptionsColumn.AllowEdit = false;
+        }
+
+        private void txtEmpCode_EditValueChanged(object sender, EventArgs e)
+        {
+            //txtEmpCodeDesc.Text = string.Empty;
+
+            //if (txtEmpCode.Text.Length >= 4 && DtDate.Text.Length >= 8)
+            //{
+            //    LoadGatePassDataGrid();
+            //}
+
+            if (txtEmpID.Text.Length >= 4)
+            {
+                employeeFormData_Load(txtEmpID.Text);
+            }
+
+        }
+
+        private void txtEmpCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                PrepareEmpGrid();
+                var strQry = string.Empty;
+                HelpGrid.Text = "txtEmpCode";
+                var ds = new DataSet();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtEmpID.Text.Length == 0)
+                    {
+                        strQry = strQry + "select Empcode as Code,Empname as Description,EmpImage from EmpMst  order by Empname";
+                        ds = ProjectFunctions.GetDataSet(strQry);
+                        HelpGrid.DataSource = ds.Tables[0];
+                        HelpGridView.BestFitColumns();
+                        HelpGrid.Show();
+                        HelpGrid.Focus();
+                    }
+                    else
+                    {
+                        strQry = strQry + "select empcode as Code,empname as Description,EmpImage from EmpMst wHERE  empcode= '" + txtEmpID.Text.ToString().Trim() + "' ";
+
+                        ds = ProjectFunctions.GetDataSet(strQry);
+                        if (ds.Tables[0].Rows.Count > 0)
+
+                        {
+                            DataRow dr = ds.Tables[0].Rows[0];
+                            txtEmpID.Text = dr["Code"].ToString().Trim().ToUpper();
+                            txtFName.Text = dr["Description"].ToString().Trim().ToUpper();
+                            pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])dr["EmpImage"]);
+                            comboBox_Status.Focus();
+
+                        }
+                        else
+                        {
+                            var strQry1 = string.Empty;
+                            strQry1 = strQry1 + "select empcode as Code,empname as Description,EmpImage from EmpMst  order by Empname";
+                            var ds1 = ProjectFunctions.GetDataSet(strQry1);
+                            HelpGrid.DataSource = ds1.Tables[0];
+                            HelpGridView.BestFitColumns();
+                            HelpGrid.Show();
+                            HelpGrid.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            e.Handled = true;
+        }
+
+        private void HelpGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                HelpGrid_DoubleClick(null, e);
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                HelpGrid.Visible = false;
+            }
+        }
+
+        private void HelpGrid_DoubleClick(object sender, EventArgs e)
+        {
+            var row = HelpGridView.GetDataRow(HelpGridView.FocusedRowHandle);
+            if (HelpGrid.Text == "txtEmpCode")
+            {
+                txtEmpID.Text = row["Code"].ToString().Trim();
+                txtFName.Text = row["Description"].ToString().Trim();
+                pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])row["EmpImage"]);
+
+                HelpGrid.Visible = false;
+                comboBox_Status.Focus();
+            }
+            //if (HelpGrid.Text == "txtStatusCode")
+            //{
+            //    txtStatusCode.Text = row["Code"].ToString().Trim();
+            //    txtStatusCodeDesc.Text = row["Description"].ToString().Trim();
+            //    HelpGrid.Visible = false;
+            //    timeEdit_Time_Out.Focus();
+            //}
+
         }
 
 

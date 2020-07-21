@@ -128,7 +128,7 @@ namespace BNPL.Forms_Master
                         TimeIn_Last = dr[Col.EmployeeAttendance.attendance_in_last],
                         TimeOut_Last = dr[Col.EmployeeAttendance.attendance_out_last],
                         WorkingHours = dr[Col.EmployeeAttendance.working_hours],
-                        GatePassTime = ConvertTo.IntVal(dr[Col.EmployeeAttendance.gate_pass_time]),
+                        GatePassTime = dr[Col.EmployeeAttendance.gate_pass_time],
                         DeductionTimeOT = dr[Col.EmployeeAttendance.ot_deducton_time],
                         Source = dr[Col.AttendanceSource.source_name]
                     };
@@ -303,6 +303,7 @@ namespace BNPL.Forms_Master
 
                         //LastInstlmnt();
                         //txtLoanAmount.Focus();
+                        btnLoad_Data.Focus();
                     }
                     else
                     {
@@ -326,7 +327,7 @@ namespace BNPL.Forms_Master
                 //txtEmpName.Text = row["EmpName"].ToString();
                 //txtDept.Text = row["DeptDesc"].ToString();
                 HelpGrid.Visible = false;
-                //txtLoanAmount.Focus();
+                btnLoad_Data.Focus();
 
                 //LastInstlmnt();
             }

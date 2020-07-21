@@ -98,6 +98,10 @@
             this.panelControl_Machine_In = new DevExpress.XtraEditors.PanelControl();
             this.radioButtonMachine = new System.Windows.Forms.RadioButton();
             this.labelDate_Current = new System.Windows.Forms.Label();
+            this.HelpGrid = new DevExpress.XtraGrid.GridControl();
+            this.HelpGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textUnit.Properties)).BeginInit();
@@ -128,6 +132,10 @@
             this.panelControlMachine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_Machine_In)).BeginInit();
             this.panelControl_Machine_In.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.HelpGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HelpGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // windowsUIButtonPanelCloseButton
@@ -192,7 +200,7 @@
             this.windowsUIButtonPanelMain.MinimumSize = new System.Drawing.Size(60, 60);
             this.windowsUIButtonPanelMain.Name = "windowsUIButtonPanelMain";
             this.windowsUIButtonPanelMain.Size = new System.Drawing.Size(710, 60);
-            this.windowsUIButtonPanelMain.TabIndex = 3;
+            this.windowsUIButtonPanelMain.TabIndex = 16;
             this.windowsUIButtonPanelMain.Text = "windowsUIButtonPanelMain";
             this.windowsUIButtonPanelMain.UseButtonBackgroundImages = false;
             this.windowsUIButtonPanelMain.ButtonClick += new DevExpress.XtraBars.Docking2010.ButtonEventHandler(this.windowsUIButtonPanelMain_ButtonClick);
@@ -243,11 +251,12 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label29.Location = new System.Drawing.Point(5, 37);
+            this.label29.Location = new System.Drawing.Point(5, 22);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(75, 13);
             this.label29.TabIndex = 212;
             this.label29.Text = "Employee ID:";
+            this.label29.Visible = false;
             // 
             // pictureBox1
             // 
@@ -255,7 +264,7 @@
             this.pictureBox1.ErrorImage = global::WindowsFormsApplication1.Properties.Resources.Add;
             this.pictureBox1.Image = global::WindowsFormsApplication1.Properties.Resources.profile_icon;
             this.pictureBox1.InitialImage = global::WindowsFormsApplication1.Properties.Resources.Previous;
-            this.pictureBox1.Location = new System.Drawing.Point(397, 34);
+            this.pictureBox1.Location = new System.Drawing.Point(397, 38);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(130, 170);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -264,18 +273,20 @@
             // 
             // cbEmpID
             // 
+            this.cbEmpID.AllowDrop = true;
             this.cbEmpID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbEmpID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEmpID.FormattingEnabled = true;
-            this.cbEmpID.Location = new System.Drawing.Point(91, 34);
+            this.cbEmpID.Location = new System.Drawing.Point(91, 19);
             this.cbEmpID.Name = "cbEmpID";
             this.cbEmpID.Size = new System.Drawing.Size(200, 21);
             this.cbEmpID.TabIndex = 15;
+            this.cbEmpID.Visible = false;
             this.cbEmpID.SelectedIndexChanged += new System.EventHandler(this.cbEmpID_SelectedIndexChanged);
             // 
             // textUnit
             // 
-            this.textUnit.Location = new System.Drawing.Point(91, 193);
+            this.textUnit.Location = new System.Drawing.Point(91, 186);
             this.textUnit.Name = "textUnit";
             this.textUnit.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textUnit.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -287,7 +298,7 @@
             // 
             // txtDesignation
             // 
-            this.txtDesignation.Location = new System.Drawing.Point(91, 167);
+            this.txtDesignation.Location = new System.Drawing.Point(91, 158);
             this.txtDesignation.Name = "txtDesignation";
             this.txtDesignation.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDesignation.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -299,7 +310,7 @@
             // 
             // txtDepartment
             // 
-            this.txtDepartment.Location = new System.Drawing.Point(91, 141);
+            this.txtDepartment.Location = new System.Drawing.Point(91, 130);
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDepartment.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -311,7 +322,7 @@
             // 
             // txtFName
             // 
-            this.txtFName.Location = new System.Drawing.Point(91, 115);
+            this.txtFName.Location = new System.Drawing.Point(91, 102);
             this.txtFName.Name = "txtFName";
             this.txtFName.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtFName.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -323,19 +334,21 @@
             // 
             // txtEmpID
             // 
-            this.txtEmpID.Location = new System.Drawing.Point(91, 89);
+            this.txtEmpID.Location = new System.Drawing.Point(91, 74);
             this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtEmpID.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtEmpID.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtEmpID.Properties.Appearance.Options.UseBackColor = true;
             this.txtEmpID.Properties.Appearance.Options.UseForeColor = true;
             this.txtEmpID.Properties.ReadOnly = true;
             this.txtEmpID.Size = new System.Drawing.Size(120, 20);
             this.txtEmpID.TabIndex = 9;
+            this.txtEmpID.EditValueChanged += new System.EventHandler(this.txtEmpCode_EditValueChanged);
+            this.txtEmpID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpCode_KeyDown);
             // 
             // dateAttendance
             // 
-            this.dateAttendance.Location = new System.Drawing.Point(91, 61);
+            this.dateAttendance.Location = new System.Drawing.Point(91, 44);
             this.dateAttendance.Name = "dateAttendance";
             this.dateAttendance.Size = new System.Drawing.Size(120, 22);
             this.dateAttendance.TabIndex = 8;
@@ -345,7 +358,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(7, 197);
+            this.label7.Location = new System.Drawing.Point(7, 190);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 6;
@@ -356,7 +369,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(6, 171);
+            this.label6.Location = new System.Drawing.Point(6, 162);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 5;
@@ -367,7 +380,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(7, 145);
+            this.label5.Location = new System.Drawing.Point(7, 134);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 13);
             this.label5.TabIndex = 4;
@@ -378,7 +391,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(7, 119);
+            this.label4.Location = new System.Drawing.Point(7, 106);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 13);
             this.label4.TabIndex = 3;
@@ -388,8 +401,8 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(7, 93);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(7, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 2;
@@ -400,7 +413,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(7, 66);
+            this.label2.Location = new System.Drawing.Point(7, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 1;
@@ -617,7 +630,7 @@
             this.timeEdit_Time_Out_Last.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.timeEdit_Time_Out_Last.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_Out_Last.Size = new System.Drawing.Size(65, 20);
-            this.timeEdit_Time_Out_Last.TabIndex = 234;
+            this.timeEdit_Time_Out_Last.TabIndex = 14;
             this.timeEdit_Time_Out_Last.EditValueChanged += new System.EventHandler(this.timeEdit_Time_Out_Last_EditValueChanged);
             // 
             // timeEdit_Time_In_Last
@@ -640,7 +653,7 @@
             this.timeEdit_Time_In_Last.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.timeEdit_Time_In_Last.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_In_Last.Size = new System.Drawing.Size(65, 20);
-            this.timeEdit_Time_In_Last.TabIndex = 233;
+            this.timeEdit_Time_In_Last.TabIndex = 13;
             this.timeEdit_Time_In_Last.EditValueChanged += new System.EventHandler(this.timeEdit_Time_In_Last_EditValueChanged);
             // 
             // timeEdit_Time_Out_First
@@ -663,7 +676,7 @@
             this.timeEdit_Time_Out_First.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.timeEdit_Time_Out_First.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_Out_First.Size = new System.Drawing.Size(65, 20);
-            this.timeEdit_Time_Out_First.TabIndex = 232;
+            this.timeEdit_Time_Out_First.TabIndex = 12;
             this.timeEdit_Time_Out_First.EditValueChanged += new System.EventHandler(this.timeEdit_Time_Out_First_EditValueChanged);
             // 
             // totalWorkingHours_Text
@@ -686,7 +699,8 @@
             this.totalWorkingHours_Text.Properties.MaxLength = 10;
             this.totalWorkingHours_Text.Properties.UseReadOnlyAppearance = false;
             this.totalWorkingHours_Text.Size = new System.Drawing.Size(65, 20);
-            this.totalWorkingHours_Text.TabIndex = 225;
+            this.totalWorkingHours_Text.TabIndex = 15;
+            this.totalWorkingHours_Text.TabStop = false;
             // 
             // labelControl16
             // 
@@ -760,7 +774,7 @@
             this.timeEdit_Time_In_First.Properties.NullValuePrompt = "00:00";
             this.timeEdit_Time_In_First.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.timeEdit_Time_In_First.Size = new System.Drawing.Size(65, 20);
-            this.timeEdit_Time_In_First.TabIndex = 226;
+            this.timeEdit_Time_In_First.TabIndex = 11;
             this.timeEdit_Time_In_First.EditValueChanged += new System.EventHandler(this.timeEdit_Time_In_First_EditValueChanged);
             // 
             // comboBox_Status
@@ -769,7 +783,7 @@
             this.comboBox_Status.Location = new System.Drawing.Point(23, 100);
             this.comboBox_Status.Name = "comboBox_Status";
             this.comboBox_Status.Size = new System.Drawing.Size(140, 21);
-            this.comboBox_Status.TabIndex = 19;
+            this.comboBox_Status.TabIndex = 10;
             // 
             // timeEdit_Time_In_First_Main
             // 
@@ -1055,6 +1069,51 @@
             this.labelDate_Current.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.labelDate_Current.UseCompatibleTextRendering = true;
             // 
+            // HelpGrid
+            // 
+            this.HelpGrid.Location = new System.Drawing.Point(142, 135);
+            this.HelpGrid.MainView = this.HelpGridView;
+            this.HelpGrid.Name = "HelpGrid";
+            this.HelpGrid.Size = new System.Drawing.Size(391, 197);
+            this.HelpGrid.TabIndex = 369;
+            this.HelpGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.HelpGridView,
+            this.gridView4,
+            this.gridView5});
+            this.HelpGrid.Visible = false;
+            this.HelpGrid.DoubleClick += new System.EventHandler(this.HelpGrid_DoubleClick);
+            this.HelpGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HelpGrid_KeyDown);
+            // 
+            // HelpGridView
+            // 
+            this.HelpGridView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.HelpGridView.GridControl = this.HelpGrid;
+            this.HelpGridView.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            this.HelpGridView.Name = "HelpGridView";
+            this.HelpGridView.OptionsBehavior.AllowIncrementalSearch = true;
+            this.HelpGridView.OptionsBehavior.Editable = false;
+            this.HelpGridView.OptionsView.ShowGroupPanel = false;
+            this.HelpGridView.OptionsView.ShowIndicator = false;
+            this.HelpGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            // 
+            // gridView4
+            // 
+            this.gridView4.GridControl = this.HelpGrid;
+            this.gridView4.Name = "gridView4";
+            // 
+            // gridView5
+            // 
+            this.gridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView5.GridControl = this.HelpGrid;
+            this.gridView5.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsBehavior.AllowIncrementalSearch = true;
+            this.gridView5.OptionsBehavior.Editable = false;
+            this.gridView5.OptionsView.ColumnAutoWidth = false;
+            this.gridView5.OptionsView.ShowGroupPanel = false;
+            this.gridView5.OptionsView.ShowIndicator = false;
+            this.gridView5.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            // 
             // XtraForm_EmployeeAttendence
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -1065,6 +1124,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(710, 705);
+            this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.labelDate_Current);
             this.Controls.Add(this.panelControlMachine);
             this.Controls.Add(this.panelControlManual);
@@ -1111,6 +1171,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_Machine_In)).EndInit();
             this.panelControl_Machine_In.ResumeLayout(false);
             this.panelControl_Machine_In.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.HelpGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HelpGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1200,6 +1264,10 @@
         private DevExpress.XtraEditors.TextEdit timeEdit_Time_In_Last_Main;
         private DevExpress.XtraEditors.TextEdit timeEdit_Time_Out_Last_Main;
         private System.Windows.Forms.GroupBox groupBox5;
+        private DevExpress.XtraGrid.GridControl HelpGrid;
+        private DevExpress.XtraGrid.Views.Grid.GridView HelpGridView;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
     }
 
 }
