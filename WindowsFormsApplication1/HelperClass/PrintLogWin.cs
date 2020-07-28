@@ -1,7 +1,4 @@
-﻿public class PrintLogWin
+﻿public class PrintLogWin : PrintLogWinForms
 {
-    public static void PrintLog(object msg)
-    {
-        System.Diagnostics.Debug.WriteLine("PrintLog => " + msg);
-    }
+    
 }

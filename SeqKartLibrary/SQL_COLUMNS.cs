@@ -47,7 +47,8 @@ namespace SeqKartLibrary
         public static class _AttendanceStatus
         {
             public const string _status_id = "status_id";
-            public const string _status = "status";           
+            public const string _status = "status";
+            public const string _status_type = "status_type";
 
         }
 

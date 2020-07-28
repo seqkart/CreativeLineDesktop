@@ -321,9 +321,6 @@ namespace WindowsFormsApplication1
                         }
 
 
-
-
-
                         sqlcom.Parameters.AddWithValue("@AccCode", txtAcCode.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@AccName", txtBillingName.Text.Trim());
                         sqlcom.Parameters.AddWithValue("@AccType", txtAcCategory.Text.Trim());
@@ -472,31 +469,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void txtStatusTag_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (txtStatusTag.Text.Trim() == "Y")
-            {
-
-            }
-            else
-            {
-                if (txtStatusTag.Text.Trim() == "N")
-                {
-
-                }
-                else
-                {
-                    ProjectFunctions.SpeakError("Valid Values Are Y Or N");
-                    txtStatusTag.Focus();
-                }
-            }
-        }
-
-        private void txtStkTransfer_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
         private void txtEmpCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -521,11 +493,6 @@ namespace WindowsFormsApplication1
                 txtAcCategory.Text = string.Empty;
                 txtAcCategory.Focus();
             }
-        }
-
-        private void txtSMDP_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ProjectFunctions.NumericWithDecimal(e);
         }
 
         private void txtOBalance_KeyPress(object sender, KeyPressEventArgs e)
@@ -553,28 +520,6 @@ namespace WindowsFormsApplication1
             {
                 ProjectFunctions.SpeakError(ex.Message);
             }
-        }
-
-
-        private void txtLCTag_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (txtLCTag.Text.ToUpper() == "L" || (txtLCTag.Text.ToUpper() == "C"))
-            {
-                txtLCTag.Text = txtLCTag.Text.ToUpper();
-            }
-            else
-            {
-                ProjectFunctions.SpeakError("Valid Vales Are L/C");
-                txtLCTag.Text = string.Empty;
-                txtLCTag.Focus();
-            }
-        }
-
-        private void TxtCityCode_EditValueChanged(object sender, EventArgs e)
-        {
-            txtCityName.Text = String.Empty;
-            txtState.Text = String.Empty;
-            txtCountry.Text = String.Empty;
         }
 
         private void TxtCityCode_KeyDown(object sender, KeyEventArgs e)
@@ -621,6 +566,18 @@ namespace WindowsFormsApplication1
             {
                 ProjectFunctions.SpeakError(ex.Message);
             }
+        }
+
+        private void txtFixBArCodeTag_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAcName_EditValueChanged(object sender, EventArgs e)
+        {
+            txtChequeName.Text = txtAcName.Text;
+            txtBillingName.Text = txtAcName.Text;
+            txtNameAsOnBankAcc.Text= txtAcName.Text;
         }
     }
 }

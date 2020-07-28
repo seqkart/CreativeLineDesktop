@@ -806,6 +806,7 @@ namespace WindowsFormsApplication1
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     //var P = ProjectFunctions.GetPositionInForm(this);
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                    
                     frm.ShowDialog(Parent);
                 }
                 if (GlobalVariables.ProgCode == "PROG155")

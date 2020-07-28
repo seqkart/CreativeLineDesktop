@@ -77,7 +77,7 @@
             this.ChoiceSelect.Location = new System.Drawing.Point(667, 45);
             this.ChoiceSelect.Name = "ChoiceSelect";
             this.ChoiceSelect.Properties.Caption = "Select &All";
-            this.ChoiceSelect.Size = new System.Drawing.Size(75, 20);
+            this.ChoiceSelect.Size = new System.Drawing.Size(75, 18);
             this.ChoiceSelect.TabIndex = 349;
             this.ChoiceSelect.Visible = false;
             this.ChoiceSelect.CheckedChanged += new System.EventHandler(this.ChoiceSelect_CheckedChanged);

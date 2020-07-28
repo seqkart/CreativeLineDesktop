@@ -16,5 +16,7 @@ namespace SeqKartLibrary.Models
     {
         public int status_id { get; set; }
         public string status { get; set; }
+
+        public string status_type { get; set; }
     }
 }

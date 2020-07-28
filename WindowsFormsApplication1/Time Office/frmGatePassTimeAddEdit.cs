@@ -1,15 +1,11 @@
 ﻿using Dapper;
-using DevExpress.DataAccess;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraReports.UI;
 using SeqKartLibrary;
-using SeqKartLibrary.CrudTask;
 using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Repository;
 using System;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -20,16 +16,6 @@ namespace BNPL.Forms_Transaction
 {
     public partial class frmGatePassTimeAddEdit : DevExpress.XtraEditors.XtraForm
     {
-
-
-#pragma warning disable CS0414 // The field 'frmGatePassTimeAddEdit.VoucehrNo' is assigned but its value is never used
-        string VoucehrNo = string.Empty;
-#pragma warning restore CS0414 // The field 'frmGatePassTimeAddEdit.VoucehrNo' is assigned but its value is never used
-#pragma warning disable CS0169 // The field 'frmGatePassTimeAddEdit.VoucherDate' is never used
-        DateTime VoucherDate;
-#pragma warning restore CS0169 // The field 'frmGatePassTimeAddEdit.VoucherDate' is never used
-#pragma warning disable CS0414 // The field 'frmGatePassTimeAddEdit.VoucherType' is assigned but its value is never used
-        string VoucherType = string.Empty;
 #pragma warning restore CS0414 // The field 'frmGatePassTimeAddEdit.VoucherType' is assigned but its value is never used
 
 
@@ -40,7 +26,7 @@ namespace BNPL.Forms_Transaction
 
         private string securityPassword = "";
 
-        
+
         public frmGatePassTimeAddEdit()
         {
             InitializeComponent();
@@ -95,31 +81,31 @@ namespace BNPL.Forms_Transaction
                     SetFormValues(0, employee_code, attendance_date, 0);
                     //if (ComparisonUtils.IsNotNull_DataSet(dsMain))
                     //{
-                        //gridControl_GatePassData.DataSource = dsMain.Tables[0];
-                        //gridView_GatePassData.BestFitColumns();
+                    //gridControl_GatePassData.DataSource = dsMain.Tables[0];
+                    //gridView_GatePassData.BestFitColumns();
 
-                        
-                        //DtDate.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["AttendanceDate"]);
-                        //txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
-                        //txtEmpCodeDesc.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
-                        //txtStatusCode.Text = ds.Tables[0].Rows[0]["StatusCode"].ToString();
-                        //txtStatusCodeDesc.Text = ds.Tables[0].Rows[0]["Status"].ToString();
+
+                    //DtDate.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["AttendanceDate"]);
+                    //txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
+                    //txtEmpCodeDesc.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                    //txtStatusCode.Text = ds.Tables[0].Rows[0]["StatusCode"].ToString();
+                    //txtStatusCodeDesc.Text = ds.Tables[0].Rows[0]["Status"].ToString();
                     //}
-                    
+
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     PrintLogWin.PrintLog(ex);
                 }
 
-                
+
 
             }
         }
 
         private void SetFormValues(int rowIndex, string _employee_code, string _attendance_date, int _serial_id)
         {
-            
+
             try
             {
                 string str = "sp_GatePassData_Single '" + _employee_code + "', '" + ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(_attendance_date)) + "', " + _serial_id + "";
@@ -167,49 +153,16 @@ namespace BNPL.Forms_Transaction
 
                 }
                 else
-                {                    
+                {
                     //clear();
                 }
-                   
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PrintLogWin.PrintLog(ex);
                 //                clear();
             }
-        }
-
-        private bool ValidateData()
-        {
-
-            if (DtDate.Text.Trim().Length == 0)
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show("Invalid Date", "Save", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                DtDate.Focus();
-                return false;
-            }
-            
-            if (txtEmpCode.Text.Trim().Length == 0)
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show("Invalid EmpName", "Save", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                txtEmpCode.Focus();
-                return false;
-            }
-            if (txtEmpCodeDesc.Text.Trim().Length == 0)
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show("Invalid EmpName", "Save", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                txtEmpCode.Focus();
-                return false;
-            }
-
-            if (txtStatusCode.Text.Trim().Length == 0)
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show("Invalid Status", "Save", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                txtStatusCode.Focus();
-                return false;
-            }
-
-            return true;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -252,44 +205,11 @@ namespace BNPL.Forms_Transaction
                 }
                 //this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ProjectFunctions.SpeakError("Error in save record.");
                 PrintLogWin.PrintLog(ex);
             }
-        }
-
-        private void clear()
-        {
-            txtEmpCode.Text = string.Empty;
-            txtEmpCode.Tag = null;
-            txtEmpCodeDesc.Text = string.Empty;
-            txtEmpCodeDesc.Tag = null;
-
-            txtStatusCode.Text = string.Empty;
-            txtStatusCode.Tag = null;
-
-            txtStatusCodeDesc.Text = string.Empty;
-
-            s1 = "Add";
-            employee_code = "";
-            attendance_date = "";
-            txtEmpCode.Focus();
-            Text = "Gate Pass Time Addition";
-        }
-        private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ProjectFunctions.NumericWithDecimal(e);
-        }
-
-        private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ProjectFunctions.NumericWithDecimal(e);
-        }
-
-        private void txtOthersGiven_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ProjectFunctions.NumericWithDecimal(e);
         }
 
         private void txtEmpCode_EditValueChanged(object sender, EventArgs e)
@@ -351,7 +271,7 @@ namespace BNPL.Forms_Transaction
                     {
                         strQry = strQry + "select Empcode as Code,Empname as Description,EmpImage from EmpMst  order by Empname";
                         ds = ProjectFunctions.GetDataSet(strQry);
-                        HelpGrid.DataSource = ds.Tables[0];                        
+                        HelpGrid.DataSource = ds.Tables[0];
                         HelpGridView.BestFitColumns();
                         HelpGrid.Show();
                         HelpGrid.Focus();
@@ -369,7 +289,7 @@ namespace BNPL.Forms_Transaction
                             txtEmpCodeDesc.Text = dr["Description"].ToString().Trim().ToUpper();
                             pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])dr["EmpImage"]);
                             txtStatusCode.Focus();
-                            
+
                         }
                         else
                         {
@@ -427,10 +347,10 @@ namespace BNPL.Forms_Transaction
                 txtStatusCodeDesc.Text = row["Description"].ToString().Trim();
                 HelpGrid.Visible = false;
                 timeEdit_Time_Out.Focus();
-            }            
+            }
 
         }
-              
+
 
         private void frmGatePassTimeAddEdit_KeyDown(object sender, KeyEventArgs e)
         {
@@ -452,61 +372,11 @@ namespace BNPL.Forms_Transaction
             }
         }
 
-        private void txtContCode_EditValueChanged(object sender, EventArgs e)
-        {
-            //txtContCodeDesc.Text = string.Empty;
-        }
-        
 
-
-        
-
-        private void txtPostHeadCode_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            
-        }
 
-        
-
-        private void DtDate_MouseLeave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtEmpCode_MouseLeave(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void txtEmpCode_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtType_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtAmount_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtAmount_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btnSave_Click(null, e);
-            }
         }
 
         private void txtPassword_KeyUp(object sender, KeyEventArgs e)
@@ -515,8 +385,8 @@ namespace BNPL.Forms_Transaction
             {
                 if (txtPassword.Text == securityPassword)
                 {
-                    
-                   
+
+
                 }
             }
 
@@ -539,7 +409,7 @@ namespace BNPL.Forms_Transaction
                     gridView_GatePassData.BestFitColumns();
 
                     ////////////////////
-                    
+
 
                     PrintPrivewButton.Enabled = true;
                     PrintButton.Enabled = true;
@@ -557,34 +427,9 @@ namespace BNPL.Forms_Transaction
             }
         }
 
-        private void OnClickRow()
-        {
-            try
-            {
-                int row = (gridControl_GatePassData.FocusedView as ColumnView).FocusedRowHandle;
-                ColumnView detailView = (ColumnView)gridControl_GatePassData.FocusedView;
-                int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
-                                                                                                          //
-                //string employee_code = detailView.GetFocusedRowCellValue("EmpCode").ToString();
-                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
-                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
-                    );
-
-                //MessageBox.Show(CurrentRow[0] + "");
-
-
-                
-            }
-            catch(Exception ex)
-            {
-
-            }
-            
-        }
-
         private void gridControl_GatePassData_DoubleClick(object sender, EventArgs e)
         {
-           try
+            try
             {
                 //int rowIndex = (gridControl_GatePassData.FocusedView as ColumnView).FocusedRowHandle;
 
@@ -607,7 +452,7 @@ namespace BNPL.Forms_Transaction
         {
             //DVPrintPreviewDialog.Document = DVPrintDocument;
             //DVPrintPreviewDialog.ShowDialog();
-            
+
             XtraReportGatePass report = new XtraReportGatePass(
                 txtEmpCode.Text,
                 ConvertTo.IntVal(txtEmpCode.Tag),
@@ -620,7 +465,7 @@ namespace BNPL.Forms_Transaction
                 timeEdit_Time_In.EditValue + "",
                 pictureBox1.Image
                 );
-            
+
             //report.Parameters["EmpCode"].Value = txtEmpCode.Text;
             //report.Parameters["employee_name"].Value = txtEmpCodeDesc.Text;
             ReportPrintTool tool = new ReportPrintTool(report);

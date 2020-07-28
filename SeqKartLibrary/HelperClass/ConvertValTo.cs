@@ -4,6 +4,16 @@ namespace SeqKartLibrary.HelperClass
 {
     public class ConvertTo
     {
+        public static bool BooleanVal(object val)
+        {
+            try
+            {
+                return Convert.ToBoolean(val);
+            }
+            catch { }
+
+            return false;
+        }
         public static int IntVal(object val)
         {
             try
@@ -86,6 +96,30 @@ namespace SeqKartLibrary.HelperClass
             return TimeSpan.Parse("00:00");
         }
 
+        public static TimeSpan? TimeSpanVal_Null(object val)
+        {
+            try
+            {
+                if (val != null)
+                {
+                    return TimeSpan.Parse(val + "");
+                }
+                else
+                {
+                    PrintLogWinForms.PrintLog("ConvertValueTo.TimeSpanVal_Null : val is NULL");
+                    return null;
+                }
+            }
+            catch(Exception ex)
+            {
+                PrintLogWinForms.PrintLog("ConvertValueTo.TimeSpanVal_Null => Exception => val " +
+                    ": " + val + "" + "");
+                PrintLogWinForms.PrintLog("ConvertValueTo.TimeSpanVal_Null => Exception : " + ex.Message + "");
+            }
+
+            return null;
+        }
+
         public static string DateFormatApp(DateTime dateTime)
         {
             try
@@ -128,6 +162,46 @@ namespace SeqKartLibrary.HelperClass
             catch { }
 
             return dateTime.ToString();
+        }
+
+        public static string MinutesToHours(object _totalMinute)
+        {
+            string sign = "";
+            Int32 totalMinute = IntVal(_totalMinute);
+            if (totalMinute == 0)
+            {
+                return "";
+            }
+            Int32 Minute = default(Int32);
+            Int32 Hour = default(Int32);
+            {
+                if (totalMinute < 0)
+                {
+                    totalMinute = totalMinute * -1;
+                    sign = "-";
+                }
+                totalMinute = totalMinute % 1440;
+
+
+                Hour = totalMinute / 60;
+                Minute = totalMinute % 60;
+                return FormatTwoDigits(Hour, sign) + " : " + FormatTwoDigits(Minute, "") + " ";
+            }
+            //return _totalMinute + "";
+        }
+        public static string FormatTwoDigits(Int32 i, string sign)
+        {
+            string functionReturnValue = null;
+            if (10 > i)
+
+            {
+                functionReturnValue = sign + "0" + i.ToString();
+            }            
+            else
+            {
+                functionReturnValue = sign + i.ToString();
+            }
+            return functionReturnValue;
         }
     }
 }

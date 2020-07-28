@@ -153,5 +153,12 @@ namespace SeqKartLibrary.Models
 
         public string DesgCode { get; set; }
         public string DesgDesc { get; set; }
+
+        public bool DailyWage { get; set; }
+        public Nullable<decimal> DailyWageRate { get; set; }
+        public Nullable<int> DailyWageMinutes { get; set; }
+
+        public int LunchBreak { get; set; }
+        public int OT_Extra { get; set; }
     }
 }

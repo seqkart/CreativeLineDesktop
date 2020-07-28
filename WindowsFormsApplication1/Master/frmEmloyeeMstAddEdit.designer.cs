@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions5 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions6 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions7 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions8 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions1 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions2 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions3 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions4 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
             this.RelationShipGrid123 = new DevExpress.XtraTab.XtraTabControl();
             this.BasicInfoTab = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -165,6 +165,13 @@
             this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
             this.txtUnitDesc = new DevExpress.XtraEditors.TextEdit();
             this.txtUnitCode = new DevExpress.XtraEditors.TextEdit();
+            this.lblDailyWageRate = new DevExpress.XtraEditors.LabelControl();
+            this.txtDailyWageRate = new DevExpress.XtraEditors.TextEdit();
+            this.chkDailyWage = new System.Windows.Forms.CheckBox();
+            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
+            this.txtDailyWageHours = new DevExpress.XtraEditors.TextEdit();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtDailyWageMinutes = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.RelationShipGrid123)).BeginInit();
             this.RelationShipGrid123.SuspendLayout();
             this.BasicInfoTab.SuspendLayout();
@@ -243,11 +250,15 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitDesc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDailyWageRate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDailyWageHours.Properties)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDailyWageMinutes.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // RelationShipGrid123
             // 
-            this.RelationShipGrid123.Location = new System.Drawing.Point(60, 248);
+            this.RelationShipGrid123.Location = new System.Drawing.Point(60, 311);
             this.RelationShipGrid123.Name = "RelationShipGrid123";
             this.RelationShipGrid123.SelectedTabPage = this.BasicInfoTab;
             this.RelationShipGrid123.Size = new System.Drawing.Size(598, 300);
@@ -340,10 +351,14 @@
             // 
             // txtNationality
             // 
+            this.txtNationality.EditValue = "INDIAN";
             this.txtNationality.Location = new System.Drawing.Point(95, 168);
             this.txtNationality.Name = "txtNationality";
             this.txtNationality.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtNationality.Properties.Items.AddRange(new object[] {
+            "INDIAN"});
+            this.txtNationality.Properties.Sorted = true;
             this.txtNationality.Size = new System.Drawing.Size(100, 20);
             this.txtNationality.TabIndex = 18;
             // 
@@ -454,7 +469,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtDOB.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.txtDOB.Size = new System.Drawing.Size(79, 20);
+            this.txtDOB.Size = new System.Drawing.Size(100, 20);
             this.txtDOB.TabIndex = 13;
             // 
             // txtFHName
@@ -1500,7 +1515,7 @@
             // 
             this.labelControl17.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl17.Appearance.Options.UseFont = true;
-            this.labelControl17.Location = new System.Drawing.Point(56, 112);
+            this.labelControl17.Location = new System.Drawing.Point(62, 112);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(26, 13);
             this.labelControl17.TabIndex = 235;
@@ -1533,7 +1548,7 @@
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(45, 86);
+            this.labelControl6.Location = new System.Drawing.Point(48, 86);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(40, 13);
             this.labelControl6.TabIndex = 221;
@@ -1541,10 +1556,10 @@
             // 
             // HelpGrid
             // 
-            this.HelpGrid.Location = new System.Drawing.Point(155, 201);
+            this.HelpGrid.Location = new System.Drawing.Point(208, 346);
             this.HelpGrid.MainView = this.HelpGridView;
             this.HelpGrid.Name = "HelpGrid";
-            this.HelpGrid.Size = new System.Drawing.Size(420, 360);
+            this.HelpGrid.Size = new System.Drawing.Size(420, 274);
             this.HelpGrid.TabIndex = 244;
             this.HelpGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.HelpGridView});
@@ -1588,7 +1603,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(53, 34);
+            this.labelControl1.Location = new System.Drawing.Point(61, 34);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(27, 13);
             this.labelControl1.TabIndex = 201;
@@ -1611,7 +1626,7 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(377, 60);
+            this.labelControl5.Location = new System.Drawing.Point(384, 60);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(81, 13);
             this.labelControl5.TabIndex = 205;
@@ -1634,7 +1649,7 @@
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl15.Appearance.Options.UseFont = true;
-            this.labelControl15.Location = new System.Drawing.Point(396, 86);
+            this.labelControl15.Location = new System.Drawing.Point(403, 86);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(62, 13);
             this.labelControl15.TabIndex = 207;
@@ -1656,7 +1671,7 @@
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(35, 60);
+            this.labelControl11.Location = new System.Drawing.Point(41, 60);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(47, 13);
             this.labelControl11.TabIndex = 209;
@@ -1715,19 +1730,19 @@
             this.windowsUIButtonPanelMain.AppearanceButton.Pressed.Options.UseFont = true;
             this.windowsUIButtonPanelMain.AppearanceButton.Pressed.Options.UseForeColor = true;
             this.windowsUIButtonPanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            windowsUIButtonImageOptions5.ImageUri.Uri = "Save;Size32x32;GrayScaled";
-            windowsUIButtonImageOptions6.ImageUri.Uri = "Reset;Size32x32;GrayScaled";
-            windowsUIButtonImageOptions7.ImageUri.Uri = "Close";
+            windowsUIButtonImageOptions1.ImageUri.Uri = "Save;Size32x32;GrayScaled";
+            windowsUIButtonImageOptions2.ImageUri.Uri = "Reset;Size32x32;GrayScaled";
+            windowsUIButtonImageOptions3.ImageUri.Uri = "Close";
             this.windowsUIButtonPanelMain.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Save", true, windowsUIButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "save", -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Save", true, windowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "save", -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Reset Changes", true, windowsUIButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "reset", -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Reset Changes", true, windowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "reset", -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Close", true, windowsUIButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "close", -1, false)});
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Close", true, windowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "close", -1, false)});
             this.windowsUIButtonPanelMain.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.windowsUIButtonPanelMain.EnableImageTransparency = true;
             this.windowsUIButtonPanelMain.ForeColor = System.Drawing.Color.White;
-            this.windowsUIButtonPanelMain.Location = new System.Drawing.Point(0, 608);
+            this.windowsUIButtonPanelMain.Location = new System.Drawing.Point(0, 628);
             this.windowsUIButtonPanelMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.windowsUIButtonPanelMain.MaximumSize = new System.Drawing.Size(0, 60);
             this.windowsUIButtonPanelMain.MinimumSize = new System.Drawing.Size(60, 60);
@@ -1741,9 +1756,9 @@
             // windowsUIButtonPanelCloseButton
             // 
             this.windowsUIButtonPanelCloseButton.ButtonInterval = 0;
-            windowsUIButtonImageOptions8.ImageUri.Uri = "Backward;Size32x32;GrayScaled";
+            windowsUIButtonImageOptions4.ImageUri.Uri = "Backward;Size32x32;GrayScaled";
             this.windowsUIButtonPanelCloseButton.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("", true, windowsUIButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "back_arrow_exit", -1, false)});
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("", true, windowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "back_arrow_exit", -1, false)});
             this.windowsUIButtonPanelCloseButton.ContentAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.windowsUIButtonPanelCloseButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.windowsUIButtonPanelCloseButton.ForeColor = System.Drawing.Color.Gray;
@@ -1753,7 +1768,7 @@
             this.windowsUIButtonPanelCloseButton.Name = "windowsUIButtonPanelCloseButton";
             this.windowsUIButtonPanelCloseButton.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.windowsUIButtonPanelCloseButton.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.windowsUIButtonPanelCloseButton.Size = new System.Drawing.Size(45, 608);
+            this.windowsUIButtonPanelCloseButton.Size = new System.Drawing.Size(45, 628);
             this.windowsUIButtonPanelCloseButton.TabIndex = 247;
             this.windowsUIButtonPanelCloseButton.Text = "windowsUIButtonPanel1";
             this.windowsUIButtonPanelCloseButton.UseButtonBackgroundImages = false;
@@ -1801,7 +1816,7 @@
             this.groupBox1.Controls.Add(this.txtDOJ);
             this.groupBox1.Location = new System.Drawing.Point(60, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(598, 180);
+            this.groupBox1.Size = new System.Drawing.Size(598, 176);
             this.groupBox1.TabIndex = 249;
             this.groupBox1.TabStop = false;
             // 
@@ -1809,7 +1824,7 @@
             // 
             this.labelControl24.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl24.Appearance.Options.UseFont = true;
-            this.labelControl24.Location = new System.Drawing.Point(56, 138);
+            this.labelControl24.Location = new System.Drawing.Point(66, 138);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(22, 13);
             this.labelControl24.TabIndex = 238;
@@ -1838,6 +1853,88 @@
             this.txtUnitCode.EditValueChanged += new System.EventHandler(this.txtUnitCode_EditValueChanged);
             this.txtUnitCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUnitCode_KeyDown);
             // 
+            // lblDailyWageRate
+            // 
+            this.lblDailyWageRate.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblDailyWageRate.Appearance.Options.UseFont = true;
+            this.lblDailyWageRate.Location = new System.Drawing.Point(169, 34);
+            this.lblDailyWageRate.Name = "lblDailyWageRate";
+            this.lblDailyWageRate.Size = new System.Drawing.Size(85, 13);
+            this.lblDailyWageRate.TabIndex = 242;
+            this.lblDailyWageRate.Text = "Daily Wage Rate";
+            // 
+            // txtDailyWageRate
+            // 
+            this.txtDailyWageRate.EnterMoveNextControl = true;
+            this.txtDailyWageRate.Location = new System.Drawing.Point(258, 30);
+            this.txtDailyWageRate.Name = "txtDailyWageRate";
+            this.txtDailyWageRate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.txtDailyWageRate.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDailyWageRate.Properties.MaxLength = 4;
+            this.txtDailyWageRate.Size = new System.Drawing.Size(99, 20);
+            this.txtDailyWageRate.TabIndex = 241;
+            // 
+            // chkDailyWage
+            // 
+            this.chkDailyWage.AutoSize = true;
+            this.chkDailyWage.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.chkDailyWage.Location = new System.Drawing.Point(29, 32);
+            this.chkDailyWage.Name = "chkDailyWage";
+            this.chkDailyWage.Size = new System.Drawing.Size(89, 17);
+            this.chkDailyWage.TabIndex = 239;
+            this.chkDailyWage.Text = "Daily Wager";
+            this.chkDailyWage.UseVisualStyleBackColor = true;
+            this.chkDailyWage.CheckedChanged += new System.EventHandler(this.chkDailyWage_CheckedChanged);
+            // 
+            // labelControl26
+            // 
+            this.labelControl26.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl26.Appearance.Options.UseFont = true;
+            this.labelControl26.Location = new System.Drawing.Point(386, 34);
+            this.labelControl26.Name = "labelControl26";
+            this.labelControl26.Size = new System.Drawing.Size(79, 13);
+            this.labelControl26.TabIndex = 251;
+            this.labelControl26.Text = "Working Hours";
+            // 
+            // txtDailyWageHours
+            // 
+            this.txtDailyWageHours.EnterMoveNextControl = true;
+            this.txtDailyWageHours.Location = new System.Drawing.Point(469, 30);
+            this.txtDailyWageHours.Name = "txtDailyWageHours";
+            this.txtDailyWageHours.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.txtDailyWageHours.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDailyWageHours.Properties.MaxLength = 4;
+            this.txtDailyWageHours.Size = new System.Drawing.Size(99, 20);
+            this.txtDailyWageHours.TabIndex = 250;
+            this.txtDailyWageHours.EditValueChanged += new System.EventHandler(this.txtDailyWageHours_EditValueChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtDailyWageMinutes);
+            this.groupBox2.Controls.Add(this.chkDailyWage);
+            this.groupBox2.Controls.Add(this.labelControl26);
+            this.groupBox2.Controls.Add(this.txtDailyWageRate);
+            this.groupBox2.Controls.Add(this.lblDailyWageRate);
+            this.groupBox2.Controls.Add(this.txtDailyWageHours);
+            this.groupBox2.Location = new System.Drawing.Point(60, 230);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(598, 67);
+            this.groupBox2.TabIndex = 252;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Daily Wager";
+            // 
+            // txtDailyWageMinutes
+            // 
+            this.txtDailyWageMinutes.EnterMoveNextControl = true;
+            this.txtDailyWageMinutes.Location = new System.Drawing.Point(469, 9);
+            this.txtDailyWageMinutes.Name = "txtDailyWageMinutes";
+            this.txtDailyWageMinutes.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.txtDailyWageMinutes.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDailyWageMinutes.Properties.MaxLength = 4;
+            this.txtDailyWageMinutes.Size = new System.Drawing.Size(99, 20);
+            this.txtDailyWageMinutes.TabIndex = 252;
+            this.txtDailyWageMinutes.Visible = false;
+            // 
             // frmEmloyeeMstAddEdit
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -1846,7 +1943,8 @@
             this.Appearance.Options.UseForeColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 668);
+            this.ClientSize = new System.Drawing.Size(718, 688);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelControl);
@@ -1945,6 +2043,11 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitDesc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDailyWageRate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDailyWageHours.Properties)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDailyWageMinutes.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2085,5 +2188,12 @@
         private DevExpress.XtraEditors.LabelControl labelControl24;
         private DevExpress.XtraEditors.TextEdit txtUnitDesc;
         private DevExpress.XtraEditors.TextEdit txtUnitCode;
+        private DevExpress.XtraEditors.LabelControl lblDailyWageRate;
+        private DevExpress.XtraEditors.TextEdit txtDailyWageRate;
+        private System.Windows.Forms.CheckBox chkDailyWage;
+        private DevExpress.XtraEditors.LabelControl labelControl26;
+        private DevExpress.XtraEditors.TextEdit txtDailyWageHours;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private DevExpress.XtraEditors.TextEdit txtDailyWageMinutes;
     }
 }

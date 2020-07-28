@@ -495,15 +495,15 @@ namespace WindowsFormsApplication1
 
                                 sqlcom.CommandText = "Insert into ARTICLE"
                                                         + " (ARTCODSCHEM, ARTGENMODAUTO,ARTIDENTMOD,ARTDATE,ARTNO,ARTALIAS,ARTSETNAME,ARTNAME,ARTDESC,ARTSECTIONID,"
-                                                          + " ARTSBSECTIONID,ARTBRANDID,ARTUOM,ARTPURPRICE,ARTWPPRCN,ARTWSP,ARTMRP,ARTMPPRCN,ARTRSP,ARTMARGIN,ARTNMAINTSTK,ARTMRKFXPRC,ATaxCodeLocal,ATaxCodeCentral)"
+                                                          + " ARTSBSECTIONID,ARTBRANDID,ARTUOM,ARTPURPRICE,ARTWSP,ARTMRP,ARTMARGIN,ARTNMAINTSTK,ARTMRKFXPRC,ATaxCodeLocal,ATaxCodeCentral)"
                                                         + " values(@ARTCODSCHEM,@ARTGENMODAUTO,@ARTIDENTMOD,@ARTDATE,@ARTNO,@ARTALIAS,@ARTSETNAME,@ARTNAME,@ARTDESC,@ARTSECTIONID,"
-                                                          + " @ARTSBSECTIONID,@ARTBRANDID,@ARTUOM,@ARTPURPRICE,@ARTWPPRCN,@ARTWSP,@ARTMRP,@ARTMPPRCN,@ARTRSP,@ARTMARGIN,@ARTNMAINTSTK,@ARTMRKFXPRC,@ATaxCodeLocal,@ATaxCodeCentral)";
+                                                          + " @ARTSBSECTIONID,@ARTBRANDID,@ARTUOM,@ARTPURPRICE,@ARTWSP,@ARTMRP,@ARTMARGIN,@ARTNMAINTSTK,@ARTMRKFXPRC,@ATaxCodeLocal,@ATaxCodeCentral)";
                             }
                             if (s1 == "Edit")
                             {
                                 sqlcom.CommandText = " UPDATE  ARTICLE Set"
                                                     + " ARTCODSCHEM=@ARTCODSCHEM,ARTGENMODAUTO=@ARTGENMODAUTO,ARTIDENTMOD=@ARTIDENTMOD,ARTDATE=@ARTDATE,ARTNO=@ARTNO,ARTALIAS=@ARTALIAS,ARTSETNAME=@ARTSETNAME,ARTNAME=@ARTNAME,ARTDESC=@ARTDESC,ARTBRANDID=@ARTBRANDID,ARTSECTIONID=@ARTSECTIONID,ARTSBSECTIONID=@ARTSBSECTIONID, "
-                                                     + "ARTUOM=@ARTUOM,ARTPURPRICE=@ARTPURPRICE,ARTWPPRCN=@ARTWPPRCN,ARTWSP=@ARTWSP,ARTMRP=@ARTMRP,ARTMPPRCN=@ARTMPPRCN,ARTRSP=@ARTRSP ,ARTMARGIN=@ARTMARGIN,ARTNMAINTSTK=@ARTNMAINTSTK,ARTMRKFXPRC=@ARTMRKFXPRC,ATaxCodeLocal=@ATaxCodeLocal,ATaxCodeCentral=@ATaxCodeCentral"
+                                                     + "ARTUOM=@ARTUOM,ARTPURPRICE=@ARTPURPRICE,ARTWSP=@ARTWSP,ARTMRP=@ARTMRP,ARTMARGIN=@ARTMARGIN,ARTNMAINTSTK=@ARTNMAINTSTK,ARTMRKFXPRC=@ARTMRKFXPRC,ATaxCodeLocal=@ATaxCodeLocal,ATaxCodeCentral=@ATaxCodeCentral"
                                                     + " Where ARTSYSID=@ARTSYSID";
                                 sqlcom.Parameters.AddWithValue("@ARTSYSID", txtSysID.Text.Trim());
                                 CaptureScreen();

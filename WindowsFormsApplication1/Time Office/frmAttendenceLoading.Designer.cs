@@ -61,6 +61,8 @@ namespace BNPL.Forms_Master
             this.label1 = new System.Windows.Forms.Label();
             this.HelpGrid = new DevExpress.XtraGrid.GridControl();
             this.HelpGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtEmpName = new DevExpress.XtraEditors.TextEdit();
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGridView)).BeginInit();
@@ -71,6 +73,7 @@ namespace BNPL.Forms_Master
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HelpGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HelpGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmpName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_ToolStrip
@@ -306,7 +309,7 @@ namespace BNPL.Forms_Master
             // 
             // btnLoad_Data
             // 
-            this.btnLoad_Data.Location = new System.Drawing.Point(395, 52);
+            this.btnLoad_Data.Location = new System.Drawing.Point(592, 52);
             this.btnLoad_Data.Name = "btnLoad_Data";
             this.btnLoad_Data.Size = new System.Drawing.Size(95, 20);
             this.btnLoad_Data.TabIndex = 3;
@@ -391,12 +394,33 @@ namespace BNPL.Forms_Master
             this.HelpGridView.OptionsView.ShowIndicator = false;
             this.HelpGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(386, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 362;
+            this.label2.Text = "Emp Name";
+            // 
+            // txtEmpName
+            // 
+            this.txtEmpName.EnterMoveNextControl = true;
+            this.txtEmpName.Location = new System.Drawing.Point(453, 52);
+            this.txtEmpName.Name = "txtEmpName";
+            this.txtEmpName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEmpName.Properties.MaxLength = 6;
+            this.txtEmpName.Size = new System.Drawing.Size(90, 20);
+            this.txtEmpName.TabIndex = 361;
+            // 
             // frmAttendenceLaoding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 477);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtEmpName);
             this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtEmpCode);
@@ -422,6 +446,7 @@ namespace BNPL.Forms_Master
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HelpGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HelpGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmpName.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,5 +485,7 @@ namespace BNPL.Forms_Master
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraGrid.GridControl HelpGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView HelpGridView;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.TextEdit txtEmpName;
     }
 }

@@ -171,8 +171,8 @@ namespace WindowsFormsApplication1
             ProjectFunctions.ButtonVisualize(this);
 
 
-            DataSet dsCompany = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_COMCONF());
-            if (dsCompany.Tables[0].Rows.Count > 0)
+            DataSet dsCompany = ProjectFunctionsUtils.GetDataSet(SQL_QUERIES.SQL_COMCONF());
+            if (ComparisonUtils.IsNotNull_DataSet(dsCompany))
             {
                 txtCompany.DataSource = dsCompany.Tables[0];
                 txtCompany.ValueMember = SQL_COLUMNS.COMCONF._COMSYSID;// "COMSYSID";
@@ -180,7 +180,7 @@ namespace WindowsFormsApplication1
             }
 
             DataSet dsFNYear = ProjectFunctionsUtils.GetDataSet(SQL_QUERIES.SQL_FN_YEAR_ACTIVE("Y"));
-            if (dsFNYear.Tables[0].Rows.Count > 0)
+            if (ComparisonUtils.IsNotNull_DataSet(dsFNYear))
             {                
                 txtFNYear.DataSource = dsFNYear.Tables[0];
                 txtFNYear.ValueMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
@@ -192,6 +192,7 @@ namespace WindowsFormsApplication1
                 txtPassword.Text = "123";
                 txtUserName.Text = "HAPPY";
                 SendKeys.Send("{Enter}");
+          
                 txtUserName.Focus();
 
 
@@ -207,19 +208,19 @@ namespace WindowsFormsApplication1
         {
             //if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-                DataSet dsGetUser = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_USERMASTER_BY_USER(txtUserName.Text.Trim()));
-                if (dsGetUser.Tables[0].Rows.Count > 0)
+                DataSet dsGetUser = ProjectFunctionsUtils.GetDataSet(SQL_QUERIES.SQL_USERMASTER_BY_USER(txtUserName.Text.Trim()));
+                if (ComparisonUtils.IsNotNull_DataSet(dsGetUser))
                 {
                     GlobalVariables.CurrentUser = txtUserName.Text;
-                    DataSet dsUnit = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_UNITS_BY_USER(txtUserName.Text));
-                    if (dsUnit.Tables[0].Rows.Count > 0)
+                    DataSet dsUnit = ProjectFunctionsUtils.GetDataSet(SQL_QUERIES.SQL_UNITS_BY_USER(txtUserName.Text));
+                    if (ComparisonUtils.IsNotNull_DataSet(dsUnit))
                     {
                         txtUnit.DataSource = dsUnit.Tables[0];
                         txtUnit.ValueMember = SQL_COLUMNS.UNITS._UNITID;
                         txtUnit.DisplayMember = SQL_COLUMNS.UNITS._UNITNAME;
                     }
-                    DataSet dsFNYear = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_USER_FN_ACCESS_BY_USER(txtUserName.Text));
-                    if (dsFNYear.Tables[0].Rows.Count > 0)
+                    DataSet dsFNYear = ProjectFunctionsUtils.GetDataSet(SQL_QUERIES.SQL_USER_FN_ACCESS_BY_USER(txtUserName.Text));
+                    if (ComparisonUtils.IsNotNull_DataSet(dsFNYear))
                     {
                         txtFNYear.DataSource = dsFNYear.Tables[0];
                         txtFNYear.ValueMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
@@ -261,7 +262,9 @@ namespace WindowsFormsApplication1
         {
 
             txtUserName.Text = "HAPPY";
+         
             SendKeys.Send("{Enter}");
+
         }
 
         private void btnBackup_Click(object sender, EventArgs e)
@@ -282,14 +285,15 @@ namespace WindowsFormsApplication1
             SplashScreenManager.CloseForm();
         }
 
-        private void txtFNYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void txtCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private void txtFNYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtFNYear.Text = "2020-2021";
         }
     }
 }

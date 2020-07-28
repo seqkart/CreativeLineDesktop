@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
     {
 
         public static SpeechSynthesizer _synthesizer = new SpeechSynthesizer();
-        public static String ConnectionString = ProjectFunctionsUtils.ConnectionString;////@"Data Source=DESKTOP-1I98CVU\SQLEXPRESS;Initial Catalog=SEQKART;User ID=sa;pwd=admin@123";
+        public static String ConnectionString = ProjectFunctionsUtils.ConnectionString;////@"Data Source=cserver;Initial Catalog=SEQKART;User ID=sa;pwd=Seq@2021";
         //public static String ConnectionString = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\server.txt");
 
         //public static void SendSMS(string uid, string password, string message, string no)
@@ -261,7 +261,8 @@ namespace WindowsFormsApplication1
                 catch (Exception ex)
 #pragma warning restore CS0168 // The variable 'ex' is declared but never used
                 {
-
+                    System.Diagnostics.Debug.WriteLine("ProjectFunction => GetDataSet => " + Query);
+                    System.Diagnostics.Debug.WriteLine("ProjectFunction => GetDataSet => " + ex);
                     return null;
                 }
             }

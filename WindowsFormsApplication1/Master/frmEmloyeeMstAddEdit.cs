@@ -91,6 +91,41 @@ namespace WindowsFormsApplication1
                 return false;
             }
 
+            if (chkDailyWage.Checked)
+            {
+                if (txtDailyWageRate.Text.Trim().Length == 0)
+                {
+                    ProjectFunctions.SpeakError("Please Enter Daily Wage Rates");
+                    txtDailyWageRate.Focus();
+                    return false;
+                }
+                else
+                {
+                    if (!ComparisonUtils.IsDecimal(txtDailyWageRate.Text))
+                    {
+                        ProjectFunctions.SpeakError("Daily Wage Rates Should be Numbers");
+                        txtDailyWageRate.Focus();
+                        return false;
+                    }                                          
+                }
+
+                if (txtDailyWageHours.Text.Trim().Length == 0)
+                {
+                    ProjectFunctions.SpeakError("Please Enter Daily Wager Working Hours");
+                    txtDailyWageHours.Focus();
+                    return false;
+                }
+                else
+                {
+                    if (!ComparisonUtils.IsNumeric(txtDailyWageHours.Text))
+                    {
+                        ProjectFunctions.SpeakError("Daily Wage Working Hours Should be Numbers");
+                        txtDailyWageHours.Focus();
+                        return false;
+                    }
+                }
+
+            }
 
             //var inTime_First = Convert.ToDateTime(timeEdit_Time_In_First.EditValue);
             //var outTime_First = Convert.ToDateTime(timeEdit_Time_Out_First.EditValue);
@@ -201,10 +236,23 @@ namespace WindowsFormsApplication1
         //Convert binary to image
         Image ConvertBinaryToImage(byte[] data)
         {
-            using (MemoryStream ms = new MemoryStream(data))
+            try
             {
-                return Image.FromStream(ms);
+                if (data != null)
+                {
+                    using (MemoryStream ms = new MemoryStream(data))
+                    {
+                        return Image.FromStream(ms);
+
+                    }
+                }
+                
             }
+            catch(Exception ex)
+            {
+                PrintLogWin.PrintLog(ex);
+            }
+            return null;
         }
 
         private void Page_Load1()
@@ -245,6 +293,9 @@ namespace WindowsFormsApplication1
             SetMyControls();
             if (s1 == "&Add")
             {
+                chkDailyWage.Checked = true;
+                chkDailyWage.Checked = false;
+
                 txtEmpName.Select();
                 txtEmpCode.Text = ProjectFunctionsUtils.GetNewEmpCode();//.PadLeft(5, '0');
                 form_loaded = true;
@@ -363,113 +414,47 @@ namespace WindowsFormsApplication1
                     timeEdit_Time_Out_Last.EditValue = empData.TimeOutLast.ToString();
                     totalWorkingHours_Text.EditValue = empData.WorkingHours;
                     pictureBox1.Image = ConvertBinaryToImage(empData.EmpImage);
+
+                    chkDailyWage.Checked = empData.DailyWage;
+                    PrintLogWin.PrintLog("chkDailyWage.Checked =========> " + chkDailyWage.Checked + "");
+                    PrintLogWin.PrintLog("empData.DailyWage =========> " + empData.DailyWage + "");
+
+                    if (chkDailyWage.Checked)
+                    {
+                        if (empData.DailyWageRate != null && empData.DailyWageRate != 0)
+                        {
+                            txtDailyWageRate.EditValue = empData.DailyWageRate;
+                            txtDailyWageRate.Tag = empData.DailyWageRate;
+                        }
+                        else
+                        {
+                            txtDailyWageRate.EditValue = null;
+                        }
+
+                        if (empData.DailyWageMinutes != null && empData.DailyWageMinutes != 0)
+                        {
+                            txtDailyWageHours.EditValue = empData.DailyWageMinutes / 60;
+                            txtDailyWageHours.Tag = empData.DailyWageMinutes / 60;
+                        }
+                        else
+                        {
+                            txtDailyWageHours.EditValue = null;
+                        }
+                    }
+                    else
+                    {
+                        txtDailyWageRate.Enabled = false;
+                        txtDailyWageRate.EditValue = null;
+
+                        txtDailyWageHours.Enabled = false;
+                        txtDailyWageHours.EditValue = null;
+                    }                    
                 }
 
                 form_loaded = true;
 
                 txtEmpName.Enabled = false;
                 PrintLogWin.PrintLog("frmEmloyeeMstAddEdit_Load =========> Line 131 => sp_LoadEmpMstFEditing '" + EmpCode + "'");
-
-                var dsResult = ProjectFunctionsUtils.GetDataSet_T("sp_LoadEmpMstFEditing '" + EmpCode + "'");
-                if (dsResult.Item1)
-                {
-                    DataSet ds = dsResult.Item2;
-
-                    if (ds.Tables[0].Rows.Count > 10000)
-                    {
-
-                        txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
-                        txtRelationTag.Text = ds.Tables[0].Rows[0]["EmpFHRelationTag"].ToString();
-                        txtFHName.Text = ds.Tables[0].Rows[0]["EmpFHName"].ToString();
-                        txtDeptCode.Text = ds.Tables[0].Rows[0]["EmpDeptCode"].ToString();
-                        txtDeptDesc.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
-                        txtDesgCode.Text = ds.Tables[0].Rows[0]["EmpDesgCode"].ToString();
-                        txtDesgDesc.Text = ds.Tables[0].Rows[0]["DesgDesc"].ToString();
-                        txtEmpSex.Text = ds.Tables[0].Rows[0]["EmpSex"].ToString();
-                        if (ds.Tables[0].Rows[0]["EmpDOJ"].ToString() == string.Empty)
-                        {
-
-                        }
-                        else
-                        {
-                            txtDOJ.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDOJ"]);
-                        }
-                        if (ds.Tables[0].Rows[0]["EmpDOL"].ToString() == string.Empty)
-                        {
-
-                        }
-                        else
-                        {
-                            txtDOL.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDOL"]);
-                        }
-
-                        txtEPFTag.Text = ds.Tables[0].Rows[0]["EmpPFDTag"].ToString();
-                        txtESIDTag.Text = ds.Tables[0].Rows[0]["EmpESIDTag"].ToString();
-                        txtEPFNo.Text = ds.Tables[0].Rows[0]["EmpPFno"].ToString();
-                        txtESICNo.Text = ds.Tables[0].Rows[0]["EmpESIno"].ToString();
-                        
-                        txtTDS.Text = ds.Tables[0].Rows[0]["EmpTDS"].ToString();
-                        txtEmpLeft.Text = ds.Tables[0].Rows[0]["EmpLeft"].ToString();
-                        txtRemarks.Text = ds.Tables[0].Rows[0]["EmpRemarks"].ToString();
-                        txtMotherName.Text = ds.Tables[0].Rows[0]["EmpMotherNm"].ToString();
-
-                        txtState.Text = ds.Tables[0].Rows[0]["EmpPerState"].ToString();
-                        txtState.Text = ds.Tables[0].Rows[0]["EmpPerCountry"].ToString();
-
-                        txtNationality.Text = ds.Tables[0].Rows[0]["EmpNationality"].ToString();
-                        txtEmail.Text = ds.Tables[0].Rows[0]["EmpEmail"].ToString();
-                        txtCategoryCode.Text = ds.Tables[0].Rows[0]["EmpCategory"].ToString();
-
-                        txtCategoryDesc.Text = ds.Tables[0].Rows[0]["CatgDesc"].ToString();
-
-                        txtDOB.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpDoB"]);
-                        txtPanNo.Text = ds.Tables[0].Rows[0]["EmpPanNo"].ToString();
-                        txtPassPortNo.Text = ds.Tables[0].Rows[0]["EmpPassportNo"].ToString();
-
-                       
-                        txtEmployeeReligion.Text = ds.Tables[0].Rows[0]["EmpReligion"].ToString();
-                        txtMaritalStatus.Text = ds.Tables[0].Rows[0]["EmpMaritalStatus"].ToString();
-                        txtPaymentMode.Text = ds.Tables[0].Rows[0]["EmpPymtMode"].ToString();
-                        txtIfscCode.Text = ds.Tables[0].Rows[0]["EmpBankIFSCode"].ToString();
-                        txtBankAccountNo.Text = ds.Tables[0].Rows[0]["EmpBankAcNo"].ToString();
-                        txtBankName.Text = ds.Tables[0].Rows[0]["EmpBankName"].ToString();
-                        txtNomineeName.Text = ds.Tables[0].Rows[0]["EmpNominee"].ToString();
-                        txtNomineeRelation.Text = ds.Tables[0].Rows[0]["EmpNomineeRelation"].ToString();
-                        if (ds.Tables[0].Rows[0]["EmpNomineeDOB"].ToString() == string.Empty)
-                        {
-
-                        }
-                        else
-                        {
-                            txtNomineeDOB.EditValue = Convert.ToDateTime(ds.Tables[0].Rows[0]["EmpNomineeDOB"]);
-                        }
-
-
-
-                        txtAdharCardNo.Text = ds.Tables[0].Rows[0]["EmpAdharCardNo"].ToString();
-
-                        txtHealthInsurance.Text = ds.Tables[0].Rows[0]["EmpGHISDed"].ToString();
-
-                        txtMiscDed.Text = ds.Tables[0].Rows[0]["EmpMscD1"].ToString();
-
-                        txtAddress1.Text = ds.Tables[0].Rows[0]["EmpAddress1"].ToString();
-                        txtAddress2.Text = ds.Tables[0].Rows[0]["EmpAddress2"].ToString();
-                        txtAddress3.Text = ds.Tables[0].Rows[0]["EmpAddress3"].ToString();
-                       
-                        txtState.Text = ds.Tables[0].Rows[0]["EmpState"].ToString();
-                        txtCountry.Text = ds.Tables[0].Rows[0]["EmpCountry"].ToString();
-
-                        txtEFPFTag.Text = ds.Tables[0].Rows[0]["EmpFpfDTag"].ToString();
-                        
-                        //NULL Exception
-                        //txtUANNo.Text = ds.Tables[0].Rows[0]["EmpUANNo"].ToString();
-                        //txtUnitCode.Text = ds.Tables[0].Rows[0]["UnitCode"].ToString();
-                        //txtUnitName.Text = ds.Tables[0].Rows[0]["UnitName"].ToString();
-                        //txtAccCode.Text = ds.Tables[0].Rows[0]["EmpPartyCode"].ToString();
-                        //txtBankBranchCode.Text = ds.Tables[0].Rows[0]["EmpBankBranchCode"].ToString();
-                        txtCategoryCode.Focus();
-                    }
-                }
 
                 
             }
@@ -596,7 +581,7 @@ namespace WindowsFormsApplication1
                                                  + " EmpSplAlw,EmpReligion,EmpMaritalStatus,EmpPymtMode,EmpBankIFSCode,"
                                                  + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode," +
                                                  "" +
-                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours, EmpImage)"
+                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours, EmpImage, DailyWage, DailyWageRate, DailyWageMinutes)"
                                                  + " values(" + empCode_SQL + ",@EmpName,@EmpFHRelationTag,@EmpFHName, @UnitCode, @EmpDeptCode,@EmpDesgCode,@EmpCategory,"
                                                  + " @EmpSex,@EmpDOJ,@EmpDOL,@EmpPFDTag,"
                                                  + " @EmpESIDTag,@EmpPFno,@EmpESIno,@EmpBasic,@EmpHRA,@EmpConv,"
@@ -605,7 +590,7 @@ namespace WindowsFormsApplication1
                                                  + " @EmpPassportNo,"
                                                  + " @EmpSplAlw,@EmpReligion,@EmpMaritalStatus,@EmpPymtMode,@EmpBankIFSCode,"
                                                  + " @EmpBankAcNo,@EmpBankName,@EmpNominee,@EmpNomineeRelation,@EmpNomineeDOB,@EmpAdharCardNo,@EmpGHISDed,@EmpFPFDTag,@EmpMscD1,@EmpAddress1,@EmpAddress2,@EmpAddress3,@EmpDistCity,@EmpState,@EmpCountry,@EmpUANNo,@EmpBankBranchCode," +
-                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast, @WorkingHours, @EmpImage)"
+                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast, @WorkingHours, @EmpImage, @DailyWage, @DailyWageRate, @DailyWageMinutes)"
                                                  + " Commit ";
                             sqlcom.CommandText = sql;
 
@@ -627,7 +612,10 @@ namespace WindowsFormsApplication1
                                                 "   TimeInLast = @TimeInLast," +
                                                 "   TimeOutLast = @TimeOutLast," +
                                                 "   WorkingHours = @WorkingHours, " +
-                                                "   EmpImage = @EmpImage" +
+                                                "   EmpImage = @EmpImage," +
+                                                "   DailyWage = @DailyWage," +
+                                                "   DailyWageRate = @DailyWageRate," +
+                                                "   DailyWageMinutes = @DailyWageMinutes" +
                                                 "   Where EmpCode=@EmpCode";
 
                             sqlcom.CommandText = sql;
@@ -726,18 +714,25 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@TimeOutLast", ConvertTo.DateTimeVal(timeEdit_Time_Out_Last.Text.ToString().Trim()));
                         sqlcom.Parameters.AddWithValue("@WorkingHours", ConvertTo.IntVal(totalWorkingHours_Text.Text.ToString().Trim()));
 
-                        byte[] byteEmpty = null;
+                        
+
 
                         
                         if (ComparisonUtilsWin.PictureBox_IsNullOrEmpty(pictureBox1))
                         {
+                            byte[] byteEmpty = ConvertImageToBinary(WindowsFormsApplication1.Properties.Resources.profile_icon);
                             sqlcom.Parameters.AddWithValue("@EmpImage", byteEmpty);
+                            PrintLogWin.PrintLog("================== 1");
                         }
                         else
                         {
                             sqlcom.Parameters.AddWithValue("@EmpImage", ConvertImageToBinary(pictureBox1.Image));
+                            PrintLogWin.PrintLog("================== 2");
                         }
-                        
+
+                        sqlcom.Parameters.AddWithValue("@DailyWage", chkDailyWage.Checked);
+                        sqlcom.Parameters.AddWithValue("@DailyWageRate", (txtDailyWageRate.Text.Length == 0) ? 0 : txtDailyWageRate.EditValue);
+                        sqlcom.Parameters.AddWithValue("@DailyWageMinutes", (txtDailyWageMinutes.Text.Length == 0) ? 0 : txtDailyWageMinutes.EditValue);
 
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
@@ -1137,5 +1132,75 @@ namespace WindowsFormsApplication1
             //var totalHrs_First = (dateTime_Out - dateTime_In).TotalHours;
             //totalWorkingHours_Text.Text = totalHrs_First.ToString();
         }
+
+        private void chkDailyWage_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if (s1 == "&Add")
+            {
+                if (chkDailyWage.Checked)
+                {
+                    txtDailyWageRate.Enabled = true;
+                    txtDailyWageHours.Enabled = true;
+
+                    RelationShipGrid123.TabPages[1].PageVisible = false;
+                }
+                else
+                {
+                    txtDailyWageRate.Enabled = false;
+                    txtDailyWageHours.Enabled = false;
+
+                    RelationShipGrid123.TabPages[1].PageVisible = true;
+                }
+            }
+            if (s1 == "Edit")
+            {
+                if (chkDailyWage.Checked)
+                {
+                    txtDailyWageRate.Enabled = true;
+
+                    if (txtDailyWageRate.Tag != null)
+                    {
+                        txtDailyWageRate.EditValue = txtDailyWageRate.Tag;
+                    }
+                    else
+                    {
+                        txtDailyWageRate.EditValue = null;
+                    }
+
+                    txtDailyWageHours.Enabled = true;
+
+                    if (txtDailyWageHours.Tag != null)
+                    {
+                        txtDailyWageHours.EditValue = txtDailyWageHours.Tag;
+                    }
+                    else
+                    {
+                        txtDailyWageHours.EditValue = null;
+                    }
+
+                    RelationShipGrid123.TabPages[1].PageVisible = false;
+
+                }
+                else
+                {
+                    txtDailyWageRate.Enabled = false;
+                    txtDailyWageRate.EditValue = null;
+
+                    txtDailyWageHours.Enabled = false;
+                    txtDailyWageHours.EditValue = null;
+
+                    RelationShipGrid123.TabPages[1].PageVisible = true;
+
+                }
+            }
+        }
+
+        private void txtDailyWageHours_EditValueChanged(object sender, EventArgs e)
+        {
+            txtDailyWageMinutes.EditValue = ConvertTo.IntVal(txtDailyWageHours.EditValue) * 60;
+        }
+
+        
     }
 }

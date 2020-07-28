@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 
 public class ComparisonUtils
@@ -10,6 +11,30 @@ public class ComparisonUtils
             return false;
         }
         return true;
+    }
+
+    public static bool IsNumeric(object val)
+    {
+        try
+        {
+            int v = Convert.ToInt32(val);
+            return true;
+        }
+        catch { }
+
+        return false;
+    }
+
+    public static bool IsDecimal(object val)
+    {
+        try
+        {
+            decimal v = Convert.ToDecimal(val);
+            return true;
+        }
+        catch { }
+
+        return false;
     }
 
     public static bool IsEmpty(object val)

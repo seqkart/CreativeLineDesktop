@@ -21,7 +21,7 @@ namespace SeqKartLibrary
     public class ProjectFunctionsUtils
     {
         public static SpeechSynthesizer _synthesizer = new SpeechSynthesizer();
-        public static String ConnectionString = @"Data Source=DESKTOP-1I98CVU\SQLEXPRESS;Initial Catalog=SEQKARTNew;User ID=sa;pwd=admin@123";
+        public static String ConnectionString = @"Data Source=seqkart.ddns.net;Initial Catalog=SEQKARTNew;User ID=sa;pwd=Seq@2021";
         //public static String ConnectionString = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\server.txt");
 
         //public static void SendSMS(string uid, string password, string message, string no)
@@ -254,6 +254,7 @@ namespace SeqKartLibrary
                 catch (Exception ex)
 #pragma warning restore CS0168 // The variable 'ex' is declared but never used
                 {
+                    System.Diagnostics.Debug.WriteLine("ProjectFunctionUtils => GetDataSet => " + Query);
                     System.Diagnostics.Debug.WriteLine("ProjectFunctionUtils => GetDataSet => " + ex);
                     return null;
                 }

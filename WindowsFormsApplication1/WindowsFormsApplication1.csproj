@@ -475,10 +475,10 @@
     <Compile Include="FormReports\ReportFormatName.designer.cs">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormReports\XtraReportGatePass.cs">
+    <Compile Include="Prints\XtraReportGatePass.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FormReports\XtraReportGatePass.designer.cs">
+    <Compile Include="Prints\XtraReportGatePass.designer.cs">
       <DependentUpon>XtraReportGatePass.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDataTransfer.cs">
@@ -1380,7 +1380,7 @@
     <EmbeddedResource Include="FormReports\ReportFormatName.resx">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormReports\XtraReportGatePass.resx">
+    <EmbeddedResource Include="Prints\XtraReportGatePass.resx">
       <DependentUpon>XtraReportGatePass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDataTransfer.resx">

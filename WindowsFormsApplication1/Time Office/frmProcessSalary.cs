@@ -65,12 +65,23 @@ namespace BNPL.Forms_Transaction
             PrintLogWin.PrintLog(str);
 
 
+
+
+
             DataSet ds = ProjectFunctionsUtils.GetDataSet(str);
-            if (ds.Tables[0].Rows.Count > 0)
+            if (ComparisonUtils.IsNotNull_DataSet(ds))
             {
-                gridControl_SalaryProcess.DataSource = ds.Tables[0];
-                gridView_SalaryProcess.BestFitColumns();
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    gridControl_SalaryProcess.DataSource = ds.Tables[0];
+                    gridView_SalaryProcess.BestFitColumns();
+                }
             }
+            else
+            {
+
+            }
+            
             gridView_SalaryProcess.OptionsBehavior.Editable = true;
 
             foreach (DevExpress.XtraGrid.Columns.GridColumn Col in gridView_SalaryProcess.Columns)
@@ -117,6 +128,7 @@ namespace BNPL.Forms_Transaction
                 dt.Columns.Add("EmpCode", typeof(string));
                 dt.Columns.Add("SalaryMonth", typeof(DateTime));
                 dt.Columns.Add("SalaryPaid", typeof(decimal));
+
 
                 for (int rowIndex = 0; rowIndex != gridView_SalaryProcess.RowCount; rowIndex++)
                 {

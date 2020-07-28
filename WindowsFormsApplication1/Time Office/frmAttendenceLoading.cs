@@ -118,7 +118,7 @@ namespace BNPL.Forms_Master
                     var employeeAttendance = new
                     {
                         SerialId = dr[Col.EmployeeAttendance.serial_id],
-                        EntryDate = dr[Col.EmployeeAttendance.entry_date],
+                        //EntryDate = dr[Col.EmployeeAttendance.entry_date],
                         AttendanceDate = dr[Col.EmployeeAttendance.attendance_date],
                         EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
                         //Shift = dr[Col.DailyShifts.shift_name],
@@ -127,9 +127,9 @@ namespace BNPL.Forms_Master
                         TimeOut_First = dr[Col.EmployeeAttendance.attendance_out_first],
                         TimeIn_Last = dr[Col.EmployeeAttendance.attendance_in_last],
                         TimeOut_Last = dr[Col.EmployeeAttendance.attendance_out_last],
-                        WorkingHours = dr[Col.EmployeeAttendance.working_hours],
+                        WorkingHours = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.working_hours]),                        
+                        OverTime = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.ot_deducton_time]),
                         GatePassTime = dr[Col.EmployeeAttendance.gate_pass_time],
-                        DeductionTimeOT = dr[Col.EmployeeAttendance.ot_deducton_time],
                         Source = dr[Col.AttendanceSource.source_name]
                     };
                     //ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_in_first]).ToString("hh:mm tt")
@@ -138,82 +138,15 @@ namespace BNPL.Forms_Master
                 }
 
                 gridControl_AttendanceData.DataSource = binding_list;
+                gridView_AttendanceData.Columns[0].Visible = false;
             }
-            /*
-             using (SEQKARTNewEntities db = new SEQKARTNewEntities())
-             {
-                 BindingList<AttendanceModel> binding_list = new BindingList<AttendanceModel>();
-
-                 List<EmployeeAttendance> employeeAttendances_List = db.EmployeeAttendances.OrderByDescending(s => s.entry_date).ToList();
-
-                 var employee_list = (from ea in db.EmployeeAttendances
-                                      join st in db.AttendanceStatus
-                                      on ea.status_id equals st.status_id
-                                      join sf in db.DailyShifts
-                                      on ea.shift_id equals sf.shift_id
-                                      join sr in db.AttendanceSources
-                                      on ea.attendance_source equals sr.source_id
-                                      orderby ea.attendance_date
-                                      select new {
-                                          serial_id = ea.serial_id,
-                                          entry_date = ea.entry_date,
-                                          shift_name = sf.shift_name,
-                                          status = st.status,
-                                          employee_code = ea.employee_code,
-                                          attendance_date = ea.attendance_date,
-                                          attendance_in = ea.attendance_in,
-                                          attendance_out = ea.attendance_out,
-                                          source_name = sr.source_name,
-                                          gate_pass_time = ea.gate_pass_time,
-                                          ot_deducton_time = ea.ot_deducton_time
-                                      }).ToList();
-
-
-                 gridControl_AttendanceData.DataSource = employee_list;
-                 gridView_AttendanceData.BestFitColumns();
-
-                 foreach (var item in employee_list)
-                 {
-
-                     AttendanceModel employeeAttendance = new AttendanceModel();
-                     employeeAttendance.serial_id = item.serial_id;
-                     employeeAttendance.entry_date = item.entry_date;
-                     employeeAttendance.shift_name = item.shift_name;
-                     employeeAttendance.status = item.status;
-                     employeeAttendance.employee_code = item.employee_code;
-                     employeeAttendance.attendance_date = item.attendance_date;
-
-                     //DateTime att_in = item.attendance_in.GetValueOrDefault(DateTime.Now);
-                     employeeAttendance.attendance_in = ConvertTo.Date_NullableToNon(item.attendance_in).ToString("hh:mm tt");
-                     employeeAttendance.attendance_out = ConvertTo.Date_NullableToNon(item.attendance_out).ToString("hh:mm tt");
-                     employeeAttendance.source_name = item.source_name;
-                     employeeAttendance.gate_pass_time = ConvertTo.Date_NullableToNon(item.gate_pass_time).ToString("hh:mm tt");
-                     employeeAttendance.ot_deducton_time = item.ot_deducton_time;
-
-                     binding_list.Add(employeeAttendance);
-                 }
-                 gridControl_AttendanceData.DataSource = binding_list;
-
-             }
-             */
-            /*
-            gridView_AttendanceData.Columns.Clear();
-
-            using (SEQKARTNewEntities db = new SEQKARTNewEntities())
-            {
-                //db.Database.
-                List<EmployeeAttendance> employeeAttendances_List = db.EmployeeAttendances.OrderByDescending(s => s.entry_date).ToList();
-                gridControl_AttendanceData.DataSource = employeeAttendances_List;
-                gridView_AttendanceData.BestFitColumns();               
-
-            }
-            */
+            
         }
 
-        private void OpenAttendanceForm(int _serial_id)
+        private void OpenAttendanceForm(int _serial_id, string _employee_code, string _attendance_date)
         {
 
-            XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence(this, _serial_id, "frmAttendenceLoading => Add Button");
+            XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence(this, _serial_id, "frmAttendenceLoading => Add Button", _employee_code, _attendance_date);
             xtraForm_EmployeeAttendence.StartPosition = FormStartPosition.CenterScreen;
 
             xtraForm_EmployeeAttendence.ShowDialog(Parent);
@@ -227,6 +160,8 @@ namespace BNPL.Forms_Master
             int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
             //
             string employee_code = detailView.GetFocusedRowCellValue("EmployeeCode").ToString();
+            string attendance_date = ConvertTo.DateFormatDb(detailView.GetFocusedRowCellValue("AttendanceDate").ToString());
+
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
                 );
@@ -234,7 +169,7 @@ namespace BNPL.Forms_Master
             //MessageBox.Show(CurrentRow[0] + "");
 
 
-            OpenAttendanceForm(cellValue_serial_id);
+            OpenAttendanceForm(cellValue_serial_id, employee_code, attendance_date);
         }
 
         private void gridControl_AttendanceData_DoubleClick(object sender, EventArgs e)
@@ -250,7 +185,7 @@ namespace BNPL.Forms_Master
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            OpenAttendanceForm(0);
+            OpenAttendanceForm(0, "", "");
         }
 
         private void btnAdd2_Click(object sender, EventArgs e)
@@ -298,7 +233,7 @@ namespace BNPL.Forms_Master
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
-                        //txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                        txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
                         //txtDept.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
 
                         //LastInstlmnt();
@@ -324,7 +259,7 @@ namespace BNPL.Forms_Master
             if (HelpGrid.Text == "EmpCode")
             {
                 txtEmpCode.Text = row["EmpCode"].ToString();
-                //txtEmpName.Text = row["EmpName"].ToString();
+                txtEmpName.Text = row["EmpName"].ToString();
                 //txtDept.Text = row["DeptDesc"].ToString();
                 HelpGrid.Visible = false;
                 btnLoad_Data.Focus();
