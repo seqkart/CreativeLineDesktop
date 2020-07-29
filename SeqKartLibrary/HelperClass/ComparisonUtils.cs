@@ -46,6 +46,15 @@ public class ComparisonUtils
         return true;
     }
 
+    public static bool IsNotEmpty(object val)
+    {
+        if (!(val + "").Equals(""))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public static bool IsNotNull_DataSet(DataSet ds)
     {
         try

@@ -8,8 +8,10 @@ using SeqKartLibrary;
 using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Repository;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -24,7 +26,7 @@ namespace BNPL.Forms_Transaction
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-
+        public List<GridView_Style_Model> gridView_Style_List = new List<GridView_Style_Model>();
         public frmProcessSalary()
         {
             InitializeComponent();
@@ -33,6 +35,9 @@ namespace BNPL.Forms_Transaction
         private void frmProcessSalary_Load(object sender, EventArgs e)
         {
             DtStartDate.EditValue = StartDate.Date;
+
+            //gridView_Style_List = ProjectFunctionsUtils.GridView_Style("frmProcessSalary", "gridControl_SalaryProcess");
+
             SetMyControls();
             fillGrid();
         }
@@ -43,6 +48,8 @@ namespace BNPL.Forms_Transaction
 
         private void SetMyControls()
         {
+            gridView_SalaryProcess.CustomColumnDisplayText += gridView_SalaryProcess_CustomColumnDisplayText;
+
             //panelControl1.Location = new Point(ClientSize.Width / 2 - panelControl1.Size.Width / 2, ClientSize.Height / 2 - panelControl1.Size.Height / 2);
             //ProjectFunctions.TextBoxVisualize(panelControl1);
             ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
@@ -63,10 +70,6 @@ namespace BNPL.Forms_Transaction
             var str = "sp_Salary_Process '','" + ConvertTo.DateTimeVal(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "', 1, 1";
 
             PrintLogWin.PrintLog(str);
-
-
-
-
 
             DataSet ds = ProjectFunctionsUtils.GetDataSet(str);
             if (ComparisonUtils.IsNotNull_DataSet(ds))
@@ -92,8 +95,112 @@ namespace BNPL.Forms_Transaction
                 }
             }
 
+            SetGridViewStyle();
+        }
 
+        private void SetGridViewStyle()
+        {
+            gridView_Style_List = ProjectFunctionsUtils.GridView_Style("frmProcessSalary", "gridControl_SalaryProcess");
+
+            if (gridView_Style_List != null)
+            {
+                foreach (DevExpress.XtraGrid.Columns.GridColumn Col in gridView_SalaryProcess.Columns)
+                {
+                    try
+                    {
+                        if (gridView_Style_List.Exists(x => x.column_name.Equals(Col.FieldName)))
+                        {
+                            GridView_Style_Model item = gridView_Style_List.Single<GridView_Style_Model>(x => x.column_name.Equals(Col.FieldName));
+
+                            bool colShow = true;
+                            try
+                            {
+                                if (ComparisonUtils.IsNotEmpty(item.column_show))
+                                {
+                                    if (item.column_show == 0)
+                                    {
+                                        colShow = false;
+                                        Col.Visible = false;
+                                        //gridView_SalaryProcess.Columns[Col.FieldName].Visible = false;
+                                    }
+                                    else
+                                    {
+                                        colShow = true;
+                                        Col.Visible = true;
+                                        //gridView_SalaryProcess.Columns[Col.FieldName].Visible = true;
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                PrintLogWin.PrintLog("SetGridViewStyle => Color => Exception => " + ex);
+                            }
+                            if (colShow)
+                            {
+                                try
+                                {
+                                    if (ComparisonUtils.IsNotEmpty(item.color_code))
+                                    {
+                                        string hex = item.color_code;
+                                        Color color = System.Drawing.ColorTranslator.FromHtml(hex);
+                                        Col.AppearanceCell.BackColor = color;
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    PrintLogWin.PrintLog("SetGridViewStyle => Color => Exception => " + ex);
+                                }
+                                try
+                                {
+                                    if (ComparisonUtils.IsNotEmpty(item.font_style))
+                                    {
+                                        if (item.font_style.ToLower().Equals("bold"))
+                                        {
+                                            Col.AppearanceCell.FontStyleDelta = FontStyle.Bold;
+                                        }
+                                        if (item.font_style.ToLower().Equals("Italic"))
+                                        {
+                                            Col.AppearanceCell.FontStyleDelta = FontStyle.Italic;
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    PrintLogWin.PrintLog("SetGridViewStyle => FontStyle => Exception => " + ex);
+                                }
+                            }
+                            
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        PrintLogWin.PrintLog("SetGridViewStyle => Exception => " + ex);
+                    }
+
+                    //if (Col.FieldName == "SalaryPaid")
+                    //{
+                    //    string hex = "#FF0000";
+                    //    Color color = System.Drawing.ColorTranslator.FromHtml(hex);
+
+                    //    Col.AppearanceCell.BackColor = color;
+                    //    Col.AppearanceCell.FontStyleDelta = FontStyle.Bold;
+
+                    //}
+                }
+            }
             
+        }
+        
+        private void gridView_SalaryProcess_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "OT_Time")
+            {
+                if (e.Value != DBNull.Value)
+                {
+                    //e.DisplayText = ConvertTo.MinutesToHours(e.Value) + " | " + e.Value;
+                    e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
+                }
+            }
         }
 
 
@@ -120,62 +227,66 @@ namespace BNPL.Forms_Transaction
 
         private void btnProcessSalary_Click(object sender, EventArgs e)
         {
-            
-
-            try
+            DateTime salaryMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
+            if (XtraMessageBox.Show("Do you want to process Salary for month [ " + salaryMonth.ToString("MMMM yyyy") + " ]", "Confirmation", MessageBoxButtons.YesNo) != DialogResult.No)
             {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("EmpCode", typeof(string));
-                dt.Columns.Add("SalaryMonth", typeof(DateTime));
-                dt.Columns.Add("SalaryPaid", typeof(decimal));
-
-
-                for (int rowIndex = 0; rowIndex != gridView_SalaryProcess.RowCount; rowIndex++)
+                try
                 {
-                    int intRow = gridView_SalaryProcess.GetVisibleRowHandle(rowIndex);
-                    string strSalaryMonth = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryMonth").ToString();
-                    string strEmpCode = gridView_SalaryProcess.GetRowCellValue(intRow, "EmpCode").ToString();
-                    string strSalaryPaid = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryPaid").ToString();
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("EmpCode", typeof(string));
+                    dt.Columns.Add("SalaryMonth", typeof(DateTime));
+                    dt.Columns.Add("SalaryPaid", typeof(decimal));
 
-                    PrintLogWin.PrintLog("strSalaryMonth => " + strSalaryMonth);
-                    PrintLogWin.PrintLog("strEmpCode => " + strEmpCode);
-                    PrintLogWin.PrintLog("strSalaryPaid => " + strSalaryPaid);
-                    PrintLogWin.PrintLog("------------------------------");
 
-                    if (strSalaryPaid != null)
+                    for (int rowIndex = 0; rowIndex != gridView_SalaryProcess.RowCount; rowIndex++)
                     {
-                        if (!strSalaryPaid.Equals(""))
+                        int intRow = gridView_SalaryProcess.GetVisibleRowHandle(rowIndex);
+                        string strSalaryMonth = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryMonth").ToString();
+                        string strEmpCode = gridView_SalaryProcess.GetRowCellValue(intRow, "EmpCode").ToString();
+                        string strSalaryPaid = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryPaid").ToString();
+
+                        PrintLogWin.PrintLog("strSalaryMonth => " + strSalaryMonth);
+                        PrintLogWin.PrintLog("strEmpCode => " + strEmpCode);
+                        PrintLogWin.PrintLog("strSalaryPaid => " + strSalaryPaid);
+                        PrintLogWin.PrintLog("------------------------------");
+
+                        if (strSalaryPaid != null)
                         {
-                            dt.Rows.Add(strEmpCode, ConvertTo.DateTimeVal(strSalaryMonth), ConvertTo.DecimalVal(strSalaryPaid));
+                            if (!strSalaryPaid.Equals(""))
+                            {
+                                dt.Rows.Add(strEmpCode, ConvertTo.DateTimeVal(strSalaryMonth), ConvertTo.DecimalVal(strSalaryPaid));
+                            }
                         }
+
+
+                        //cn.Execute(@"Insert INTO #routineUpdatedRecords VALUES('" + strEmpCode + "', '" + strSalaryMonth + "', " + strSalaryPaid + ")");
                     }
-                    
 
-                    //cn.Execute(@"Insert INTO #routineUpdatedRecords VALUES('" + strEmpCode + "', '" + strSalaryMonth + "', " + strSalaryPaid + ")");
-                }
+                    PrintLogWin.PrintLog("*******************************" + "");
 
-                PrintLogWin.PrintLog("*******************************" + "");
-
-                using (SqlConnection con = new SqlConnection(ProjectFunctionsUtils.ConnectionString))
-                {
-                    con.Open();
-                    using (SqlCommand com = new SqlCommand("sp_UpdateSalaryPaid", con))
+                    using (SqlConnection con = new SqlConnection(ProjectFunctionsUtils.ConnectionString))
                     {
-                        com.CommandType = CommandType.StoredProcedure;
-                        com.Parameters.AddWithValue("@TableParam", dt);
-                        com.ExecuteNonQuery();
+                        con.Open();
+                        using (SqlCommand com = new SqlCommand("sp_UpdateSalaryPaid", con))
+                        {
+                            com.CommandType = CommandType.StoredProcedure;
+                            com.Parameters.AddWithValue("@TableParam", dt);
+                            com.ExecuteNonQuery();
 
-                        ProjectFunctions.SpeakError("Salary Has Been Processed");
-                        fillGrid();
+                            ProjectFunctions.SpeakError("Salary Has Been Processed");
+                            fillGrid();
+                        }
+
                     }
-                    
+                }
+                catch (Exception ex)
+                {
+                    PrintLogWin.PrintLog(ex);
                 }
             }
-            catch(Exception ex)
-            {
-                PrintLogWin.PrintLog(ex);
-            }
+            /*
             
+            */
             
         }
         /*

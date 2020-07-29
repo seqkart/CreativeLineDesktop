@@ -2,6 +2,12 @@
 
 namespace SeqKartLibrary.HelperClass
 {
+    public enum EmptyReturn
+    {
+        Zero,
+        DbNull,
+        Empty
+    }
     public class ConvertTo
     {
         public static bool BooleanVal(object val)
@@ -169,7 +175,43 @@ namespace SeqKartLibrary.HelperClass
             string sign = "";
             Int32 totalMinute = IntVal(_totalMinute);
             if (totalMinute == 0)
+            {                
+                return "0";
+            }
+            Int32 Minute = default(Int32);
+            Int32 Hour = default(Int32);
             {
+                if (totalMinute < 0)
+                {
+                    totalMinute = totalMinute * -1;
+                    sign = "-";
+                }
+
+                Hour = totalMinute / 60;
+                Minute = totalMinute % 60;
+                return FormatTwoDigits(Hour, sign) + ":" + FormatTwoDigits(Minute, "") + " ";
+            }
+            //return _totalMinute + "";
+        }
+
+        public static object MinutesToHours(object _totalMinute, EmptyReturn _zeroReturn)
+        {
+            string sign = "";
+            Int32 totalMinute = IntVal(_totalMinute);
+            if (totalMinute == 0)
+            {
+                if (_zeroReturn == EmptyReturn.DbNull)
+                {
+                    return DBNull.Value;
+                }
+                if (_zeroReturn == EmptyReturn.Zero)
+                {
+                    return "0";
+                }
+                if (_zeroReturn == EmptyReturn.Empty)
+                {
+                    return "";
+                }
                 return "";
             }
             Int32 Minute = default(Int32);
@@ -180,15 +222,14 @@ namespace SeqKartLibrary.HelperClass
                     totalMinute = totalMinute * -1;
                     sign = "-";
                 }
-                totalMinute = totalMinute % 1440;
-
 
                 Hour = totalMinute / 60;
                 Minute = totalMinute % 60;
-                return FormatTwoDigits(Hour, sign) + " : " + FormatTwoDigits(Minute, "") + " ";
+                return FormatTwoDigits(Hour, sign) + ":" + FormatTwoDigits(Minute, "") + " ";
             }
             //return _totalMinute + "";
         }
+
         public static string FormatTwoDigits(Int32 i, string sign)
         {
             string functionReturnValue = null;

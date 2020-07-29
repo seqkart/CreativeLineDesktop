@@ -33,5 +33,7 @@ namespace SeqKartLibrary.Models
 
         public int LunchBreak { get; set; }
         public int OT_Extra { get; set; }
+
+        public string status_type { get; set; }
     }
 }

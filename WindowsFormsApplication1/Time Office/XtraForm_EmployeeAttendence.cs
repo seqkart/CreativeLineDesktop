@@ -257,7 +257,8 @@ namespace WindowsFormsApplication1.Time_Office
             DynamicParameters param = new DynamicParameters();
             param.Add("@serial_id", selected_serial_id);
 
-            string sql = "SELECT ea.*, em.DailyWage, em.LunchBreak, em.OT_Extra FROM EmployeeAttendance ea, EmpMST em WHERE ea.employee_code = '" + GetEditValue(txtEmpID) + "' AND CONVERT(varchar, CAST( ea.attendance_date AS Date ), 23) = CONVERT(varchar, CAST( '" + ConvertTo.DateFormatDb(dateAttendance.Value) + "' AS Date ), 23) AND ea.employee_code = em.EmpCode";
+            //string sql = "SELECT ea.*, em.DailyWage, em.LunchBreak, em.OT_Extra FROM EmployeeAttendance ea, EmpMST em WHERE ea.employee_code = '" + GetEditValue(txtEmpID) + "' AND CONVERT(varchar, CAST( ea.attendance_date AS Date ), 23) = CONVERT(varchar, CAST( '" + ConvertTo.DateFormatDb(dateAttendance.Value) + "' AS Date ), 23) AND ea.employee_code = em.EmpCode";
+            string sql = "SELECT ea.*, ats.status_type, em.DailyWage, em.LunchBreak, em.OT_Extra FROM EmployeeAttendance ea, EmpMST em, AttendanceStatus ats WHERE ea.employee_code = '" + GetEditValue(txtEmpID) + "' AND CONVERT(varchar, CAST( ea.attendance_date AS Date ), 23) = CONVERT(varchar, CAST( '" + ConvertTo.DateFormatDb(dateAttendance.Value) + "' AS Date ), 23) AND ea.employee_code = em.EmpCode AND ea.status_id = ats.status_id";
             PrintLogWin.PrintLog(sql);
             EmployeeAttendance query_attendance = lista.returnClass(sql, param);
 
@@ -284,6 +285,8 @@ namespace WindowsFormsApplication1.Time_Office
 
                     PrintLogWin.PrintLog("timeEdit_Time_In_DW : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_DW.EditValue));
                     PrintLogWin.PrintLog("timeEdit_Time_Out_DW : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_DW.EditValue));
+
+                    SetEditValue(txtStatusType, null);
                 }
                 else
                 {
@@ -297,6 +300,8 @@ namespace WindowsFormsApplication1.Time_Office
                     PrintLogWin.PrintLog("timeEdit_Time_Out_First : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_First.EditValue));
                     PrintLogWin.PrintLog("timeEdit_Time_In_Last : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_Last.EditValue));
                     PrintLogWin.PrintLog("timeEdit_Time_Out_Last : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_Last.EditValue));
+
+                    SetEditValue(txtStatusType, query_attendance.status_type);
                 }
 
                 SetEditValue_NullTag(totalWorkingHours_Text, query_attendance.working_hours);
@@ -1239,7 +1244,7 @@ namespace WindowsFormsApplication1.Time_Office
                     }
 
                     //totalWorkingHours_Text.Text = (totalHrs_FullDay).ToString();
-                    SetEditValue(totalWorkingHours_Text, totalHrs_FullDay);
+                    SetEditValue_NullTag(totalWorkingHours_Text, totalHrs_FullDay);
 
                     PrintLogWin.PrintLog("========= totalHrs_First : " + totalHrs_First);
                     PrintLogWin.PrintLog("========= totalHrs_Last : " + totalHrs_Last);
@@ -1264,7 +1269,7 @@ namespace WindowsFormsApplication1.Time_Office
                             //timeEdit_GatePassTime.EditValue = (dateTime_In_Last_GP - dateTime_Out_GP).TotalHours;
 
                             //txtOvertimeHours.EditValue = ConvertTo.IntVal(totalWorkingHours_Text.EditValue) - (ConvertTo.IntVal(totalWorkingHours_Text_Main.EditValue) * 60);
-                            SetEditValue(txtOvertimeHours, ConvertTo.IntVal(totalWorkingHours_Text.EditValue) - (ConvertTo.IntVal(totalWorkingHours_Text_Main.EditValue) * 60));
+                            SetEditValue_NullTag(txtOvertimeHours, ConvertTo.IntVal(totalWorkingHours_Text.EditValue) - (ConvertTo.IntVal(totalWorkingHours_Text_Main.EditValue) * 60));
 
                             PrintLogWin.PrintLog("========= txtOvertimeHours B : " + txtOvertimeHours.EditValue);
                         }
@@ -1285,8 +1290,8 @@ namespace WindowsFormsApplication1.Time_Office
             //txtOvertimeHours.EditValue = null;
             //timeEdit_GatePassTime.EditValue = null;
 
-            SetEditValue(totalWorkingHours_Text, null);
-            SetEditValue(txtOvertimeHours, null);
+            SetEditValue_NullTag(totalWorkingHours_Text, null);
+            SetEditValue_NullTag(txtOvertimeHours, null);
             SetEditValue(timeEdit_GatePassTime, null);
 
             timeEdit_Time_Out_First.Enabled = true;
@@ -1414,7 +1419,7 @@ namespace WindowsFormsApplication1.Time_Office
                     timeEdit_Time_Out_First.Enabled = true;
                     timeEdit_Time_In_Last.Enabled = true;
 
-                    PrintLogWin.PrintLog("========= txtLunchBreak_EditValueChanged => txtLunchBreak : " + 1);
+                    PrintLogWin.PrintLog("========= txtLunchBreak_EditValueChanged => txtLunchBreak : A");
                 }
 
                 SetEditValue(timeEdit_Time_In_First, timeEdit_Time_In_First_Main.EditValue);
@@ -1431,7 +1436,7 @@ namespace WindowsFormsApplication1.Time_Office
                 timeEdit_Time_In_Last.Enabled = true;
                 timeEdit_Time_Out_Last.Enabled = true;
 
-                PrintLogWin.PrintLog("========= txtLunchBreak_EditValueChanged => txtLunchBreak : " + 2);
+                PrintLogWin.PrintLog("========= txtLunchBreak_EditValueChanged => txtLunchBreak : B");
             }
 
         }

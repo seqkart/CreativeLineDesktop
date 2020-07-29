@@ -366,6 +366,23 @@ namespace SeqKartLibrary
             return intResult;
         }
 
+        public static List<GridView_Style_Model> GridView_Style(string form_name, string gridview_name)
+        {
+            RepList<object> repList = new RepList<object>();
+            List<GridView_Style_Model> gridView_Style_List = new List<GridView_Style_Model>();
+            try
+            {
+                gridView_Style_List = repList.returnListClass_1<GridView_Style_Model>("SELECT * FROM GridViewStyle_Master WHERE form_name='" + form_name + "' AND gridview_name='" + gridview_name + "'", null);
+                
+                //ds = ProjectFunctionsUtils.GetDataSet("SELECT * FROM GridViewStyle_Master WHERE form_name='" + form_name + "' AND gridview_name='" + gridview_name + "'");
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return gridView_Style_List;
+        }
+
         public static String SqlString(string Text)
         {
             return string.Concat(Text.Select(c => @"'()%#!<>{};:?/\-[]+@".IndexOf(c) >= 0 ? '_' : c));
