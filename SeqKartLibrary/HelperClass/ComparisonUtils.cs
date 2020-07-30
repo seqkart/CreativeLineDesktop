@@ -1,9 +1,40 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
+public class IsString
+{
+    public static bool IsEqualTo(object val1, object val2)
+    {
+        try
+        {
+            string val1_1 = "";
+            string val2_2 = "";
+
+            if (val1 != null)
+            {
+                val1_1 = (val1 + "").ToLower();
+            }
+
+            if (val2 != null)
+            {
+                val2_2 = (val2 + "").ToLower();
+            }
+
+            if (val1_1.Equals(val2_2))
+            {
+                return true;
+            }
+        }
+        catch { }
+        
+        return false;
+    }
+}
 public class ComparisonUtils
 {
+    
     public static bool IsEqualTo_String(object val1, object val2)
     {
         if (!(val1 + "").Equals(val2 + ""))

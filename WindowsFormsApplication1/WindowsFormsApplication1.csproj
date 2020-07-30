@@ -413,6 +413,9 @@
     <Compile Include="Crystals\SalePrint.Designer.cs">
       <DependentUpon>SalePrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\MyDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dashboard1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -475,6 +478,7 @@
     <Compile Include="FormReports\ReportFormatName.designer.cs">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelperClass\CustomArguments.cs" />
     <Compile Include="Prints\XtraReportGatePass.cs">
       <SubType>Component</SubType>
     </Compile>

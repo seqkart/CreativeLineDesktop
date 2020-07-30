@@ -22,6 +22,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using WindowsFormsApplication1;
 using WindowsFormsApplication1.Models;
@@ -119,7 +120,7 @@ namespace BNPL.Forms_Master
                     {
                         SerialId = dr[Col.EmployeeAttendance.serial_id],
                         //EntryDate = dr[Col.EmployeeAttendance.entry_date],
-                        AttendanceDate = dr[Col.EmployeeAttendance.attendance_date],
+                        AttendanceDate = ConvertTo.DateFormatApp(dr[Col.EmployeeAttendance.attendance_date]),
                         EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
                         //Shift = dr[Col.DailyShifts.shift_name],
                         Status = dr[Col.AttendanceStatus.status],
@@ -138,7 +139,7 @@ namespace BNPL.Forms_Master
                 }
 
                 gridControl_AttendanceData.DataSource = binding_list;
-                gridView_AttendanceData.Columns[0].Visible = false;
+                gridView_AttendanceData.Columns["SerialId"].Visible = false;
             }
             
         }
@@ -150,6 +151,37 @@ namespace BNPL.Forms_Master
             xtraForm_EmployeeAttendence.StartPosition = FormStartPosition.CenterScreen;
 
             xtraForm_EmployeeAttendence.ShowDialog(Parent);
+
+            //xtraForm_EmployeeAttendence.ChildWantedSomething += ReloadDataGrid;
+        }
+
+        public void ReloadDataGrid(object sender, ThresholdReachedEventArgs e)
+        {
+            if (ConvertTo.DateTimeVal(DtStartDate.EditValue) == e.AttendanceDate && IsString.IsEqualTo(txtEmpCode.EditValue, e.EmpCode))
+            {
+
+            }
+            else
+            {
+                DtStartDate.EditValue = e.AttendanceDate;
+                txtEmpCode.EditValue = e.EmpCode;
+
+
+                var ds = ProjectFunctions.GetDataSet("SELECT     empmst.EmpCode, empmst.EmpName, DeptMst.DeptDesc FROM         empmst LEFT OUTER JOIN DeptMst ON empmst.EmpDeptCode = DeptMst.DeptCode Where EmpCode='" + txtEmpCode.Text.Trim() + "'");
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
+                    txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+
+                    //Thread.Sleep(1000);
+
+                    btnLoad_Data.PerformClick();//.Focus();
+                }
+            }
+            
+
+            //LoadAttendanceDataGrid();
+            PrintLogWin.PrintLog("---------------------------------");
         }
 
         private void OnClickRow()
@@ -210,7 +242,10 @@ namespace BNPL.Forms_Master
         {
             //txtEmpName.Text = string.Empty;
             //txtDept.Text = string.Empty;
+
             //txtPreviousInstlmnt.Text = "0";
+
+            
         }
 
         private void txtEmpCode_KeyDown(object sender, KeyEventArgs e)

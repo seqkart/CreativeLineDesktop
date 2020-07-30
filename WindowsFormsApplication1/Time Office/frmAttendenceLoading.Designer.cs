@@ -410,6 +410,7 @@ namespace BNPL.Forms_Master
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmpName.Properties.MaxLength = 6;
+            this.txtEmpName.Properties.ReadOnly = true;
             this.txtEmpName.Size = new System.Drawing.Size(90, 20);
             this.txtEmpName.TabIndex = 361;
             // 

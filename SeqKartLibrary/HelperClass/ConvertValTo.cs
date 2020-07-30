@@ -14,7 +14,7 @@ namespace SeqKartLibrary.HelperClass
         {
             try
             {
-                return Convert.ToBoolean(val);
+                return Convert.ToBoolean((val + "").ToLower());
             }
             catch { }
 

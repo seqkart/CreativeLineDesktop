@@ -89,10 +89,11 @@ namespace BNPL.Forms_Transaction
 
             foreach (DevExpress.XtraGrid.Columns.GridColumn Col in gridView_SalaryProcess.Columns)
             {
-                if (Col.FieldName != "SalaryPaid")
+                if (Col.FieldName != "SalaryPaid" && Col.FieldName != "LoanInstallment")
                 {
                     Col.OptionsColumn.AllowEdit = false;
                 }
+                
             }
 
             SetGridViewStyle();
@@ -244,10 +245,12 @@ namespace BNPL.Forms_Transaction
                         string strSalaryMonth = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryMonth").ToString();
                         string strEmpCode = gridView_SalaryProcess.GetRowCellValue(intRow, "EmpCode").ToString();
                         string strSalaryPaid = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryPaid").ToString();
+                        string strLoanInstallment = gridView_SalaryProcess.GetRowCellValue(intRow, "LoanInstallment").ToString();
 
                         PrintLogWin.PrintLog("strSalaryMonth => " + strSalaryMonth);
                         PrintLogWin.PrintLog("strEmpCode => " + strEmpCode);
                         PrintLogWin.PrintLog("strSalaryPaid => " + strSalaryPaid);
+                        PrintLogWin.PrintLog("strLoanInstallment => " + strLoanInstallment);
                         PrintLogWin.PrintLog("------------------------------");
 
                         if (strSalaryPaid != null)
