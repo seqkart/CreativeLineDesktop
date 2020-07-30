@@ -50,5 +50,16 @@ namespace SeqKartLibrary.CrudTask
             return lista.returnListClass("SELECT * FROM DailyShifts", param);
 
         }
+
+        public static string DeleteAttendance(int _serial_id)
+        {
+            RepGen reposGen = new Repository.RepGen();
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@serial_id", _serial_id);
+
+            PrintLogWinForms.PrintLog("Delete From EmployeeAttendance Where serial_id=" + _serial_id + "");
+
+            return reposGen.executeNonQuery_Query("Delete From EmployeeAttendance Where serial_id=" + _serial_id + "", param);
+        }
     }
 }

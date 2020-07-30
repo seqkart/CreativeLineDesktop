@@ -66,6 +66,23 @@ namespace SeqKartLibrary.Repository
 
         }
 
+        public string executeNonQuery_Query(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                con.Execute(query, param, commandType: CommandType.Text);
+                con.Close();
+                return "0";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
         public string executeNonQuery_SP(string query, DynamicParameters param)
         {
             try

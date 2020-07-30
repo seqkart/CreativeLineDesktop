@@ -89,9 +89,9 @@ namespace BNPL.Forms_Transaction
 
             foreach (DevExpress.XtraGrid.Columns.GridColumn Col in gridView_SalaryProcess.Columns)
             {
-                if (Col.FieldName != "SalaryPaid" && Col.FieldName != "LoanInstallment")
+                if (Col.FieldName != "LoanInstallment" && Col.FieldName != "SalaryPaid")
                 {
-                    Col.OptionsColumn.AllowEdit = false;
+                    //Col.OptionsColumn.AllowEdit = false;
                 }
                 
             }

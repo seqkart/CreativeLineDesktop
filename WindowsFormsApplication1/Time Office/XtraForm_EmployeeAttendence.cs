@@ -600,15 +600,16 @@ namespace WindowsFormsApplication1.Time_Office
                     /* Navigate to page E */
                     if (XtraMessageBox.Show("Do you want to delete this record?", "Confirmation", MessageBoxButtons.YesNo) != DialogResult.No)
                     {
-                        ////int result = await DeleteEmployeeAttendanceDetails();
+                        string result = DeleteEmployeeAttendanceDetails();
 
-                        ////if (result > -1)
-                        ////{
-                        ////    _frmAttendenceLaoding.LoadAttendanceDataGrid();
+                        if (result.Equals("0"))
+                        {
+                            _frmAttendenceLaoding.LoadAttendanceDataGrid();
 
-                        ////    selected_serial_id = 0;
-                        ////    LoadAttendanceData();
-                        ////}
+                            dateAttendance.Value = dateAttendance.Value.AddDays(-1);
+                            //selected_serial_id = 0;
+                            //LoadAttendanceData();
+                        }
                     }
 
                     break;
@@ -627,37 +628,40 @@ namespace WindowsFormsApplication1.Time_Office
 
             }
         }
-        private async Task<int> DeleteEmployeeAttendanceDetails()
+        private string DeleteEmployeeAttendanceDetails()
         {
-            int result = -1;
+            string intResult = "";
             //if (crudAction == CrudAction.Update)
             if (ConvertTo.IntVal(GetEditValue(txtSerial_ID)) != 0)
             {
-                using (SEQKARTNewEntities db = new SEQKARTNewEntities())
-                {
-                    EmployeeAttendance query_attendance =
-                            (from data in db.EmployeeAttendances
-                                 //where data.serial_id == selected_serial_id
-                             where data.serial_id == ConvertTo.IntVal(GetEditValue(txtSerial_ID))
-                             orderby data.entry_date
-                             select data).SingleOrDefault();
+                //using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+                //{
+                //    EmployeeAttendance query_attendance =
+                //            (from data in db.EmployeeAttendances
+                //                 //where data.serial_id == selected_serial_id
+                //             where data.serial_id == ConvertTo.IntVal(GetEditValue(txtSerial_ID))
+                //             orderby data.entry_date
+                //             select data).SingleOrDefault();
 
-                    db.EmployeeAttendances.Remove(query_attendance);
-                    result = await db.SaveChangesAsync();
-                    
-                }
+                //    db.EmployeeAttendances.Remove(query_attendance);
+                //    result = await db.SaveChangesAsync();
+
+                //}
+                intResult = AttendanceData.DeleteAttendance(ConvertTo.IntVal(GetEditValue(txtSerial_ID)));
             }
+            
 
-            if (result > -1)
+            if (intResult.Equals("0"))
             {
                 ProjectFunctions.SpeakError("Record has been deleted");
-                this.Close();
+                //.Close();
             }
             else
             {
+                PrintLogWin.PrintLog("DeleteEmployeeAttendanceDetails => " + intResult);
                 ProjectFunctions.SpeakError("There is some problem in deleting record. Please try again.");
             }
-            return result;
+            return intResult;
         }
 
 
