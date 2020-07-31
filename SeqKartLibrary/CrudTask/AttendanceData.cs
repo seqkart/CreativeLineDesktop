@@ -51,7 +51,7 @@ namespace SeqKartLibrary.CrudTask
 
         }
 
-        public static string DeleteAttendance(int _serial_id)
+        public static ExecuteResult DeleteAttendance(int _serial_id)
         {
             RepGen reposGen = new Repository.RepGen();
             DynamicParameters param = new DynamicParameters();

@@ -6,6 +6,20 @@ using Dapper;
 
 namespace SeqKartLibrary.Repository
 {
+    public enum ExecuteStatus
+    {
+        OK,
+        FAILED,
+        PENDING
+    }
+    public class ExecuteResult
+    {
+        public int Result { get; set; }
+
+        public string ExceptionMessage { get; set; }
+
+        public ExecuteStatus Status { get; set; }
+    }
     public class RepGen
     {
 
@@ -66,21 +80,26 @@ namespace SeqKartLibrary.Repository
 
         }
 
-        public string executeNonQuery_Query(string query, DynamicParameters param)
+        public ExecuteResult executeNonQuery_Query(string query, DynamicParameters param)
         {
+            ExecuteResult executeResult = new ExecuteResult();
             try
             {
                 connection();
                 con.Open();
-                con.Execute(query, param, commandType: CommandType.Text);
+                executeResult.Result = con.Execute(query, param, commandType: CommandType.Text);
                 con.Close();
-                return "0";
+
+                executeResult.Status = ExecuteStatus.OK;
+
+
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                executeResult.ExceptionMessage = ex.Message;
+                executeResult.Status = ExecuteStatus.FAILED;
             }
-
+            return executeResult;
         }
 
         public string executeNonQuery_SP(string query, DynamicParameters param)

@@ -312,9 +312,11 @@
             // gridView_SalaryProcess
             // 
             this.gridView_SalaryProcess.GridControl = this.gridControl_SalaryProcess;
+            this.gridView_SalaryProcess.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.gridView_SalaryProcess.Name = "gridView_SalaryProcess";
             this.gridView_SalaryProcess.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
             this.gridView_SalaryProcess.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_SalaryProcess_KeyDown);
+            this.gridView_SalaryProcess.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView_SalaryProcess_ValidatingEditor);
             // 
             // btnProcessSalary
             // 

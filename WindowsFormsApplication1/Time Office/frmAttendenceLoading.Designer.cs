@@ -420,9 +420,9 @@ namespace BNPL.Forms_Master
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 477);
             this.ControlBox = false;
+            this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEmpName);
-            this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtEmpCode);
             this.Controls.Add(this.gridControl_AttendanceData);

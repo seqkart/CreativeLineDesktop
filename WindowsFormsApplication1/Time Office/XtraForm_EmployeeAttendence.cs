@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1.Time_Office
         public string selected_employee_code = "";
         public string selected_attendance_date = "";
 
-        
+        private bool next_date_after_save = false;        
 
         public XtraForm_EmployeeAttendence(frmAttendenceLaoding parent, int _selected_serial_id, string _come_from, string _selected_employee_code, string _selected_attendance_date)
         {
@@ -130,8 +130,7 @@ namespace WindowsFormsApplication1.Time_Office
             finally
             {
                 
-            }
-            return null;
+            }            
         }
 
         public void SetComboSelectedValue(System.Windows.Forms.ComboBox combo, object newEditValue)
@@ -433,16 +432,22 @@ namespace WindowsFormsApplication1.Time_Office
                 SetEditValue(timeEdit_GatePassTime, 0);
                 SetEditValue_NullTag(txtOvertimeHours, 0);
 
+                if (next_date_after_save)
+                {
+                    CalculateDUtyHours("last_out");
+                }
+                else
+                {
+                    SetEditValue(timeEdit_Time_In_First, null);
+                    SetEditValue(timeEdit_Time_Out_First, null);
+                    SetEditValue(timeEdit_Time_In_Last, null);
+                    SetEditValue(timeEdit_Time_Out_Last, null);
 
-                SetEditValue(timeEdit_Time_In_First, null);
-                SetEditValue(timeEdit_Time_Out_First, null);
-                SetEditValue(timeEdit_Time_In_Last, null);
-                SetEditValue(timeEdit_Time_Out_Last, null);
-
-                //SetEditValue(txtDutyHours_DW, null);
-                SetEditValue(timeEdit_Time_In_DW, null);
-                SetEditValue(timeEdit_Time_Out_DW, null);
-                SetEditValue(totalWorkingHours_Text_DW, null);
+                    //SetEditValue(txtDutyHours_DW, null);
+                    SetEditValue(timeEdit_Time_In_DW, null);
+                    SetEditValue(timeEdit_Time_Out_DW, null);
+                    SetEditValue(totalWorkingHours_Text_DW, null);
+                }
 
                 /////////////////////////
                 //ControllerUtils.SelectItemByValue(comboBox_Status, "2");
@@ -477,18 +482,31 @@ namespace WindowsFormsApplication1.Time_Office
                     }
                 }
 
-                SetComboSelectedValue_NullTag(comboBox_Status, 1);
-                Thread.Sleep(1000);
-                SetComboSelectedValue_NullTag(comboBox_Status, status_id);
+                if (next_date_after_save)
+                {
+                    SetComboSelectedValue(comboBox_Status, status_id);
+                }
+                else
+                {
+                    SetComboSelectedValue_NullTag(comboBox_Status, 1);
+                    Thread.Sleep(1000);
+                    SetComboSelectedValue_NullTag(comboBox_Status, status_id);
+                }
                 SetEditValue(txtStatusType, "0000");
             }
             else
             {
-                SetComboSelectedValue_NullTag(comboBox_Status, "10");
-                Thread.Sleep(1000);
-                SetComboSelectedValue_NullTag(comboBox_Status, "1");
+                if (next_date_after_save)
+                {
+                    SetComboSelectedValue(comboBox_Status, "1");
+                }
+                else
+                {
+                    SetComboSelectedValue_NullTag(comboBox_Status, "10");
+                    Thread.Sleep(1000);
+                    SetComboSelectedValue_NullTag(comboBox_Status, "1");
+                }                
                 SetEditValue(txtStatusType, "1111");
-
             }
             PrintLogWin.PrintLog("SetStatusByWeekdays => " + today);
             PrintLogWin.PrintLog("SetStatusByWeekdays => " + today.ToString("dddd"));
@@ -600,15 +618,14 @@ namespace WindowsFormsApplication1.Time_Office
                     /* Navigate to page E */
                     if (XtraMessageBox.Show("Do you want to delete this record?", "Confirmation", MessageBoxButtons.YesNo) != DialogResult.No)
                     {
-                        string result = DeleteEmployeeAttendanceDetails();
+                        ExecuteResult result = DeleteEmployeeAttendanceDetails();
 
-                        if (result.Equals("0"))
+                        if (result.Status == ExecuteStatus.OK)
                         {
                             _frmAttendenceLaoding.LoadAttendanceDataGrid();
 
                             dateAttendance.Value = dateAttendance.Value.AddDays(-1);
-                            //selected_serial_id = 0;
-                            //LoadAttendanceData();
+                           
                         }
                     }
 
@@ -628,40 +645,27 @@ namespace WindowsFormsApplication1.Time_Office
 
             }
         }
-        private string DeleteEmployeeAttendanceDetails()
+        private ExecuteResult DeleteEmployeeAttendanceDetails()
         {
-            string intResult = "";
-            //if (crudAction == CrudAction.Update)
+            ExecuteResult executeResult = new ExecuteResult();
+            
             if (ConvertTo.IntVal(GetEditValue(txtSerial_ID)) != 0)
-            {
-                //using (SEQKARTNewEntities db = new SEQKARTNewEntities())
-                //{
-                //    EmployeeAttendance query_attendance =
-                //            (from data in db.EmployeeAttendances
-                //                 //where data.serial_id == selected_serial_id
-                //             where data.serial_id == ConvertTo.IntVal(GetEditValue(txtSerial_ID))
-                //             orderby data.entry_date
-                //             select data).SingleOrDefault();
-
-                //    db.EmployeeAttendances.Remove(query_attendance);
-                //    result = await db.SaveChangesAsync();
-
-                //}
-                intResult = AttendanceData.DeleteAttendance(ConvertTo.IntVal(GetEditValue(txtSerial_ID)));
+            {               
+                executeResult = AttendanceData.DeleteAttendance(ConvertTo.IntVal(GetEditValue(txtSerial_ID)));
             }
             
 
-            if (intResult.Equals("0"))
+            if (executeResult.Status == ExecuteStatus.OK)
             {
                 ProjectFunctions.SpeakError("Record has been deleted");
                 //.Close();
             }
             else
             {
-                PrintLogWin.PrintLog("DeleteEmployeeAttendanceDetails => " + intResult);
+                PrintLogWin.PrintLog("DeleteEmployeeAttendanceDetails => " + executeResult.ExceptionMessage);
                 ProjectFunctions.SpeakError("There is some problem in deleting record. Please try again.");
             }
-            return intResult;
+            return executeResult;
         }
 
 
@@ -833,11 +837,8 @@ namespace WindowsFormsApplication1.Time_Office
                         ProjectFunctions.SpeakError("Error in save record.");
                         PrintLogWin.PrintLog(intResult);
                     }
-
-                    //dateAttendance.ValueChanged -= dateAttendance_ValueChanged;
+                    next_date_after_save = true;
                     dateAttendance.Value = dateAttendance.Value.AddDays(1);
-                    //dateAttendance.ValueChanged += dateAttendance_ValueChanged;
-                    
                     
                     PrintLogWin.PrintLog("Insert => attendance_in_first : " + employeeAttendance.attendance_in_first);
                     PrintLogWin.PrintLog("Insert => attendance_out_first : " + employeeAttendance.attendance_out_first);
@@ -929,7 +930,9 @@ namespace WindowsFormsApplication1.Time_Office
                         ProjectFunctions.SpeakError("Error in save record.");
                         PrintLogWin.PrintLog(intResult);
                     }
-                    
+                    next_date_after_save = true;
+                    dateAttendance.Value = dateAttendance.Value.AddDays(1);
+
                     PrintLogWin.PrintLog("Update => attendance_in_first : " + employeeAttendance.attendance_in_first);
                     PrintLogWin.PrintLog("Update => attendance_out_first : " + employeeAttendance.attendance_out_first);
                     PrintLogWin.PrintLog("Update => attendance_in_last : " + employeeAttendance.attendance_in_last);
@@ -946,8 +949,6 @@ namespace WindowsFormsApplication1.Time_Office
                     PrintLogWin.PrintLog("Update => timeEdit_Time_Out_Last : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_Last.EditValue));
                     //////////////////////////////////////////
                 }
-
-                
             }
 
             //MessageBox.Show(result == true ? "added" : "failed");

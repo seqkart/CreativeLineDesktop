@@ -67,8 +67,17 @@ namespace WindowsFormsApplication1
         //    while (retry);
 
         //}
+        public static DialogResult SpeakConfirmation(string message, string caption, MessageBoxButtons messageBoxButtons)
+        {
+            //DialogResult
+            Task.Run(() => _synthesizer.Speak(message));
+
+            return XtraMessageBox.Show(message, caption, messageBoxButtons);
+
+        }
         public static void SpeakError(String Error)
         {
+            //DialogResult
             Task.Run(() => _synthesizer.Speak(Error));
 
             XtraMessageBox.Show(Error);
