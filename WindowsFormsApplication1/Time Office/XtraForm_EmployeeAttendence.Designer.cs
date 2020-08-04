@@ -29,12 +29,12 @@
         ///
         private void InitializeComponent()
         {
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions1 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions2 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions3 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions4 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions5 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions6 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions13 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions14 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions15 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions16 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions17 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
+            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions18 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
             this.windowsUIButtonPanelCloseButton = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.windowsUIButtonPanelMain = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.labelControl = new DevExpress.XtraEditors.LabelControl();
@@ -126,6 +126,10 @@
             this.timeEdit_Time_In_DW = new DevExpress.XtraEditors.TimeSpanEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.txtTeaBreakTime = new DevExpress.XtraEditors.TextEdit();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lblDayName = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEmpType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -171,14 +175,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text_DW.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_DW.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_DW.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTeaBreakTime.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // windowsUIButtonPanelCloseButton
             // 
             this.windowsUIButtonPanelCloseButton.ButtonInterval = 0;
-            windowsUIButtonImageOptions1.ImageUri.Uri = "Backward;Size32x32;GrayScaled";
+            windowsUIButtonImageOptions13.ImageUri.Uri = "Backward;Size32x32;GrayScaled";
             this.windowsUIButtonPanelCloseButton.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("", true, windowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "back_arrow_exit", -1, false)});
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("", true, windowsUIButtonImageOptions13, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "back_arrow_exit", -1, false)});
             this.windowsUIButtonPanelCloseButton.ContentAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.windowsUIButtonPanelCloseButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.windowsUIButtonPanelCloseButton.ForeColor = System.Drawing.Color.Gray;
@@ -211,21 +216,21 @@
             this.windowsUIButtonPanelMain.AppearanceButton.Pressed.Options.UseFont = true;
             this.windowsUIButtonPanelMain.AppearanceButton.Pressed.Options.UseForeColor = true;
             this.windowsUIButtonPanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            windowsUIButtonImageOptions2.ImageUri.Uri = "Save";
-            windowsUIButtonImageOptions3.ImageUri.Uri = "Reset;Size32x32;GrayScaled";
-            windowsUIButtonImageOptions4.ImageUri.Uri = "icon%20builder/actions_trash";
-            windowsUIButtonImageOptions5.ImageUri.Uri = "icon%20builder/actions_add";
-            windowsUIButtonImageOptions6.ImageUri.Uri = "Close";
+            windowsUIButtonImageOptions14.ImageUri.Uri = "Save";
+            windowsUIButtonImageOptions15.ImageUri.Uri = "Reset;Size32x32;GrayScaled";
+            windowsUIButtonImageOptions16.ImageUri.Uri = "icon%20builder/actions_trash";
+            windowsUIButtonImageOptions17.ImageUri.Uri = "icon%20builder/actions_add";
+            windowsUIButtonImageOptions18.ImageUri.Uri = "Close";
             this.windowsUIButtonPanelMain.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Save", true, windowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "save", -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Save", true, windowsUIButtonImageOptions14, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "save", -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Reset Changes", true, windowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "reset", -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Reset Changes", true, windowsUIButtonImageOptions15, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "reset", -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Delete", true, windowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "delete", -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Delete", true, windowsUIButtonImageOptions16, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "delete", -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Add New", true, windowsUIButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "add_new", -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Add New", true, windowsUIButtonImageOptions17, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "add_new", -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Close", true, windowsUIButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "close", -1, false)});
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Close", true, windowsUIButtonImageOptions18, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, "close", -1, false)});
             this.windowsUIButtonPanelMain.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.windowsUIButtonPanelMain.EnableImageTransparency = true;
             this.windowsUIButtonPanelMain.ForeColor = System.Drawing.Color.White;
@@ -260,6 +265,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblDayName);
             this.groupBox1.Controls.Add(this.textEmpType);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label29);
@@ -637,7 +643,9 @@
             this.timeEdit_Time_Out_First.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.timeEdit_Time_Out_First.Size = new System.Drawing.Size(65, 20);
             this.timeEdit_Time_Out_First.TabIndex = 12;
+            this.timeEdit_Time_Out_First.InvalidValue += new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.timeEdit_Time_Out_First_InvalidValue);
             this.timeEdit_Time_Out_First.EditValueChanged += new System.EventHandler(this.timeEdit_Time_Out_First_EditValueChanged);
+            this.timeEdit_Time_Out_First.Validating += new System.ComponentModel.CancelEventHandler(this.timeEdit_Time_Out_First_Validating);
             // 
             // timeEdit_Time_In_First
             // 
@@ -1024,7 +1032,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.txtTeaBreakTime);
+            this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.labelControl23);
             this.groupBox4.Controls.Add(this.labelControl21);
             this.groupBox4.Controls.Add(this.txtStatusType);
@@ -1040,6 +1050,7 @@
             this.groupBox4.Controls.Add(this.label26);
             this.groupBox4.Controls.Add(this.timeEdit_GatePassTime);
             this.groupBox4.Controls.Add(this.comboBox_Shift);
+            this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Location = new System.Drawing.Point(52, 511);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(610, 110);
@@ -1094,8 +1105,8 @@
             // 
             // lblOvertimeHours
             // 
-            this.lblOvertimeHours.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblOvertimeHours.Location = new System.Drawing.Point(174, 65);
+            this.lblOvertimeHours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.lblOvertimeHours.Location = new System.Drawing.Point(174, 50);
             this.lblOvertimeHours.Name = "lblOvertimeHours";
             this.lblOvertimeHours.Size = new System.Drawing.Size(53, 13);
             this.lblOvertimeHours.TabIndex = 25;
@@ -1164,14 +1175,14 @@
             // 
             // txtOvertimeHours
             // 
-            this.txtOvertimeHours.Location = new System.Drawing.Point(171, 62);
+            this.txtOvertimeHours.Location = new System.Drawing.Point(171, 46);
             this.txtOvertimeHours.Name = "txtOvertimeHours";
             this.txtOvertimeHours.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.txtOvertimeHours.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtOvertimeHours.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtOvertimeHours.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtOvertimeHours.Properties.Appearance.Options.UseBackColor = true;
             this.txtOvertimeHours.Properties.Appearance.Options.UseForeColor = true;
-            this.txtOvertimeHours.Size = new System.Drawing.Size(120, 20);
+            this.txtOvertimeHours.Size = new System.Drawing.Size(65, 20);
             this.txtOvertimeHours.TabIndex = 4;
             this.txtOvertimeHours.EditValueChanged += new System.EventHandler(this.txtOvertimeHours_EditValueChanged);
             // 
@@ -1196,7 +1207,7 @@
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label27.Location = new System.Drawing.Point(9, 66);
+            this.label27.Location = new System.Drawing.Point(9, 49);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(111, 13);
             this.label27.TabIndex = 1;
@@ -1207,7 +1218,7 @@
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label26.Location = new System.Drawing.Point(9, 40);
+            this.label26.Location = new System.Drawing.Point(9, 23);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(88, 13);
             this.label26.TabIndex = 0;
@@ -1216,7 +1227,7 @@
             // timeEdit_GatePassTime
             // 
             this.timeEdit_GatePassTime.EditValue = "";
-            this.timeEdit_GatePassTime.Location = new System.Drawing.Point(171, 36);
+            this.timeEdit_GatePassTime.Location = new System.Drawing.Point(171, 19);
             this.timeEdit_GatePassTime.Name = "timeEdit_GatePassTime";
             this.timeEdit_GatePassTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.timeEdit_GatePassTime.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1226,7 +1237,7 @@
             this.timeEdit_GatePassTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
             this.timeEdit_GatePassTime.Properties.Mask.EditMask = "T";
             this.timeEdit_GatePassTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
-            this.timeEdit_GatePassTime.Size = new System.Drawing.Size(120, 20);
+            this.timeEdit_GatePassTime.Size = new System.Drawing.Size(65, 20);
             this.timeEdit_GatePassTime.TabIndex = 21;
             // 
             // radioButtonManual
@@ -1483,6 +1494,54 @@
             this.labelControl4.TabIndex = 236;
             this.labelControl4.Text = "TIME IN";
             // 
+            // txtTeaBreakTime
+            // 
+            this.txtTeaBreakTime.Location = new System.Drawing.Point(171, 73);
+            this.txtTeaBreakTime.Name = "txtTeaBreakTime";
+            this.txtTeaBreakTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.txtTeaBreakTime.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtTeaBreakTime.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtTeaBreakTime.Properties.Appearance.Options.UseBackColor = true;
+            this.txtTeaBreakTime.Properties.Appearance.Options.UseForeColor = true;
+            this.txtTeaBreakTime.Properties.ReadOnly = true;
+            this.txtTeaBreakTime.Size = new System.Drawing.Size(65, 20);
+            this.txtTeaBreakTime.TabIndex = 237;
+            this.txtTeaBreakTime.EditValueChanged += new System.EventHandler(this.txtTeaBreakTime_EditValueChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.White;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label21.Location = new System.Drawing.Point(9, 76);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(84, 13);
+            this.label21.TabIndex = 236;
+            this.label21.Text = "Tea Break Time";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.White;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label22.Location = new System.Drawing.Point(238, 76);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(50, 13);
+            this.label22.TabIndex = 238;
+            this.label22.Text = "Minutes";
+            // 
+            // lblDayName
+            // 
+            this.lblDayName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblDayName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblDayName.Location = new System.Drawing.Point(91, 12);
+            this.lblDayName.Name = "lblDayName";
+            this.lblDayName.Size = new System.Drawing.Size(201, 28);
+            this.lblDayName.TabIndex = 372;
+            this.lblDayName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // XtraForm_EmployeeAttendence
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -1502,8 +1561,8 @@
             this.Controls.Add(this.labelControl);
             this.Controls.Add(this.windowsUIButtonPanelCloseButton);
             this.Controls.Add(this.windowsUIButtonPanelMain);
-            this.Controls.Add(this.grpBoxDailyWager);
             this.Controls.Add(this.grpBoxEmployee);
+            this.Controls.Add(this.grpBoxDailyWager);
             this.Name = "XtraForm_EmployeeAttendence";
             this.Load += new System.EventHandler(this.XtraForm_EmployeeAttendence_Load);
             this.groupBox1.ResumeLayout(false);
@@ -1557,6 +1616,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.totalWorkingHours_Text_DW.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_Out_DW.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit_Time_In_DW.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTeaBreakTime.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1674,6 +1734,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl21;
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private System.Windows.Forms.Label txtDutyHours_Label_DW;
+        private DevExpress.XtraEditors.TextEdit txtTeaBreakTime;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblDayName;
     }
 
 }

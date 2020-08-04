@@ -124,6 +124,25 @@ namespace WindowsFormsApplication1
                         return false;
                     }
                 }
+            }
+
+            if (chkTeaBreak.Checked)
+            {
+                if (txtTeaBreakTime.Text.Trim().Length == 0)
+                {
+                    ProjectFunctions.SpeakError("Please Enter Tea Break Time");
+                    txtTeaBreakTime.Focus();
+                    return false;
+                }
+                else
+                {
+                    if (!ComparisonUtils.IsNumeric(txtTeaBreakTime.Text))
+                    {
+                        ProjectFunctions.SpeakError("Daily Tea Break Time Should be Numbers");
+                        txtTeaBreakTime.Focus();
+                        return false;
+                    }
+                }
 
             }
 
@@ -296,6 +315,9 @@ namespace WindowsFormsApplication1
                 chkDailyWage.Checked = true;
                 chkDailyWage.Checked = false;
 
+                chkTeaBreak.Checked = true;
+                chkTeaBreak.Checked = false;
+
                 txtEmpName.Select();
                 txtEmpCode.Text = ProjectFunctionsUtils.GetNewEmpCode();//.PadLeft(5, '0');
                 form_loaded = true;
@@ -415,10 +437,16 @@ namespace WindowsFormsApplication1
                     totalWorkingHours_Text.EditValue = empData.WorkingHours;
                     pictureBox1.Image = ConvertBinaryToImage(empData.EmpImage);
 
+                    chkTeaBreak.Checked = (empData.TeaBreak == 1) ? true : false;
+                    txtTeaBreakTime.EditValue = empData.TeaBreakTime;
+                    PrintLogWin.PrintLog("chkTeaBreak.Checked =========> " + chkTeaBreak.Checked + "");
+                    PrintLogWin.PrintLog("empData.TeaBreak =========> " + empData.TeaBreak + "");
+
                     chkDailyWage.Checked = empData.DailyWage;
                     PrintLogWin.PrintLog("chkDailyWage.Checked =========> " + chkDailyWage.Checked + "");
                     PrintLogWin.PrintLog("empData.DailyWage =========> " + empData.DailyWage + "");
 
+                    //DAILY WAGER//////////////////////////////
                     if (chkDailyWage.Checked)
                     {
                         if (empData.DailyWageRate != null && empData.DailyWageRate != 0)
@@ -448,7 +476,27 @@ namespace WindowsFormsApplication1
 
                         txtDailyWageHours.Enabled = false;
                         txtDailyWageHours.EditValue = null;
-                    }                    
+                    }
+
+                    //TEA BREAK//////////////////////////////
+                    if (chkTeaBreak.Checked)
+                    {
+                        if (empData.TeaBreakTime != null && empData.TeaBreakTime != 0)
+                        {
+                            txtTeaBreakTime.EditValue = empData.TeaBreakTime;
+                            txtTeaBreakTime.Tag = empData.TeaBreakTime;
+                        }
+                        else
+                        {
+                            txtTeaBreakTime.EditValue = null;
+                        }
+                    }
+                    else
+                    {
+                        txtTeaBreakTime.Enabled = false;
+                        txtTeaBreakTime.EditValue = null;
+
+                    }
                 }
 
                 form_loaded = true;
@@ -581,7 +629,7 @@ namespace WindowsFormsApplication1
                                                  + " EmpSplAlw,EmpReligion,EmpMaritalStatus,EmpPymtMode,EmpBankIFSCode,"
                                                  + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode," +
                                                  "" +
-                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours, EmpImage, DailyWage, DailyWageRate, DailyWageMinutes)"
+                                                 "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours, EmpImage, DailyWage, DailyWageRate, DailyWageMinutes, TeaBreak, TeaBreakTime)"
                                                  + " values(" + empCode_SQL + ",@EmpName,@EmpFHRelationTag,@EmpFHName, @UnitCode, @EmpDeptCode,@EmpDesgCode,@EmpCategory,"
                                                  + " @EmpSex,@EmpDOJ,@EmpDOL,@EmpPFDTag,"
                                                  + " @EmpESIDTag,@EmpPFno,@EmpESIno,@EmpBasic,@EmpHRA,@EmpConv,"
@@ -590,7 +638,7 @@ namespace WindowsFormsApplication1
                                                  + " @EmpPassportNo,"
                                                  + " @EmpSplAlw,@EmpReligion,@EmpMaritalStatus,@EmpPymtMode,@EmpBankIFSCode,"
                                                  + " @EmpBankAcNo,@EmpBankName,@EmpNominee,@EmpNomineeRelation,@EmpNomineeDOB,@EmpAdharCardNo,@EmpGHISDed,@EmpFPFDTag,@EmpMscD1,@EmpAddress1,@EmpAddress2,@EmpAddress3,@EmpDistCity,@EmpState,@EmpCountry,@EmpUANNo,@EmpBankBranchCode," +
-                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast, @WorkingHours, @EmpImage, @DailyWage, @DailyWageRate, @DailyWageMinutes)"
+                                                    "@TimeInFirst, @TimeOutFirst, @TimeInLast, @TimeOutLast, @WorkingHours, @EmpImage, @DailyWage, @DailyWageRate, @DailyWageMinutes, @TeaBreak, @TeaBreakTime)"
                                                  + " Commit ";
                             sqlcom.CommandText = sql;
 
@@ -615,7 +663,9 @@ namespace WindowsFormsApplication1
                                                 "   EmpImage = @EmpImage," +
                                                 "   DailyWage = @DailyWage," +
                                                 "   DailyWageRate = @DailyWageRate," +
-                                                "   DailyWageMinutes = @DailyWageMinutes" +
+                                                "   DailyWageMinutes = @DailyWageMinutes," +
+                                                "   TeaBreak = @TeaBreak," +
+                                                "   TeaBreakTime = @TeaBreakTime" +
                                                 "   Where EmpCode=@EmpCode";
 
                             sqlcom.CommandText = sql;
@@ -733,6 +783,9 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@DailyWage", chkDailyWage.Checked);
                         sqlcom.Parameters.AddWithValue("@DailyWageRate", (txtDailyWageRate.Text.Length == 0) ? 0 : txtDailyWageRate.EditValue);
                         sqlcom.Parameters.AddWithValue("@DailyWageMinutes", (txtDailyWageMinutes.Text.Length == 0) ? 0 : txtDailyWageMinutes.EditValue);
+
+                        sqlcom.Parameters.AddWithValue("@TeaBreak", (chkTeaBreak.Checked) ? 1 : 0);
+                        sqlcom.Parameters.AddWithValue("@TeaBreakTime", (txtTeaBreakTime.EditValue == null) ? 0: txtTeaBreakTime.EditValue);
 
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
@@ -1201,6 +1254,41 @@ namespace WindowsFormsApplication1
             txtDailyWageMinutes.EditValue = ConvertTo.IntVal(txtDailyWageHours.EditValue) * 60;
         }
 
-        
+        private void chkTeaBreak_CheckedChanged(object sender, EventArgs e)
+        {
+            if (s1 == "&Add")
+            {
+                if (chkTeaBreak.Checked)
+                {
+                    txtTeaBreakTime.Enabled = true;                             
+                }
+                else
+                {
+                    txtTeaBreakTime.Enabled = false;                    
+                }
+            }
+            if (s1 == "Edit")
+            {
+                if (chkTeaBreak.Checked)
+                {
+                    txtTeaBreakTime.Enabled = true;
+
+                    if (txtTeaBreakTime.Tag != null)
+                    {
+                        txtTeaBreakTime.EditValue = txtTeaBreakTime.Tag;
+                    }
+                    else
+                    {
+                        txtTeaBreakTime.EditValue = null;
+                    }
+
+                }
+                else
+                {
+                    txtTeaBreakTime.Enabled = false;
+                    txtTeaBreakTime.EditValue = null;
+                }
+            }
+        }
     }
 }

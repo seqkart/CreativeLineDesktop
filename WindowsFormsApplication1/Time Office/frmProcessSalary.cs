@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
@@ -136,13 +137,116 @@ namespace BNPL.Forms_Transaction
                 else
                 {
                     Col.OptionsColumn.AllowEdit = false;
+
                 }
             }
+            /*
+            for (int rowHandle = 0; rowHandle < gridView_SalaryProcess.RowCount; rowHandle++)
+            {
+                foreach (GridColumn gc in gridView_SalaryProcess.Columns)
+                {
+
+                    int _SalaryLocked = 0;
+                    if (gc.FieldName == "SalaryLocked")
+                    {
+                        _SalaryLocked = ConvertTo.IntVal(gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gc));
+
+                        PrintLogWin.PrintLog("========> SalaryLocked : " + gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gc));
+                        //gridView_SalaryProcess.Columns["Arrears"].OptionsColumn
+                        PrintLogWin.PrintLog("========> Loan : " + gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gridView_SalaryProcess.Columns["Loan"]));
+                        PrintLogWin.PrintLog("========> SalaryPaid : " + gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gridView_SalaryProcess.Columns["SalaryPaid"]));
+
+                        if(_SalaryLocked == 1)
+                        {
+                            gridView_SalaryProcess.Columns["Loan"].OptionsColumn.AllowEdit = false;
+                            gridView_SalaryProcess.Columns["SalaryPaid"].OptionsColumn.AllowEdit = false;
+                        }
+                        else
+                        {
+                            gridView_SalaryProcess.Columns["Loan"].OptionsColumn.AllowEdit = true;
+                            gridView_SalaryProcess.Columns["SalaryPaid"].OptionsColumn.AllowEdit = true;
+                        }
+                    }
+                    //if (gc.FieldName == "SalaryPaid" || gc.FieldName == "Loan")
+                    //{
+                    //    PrintLogWin.PrintLog("========> SalaryPaid : Loan : " + gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gc));
+                    //}
+                    //else
+                    //{
+                    //    gc.OptionsColumn.AllowEdit = false;
+                    //}
+
+                }
+                    
+            }
+            */
+            
+            
 
 
 
             SetGridViewStyle();
         }
+
+        public static void CustomDrawCell(GridControl gridControl, GridView gridView)
+        {
+            // Handle this event to paint cells manually
+            gridView.CustomDrawCell += (s, e) => {
+                if (e.Column.VisibleIndex != 2)
+                {
+                    return;
+                }
+                e.Cache.FillRectangle(Color.Salmon, e.Bounds);
+                e.Appearance.DrawString(e.Cache, e.DisplayText, e.Bounds);
+                e.Handled = true;
+            };
+        }
+
+        private void gridView_SalaryProcess_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
+        {
+            GridView View = sender as GridView;
+
+            //string cellValue = View.GetRowCellValue(View.FocusedRowHandle, gridView_SalaryProcess.Columns["SalaryLocked"]).ToString();
+
+            if (e.Column.FieldName == "SalaryLocked")
+            {
+                //e.DefaultDraw();
+                if (Convert.ToInt32(e.CellValue) == 1)
+                {
+                    string hex = "#eeeeee";
+                    Color color = System.Drawing.ColorTranslator.FromHtml(hex);
+                    View.Columns["SalaryPaid"].AppearanceCell.BackColor = color;
+                    View.Columns["Loan"].AppearanceCell.BackColor = color;
+
+                    //DataRow dr = View.GetDataRow(e.RowHandle);
+                    //View.GetDataRow(e.RowHandle).Field("Loan",)
+                    //dr["SalaryPaid"].
+                    //string cellValue = View.GetRowCellValue(e.RowHandle, View.Columns["SalaryLocked"]).ToString();
+                    
+                    //e.Cache.DrawImage(warningImage, e.Bounds.Location);
+                }
+            }
+        }
+
+        private void gridView_SalaryProcess_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            GridView View = sender as GridView;
+
+            var focusRowView = (DataRowView)View.GetFocusedRow();
+
+            string cellValue = View.GetRowCellValue(View.FocusedRowHandle, gridView_SalaryProcess.Columns["SalaryLocked"]).ToString();
+            if (cellValue == "1")
+            {
+                
+                //string hex = "#eeeeee";
+                //Color color = System.Drawing.ColorTranslator.FromHtml(hex);
+                //View.Columns["SalaryPaid"].AppearanceCell.BackColor = color;
+                //View.Columns["Loan"].AppearanceCell.BackColor = color;
+
+                e.Cancel = true;
+            }
+        }
+
         /*
         // Returns the total amount for a specific row.
         private object getTotalValue(int listSourceRowIndex)
@@ -268,24 +372,33 @@ namespace BNPL.Forms_Transaction
 
             if (view.FocusedColumn.FieldName == "SalaryPaid")
             {
-                decimal arrears_old = ConvertTo.DecimalVal(focusRowView["Arrears_1"]);
-                decimal salary_paying = ConvertTo.DecimalVal(e.Value);
+                int salary_locked = ConvertTo.IntVal(focusRowView["SalaryLocked"]);
 
-                decimal salary_calculated = ConvertTo.DecimalVal(focusRowView["SalaryCalculated"]);
+                if (salary_locked == 0)
+                {                    
+                    decimal arrears_old = ConvertTo.DecimalVal(focusRowView["Arrears_1"]);
+                    decimal salary_paying = ConvertTo.DecimalVal(e.Value);
 
-                decimal salary_calculated_and_paying_difference = salary_calculated - salary_paying;
-                decimal arrears_new = arrears_old + salary_calculated_and_paying_difference;
+                    decimal salary_calculated = ConvertTo.DecimalVal(focusRowView["SalaryCalculated"]);
 
-                PrintLogWin.PrintLog("******* arrears_old A " + arrears_old);
-                PrintLogWin.PrintLog("******* arrears_old B " + focusRowView["Arrears"]);
+                    decimal salary_calculated_and_paying_difference = salary_calculated - salary_paying;
+                    decimal arrears_new = arrears_old + salary_calculated_and_paying_difference;
 
-                PrintLogWin.PrintLog("******* salary_paying " + salary_paying);
+                    PrintLogWin.PrintLog("******* arrears_old A " + arrears_old);
+                    PrintLogWin.PrintLog("******* arrears_old B " + focusRowView["Arrears"]);
 
-                PrintLogWin.PrintLog("******* salary_calculated " + salary_calculated);
-                PrintLogWin.PrintLog("******* salary_calculated_and_paying_difference " + salary_calculated_and_paying_difference);
-                PrintLogWin.PrintLog("******* arrears_new " + arrears_new);
+                    PrintLogWin.PrintLog("******* salary_paying " + salary_paying);
 
-                view.SetRowCellValue(view.FocusedRowHandle, view.Columns["Arrears"], arrears_new);
+                    PrintLogWin.PrintLog("******* salary_calculated " + salary_calculated);
+                    PrintLogWin.PrintLog("******* salary_calculated_and_paying_difference " + salary_calculated_and_paying_difference);
+                    PrintLogWin.PrintLog("******* arrears_new " + arrears_new);
+
+                    view.SetRowCellValue(view.FocusedRowHandle, view.Columns["Arrears"], arrears_new);
+                }
+                else
+                {
+                    //view.SetRowCellValue(view.FocusedRowHandle, view.Columns["SalaryPaid"], arrears_new);
+                }
             }
 
             if (view.FocusedColumn.FieldName == "Loan")
@@ -329,7 +442,23 @@ namespace BNPL.Forms_Transaction
 
                     view.SetRowCellValue(view.FocusedRowHandle, view.Columns["Arrears"], arrears_new);
                 }
-                
+                //if (view.FocusedColumn.FieldName == "SalaryLocked")
+                //{
+                //    int salary_locked = ConvertTo.IntVal(e.Value);
+                //    if (salary_locked == 1)
+                //    {
+                //        //view.Columns["SalaryPaid"].ColumnEdit = false;
+                //        view.Columns["SalaryPaid"].OptionsColumn.AllowEdit = false;
+                //        view.Columns["Loan"].OptionsColumn.AllowEdit = false;
+
+
+                //        bool valid = false;
+                //        view.SetRowCellValue(view.FocusedRowHandle, view.Columns["SalaryPaid"], valid);
+                //        e.Valid = valid;
+                //    }
+                //}
+
+
             }
         }
 
@@ -439,6 +568,28 @@ namespace BNPL.Forms_Transaction
                     //e.DisplayText = ConvertTo.MinutesToHours(e.Value) + " | " + e.Value;
                     e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
                 }
+            }
+            if (e.Column.FieldName == "DeductionTime")
+            {
+                if (e.Value != DBNull.Value)
+                {                    
+                    e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
+                }
+            }
+        }
+
+        private void gridView_SalaryProcess_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            GridView View = sender as GridView;
+            if (e.RowHandle >= 0)
+            {
+                //string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Category"]);
+                //if (category == "Beverages")
+                //{
+                //    e.Appearance.BackColor = Color.Salmon;
+                //    e.Appearance.BackColor2 = Color.SeaShell;
+                //    e.HighPriority = true;
+                //}
             }
         }
 

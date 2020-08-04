@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DevExpress.Charts.Native;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -131,7 +132,8 @@ namespace BNPL.Forms_Master
                         WorkingHours = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.working_hours]),                        
                         OverTime = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.ot_deducton_time]),
                         GatePassTime = dr[Col.EmployeeAttendance.gate_pass_time],
-                        Source = dr[Col.AttendanceSource.source_name]
+                        Source = dr[Col.AttendanceSource.source_name],
+                        RowStyle = dr[Col.GridStyle.Row_Style]
                     };
                     //ConvertTo.DateTimeVal(dr[Col.EmployeeAttendance.attendance_in_first]).ToString("hh:mm tt")
 
@@ -139,7 +141,16 @@ namespace BNPL.Forms_Master
                 }
 
                 gridControl_AttendanceData.DataSource = binding_list;
-                gridView_AttendanceData.Columns["SerialId"].Visible = false;
+                if (gridView_AttendanceData.Columns["SerialId"] != null)
+                {
+                    gridView_AttendanceData.Columns["SerialId"].Visible = false;
+                }
+                if (gridView_AttendanceData.Columns["RowStyle"] != null)
+                {
+                    gridView_AttendanceData.Columns["RowStyle"].Visible = false;
+                }
+                
+                
             }
             
         }
@@ -213,6 +224,58 @@ namespace BNPL.Forms_Master
             PrintLogWin.PrintLog("*[ gridControl_AttendanceData_DoubleClick ]*");
 
             OnClickRow();
+        }
+
+        private void gridView_AttendanceData_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            try
+            {
+                GridView View = sender as GridView;
+                if (e.RowHandle >= 0)
+                {
+                    GridColumn clumn = View.Columns["RowStyle"];
+                    if (clumn != null)
+                    {
+                        string row_style = View.GetRowCellDisplayText(e.RowHandle, clumn);
+                        if (ComparisonUtils.IsNotEmpty(row_style))
+                        {
+                            string[] arr = row_style.Split('-');
+
+                            if (arr.Length == 1)
+                            {
+                                Color color_1 = System.Drawing.ColorTranslator.FromHtml(arr[0]);
+                                e.Appearance.BackColor = color_1;
+                            }
+                            if (arr.Length == 2)
+                            {
+                                Color color_1 = System.Drawing.ColorTranslator.FromHtml(arr[0]);
+                                Color color_2 = System.Drawing.ColorTranslator.FromHtml(arr[1]);
+
+                                e.Appearance.BackColor = color_1;
+                                e.Appearance.BackColor2 = color_2;
+                            }
+
+                            e.HighPriority = true;
+                        }
+                    }
+                    //GridColumn clumn = View.Columns["Status"];
+                    //if (clumn != null)
+                    //{
+                    //    string category = View.GetRowCellDisplayText(e.RowHandle, clumn);
+                    //    if (category == "RR - Sunday")
+                    //    {
+                    //        e.Appearance.BackColor = Color.Salmon;
+                    //        e.Appearance.BackColor2 = Color.SeaShell;
+                    //        e.HighPriority = true;
+                    //    }
+                    //}
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

@@ -112,5 +112,10 @@ namespace SeqKartLibrary
         {
             public const string source_name = "source_name";
         }
+
+        public static class GridStyle
+        {
+            public const string Row_Style = "Row_Style";
+        }
     }
 }

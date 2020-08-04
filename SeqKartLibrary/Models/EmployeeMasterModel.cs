@@ -159,6 +159,9 @@ namespace SeqKartLibrary.Models
         public Nullable<int> DailyWageMinutes { get; set; }
 
         public int LunchBreak { get; set; }
+
+        public int TeaBreak { get; set; }
+        public Nullable<int> TeaBreakTime { get; set; }
         public int OT_Extra { get; set; }
     }
 }

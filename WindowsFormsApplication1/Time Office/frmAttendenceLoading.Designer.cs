@@ -294,6 +294,7 @@ namespace BNPL.Forms_Master
             // 
             this.gridView_AttendanceData.GridControl = this.gridControl_AttendanceData;
             this.gridView_AttendanceData.Name = "gridView_AttendanceData";
+            this.gridView_AttendanceData.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView_AttendanceData_RowStyle);
             // 
             // gridControl_AttendanceData
             // 
