@@ -252,6 +252,8 @@ namespace WindowsFormsApplication1.Time_Office
         }
         private void employeeFormData_Load(string EmpCode)
         {
+            windowsUIButtonPanelMain.Enabled = false;
+
             PrintLogWin.PrintLog("********************* 2");            
 
             RepList<EmployeeMasterModel> lista = new RepList<EmployeeMasterModel>();
@@ -311,6 +313,8 @@ namespace WindowsFormsApplication1.Time_Office
                 SetDailyWageControls(false, null, null);
 
                 PrintLogWin.PrintLog("employeeFormData_Load 3 => ********************");
+
+                windowsUIButtonPanelMain.Enabled = true;
             }
 
         }
@@ -488,6 +492,8 @@ namespace WindowsFormsApplication1.Time_Office
             PrintLogWin.PrintLog("********************* 1 ");
             
             ReloadDataGrid_Parent();
+
+            windowsUIButtonPanelMain.Enabled = true;
 
         }
 
