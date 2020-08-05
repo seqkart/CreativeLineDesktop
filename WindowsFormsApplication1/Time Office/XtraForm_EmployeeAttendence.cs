@@ -1649,55 +1649,7 @@ namespace WindowsFormsApplication1.Time_Office
                             PrintLogWin.PrintLog("========= DDDD-4 => " + comboBox_Status.SelectedValue);
 
                             if (IsString.IsEqualTo(clearStr, "0000"))
-                            {
-                                if (ConvertTo.IntVal(comboBox_Status.SelectedValue) == 2)
-                                {
-                                    //////////////////////////////////////////////
-                                    /////////////////////////////////////////////////
-                                    double lunch_no_tea_no_add_minutes = 60;
-                                    double lunch_no_tea_yes_add_minutes = ConvertTo.DoubleVal(txtTeaBreakTime.EditValue);
-                                    double lunch_yes_tea_no_add_minutes = 30;
-                                    double lunch_yes_tea_yes_add_minutes = 60;
-
-                                    //DateTime dateTime_In_First = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + "");
-                                    //DateTime dateTime_Out_First = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
-
-                                    //double sundayMinutes = (dateTime_Out_First - dateTime_In_First).TotalMinutes;
-
-                                    if (totalHrs_First > 240)
-                                    {
-                                        PrintLogWin.PrintLog("========= D-4");
-                                        PrintLogWin.PrintLog("========= D-4 => txtLunchBreak.EditValue " + txtLunchBreak.EditValue);
-                                        PrintLogWin.PrintLog("========= D-4 => txtTeaBreakTime.EditValue " + txtTeaBreakTime.EditValue);
-
-                                        if (ConvertTo.IntVal(txtLunchBreak.EditValue) == 0 && ConvertTo.IntVal(txtTeaBreakTime.EditValue) == 0)
-                                        {
-                                            totalHrs_FullDay = totalHrs_FullDay - lunch_no_tea_no_add_minutes;
-                                            PrintLogWin.PrintLog("========= D-5");
-                                        }
-
-                                        if (ConvertTo.IntVal(txtLunchBreak.EditValue) == 0 && ConvertTo.IntVal(txtTeaBreakTime.EditValue) > 0)
-                                        {
-                                            totalHrs_FullDay = totalHrs_FullDay - lunch_no_tea_yes_add_minutes;
-                                            PrintLogWin.PrintLog("========= D-6");
-                                        }
-
-                                        if (ConvertTo.IntVal(txtLunchBreak.EditValue) == 1 && ConvertTo.IntVal(txtTeaBreakTime.EditValue) == 0)
-                                        {
-                                            totalHrs_FullDay = totalHrs_FullDay - lunch_yes_tea_no_add_minutes;
-                                            PrintLogWin.PrintLog("========= D-7");
-                                        }
-
-                                        if (ConvertTo.IntVal(txtLunchBreak.EditValue) == 1 && ConvertTo.IntVal(txtTeaBreakTime.EditValue) > 0)
-                                        {
-                                            totalHrs_FullDay = totalHrs_FullDay - lunch_yes_tea_yes_add_minutes;
-                                            PrintLogWin.PrintLog("========= DD-7");
-                                        }
-                                    }
-                                    //////////////////////////////////////////////
-                                    /////////////////////////////////////////////////
-                                    PrintLogWin.PrintLog("========= D-8 : totalHrs_FullDay : " + totalHrs_FullDay);
-                                }
+                            {                                
                                 SetEditValue_NullTag(txtOvertimeHours, totalHrs_FullDay);
                             }
                             else
