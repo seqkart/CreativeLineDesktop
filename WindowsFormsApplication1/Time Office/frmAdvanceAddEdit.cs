@@ -72,7 +72,7 @@ namespace BNPL.Forms_Transaction
             SetMyControls();
             if (s1 == "Add")
             {
-                DtDate.Enabled = false;
+                DtDate.Enabled = true;
                 DtDate.EditValue = DateTime.Now;
                 DtDateforMonth.EditValue = DateTime.Now;
                 txtAdvanceNo.Text = getNewLoanPassNo().PadLeft(6, '0');
@@ -84,6 +84,7 @@ namespace BNPL.Forms_Transaction
                 DtDateforMonth.Enabled = false;
                 DtDate.Enabled = false;
                 txtType.Enabled = false;
+
 
                 string str = "SELECT "
                 + " ExMst.ExPostHead, "
@@ -221,7 +222,7 @@ namespace BNPL.Forms_Transaction
                             //clear();
                         }
                         ProjectFunctions.SpeakError("Data has been saved.");
-                        this.Close();
+                        //this.Close();
                     }
                 }
                 if (s1 == "Edit")
@@ -248,7 +249,7 @@ namespace BNPL.Forms_Transaction
                             //clear();
                         }
                         ProjectFunctions.SpeakError("Data has been saved.");
-                        this.Close();
+                       // this.Close();
 
                     }
                 }
