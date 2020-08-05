@@ -517,26 +517,33 @@ namespace WindowsFormsApplication1.Time_Office
 
                 if (next_date_after_save)
                 {
-                    SetComboSelectedValue(comboBox_Status, status_id);
+                    SetComboSelectedValue_NullTag(comboBox_Status, status_id);
                 }
                 else
                 {
                     SetComboSelectedValue_NullTag(comboBox_Status, 1);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                     SetComboSelectedValue_NullTag(comboBox_Status, status_id);
                 }
                 SetEditValue(txtStatusType, "0000");
-            }
+            }            
             else
             {
                 if (next_date_after_save)
                 {
-                    SetComboSelectedValue(comboBox_Status, "1");
+                    if (IsString.IsEqualTo(today.ToString("dddd"), "Monday"))
+                    {
+                        SetComboSelectedValue_NullTag(comboBox_Status, "1");
+                    }
+                    else
+                    {
+                        SetComboSelectedValue(comboBox_Status, "1");
+                    }                        
                 }
                 else
                 {
                     SetComboSelectedValue_NullTag(comboBox_Status, "10");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                     SetComboSelectedValue_NullTag(comboBox_Status, "1");
                 }                
                 SetEditValue(txtStatusType, "1111");
