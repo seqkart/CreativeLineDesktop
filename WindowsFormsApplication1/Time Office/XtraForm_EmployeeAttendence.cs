@@ -44,7 +44,9 @@ namespace WindowsFormsApplication1.Time_Office
         public string selected_employee_code = "";
         public string selected_attendance_date = "";
 
-        private bool next_date_after_save = false;        
+        private bool next_date_after_save = false;
+
+        private bool input_fields_empty = false;
 
         public XtraForm_EmployeeAttendence(frmAttendenceLaoding parent, int _selected_serial_id, string _come_from, string _selected_employee_code, string _selected_attendance_date)
         {
@@ -531,7 +533,8 @@ namespace WindowsFormsApplication1.Time_Office
             {
                 if (next_date_after_save)
                 {
-                    if (IsString.IsEqualTo(today.ToString("dddd"), "Monday"))
+                    //if (IsString.IsEqualTo(today.ToString("dddd"), "Monday"))
+                    if (input_fields_empty)
                     {
                         SetComboSelectedValue_NullTag(comboBox_Status, "1");
                     }
@@ -1743,7 +1746,7 @@ namespace WindowsFormsApplication1.Time_Office
                     if (IsString.IsEqualTo(clearStr, "0000"))
                     {
                         if (status_code.Equals("RR") || status_code.Equals("RR", StringComparison.InvariantCultureIgnoreCase))
-                        {                            
+                        { 
 
                             if (ConvertTo.IntVal(txtLunchBreak.EditValue) == 0)
                             {
@@ -1792,10 +1795,10 @@ namespace WindowsFormsApplication1.Time_Office
 
                         CalculateDUtyHours("comboBox_Status_SelectedValueChanged => 0000");
 
+                        input_fields_empty = true;
                     }
                     if (IsString.IsEqualTo(clearStr, "1100"))
                     {
-
                         SetEditValue(timeEdit_Time_In_First, timeEdit_Time_In_First_Main.EditValue);
                         SetEditValue(timeEdit_Time_Out_First, timeEdit_Time_Out_First_Main.EditValue);
                         SetEditValue(timeEdit_Time_In_Last, null);
@@ -1810,10 +1813,11 @@ namespace WindowsFormsApplication1.Time_Office
                         PrintLogWin.PrintLog("--------------- B " + clearStr);
 
                         CalculateDUtyHours("comboBox_Status_SelectedValueChanged => 1100");
+
+                        input_fields_empty = false;
                     }
                     if (IsString.IsEqualTo(clearStr, "0011"))
                     {
-
                         SetEditValue(timeEdit_Time_In_First, null);
                         SetEditValue(timeEdit_Time_Out_First, null);
                         SetEditValue(timeEdit_Time_In_Last, timeEdit_Time_In_Last_Main.EditValue);
@@ -1828,6 +1832,8 @@ namespace WindowsFormsApplication1.Time_Office
                         PrintLogWin.PrintLog("--------------- C " + clearStr);
 
                         CalculateDUtyHours("comboBox_Status_SelectedValueChanged => 0011");
+
+                        input_fields_empty = false;
                     }
                     if (IsString.IsEqualTo(clearStr, "1111"))
                     {
@@ -1856,16 +1862,22 @@ namespace WindowsFormsApplication1.Time_Office
                         PrintLogWin.PrintLog("--------------- D " + clearStr);
 
                         CalculateDUtyHours("comboBox_Status_SelectedValueChanged => 1111");
+
+                        input_fields_empty = false;
                     }
 
                 }
                 else
                 {
+                    
+
                     txtStatusType.EditValue = null;
 
                     PrintLogWin.PrintLog("--------------- E");
 
                     CalculateDUtyHours("comboBox_Status_SelectedValueChanged => txtStatusType = null");
+
+                    input_fields_empty = false;
                 }
             }
             
