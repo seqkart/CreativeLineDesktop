@@ -79,7 +79,7 @@
             // txtEmpCode
             // 
             this.txtEmpCode.EnterMoveNextControl = true;
-            this.txtEmpCode.Location = new System.Drawing.Point(97, 70);
+            this.txtEmpCode.Location = new System.Drawing.Point(95, 70);
             this.txtEmpCode.Name = "txtEmpCode";
             this.txtEmpCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmpCode.Properties.MaxLength = 5;
@@ -103,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 202);
+            this.label2.Location = new System.Drawing.Point(45, 202);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 228;
@@ -132,7 +132,7 @@
             // 
             this.txtPetrol.EditValue = "0";
             this.txtPetrol.EnterMoveNextControl = true;
-            this.txtPetrol.Location = new System.Drawing.Point(94, 201);
+            this.txtPetrol.Location = new System.Drawing.Point(95, 201);
             this.txtPetrol.Name = "txtPetrol";
             this.txtPetrol.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPetrol.Properties.DisplayFormat.FormatString = "n2";
@@ -169,7 +169,7 @@
             // 
             this.txtConvenyance.EditValue = "0";
             this.txtConvenyance.EnterMoveNextControl = true;
-            this.txtConvenyance.Location = new System.Drawing.Point(94, 175);
+            this.txtConvenyance.Location = new System.Drawing.Point(95, 175);
             this.txtConvenyance.Name = "txtConvenyance";
             this.txtConvenyance.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtConvenyance.Properties.DisplayFormat.FormatString = "n2";
@@ -224,7 +224,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(51, 71);
+            this.labelControl1.Location = new System.Drawing.Point(55, 71);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(27, 13);
             this.labelControl1.TabIndex = 233;
@@ -234,7 +234,7 @@
             // 
             this.txtHRA.EditValue = "0";
             this.txtHRA.EnterMoveNextControl = true;
-            this.txtHRA.Location = new System.Drawing.Point(94, 149);
+            this.txtHRA.Location = new System.Drawing.Point(95, 149);
             this.txtHRA.Name = "txtHRA";
             this.txtHRA.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtHRA.Properties.DisplayFormat.FormatString = "n2";
@@ -250,7 +250,7 @@
             // 
             // labelControl22
             // 
-            this.labelControl22.Location = new System.Drawing.Point(47, 150);
+            this.labelControl22.Location = new System.Drawing.Point(51, 150);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(31, 13);
             this.labelControl22.TabIndex = 227;
@@ -260,7 +260,7 @@
             // 
             this.txtBasicPay.EditValue = "0";
             this.txtBasicPay.EnterMoveNextControl = true;
-            this.txtBasicPay.Location = new System.Drawing.Point(94, 121);
+            this.txtBasicPay.Location = new System.Drawing.Point(95, 121);
             this.txtBasicPay.Name = "txtBasicPay";
             this.txtBasicPay.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBasicPay.Properties.DisplayFormat.FormatString = "n2";
@@ -276,7 +276,7 @@
             // 
             // labelControl23
             // 
-            this.labelControl23.Location = new System.Drawing.Point(32, 122);
+            this.labelControl23.Location = new System.Drawing.Point(37, 122);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(45, 13);
             this.labelControl23.TabIndex = 226;
@@ -285,7 +285,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 180);
+            this.label1.Location = new System.Drawing.Point(20, 180);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 225;
@@ -294,7 +294,7 @@
             // txtFHName
             // 
             this.txtFHName.EnterMoveNextControl = true;
-            this.txtFHName.Location = new System.Drawing.Point(94, 96);
+            this.txtFHName.Location = new System.Drawing.Point(95, 96);
             this.txtFHName.Name = "txtFHName";
             this.txtFHName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtFHName.Properties.MaxLength = 40;
@@ -306,7 +306,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 99);
+            this.label3.Location = new System.Drawing.Point(25, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 236;
@@ -354,7 +354,7 @@
             // 
             this.DtStartDate.EditValue = null;
             this.DtStartDate.EnterMoveNextControl = true;
-            this.DtStartDate.Location = new System.Drawing.Point(97, 44);
+            this.DtStartDate.Location = new System.Drawing.Point(95, 44);
             this.DtStartDate.Name = "DtStartDate";
             this.DtStartDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.DtStartDate.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -382,7 +382,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(18, 45);
+            this.labelControl3.Location = new System.Drawing.Point(22, 45);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(60, 13);
             this.labelControl3.TabIndex = 239;
@@ -390,7 +390,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(58, 256);
+            this.labelControl4.Location = new System.Drawing.Point(56, 256);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(26, 13);
             this.labelControl4.TabIndex = 351;
