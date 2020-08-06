@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using DevExpress.DataProcessing;
 using DevExpress.XtraBars.Docking2010;
 using DevExpress.XtraEditors;
 using SeqKartLibrary;
@@ -7,11 +6,9 @@ using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
 using SeqKartLibrary.Repository;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1
@@ -40,7 +37,7 @@ namespace WindowsFormsApplication1
 
             txtEmpCode.Enabled = false;
         }
-        
+
         private bool ValidateData()
         {
             if (txtEmpCode.Text.Trim().Length == 0)
@@ -108,7 +105,7 @@ namespace WindowsFormsApplication1
                         ProjectFunctions.SpeakError("Daily Wage Rates Should be Numbers");
                         txtDailyWageRate.Focus();
                         return false;
-                    }                                          
+                    }
                 }
 
                 //if (txtDailyWageHours.Text.Trim().Length == 0)
@@ -200,7 +197,7 @@ namespace WindowsFormsApplication1
         //}
         private bool form_loaded = false;
         private void frmEmloyeeMstAddEdit_Load(object sender, EventArgs e)
-        {            
+        {
             employeeFormData_Load();
         }
         //string fileName1 = "";
@@ -232,7 +229,7 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PrintLogWin.PrintLog(ex);
 
@@ -267,46 +264,13 @@ namespace WindowsFormsApplication1
 
                     }
                 }
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PrintLogWin.PrintLog(ex);
             }
             return null;
-        }
-
-        private void Page_Load1()
-        {
-            DataSet ds = GetData();
-            SqlConnection con = new SqlConnection(@"data source=.\sqlserver; user id=sa; password=123; database=Sample;");
-            SqlBulkCopy bulk = new SqlBulkCopy(con);
-
-            
-            bulk.DestinationTableName = "tblStudents";
-            foreach (DataColumn col in ds.Tables[0].Columns)
-                bulk.ColumnMappings.Add(col.ColumnName, col.ColumnName);
-            con.Open();
-            bulk.WriteToServer(ds.Tables[0]);
-            con.Close();
-        }
-
-        DataSet GetData()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("StudentID", typeof(int));
-            dt.Columns.Add("StudentName", typeof(string));
-            dt.Columns.Add("RollNumber", typeof(int));
-            dt.Columns.Add("TotalMarks", typeof(int));
-            dt.Rows.Add(1, "Jame's", 101, 900);
-            dt.Rows.Add(2, "Steave Smith", 105, 820);
-            dt.Rows.Add(3, "Mark Waugh", 109, 850);
-            dt.Rows.Add(4, "Steave Waugh", 110, 950);
-            dt.Rows.Add(5, "Smith", 111, 910);
-            dt.Rows.Add(6, "Williams", 115, 864);
-            DataSet ds = new DataSet();
-            ds.Tables.Add(dt);
-            return ds;
         }
         private void employeeFormData_Load()
         {
@@ -332,7 +296,7 @@ namespace WindowsFormsApplication1
 
                 EmployeeMasterModel empData = lista.returnClass_SP(SQL_QUERIES._frmEmployeeMstAddEdit.sp_LoadEmpMstFEditing(), param);
 
-               
+
                 //PrintLogWin.PrintLog("**************** =========> Line 120 => listData => " + listData.Count + "");
                 if (empData != null)
                 {
@@ -344,7 +308,7 @@ namespace WindowsFormsApplication1
                     txtDeptDesc.Text = empData.DeptDesc;//ds.Tables[0].Rows[0]["DeptDesc"].ToString();
                     txtDesgCode.Text = empData.EmpDesgCode;//ds.Tables[0].Rows[0]["EmpDesgCode"].ToString();
                     txtDesgDesc.Text = empData.DesgDesc;//ds.Tables[0].Rows[0]["DesgDesc"].ToString();
-                    
+
                     txtUnitCode.Text = empData.UnitCode;//ds.Tables[0].Rows[0]["EmpDesgCode"].ToString();
                     txtUnitDesc.Text = empData.UnitName;//ds.Tables[0].Rows[0]["DesgDesc"].ToString();
 
@@ -506,7 +470,7 @@ namespace WindowsFormsApplication1
                 txtEmpName.Enabled = false;
                 PrintLogWin.PrintLog("frmEmloyeeMstAddEdit_Load =========> Line 131 => sp_LoadEmpMstFEditing '" + EmpCode + "'");
 
-                
+
             }
         }
 
@@ -559,8 +523,8 @@ namespace WindowsFormsApplication1
                 HelpGrid.Visible = false;
                 txtUnitCode.Focus();
             }
-            
-            
+
+
             if (HelpGrid.Text == "txtUnitCode")
             {
                 txtUnitCode.Text = row["UnitCode"].ToString();
@@ -648,7 +612,7 @@ namespace WindowsFormsApplication1
                         }
                         if (s1 == "Edit")
                         {
-                            sql= " UPDATE EmpMst SET "
+                            sql = " UPDATE EmpMst SET "
                                                 + " EmpFHRelationTag=@EmpFHRelationTag,EmpFHName=@EmpFHName, UnitCode=@UnitCode, EmpDeptCode=@EmpDeptCode,EmpDesgCode=@EmpDesgCode,EmpCategory=@EmpCategory, "
                                                 + " EmpSex=@EmpSex,EmpDOJ=@EmpDOJ,EmpDOL=@EmpDOL,EmpPFDTag=@EmpPFDTag, "
                                                 + " EmpESIDTag=@EmpESIDTag,EmpPFno=@EmpPFno,EmpESIno=@EmpESIno,EmpBasic=@EmpBasic,EmpHRA=@EmpHRA,EmpConv=@EmpConv, "
@@ -766,10 +730,10 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@TimeOutLast", ConvertTo.DateTimeVal(timeEdit_Time_Out_Last.Text.ToString().Trim()));
                         sqlcom.Parameters.AddWithValue("@WorkingHours", ConvertTo.IntVal(totalWorkingHours_Text.Text.ToString().Trim()));
 
-                        
 
 
-                        
+
+
                         if (ComparisonUtilsWin.PictureBox_IsNullOrEmpty(pictureBox1))
                         {
                             byte[] byteEmpty = ConvertImageToBinary(WindowsFormsApplication1.Properties.Resources.profile_icon);
@@ -787,7 +751,7 @@ namespace WindowsFormsApplication1
                         sqlcom.Parameters.AddWithValue("@DailyWageMinutes", (txtDailyWageMinutes.Text.Length == 0) ? 0 : txtDailyWageMinutes.EditValue);
 
                         sqlcom.Parameters.AddWithValue("@TeaBreak", (chkTeaBreak.Checked) ? 1 : 0);
-                        sqlcom.Parameters.AddWithValue("@TeaBreakTime", (txtTeaBreakTime.EditValue == null) ? 0: txtTeaBreakTime.EditValue);
+                        sqlcom.Parameters.AddWithValue("@TeaBreakTime", (txtTeaBreakTime.EditValue == null) ? 0 : txtTeaBreakTime.EditValue);
 
                         sqlcom.ExecuteNonQuery();
                         transaction.Commit();
@@ -838,30 +802,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void txtEmpSex_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (txtEmpSex.Text == "M" || txtEmpSex.Text == "F")
-            {
-            }
-            else
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show("Valid Values are Male-M,Female-F", "Save", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                txtEmpSex.Focus();
-            }
-        }
-
-        private void txtRelationTag_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (txtRelationTag.Text == "F" || txtRelationTag.Text == "H")
-            {
-            }
-            else
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show("Valid Values are Father-F,Husband-H", "Save", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                txtRelationTag.Focus();
-            }
-        }
-
         private void txtEPFTag_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (txtEPFTag.Text == "Y" || txtEPFTag.Text == "N")
@@ -898,10 +838,10 @@ namespace WindowsFormsApplication1
                     break;
                 case "save_close":
                     /* Navigate to page B */
-                    
+
                     break;
                 case "save_new":
-                    /* Navigate to page C*/                    
+                    /* Navigate to page C*/
 
                     break;
                 case "reset":
@@ -912,11 +852,11 @@ namespace WindowsFormsApplication1
                         employeeFormData_Load();
 
                     }
-                        break;
+                    break;
                 case "add_new":
                     /* Navigate to page C*/
 
-                    
+
 
                     break;
                 case "close":
@@ -985,7 +925,7 @@ namespace WindowsFormsApplication1
                             {
                                 ProjectFunctions.SpeakError("Time Out First cannot be less than Time In First in Day Shift");
                                 timeEdit_Time_Out_First.EditValue = null;
-                            }                                
+                            }
                         }
                         else
                         {
@@ -1011,7 +951,7 @@ namespace WindowsFormsApplication1
                                 {
                                     ProjectFunctions.SpeakError("Time In Last cannot be less than Time Out First in Day Shift");
                                     timeEdit_Time_In_Last.EditValue = null;
-                                }                                    
+                                }
                             }
                             else
                             {
@@ -1021,7 +961,7 @@ namespace WindowsFormsApplication1
                                     {
                                         ProjectFunctions.SpeakError("Time Out Last cannot be less than Time In Last in Day Shift");
                                         timeEdit_Time_Out_Last.EditValue = null;
-                                    }                                        
+                                    }
                                 }
                                 else
                                 {
@@ -1041,7 +981,7 @@ namespace WindowsFormsApplication1
                                 {
                                     ProjectFunctions.SpeakError("Time Out Last cannot be less than Time In Last in Day Shift");
                                     timeEdit_Time_Out_Last.EditValue = null;
-                                } 
+                                }
                             }
                             else
                             {
@@ -1057,8 +997,8 @@ namespace WindowsFormsApplication1
 
                     double totalHrs_FullDay = totalHrs_First + totalHrs_Last;
 
-                    totalWorkingHours_Text.Text = (totalHrs_FullDay).ToString();                   
-                    
+                    totalWorkingHours_Text.Text = (totalHrs_FullDay).ToString();
+
                 }
             }
             catch (Exception ex)
@@ -1190,7 +1130,7 @@ namespace WindowsFormsApplication1
 
         private void chkDailyWage_CheckedChanged(object sender, EventArgs e)
         {
-            
+
             if (s1 == "&Add")
             {
                 if (chkDailyWage.Checked)
@@ -1245,7 +1185,7 @@ namespace WindowsFormsApplication1
                     txtDailyWageHours.Enabled = false;
                     txtDailyWageHours.EditValue = null;
 
-                   // RelationShipGrid123.TabPages[1].PageVisible = true;
+                    // RelationShipGrid123.TabPages[1].PageVisible = true;
 
                 }
             }
@@ -1262,11 +1202,11 @@ namespace WindowsFormsApplication1
             {
                 if (chkTeaBreak.Checked)
                 {
-                    txtTeaBreakTime.Enabled = true;                             
+                    txtTeaBreakTime.Enabled = true;
                 }
                 else
                 {
-                    txtTeaBreakTime.Enabled = false;                    
+                    txtTeaBreakTime.Enabled = false;
                 }
             }
             if (s1 == "Edit")
