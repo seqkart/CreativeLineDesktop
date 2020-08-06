@@ -1613,9 +1613,9 @@ namespace WindowsFormsApplication1.Time_Office
                         PrintLogWin.PrintLog("========= D-3 : clearStr : " + clearStr);
                         //////////////////////////////////////////////
                         /////////////////////////////////////////////////
-                        double lunch_no_tea_no_add_minutes = ConvertTo.DoubleVal(txtTeaBreakTime.EditValue); 
+                        double lunch_no_tea_no_add_minutes = 60; 
                         double lunch_no_tea_yes_add_minutes = ConvertTo.DoubleVal(txtTeaBreakTime.EditValue);
-                        double lunch_yes_tea_no_add_minutes = ConvertTo.DoubleVal(txtTeaBreakTime.EditValue); 
+                        double lunch_yes_tea_no_add_minutes = 30; 
                       //  double lunch_yes_tea_no_add_minutes = 30;
                         ///////////////////////////////
                         /***DAILY WAGER ALSO CHECK***************************/
