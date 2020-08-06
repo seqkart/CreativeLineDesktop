@@ -459,6 +459,7 @@
             this.gridColumn16.Caption = "CHOManualDesc";
             this.gridColumn16.FieldName = "CHOManualDesc";
             this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.True;
             this.gridColumn16.Visible = true;
             this.gridColumn16.VisibleIndex = 1;
             this.gridColumn16.Width = 86;
@@ -645,6 +646,7 @@
             this.HelpGrid.TabIndex = 245;
             this.HelpGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.HelpGridView});
+            this.HelpGrid.DoubleClick += new System.EventHandler(this.HelpGrid_DoubleClick);
             this.HelpGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HelpGrid_KeyDown);
             // 
             // HelpGridView

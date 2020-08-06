@@ -578,6 +578,12 @@ namespace WindowsFormsApplication1.Time_Office
             SetEditValue(timeEdit_Time_Out_Last, null);
 
 
+            ProjectFunctions.TimeSpanVisualize
+                (grpBoxEmployee);
+            ProjectFunctions.TimeSpanVisualize(grpBoxDailyWager);
+
+
+
             //radioButtonMachine.
         }
 

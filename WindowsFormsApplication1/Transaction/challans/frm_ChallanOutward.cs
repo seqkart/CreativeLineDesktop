@@ -349,7 +349,9 @@ namespace WindowsFormsApplication1.Transaction.challans
                 ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
                 ProjectFunctions.TextBoxVisualize(groupControl1);
                 ProjectFunctions.GirdViewVisualize(HelpGridView);
+       
                 ProjectFunctions.GirdViewVisualize(BarCodeGridView);
+               
                 ProjectFunctions.TextBoxVisualize(this);
 
                 PrintLogWin.PrintLog(s1);
@@ -551,6 +553,8 @@ namespace WindowsFormsApplication1.Transaction.challans
 
         private void BarCodeGrid_KeyDown(object sender, KeyEventArgs e)
         {
+            
+
             try
             {
                 HelpGridView.Columns.Clear();
