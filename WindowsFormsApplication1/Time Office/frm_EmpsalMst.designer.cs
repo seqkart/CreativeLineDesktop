@@ -143,6 +143,7 @@
             // 
             // TextAuthenticate
             // 
+            this.TextAuthenticate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TextAuthenticate.Name = "TextAuthenticate";
             this.TextAuthenticate.Size = new System.Drawing.Size(100, 25);
             // 

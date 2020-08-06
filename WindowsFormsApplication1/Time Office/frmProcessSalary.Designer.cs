@@ -64,7 +64,7 @@
             // 
             // btnLock
             // 
-            this.btnLock.Location = new System.Drawing.Point(552, 45);
+            this.btnLock.Location = new System.Drawing.Point(467, 52);
             this.btnLock.Name = "btnLock";
             this.btnLock.Size = new System.Drawing.Size(95, 20);
             this.btnLock.TabIndex = 351;
@@ -74,7 +74,7 @@
             // 
             // ChoiceSelect
             // 
-            this.ChoiceSelect.Location = new System.Drawing.Point(667, 45);
+            this.ChoiceSelect.Location = new System.Drawing.Point(580, 53);
             this.ChoiceSelect.Name = "ChoiceSelect";
             this.ChoiceSelect.Properties.Caption = "Select &All";
             this.ChoiceSelect.Size = new System.Drawing.Size(75, 20);
@@ -315,6 +315,8 @@
             this.gridView_SalaryProcess.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.gridView_SalaryProcess.Name = "gridView_SalaryProcess";
             this.gridView_SalaryProcess.OptionsEditForm.BindingMode = DevExpress.XtraGrid.Views.Grid.EditFormBindingMode.Direct;
+            this.gridView_SalaryProcess.OptionsView.ShowFooter = true;
+            this.gridView_SalaryProcess.OptionsView.ShowGroupPanel = false;
             this.gridView_SalaryProcess.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView_SalaryProcess_CustomDrawCell);
             this.gridView_SalaryProcess.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView_SalaryProcess_RowStyle);
             this.gridView_SalaryProcess.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView_SalaryProcess_ShowingEditor);

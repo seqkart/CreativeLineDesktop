@@ -1618,7 +1618,7 @@
             // 
             // HelpGrid
             // 
-            this.HelpGrid.Location = new System.Drawing.Point(663, 96);
+            this.HelpGrid.Location = new System.Drawing.Point(142, 96);
             this.HelpGrid.MainView = this.HelpGridView;
             this.HelpGrid.Name = "HelpGrid";
             this.HelpGrid.Size = new System.Drawing.Size(420, 274);
@@ -2192,7 +2192,7 @@
         private System.Windows.Forms.Label label22;
         private DevExpress.XtraEditors.TextEdit txtAdharCardNo;
         private System.Windows.Forms.Label label34;
-       
+
         private DevExpress.XtraEditors.ComboBoxEdit txtEmployeeReligion;
         private DevExpress.XtraEditors.ComboBoxEdit txtMaritalStatus;
         private DevExpress.XtraEditors.ComboBoxEdit txtPaymentMode;

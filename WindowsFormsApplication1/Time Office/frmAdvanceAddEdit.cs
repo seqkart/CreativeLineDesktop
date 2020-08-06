@@ -10,16 +10,6 @@ namespace BNPL.Forms_Transaction
 {
     public partial class frmAdvanceAddEdit : DevExpress.XtraEditors.XtraForm
     {
-
-
-#pragma warning disable CS0414 // The field 'frmAdvanceAddEdit.VoucehrNo' is assigned but its value is never used
-        string VoucehrNo = string.Empty;
-#pragma warning restore CS0414 // The field 'frmAdvanceAddEdit.VoucehrNo' is assigned but its value is never used
-#pragma warning disable CS0169 // The field 'frmAdvanceAddEdit.VoucherDate' is never used
-        DateTime VoucherDate;
-#pragma warning restore CS0169 // The field 'frmAdvanceAddEdit.VoucherDate' is never used
-#pragma warning disable CS0414 // The field 'frmAdvanceAddEdit.VoucherType' is assigned but its value is never used
-        string VoucherType = string.Empty;
 #pragma warning restore CS0414 // The field 'frmAdvanceAddEdit.VoucherType' is assigned but its value is never used
 
 
@@ -72,7 +62,7 @@ namespace BNPL.Forms_Transaction
             SetMyControls();
             if (s1 == "Add")
             {
-                DtDate.Enabled = false;
+                DtDate.Enabled = true;
                 DtDate.EditValue = DateTime.Now;
                 DtDateforMonth.EditValue = DateTime.Now;
                 txtAdvanceNo.Text = getNewLoanPassNo().PadLeft(6, '0');
@@ -84,6 +74,7 @@ namespace BNPL.Forms_Transaction
                 DtDateforMonth.Enabled = false;
                 DtDate.Enabled = false;
                 txtType.Enabled = false;
+
 
                 string str = "SELECT "
                 + " ExMst.ExPostHead, "
@@ -101,10 +92,10 @@ namespace BNPL.Forms_Transaction
                 + " ExMst.ExEmpCCode, "
                 + " ExMst.ExFedDate, "
                 + " ExMst.ExLoadedDate, "
-                + " empmst.EmpName, "                
+                + " empmst.EmpName, "
                 + " actmst.AccName "
                 + " FROM ExMst "
-                + " LEFT OUTER JOIN EmpMST ON ExMst.ExEmpCode = empmst.EmpCode "                
+                + " LEFT OUTER JOIN EmpMST ON ExMst.ExEmpCode = empmst.EmpCode "
                 + " LEFT OUTER JOIN ActMst ON ExMst.ExPostHead = actmst.AccCode "
                 + " WHERE ExId='" + ExId + "';" +
                 "";
@@ -120,7 +111,7 @@ namespace BNPL.Forms_Transaction
                 PrintLogWin.PrintLog(str);
 
                 var ds = ProjectFunctionsUtils.GetDataSet(str);
-                
+
                 try
                 {
                     txtAdvanceNo.Text = ds.Tables[0].Rows[0]["ExNo"].ToString();
@@ -131,7 +122,7 @@ namespace BNPL.Forms_Transaction
                     txtType.Text = ds.Tables[0].Rows[0]["ExTag"].ToString();
                     txtAmount.Text = ds.Tables[0].Rows[0]["ExAmt"].ToString();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     PrintLogWin.PrintLog(ex);
                 }
@@ -221,7 +212,7 @@ namespace BNPL.Forms_Transaction
                             //clear();
                         }
                         ProjectFunctions.SpeakError("Data has been saved.");
-                        this.Close();
+                        //this.Close();
                     }
                 }
                 if (s1 == "Edit")
@@ -248,7 +239,7 @@ namespace BNPL.Forms_Transaction
                             //clear();
                         }
                         ProjectFunctions.SpeakError("Data has been saved.");
-                        this.Close();
+                        // this.Close();
 
                     }
                 }
@@ -275,30 +266,12 @@ namespace BNPL.Forms_Transaction
             }
             return s2;
         }
-
-
-        private void clear()
-        {
-            txtEmpCode.Text = string.Empty;
-            txtEmpCodeDesc.Text = string.Empty;
-            txtAmount.Text = string.Empty;
-            txtSalary.Text = string.Empty;
-            //txtType.Text = string.Empty;
-            s1 = "Add";
-            txtEmpCode.Focus();
-            Text = "Time Office Payment Addition";
-        }
         private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             ProjectFunctions.NumericWithDecimal(e);
         }
 
         private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ProjectFunctions.NumericWithDecimal(e);
-        }
-
-        private void txtOthersGiven_KeyPress(object sender, KeyPressEventArgs e)
         {
             ProjectFunctions.NumericWithDecimal(e);
         }
@@ -448,106 +421,6 @@ namespace BNPL.Forms_Transaction
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void txtContCode_EditValueChanged(object sender, EventArgs e)
-        {
-            //txtContCodeDesc.Text = string.Empty;
-        }
-        private void PrepareContGrid()
-        {
-            HelpGridView.Columns.Clear();
-            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
-            HelpGridView.Columns[0].Visible = true;
-            HelpGridView.Columns[0].Caption = "ERMDesc";
-            HelpGridView.Columns[0].FieldName = "ERMDesc";
-            HelpGridView.Columns[0].OptionsColumn.AllowEdit = false;
-            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
-            HelpGridView.Columns[1].Visible = true;
-            HelpGridView.Columns[1].Caption = "ERMCode";
-            HelpGridView.Columns[1].FieldName = "ERMCode";
-            HelpGridView.Columns[1].OptionsColumn.AllowEdit = false;
-        }
-
-
-        private void txtContCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    PrepareContGrid();
-            //    var strQry = string.Empty;
-            //    HelpGrid.Text = "ERMCode";
-            //    var ds = new DataSet();
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        if (txtContCode.Text.Length == 0)
-            //        {
-            //            strQry = strQry + "select * from EmpEmplrRef ";
-            //            ds = ProjectFunctions.GetDataSet(strQry);
-            //            HelpGrid.DataSource = ds.Tables[0];
-            //            HelpGridView.BestFitColumns();
-            //            HelpGrid.Show();
-            //            HelpGrid.Focus();
-            //        }
-            //        else
-            //        {
-            //            strQry = strQry + "select * from EmpEmplrRef  wHERE  ERMCode= '" + txtContCode.Text.ToString().Trim() + "'";
-
-            //            ds = ProjectFunctions.GetDataSet(strQry);
-            //            if (ds.Tables[0].Rows.Count > 0)
-            //            {
-            //                txtContCode.Text = ds.Tables[0].Rows[0]["ERMCode"].ToString().Trim();
-            //                txtContCodeDesc.Text = ds.Tables[0].Rows[0]["ERMDesc"].ToString().Trim();
-            //                txtEmpCode.Focus();
-            //            }
-            //            else
-            //            {
-            //                var strQry1 = string.Empty;
-            //                strQry1 = strQry1 + "select * from EmpEmplrRef ";
-            //                var ds1 = ProjectFunctions.GetDataSet(strQry1);
-            //                HelpGrid.DataSource = ds1.Tables[0];
-            //                HelpGridView.BestFitColumns();
-            //                HelpGrid.Show();
-            //                HelpGrid.Focus();
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //e.Handled = true;
-        }
-
-        private void txtPostHeadCode_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPostHeadCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                HelpGridView.Columns.Clear();
-                var strQry = string.Empty;
-                HelpGrid.Text = "POST";
-                var ds = new DataSet();
-                if (e.KeyCode == Keys.Enter)
-                {
-                    strQry = strQry + "SELECT   AccCode, ActMst.AccName from ActMst ";
-                    ds = ProjectFunctions.GetDataSet(strQry);
-                    HelpGrid.DataSource = ds.Tables[0];
-                    HelpGridView.BestFitColumns();
-                    HelpGrid.Show();
-                    HelpGrid.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            e.Handled = true;
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
