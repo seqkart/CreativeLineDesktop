@@ -193,13 +193,10 @@ namespace WindowsFormsApplication1.Time_Office
         {
             PrintLogWin.PrintLog("********************* _DailyWageMinutes : " + _DailyWageMinutes);
             PrintLogWin.PrintLog("********************* _DailyWageRate : " + _DailyWageRate);
-            
-
-
 
             SetEditValue(textEmpType, ((_DailyWage == true) ? "Daily Wager" : "Regular"));
             SetEditValue(txtDailyWager, _DailyWage);
-
+            /*
             if (_DailyWage)
             {
                 grpBoxDailyWager.Enabled = true;
@@ -234,7 +231,7 @@ namespace WindowsFormsApplication1.Time_Office
                 SetEditValue_NullTag(totalWorkingHours_Text_DW, null);
                 SetEditValue_NullTag(txtOvertimeHours, null);
             }
-            //
+            */
         }
 
         private void SetProfilePicture(byte[] data)
@@ -268,12 +265,12 @@ namespace WindowsFormsApplication1.Time_Office
             PrintLogWin.PrintLog("employeeFormData_Load 1 => SQL => ******************** sp_EmployeeDetails '" + EmpCode + "'");
 
             if (empData != null)
-            {              
-
+            {
                 SetEditValue(timeEdit_Time_In_First_Main, empData.TimeInFirst);
                 SetEditValue(timeEdit_Time_Out_First_Main, empData.TimeOutFirst);
                 SetEditValue(timeEdit_Time_In_Last_Main, empData.TimeInLast);
                 SetEditValue(timeEdit_Time_Out_Last_Main, empData.TimeOutLast);
+
                 SetEditValue(totalWorkingHours_Text_Main, empData.WorkingHours);
 
                 SetEditValue(txtFName, empData.EmpName);
@@ -286,8 +283,7 @@ namespace WindowsFormsApplication1.Time_Office
 
                 SetProfilePicture(empData.EmpImage);
 
-                SetDailyWageControls(empData.DailyWage, empData.DailyWageMinutes, empData.DailyWageRate);
-
+                SetDailyWageControls(empData.DailyWage, empData.DailyWageMinutes, empData.DailyWageRate);                
 
                 PrintLogWin.PrintLog("employeeFormData_Load 2 => ********************");
                 
@@ -386,34 +382,20 @@ namespace WindowsFormsApplication1.Time_Office
                 SetComboSelectedValue_NullTag(comboBox_Status, query_attendance.status_id);
                 SetComboSelectedValue(comboBox_Shift, query_attendance.shift_id);
 
-                if (query_attendance.DailyWage)
-                {
-                    SetEditValue(timeEdit_Time_In_DW, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_in_first));
-                    SetEditValue(timeEdit_Time_Out_DW, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_out_first));
+                //////////////////////////////////////
+                SetEditValue(timeEdit_Time_In_First, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_in_first));
+                SetEditValue(timeEdit_Time_Out_First, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_out_first));
+                SetEditValue(timeEdit_Time_In_Last, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_in_last));
+                SetEditValue(timeEdit_Time_Out_Last, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_out_last));
 
-                    SetEditValue_NullTag(totalWorkingHours_Text_DW, query_attendance.working_hours);
+                PrintLogWin.PrintLog("timeEdit_Time_In_First : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_First.EditValue));
+                PrintLogWin.PrintLog("timeEdit_Time_Out_First : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_First.EditValue));
+                PrintLogWin.PrintLog("timeEdit_Time_In_Last : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_Last.EditValue));
+                PrintLogWin.PrintLog("timeEdit_Time_Out_Last : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_Last.EditValue));
 
-                    PrintLogWin.PrintLog("timeEdit_Time_In_DW : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_DW.EditValue));
-                    PrintLogWin.PrintLog("timeEdit_Time_Out_DW : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_DW.EditValue));
-
-                    SetEditValue(txtStatusType, null);
-                }
-                else
-                {
-                    SetEditValue(timeEdit_Time_In_First, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_in_first));
-                    SetEditValue(timeEdit_Time_Out_First, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_out_first));
-                    SetEditValue(timeEdit_Time_In_Last, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_in_last));
-                    SetEditValue(timeEdit_Time_Out_Last, ConvertTo.TimeSpanVal_Null(query_attendance.attendance_out_last));
-
-
-                    PrintLogWin.PrintLog("timeEdit_Time_In_First : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_First.EditValue));
-                    PrintLogWin.PrintLog("timeEdit_Time_Out_First : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_First.EditValue));
-                    PrintLogWin.PrintLog("timeEdit_Time_In_Last : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_Last.EditValue));
-                    PrintLogWin.PrintLog("timeEdit_Time_Out_Last : " + ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_Last.EditValue));
-
-                    SetEditValue(txtStatusType, query_attendance.status_type);
-                }
-
+                SetEditValue(txtStatusType, query_attendance.status_type);
+                //////////////////////////////////////
+                
                 SetEditValue_NullTag(totalWorkingHours_Text, query_attendance.working_hours);
                 SetEditValue(timeEdit_GatePassTime, query_attendance.gate_pass_time);
                 SetEditValue_NullTag(txtOvertimeHours, query_attendance.ot_deducton_time);
@@ -444,7 +426,8 @@ namespace WindowsFormsApplication1.Time_Office
                 
                 if (query_attendance.DailyWage)
                 {
-
+                    //////////////
+                    CalculateDUtyHours("calculate_on_load");
                 }
                 else
                 {
@@ -818,12 +801,21 @@ namespace WindowsFormsApplication1.Time_Office
 
                     if (isDailyWager)
                     {
+                        /*
                         employeeAttendance.status_id = 1;
                         employeeAttendance.attendance_in_first = ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_DW.Text);
                         employeeAttendance.attendance_out_first = ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_DW.Text);
                         employeeAttendance.attendance_in_last = TimeSpan.Zero;
                         employeeAttendance.attendance_out_last = TimeSpan.Zero;
                         employeeAttendance.working_hours = ConvertTo.IntVal(totalWorkingHours_Text_DW.Text);
+                        */
+
+                        employeeAttendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
+                        employeeAttendance.attendance_in_first = ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_First.Text);
+                        employeeAttendance.attendance_out_first = ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_First.Text);
+                        employeeAttendance.attendance_in_last = ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_Last.Text);
+                        employeeAttendance.attendance_out_last = ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_Last.Text);
+                        employeeAttendance.working_hours = ConvertTo.IntVal(totalWorkingHours_Text.Text);
                     }
                     else
                     {
@@ -912,12 +904,20 @@ namespace WindowsFormsApplication1.Time_Office
 
                     if (isDailyWager)
                     {
+                        /*
                         employeeAttendance.status_id = 1;
                         employeeAttendance.attendance_in_first = ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_DW.Text);
                         employeeAttendance.attendance_out_first = ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_DW.Text);
                         employeeAttendance.attendance_in_last = TimeSpan.Zero;
                         employeeAttendance.attendance_out_last = TimeSpan.Zero;
                         employeeAttendance.working_hours = ConvertTo.IntVal(totalWorkingHours_Text_DW.Text);
+                        */
+                        employeeAttendance.status_id = ConvertTo.IntVal(comboBox_Status.SelectedValue);
+                        employeeAttendance.attendance_in_first = ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_First.Text);
+                        employeeAttendance.attendance_out_first = ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_First.Text);
+                        employeeAttendance.attendance_in_last = ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_Last.Text);
+                        employeeAttendance.attendance_out_last = ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_Last.Text);
+                        employeeAttendance.working_hours = ConvertTo.IntVal(totalWorkingHours_Text.Text);
                     }
                     else
                     {
@@ -1022,8 +1022,11 @@ namespace WindowsFormsApplication1.Time_Office
                 PrintLogWin.PrintLog("+++++++++++++ A");
                 return false;
             }
-            
-            if (ConvertTo.BooleanVal(txtDailyWager.EditValue))
+
+            bool disableDailyWagerCode = true;
+
+            //if (ConvertTo.BooleanVal(txtDailyWager.EditValue))
+            if (!disableDailyWagerCode)
             {
                 PrintLogWin.PrintLog("+++++++++++++ B");
                 if (ComparisonUtils.IsEmpty(timeEdit_Time_In_DW.EditValue) ||
@@ -1467,15 +1470,6 @@ namespace WindowsFormsApplication1.Time_Office
 
                 PrintLogWin.PrintLog("************* form_loaded => " + form_loaded + "");
 
-                //PrintLogWin.PrintLog("************* timeEdit_Time_In_First.EditValue => " + timeEdit_Time_In_First.EditValue + "");
-                //PrintLogWin.PrintLog("************* timeEdit_Time_Out_First.EditValue => " + timeEdit_Time_Out_First.EditValue + "");
-                //PrintLogWin.PrintLog("************* timeEdit_Time_In_Last.EditValue => " + timeEdit_Time_In_Last.EditValue + "");
-                //PrintLogWin.PrintLog("************* timeEdit_Time_Out_Last.EditValue => " + timeEdit_Time_Out_Last.EditValue + "");
-
-                //PrintLogWin.PrintLog("############ timeEdit_Time_In_First.Text => " + timeEdit_Time_In_First.Text + "");
-                //PrintLogWin.PrintLog("############ timeEdit_Time_Out_First.Text => " + timeEdit_Time_Out_First.Text + "");
-                //PrintLogWin.PrintLog("############ timeEdit_Time_In_Last.Text => " + timeEdit_Time_In_Last.Text + "");
-                //PrintLogWin.PrintLog("############ timeEdit_Time_Out_Last.Text => " + timeEdit_Time_Out_Last.Text + "");
 
 
                 if (!form_loaded)
@@ -1586,7 +1580,25 @@ namespace WindowsFormsApplication1.Time_Office
                         PrintLogWin.PrintLog("========= ZZ");
                     }
 
+                    
                     double totalHrs_FullDay = totalHrs_First + totalHrs_Last;
+                    PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => A : " + totalHrs_FullDay);
+
+                    if (ConvertTo.BooleanVal(GetEditValue(txtDailyWager)))
+                    {
+                        PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => B");
+                        if (totalHrs_First > 0 && totalHrs_Last > 0)
+                        {
+                            
+                            DateTime dateTime_In_First_DailyWager = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + "");
+                            DateTime dateTime_Out_Last_DailyWager = ConvertTo.TimeToDate(timeEdit_Time_Out_Last.Text + "");
+
+                            totalHrs_FullDay = (dateTime_Out_Last_DailyWager - dateTime_In_First_DailyWager).TotalMinutes;
+
+                            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => C : " + totalHrs_FullDay);
+                        }
+                    }
+                    PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => D");
 
                     PrintLogWin.PrintLog("========= D-1 : clearStr : " + clearStr);
                     PrintLogWin.PrintLog("========= D-2 : totalHrs_FullDay : " + totalHrs_FullDay);
@@ -1603,7 +1615,10 @@ namespace WindowsFormsApplication1.Time_Office
                         double lunch_no_tea_no_add_minutes = 60;
                         double lunch_no_tea_yes_add_minutes = ConvertTo.DoubleVal(txtTeaBreakTime.EditValue);
                         double lunch_yes_tea_no_add_minutes = 30;
-                        if (totalHrs_First > 0 && totalHrs_Last > 0)
+                        ///////////////////////////////
+                        /***DAILY WAGER ALSO CHECK***************************/
+                        ///////////////////////////////
+                        if (totalHrs_First > 0 && totalHrs_Last > 0 && !ConvertTo.BooleanVal(GetEditValue(txtDailyWager)))
                         {
                             PrintLogWin.PrintLog("========= D-4");
 
@@ -1664,6 +1679,15 @@ namespace WindowsFormsApplication1.Time_Office
                             }
                             else
                             {
+                                //DAILY WAGER
+                                if (ConvertTo.BooleanVal(GetEditValue(txtDailyWager)))
+                                {
+
+                                }
+                                else
+                                {
+
+                                }
                                 SetEditValue_NullTag(txtOvertimeHours, ConvertTo.IntVal(totalWorkingHours_Text.EditValue) - (ConvertTo.IntVal(totalWorkingHours_Text_Main.EditValue) * 60));
                             }
 
@@ -1700,7 +1724,6 @@ namespace WindowsFormsApplication1.Time_Office
                 timeEdit_Time_In_Last.Enabled = true;
                 timeEdit_Time_Out_Last.Enabled = true;
             }
-            
         }
         
         private void comboBox_Status_SelectedValueChanged(object sender, EventArgs e)

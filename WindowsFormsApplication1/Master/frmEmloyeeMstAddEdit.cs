@@ -109,21 +109,21 @@ namespace WindowsFormsApplication1
                     }                                          
                 }
 
-                if (txtDailyWageHours.Text.Trim().Length == 0)
-                {
-                    ProjectFunctions.SpeakError("Please Enter Daily Wager Working Hours");
-                    txtDailyWageHours.Focus();
-                    return false;
-                }
-                else
-                {
-                    if (!ComparisonUtils.IsNumeric(txtDailyWageHours.Text))
-                    {
-                        ProjectFunctions.SpeakError("Daily Wage Working Hours Should be Numbers");
-                        txtDailyWageHours.Focus();
-                        return false;
-                    }
-                }
+                //if (txtDailyWageHours.Text.Trim().Length == 0)
+                //{
+                //    ProjectFunctions.SpeakError("Please Enter Daily Wager Working Hours");
+                //    txtDailyWageHours.Focus();
+                //    return false;
+                //}
+                //else
+                //{
+                //    if (!ComparisonUtils.IsNumeric(txtDailyWageHours.Text))
+                //    {
+                //        ProjectFunctions.SpeakError("Daily Wage Working Hours Should be Numbers");
+                //        txtDailyWageHours.Focus();
+                //        return false;
+                //    }
+                //}
             }
 
             if (chkTeaBreak.Checked)
@@ -1196,14 +1196,14 @@ namespace WindowsFormsApplication1
                     txtDailyWageRate.Enabled = true;
                     txtDailyWageHours.Enabled = true;
 
-                    RelationShipGrid123.TabPages[1].PageVisible = false;
+                    //RelationShipGrid123.TabPages[1].PageVisible = false;
                 }
                 else
                 {
                     txtDailyWageRate.Enabled = false;
                     txtDailyWageHours.Enabled = false;
 
-                    RelationShipGrid123.TabPages[1].PageVisible = true;
+                    //RelationShipGrid123.TabPages[1].PageVisible = true;
                 }
             }
             if (s1 == "Edit")
@@ -1232,7 +1232,7 @@ namespace WindowsFormsApplication1
                         txtDailyWageHours.EditValue = null;
                     }
 
-                    RelationShipGrid123.TabPages[1].PageVisible = false;
+                    //RelationShipGrid123.TabPages[1].PageVisible = false;
 
                 }
                 else
@@ -1243,7 +1243,7 @@ namespace WindowsFormsApplication1
                     txtDailyWageHours.Enabled = false;
                     txtDailyWageHours.EditValue = null;
 
-                    RelationShipGrid123.TabPages[1].PageVisible = true;
+                   // RelationShipGrid123.TabPages[1].PageVisible = true;
 
                 }
             }

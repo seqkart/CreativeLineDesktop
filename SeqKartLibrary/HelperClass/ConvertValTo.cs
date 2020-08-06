@@ -169,7 +169,19 @@ namespace SeqKartLibrary.HelperClass
 
             return dateTime.ToString();
         }
-
+        public static int MinutesToHours_DB(object _totalMinute)
+        {
+            Int32 totalMinute = IntVal(_totalMinute);
+            if (totalMinute == 0)
+            {
+                return 0;
+            }
+            Int32 Hour = default(Int32);
+            {
+                Hour = totalMinute / 60;
+                return Hour;
+            }
+        }
         public static string MinutesToHours(object _totalMinute)
         {
             string sign = "";
