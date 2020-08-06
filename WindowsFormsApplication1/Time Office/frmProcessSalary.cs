@@ -576,6 +576,17 @@ namespace BNPL.Forms_Transaction
                     e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
                 }
             }
+            if (e.Column.FieldName == "EmpSalary")
+            {
+                if (e.Value != DBNull.Value)
+                {
+                    if (ConvertTo.DecimalVal(e.Value) == 0)
+                    {
+                        e.DisplayText = "";
+                    }
+                    //e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
+                }
+            }
         }
 
         private void gridView_SalaryProcess_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)

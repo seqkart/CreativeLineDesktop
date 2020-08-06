@@ -1583,7 +1583,7 @@ namespace WindowsFormsApplication1.Time_Office
                     
                     double totalHrs_FullDay = totalHrs_First + totalHrs_Last;
                     PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => A : " + totalHrs_FullDay);
-
+                    /*
                     if (ConvertTo.BooleanVal(GetEditValue(txtDailyWager)))
                     {
                         PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => B");
@@ -1598,6 +1598,7 @@ namespace WindowsFormsApplication1.Time_Office
                             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => C : " + totalHrs_FullDay);
                         }
                     }
+                    */
                     PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => D");
 
                     PrintLogWin.PrintLog("========= D-1 : clearStr : " + clearStr);
@@ -1618,7 +1619,7 @@ namespace WindowsFormsApplication1.Time_Office
                         ///////////////////////////////
                         /***DAILY WAGER ALSO CHECK***************************/
                         ///////////////////////////////
-                        if (totalHrs_First > 0 && totalHrs_Last > 0 && !ConvertTo.BooleanVal(GetEditValue(txtDailyWager)))
+                        if (totalHrs_First > 0 && totalHrs_Last > 0)// && !ConvertTo.BooleanVal(GetEditValue(txtDailyWager))
                         {
                             PrintLogWin.PrintLog("========= D-4");
 
