@@ -32,6 +32,8 @@ namespace WindowsFormsApplication1
             ProjectFunctions.TextBoxVisualize(panelControl3);
             ProjectFunctions.TextBoxVisualize(panelControl4);
             ProjectFunctions.DatePickerVisualize(this);
+            ProjectFunctions.TimePickerVisualize(panelControl2);
+
             //ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
 
             lblFilename.Text = null;

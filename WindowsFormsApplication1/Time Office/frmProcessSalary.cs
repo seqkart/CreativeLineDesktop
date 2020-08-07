@@ -787,6 +787,7 @@ namespace BNPL.Forms_Transaction
             SalaryGridView.OptionsBehavior.Editable = true;
 
             foreach (DevExpress.XtraGrid.Columns.GridColumn Col in SalaryGridView.Columns)
+            
             {
                 if (Col.FieldName != "Sel")
                 {

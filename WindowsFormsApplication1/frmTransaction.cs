@@ -1143,7 +1143,9 @@ namespace WindowsFormsApplication1
         private async void BtnLoad_Click(object sender, EventArgs e)
         {
             _RangeSelector.Visible = false;
-            await TransactionTask();           
+
+            //await TransactionTask();
+            FillGrid();
         }
 
         public async Task TransactionTask()

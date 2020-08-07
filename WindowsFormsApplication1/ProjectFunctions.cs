@@ -4,6 +4,7 @@ using DevExpress.XtraGrid.Menu;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
 
+using SeqKartLibrary;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,9 +18,6 @@ using System.Net;
 using System.Speech.Synthesis;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SeqKartLibrary;
-using DevExpress.DataProcessing;
-using DevExpress.XtraEditors.Repository;
 
 namespace WindowsFormsApplication1
 {
@@ -845,14 +843,14 @@ namespace WindowsFormsApplication1
                         }
                         Count = Count + 1;
                     }
-                    if(editBtn)
+                    if (editBtn)
                     {
                         ReportGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
                         ReportGridView.Columns[Count].OptionsColumn.AllowEdit = false;
                         ReportGridView.Columns[Count].Visible = true;
                         ReportGridView.Columns[Count].Caption = "Edit_Link";
                         ReportGridView.Columns[Count].FieldName = "Edit_Link";
-                        
+
 
                     }
 
@@ -869,7 +867,7 @@ namespace WindowsFormsApplication1
                     //tran.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Right;
                     //tran.Buttons[0].IsLeft = true;
                     //
-                    
+
                 }
                 else
                 {
@@ -1582,7 +1580,8 @@ namespace WindowsFormsApplication1
         {
             C.RowCellClick += new RowCellClickEventHandler(C_RowCellClick);
             C.GridControl.LookAndFeel.UseDefaultLookAndFeel = true;
-            C.OptionsBehavior.Editable = false;
+            C.OptionsBehavior.Editable = true
+                ;
             C.OptionsBehavior.AllowIncrementalSearch = true;
             C.OptionsSelection.EnableAppearanceFocusedCell = true;
             C.FocusRectStyle = DrawFocusRectStyle.RowFocus;
@@ -1604,10 +1603,10 @@ namespace WindowsFormsApplication1
             }
 
             C.Appearance.Row.FontSizeDelta = 1;
-            C.Appearance.Row.FontStyleDelta = FontStyle.Regular;
+            C.Appearance.Row.FontStyleDelta = FontStyle.Bold;
             C.Appearance.HeaderPanel.ForeColor = Color.Black;
             C.Appearance.HeaderPanel.FontSizeDelta = 1;
-            C.Appearance.HeaderPanel.FontStyleDelta = FontStyle.Regular;
+            C.Appearance.HeaderPanel.FontStyleDelta = FontStyle.Bold;
 
             C.UserCellPadding = new Padding(1, 1, 1, 1);
 
@@ -1805,6 +1804,73 @@ namespace WindowsFormsApplication1
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+
+        public static void TimePickerVisualize(Control C)
+        {
+            foreach (Control c in C.Controls)
+            {
+                if (c.GetType() == typeof(TimeEdit))
+                {
+                    var thiscontrol = (TimeEdit)c;
+                    thiscontrol.EditValue = null;
+                    thiscontrol.EnterMoveNextControl = true;
+                    thiscontrol.Properties.Mask.BeepOnError = true;
+                    thiscontrol.Properties.Mask.EditMask = "HH:mm:ss";
+                    thiscontrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+                    thiscontrol.Properties.Mask.UseMaskAsDisplayFormat = true;
+                    thiscontrol.Properties.Appearance.BorderColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+                    thiscontrol.Properties.Appearance.Options.UseBorderColor = true;
+                    thiscontrol.Properties.AppearanceFocused.BackColor = Color.AliceBlue;
+                    thiscontrol.Properties.AppearanceFocused.BorderColor = Color.FromArgb(0x15, 0x60, 0xA9);
+                    thiscontrol.Properties.AppearanceDisabled.BackColor = Color.Bisque;
+                    thiscontrol.Properties.AppearanceDisabled.Options.UseBackColor = true;
+                    thiscontrol.Properties.AppearanceDisabled.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    thiscontrol.Properties.AppearanceFocused.Options.UseBackColor = true;
+                    thiscontrol.Properties.AppearanceFocused.Options.UseBorderColor = true;
+                    thiscontrol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                    thiscontrol.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+                    thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+                    thiscontrol.Enter += (o, e) =>
+                    {
+                        thiscontrol.SelectAll();
+                    };
+                }
+            }
+        }
+
+        public static void TimeSpanVisualize(Control C)
+        {
+            foreach (Control c in C.Controls)
+            {
+                if (c.GetType() == typeof(TimeSpanEdit))
+                {
+                    var thiscontrol = (TimeSpanEdit)c;
+                    thiscontrol.EditValue = null;
+                    thiscontrol.EnterMoveNextControl = true;
+                    thiscontrol.Properties.Mask.BeepOnError = true;
+                    thiscontrol.Properties.Mask.EditMask = "HH:mm";
+                    thiscontrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+                    thiscontrol.Properties.Mask.UseMaskAsDisplayFormat = true;
+                    thiscontrol.Properties.Appearance.BorderColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+                    thiscontrol.Properties.Appearance.Options.UseBorderColor = true;
+                    thiscontrol.Properties.AppearanceFocused.BackColor = Color.AliceBlue;
+                    thiscontrol.Properties.AppearanceFocused.BorderColor = Color.FromArgb(0x15, 0x60, 0xA9);
+                    thiscontrol.Properties.AppearanceDisabled.BackColor = Color.Bisque;
+                    thiscontrol.Properties.AppearanceDisabled.Options.UseBackColor = true;
+                    thiscontrol.Properties.AppearanceDisabled.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    thiscontrol.Properties.AppearanceFocused.Options.UseBackColor = true;
+                    thiscontrol.Properties.AppearanceFocused.Options.UseBorderColor = true;
+                    thiscontrol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                    thiscontrol.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+                    thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+                    thiscontrol.Enter += (o, e) =>
+                    {
+                        thiscontrol.SelectAll();
+                    };
+                }
+            }
         }
         public static void DatePickerVisualize(Control C)
         {

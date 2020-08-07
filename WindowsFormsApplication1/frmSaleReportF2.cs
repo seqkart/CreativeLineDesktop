@@ -56,6 +56,7 @@ namespace WindowsFormsApplication1
             DataRow row3 = dt.NewRow();
             row3["Name"] = "PaymentGateAmount";
             row3["Amount"] = 0.00;
+
             dt.Rows.Add(row3);
 
 

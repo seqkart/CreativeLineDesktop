@@ -103,6 +103,7 @@
             this.BtnLoad.Size = new System.Drawing.Size(116, 28);
             this.BtnLoad.TabIndex = 3;
             this.BtnLoad.Text = "Load Report";
+            this.BtnLoad.Click += new System.EventHandler(this.SimpleButton1_Click);
             // 
             // MyValidationProvider
             // 
