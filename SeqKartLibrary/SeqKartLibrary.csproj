@@ -113,6 +113,7 @@
     <Compile Include="Models\DesgMst.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmpAttendanceModel.cs" />
     <Compile Include="Models\EmployeeAttendance.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
