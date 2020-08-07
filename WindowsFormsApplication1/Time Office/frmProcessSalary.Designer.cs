@@ -55,6 +55,10 @@
             this.gridView_SalaryProcess = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnProcessSalary = new DevExpress.XtraEditors.SimpleButton();
             this.salaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnPrintPreview = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPrintReport = new DevExpress.XtraEditors.SimpleButton();
+            this.salaryInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnExportXsls = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceSelect.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SalaryGrid)).BeginInit();
@@ -63,11 +67,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl_SalaryProcess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_SalaryProcess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salaryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salaryInfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLock
             // 
-            this.btnLock.Location = new System.Drawing.Point(467, 52);
+            this.btnLock.Location = new System.Drawing.Point(601, 76);
             this.btnLock.Name = "btnLock";
             this.btnLock.Size = new System.Drawing.Size(95, 20);
             this.btnLock.TabIndex = 351;
@@ -77,7 +82,7 @@
             // 
             // ChoiceSelect
             // 
-            this.ChoiceSelect.Location = new System.Drawing.Point(580, 53);
+            this.ChoiceSelect.Location = new System.Drawing.Point(709, 75);
             this.ChoiceSelect.Name = "ChoiceSelect";
             this.ChoiceSelect.Properties.Caption = "Select &All";
             this.ChoiceSelect.Size = new System.Drawing.Size(75, 20);
@@ -336,12 +341,42 @@
             this.btnProcessSalary.Text = "Process Salary";
             this.btnProcessSalary.Click += new System.EventHandler(this.btnProcessSalary_Click);
             // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.Location = new System.Drawing.Point(467, 52);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(95, 20);
+            this.btnPrintPreview.TabIndex = 354;
+            this.btnPrintPreview.Text = "Print Preview";
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
+            // 
+            // btnPrintReport
+            // 
+            this.btnPrintReport.Location = new System.Drawing.Point(580, 52);
+            this.btnPrintReport.Name = "btnPrintReport";
+            this.btnPrintReport.Size = new System.Drawing.Size(95, 20);
+            this.btnPrintReport.TabIndex = 355;
+            this.btnPrintReport.Text = "Print";
+            this.btnPrintReport.Click += new System.EventHandler(this.btnPrintReport_Click);
+            // 
+            // btnExportXsls
+            // 
+            this.btnExportXsls.Location = new System.Drawing.Point(697, 52);
+            this.btnExportXsls.Name = "btnExportXsls";
+            this.btnExportXsls.Size = new System.Drawing.Size(95, 20);
+            this.btnExportXsls.TabIndex = 356;
+            this.btnExportXsls.Text = "Export To XSL";
+            this.btnExportXsls.Click += new System.EventHandler(this.btnExportXsls_Click);
+            // 
             // frmProcessSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 604);
             this.ControlBox = false;
+            this.Controls.Add(this.btnExportXsls);
+            this.Controls.Add(this.btnPrintReport);
+            this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.btnProcessSalary);
             this.Controls.Add(this.gridControl_SalaryProcess);
             this.Controls.Add(this.SalaryGrid);
@@ -366,6 +401,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl_SalaryProcess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_SalaryProcess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salaryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salaryInfoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,5 +433,9 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView_SalaryProcess;
         private DevExpress.XtraEditors.SimpleButton btnProcessSalary;
         private System.Windows.Forms.BindingSource salaryBindingSource;
+        private DevExpress.XtraEditors.SimpleButton btnPrintPreview;
+        private DevExpress.XtraEditors.SimpleButton btnPrintReport;
+        private System.Windows.Forms.BindingSource salaryInfoBindingSource;
+        private DevExpress.XtraEditors.SimpleButton btnExportXsls;
     }
 }

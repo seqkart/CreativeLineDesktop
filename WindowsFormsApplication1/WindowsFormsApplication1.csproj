@@ -486,6 +486,12 @@
     <Compile Include="Prints\EmployeeSalaryDetails.Designer.cs">
       <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Prints\EmployeesSalaryList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\EmployeesSalaryList.Designer.cs">
+      <DependentUpon>EmployeesSalaryList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prints\XtraReportGatePass.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1394,6 +1400,9 @@
     <EmbeddedResource Include="Prints\EmployeeSalaryDetails.resx">
       <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Prints\EmployeesSalaryList.resx">
+      <DependentUpon>EmployeesSalaryList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Prints\XtraReportGatePass.resx">
       <DependentUpon>XtraReportGatePass.cs</DependentUpon>
     </EmbeddedResource>
@@ -1829,6 +1838,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DataBindings.UserMaster_Data.datasource" />
     <None Include="Properties\DataSources\SeqKartLibrary.Models.EmployeeSalary.datasource" />
+    <None Include="Properties\DataSources\SeqKartLibrary.Models.MonthlySalaryDetails_Model.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

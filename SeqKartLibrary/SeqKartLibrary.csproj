@@ -72,6 +72,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UUjfatWMXw">
+      <HintPath>..\SeqKartSecurity\bin\Debug\UUjfatWMXw.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrudTask\AttendanceData.cs" />
@@ -139,6 +142,7 @@
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GridView_Style_Model.cs" />
+    <Compile Include="Models\MonthlySalaryDetails_Model.cs" />
     <Compile Include="Models\ProgramMaster.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>

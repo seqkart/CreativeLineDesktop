@@ -9,10 +9,12 @@ using DevExpress.XtraSplashScreen;
 using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
 using SeqKartLibrary.HelperClass;
+using SeqKartLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -97,7 +99,7 @@ namespace BNPL.Forms_Transaction
         private void fillGrid()
         {
             //DECLARE @Salary_Month DATETIME = '2020-06-01 00:00:00';
-            var str = "sp_Salary_Process '','" + ConvertTo.DateTimeVal(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "', 1, 1";
+            var str = "sp_Salary_Process '','" + ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(DtStartDate.EditValue)) + "', 1, 1";
 
             PrintLogWin.PrintLog(str);
 
@@ -942,7 +944,62 @@ namespace BNPL.Forms_Transaction
             fillGrid();
         }
 
-        
+        private void Report_Print_Preview(string action)
+        {
+            EmployeesSalaryList Xtra_report_employeesSalaryList = new EmployeesSalaryList();
+
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@Emp_Code_Processing", "");
+            param.Add("@Salary_Month", DtStartDate.EditValue);
+            param.Add("@Deduct_Advance", 1);
+            param.Add("@Deduct_Loan", 1);
+
+            //List<EmployeeSalary> EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", param);
+
+            MonthlySalaryDetails_Model monthlySalaryDetails_Model = new MonthlySalaryDetails_Model();
+            monthlySalaryDetails_Model.SalaryMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
+            monthlySalaryDetails_Model.EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", param);
+
+
+            //MessageBox.Show(EmployeesSalaryList.Count + "");
+
+            //salaryBindingSource.DataSource = EmployeesSalaryList;
+            salaryBindingSource.DataSource = monthlySalaryDetails_Model;
+
+            Xtra_report_employeesSalaryList.DataSource = salaryBindingSource;
+
+
+            ReportPrintTool tool = new ReportPrintTool(Xtra_report_employeesSalaryList);
+
+            if (action.Equals("preview"))
+            {
+                tool.ShowPreview();
+            }
+            if (action.Equals("print"))
+            {
+                tool.PrintDialog();
+            }
+
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            Report_Print_Preview("preview");
+        }
+
+        private void btnPrintReport_Click(object sender, EventArgs e)
+        {
+            Report_Print_Preview("print");
+        }
+
+        private void btnExportXsls_Click(object sender, EventArgs e)
+        {
+            
+            string path = "Salary_For_Month_" + ConvertTo.DateFormatDb(DtStartDate.EditValue) + ".xlsx";
+            gridControl_SalaryProcess.ExportToXlsx(path);
+            // Open the created XLSX file with the default application.
+            Process.Start(path);
+        }
     }
 
 }

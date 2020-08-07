@@ -31,6 +31,13 @@ namespace SeqKartLibrary.CrudTask
             return employeeSalary;
         }
 
+        public static List<EmployeeSalary> GetEmployeesSalaryList(string sp_query, DynamicParameters param)
+        {
+            RepList<EmployeeSalary> repList = new RepList<EmployeeSalary>();
+            List<EmployeeSalary> employeeSalaryList = repList.returnListClass_SP(sp_query, param);
+
+            return employeeSalaryList;
+        }
 
         public static List<EmpAttendanceModel> GetEmpAttendance(string sp_query, DynamicParameters param)
         {
