@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProcessSalary));
             this.btnLock = new DevExpress.XtraEditors.SimpleButton();
             this.ChoiceSelect = new DevExpress.XtraEditors.CheckEdit();
@@ -53,6 +54,7 @@
             this.gridControl_SalaryProcess = new DevExpress.XtraGrid.GridControl();
             this.gridView_SalaryProcess = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnProcessSalary = new DevExpress.XtraEditors.SimpleButton();
+            this.salaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceSelect.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SalaryGrid)).BeginInit();
@@ -60,6 +62,7 @@
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl_SalaryProcess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_SalaryProcess)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salaryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLock
@@ -308,6 +311,7 @@
             this.gridControl_SalaryProcess.TabIndex = 352;
             this.gridControl_SalaryProcess.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_SalaryProcess});
+            this.gridControl_SalaryProcess.DoubleClick += new System.EventHandler(this.gridControl_SalaryProcess_DoubleClick);
             // 
             // gridView_SalaryProcess
             // 
@@ -361,6 +365,7 @@
             this.Menu_ToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl_SalaryProcess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_SalaryProcess)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salaryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,5 +396,6 @@
         private DevExpress.XtraGrid.GridControl gridControl_SalaryProcess;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView_SalaryProcess;
         private DevExpress.XtraEditors.SimpleButton btnProcessSalary;
+        private System.Windows.Forms.BindingSource salaryBindingSource;
     }
 }

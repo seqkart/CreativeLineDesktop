@@ -1,10 +1,13 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using SeqKartLibrary;
+using SeqKartLibrary.CrudTask;
 using SeqKartLibrary.HelperClass;
 using System;
 using System.Collections.Generic;
@@ -15,6 +18,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 using WindowsFormsApplication1;
+using WindowsFormsApplication1.Prints;
 
 namespace BNPL.Forms_Transaction
 {
@@ -63,6 +67,33 @@ namespace BNPL.Forms_Transaction
 
         }
 
+        private void gridControl_SalaryProcess_DoubleClick(object sender, EventArgs e)
+        {
+            //Sender is actually of type GridControl  
+            GridControl gridControl = (GridControl)sender;
+
+            //Get a reference to the GridView from the GridControl  
+            GridView view = (gridControl.FocusedView) as GridView;
+
+            var dr = view.GetFocusedDataRow();
+            if (dr["EmpCode"] != null && dr["SalaryMonth"] != null)
+            {
+                EmployeeSalaryDetails report_employeeSalaryDetails = new EmployeeSalaryDetails();
+
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@Emp_Code_Processing", dr["EmpCode"].ToString());
+                param.Add("@Salary_Month", dr["SalaryMonth"].ToString());
+                param.Add("@Deduct_Advance", 1);
+                param.Add("@Deduct_Loan", 1);
+
+                salaryBindingSource.DataSource = EmployeeData.GetEmployeeSalary("sp_Salary_Process", param);
+                report_employeeSalaryDetails.DataSource = salaryBindingSource;
+
+                ReportPrintTool tool = new ReportPrintTool(report_employeeSalaryDetails);
+                tool.ShowPreview();
+            }
+        }
+
         private void fillGrid()
         {
             //DECLARE @Salary_Month DATETIME = '2020-06-01 00:00:00';
@@ -95,6 +126,10 @@ namespace BNPL.Forms_Transaction
 
             }
 
+            /////////////////////////////////////
+            
+            
+           
             //////////////////////////////////////////////
             // Create an unbound column.
             /*

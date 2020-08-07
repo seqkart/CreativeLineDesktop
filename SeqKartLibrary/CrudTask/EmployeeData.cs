@@ -22,5 +22,13 @@ namespace SeqKartLibrary.CrudTask
             //param.Add("@status", _user.status);
             return await reposGen.executeNonQuery_Async("users_Insert_Update", param);
         }
+
+        public static EmployeeSalary GetEmployeeSalary(string sp_query, DynamicParameters param)
+        {
+            RepList<EmployeeSalary> repList = new RepList<EmployeeSalary>();
+            EmployeeSalary employeeSalary = repList.returnClass_SP(sp_query, param);
+
+            return employeeSalary;
+        }
     }
 }

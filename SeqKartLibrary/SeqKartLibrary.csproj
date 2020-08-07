@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Models\EmployeeItem.cs" />
     <Compile Include="Models\EmployeeMasterModel.cs" />
+    <Compile Include="Models\EmployeeSalary.cs" />
     <Compile Include="Models\EmpMST.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>

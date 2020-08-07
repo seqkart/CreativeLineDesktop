@@ -293,13 +293,14 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\BNPL\nEzee\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\BNPL\nEzee\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -479,6 +480,12 @@
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </Compile>
     <Compile Include="HelperClass\CustomArguments.cs" />
+    <Compile Include="Prints\EmployeeSalaryDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\EmployeeSalaryDetails.Designer.cs">
+      <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prints\XtraReportGatePass.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1384,6 +1391,9 @@
     <EmbeddedResource Include="FormReports\ReportFormatName.resx">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Prints\EmployeeSalaryDetails.resx">
+      <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Prints\XtraReportGatePass.resx">
       <DependentUpon>XtraReportGatePass.cs</DependentUpon>
     </EmbeddedResource>
@@ -1818,6 +1828,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DataBindings.UserMaster_Data.datasource" />
+    <None Include="Properties\DataSources\SeqKartLibrary.Models.EmployeeSalary.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
