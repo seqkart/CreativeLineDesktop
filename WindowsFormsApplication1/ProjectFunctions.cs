@@ -630,7 +630,7 @@ namespace WindowsFormsApplication1
                 var parent = ctrl.Parent;
                 while (!(parent is Form))
                 {
-                    p.Offset(parent.Location.X, parent.Location.Y);
+                     p.Offset(parent.Location.X, parent.Location.Y);
                     parent = parent.Parent;
                 }
                 return p;
