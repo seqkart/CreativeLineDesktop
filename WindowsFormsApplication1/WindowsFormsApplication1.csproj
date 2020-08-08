@@ -522,12 +522,6 @@
     <Compile Include="frmLogincs.Designer.cs">
       <DependentUpon>frmLogincs.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMainDashBoard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMainDashBoard.Designer.cs">
-      <DependentUpon>frmMainDashBoard.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -540,23 +534,11 @@
     <Compile Include="frmMainScreen.Designer.cs">
       <DependentUpon>frmMainScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmQueryBuilder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmQueryBuilder.Designer.cs">
-      <DependentUpon>frmQueryBuilder.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmSaleReportF2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSaleReportF2.Designer.cs">
       <DependentUpon>frmSaleReportF2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmShowRoomDashBoard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmShowRoomDashBoard.Designer.cs">
-      <DependentUpon>frmShowRoomDashBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTransaction.cs">
       <SubType>Form</SubType>
@@ -649,23 +631,11 @@
     <Compile Include="Master\frmCompanyMaster.Designer.cs">
       <DependentUpon>frmCompanyMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmCostMstAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmCostMstAddEdit.designer.cs">
-      <DependentUpon>frmCostMstAddEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Master\frmCustomerMst.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Master\frmCustomerMst.designer.cs">
       <DependentUpon>frmCustomerMst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmDealerMstAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmDealerMstAddEdit.designer.cs">
-      <DependentUpon>frmDealerMstAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmDepartmentAddUpdate.cs">
       <SubType>Form</SubType>
@@ -684,12 +654,6 @@
     </Compile>
     <Compile Include="Master\frmEmloyeeMstAddEdit.designer.cs">
       <DependentUpon>frmEmloyeeMstAddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmExpenseHeadAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmExpenseHeadAddEdit.designer.cs">
-      <DependentUpon>frmExpenseHeadAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmGroupMstAddEdit.cs">
       <SubType>Form</SubType>
@@ -727,35 +691,11 @@
     <Compile Include="Master\frmProductMstAddEdit.designer.cs">
       <DependentUpon>frmProductMstAddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmRateFeeding.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmRateFeeding.Designer.cs">
-      <DependentUpon>frmRateFeeding.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmRetailerMaster.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmRetailerMaster.Designer.cs">
-      <DependentUpon>frmRetailerMaster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmRouteMstAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmRouteMstAddEdit.designer.cs">
-      <DependentUpon>frmRouteMstAddEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Master\frmSizeMMaster.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Master\frmSizeMMaster.designer.cs">
       <DependentUpon>frmSizeMMaster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmSupplierMaster.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmSupplierMaster.Designer.cs">
-      <DependentUpon>frmSupplierMaster.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmTaxMasterAddEdit.cs">
       <SubType>Form</SubType>
@@ -775,17 +715,11 @@
     <Compile Include="Master\frmTransporterMaster.designer.cs">
       <DependentUpon>frmTransporterMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmUnitAddEdit.cs">
+    <Compile Include="Master\frmUOMAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\frmUnitAddEdit.designer.cs">
-      <DependentUpon>frmUnitAddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmVehicleAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmVehicleAddEdit.designer.cs">
-      <DependentUpon>frmVehicleAddEdit.cs</DependentUpon>
+    <Compile Include="Master\frmUOMAddEdit.designer.cs">
+      <DependentUpon>frmUOMAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmWorkerMaster.cs">
       <SubType>Form</SubType>
@@ -1066,12 +1000,6 @@
     <Compile Include="Time Office\frm_EmpSalAddUpdate.designer.cs">
       <DependentUpon>frm_EmpSalAddUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Time Office\frm_EmpsalMst.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Time Office\frm_EmpsalMst.designer.cs">
-      <DependentUpon>frm_EmpsalMst.cs</DependentUpon>
-    </Compile>
     <Compile Include="Time Office\XtraForm_EmployeeAttendence.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1126,12 +1054,6 @@
     <Compile Include="Transaction\frmBoxAddEdit.Designer.cs">
       <DependentUpon>frmBoxAddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transaction\frmCRDataData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmCRDataData.Designer.cs">
-      <DependentUpon>frmCRDataData.cs</DependentUpon>
-    </Compile>
     <Compile Include="Transaction\frmDayClose.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1143,12 +1065,6 @@
     </Compile>
     <Compile Include="Transaction\frmDealerOrderMaster.Designer.cs">
       <DependentUpon>frmDealerOrderMaster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmGeneralInvoiceMst.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmGeneralInvoiceMst.Designer.cs">
-      <DependentUpon>frmGeneralInvoiceMst.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\frmGSTPurchase.cs">
       <SubType>Form</SubType>
@@ -1204,35 +1120,11 @@
     <Compile Include="Transaction\frmProcessSMCommission.designer.cs">
       <DependentUpon>frmProcessSMCommission.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transaction\frmProductionData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmProductionData.Designer.cs">
-      <DependentUpon>frmProductionData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmPackingDespatch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmPackingDespatch.Designer.cs">
-      <DependentUpon>frmPackingDespatch.cs</DependentUpon>
-    </Compile>
     <Compile Include="Transaction\frmPurchaseFromHO.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transaction\frmPurchaseFromHO.Designer.cs">
       <DependentUpon>frmPurchaseFromHO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmReplMstAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmReplMstAdd.designer.cs">
-      <DependentUpon>frmReplMstAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmReturnCrates.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmReturnCrates.Designer.cs">
-      <DependentUpon>frmReturnCrates.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\frmSchemeMstAddEdit.cs">
       <SubType>Form</SubType>
@@ -1246,35 +1138,11 @@
     <Compile Include="Transaction\frmShowRoomBarCodeImport.Designer.cs">
       <DependentUpon>frmShowRoomBarCodeImport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transaction\frmStockOutData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmStockOutData.Designer.cs">
-      <DependentUpon>frmStockOutData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmSupplierStock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmSupplierStock.Designer.cs">
-      <DependentUpon>frmSupplierStock.cs</DependentUpon>
-    </Compile>
     <Compile Include="Transaction\frmTdsDeductionAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transaction\frmTdsDeductionAddEdit.designer.cs">
       <DependentUpon>frmTdsDeductionAddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmUnsoldMstAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmUnsoldMstAdd.designer.cs">
-      <DependentUpon>frmUnsoldMstAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmUpdateTimings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmUpdateTimings.Designer.cs">
-      <DependentUpon>frmUpdateTimings.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\FRMVIEWLEDERS.cs">
       <SubType>Form</SubType>
@@ -1431,23 +1299,14 @@
     <EmbeddedResource Include="frmLogincs.resx">
       <DependentUpon>frmLogincs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMainDashBoard.resx">
-      <DependentUpon>frmMainDashBoard.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMaster.resx">
       <DependentUpon>frmMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainScreen.resx">
       <DependentUpon>frmMainScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmQueryBuilder.resx">
-      <DependentUpon>frmQueryBuilder.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmSaleReportF2.resx">
       <DependentUpon>frmSaleReportF2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmShowRoomDashBoard.resx">
-      <DependentUpon>frmShowRoomDashBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>
@@ -1491,14 +1350,8 @@
     <EmbeddedResource Include="Master\frmCompanyMaster.resx">
       <DependentUpon>frmCompanyMaster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmCostMstAddEdit.resx">
-      <DependentUpon>frmCostMstAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmCustomerMst.resx">
       <DependentUpon>frmCustomerMst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmDealerMstAddEdit.resx">
-      <DependentUpon>frmDealerMstAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmDepartmentAddUpdate.resx">
       <DependentUpon>frmDepartmentAddUpdate.cs</DependentUpon>
@@ -1508,9 +1361,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmEmloyeeMstAddEdit.resx">
       <DependentUpon>frmEmloyeeMstAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmExpenseHeadAddEdit.resx">
-      <DependentUpon>frmExpenseHeadAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmGroupMstAddEdit.resx">
       <DependentUpon>frmGroupMstAddEdit.cs</DependentUpon>
@@ -1530,20 +1380,8 @@
     <EmbeddedResource Include="Master\frmProductMstAddEdit.resx">
       <DependentUpon>frmProductMstAddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmRateFeeding.resx">
-      <DependentUpon>frmRateFeeding.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmRetailerMaster.resx">
-      <DependentUpon>frmRetailerMaster.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmRouteMstAddEdit.resx">
-      <DependentUpon>frmRouteMstAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmSizeMMaster.resx">
       <DependentUpon>frmSizeMMaster.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmSupplierMaster.resx">
-      <DependentUpon>frmSupplierMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmTaxMasterAddEdit.resx">
       <DependentUpon>frmTaxMasterAddEdit.cs</DependentUpon>
@@ -1554,11 +1392,8 @@
     <EmbeddedResource Include="Master\frmTransporterMaster.resx">
       <DependentUpon>frmTransporterMaster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmUnitAddEdit.resx">
-      <DependentUpon>frmUnitAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmVehicleAddEdit.resx">
-      <DependentUpon>frmVehicleAddEdit.cs</DependentUpon>
+    <EmbeddedResource Include="Master\frmUOMAddEdit.resx">
+      <DependentUpon>frmUOMAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmWorkerMaster.resx">
       <DependentUpon>frmWorkerMaster.cs</DependentUpon>
@@ -1706,9 +1541,6 @@
     <EmbeddedResource Include="Time Office\frm_EmpSalAddUpdate.resx">
       <DependentUpon>frm_EmpSalAddUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Time Office\frm_EmpsalMst.resx">
-      <DependentUpon>frm_EmpsalMst.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Time Office\XtraForm_EmployeeAttendence.resx">
       <DependentUpon>XtraForm_EmployeeAttendence.cs</DependentUpon>
     </EmbeddedResource>
@@ -1736,17 +1568,11 @@
     <EmbeddedResource Include="Transaction\frmBoxAddEdit.resx">
       <DependentUpon>frmBoxAddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmCRDataData.resx">
-      <DependentUpon>frmCRDataData.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmDayClose.resx">
       <DependentUpon>frmDayClose.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmDealerOrderMaster.resx">
       <DependentUpon>frmDealerOrderMaster.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmGeneralInvoiceMst.resx">
-      <DependentUpon>frmGeneralInvoiceMst.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmGSTPurchase.resx">
       <DependentUpon>frmGSTPurchase.cs</DependentUpon>
@@ -1775,20 +1601,8 @@
     <EmbeddedResource Include="Transaction\frmProcessSMCommission.resx">
       <DependentUpon>frmProcessSMCommission.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmProductionData.resx">
-      <DependentUpon>frmProductionData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmPackingDespatch.resx">
-      <DependentUpon>frmPackingDespatch.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmPurchaseFromHO.resx">
       <DependentUpon>frmPurchaseFromHO.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmReplMstAdd.resx">
-      <DependentUpon>frmReplMstAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmReturnCrates.resx">
-      <DependentUpon>frmReturnCrates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmSchemeMstAddEdit.resx">
       <DependentUpon>frmSchemeMstAddEdit.cs</DependentUpon>
@@ -1796,20 +1610,8 @@
     <EmbeddedResource Include="Transaction\frmShowRoomBarCodeImport.resx">
       <DependentUpon>frmShowRoomBarCodeImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmStockOutData.resx">
-      <DependentUpon>frmStockOutData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmSupplierStock.resx">
-      <DependentUpon>frmSupplierStock.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmTdsDeductionAddEdit.resx">
       <DependentUpon>frmTdsDeductionAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmUnsoldMstAdd.resx">
-      <DependentUpon>frmUnsoldMstAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmUpdateTimings.resx">
-      <DependentUpon>frmUpdateTimings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FRMVIEWLEDERS.resx">
       <DependentUpon>FRMVIEWLEDERS.cs</DependentUpon>

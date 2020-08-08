@@ -273,7 +273,7 @@ namespace WindowsFormsApplication1
                 }
                 if (GlobalVariables.ProgCode == "PROG14")
                 {
-                    frmUnitAddEdit frm = new frmUnitAddEdit() { s1 = btnAdd.Text, Text = "Unit Addition" };
+                    frmUOMAddEdit frm = new frmUOMAddEdit() { s1 = btnAdd.Text, Text = "Unit Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     //var P = ProjectFunctions.GetPositionInForm(this);
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
@@ -658,7 +658,7 @@ namespace WindowsFormsApplication1
                 if (GlobalVariables.ProgCode == "PROG14")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    frmUnitAddEdit frm = new frmUnitAddEdit() { s1 = btnEdit.Text, Text = "Unit  Editing", UomCode = CurrentRow["UomCode"].ToString() };
+                    frmUOMAddEdit frm = new frmUOMAddEdit() { s1 = btnEdit.Text, Text = "Unit  Editing", UomCode = CurrentRow["UomCode"].ToString() };
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     //var P = ProjectFunctions.GetPositionInForm(this);
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));

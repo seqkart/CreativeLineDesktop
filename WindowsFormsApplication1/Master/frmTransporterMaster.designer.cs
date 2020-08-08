@@ -91,7 +91,7 @@
             // 
             this.Label5.AutoSize = true;
             this.Label5.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label5.Location = new System.Drawing.Point(141, 225);
+            this.Label5.Location = new System.Drawing.Point(139, 225);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(44, 15);
             this.Label5.TabIndex = 148;
@@ -101,7 +101,7 @@
             // 
             this.Label10.AutoSize = true;
             this.Label10.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label10.Location = new System.Drawing.Point(125, 356);
+            this.Label10.Location = new System.Drawing.Point(126, 356);
             this.Label10.Name = "Label10";
             this.Label10.Size = new System.Drawing.Size(57, 15);
             this.Label10.TabIndex = 147;
@@ -111,7 +111,7 @@
             // 
             this.Label9.AutoSize = true;
             this.Label9.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label9.Location = new System.Drawing.Point(125, 330);
+            this.Label9.Location = new System.Drawing.Point(124, 330);
             this.Label9.Name = "Label9";
             this.Label9.Size = new System.Drawing.Size(59, 15);
             this.Label9.TabIndex = 146;
@@ -121,7 +121,7 @@
             // 
             this.Label7.AutoSize = true;
             this.Label7.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label7.Location = new System.Drawing.Point(95, 304);
+            this.Label7.Location = new System.Drawing.Point(93, 304);
             this.Label7.Name = "Label7";
             this.Label7.Size = new System.Drawing.Size(90, 15);
             this.Label7.TabIndex = 145;
@@ -131,7 +131,7 @@
             // 
             this.Label6.AutoSize = true;
             this.Label6.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label6.Location = new System.Drawing.Point(76, 277);
+            this.Label6.Location = new System.Drawing.Point(74, 277);
             this.Label6.Name = "Label6";
             this.Label6.Size = new System.Drawing.Size(109, 15);
             this.Label6.TabIndex = 144;
@@ -141,7 +141,7 @@
             // 
             this.Label4.AutoSize = true;
             this.Label4.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label4.Location = new System.Drawing.Point(153, 200);
+            this.Label4.Location = new System.Drawing.Point(150, 200);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(33, 15);
             this.Label4.TabIndex = 143;
@@ -162,7 +162,7 @@
             // 
             this.Label2.AutoSize = true;
             this.Label2.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label2.Location = new System.Drawing.Point(33, 148);
+            this.Label2.Location = new System.Drawing.Point(32, 148);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(151, 15);
             this.Label2.TabIndex = 149;
@@ -172,7 +172,7 @@
             // 
             this.Label1.AutoSize = true;
             this.Label1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Label1.Location = new System.Drawing.Point(58, 120);
+            this.Label1.Location = new System.Drawing.Point(57, 120);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(126, 15);
             this.Label1.TabIndex = 150;
@@ -243,7 +243,7 @@
             // 
             // txtAddress2
             // 
-            this.txtAddress2.Location = new System.Drawing.Point(189, 172);
+            this.txtAddress2.Location = new System.Drawing.Point(190, 172);
             this.txtAddress2.Name = "txtAddress2";
             this.txtAddress2.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddress2.Properties.MaxLength = 100;
@@ -252,7 +252,7 @@
             // 
             // txtCityCode
             // 
-            this.txtCityCode.Location = new System.Drawing.Point(191, 198);
+            this.txtCityCode.Location = new System.Drawing.Point(190, 198);
             this.txtCityCode.Name = "txtCityCode";
             this.txtCityCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCityCode.Properties.MaxLength = 100;
@@ -264,7 +264,7 @@
             // txtState
             // 
             this.txtState.Enabled = false;
-            this.txtState.Location = new System.Drawing.Point(191, 223);
+            this.txtState.Location = new System.Drawing.Point(190, 223);
             this.txtState.Name = "txtState";
             this.txtState.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtState.Properties.MaxLength = 100;
@@ -302,7 +302,7 @@
             // 
             // txtWebSite
             // 
-            this.txtWebSite.Location = new System.Drawing.Point(191, 354);
+            this.txtWebSite.Location = new System.Drawing.Point(190, 354);
             this.txtWebSite.Name = "txtWebSite";
             this.txtWebSite.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtWebSite.Properties.MaxLength = 100;
@@ -311,7 +311,7 @@
             // 
             // txtEmailId
             // 
-            this.txtEmailId.Location = new System.Drawing.Point(192, 328);
+            this.txtEmailId.Location = new System.Drawing.Point(190, 328);
             this.txtEmailId.Name = "txtEmailId";
             this.txtEmailId.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmailId.Properties.MaxLength = 100;
@@ -322,7 +322,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.label11.Location = new System.Drawing.Point(62, 96);
+            this.label11.Location = new System.Drawing.Point(61, 96);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(122, 15);
             this.label11.TabIndex = 221;
