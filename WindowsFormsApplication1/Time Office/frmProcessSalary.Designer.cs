@@ -59,6 +59,7 @@
             this.btnPrintReport = new DevExpress.XtraEditors.SimpleButton();
             this.salaryInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnExportXsls = new DevExpress.XtraEditors.SimpleButton();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceSelect.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SalaryGrid)).BeginInit();
@@ -68,13 +69,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView_SalaryProcess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salaryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salaryInfoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLock
             // 
-            this.btnLock.Location = new System.Drawing.Point(601, 76);
+            this.btnLock.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLock.ImageOptions.SvgImage")));
+            this.btnLock.Location = new System.Drawing.Point(606, 0);
             this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(95, 20);
+            this.btnLock.Size = new System.Drawing.Size(95, 25);
             this.btnLock.TabIndex = 351;
             this.btnLock.Text = "Lock";
             this.btnLock.Visible = false;
@@ -82,7 +85,7 @@
             // 
             // ChoiceSelect
             // 
-            this.ChoiceSelect.Location = new System.Drawing.Point(709, 75);
+            this.ChoiceSelect.Location = new System.Drawing.Point(709, 69);
             this.ChoiceSelect.Name = "ChoiceSelect";
             this.ChoiceSelect.Properties.Caption = "Select &All";
             this.ChoiceSelect.Size = new System.Drawing.Size(75, 20);
@@ -92,21 +95,24 @@
             // 
             // DtStartDate
             // 
-            this.DtStartDate.Location = new System.Drawing.Point(110, 52);
+            this.DtStartDate.Location = new System.Drawing.Point(103, 36);
             this.DtStartDate.Name = "DtStartDate";
+            this.DtStartDate.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtStartDate.Properties.Appearance.Options.UseFont = true;
             this.DtStartDate.Properties.EditFormat.FormatString = "MM-yyyy";
             this.DtStartDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.DtStartDate.Properties.Mask.EditMask = "MM-yyyy";
+            this.DtStartDate.Properties.Mask.EditMask = "MMMM-yyyy";
             this.DtStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
             this.DtStartDate.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.DtStartDate.Properties.MaxLength = 6;
-            this.DtStartDate.Size = new System.Drawing.Size(95, 20);
+            this.DtStartDate.Properties.MaxLength = 15;
+            this.DtStartDate.Size = new System.Drawing.Size(102, 24);
             this.DtStartDate.TabIndex = 0;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 56);
+            this.label13.BackColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(4, 42);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(99, 13);
             this.label13.TabIndex = 347;
@@ -114,9 +120,12 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(225, 52);
+            this.btnLoad.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoad.Appearance.Options.UseFont = true;
+            this.btnLoad.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLoad.ImageOptions.Image")));
+            this.btnLoad.Location = new System.Drawing.Point(208, 32);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(95, 20);
+            this.btnLoad.Size = new System.Drawing.Size(116, 32);
             this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load";
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -299,6 +308,7 @@
             // 
             // splitter1
             // 
+            this.splitter1.BackColor = System.Drawing.Color.White;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 25);
             this.splitter1.Name = "splitter1";
@@ -334,36 +344,48 @@
             // 
             // btnProcessSalary
             // 
-            this.btnProcessSalary.Location = new System.Drawing.Point(340, 52);
+            this.btnProcessSalary.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProcessSalary.Appearance.Options.UseFont = true;
+            this.btnProcessSalary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnProcessSalary.ImageOptions.Image")));
+            this.btnProcessSalary.Location = new System.Drawing.Point(324, 32);
             this.btnProcessSalary.Name = "btnProcessSalary";
-            this.btnProcessSalary.Size = new System.Drawing.Size(95, 20);
+            this.btnProcessSalary.Size = new System.Drawing.Size(117, 32);
             this.btnProcessSalary.TabIndex = 353;
             this.btnProcessSalary.Text = "Process Salary";
             this.btnProcessSalary.Click += new System.EventHandler(this.btnProcessSalary_Click);
             // 
             // btnPrintPreview
             // 
-            this.btnPrintPreview.Location = new System.Drawing.Point(467, 52);
+            this.btnPrintPreview.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintPreview.Appearance.Options.UseFont = true;
+            this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
+            this.btnPrintPreview.Location = new System.Drawing.Point(441, 32);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(95, 20);
+            this.btnPrintPreview.Size = new System.Drawing.Size(116, 32);
             this.btnPrintPreview.TabIndex = 354;
             this.btnPrintPreview.Text = "Print Preview";
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // btnPrintReport
             // 
-            this.btnPrintReport.Location = new System.Drawing.Point(580, 52);
+            this.btnPrintReport.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintReport.Appearance.Options.UseFont = true;
+            this.btnPrintReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintReport.ImageOptions.Image")));
+            this.btnPrintReport.Location = new System.Drawing.Point(557, 32);
             this.btnPrintReport.Name = "btnPrintReport";
-            this.btnPrintReport.Size = new System.Drawing.Size(95, 20);
+            this.btnPrintReport.Size = new System.Drawing.Size(116, 32);
             this.btnPrintReport.TabIndex = 355;
             this.btnPrintReport.Text = "Print";
             this.btnPrintReport.Click += new System.EventHandler(this.btnPrintReport_Click);
             // 
             // btnExportXsls
             // 
-            this.btnExportXsls.Location = new System.Drawing.Point(697, 52);
+            this.btnExportXsls.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportXsls.Appearance.Options.UseFont = true;
+            this.btnExportXsls.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportXsls.ImageOptions.Image")));
+            this.btnExportXsls.Location = new System.Drawing.Point(673, 32);
             this.btnExportXsls.Name = "btnExportXsls";
-            this.btnExportXsls.Size = new System.Drawing.Size(95, 20);
+            this.btnExportXsls.Size = new System.Drawing.Size(116, 32);
             this.btnExportXsls.TabIndex = 356;
             this.btnExportXsls.Text = "Export To XSL";
             this.btnExportXsls.Click += new System.EventHandler(this.btnExportXsls_Click);
@@ -402,6 +424,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView_SalaryProcess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salaryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salaryInfoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,5 +460,6 @@
         private DevExpress.XtraEditors.SimpleButton btnPrintReport;
         private System.Windows.Forms.BindingSource salaryInfoBindingSource;
         private DevExpress.XtraEditors.SimpleButton btnExportXsls;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }

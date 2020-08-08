@@ -58,8 +58,8 @@ namespace BNPL.Forms_Transaction
             //panelControl1.Location = new Point(ClientSize.Width / 2 - panelControl1.Size.Width / 2, ClientSize.Height / 2 - panelControl1.Size.Height / 2);
             //ProjectFunctions.TextBoxVisualize(panelControl1);
             ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
-            // ProjectFunctions.ButtonVisualize(panelControl1);
-            //ProjectFunctions.GroupCtrlVisualize(panelControl1);
+           // ProjectFunctions.ButtonVisualize(panelControl1);
+           // ProjectFunctions.GroupCtrlVisualize(panelControl1);
             ProjectFunctions.XtraFormVisualize(this);
 
 
@@ -71,29 +71,29 @@ namespace BNPL.Forms_Transaction
 
         private void gridControl_SalaryProcess_DoubleClick(object sender, EventArgs e)
         {
-            //Sender is actually of type GridControl  
-            GridControl gridControl = (GridControl)sender;
+            ////Sender is actually of type GridControl  
+            //GridControl gridControl = (GridControl)sender;
 
-            //Get a reference to the GridView from the GridControl  
-            GridView view = (gridControl.FocusedView) as GridView;
+            ////Get a reference to the GridView from the GridControl  
+            //GridView view = (gridControl.FocusedView) as GridView;
 
-            var dr = view.GetFocusedDataRow();
-            if (dr["EmpCode"] != null && dr["SalaryMonth"] != null)
-            {
-                EmployeeSalaryDetails report_employeeSalaryDetails = new EmployeeSalaryDetails();
+            //var dr = view.GetFocusedDataRow();
+            //if (dr["EmpCode"] != null && dr["SalaryMonth"] != null)
+            //{
+            //    EmployeeSalaryDetails report_employeeSalaryDetails = new EmployeeSalaryDetails();
 
-                DynamicParameters param = new DynamicParameters();
-                param.Add("@Emp_Code_Processing", dr["EmpCode"].ToString());
-                param.Add("@Salary_Month", dr["SalaryMonth"].ToString());
-                param.Add("@Deduct_Advance", 1);
-                param.Add("@Deduct_Loan", 1);
+            //    DynamicParameters param = new DynamicParameters();
+            //    param.Add("@Emp_Code_Processing", dr["EmpCode"].ToString());
+            //    param.Add("@Salary_Month", dr["SalaryMonth"].ToString());
+            //    param.Add("@Deduct_Advance", 1);
+            //    param.Add("@Deduct_Loan", 1);
 
-                salaryBindingSource.DataSource = EmployeeData.GetEmployeeSalary("sp_Salary_Process", param);
-                report_employeeSalaryDetails.DataSource = salaryBindingSource;
+            //    salaryBindingSource.DataSource = EmployeeData.GetEmployeeSalary("sp_Salary_Process", param);
+            //    report_employeeSalaryDetails.DataSource = salaryBindingSource;
 
-                ReportPrintTool tool = new ReportPrintTool(report_employeeSalaryDetails);
-                tool.ShowPreview();
-            }
+            //    ReportPrintTool tool = new ReportPrintTool(report_employeeSalaryDetails);
+            //    tool.ShowPreview();
+            //}
         }
 
         private void fillGrid()
@@ -665,6 +665,7 @@ namespace BNPL.Forms_Transaction
 
         private void btnProcessSalary_Click(object sender, EventArgs e)
         {
+            
             DateTime salaryMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
             if (ProjectFunctions.SpeakConfirmation("Do you want to process Salary for month [ " + salaryMonth.ToString("MMMM yyyy") + " ]", "Confirmation", MessageBoxButtons.YesNo) != DialogResult.No)
             {
@@ -946,18 +947,22 @@ namespace BNPL.Forms_Transaction
 
         private void Report_Print_Preview(string action)
         {
-            EmployeesSalaryList Xtra_report_employeesSalaryList = new EmployeesSalaryList();
+            EmployeesSalaryList Xtra_report_employeesSalaryList= new EmployeesSalaryList();
 
             DynamicParameters param = new DynamicParameters();
             param.Add("@Emp_Code_Processing", "");
-            param.Add("@Salary_Month", DtStartDate.EditValue);
+            param.Add("@Salary_Month", ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(DtStartDate.EditValue)));
             param.Add("@Deduct_Advance", 1);
             param.Add("@Deduct_Loan", 1);
+
+
 
             //List<EmployeeSalary> EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", param);
 
             MonthlySalaryDetails_Model monthlySalaryDetails_Model = new MonthlySalaryDetails_Model();
-            monthlySalaryDetails_Model.SalaryMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
+            monthlySalaryDetails_Model.SalaryMonth = Convert.ToDateTime(DtStartDate.EditValue);
+          //  monthlySalaryDetails_Model.SalaryMonth = ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(DtStartDate.EditValue));
+           // monthlySalaryDetails_Model.SalaryMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
             monthlySalaryDetails_Model.EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", param);
 
 
@@ -973,11 +978,12 @@ namespace BNPL.Forms_Transaction
 
             if (action.Equals("preview"))
             {
-                tool.ShowPreview();
+                tool.ShowRibbonPreviewDialog();
             }
             if (action.Equals("print"))
             {
                 tool.PrintDialog();
+
             }
 
         }
