@@ -22,7 +22,7 @@ using System.Windows.Forms;
 using WindowsFormsApplication1;
 using WindowsFormsApplication1.Prints;
 
-namespace BNPL.Forms_Transaction
+namespace WindowsFormsApplication1.Forms_Transaction
 {
     public partial class frmProcessSalary : DevExpress.XtraEditors.XtraForm
     {

@@ -1,4 +1,4 @@
-﻿namespace BNPL
+﻿namespace WindowsFormsApplication1
 {
     partial class frm_Asset_AddUpd
     {

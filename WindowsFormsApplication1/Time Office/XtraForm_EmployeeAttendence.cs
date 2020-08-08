@@ -21,7 +21,7 @@ using System.Globalization;
 using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
 using static SeqKartLibrary.CrudTask.CrudAction;
-using BNPL.Forms_Master;
+using WindowsFormsApplication1.Forms_Master;
 using SeqKartLibrary.Repository;
 using Dapper;
 using System.Threading;

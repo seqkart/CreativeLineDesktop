@@ -68,7 +68,7 @@ namespace WindowsFormsApplication1
             {
                 if (GlobalVariables.ProgCode == "PROG168")
                 {
-                    BNPL.frm_Asset_AddUpd frm = new BNPL.frm_Asset_AddUpd { IsUpdate = false, Text = "Asset Master Addition" };
+                    WindowsFormsApplication1.frm_Asset_AddUpd frm = new WindowsFormsApplication1.frm_Asset_AddUpd { IsUpdate = false, Text = "Asset Master Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     frm.ShowDialog(Parent);
                 }
@@ -604,7 +604,7 @@ namespace WindowsFormsApplication1
                                                 Ds.Tables[0].Rows.Remove(rowToRemove);
                                             }
                                         }
-                                        using (var pt = new ReportPrintTool(new BNPL.Report.Rpt_VoucherPrint() { DataSource = Ds.Tables[0] }))
+                                        using (var pt = new ReportPrintTool(new WindowsFormsApplication1.Report.Rpt_VoucherPrint() { DataSource = Ds.Tables[0] }))
                                         {
                                             pt.ShowRibbonPreviewDialog();
                                         }

@@ -1,5 +1,5 @@
 ﻿
-namespace BNPL.Forms_Master
+namespace WindowsFormsApplication1.Forms_Master
 {
     partial class frmAttendenceLaoding
     {

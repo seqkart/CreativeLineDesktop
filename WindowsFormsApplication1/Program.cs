@@ -1,4 +1,4 @@
-﻿using BNPL.Forms_Master;
+﻿using WindowsFormsApplication1.Forms_Master;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -42,7 +42,7 @@ namespace WindowsFormsApplication1
             
             Application.Run(new frmLogincs());
             
-            //var PROG153 = new BNPL.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+            //var PROG153 = new WindowsFormsApplication1.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
             //PROG153.Show();
             //PROG153.BringToFront();
             

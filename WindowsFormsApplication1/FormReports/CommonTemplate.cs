@@ -13,7 +13,7 @@ using WindowsFormsApplication1.Prints.rpt_BankReco.rpt;
 using WindowsFormsApplication1.Prints.rpt_CashBook.rpt;
 using WindowsFormsApplication1.Prints.rpt_DayBook.rpt;
 
-namespace BNPL.Crystal_Reports
+namespace WindowsFormsApplication1.Crystal_Reports
 {
     public partial class CommonTemplate : XtraForm
     {

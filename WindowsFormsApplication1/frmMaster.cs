@@ -700,8 +700,7 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                //if (GlobalVar
-                iables.ProgCode == "PROG19")
+                //if (GlobalVari                ables.ProgCode == "PROG19")
                 //{
                 //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
                 //    frmDealerMstAddEdit frm = new frmDealerMstAddEdit() { s1 = btnEdit.Text, Text = "Dealer Master Editing", DealerCode = CurrentRow["DealerCode"].ToString() };

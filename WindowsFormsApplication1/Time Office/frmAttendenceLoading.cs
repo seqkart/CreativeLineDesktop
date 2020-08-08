@@ -29,7 +29,7 @@ using WindowsFormsApplication1;
 using WindowsFormsApplication1.Models;
 using WindowsFormsApplication1.Time_Office;
 
-namespace BNPL.Forms_Master
+namespace WindowsFormsApplication1.Forms_Master
 {
 
     public partial class frmAttendenceLaoding : XtraForm
