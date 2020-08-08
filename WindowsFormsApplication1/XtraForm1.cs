@@ -1327,13 +1327,13 @@ namespace WindowsFormsApplication1
                     PROG159.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
-                case "PROG154":
-                    var PROG154 = new BNPL.Forms_Master.frm_EmpsalMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
-                    PROG154.Show();
-                    PROG154.BringToFront();
-                    PROG154.Parent = Page;
-                    xtraTabControl1.SelectedTabPage = Page;
-                    break;
+                //case "PROG154":
+                //    var PROG154 = new BNPL.Forms_Master.frm_EmpsalMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                //    PROG154.Show();
+                //    PROG154.BringToFront();
+                //    PROG154.Parent = Page;
+                //    xtraTabControl1.SelectedTabPage = Page;
+                //    break;
                 case "PROG153":
                     var PROG153 = new BNPL.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG153.Show();

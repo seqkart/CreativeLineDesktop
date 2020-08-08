@@ -215,14 +215,14 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG6")
-                {
-                    frmVehicleAddEdit frm = new frmVehicleAddEdit() { s1 = btnAdd.Text, Text = "Vehicle Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG6")
+                //{
+                //    frmVehicleAddEdit frm = new frmVehicleAddEdit() { s1 = btnAdd.Text, Text = "Vehicle Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG8")
                 {
                     frmAccountMstAddEdit frm = new frmAccountMstAddEdit() { s1 = btnAdd.Text, Text = "Account Addition" };
@@ -247,14 +247,14 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG11")
-                {
-                    frmExpenseHeadAddEdit frm = new frmExpenseHeadAddEdit() { s1 = btnAdd.Text, Text = "Expense Head Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG11")
+                //{
+                //    frmExpenseHeadAddEdit frm = new frmExpenseHeadAddEdit() { s1 = btnAdd.Text, Text = "Expense Head Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG12")
                 {
                     frmLedgerAddEdit frm = new frmLedgerAddEdit() { s1 = btnAdd.Text, Text = "Ledger Addition" };
@@ -263,14 +263,14 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG13")
-                {
-                    frmRouteMstAddEdit frm = new frmRouteMstAddEdit() { s1 = btnAdd.Text, Text = "Route Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG13")
+                //{
+                //    frmRouteMstAddEdit frm = new frmRouteMstAddEdit() { s1 = btnAdd.Text, Text = "Route Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG14")
                 {
                     frmUOMAddEdit frm = new frmUOMAddEdit() { s1 = btnAdd.Text, Text = "Unit Addition" };
@@ -279,15 +279,15 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG15")
-                {
+                //if (GlobalVariables.ProgCode == "PROG15")
+                //{
 
-                    frmCostMstAddEdit frm = new frmCostMstAddEdit() { s1 = btnAdd.Text, Text = "Cost Head Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //    frmCostMstAddEdit frm = new frmCostMstAddEdit() { s1 = btnAdd.Text, Text = "Cost Head Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG16")
                 {
                     frmGroupMstAddEdit frm = new frmGroupMstAddEdit() { s1 = btnAdd.Text, Text = "Group Head Addition" };
@@ -312,14 +312,14 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG19")
-                {
-                    frmDealerMstAddEdit frm = new frmDealerMstAddEdit() { s1 = btnAdd.Text, Text = "Dealer Master Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG19")
+                //{
+                //    frmDealerMstAddEdit frm = new frmDealerMstAddEdit() { s1 = btnAdd.Text, Text = "Dealer Master Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG20")
                 {
                     frmProductMstAddEdit frm = new frmProductMstAddEdit() { s1 = btnAdd.Text, Text = "Product Master Addition" };
@@ -360,22 +360,22 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG66")
-                {
-                    Master.frmSupplierMaster frm = new Master.frmSupplierMaster() { s1 = btnAdd.Text, Text = "Supplier Head Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
-                if (GlobalVariables.ProgCode == "PROG67")
-                {
-                    Master.frmRetailerMaster frm = new Master.frmRetailerMaster() { s1 = btnAdd.Text, Text = "Retailer Head Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG66")
+                //{
+                //    Master.frmSupplierMaster frm = new Master.frmSupplierMaster() { s1 = btnAdd.Text, Text = "Supplier Head Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+              //  }
+                //if (GlobalVariables.ProgCode == "PROG67")
+                //{
+                //    Master.frmRetailerMaster frm = new Master.frmRetailerMaster() { s1 = btnAdd.Text, Text = "Retailer Head Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG160")
                 {
                     frmEmloyeeMstAddEdit frm = new frmEmloyeeMstAddEdit() { s1 = btnAdd.Text, Text = "Employee Master Addition" };
@@ -592,15 +592,15 @@ namespace WindowsFormsApplication1
                     /////
                     ///frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG6")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    frmVehicleAddEdit frm = new frmVehicleAddEdit() { s1 = btnEdit.Text, Text = "Vehicle Editing", VehicleCode = CurrentRow["VehicleCode"].ToString() };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG6")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    frmVehicleAddEdit frm = new frmVehicleAddEdit() { s1 = btnEdit.Text, Text = "Vehicle Editing", VehicleCode = CurrentRow["VehicleCode"].ToString() };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG8")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
@@ -628,15 +628,15 @@ namespace WindowsFormsApplication1
                     frm.ShowDialog(Parent);
                 }
 
-                if (GlobalVariables.ProgCode == "PROG11")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    frmExpenseHeadAddEdit frm = new frmExpenseHeadAddEdit() { s1 = btnEdit.Text, Text = "Expense Head  Editing", ExpHeadCode = CurrentRow["ExpHeadCode"].ToString() };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG11")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    frmExpenseHeadAddEdit frm = new frmExpenseHeadAddEdit() { s1 = btnEdit.Text, Text = "Expense Head  Editing", ExpHeadCode = CurrentRow["ExpHeadCode"].ToString() };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG12")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
@@ -646,15 +646,15 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG13")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    frmRouteMstAddEdit frm = new frmRouteMstAddEdit() { s1 = btnEdit.Text, Text = "Route  Editing", RouteCode = CurrentRow["RouteCode"].ToString() };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG13")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    frmRouteMstAddEdit frm = new frmRouteMstAddEdit() { s1 = btnEdit.Text, Text = "Route  Editing", RouteCode = CurrentRow["RouteCode"].ToString() };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG14")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
@@ -664,15 +664,15 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG15")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    frmCostMstAddEdit frm = new frmCostMstAddEdit() { s1 = btnEdit.Text, Text = "Cost Head  Editing", CostCode = CurrentRow["CostCode"].ToString(), CostSubCode = CurrentRow["CostSubCode"].ToString() };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG15")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    frmCostMstAddEdit frm = new frmCostMstAddEdit() { s1 = btnEdit.Text, Text = "Cost Head  Editing", CostCode = CurrentRow["CostCode"].ToString(), CostSubCode = CurrentRow["CostSubCode"].ToString() };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG16")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
@@ -700,15 +700,16 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG19")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    frmDealerMstAddEdit frm = new frmDealerMstAddEdit() { s1 = btnEdit.Text, Text = "Dealer Master Editing", DealerCode = CurrentRow["DealerCode"].ToString() };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVar
+                iables.ProgCode == "PROG19")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    frmDealerMstAddEdit frm = new frmDealerMstAddEdit() { s1 = btnEdit.Text, Text = "Dealer Master Editing", DealerCode = CurrentRow["DealerCode"].ToString() };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG20")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
@@ -754,33 +755,33 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG66")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    Master.frmSupplierMaster frm = new Master.frmSupplierMaster() { s1 = btnEdit.Text, Text = "Supplier Head  Editing", SCode = CurrentRow["SCode"].ToString() };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
-                if (GlobalVariables.ProgCode == "PROG67")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    Master.frmRetailerMaster frm = new Master.frmRetailerMaster() { s1 = btnEdit.Text, Text = "Retailer Head  Editing", RCode = CurrentRow["RCode"].ToString() };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
-                if (GlobalVariables.ProgCode == "PROG69")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    Master.frmRateFeeding frm = new Master.frmRateFeeding() { Text = "DealerRate Editing", DealerCode = CurrentRow["DealerCode"].ToString() };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    //var P = ProjectFunctions.GetPositionInForm(this);
-                    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG66")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    Master.frmSupplierMaster frm = new Master.frmSupplierMaster() { s1 = btnEdit.Text, Text = "Supplier Head  Editing", SCode = CurrentRow["SCode"].ToString() };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
+                //if (GlobalVariables.ProgCode == "PROG67")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    Master.frmRetailerMaster frm = new Master.frmRetailerMaster() { s1 = btnEdit.Text, Text = "Retailer Head  Editing", RCode = CurrentRow["RCode"].ToString() };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
+                //if (GlobalVariables.ProgCode == "PROG69")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    Master.frmRateFeeding frm = new Master.frmRateFeeding() { Text = "DealerRate Editing", DealerCode = CurrentRow["DealerCode"].ToString() };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    //var P = ProjectFunctions.GetPositionInForm(this);
+                //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG156")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);

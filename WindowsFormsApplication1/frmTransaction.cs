@@ -171,12 +171,12 @@ namespace WindowsFormsApplication1
 
 
 
-                if (GlobalVariables.ProgCode == "PROG26")
-                {
-                    Transaction.frmGeneralInvoiceMst frm = new Transaction.frmGeneralInvoiceMst() { s1 = btnAdd.Text, Text = "Invoice Master" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG26")
+                //{
+                //    Transaction.frmGeneralInvoiceMst frm = new Transaction.frmGeneralInvoiceMst() { s1 = btnAdd.Text, Text = "Invoice Master" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG87")
                 {
                     Transaction.frmIndentMst frm = new Transaction.frmIndentMst() { s1 = btnAdd.Text, Text = "Indent Master" };
@@ -207,12 +207,12 @@ namespace WindowsFormsApplication1
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG55")
-                {
-                    Transaction.frmProductionData frm = new Transaction.frmProductionData() { s1 = btnAdd.Text, Text = "Production Data Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG55")
+                //{
+                //    Transaction.frmProductionData frm = new Transaction.frmProductionData() { s1 = btnAdd.Text, Text = "Production Data Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
 
                 if (GlobalVariables.ProgCode == "PROG58")
                 {
@@ -220,31 +220,31 @@ namespace WindowsFormsApplication1
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG56")
-                {
-                    Transaction.frmPackingDespatch frm = new Transaction.frmPackingDespatch() { s1 = btnAdd.Text, Text = "Packing Despatch Data Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
-                if (GlobalVariables.ProgCode == "PROG65")
-                {
-                    Transaction.frmReturnCrates frm = new Transaction.frmReturnCrates() { s1 = btnAdd.Text, Text = "Return Crates Data Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
-                if (GlobalVariables.ProgCode == "PROG57")
-                {
-                    Transaction.frmStockOutData frm = new Transaction.frmStockOutData() { s1 = btnAdd.Text, Text = "Stock Out Addition" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG56")
+                //{
+                //    Transaction.frmPackingDespatch frm = new Transaction.frmPackingDespatch() { s1 = btnAdd.Text, Text = "Packing Despatch Data Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
+                //if (GlobalVariables.ProgCode == "PROG65")
+                //{
+                //    Transaction.frmReturnCrates frm = new Transaction.frmReturnCrates() { s1 = btnAdd.Text, Text = "Return Crates Data Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
+                //if (GlobalVariables.ProgCode == "PROG57")
+                //{
+                //    Transaction.frmStockOutData frm = new Transaction.frmStockOutData() { s1 = btnAdd.Text, Text = "Stock Out Addition" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
 
-                if (GlobalVariables.ProgCode == "PROG74")
-                {
-                    Transaction.frmCRDataData frm = new Transaction.frmCRDataData() { s1 = btnAdd.Text, Text = "Cash Receiving" };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG74")
+                //{
+                //    Transaction.frmCRDataData frm = new Transaction.frmCRDataData() { s1 = btnAdd.Text, Text = "Cash Receiving" };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG142")
                 {
                     WindowsFormsApplication1.Transaction.challans.frm_ChallanOutward frm = new WindowsFormsApplication1.Transaction.challans.frm_ChallanOutward { s1 = btnAdd.Text, Text = "Outward Challan Edition" };
@@ -444,13 +444,13 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                if (GlobalVariables.ProgCode == "PROG26")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    Transaction.frmGeneralInvoiceMst frm = new Transaction.frmGeneralInvoiceMst() { s1 = btnEdit.Text, Text = "Invoice Editing", ImNo = CurrentRow["BillNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["BillDate"]) };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG26")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    Transaction.frmGeneralInvoiceMst frm = new Transaction.frmGeneralInvoiceMst() { s1 = btnEdit.Text, Text = "Invoice Editing", ImNo = CurrentRow["BillNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["BillDate"]) };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG27")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
@@ -479,13 +479,13 @@ namespace WindowsFormsApplication1
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG55")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    Transaction.frmProductionData frm = new Transaction.frmProductionData() { s1 = btnEdit.Text, Text = "Production Data Editing", ImNo = CurrentRow["ImNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["ImDate"]) };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG55")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    Transaction.frmProductionData frm = new Transaction.frmProductionData() { s1 = btnEdit.Text, Text = "Production Data Editing", ImNo = CurrentRow["ImNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["ImDate"]) };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG58")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
@@ -493,27 +493,27 @@ namespace WindowsFormsApplication1
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     frm.ShowDialog(Parent);
                 }
-                if (GlobalVariables.ProgCode == "PROG56")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    Transaction.frmPackingDespatch frm = new Transaction.frmPackingDespatch() { s1 = btnEdit.Text, Text = "Packing Despatch Data Editing", ImNo = CurrentRow["ImNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["ImDate"]) };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
-                if (GlobalVariables.ProgCode == "PROG65")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    Transaction.frmReturnCrates frm = new Transaction.frmReturnCrates() { s1 = btnEdit.Text, Text = "Return Crates Data Editing", ImNo = CurrentRow["CmNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["CmDate"]) };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
-                if (GlobalVariables.ProgCode == "PROG57")
-                {
-                    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
-                    Transaction.frmStockOutData frm = new Transaction.frmStockOutData() { s1 = btnEdit.Text, Text = "Stock Out Data Editing", ImNo = CurrentRow["MmDocNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["MmDocDate"]) };
-                    frm.StartPosition = FormStartPosition.CenterScreen;
-                    frm.ShowDialog(Parent);
-                }
+                //if (GlobalVariables.ProgCode == "PROG56")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    Transaction.frmPackingDespatch frm = new Transaction.frmPackingDespatch() { s1 = btnEdit.Text, Text = "Packing Despatch Data Editing", ImNo = CurrentRow["ImNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["ImDate"]) };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
+                //if (GlobalVariables.ProgCode == "PROG65")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    Transaction.frmReturnCrates frm = new Transaction.frmReturnCrates() { s1 = btnEdit.Text, Text = "Return Crates Data Editing", ImNo = CurrentRow["CmNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["CmDate"]) };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
+                //if (GlobalVariables.ProgCode == "PROG57")
+                //{
+                //    DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
+                //    Transaction.frmStockOutData frm = new Transaction.frmStockOutData() { s1 = btnEdit.Text, Text = "Stock Out Data Editing", ImNo = CurrentRow["MmDocNo"].ToString(), ImDate = Convert.ToDateTime(CurrentRow["MmDocDate"]) };
+                //    frm.StartPosition = FormStartPosition.CenterScreen;
+                //    frm.ShowDialog(Parent);
+                //}
                 if (GlobalVariables.ProgCode == "PROG37")
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
@@ -532,8 +532,8 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-                        Transaction.frmCRDataData frm = new Transaction.frmCRDataData() { s1 = btnEdit.Text, Text = "Cash Receiving ", CNo = CurrentRow["CNo"].ToString(), CDate = Convert.ToDateTime(CurrentRow["CDate"]) };
-                        frm.StartPosition = FormStartPosition.CenterScreen; frm.ShowDialog(Parent);
+                      //  Transaction.frmCRDataData frm = new Transaction.frmCRDataData() { s1 = btnEdit.Text, Text = "Cash Receiving ", CNo = CurrentRow["CNo"].ToString(), CDate = Convert.ToDateTime(CurrentRow["CDate"]) };
+                        //frm.StartPosition = FormStartPosition.CenterScreen; frm.ShowDialog(Parent);
                     }
                 }
 
