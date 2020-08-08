@@ -480,6 +480,12 @@
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </Compile>
     <Compile Include="HelperClass\CustomArguments.cs" />
+    <Compile Include="Master\FRMBRANCHMASTER.CS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FRMBRANCHMASTER.CS.Designer.cs">
+      <DependentUpon>FRMBRANCHMASTER.CS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prints\EmployeeSalaryDetails.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1402,6 +1408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReports\ReportFormatName.resx">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FRMBRANCHMASTER.CS.resx">
+      <DependentUpon>FRMBRANCHMASTER.CS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Prints\EmployeeSalaryDetails.resx">
       <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
