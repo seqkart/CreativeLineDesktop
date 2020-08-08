@@ -1,8 +1,6 @@
-﻿using WindowsFormsApplication1.Forms_Master;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Time_Office;
 
 namespace WindowsFormsApplication1
 {
@@ -38,16 +36,16 @@ namespace WindowsFormsApplication1
 
 
 
-            
-            
+
+
             Application.Run(new frmLogincs());
-            
+
             //var PROG153 = new WindowsFormsApplication1.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
             //PROG153.Show();
             //PROG153.BringToFront();
-            
+
             //Application.Run(new frmAttendenceLaoding());
-            
+
             //Application.Run(new XtraForm_EmployeeAttendence());
             /**/
         }
