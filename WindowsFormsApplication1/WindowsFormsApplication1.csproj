@@ -402,12 +402,6 @@
     <Compile Include="Administration\XtraForm_UserMaster.Designer.cs">
       <DependentUpon>XtraForm_UserMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="BarPrintOut.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BarPrintOut.Designer.cs">
-      <DependentUpon>BarPrintOut.cs</DependentUpon>
-    </Compile>
     <Compile Include="Crystals\SalePrint.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -416,12 +410,6 @@
     </Compile>
     <Compile Include="CustomControls\MyDateTimePicker.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Dashboard1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Dashboard1.Designer.cs">
-      <DependentUpon>Dashboard1.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBindings\UserMaster_Data.cs" />
     <Compile Include="FormReports\BasePrint.cs" />
@@ -1253,14 +1241,8 @@
     <EmbeddedResource Include="Administration\XtraForm_UserMaster.resx">
       <DependentUpon>XtraForm_UserMaster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BarPrintOut.resx">
-      <DependentUpon>BarPrintOut.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Crystals\SalePrint.resx">
       <DependentUpon>SalePrint.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard1.resx">
-      <DependentUpon>Dashboard1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReports\CommonTemplate.resx">
       <DependentUpon>CommonTemplate.cs</DependentUpon>
