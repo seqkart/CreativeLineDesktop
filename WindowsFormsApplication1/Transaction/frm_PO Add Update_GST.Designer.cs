@@ -283,7 +283,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(62, 48);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(46, 13);
+            this.labelControl2.Size = new System.Drawing.Size(47, 13);
             this.labelControl2.TabIndex = 15;
             this.labelControl2.Text = "Doc Type";
             // 
@@ -423,7 +423,7 @@
             // 
             this.labelControl37.Location = new System.Drawing.Point(470, 200);
             this.labelControl37.Name = "labelControl37";
-            this.labelControl37.Size = new System.Drawing.Size(45, 13);
+            this.labelControl37.Size = new System.Drawing.Size(46, 13);
             this.labelControl37.TabIndex = 12;
             this.labelControl37.Text = "GST Rate";
             // 
@@ -933,7 +933,7 @@
             // 
             this.labelControl5.Location = new System.Drawing.Point(496, 223);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(42, 13);
+            this.labelControl5.Size = new System.Drawing.Size(43, 13);
             this.labelControl5.TabIndex = 12;
             this.labelControl5.Text = "Tax Rate";
             this.labelControl5.Visible = false;
@@ -974,7 +974,7 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(56, 200);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(45, 13);
+            this.labelControl8.Size = new System.Drawing.Size(44, 13);
             this.labelControl8.TabIndex = 23;
             this.labelControl8.Text = "Quantity";
             // 
@@ -1414,7 +1414,7 @@
             // 
             this.labelControl31.Location = new System.Drawing.Point(741, 98);
             this.labelControl31.Name = "labelControl31";
-            this.labelControl31.Size = new System.Drawing.Size(34, 13);
+            this.labelControl31.Size = new System.Drawing.Size(33, 13);
             this.labelControl31.TabIndex = 14;
             this.labelControl31.Text = "Broker";
             // 
@@ -1474,7 +1474,7 @@
             // 
             this.labelControl30.Location = new System.Drawing.Point(741, 72);
             this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(72, 13);
+            this.labelControl30.Size = new System.Drawing.Size(73, 13);
             this.labelControl30.TabIndex = 14;
             this.labelControl30.Text = "Delivery Terms";
             // 
@@ -1512,7 +1512,7 @@
             // 
             this.labelControl29.Location = new System.Drawing.Point(741, 46);
             this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(75, 13);
+            this.labelControl29.Size = new System.Drawing.Size(76, 13);
             this.labelControl29.TabIndex = 14;
             this.labelControl29.Text = "Payment Terms";
             // 
@@ -1681,7 +1681,7 @@
             this.Validate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Validate.Name = "Validate";
             this.Validate.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.Validate.Size = new System.Drawing.Size(66, 23);
+            this.Validate.Size = new System.Drawing.Size(65, 23);
             this.Validate.Text = "&Validate";
             this.Validate.Click += new System.EventHandler(this.Validate_Click);
             // 
@@ -1689,6 +1689,7 @@
             // 
             this.TextAuthenticate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.TextAuthenticate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TextAuthenticate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TextAuthenticate.Name = "TextAuthenticate";
             this.TextAuthenticate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TextAuthenticate.Size = new System.Drawing.Size(100, 26);

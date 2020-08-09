@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using WindowsFormsApplication1;
 using WindowsFormsApplication1.FormReports;
 
-namespace BNPL.Forms_Transaction
+namespace WindowsFormsApplication1.Forms_Transaction
 {
     public partial class frmGatePassTimeAddEdit : DevExpress.XtraEditors.XtraForm
     {

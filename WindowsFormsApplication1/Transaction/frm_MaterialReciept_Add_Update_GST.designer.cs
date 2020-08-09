@@ -2764,7 +2764,7 @@
             // 
             // TextBehalfOf
             // 
-            this.TextBehalfOf.EditValue = "BNPL";
+            this.TextBehalfOf.EditValue = "WindowsFormsApplication1";
             this.TextBehalfOf.EnterMoveNextControl = true;
             this.TextBehalfOf.Location = new System.Drawing.Point(737, 36);
             this.TextBehalfOf.Name = "TextBehalfOf";
@@ -2778,7 +2778,7 @@
             this.TextBehalfOf.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.TextBehalfOf.Properties.Items.AddRange(new object[] {
-            "BNPL",
+            "WindowsFormsApplication1",
             "OTH"});
             this.TextBehalfOf.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
             this.TextBehalfOf.Properties.LookAndFeel.UseDefaultLookAndFeel = false;

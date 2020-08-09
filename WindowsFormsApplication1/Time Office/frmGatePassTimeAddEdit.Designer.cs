@@ -1,4 +1,4 @@
-﻿namespace BNPL.Forms_Transaction
+﻿namespace WindowsFormsApplication1.Forms_Transaction
 {
     partial class frmGatePassTimeAddEdit
     {

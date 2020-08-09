@@ -89,7 +89,7 @@
             // 
             // txtGrpDesc
             // 
-            this.txtGrpDesc.Location = new System.Drawing.Point(135, 104);
+            this.txtGrpDesc.Location = new System.Drawing.Point(135, 103);
             this.txtGrpDesc.Name = "txtGrpDesc";
             this.txtGrpDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtGrpDesc.Properties.MaxLength = 50;
@@ -108,7 +108,7 @@
             // 
             // txtSGrpDesc
             // 
-            this.txtSGrpDesc.Location = new System.Drawing.Point(135, 130);
+            this.txtSGrpDesc.Location = new System.Drawing.Point(135, 129);
             this.txtSGrpDesc.Name = "txtSGrpDesc";
             this.txtSGrpDesc.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSGrpDesc.Properties.MaxLength = 50;
@@ -130,7 +130,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(50, 107);
+            this.label9.Location = new System.Drawing.Point(63, 107);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(67, 13);
             this.label9.TabIndex = 240;
@@ -139,7 +139,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(29, 133);
+            this.label8.Location = new System.Drawing.Point(40, 133);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 13);
             this.label8.TabIndex = 239;
@@ -148,7 +148,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 85);
+            this.label3.Location = new System.Drawing.Point(37, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 13);
             this.label3.TabIndex = 237;
@@ -157,7 +157,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 58);
+            this.label1.Location = new System.Drawing.Point(60, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 236;
@@ -165,7 +165,7 @@
             // 
             // txtHSNCode
             // 
-            this.txtHSNCode.Location = new System.Drawing.Point(135, 157);
+            this.txtHSNCode.Location = new System.Drawing.Point(135, 155);
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtHSNCode.Properties.MaxLength = 12;
@@ -175,7 +175,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 160);
+            this.label2.Location = new System.Drawing.Point(74, 159);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 243;
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 228);
+            this.ClientSize = new System.Drawing.Size(548, 191);
             this.ControlBox = false;
             this.Controls.Add(this.txtHSNCode);
             this.Controls.Add(this.label2);

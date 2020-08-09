@@ -280,7 +280,7 @@
             // 
             // cachedReportSource1
             // 
-            this.cachedReportSource1.Report = typeof(BNPL.Report.Rpt_VoucherPrint);
+            this.cachedReportSource1.Report = typeof(WindowsFormsApplication1.Report.Rpt_VoucherPrint);
             this.cachedReportSource1.Storage = memoryDocumentStorage1;
             // 
             // documentViewerRibbonController1

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 using WindowsFormsApplication1;
 
-namespace BNPL.Forms_Master
+namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmLoanMonthlyData : DevExpress.XtraEditors.XtraForm
     {

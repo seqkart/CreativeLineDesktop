@@ -56,9 +56,6 @@
             this.txtUserName.EnterMoveNextControl = true;
             this.txtUserName.Location = new System.Drawing.Point(163, 46);
             this.txtUserName.Name = "txtUserName";
-            // 
-            // 
-            // 
             this.txtUserName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUserName.Properties.MaxLength = 30;
             this.txtUserName.Size = new System.Drawing.Size(229, 20);
@@ -81,9 +78,6 @@
             this.txtPassword.EnterMoveNextControl = true;
             this.txtPassword.Location = new System.Drawing.Point(163, 71);
             this.txtPassword.Name = "txtPassword";
-            // 
-            // 
-            // 
             this.txtPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPassword.Properties.MaxLength = 30;
             this.txtPassword.Properties.PasswordChar = '*';

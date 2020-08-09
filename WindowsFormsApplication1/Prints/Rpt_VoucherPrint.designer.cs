@@ -1,4 +1,4 @@
-﻿namespace BNPL.Report
+﻿namespace WindowsFormsApplication1.Report
 {
     partial class Rpt_VoucherPrint
     {

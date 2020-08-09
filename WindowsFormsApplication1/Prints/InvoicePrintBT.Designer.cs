@@ -46,6 +46,7 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.lblCopy = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel46 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel47 = new DevExpress.XtraReports.UI.XRLabel();
@@ -116,7 +117,6 @@
             this.xrCrossBandBox2 = new DevExpress.XtraReports.UI.XRCrossBandBox();
             this.ADD = new DevExpress.XtraReports.UI.CalculatedField();
             this.xrCrossBandBox3 = new DevExpress.XtraReports.UI.XRCrossBandBox();
-            this.lblCopy = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -282,6 +282,19 @@
             this.xrLabel1});
             this.PageHeader.HeightF = 282.2414F;
             this.PageHeader.Name = "PageHeader";
+            // 
+            // lblCopy
+            // 
+            this.lblCopy.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.lblCopy.LocationFloat = new DevExpress.Utils.PointFloat(513.0419F, 1.041667F);
+            this.lblCopy.Multiline = true;
+            this.lblCopy.Name = "lblCopy";
+            this.lblCopy.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblCopy.SizeF = new System.Drawing.SizeF(216.6664F, 23F);
+            this.lblCopy.StylePriority.UseFont = false;
+            this.lblCopy.StylePriority.UseTextAlignment = false;
+            this.lblCopy.Text = "INVOICE";
+            this.lblCopy.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabel37
             // 
@@ -1106,19 +1119,6 @@
             this.xrCrossBandBox3.StartPointFloat = new DevExpress.Utils.PointFloat(2.173261F, 0F);
             this.xrCrossBandBox3.WidthF = 731.4736F;
             // 
-            // lblCopy
-            // 
-            this.lblCopy.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.lblCopy.LocationFloat = new DevExpress.Utils.PointFloat(513.0419F, 1.041667F);
-            this.lblCopy.Multiline = true;
-            this.lblCopy.Name = "lblCopy";
-            this.lblCopy.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblCopy.SizeF = new System.Drawing.SizeF(216.6664F, 23F);
-            this.lblCopy.StylePriority.UseFont = false;
-            this.lblCopy.StylePriority.UseTextAlignment = false;
-            this.lblCopy.Text = "INVOICE";
-            this.lblCopy.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
             // InvoicePrintBT
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1150,7 +1150,7 @@
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.SnappingMode = DevExpress.XtraReports.UI.SnappingMode.None;
-            this.Version = "19.2";
+            this.Version = "20.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

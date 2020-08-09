@@ -1,4 +1,4 @@
-﻿namespace BNPL.Forms_Master
+﻿namespace WindowsFormsApplication1.Forms_Master
 {
     partial class frmLoanMonthlyDateMst
     {
@@ -218,7 +218,7 @@
             this.panelControl1.Controls.Add(this.LoanGrid);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.Btn_RefreshRateL);
-            this.panelControl1.Location = new System.Drawing.Point(78, 72);
+            this.panelControl1.Location = new System.Drawing.Point(12, 38);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(768, 424);
             this.panelControl1.TabIndex = 11;

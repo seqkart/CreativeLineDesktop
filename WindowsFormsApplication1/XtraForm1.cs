@@ -1,5 +1,5 @@
-﻿using BNPL.Crystal_Reports;
-using BNPL.Forms_Master;
+﻿using WindowsFormsApplication1.Crystal_Reports;
+using WindowsFormsApplication1.Forms_Master;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using System;
@@ -126,15 +126,18 @@ namespace WindowsFormsApplication1
                 //MessageBox.Show(String.IsNullOrEmpty(xtraTabControl1.SelectedTabPage.Name) ? "0":"1");
                 if (!String.IsNullOrEmpty(xtraTabControl1.SelectedTabPage.Name))
                 {
+                   
+
+
                     GlobalVariables.ProgCode = xtraTabControl1.SelectedTabPage.Name;
                 }
             }
-#pragma warning disable CS0168 // The variable 'ex' is declared but never used
+
             catch (Exception ex)
-#pragma warning restore CS0168 // The variable 'ex' is declared but never used
+
             {
                 
-                //MessageBox.Show(ex.Message);
+             //                MessageBox.Show(ex.Message);
             }
         }
         private void RunProgAccordin(string myitem, string itemcaption)
@@ -1293,56 +1296,56 @@ namespace WindowsFormsApplication1
                     break;
 
                 case "PROG164":
-                    var PROG164 = new BNPL.Forms_Master.frmEmployeeMDataPassing() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG164 = new WindowsFormsApplication1.Forms_Master.frmEmployeeMDataPassing() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG164.Show();
                     PROG164.BringToFront();
                     PROG164.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
                 case "PROG163":
-                    var PROG163 = new BNPL.Forms_Master.frmEmployeeSalaryMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG163 = new WindowsFormsApplication1.Forms_Master.frmEmployeeSalaryMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG163.Show();
                     PROG163.BringToFront();
                     PROG163.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
                 case "PROG162":
-                    var PROG162 = new BNPL.Forms_Transaction.frmProcessSalary() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG162 = new WindowsFormsApplication1.Forms_Transaction.frmProcessSalary() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG162.Show();
                     PROG162.BringToFront();
                     PROG162.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
                 case "PROG161":
-                    var PROG161 = new BNPL.Forms_Master.frmLoanMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG161 = new WindowsFormsApplication1.Forms_Master.frmLoanMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG161.Show();
                     PROG161.BringToFront();
                     PROG161.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
                 case "PROG159":
-                    var PROG159 = new BNPL.Forms_Master.frmExcelStructureLoading() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG159 = new WindowsFormsApplication1.Forms_Master.frmExcelStructureLoading() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG159.Show();
                     PROG159.BringToFront();
                     PROG159.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
-                case "PROG154":
-                    var PROG154 = new BNPL.Forms_Master.frm_EmpsalMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
-                    PROG154.Show();
-                    PROG154.BringToFront();
-                    PROG154.Parent = Page;
-                    xtraTabControl1.SelectedTabPage = Page;
-                    break;
+                //case "PROG154":
+                //    var PROG154 = new WindowsFormsApplication1.Forms_Master.frm_EmpsalMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                //    PROG154.Show();
+                //    PROG154.BringToFront();
+                //    PROG154.Parent = Page;
+                //    xtraTabControl1.SelectedTabPage = Page;
+                //    break;
                 case "PROG153":
-                    var PROG153 = new BNPL.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG153 = new WindowsFormsApplication1.Forms_Master.frmAttendenceLaoding() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG153.Show();
                     PROG153.BringToFront();
                     PROG153.Parent = Page;
                     xtraTabControl1.SelectedTabPage = Page;
                     break;
                 case "PROG152":
-                    var PROG152 = new BNPL.Forms_Transaction.frmAdvanceMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
+                    var PROG152 = new WindowsFormsApplication1.Forms_Transaction.frmAdvanceMst() { Dock = DockStyle.Fill, TopLevel = false, StartPosition = FormStartPosition.Manual, WindowState = System.Windows.Forms.FormWindowState.Normal };
                     PROG152.Show();
                     PROG152.BringToFront();
                     PROG152.Parent = Page;

@@ -1,6 +1,6 @@
 ﻿using System;
 using WindowsFormsApplication1;
-namespace BNPL.Report
+namespace WindowsFormsApplication1.Report
 {
     public partial class Rpt_VoucherPrint : DevExpress.XtraReports.UI.XtraReport
     {

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 using WindowsFormsApplication1;
 
-namespace BNPL.Forms_Transaction
+namespace WindowsFormsApplication1.Forms_Transaction
 {
     public partial class frmAdvanceMst : DevExpress.XtraEditors.XtraForm
     {

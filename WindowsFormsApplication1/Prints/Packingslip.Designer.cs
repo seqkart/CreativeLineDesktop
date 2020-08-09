@@ -49,6 +49,8 @@
             this.crossTabHeaderStyle = new DevExpress.XtraReports.UI.XRControlStyle();
             this.crossTabTotalStyle = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.crossTab1 = new DevExpress.XtraReports.UI.XRCrossTab();
             this.xrCrossTabCell4 = new DevExpress.XtraReports.UI.CrossTab.XRCrossTabCell();
             this.xrCrossTabCell5 = new DevExpress.XtraReports.UI.CrossTab.XRCrossTabCell();
@@ -74,8 +76,6 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrControlStyle4 = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.crossTab1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -140,8 +140,32 @@
             this.xrLabel1,
             this.crossTab1,
             this.label1});
+            this.ReportHeader.Expanded = false;
             this.ReportHeader.HeightF = 162.5F;
             this.ReportHeader.Name = "ReportHeader";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Table].[SIDBOXNO]")});
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(425F, 12.5F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(100F, 25F);
+            this.xrLabel2.Text = "xrLabel2";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Table].[SIDPSNO]")});
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(275F, 12.5F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(100F, 25F);
+            this.xrLabel1.Text = "xrLabel1";
             // 
             // crossTab1
             // 
@@ -362,29 +386,6 @@
             this.xrControlStyle4.Name = "xrControlStyle4";
             this.xrControlStyle4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
-            // xrLabel1
-            // 
-            this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Table].[SIDPSNO]")});
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(275F, 12.5F);
-            this.xrLabel1.Multiline = true;
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(100F, 25F);
-            this.xrLabel1.Text = "xrLabel1";
-            // 
-            // xrLabel2
-            // 
-            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Table].[SIDBOXNO]")});
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(425F, 12.5F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(100F, 25F);
-            this.xrLabel2.Text = "xrLabel2";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
             // Packingslip
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -412,7 +413,7 @@
             this.crossTabHeaderStyle,
             this.crossTabDataStyle,
             this.crossTabTotalStyle});
-            this.Version = "19.2";
+            this.Version = "20.1";
             this.VerticalContentSplitting = DevExpress.XtraPrinting.VerticalContentSplitting.Smart;
             ((System.ComponentModel.ISupportInitialize)(this.crossTab1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
