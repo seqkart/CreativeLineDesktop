@@ -946,7 +946,8 @@ namespace BNPL.Forms_Transaction
 
         private void Report_Print_Preview(string action)
         {
-            EmployeesSalaryList Xtra_report_employeesSalaryList = new EmployeesSalaryList();
+            //XtraReport_EmployeesSalaryList Xtra_report_employeesSalaryList = new XtraReport_EmployeesSalaryList();
+            XtraReport_Salary Xtra_report_employeesSalaryList = new XtraReport_Salary();
 
             DynamicParameters param = new DynamicParameters();
             param.Add("@Emp_Code_Processing", "");

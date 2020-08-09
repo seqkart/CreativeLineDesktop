@@ -752,6 +752,7 @@
             // 
             this.GroupFooter2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.panel1});
+            this.GroupFooter2.Expanded = false;
             this.GroupFooter2.HeightF = 56.16888F;
             this.GroupFooter2.Level = 1;
             this.GroupFooter2.Name = "GroupFooter2";
@@ -891,7 +892,7 @@
             // 
             this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.panel2});
-            this.ReportFooter.HeightF = 49.38444F;
+            this.ReportFooter.HeightF = 94.00495F;
             this.ReportFooter.Name = "ReportFooter";
             // 
             // panel2

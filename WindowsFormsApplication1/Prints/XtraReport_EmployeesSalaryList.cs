@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace WindowsFormsApplication1.Prints
 {
-    public partial class EmployeesSalaryList : DevExpress.XtraReports.UI.XtraReport
+    public partial class XtraReport_EmployeesSalaryList : DevExpress.XtraReports.UI.XtraReport
     {
-        public EmployeesSalaryList()
+        public XtraReport_EmployeesSalaryList()
         {
             InitializeComponent();
         }

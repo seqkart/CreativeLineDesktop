@@ -9,6 +9,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraReports.UI;
 using HumanResourceManagementSystem;
 using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
@@ -27,6 +28,7 @@ using System.Threading;
 using System.Windows.Forms;
 using WindowsFormsApplication1;
 using WindowsFormsApplication1.Models;
+using WindowsFormsApplication1.Prints;
 using WindowsFormsApplication1.Time_Office;
 
 namespace BNPL.Forms_Master
@@ -744,6 +746,55 @@ namespace BNPL.Forms_Master
                 return false;
             }
             return true;
+        }
+
+        private void Report_Print_Preview(string action)
+        {
+            Report_EmployeeAttendance Xtra_Report_EmployeeAttendanceList = new Report_EmployeeAttendance();
+
+            DynamicParameters paramSalary = new DynamicParameters();
+            paramSalary.Add("@Emp_Code_Processing", txtEmpCode.EditValue);
+            paramSalary.Add("@Salary_Month", DtStartDate.EditValue);
+            paramSalary.Add("@Deduct_Advance", 1);
+            paramSalary.Add("@Deduct_Loan", 1);
+
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@EmpCode", txtEmpCode.EditValue);
+            param.Add("@Attendance_Month", DtStartDate.EditValue);            
+
+            ProgramMasterModel programMaster = ProgramMasterData.GetProgramMasterModel(GlobalVariables.ProgCode);
+
+            MessageBox.Show(programMaster.ProgProcName + "");
+            /*
+            EmployeeAttendanceDetails_Model employeeAttendanceDetails_Model = new EmployeeAttendanceDetails_Model();
+            employeeAttendanceDetails_Model.AttendanceMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
+            employeeAttendanceDetails_Model.EmpAttendanceList = EmployeeData.GetEmpAttendanceList(programMaster.ProgProcName, param);
+            employeeAttendanceDetails_Model.EmployeeMonthlySalaryDetails = EmployeeData.GetEmployeeSalary("sp_Salary_Process", param);
+
+            MessageBox.Show(employeeAttendanceDetails_Model.EmpAttendanceList.Count + "");
+            
+            //salaryBindingSource.DataSource = EmployeesSalaryList;
+            attendanceBindingSource.DataSource = employeeAttendanceDetails_Model;
+
+            Xtra_Report_EmployeeAttendanceList.DataSource = attendanceBindingSource;
+
+
+            ReportPrintTool tool = new ReportPrintTool(Xtra_Report_EmployeeAttendanceList);
+
+            if (action.Equals("preview"))
+            {
+                tool.ShowPreview();
+            }
+            if (action.Equals("print"))
+            {
+                tool.PrintDialog();
+            }
+            */
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            Report_Print_Preview("preview");
         }
     }
 }

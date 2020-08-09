@@ -29,6 +29,7 @@ namespace BNPL.Forms_Master
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAttendenceLaoding));
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
             this.btnQuit = new System.Windows.Forms.ToolStripButton();
@@ -63,6 +64,8 @@ namespace BNPL.Forms_Master
             this.HelpGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txtEmpName = new DevExpress.XtraEditors.TextEdit();
+            this.attendanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnPrintPreview = new DevExpress.XtraEditors.SimpleButton();
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGridView)).BeginInit();
@@ -74,6 +77,7 @@ namespace BNPL.Forms_Master
             ((System.ComponentModel.ISupportInitialize)(this.HelpGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HelpGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.attendanceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_ToolStrip
@@ -415,12 +419,22 @@ namespace BNPL.Forms_Master
             this.txtEmpName.Size = new System.Drawing.Size(90, 20);
             this.txtEmpName.TabIndex = 361;
             // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.Location = new System.Drawing.Point(697, 52);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(95, 20);
+            this.btnPrintPreview.TabIndex = 363;
+            this.btnPrintPreview.Text = "Print Preview";
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
+            // 
             // frmAttendenceLaoding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 477);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEmpName);
@@ -449,6 +463,7 @@ namespace BNPL.Forms_Master
             ((System.ComponentModel.ISupportInitialize)(this.HelpGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HelpGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.attendanceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,5 +504,7 @@ namespace BNPL.Forms_Master
         private DevExpress.XtraGrid.Views.Grid.GridView HelpGridView;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.TextEdit txtEmpName;
+        private System.Windows.Forms.BindingSource attendanceBindingSource;
+        private DevExpress.XtraEditors.SimpleButton btnPrintPreview;
     }
 }

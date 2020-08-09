@@ -486,11 +486,17 @@
     <Compile Include="Prints\EmployeeSalaryDetails.Designer.cs">
       <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Prints\EmployeesSalaryList.cs">
+    <Compile Include="Prints\XtraReport_EmployeesSalaryList.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Prints\EmployeesSalaryList.Designer.cs">
-      <DependentUpon>EmployeesSalaryList.cs</DependentUpon>
+    <Compile Include="Prints\XtraReport_EmployeesSalaryList.Designer.cs">
+      <DependentUpon>XtraReport_EmployeesSalaryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prints\Report_EmployeeAttendance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\Report_EmployeeAttendance.Designer.cs">
+      <DependentUpon>Report_EmployeeAttendance.cs</DependentUpon>
     </Compile>
     <Compile Include="Prints\XtraReportGatePass.cs">
       <SubType>Component</SubType>
@@ -931,6 +937,12 @@
     </Compile>
     <Compile Include="Prints\TAXDETAILSUBREPORT.Designer.cs">
       <DependentUpon>TAXDETAILSUBREPORT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prints\XtraReport_Salary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\XtraReport_Salary.Designer.cs">
+      <DependentUpon>XtraReport_Salary.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectFunctions.cs" />
@@ -1400,8 +1412,11 @@
     <EmbeddedResource Include="Prints\EmployeeSalaryDetails.resx">
       <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Prints\EmployeesSalaryList.resx">
-      <DependentUpon>EmployeesSalaryList.cs</DependentUpon>
+    <EmbeddedResource Include="Prints\XtraReport_EmployeesSalaryList.resx">
+      <DependentUpon>XtraReport_EmployeesSalaryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prints\Report_EmployeeAttendance.resx">
+      <DependentUpon>Report_EmployeeAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Prints\XtraReportGatePass.resx">
       <DependentUpon>XtraReportGatePass.cs</DependentUpon>
@@ -1624,6 +1639,9 @@
     <EmbeddedResource Include="Prints\TAXDETAILSUBREPORT.resx">
       <DependentUpon>TAXDETAILSUBREPORT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Prints\XtraReport_Salary.resx">
+      <DependentUpon>XtraReport_Salary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1837,6 +1855,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DataBindings.UserMaster_Data.datasource" />
+    <None Include="Properties\DataSources\SeqKartLibrary.Models.EmployeeAttendanceDetails_Model.datasource" />
     <None Include="Properties\DataSources\SeqKartLibrary.Models.EmployeeSalary.datasource" />
     <None Include="Properties\DataSources\SeqKartLibrary.Models.MonthlySalaryDetails_Model.datasource" />
     <None Include="Properties\Settings.settings">

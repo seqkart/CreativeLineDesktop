@@ -120,6 +120,7 @@
     <Compile Include="Models\EmployeeAttendance.cs">
       <DependentUpon>EmployeeAttendanceEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeAttendanceDetails_Model.cs" />
     <Compile Include="Models\EmployeeAttendanceEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -39,7 +39,7 @@ namespace SeqKartLibrary.CrudTask
             return employeeSalaryList;
         }
 
-        public static List<EmpAttendanceModel> GetEmpAttendance(string sp_query, DynamicParameters param)
+        public static List<EmpAttendanceModel> GetEmpAttendanceList(string sp_query, DynamicParameters param)
         {
             RepList<EmpAttendanceModel> repList = new RepList<EmpAttendanceModel>();
             List<EmpAttendanceModel> empAttendanceModels = repList.returnListClass_SP(sp_query, param);
