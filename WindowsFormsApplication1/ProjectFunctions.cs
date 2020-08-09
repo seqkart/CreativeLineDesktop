@@ -1698,36 +1698,37 @@ namespace WindowsFormsApplication1
             }
         }
         public static void DatePickerVisualize(Control C)
-        {
-            foreach (Control c in C.Controls)
             {
-                if (c.GetType() == typeof(DateEdit))
+                foreach (Control c in C.Controls)
                 {
-                    var thiscontrol = (DateEdit)c;
-                    thiscontrol.EditValue = null;
-                    thiscontrol.EnterMoveNextControl = true;
-                    thiscontrol.Properties.Mask.BeepOnError = true;
-                    thiscontrol.Properties.Mask.EditMask = "dd/MM/yyyy";
-                    thiscontrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
-                    thiscontrol.Properties.Mask.UseMaskAsDisplayFormat = true;
-                    thiscontrol.Properties.Appearance.BorderColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-                    thiscontrol.Properties.Appearance.Options.UseBorderColor = true;
-                    thiscontrol.Properties.AppearanceFocused.BackColor = Color.AliceBlue;
-                    thiscontrol.Properties.AppearanceFocused.BorderColor = Color.FromArgb(0x15, 0x60, 0xA9);
-                    thiscontrol.Properties.AppearanceDisabled.BackColor = Color.Bisque;
-                    thiscontrol.Properties.AppearanceDisabled.Options.UseBackColor = true;
-                    thiscontrol.Properties.AppearanceDisabled.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-                    thiscontrol.Properties.AppearanceFocused.Options.UseBackColor = true;
-                    thiscontrol.Properties.AppearanceFocused.Options.UseBorderColor = true;
-                    thiscontrol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-                    thiscontrol.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-                    thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
-                    thiscontrol.Enter += (o, e) =>
+                    if (c.GetType() == typeof(DateEdit))
                     {
-                        thiscontrol.SelectAll();
-                    };
+                        var thiscontrol = (DateEdit)c;
+                        thiscontrol.EditValue = null;
+                        thiscontrol.EnterMoveNextControl = true;
+                        thiscontrol.Properties.Mask.BeepOnError = true;
+                        thiscontrol.Properties.Mask.EditMask = "dd/MM/yyyy";
+                        thiscontrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+                        thiscontrol.Properties.Mask.UseMaskAsDisplayFormat = true;
+                        thiscontrol.Properties.Appearance.BorderColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+                        thiscontrol.Properties.Appearance.Options.UseBorderColor = true;
+                        thiscontrol.Properties.AppearanceFocused.BackColor = Color.AliceBlue;
+                        thiscontrol.Properties.AppearanceFocused.BorderColor = Color.FromArgb(0x15, 0x60, 0xA9);
+                        thiscontrol.Properties.AppearanceDisabled.BackColor = Color.Bisque;
+                        thiscontrol.Properties.AppearanceDisabled.Options.UseBackColor = true;
+                        thiscontrol.Properties.AppearanceDisabled.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                        thiscontrol.Properties.AppearanceFocused.Options.UseBackColor = true;
+                        thiscontrol.Properties.AppearanceFocused.Options.UseBorderColor = true;
+                        thiscontrol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                        thiscontrol.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+                        thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+                        thiscontrol.Enter += (o, e) =>
+                        {
+                            thiscontrol.SelectAll();
+                        };
+                    }
                 }
             }
-        }
+        
     }
 }

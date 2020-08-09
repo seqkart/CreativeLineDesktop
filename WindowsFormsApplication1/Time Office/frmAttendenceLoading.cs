@@ -561,7 +561,7 @@ namespace WindowsFormsApplication1.Forms_Master
         {
             if (txtEmpCode.Text.Trim().Length == 0)
             {
-                //XtraMessageBox.Show("Invalid Emp Code", "Inalid value", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                //XtraMessageBox.Show("Invalid Emp Code", "InValid value", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 ProjectFunctions.SpeakError("Enter Employee Code");
                 txtEmpCode.Focus();
                 return false;

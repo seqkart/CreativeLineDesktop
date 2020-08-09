@@ -103,16 +103,9 @@ namespace WindowsFormsApplication1.Time_Office
             lblDayName.Text = today.ToString("dddd");
 
             employeeFormData_Load(selected_employee_code);
+            ProjectFunctions.DatePickerVisualize(this);
 
 
-        }
-
-        private void editor_EditValueChanged(object sender, EventArgs e)
-        {
-            if ((sender as BaseEdit).Tag == null)
-            {
-                //My event handler  
-            }
         }
 
         public object GetEditValue(BaseEdit editor)
@@ -573,28 +566,6 @@ namespace WindowsFormsApplication1.Time_Office
 
 
             //radioButtonMachine.
-        }
-
-        //private void txtEmpCode_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    //txtEmpCodeDesc.Text = string.Empty;
-
-        //    //if (txtEmpCode.Text.Length >= 4 && DtDate.Text.Length >= 8)
-        //    //{
-        //    //    LoadGatePassDataGrid();
-        //    //}
-
-
-        //}
-
-        private void cbEmpID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (cbEmpID.SelectedItem != null)
-            //{
-            //    employeeFormData_Load(cbEmpID.SelectedItem.ToString());
-
-            //}
-
         }
 
 
@@ -1225,15 +1196,6 @@ namespace WindowsFormsApplication1.Time_Office
             return true;
         }
 
-
-        private void windowsUIButtonPanelCloseButton_Click(object sender, ButtonEventArgs e)
-        {
-            string tag = ((WindowsUIButton)e.Button).Tag.ToString();
-
-            this.Close();
-
-        }
-
         private void radioButtonManual_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonManual.Checked)
@@ -1354,20 +1316,6 @@ namespace WindowsFormsApplication1.Time_Office
                 CalculateDUtyHours("last_out");
             }
         }
-
-        private bool hasInputTime(object input)
-        {
-            if ((input + string.Empty).Equals(string.Empty))
-            {
-
-            }
-            return false;
-        }
-
-        bool first_in = false;
-        bool first_out = false;
-        bool last_in = false;
-        bool last_out = false;
 
         private void CalculateDutyHours_DailyWager()
         {
@@ -1947,12 +1895,6 @@ namespace WindowsFormsApplication1.Time_Office
 
         }
 
-        private void textEmpType_EditValueChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void totalWorkingHours_Text_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -1969,31 +1911,6 @@ namespace WindowsFormsApplication1.Time_Office
             {
                 lblOvertimeHours.Text = ConvertTo.MinutesToHours(txtOvertimeHours.EditValue);
             }
-
-        }
-
-        private void PrepareEmpGrid()
-        {
-            HelpGridView.Columns.Clear();
-            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
-            HelpGridView.Columns[0].Visible = true;
-            HelpGridView.Columns[0].Caption = "Description";
-            HelpGridView.Columns[0].FieldName = "Description";
-            HelpGridView.Columns[0].OptionsColumn.AllowEdit = false;
-            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
-            HelpGridView.Columns[1].Visible = true;
-            HelpGridView.Columns[1].Caption = "EmpFHName";
-            HelpGridView.Columns[1].FieldName = "EmpFHName";
-            HelpGridView.Columns[1].OptionsColumn.AllowEdit = false;
-            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
-            HelpGridView.Columns[2].Visible = true;
-            HelpGridView.Columns[2].Caption = "Code";
-            HelpGridView.Columns[2].FieldName = "Code";
-            HelpGridView.Columns[2].OptionsColumn.AllowEdit = false;
-        }
-
-        private void dateAttendance_Leave(object sender, EventArgs e)
-        {
 
         }
 
@@ -2016,70 +1933,6 @@ namespace WindowsFormsApplication1.Time_Office
                 }
             }
 
-        }
-
-        private void txtEmpCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                PrepareEmpGrid();
-                var strQry = string.Empty;
-                HelpGrid.Text = "txtEmpCode";
-                var ds = new DataSet();
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (txtEmpID.Text.Length == 0)
-                    {
-                        strQry = strQry + "select Empcode as Code,Empname as Description,EmpImage, DailyWage, DailyWageRate, DailyWageMinutes from EmpMst  order by Empname";
-                        ds = ProjectFunctions.GetDataSet(strQry);
-                        HelpGrid.DataSource = ds.Tables[0];
-                        HelpGridView.BestFitColumns();
-                        HelpGrid.Show();
-                        HelpGrid.Focus();
-                    }
-                    else
-                    {
-                        strQry = strQry + "select empcode as Code,empname as Description,EmpImage, DailyWage, DailyWageRate, DailyWageMinutes from EmpMst wHERE  empcode= '" + txtEmpID.Text.ToString().Trim() + "' ";
-
-                        ds = ProjectFunctions.GetDataSet(strQry);
-                        if (ds.Tables[0].Rows.Count > 0)
-
-                        {
-                            DataRow dr = ds.Tables[0].Rows[0];
-                            //txtEmpID.Text = dr["Code"].ToString().Trim().ToUpper();
-                            //txtFName.Text = dr["Description"].ToString().Trim().ToUpper();
-
-                            SetEditValue(txtEmpID, dr["Code"]);
-                            SetEditValue(txtFName, dr["Description"]);
-
-                            pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])dr["EmpImage"]);
-
-
-
-                            SetDailyWageControls(Convert.ToBoolean(dr["DailyWage"]), ConvertTo.IntVal(dr["DailyWageMinutes"]), Convert.ToDecimal(dr["DailyWageRate"]));
-
-
-                            comboBox_Status.Focus();
-
-                        }
-                        else
-                        {
-                            var strQry1 = string.Empty;
-                            strQry1 = strQry1 + "select empcode as Code,empname as Description,EmpImage, DailyWage, DailyWageRate, DailyWageMinutes from EmpMst  order by Empname";
-                            var ds1 = ProjectFunctions.GetDataSet(strQry1);
-                            HelpGrid.DataSource = ds1.Tables[0];
-                            HelpGridView.BestFitColumns();
-                            HelpGrid.Show();
-                            HelpGrid.Focus();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            e.Handled = true;
         }
 
         private void HelpGrid_KeyDown(object sender, KeyEventArgs e)
@@ -2164,6 +2017,13 @@ namespace WindowsFormsApplication1.Time_Office
 
             //}
         }
+
+      
+    
+
+
+
+
 
 
 
