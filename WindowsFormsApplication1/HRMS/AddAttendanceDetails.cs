@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace HumanResourceManagementSystem
 {
@@ -83,22 +79,22 @@ namespace HumanResourceManagementSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (cbEmpID.Text == "")
+            if (cbEmpID.Text == string.Empty)
             {
                 MessageBox.Show("Please select an Employee ID first");
                 txtEmpID.Focus();
             }
-            else if (txtTimeIn.Text == "")
+            else if (txtTimeIn.Text == string.Empty)
             {
                 MessageBox.Show("Please enter time in");
                 txtTimeIn.Focus();
             }
-            else if (txtTimeOut.Text == "")
+            else if (txtTimeOut.Text == string.Empty)
             {
                 MessageBox.Show("Please enter time out");
                 txtTimeOut.Focus();
             }
-            else if (txtOvertimeHours.Text == "")
+            else if (txtOvertimeHours.Text == string.Empty)
             {
                 MessageBox.Show("Please enter extra time in hours");
                 txtOvertimeHours.Focus();
@@ -109,7 +105,7 @@ namespace HumanResourceManagementSystem
             {
                 try
                 {
-                    if (txtTimeIn.Text != "" && txtTimeOut.Text != "")
+                    if (txtTimeIn.Text != string.Empty && txtTimeOut.Text != string.Empty)
                     {
                         int i = 0, j = 0;
                         bool validval1 = false, validval2 = false;
@@ -121,8 +117,8 @@ namespace HumanResourceManagementSystem
                             if (i > 5)
                             {
                                 MessageBox.Show("Time is not in proper format");
-                                txtTimeIn.Text = "";
-                                txtTimeOut.Text = "";
+                                txtTimeIn.Text = string.Empty;
+                                txtTimeOut.Text = string.Empty;
                                 return;
                             }
 
@@ -138,8 +134,8 @@ namespace HumanResourceManagementSystem
                             if (j > 5)
                             {
                                 MessageBox.Show("Time is not in proper format");
-                                txtTimeIn.Text = "";
-                                txtTimeOut.Text = "";
+                                txtTimeIn.Text = string.Empty;
+                                txtTimeOut.Text = string.Empty;
                                 return;
                             }
                             if (j == 3 && c == ':')
@@ -151,8 +147,8 @@ namespace HumanResourceManagementSystem
                         if (validval1 == false || validval2 == false)
                         {
                             MessageBox.Show("Time In or Time Out is not in proper format");
-                            txtTimeIn.Text = "";
-                            txtTimeOut.Text = "";
+                            txtTimeIn.Text = string.Empty;
+                            txtTimeOut.Text = string.Empty;
                             return;
                         }
                         int num1 = Convert.ToInt32(txtTimeIn.Text.ToString().Substring(0, 2));
@@ -163,15 +159,15 @@ namespace HumanResourceManagementSystem
                         if ((num1 < 0 || num1 > 24) || (num3 < 0 || num3 > 24))
                         {
                             MessageBox.Show("There are only 24 hours in a day.\nTime In or Time Out is not in proper format.\nEnter the format like 13:60");
-                            txtTimeIn.Text = "";
-                            txtTimeOut.Text = "";
+                            txtTimeIn.Text = string.Empty;
+                            txtTimeOut.Text = string.Empty;
                             return;
                         }
                         if ((num2 < 0 || num2 > 60) || (num1 < 0 || num4 > 60))
                         {
                             MessageBox.Show("There are only 60 minutes in an hour.\nTime In or Time Out is not in proper format.\nEnter the format like 13:60");
-                            txtTimeIn.Text = "";
-                            txtTimeOut.Text = "";
+                            txtTimeIn.Text = string.Empty;
+                            txtTimeOut.Text = string.Empty;
                             return;
                         }
                     }
@@ -179,8 +175,8 @@ namespace HumanResourceManagementSystem
                 catch (Exception ex)
                 {
                     MessageBox.Show("Time In or Time Out is not in proper format");
-                    txtTimeIn.Text = "";
-                    txtTimeOut.Text = "";
+                    txtTimeIn.Text = string.Empty;
+                    txtTimeOut.Text = string.Empty;
                     return;
                 }
 
@@ -194,13 +190,13 @@ namespace HumanResourceManagementSystem
                         dateTimePicker1.CustomFormat = "MMMM";
                         string month = dateTimePicker1.Text;
 
-                        dateTimePicker1.CustomFormat = "";
+                        dateTimePicker1.CustomFormat = string.Empty;
                         dateTimePicker1.CustomFormat = "dd";
                         string date = dateTimePicker1.Text;
-                        dateTimePicker1.CustomFormat = "";
+                        dateTimePicker1.CustomFormat = string.Empty;
                         dateTimePicker1.CustomFormat = "yyyy";
                         string year = dateTimePicker1.Text;
-                        dateTimePicker1.CustomFormat = "";
+                        dateTimePicker1.CustomFormat = string.Empty;
                         dateTimePicker1.CustomFormat = "dddd";
                         string day = dateTimePicker1.Text;
                         dateTimePicker1.Format = DateTimePickerFormat.Long;
@@ -238,7 +234,7 @@ namespace HumanResourceManagementSystem
                         }
 
 
-                    //******************************
+                        //******************************
                         else
                         {
 
@@ -310,7 +306,7 @@ namespace HumanResourceManagementSystem
                 if (Char.IsLetter(c))
                 {
                     MessageBox.Show("Please Enter Numbers in hh:mm format");
-                    txtTimeIn.Text = "";
+                    txtTimeIn.Text = string.Empty;
                     return;
                 }
             }
@@ -326,7 +322,7 @@ namespace HumanResourceManagementSystem
                 if (Char.IsLetter(c))
                 {
                     MessageBox.Show("Please Enter Numbers in hh:mm format");
-                    txtTimeOut.Text = "";
+                    txtTimeOut.Text = string.Empty;
                     return;
                 }
             }

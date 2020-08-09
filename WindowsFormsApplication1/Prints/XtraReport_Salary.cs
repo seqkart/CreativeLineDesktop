@@ -1,9 +1,6 @@
-﻿using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using DevExpress.XtraReports.UI;
+﻿using DevExpress.XtraReports.UI;
 using SeqKartLibrary.HelperClass;
+using System;
 
 namespace WindowsFormsApplication1.Prints
 {
@@ -17,7 +14,7 @@ namespace WindowsFormsApplication1.Prints
         private void xrLabel_OT_Time_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             XRLabel label = (XRLabel)sender;
-            label.Text= ConvertTo.MinutesToHours(label.Text);            
+            label.Text = ConvertTo.MinutesToHours(label.Text);
         }
         /*
         private string FormatHoursForDisplay(Double value)

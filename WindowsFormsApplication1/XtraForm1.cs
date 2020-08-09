@@ -1,14 +1,14 @@
-﻿using WindowsFormsApplication1.Crystal_Reports;
-using WindowsFormsApplication1.Forms_Master;
-using DevExpress.XtraBars.Ribbon;
+﻿using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using System;
 using System.Data;
-
 using System.Linq;
 using System.Windows.Forms;
+
 using WindowsFormsApplication1.Administration;
+using WindowsFormsApplication1.Crystal_Reports;
 using WindowsFormsApplication1.FormReports;
+using WindowsFormsApplication1.Forms_Master;
 
 namespace WindowsFormsApplication1
 {
@@ -126,7 +126,7 @@ namespace WindowsFormsApplication1
                 //MessageBox.Show(String.IsNullOrEmpty(xtraTabControl1.SelectedTabPage.Name) ? "0":"1");
                 if (!String.IsNullOrEmpty(xtraTabControl1.SelectedTabPage.Name))
                 {
-                   
+
 
 
                     GlobalVariables.ProgCode = xtraTabControl1.SelectedTabPage.Name;
@@ -136,8 +136,8 @@ namespace WindowsFormsApplication1
             catch (Exception ex)
 
             {
-                
-             //                MessageBox.Show(ex.Message);
+
+                //                MessageBox.Show(ex.Message);
             }
         }
         private void RunProgAccordin(string myitem, string itemcaption)

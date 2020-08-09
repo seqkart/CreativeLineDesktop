@@ -1,11 +1,8 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraSpreadsheet.Utils.Trees;
 using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
 using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1
 {
@@ -92,7 +89,7 @@ namespace WindowsFormsApplication1
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            btnSave_Data();            
+            btnSave_Data();
         }
 
         private void btnSave_Data()

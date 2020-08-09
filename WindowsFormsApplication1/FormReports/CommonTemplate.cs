@@ -6,7 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using WindowsFormsApplication1;
 using WindowsFormsApplication1.Prints.PartyLedger.rpt;
 using WindowsFormsApplication1.Prints.Rpt_BankBook.rpt;
 using WindowsFormsApplication1.Prints.rpt_BankReco.rpt;

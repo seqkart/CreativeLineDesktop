@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1
             string ProcedureName = ProjectFunctionsUtils.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString();
             ProcedureName = ProcedureName + "'" + _RangeSelector.DtFrom.DateTime.Date.Date.ToString("yyyy-MM-dd") + "','" + _RangeSelector.DtEnd.DateTime.Date.Date.ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "'";
             DataSet dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName);
-            
+
             //ProjectFunctions.BindTransactionDataToGrid(ProjectFunctions.GetDataSet("Select ProgProcName from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProgProcName"].ToString(), _RangeSelector.DtFrom.DateTime.Date, _RangeSelector.DtEnd.DateTime.Date, InvoiceGrid, InvoiceGridView);
             ProjectFunctions.BindTransactionDataToGrid(dsMaster, InvoiceGrid, InvoiceGridView);
 
@@ -532,7 +532,7 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-                      //  Transaction.frmCRDataData frm = new Transaction.frmCRDataData() { s1 = btnEdit.Text, Text = "Cash Receiving ", CNo = CurrentRow["CNo"].ToString(), CDate = Convert.ToDateTime(CurrentRow["CDate"]) };
+                        //  Transaction.frmCRDataData frm = new Transaction.frmCRDataData() { s1 = btnEdit.Text, Text = "Cash Receiving ", CNo = CurrentRow["CNo"].ToString(), CDate = Convert.ToDateTime(CurrentRow["CDate"]) };
                         //frm.StartPosition = FormStartPosition.CenterScreen; frm.ShowDialog(Parent);
                     }
                 }
@@ -1157,9 +1157,9 @@ namespace WindowsFormsApplication1
 
                 ProjectFunctions.BindTransactionDataToGrid(dsMaster, InvoiceGrid, InvoiceGridView);
                 lbl.Text = ProjectFunctions.GetDataSet("select ProCaption from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'").Tables[0].Rows[0]["ProCaption"].ToString() + " From " + _RangeSelector.DtFrom.DateTime.Date.ToString("dd-MM-yyyy") + " To " + _RangeSelector.DtEnd.DateTime.Date.ToString("dd-MM-yyyy");
-                
+
             });
-        }        
+        }
 
         private void InvoiceGrid_Click(object sender, EventArgs e)
         {

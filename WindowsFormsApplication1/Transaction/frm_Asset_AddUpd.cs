@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using WindowsFormsApplication1;
 namespace WindowsFormsApplication1
 {
     public partial class frm_Asset_AddUpd : XtraForm

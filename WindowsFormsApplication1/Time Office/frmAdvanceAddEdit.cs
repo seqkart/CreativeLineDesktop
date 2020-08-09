@@ -4,8 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
-using WindowsFormsApplication1;
 namespace WindowsFormsApplication1.Forms_Transaction
 {
     public partial class frmAdvanceAddEdit : DevExpress.XtraEditors.XtraForm
@@ -98,7 +96,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
                 + " LEFT OUTER JOIN EmpMST ON ExMst.ExEmpCode = empmst.EmpCode "
                 + " LEFT OUTER JOIN ActMst ON ExMst.ExPostHead = actmst.AccCode "
                 + " WHERE ExId='" + ExId + "';" +
-                "";
+string.Empty;
 
                 //var qr = " SELECT     ExMst.ExPostHead, ExMst.ExVoucherType, ExMst.ExVoucherNo, ExMst.ExVoucherDt, ExMst.ExNo, ExMst.ExId, ExMst.ExDate, ExMst.ExEmpCode, ExMst.ExAmt, ExMst.ExTag, ExMst.ExDatePost, ";
                 //qr = qr + " ExMst.ExLoadTag, ExMst.ExEmpCCode, ExMst.ExFedDate, ExMst.ExLoadedDate, empmst.EmpName, EmpEmplrRef.ERMDesc, actmst.AccName ";

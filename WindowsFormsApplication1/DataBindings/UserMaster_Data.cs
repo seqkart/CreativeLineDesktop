@@ -93,9 +93,9 @@ namespace DataBindings
 
                 records.Add(new UserMaster_Data()
                 {
-                    UserName = dr[SQL_COLUMNS.USER_MASTER._UserName] + "",
-                    Login_As = dr[SQL_COLUMNS.USER_MASTER._LoginAs] + "",
-                    UserActive = dr[SQL_COLUMNS.USER_MASTER._UserActive] + "",
+                    UserName = dr[SQL_COLUMNS.USER_MASTER._UserName] + string.Empty,
+                    Login_As = dr[SQL_COLUMNS.USER_MASTER._LoginAs] + string.Empty,
+                    UserActive = dr[SQL_COLUMNS.USER_MASTER._UserActive] + string.Empty,
                     Edit_Link = SystemIcons.Information.ToBitmap()
 
 

@@ -4,8 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
-
-using WindowsFormsApplication1;
 namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmLoanMstAddEdit : DevExpress.XtraEditors.XtraForm
@@ -165,7 +163,7 @@ namespace WindowsFormsApplication1.Forms_Master
                     //txtDept.Text = "HELOO";
                     //GetBasicDetail();
                 }
-                
+
                 txtLoanAmount.Focus();
             }
         }
@@ -175,17 +173,7 @@ namespace WindowsFormsApplication1.Forms_Master
             ProjectFunctions.NumericWithDecimal(e);
         }
 
-        private void txtLoanBal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ProjectFunctions.NumericWithDecimal(e);
-        }
-
         private void txtLoanInstlmnt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ProjectFunctions.NumericWithDecimal(e);
-        }
-
-        private void txtLoanTInstlmnt_KeyPress(object sender, KeyPressEventArgs e)
         {
             ProjectFunctions.NumericWithDecimal(e);
         }
@@ -204,12 +192,6 @@ namespace WindowsFormsApplication1.Forms_Master
                 s2 = (Convert.ToInt32(s2) + 1).ToString().Trim();
             }
             return s2;
-        }
-
-
-        private void UpDateLoanInstlmnt()
-        {
-            ProjectFunctions.GetDataSet("update  LoanMST set LoanInstlmnt='" + txtLoanInstlmnt.Text.Trim() + "' where EmpCode='" + txtEmpCode.Text + "'");
         }
 
 
@@ -344,26 +326,6 @@ namespace WindowsFormsApplication1.Forms_Master
 
         private void HelpGrid_Click(object sender, EventArgs e)
         {
-        }
-
-        private void txtBankCode_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBankCode_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void txtPaymentMode_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void txtPaymentMode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void Menu_ToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

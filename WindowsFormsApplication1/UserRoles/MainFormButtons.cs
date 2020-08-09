@@ -29,7 +29,7 @@ public class MainFormButtons
                             btnAdd.Enabled = false;
                         }
                     }
-                    
+
                     if (btnEdit != null)
                     {
                         if (Tempds.Tables[0].Rows[0]["ProgUpd_F"].ToString() == "-1")
@@ -41,7 +41,7 @@ public class MainFormButtons
                             btnEdit.Enabled = false;
                         }
                     }
-                    
+
 
                     if (btnDelete != null)
                     {
@@ -54,7 +54,7 @@ public class MainFormButtons
                             btnDelete.Enabled = false;
                         }
                     }
-                    
+
 
                     if (btnPrint != null)
                     {
@@ -67,7 +67,7 @@ public class MainFormButtons
                             btnPrint.Enabled = false;
                         }
                     }
-                    
+
                 }
             }
         }

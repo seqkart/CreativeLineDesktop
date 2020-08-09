@@ -5,8 +5,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
-using WindowsFormsApplication1;
-
 namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmLoanMonthlyData : DevExpress.XtraEditors.XtraForm

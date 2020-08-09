@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using DevExpress.Xpo;
 
 namespace WindowsFormsApplication1.Models
 {

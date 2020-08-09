@@ -577,7 +577,7 @@ namespace WindowsFormsApplication1
         {
             txtChequeName.Text = txtAcName.Text;
             txtBillingName.Text = txtAcName.Text;
-            txtNameAsOnBankAcc.Text= txtAcName.Text;
+            txtNameAsOnBankAcc.Text = txtAcName.Text;
         }
     }
 }

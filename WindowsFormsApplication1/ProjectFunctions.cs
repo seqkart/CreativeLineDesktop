@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1
         //}
         public static DialogResult SpeakConfirmation(string message, string caption, MessageBoxButtons messageBoxButtons)
         {
-           
+
             Task.Run(() => _synthesizer.Speak(message));
 
             return XtraMessageBox.Show(message, caption, messageBoxButtons);
@@ -75,7 +75,7 @@ namespace WindowsFormsApplication1
         }
         public static void SpeakError(String Error)
         {
-     
+
             Task.Run(() => _synthesizer.Speak(Error));
 
             XtraMessageBox.Show(Error);
@@ -145,7 +145,7 @@ namespace WindowsFormsApplication1
 
         public static String GetConnection()
         {
-           
+
 
 
             return ConnectionString;
@@ -630,7 +630,7 @@ namespace WindowsFormsApplication1
                 var parent = ctrl.Parent;
                 while (!(parent is Form))
                 {
-                     p.Offset(parent.Location.X, parent.Location.Y);
+                    p.Offset(parent.Location.X, parent.Location.Y);
                     parent = parent.Parent;
                 }
                 return p;
@@ -875,7 +875,7 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        
+
         public static void CreatePopUpForOneBox(String Query, String WhereClause, TextEdit TextBox1, TextEdit TextBox2, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView)
         {
             ReportGrid.Text = TextBox1.Name;
@@ -921,7 +921,7 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-       
+
         public static void CreatePopUpForTwoBoxes(String Query, String WhereClause, TextEdit TextBox1, TextEdit TextBox2, TextEdit TextBox3, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1322,7 +1322,7 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        
+
 
         public static bool CheckAllPossible(String ArticleID, Decimal MRP, String ColorID, String SizeID)
         {
@@ -1399,7 +1399,7 @@ namespace WindowsFormsApplication1
                     thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
                     thiscontrol.EnterMoveNextControl = true;
                     thiscontrol.Properties.CharacterCasing = CharacterCasing.Upper;
-                   
+
                     thiscontrol.Enter += (o, e) =>
                     {
                         thiscontrol.SelectAll();

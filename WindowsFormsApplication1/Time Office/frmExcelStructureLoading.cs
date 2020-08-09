@@ -6,8 +6,6 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
-using WindowsFormsApplication1;
 namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmExcelStructureLoading : DevExpress.XtraEditors.XtraForm
