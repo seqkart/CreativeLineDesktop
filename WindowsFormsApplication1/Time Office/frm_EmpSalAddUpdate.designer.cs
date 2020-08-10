@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_EmpSalAddUpdate));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.Menu_ToolStrip = new System.Windows.Forms.ToolStrip();
             this.btnQuit = new System.Windows.Forms.ToolStripButton();
             this.TextAuthenticate = new System.Windows.Forms.ToolStripTextBox();
@@ -370,7 +370,7 @@
             // 
             this.labelControl25.Location = new System.Drawing.Point(12, 123);
             this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(52, 13);
+            this.labelControl25.Size = new System.Drawing.Size(53, 13);
             this.labelControl25.TabIndex = 37;
             this.labelControl25.Text = "Total Days";
             // 
@@ -663,7 +663,7 @@
             // 
             this.labelControl16.Location = new System.Drawing.Point(66, 34);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(43, 13);
+            this.labelControl16.Size = new System.Drawing.Size(44, 13);
             this.labelControl16.TabIndex = 39;
             this.labelControl16.Text = "Tds Amt.";
             // 
@@ -881,9 +881,9 @@
             this.TextMonth.Properties.MaxLength = 6;
             this.TextMonth.Size = new System.Drawing.Size(73, 20);
             this.TextMonth.TabIndex = 0;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "This value is not valid";
-            this.MyValidationProvider.SetValidationRule(this.TextMonth, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "This value is not valid";
+            this.MyValidationProvider.SetValidationRule(this.TextMonth, conditionValidationRule1);
             this.TextMonth.EditValueChanged += new System.EventHandler(this.TextMonth_EditValueChanged);
             // 
             // MyValidationProvider
