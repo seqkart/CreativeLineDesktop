@@ -187,6 +187,10 @@ namespace WindowsFormsApplication1.Forms_Master
                     txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
                     txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
 
+                    lblemp.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+
+
+
                     //Thread.Sleep(1000);
 
                     btnLoad_Data.PerformClick();//.Focus();
@@ -288,6 +292,7 @@ namespace WindowsFormsApplication1.Forms_Master
 
         private void btnAdd2_Click(object sender, EventArgs e)
         {
+            
             //XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { s1 = btnAdd.Text, Text = "User Addition" }; ;
 
 
@@ -335,11 +340,13 @@ namespace WindowsFormsApplication1.Forms_Master
                     {
                         txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
                         txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                        lblemp.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
                         //txtDept.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
 
                         //LastInstlmnt();
                         //txtLoanAmount.Focus();
-                        btnLoad_Data.Focus();
+                        // btnLoad_Data.Focus();
+                        btnLoad_Data_Click((object)sender, (EventArgs)e);
                     }
                     else
                     {
@@ -361,6 +368,7 @@ namespace WindowsFormsApplication1.Forms_Master
             {
                 txtEmpCode.Text = row["EmpCode"].ToString();
                 txtEmpName.Text = row["EmpName"].ToString();
+                lblemp.Text = row["EmpName"].ToString();
                 //txtDept.Text = row["DeptDesc"].ToString();
                 HelpGrid.Visible = false;
                 btnLoad_Data.Focus();
@@ -840,6 +848,17 @@ namespace WindowsFormsApplication1.Forms_Master
                 Process.Start(path);
             }
             
+        }
+
+
+        private void DtStartDate_KeyDown(object sender, KeyEventArgs e)
+        {
+         
+        }
+
+        private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
         }
     }
 }
