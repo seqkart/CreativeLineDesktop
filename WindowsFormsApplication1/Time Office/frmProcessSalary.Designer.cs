@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1.Forms_Transaction
+﻿namespace BNPL.Forms_Transaction
 {
     partial class frmProcessSalary
     {
@@ -387,7 +387,7 @@
             this.btnExportXsls.Name = "btnExportXsls";
             this.btnExportXsls.Size = new System.Drawing.Size(116, 32);
             this.btnExportXsls.TabIndex = 356;
-            this.btnExportXsls.Text = "Export To XSL";
+            this.btnExportXsls.Text = "Export To XLS";
             this.btnExportXsls.Click += new System.EventHandler(this.btnExportXsls_Click);
             // 
             // frmProcessSalary

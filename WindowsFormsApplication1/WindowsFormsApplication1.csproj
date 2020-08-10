@@ -498,11 +498,11 @@
     <Compile Include="Prints\XtraReport_EmployeesSalaryList.Designer.cs">
       <DependentUpon>XtraReport_EmployeesSalaryList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Prints\Report_EmployeeAttendance.cs">
+    <Compile Include="Prints\XtraReport_EmployeeAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Prints\Report_EmployeeAttendance.Designer.cs">
-      <DependentUpon>Report_EmployeeAttendance.cs</DependentUpon>
+    <Compile Include="Prints\XtraReport_EmployeeAttendance.Designer.cs">
+      <DependentUpon>XtraReport_EmployeeAttendance.cs</DependentUpon>
     </Compile>
     <Compile Include="Prints\salaryregister.cs">
       <AutoGen>True</AutoGen>
@@ -1298,8 +1298,8 @@
     <EmbeddedResource Include="Prints\XtraReport_EmployeesSalaryList.resx">
       <DependentUpon>XtraReport_EmployeesSalaryList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Prints\Report_EmployeeAttendance.resx">
-      <DependentUpon>Report_EmployeeAttendance.cs</DependentUpon>
+    <EmbeddedResource Include="Prints\XtraReport_EmployeeAttendance.resx">
+      <DependentUpon>XtraReport_EmployeeAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Prints\salaryregister.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -66,6 +66,8 @@ namespace WindowsFormsApplication1.Forms_Master
             this.txtEmpName = new DevExpress.XtraEditors.TextEdit();
             this.attendanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnPrintPreview = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.btnExportXsls = new DevExpress.XtraEditors.SimpleButton();
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGridView)).BeginInit();
@@ -98,7 +100,7 @@ namespace WindowsFormsApplication1.Forms_Master
             this.Menu_ToolStrip.Name = "Menu_ToolStrip";
             this.Menu_ToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.Menu_ToolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Menu_ToolStrip.Size = new System.Drawing.Size(804, 27);
+            this.Menu_ToolStrip.Size = new System.Drawing.Size(1073, 27);
             this.Menu_ToolStrip.TabIndex = 200;
             this.Menu_ToolStrip.Text = "Options";
             // 
@@ -306,7 +308,7 @@ namespace WindowsFormsApplication1.Forms_Master
             this.gridControl_AttendanceData.Location = new System.Drawing.Point(0, 102);
             this.gridControl_AttendanceData.MainView = this.gridView_AttendanceData;
             this.gridControl_AttendanceData.Name = "gridControl_AttendanceData";
-            this.gridControl_AttendanceData.Size = new System.Drawing.Size(804, 375);
+            this.gridControl_AttendanceData.Size = new System.Drawing.Size(1073, 375);
             this.gridControl_AttendanceData.TabIndex = 352;
             this.gridControl_AttendanceData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_AttendanceData});
@@ -348,7 +350,7 @@ namespace WindowsFormsApplication1.Forms_Master
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 27);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(804, 75);
+            this.splitter1.Size = new System.Drawing.Size(1073, 75);
             this.splitter1.TabIndex = 196;
             this.splitter1.TabStop = false;
             // 
@@ -428,12 +430,32 @@ namespace WindowsFormsApplication1.Forms_Master
             this.btnPrintPreview.Text = "Print Preview";
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(802, 52);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(95, 20);
+            this.btnPrint.TabIndex = 364;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnExportXsls
+            // 
+            this.btnExportXsls.Location = new System.Drawing.Point(907, 52);
+            this.btnExportXsls.Name = "btnExportXsls";
+            this.btnExportXsls.Size = new System.Drawing.Size(95, 20);
+            this.btnExportXsls.TabIndex = 365;
+            this.btnExportXsls.Text = "Export To XLS";
+            this.btnExportXsls.Click += new System.EventHandler(this.btnExportXsls_Click);
+            // 
             // frmAttendenceLaoding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 477);
+            this.ClientSize = new System.Drawing.Size(1073, 477);
             this.ControlBox = false;
+            this.Controls.Add(this.btnExportXsls);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.HelpGrid);
             this.Controls.Add(this.label2);
@@ -506,5 +528,7 @@ namespace WindowsFormsApplication1.Forms_Master
         private DevExpress.XtraEditors.TextEdit txtEmpName;
         private System.Windows.Forms.BindingSource attendanceBindingSource;
         private DevExpress.XtraEditors.SimpleButton btnPrintPreview;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
+        private DevExpress.XtraEditors.SimpleButton btnExportXsls;
     }
 }

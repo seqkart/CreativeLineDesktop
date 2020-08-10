@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -750,7 +751,7 @@ namespace WindowsFormsApplication1.Forms_Master
 
         private void Report_Print_Preview(string action)
         {
-            Report_EmployeeAttendance Xtra_Report_EmployeeAttendanceList = new Report_EmployeeAttendance();
+            XtraReport_EmployeeAttendance Xtra_Report_EmployeeAttendanceList = new XtraReport_EmployeeAttendance();
 
             DynamicParameters paramSalary = new DynamicParameters();
             paramSalary.Add("@Emp_Code_Processing", txtEmpCode.EditValue);
@@ -760,41 +761,85 @@ namespace WindowsFormsApplication1.Forms_Master
 
             DynamicParameters param = new DynamicParameters();
             param.Add("@EmpCode", txtEmpCode.EditValue);
-            param.Add("@Attendance_Month", DtStartDate.EditValue);            
+            param.Add("@Attendance_Month", DtStartDate.EditValue);
+
+            DynamicParameters paramEmp = new DynamicParameters();
+            paramEmp.Add("@EmpCode", txtEmpCode.EditValue);            
 
             ProgramMasterModel programMaster = ProgramMasterData.GetProgramMasterModel(GlobalVariables.ProgCode);
 
-            MessageBox.Show(programMaster.ProgProcName + "");
-            /*
-            EmployeeAttendanceDetails_Model employeeAttendanceDetails_Model = new EmployeeAttendanceDetails_Model();
-            employeeAttendanceDetails_Model.AttendanceMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
-            employeeAttendanceDetails_Model.EmpAttendanceList = EmployeeData.GetEmpAttendanceList(programMaster.ProgProcName, param);
-            employeeAttendanceDetails_Model.EmployeeMonthlySalaryDetails = EmployeeData.GetEmployeeSalary("sp_Salary_Process", param);
-
-            MessageBox.Show(employeeAttendanceDetails_Model.EmpAttendanceList.Count + "");
             
-            //salaryBindingSource.DataSource = EmployeesSalaryList;
+            
+            EmployeeAttendanceDetails_Model employeeAttendanceDetails_Model = new EmployeeAttendanceDetails_Model();
+            employeeAttendanceDetails_Model.EmpCode = txtEmpCode.EditValue + "";
+            employeeAttendanceDetails_Model.AttendanceMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);            
+            employeeAttendanceDetails_Model.EmployeeAttendance_Get_List = EmployeeData.EmployeeAttendance_Get(programMaster.ProgProcName, param);            
+            employeeAttendanceDetails_Model.EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", paramSalary);
+            employeeAttendanceDetails_Model.EmployeeMasterDataList = EmployeeData.GetEmployeeMasterDataList("sp_LoadEmpMstFEditing", paramEmp);
+            //EmployeeMasterModel
             attendanceBindingSource.DataSource = employeeAttendanceDetails_Model;
 
             Xtra_Report_EmployeeAttendanceList.DataSource = attendanceBindingSource;
 
+            //MessageBox.Show(employeeAttendanceDetails_Model.EmployeesSalaryList.Count + "");
 
             ReportPrintTool tool = new ReportPrintTool(Xtra_Report_EmployeeAttendanceList);
 
             if (action.Equals("preview"))
             {
-                tool.ShowPreview();
+                tool.ShowRibbonPreviewDialog();
             }
             if (action.Equals("print"))
             {
                 tool.PrintDialog();
             }
-            */
+            
+
         }
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
-            Report_Print_Preview("preview");
+            if (ComparisonUtils.IsEmpty(DtStartDate.EditValue) || ComparisonUtils.IsEmpty(txtEmpCode.EditValue))
+            {
+                ProjectFunctions.SpeakError("Enter Attendance Month and Employee Code");
+                txtEmpCode.Focus();
+            }
+            else
+            {
+                Report_Print_Preview("preview");
+            }
+            
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (ComparisonUtils.IsEmpty(DtStartDate.EditValue) || ComparisonUtils.IsEmpty(txtEmpCode.EditValue))
+            {
+                ProjectFunctions.SpeakError("Enter Attendance Month and Employee Code");
+                txtEmpCode.Focus();
+            }
+            else
+            {
+                Report_Print_Preview("print");
+            }
+            
+        }
+
+        private void btnExportXsls_Click(object sender, EventArgs e)
+        {
+            if (ComparisonUtils.IsEmpty(DtStartDate.EditValue) || ComparisonUtils.IsEmpty(txtEmpCode.EditValue))
+            {
+                ProjectFunctions.SpeakError("Enter Attendance Month and Employee Code");
+                txtEmpCode.Focus();
+            }
+            else
+            {
+                string path = txtEmpCode.EditValue + "_Attendance_For_Month_" + ConvertTo.DateFormatDb(DtStartDate.EditValue) + ".xlsx";
+                gridControl_AttendanceData.ExportToXlsx(path);
+                // Open the created XLSX file with the default application.
+                Process.Start(path);
+            }
+            
         }
     }
 }

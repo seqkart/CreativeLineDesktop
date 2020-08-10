@@ -39,12 +39,20 @@ namespace SeqKartLibrary.CrudTask
             return employeeSalaryList;
         }
 
-        public static List<EmpAttendanceModel> GetEmpAttendanceList(string sp_query, DynamicParameters param)
+        public static List<EmployeeAttendance_Get_Model> EmployeeAttendance_Get(string sp_query, DynamicParameters param)
         {
-            RepList<EmpAttendanceModel> repList = new RepList<EmpAttendanceModel>();
-            List<EmpAttendanceModel> empAttendanceModels = repList.returnListClass_SP(sp_query, param);
+            RepList<EmployeeAttendance_Get_Model> repList = new RepList<EmployeeAttendance_Get_Model>();
+            List<EmployeeAttendance_Get_Model> empAttendanceModels = repList.returnListClass_SP(sp_query, param);
 
             return empAttendanceModels;
+        }
+
+        public static List<EmployeeMasterModel> GetEmployeeMasterDataList(string sp_query, DynamicParameters param)
+        {
+            RepList<EmployeeMasterModel> repList = new RepList<EmployeeMasterModel>();
+            List<EmployeeMasterModel> employeeMaster_List = repList.returnListClass_SP(sp_query, param);
+
+            return employeeMaster_List;
         }
     }
 }

@@ -974,7 +974,7 @@ namespace BNPL.Forms_Transaction
 
             if (action.Equals("preview"))
             {
-                tool.ShowPreview();
+                tool.ShowRibbonPreviewDialog();
             }
             if (action.Equals("print"))
             {
@@ -985,21 +985,47 @@ namespace BNPL.Forms_Transaction
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
-            Report_Print_Preview("preview");
+            if (ComparisonUtils.IsEmpty(DtStartDate.EditValue))
+            {
+                ProjectFunctions.SpeakError("Enter Salary Month");
+                DtStartDate.Focus();
+            }
+            else
+            {
+                Report_Print_Preview("preview");
+            }
+            
         }
 
         private void btnPrintReport_Click(object sender, EventArgs e)
         {
-            Report_Print_Preview("print");
+            if (ComparisonUtils.IsEmpty(DtStartDate.EditValue))
+            {
+                ProjectFunctions.SpeakError("Enter Salary Month");
+                DtStartDate.Focus();
+            }
+            else
+            {
+                Report_Print_Preview("print");
+            }
+            
         }
 
         private void btnExportXsls_Click(object sender, EventArgs e)
         {
+            if (ComparisonUtils.IsEmpty(DtStartDate.EditValue))
+            {
+                ProjectFunctions.SpeakError("Enter Salary Month");
+                DtStartDate.Focus();
+            }
+            else
+            {
+                string path = "Salary_For_Month_" + ConvertTo.DateFormatDb(DtStartDate.EditValue) + ".xlsx";
+                gridControl_SalaryProcess.ExportToXlsx(path);
+                // Open the created XLSX file with the default application.
+                Process.Start(path);
+            }
             
-            string path = "Salary_For_Month_" + ConvertTo.DateFormatDb(DtStartDate.EditValue) + ".xlsx";
-            gridControl_SalaryProcess.ExportToXlsx(path);
-            // Open the created XLSX file with the default application.
-            Process.Start(path);
         }
     }
 

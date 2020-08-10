@@ -126,6 +126,17 @@ namespace SeqKartLibrary.HelperClass
             return null;
         }
 
+        public static string DateFormatMonthYear(object dateTime)
+        {
+            try
+            {
+                return DateTimeVal(dateTime).ToString("MMMM-yyyy");
+            }
+            catch { }
+
+            return dateTime.ToString();
+        }
+
         public static string DateFormatApp(DateTime dateTime)
         {
             try

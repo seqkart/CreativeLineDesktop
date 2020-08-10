@@ -25,10 +25,12 @@ namespace SeqKartLibrary.Repository
                 con.Close();
                 return Tlista.ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                PrintLogWinForms.PrintLog("returnListClass => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnListClass => Exception => " + ex);
             }
+            return null;
         }
 
         public List<T> returnListClass_SP(string query, DynamicParameters param)
@@ -41,10 +43,12 @@ namespace SeqKartLibrary.Repository
                 con.Close();
                 return Tlista.ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                PrintLogWinForms.PrintLog("returnListClass_SP => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnListClass_SP => Exception => " + ex);
             }
+            return null;
         }
 
         public T returnClass_SP(string query, DynamicParameters param)
@@ -58,10 +62,12 @@ namespace SeqKartLibrary.Repository
                 con.Close();
                 return Tlista;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                PrintLogWinForms.PrintLog("returnClass_SP => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnClass_SP => Exception => " + ex);
             }
+            return null;
         }
 
         public T returnClass(string query, DynamicParameters param)
@@ -75,14 +81,16 @@ namespace SeqKartLibrary.Repository
                 con.Close();
                 return Tlista;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                PrintLogWinForms.PrintLog("returnClass => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnClass => Exception => " + ex);
             }
+            return null;
         }
 
         public T1 returnClass_1<T1>(string query, DynamicParameters param)
-        {
+        {            
             try
             {
                 connection();
@@ -92,10 +100,12 @@ namespace SeqKartLibrary.Repository
                 con.Close();
                 return Tlista;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                PrintLogWinForms.PrintLog("returnClass_1 => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnClass_1 => Exception => " + ex);
             }
+            return default(T1);
         }
 
         public List<T1> returnListClass_1<T1>(string query, DynamicParameters param)
@@ -110,7 +120,8 @@ namespace SeqKartLibrary.Repository
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("returnListClass_1 => " + ex);
+                PrintLogWinForms.PrintLog("returnListClass_1 => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnListClass_1 => Exception => " + ex);
             }
             return null;
         }
@@ -125,10 +136,12 @@ namespace SeqKartLibrary.Repository
                 con.Close();
                 return Tlista.ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                PrintLogWinForms.PrintLog("returnListClass_SP_1 => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnListClass_SP_1 => Exception => " + ex);
             }
+            return null;
         }
 
 
