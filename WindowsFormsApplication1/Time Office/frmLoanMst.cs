@@ -5,8 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
-using WindowsFormsApplication1;
-
 namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmLoanMst : DevExpress.XtraEditors.XtraForm
@@ -104,7 +102,7 @@ namespace WindowsFormsApplication1.Forms_Master
             DtEndDate.EditValue = DateTime.Now.Date;
             DtStartDate.EditValue = DateTime.Now.AddYears(-1).Date;
             fillGrid();
-        }        
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -195,7 +193,7 @@ namespace WindowsFormsApplication1.Forms_Master
 
                 fillGrid();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PrintLogWin.PrintLog(ex);
 

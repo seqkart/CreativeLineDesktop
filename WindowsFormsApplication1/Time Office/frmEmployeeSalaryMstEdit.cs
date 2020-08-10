@@ -6,8 +6,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
-
-using WindowsFormsApplication1;
 namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmEmployeeSalaryMstEdit : DevExpress.XtraEditors.XtraForm
@@ -68,7 +66,7 @@ namespace WindowsFormsApplication1.Forms_Master
             if (s1 == "Edit")
             {
                 DtStartDate.Properties.ReadOnly = true;
-                
+
                 var ds1 = ProjectFunctions.GetDataSet("Select * from  EMPMST_MDATA where EmpCode='" + empcode + "' And DATEPART(yy, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("yyyy") + "' And DATEPART(MM, EmpDDate)='" + Convert.ToDateTime(DtStartDate.Text).ToString("MM") + "'");
                 if (ds1.Tables[0].Rows.Count > 0)
                 {
@@ -238,7 +236,7 @@ namespace WindowsFormsApplication1.Forms_Master
                     }
                     if (!isAdded)
                     {
-                        EditSalary_2(isAdded);                        
+                        EditSalary_2(isAdded);
                     }
                     else
                     {
@@ -355,11 +353,11 @@ namespace WindowsFormsApplication1.Forms_Master
                     }
 
                     EditSalary_2(isAdded: true);
-                } 
+                }
                 else
                 {
                     ProjectFunctions.SpeakError("Basic Pay can not be 0.");
-                }                
+                }
             }
         }
 
@@ -416,7 +414,7 @@ namespace WindowsFormsApplication1.Forms_Master
                     {
                         if (ds.Tables[0].Rows[0]["EmpPassbyUser"].ToString() == string.Empty)
                         {
-                            EditSalary(isAdded:false);
+                            EditSalary(isAdded: false);
                         }
                         else
                         {
@@ -430,14 +428,14 @@ namespace WindowsFormsApplication1.Forms_Master
                 }
 
 
-                    
+
                 //if ((s1 == "Edit") && (txtBasicPay.Text.Length != 0))
                 //{
                 //    EditSalary_2(isAdded:false);
-                    
+
                 //}
 
-                
+
             }
         }
         private void frmEmployeeSalaryMstEdit_KeyDown(object sender, KeyEventArgs e)
@@ -470,6 +468,6 @@ namespace WindowsFormsApplication1.Forms_Master
             }
         }
 
-        
+
     }
 }

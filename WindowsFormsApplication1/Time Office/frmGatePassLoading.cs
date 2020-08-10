@@ -1,5 +1,4 @@
-﻿using Dapper;
-using DevExpress.Utils;
+﻿using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
@@ -13,7 +12,6 @@ using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
 using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
-using SeqKartLibrary.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,9 +21,6 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using WindowsFormsApplication1;
-using WindowsFormsApplication1.Models;
-using WindowsFormsApplication1.Time_Office;
 
 namespace WindowsFormsApplication1.Forms_Master
 {
@@ -75,7 +70,7 @@ namespace WindowsFormsApplication1.Forms_Master
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Close();
-        }        
+        }
 
         private void frmGatePassLaoding_Load(object sender, EventArgs e)
         {
@@ -84,7 +79,7 @@ namespace WindowsFormsApplication1.Forms_Master
             SetMyControls2();
 
             LoadGatePassDataGrid(true);
-            
+
         }
 
         public void LoadGatePassDataGrid(bool onFormLoad)
@@ -109,9 +104,9 @@ namespace WindowsFormsApplication1.Forms_Master
                     if (!onFormLoad)
                     {
                         ProjectFunctions.SpeakError("There is no data in this Query");
-                    }                    
+                    }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -281,7 +276,7 @@ namespace WindowsFormsApplication1.Forms_Master
             string gate_pass_date = detailView.GetFocusedRowCellValue("GatePassDate").ToString();
             //
             //PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
-            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row                );
+            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row);
 
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% employee_code " + employee_code);
             PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% gate_pass_date " + gate_pass_date);
@@ -306,9 +301,9 @@ namespace WindowsFormsApplication1.Forms_Master
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            OpenAttendanceForm(btnAdd.Text, "", DateTime.Now + "");
+            OpenAttendanceForm(btnAdd.Text, string.Empty, DateTime.Now + string.Empty);
 
-            
+
         }
 
         private void btnAdd2_Click(object sender, EventArgs e)
@@ -753,9 +748,9 @@ namespace WindowsFormsApplication1.Forms_Master
         {
             if (ValidateData_GridLoad())
             {
-                LoadGatePassDataGrid(onFormLoad:false);
+                LoadGatePassDataGrid(onFormLoad: false);
             }
-            
+
         }
 
         private bool ValidateData_GridLoad()

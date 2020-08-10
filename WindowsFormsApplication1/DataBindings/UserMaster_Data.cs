@@ -1,10 +1,9 @@
-﻿using DevExpress.DataProcessing;
+﻿
 using DevExpress.XtraEditors;
 using SeqKartLibrary;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Web.UI.WebControls;
 using Image = System.Drawing.Image;
 
 namespace DataBindings
@@ -58,7 +57,7 @@ namespace DataBindings
             }
         }
 
-        
+
         Image edit;
         public Image Edit_Link
         {
@@ -87,16 +86,16 @@ namespace DataBindings
         public static BindingList<UserMaster_Data> GetData(DataSet dsMaster)
         {
             BindingList<UserMaster_Data> records = new BindingList<UserMaster_Data>();
-            foreach(DataRow dr in dsMaster.Tables[0].Rows)
+            foreach (DataRow dr in dsMaster.Tables[0].Rows)
             {
                 HyperLinkEdit hyperLink = new HyperLinkEdit();
                 hyperLink.Text = "Edit";
 
                 records.Add(new UserMaster_Data()
                 {
-                    UserName = dr[SQL_COLUMNS.USER_MASTER._UserName] + "",
-                    Login_As = dr[SQL_COLUMNS.USER_MASTER._LoginAs] + "",
-                    UserActive = dr[SQL_COLUMNS.USER_MASTER._UserActive] + "",
+                    UserName = dr[SQL_COLUMNS.USER_MASTER._UserName] + string.Empty,
+                    Login_As = dr[SQL_COLUMNS.USER_MASTER._LoginAs] + string.Empty,
+                    UserActive = dr[SQL_COLUMNS.USER_MASTER._UserActive] + string.Empty,
                     Edit_Link = SystemIcons.Information.ToBitmap()
 
 

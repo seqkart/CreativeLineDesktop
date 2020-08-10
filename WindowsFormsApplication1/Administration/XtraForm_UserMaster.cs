@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DevExpress.Utils;
+using DevExpress.Utils.Menu;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using SeqKartLibrary;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.Utils.Menu;
-using DataBindings;
-using DevExpress.XtraGrid.Views.Base;
-using SeqKartLibrary;
-using DevExpress.XtraGrid.Columns;
-using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraEditors.Controls;
-using System.Reflection;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 using WindowsFormsApplication1.Models;
-using DevExpress.XtraGrid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using DevExpress.Utils;
 
 namespace WindowsFormsApplication1.Administration
 {
     public partial class XtraForm_UserMaster : DevExpress.XtraEditors.XtraForm
     {
-        
+
         public XtraForm_UserMaster()
         {
             InitializeComponent();
@@ -68,11 +64,11 @@ namespace WindowsFormsApplication1.Administration
             foreach (DataRow dr in dsMaster.Tables[0].Rows)
             {
                 UserInfo userInfo = new UserInfo();
-                userInfo.UserName = dr[SQL_COLUMNS.USER_MASTER._UserName] + "";
-                userInfo.Login_As = dr[SQL_COLUMNS.USER_MASTER._LoginAs] + "";
-                userInfo.UserActive = dr[SQL_COLUMNS.USER_MASTER._UserActive] + "";
+                userInfo.UserName = dr[SQL_COLUMNS.USER_MASTER._UserName] + string.Empty;
+                userInfo.Login_As = dr[SQL_COLUMNS.USER_MASTER._LoginAs] + string.Empty;
+                userInfo.UserActive = dr[SQL_COLUMNS.USER_MASTER._UserActive] + string.Empty;
 
-                
+
                 list.Add(userInfo);
             }
             gridControl_UserMaster.DataSource = list;
@@ -96,7 +92,7 @@ namespace WindowsFormsApplication1.Administration
 
         private void AddButtonToGrid()
         {
-            
+
 
             //In Editable Mode
             //gridView_UserMaster.ShownEditor += gridView_ShownEditor;
@@ -111,13 +107,13 @@ namespace WindowsFormsApplication1.Administration
             button.ImageOptions.Image = WindowsFormsApplication1.Properties.Resources.Edit_16x16;
             button.ImageOptions.Location = ImageLocation.MiddleCenter;
             button.Caption = "Edit";
-            button.Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph; 
+            button.Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
 
             button.Appearance.BackColor = Color.Red;
             button.Appearance.Options.UseBackColor = true;
             button.Appearance.BorderColor = Color.Transparent;
             //edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            
+
             button.Appearance.Options.UseBackColor = true;
             button.Appearance.BackColor = Color.Transparent;
 
@@ -202,7 +198,7 @@ namespace WindowsFormsApplication1.Administration
                 FillTable(dsMaster);
                 AddUnboundColumn();
                 AddButtonToGrid();
-                
+
                 //userMasterBindingSource.DataSource = Binding_DataHelper.GetData(dsMaster);
 
                 //RepositoryItemPictureEdit pictureEdit = new RepositoryItemPictureEdit();
@@ -234,7 +230,7 @@ namespace WindowsFormsApplication1.Administration
             if (e.Column.FieldName == "Edit")
             {
                 //string gender = gridView_UserMaster.GetListSourceRowCellValue(e.ListSourceRowIndex, gridView_UserMaster.Columns["Edit"]).ToString();
-                
+
                 e.Value = SystemIcons.Information.ToBitmap();
             }
         }
@@ -251,10 +247,10 @@ namespace WindowsFormsApplication1.Administration
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream myStream = myAssembly.GetManifestResourceStream("WindowsFormsApplication1.Resources.edit_icon.png" +
-                "");
+string.Empty);
             Bitmap bmp = new Bitmap(myStream);
             bmp.Tag = "edit_link" +
-                "";
+string.Empty;
 
             foreach (DataRow dr in dsMaster.Tables[0].Rows)
             {
@@ -264,8 +260,8 @@ namespace WindowsFormsApplication1.Administration
                 //pictureEdit.Click += gridControl_UserMaster_DoubleClick;
 
                 dt.Rows.Add(dr[SQL_COLUMNS.USER_MASTER._UserName], dr[SQL_COLUMNS.USER_MASTER._LoginAs], dr[SQL_COLUMNS.USER_MASTER._UserActive]);
-                
-            }            
+
+            }
 
             return dt;
         }
@@ -278,14 +274,14 @@ namespace WindowsFormsApplication1.Administration
                 {
                     frmUserDetails frm = new frmUserDetails() { s1 = btnAdd.Text, Text = "User Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
-                    
+
 
                     frm.ShowDialog(Parent);
                 }
             }
 
             FillDataToGrid();
-        }        
+        }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -362,7 +358,7 @@ namespace WindowsFormsApplication1.Administration
             btnEdit_Click(null, e);
 
             PrintLogWin.PrintLog("================= button_delete_ButtonClick" +
-                "");
+string.Empty);
 
         }
 
@@ -487,7 +483,7 @@ namespace WindowsFormsApplication1.Administration
 
         }
 
-      
+
 
     }
 }

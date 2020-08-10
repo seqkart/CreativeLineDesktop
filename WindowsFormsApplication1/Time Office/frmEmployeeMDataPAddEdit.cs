@@ -2,8 +2,6 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-
-using WindowsFormsApplication1;
 namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmEmployeeMDataPAddEdit : DevExpress.XtraEditors.XtraForm

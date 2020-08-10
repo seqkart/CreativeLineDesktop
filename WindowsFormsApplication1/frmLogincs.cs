@@ -55,7 +55,7 @@ namespace WindowsFormsApplication1
                 txtPassword.Focus();
                 return false;
             }
-            
+
             DataSet dsGetUser = ProjectFunctions.GetDataSet(SQL_QUERIES.SQL_USERMASTER(txtUserName.Text.Trim(), txtPassword.Text.Trim()));
             if (dsGetUser.Tables[0].Rows.Count > 0)
             {
@@ -181,7 +181,7 @@ namespace WindowsFormsApplication1
 
             DataSet dsFNYear = ProjectFunctionsUtils.GetDataSet(SQL_QUERIES.SQL_FN_YEAR_ACTIVE("Y"));
             if (ComparisonUtils.IsNotNull_DataSet(dsFNYear))
-            {                
+            {
                 txtFNYear.DataSource = dsFNYear.Tables[0];
                 txtFNYear.ValueMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
                 txtFNYear.DisplayMember = SQL_COLUMNS.FN_YEAR._FNYearCode;
@@ -192,18 +192,18 @@ namespace WindowsFormsApplication1
                 txtPassword.Text = "123";
                 txtUserName.Text = "HAPPY";
                 SendKeys.Send("{Enter}");
-          
+
                 txtUserName.Focus();
 
 
                 txtUserName_KeyDown(null, null);
                 btnLogin_Click(null, null);
             }
-            
+
 
 
         }
-        
+
         private void txtUserName_KeyDown(object sender, KeyEventArgs e)
         {
             //if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
@@ -262,7 +262,7 @@ namespace WindowsFormsApplication1
         {
 
             txtUserName.Text = "HAPPY";
-         
+
             SendKeys.Send("{Enter}");
 
         }
@@ -285,7 +285,7 @@ namespace WindowsFormsApplication1
             SplashScreenManager.CloseForm();
         }
 
-        
+
 
         private void txtCompany_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -33,6 +33,7 @@
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup3 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.XtraBars.Ribbon.GalleryItem galleryItem1 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
             DevExpress.Utils.Animation.CombTransition combTransition1 = new DevExpress.Utils.Animation.CombTransition();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this._ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -103,7 +104,7 @@
             this.ribbonPage,
             this.ribbonPage1,
             this.ribbonPage2});
-            this._ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
+            this._ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
             this._ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this._ribbonControl.Size = new System.Drawing.Size(993, 160);
             this._ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
@@ -243,6 +244,12 @@
             this.accordionControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.accordionControl1.ContextButtonsOptions.AnimationType = DevExpress.Utils.ContextAnimationType.SequenceAnimation;
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            accordionContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            accordionContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            accordionContextButton1.Caption = "accordionContextButton1";
+            accordionContextButton1.Id = new System.Guid("72f9461c-093c-40e4-a957-9f3a633e8a33");
+            accordionContextButton1.Name = "SKIN";
+            this.accordionControl1.ItemContextButtons.Add(accordionContextButton1);
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsFooter.ActiveGroupDisplayMode = DevExpress.XtraBars.Navigation.ActiveGroupDisplayMode.GroupHeaderAndContent;

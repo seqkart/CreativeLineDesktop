@@ -1,5 +1,4 @@
 ﻿using System;
-using WindowsFormsApplication1;
 namespace WindowsFormsApplication1.Report
 {
     public partial class Rpt_VoucherPrint : DevExpress.XtraReports.UI.XtraReport

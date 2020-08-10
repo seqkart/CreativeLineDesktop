@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
                     txtNewPass.Focus();
                     return;
                 }
-                
+
                 if ((txtNewPass.Text != txtConfirmPass.Text))
                 {
                     ProjectFunctions.SpeakError("Password doesn't Match.");
@@ -51,7 +51,7 @@ namespace WindowsFormsApplication1
                     txtOldPass.Focus();
                     return;
                 }
-                
+
                 Dispose();
             }
             catch (Exception ex)

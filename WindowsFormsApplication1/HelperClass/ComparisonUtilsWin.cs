@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 public class ComparisonUtilsWin
 {

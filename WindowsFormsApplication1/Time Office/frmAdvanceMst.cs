@@ -4,8 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-using WindowsFormsApplication1;
-
 namespace WindowsFormsApplication1.Forms_Transaction
 {
     public partial class frmAdvanceMst : DevExpress.XtraEditors.XtraForm
@@ -59,7 +57,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
             //ProjectFunctions.ButtonVisualize(panelControl1);
             //Query4Controls = String.Format("SELECT     ProgAdd_F, ProgUpd_F, ProgDel_F, ProgRep_p, ProgRep_p,ProgSpl_U FROM         UserProgAccess WHERE     (ProgActive is Null or progActive= 'Y') AND (ProgCode = N'" + GlobalVariables.ProgCode + "') AND (UserName = N'{0}'); ", GlobalVariables.CurrentUser);
 
-            MainFormButtons.Roles(GlobalVariables.ProgCode, GlobalVariables.CurrentUser, 
+            MainFormButtons.Roles(GlobalVariables.ProgCode, GlobalVariables.CurrentUser,
                 btnAdd, btnEdit, btnDelete, btnPrint);
             //using (var Tempds = ProjectFunctions.GetDataSet(Query4Controls))
             //{

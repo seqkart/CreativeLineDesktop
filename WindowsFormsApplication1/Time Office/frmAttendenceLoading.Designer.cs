@@ -335,6 +335,7 @@ namespace WindowsFormsApplication1.Forms_Master
             this.DtStartDate.Properties.MaxLength = 6;
             this.DtStartDate.Size = new System.Drawing.Size(90, 20);
             this.DtStartDate.TabIndex = 1;
+                      this.DtStartDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtStartDate_KeyDown);
             // 
             // label13
             // 

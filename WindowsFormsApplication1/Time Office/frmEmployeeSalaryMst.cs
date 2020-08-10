@@ -3,7 +3,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using WindowsFormsApplication1;
 namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmEmployeeSalaryMst : DevExpress.XtraEditors.XtraForm
@@ -14,7 +13,7 @@ namespace WindowsFormsApplication1.Forms_Master
             InitializeComponent();
         }
 
-        
+
 
         private void SetMyControls()
         {

@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1
                 MessageBox_Debug.ShowBox("frmMaster => FillGrid() => " + ex);
             }
 
-            
+
         }
         private void InvoiceGrid_Load(object sender, EventArgs e)
         {
@@ -198,16 +198,16 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmNewFormAAddEdit))                    
+                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmNewFormAAddEdit))
                 {
                     frmNewFormAAddEdit frm = new frmNewFormAAddEdit() { s1 = btnAdd.Text, Text = "Program Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     //var P = ProjectFunctions.GetPositionInForm(this);
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
-                    
+
                 }
-                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmUserDetails))               
+                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmUserDetails))
                 {
                     frmUserDetails frm = new frmUserDetails() { s1 = btnAdd.Text, Text = "User Addition" };
                     frm.StartPosition = FormStartPosition.CenterScreen;
@@ -367,7 +367,7 @@ namespace WindowsFormsApplication1
                 //    //var P = ProjectFunctions.GetPositionInForm(this);
                 //    //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                 //    frm.ShowDialog(Parent);
-              //  }
+                //  }
                 //if (GlobalVariables.ProgCode == "PROG67")
                 //{
                 //    Master.frmRetailerMaster frm = new Master.frmRetailerMaster() { s1 = btnAdd.Text, Text = "Retailer Head Addition" };
@@ -552,7 +552,7 @@ namespace WindowsFormsApplication1
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
                     frm.ShowDialog(Parent);
                 }
-                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmRoleMst))                
+                if (ComparisonUtils.IsEqualTo_String(GlobalVariables.ProgCode, WIN_APP_TABS._frmRoleMst))
                 {
                     DataRow CurrentRow = InvoiceGridView.GetDataRow(InvoiceGridView.FocusedRowHandle);
 
@@ -806,7 +806,7 @@ namespace WindowsFormsApplication1
                     frm.StartPosition = FormStartPosition.CenterScreen;
                     //var P = ProjectFunctions.GetPositionInForm(this);
                     //frm.Location = new Point(P.X + (ClientSize.Width / 2 - frm.Size.Width / 2), P.Y + (ClientSize.Height / 2 - frm.Size.Height / 2));
-                    
+
                     frm.ShowDialog(Parent);
                 }
                 if (GlobalVariables.ProgCode == "PROG155")

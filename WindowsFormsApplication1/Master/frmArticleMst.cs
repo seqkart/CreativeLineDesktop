@@ -76,7 +76,7 @@ namespace WindowsFormsApplication1
             try
             {
                 ProjectFunctions.TextBoxVisualize(this);
-               
+
                 ProjectFunctions.TextBoxVisualize(GroupBox16);
                 ProjectFunctions.TextBoxVisualize(GroupBox2);
                 ProjectFunctions.TextBoxVisualize(GroupBox3);
@@ -92,13 +92,13 @@ namespace WindowsFormsApplication1
                 txtDescription.Properties.MaxLength = 100;
                 txtHSNCode.Properties.MaxLength = 100;
                 txtMargin.Properties.MaxLength = 100;
-               
+
                 txtMRP.Properties.MaxLength = 100;
                 txtPurPrice.Properties.MaxLength = 100;
                 txtRSP.Properties.MaxLength = 100;
                 txtTo.Properties.MaxLength = 100;
 
-               
+
                 txtWSP.Properties.MaxLength = 100;
 
             }
@@ -262,10 +262,10 @@ namespace WindowsFormsApplication1
                         txtTaxCodeC.Text = ds.Tables[0].Rows[0]["ATaxCodeCentral"].ToString();
                         txtTaxCodeCDesc.Text = ds.Tables[0].Rows[0]["Expr1"].ToString();
 
-                       
+
                         txtMRP.Text = ds.Tables[0].Rows[0]["ARTMRP"].ToString();
                         txtPurPrice.Text = ds.Tables[0].Rows[0]["ARTPURPRICE"].ToString();
-                        
+
                         txtWSP.Text = ds.Tables[0].Rows[0]["ARTWSP"].ToString();
                         txtMargin.Text = ds.Tables[0].Rows[0]["ARTMARGIN"].ToString();
                         txtRSP.Text = ds.Tables[0].Rows[0]["ARTRSP"].ToString();
@@ -447,7 +447,7 @@ namespace WindowsFormsApplication1
                 {
                     txtMargin.Text = "0";
                 }
-               
+
                 if (txtMRP.Text.Trim().Length == 0)
                 {
                     txtMRP.Text = "0";
@@ -460,7 +460,7 @@ namespace WindowsFormsApplication1
                 {
                     txtRSP.Text = "0";
                 }
-                
+
                 if (txtWSP.Text.Trim().Length == 0)
                 {
                     txtWSP.Text = "0";
@@ -558,10 +558,10 @@ namespace WindowsFormsApplication1
                             sqlcom.Parameters.AddWithValue("@ARTSBSECTIONID", txtSGrpCode.Text.Trim());
                             sqlcom.Parameters.AddWithValue("@ARTUOM", txtUMCode.Text.Trim());
                             sqlcom.Parameters.AddWithValue("@ARTPURPRICE", Convert.ToDecimal(txtPurPrice.Text));
-                            
+
                             sqlcom.Parameters.AddWithValue("@ARTWSP", Convert.ToDecimal(txtWSP.Text));
                             sqlcom.Parameters.AddWithValue("@ARTMRP", Convert.ToDecimal(txtMRP.Text));
-                            
+
                             sqlcom.Parameters.AddWithValue("@ARTRSP", Convert.ToDecimal(txtRSP.Text));
                             sqlcom.Parameters.AddWithValue("@ARTMARGIN", Convert.ToDecimal(txtMargin.Text));
                             if (CHKARTNONMAINT.Checked)
@@ -820,10 +820,10 @@ namespace WindowsFormsApplication1
                                 sqlcom.Parameters.AddWithValue("@ARTSBSECTIONID", txtSGrpCode.Text.Trim());
                                 sqlcom.Parameters.AddWithValue("@ARTUOM", txtUMCode.Text.Trim());
                                 sqlcom.Parameters.AddWithValue("@ARTPURPRICE", Convert.ToDecimal(txtPurPrice.Text));
-                               
+
                                 sqlcom.Parameters.AddWithValue("@ARTWSP", Convert.ToDecimal(txtWSP.Text));
                                 sqlcom.Parameters.AddWithValue("@ARTMRP", Convert.ToDecimal(txtMRP.Text));
-                               
+
                                 sqlcom.Parameters.AddWithValue("@ARTRSP", Convert.ToDecimal(txtRSP.Text));
                                 sqlcom.Parameters.AddWithValue("@ARTMARGIN", Convert.ToDecimal(txtMargin.Text));
                                 if (CHKARTNONMAINT.Checked)

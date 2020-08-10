@@ -6,8 +6,6 @@ namespace WindowsFormsApplication1
     public partial class RangeSelector : XtraUserControl
     {
 
-        private string CurrentControl;
-
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

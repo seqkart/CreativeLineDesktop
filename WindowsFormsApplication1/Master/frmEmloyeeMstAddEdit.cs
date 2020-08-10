@@ -405,12 +405,12 @@ namespace WindowsFormsApplication1
 
                     chkTeaBreak.Checked = (empData.TeaBreak == 1) ? true : false;
                     txtTeaBreakTime.EditValue = empData.TeaBreakTime;
-                    PrintLogWin.PrintLog("chkTeaBreak.Checked =========> " + chkTeaBreak.Checked + "");
-                    PrintLogWin.PrintLog("empData.TeaBreak =========> " + empData.TeaBreak + "");
+                    PrintLogWin.PrintLog("chkTeaBreak.Checked =========> " + chkTeaBreak.Checked + string.Empty);
+                    PrintLogWin.PrintLog("empData.TeaBreak =========> " + empData.TeaBreak + string.Empty);
 
                     chkDailyWage.Checked = empData.DailyWage;
-                    PrintLogWin.PrintLog("chkDailyWage.Checked =========> " + chkDailyWage.Checked + "");
-                    PrintLogWin.PrintLog("empData.DailyWage =========> " + empData.DailyWage + "");
+                    PrintLogWin.PrintLog("chkDailyWage.Checked =========> " + chkDailyWage.Checked + string.Empty);
+                    PrintLogWin.PrintLog("empData.DailyWage =========> " + empData.DailyWage + string.Empty);
 
                     //DAILY WAGER//////////////////////////////
                     if (chkDailyWage.Checked)
@@ -567,7 +567,7 @@ namespace WindowsFormsApplication1
 
         private void saveEmployeeData()
         {
-            string sql = "";
+            string sql = string.Empty;
             if (ValidateData())
             {
                 using (var sqlcon = new SqlConnection(ProjectFunctions.GetConnection()))
@@ -594,7 +594,7 @@ namespace WindowsFormsApplication1
                                                  + " EmpPassportNo                           ,"
                                                  + " EmpSplAlw,EmpReligion,EmpMaritalStatus,EmpPymtMode,EmpBankIFSCode,"
                                                  + " EmpBankAcNo,EmpBankName,EmpNominee,EmpNomineeRelation,EmpNomineeDOB,EmpAdharCardNo,EmpGHISDed,EmpFPFDTag,EmpMscD1,EmpAddress1,EmpAddress2,EmpAddress3,EmpDistCity,EmpState,EmpCountry,EmpUANNo,EmpBankBranchCode," +
-                                                 "" +
+string.Empty +
                                                  "   TimeInFirst, TimeOutFirst, TimeInLast, TimeOutLast, WorkingHours, EmpImage, DailyWage, DailyWageRate, DailyWageMinutes, TeaBreak, TeaBreakTime)"
                                                  + " values(" + empCode_SQL + ",@EmpName,@EmpFHRelationTag,@EmpFHName, @UnitCode, @EmpDeptCode,@EmpDesgCode,@EmpCategory,"
                                                  + " @EmpSex,@EmpDOJ,@EmpDOL,@EmpPFDTag,"
@@ -897,12 +897,12 @@ namespace WindowsFormsApplication1
             try
             {
 
-                PrintLogWin.PrintLog("************* form_loaded => " + form_loaded + "");
+                PrintLogWin.PrintLog("************* form_loaded => " + form_loaded + string.Empty);
 
-                PrintLogWin.PrintLog("************* timeEdit_Time_In_First.EditValue => " + timeEdit_Time_In_First.EditValue + "");
-                PrintLogWin.PrintLog("************* timeEdit_Time_Out_First.EditValue => " + timeEdit_Time_Out_First.EditValue + "");
-                PrintLogWin.PrintLog("************* timeEdit_Time_In_Last.EditValue => " + timeEdit_Time_In_Last.EditValue + "");
-                PrintLogWin.PrintLog("************* timeEdit_Time_Out_Last.EditValue => " + timeEdit_Time_Out_Last.EditValue + "");
+                PrintLogWin.PrintLog("************* timeEdit_Time_In_First.EditValue => " + timeEdit_Time_In_First.EditValue + string.Empty);
+                PrintLogWin.PrintLog("************* timeEdit_Time_Out_First.EditValue => " + timeEdit_Time_Out_First.EditValue + string.Empty);
+                PrintLogWin.PrintLog("************* timeEdit_Time_In_Last.EditValue => " + timeEdit_Time_In_Last.EditValue + string.Empty);
+                PrintLogWin.PrintLog("************* timeEdit_Time_Out_Last.EditValue => " + timeEdit_Time_Out_Last.EditValue + string.Empty);
 
 
                 if (!form_loaded)
@@ -916,8 +916,8 @@ namespace WindowsFormsApplication1
 
                     if (timeEdit_Time_In_First.EditValue != null && timeEdit_Time_Out_First.EditValue != null)
                     {
-                        DateTime dateTime_In_2 = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + "");
-                        DateTime dateTime_Out_2 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
+                        DateTime dateTime_In_2 = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + string.Empty);
+                        DateTime dateTime_Out_2 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + string.Empty);
 
                         if (dateTime_Out_2 < dateTime_In_2)
                         {
@@ -939,11 +939,11 @@ namespace WindowsFormsApplication1
 
                     if (timeEdit_Time_In_Last.EditValue != null && timeEdit_Time_Out_Last.EditValue != null)
                     {
-                        DateTime dateTime_In_Last = ConvertTo.TimeToDate(timeEdit_Time_In_Last.Text + "");
-                        DateTime dateTime_Out_Last = ConvertTo.TimeToDate(timeEdit_Time_Out_Last.Text + "");
+                        DateTime dateTime_In_Last = ConvertTo.TimeToDate(timeEdit_Time_In_Last.Text + string.Empty);
+                        DateTime dateTime_Out_Last = ConvertTo.TimeToDate(timeEdit_Time_Out_Last.Text + string.Empty);
                         if (timeEdit_Time_Out_First.EditValue != null)
                         {
-                            DateTime dateTime_Out_1 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
+                            DateTime dateTime_Out_1 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + string.Empty);
 
                             if (dateTime_In_Last < dateTime_Out_1)
                             {
@@ -1003,7 +1003,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception ex)
             {
-                MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + "");
+                MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + string.Empty);
             }
             /*
             try

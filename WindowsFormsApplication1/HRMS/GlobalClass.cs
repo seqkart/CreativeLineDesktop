@@ -1,8 +1,6 @@
 ﻿using SeqKartLibrary;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HumanResourceManagementSystem
 {
@@ -16,7 +14,7 @@ namespace HumanResourceManagementSystem
         {
 
             conn = ProjectFunctionsUtils.ConnectionString;
-            GlobalClass.hostIP = "";
+            GlobalClass.hostIP = string.Empty;
 
         }
     }

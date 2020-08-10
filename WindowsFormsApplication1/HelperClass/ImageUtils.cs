@@ -16,7 +16,7 @@ public class ImageUtils
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
 
         }

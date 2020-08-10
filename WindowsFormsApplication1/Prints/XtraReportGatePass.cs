@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using DevExpress.XtraReports.UI;
 
 namespace WindowsFormsApplication1.FormReports
 {
     public partial class XtraReportGatePass : DevExpress.XtraReports.UI.XtraReport
-    {        
+    {
         public XtraReportGatePass(
-            string _employee_code, 
+            string _employee_code,
             int _serial_id,
             string _employee_code_desc,
             string _employee_dept,
@@ -23,7 +20,7 @@ namespace WindowsFormsApplication1.FormReports
             InitializeComponent();
 
             PrintLogWin.PrintLog("employee_code : " + _employee_code);
-            PrintLogWin.PrintLog("serial_id : " + _serial_id + "");
+            PrintLogWin.PrintLog("serial_id : " + _serial_id + string.Empty);
 
             rptEmpCode.Text = _employee_code;
             rptEmpCodeDesc.Text = _employee_code_desc;
@@ -32,11 +29,11 @@ namespace WindowsFormsApplication1.FormReports
             rptEmpContact.Text = _employee_contact;
             rptStatus.Text = _employee_status;
             rptTimeOut.Text = _time_out;
-            rptTimeIn.Text = _time_in;            
+            rptTimeIn.Text = _time_in;
             rptPictureBox.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource(image);
 
         }
 
-        
+
     }
 }

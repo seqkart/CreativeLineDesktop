@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
-//using CrystalDecisions.;
+
 using System.Linq;
-//using CrystalDecisions.CrystalReports.Engine;
+
 using System.Net;
 using System.Speech.Synthesis;
 using System.Threading.Tasks;
@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1
         //}
         public static DialogResult SpeakConfirmation(string message, string caption, MessageBoxButtons messageBoxButtons)
         {
-            //DialogResult
+
             Task.Run(() => _synthesizer.Speak(message));
 
             return XtraMessageBox.Show(message, caption, messageBoxButtons);
@@ -75,7 +75,7 @@ namespace WindowsFormsApplication1
         }
         public static void SpeakError(String Error)
         {
-            //DialogResult
+
             Task.Run(() => _synthesizer.Speak(Error));
 
             XtraMessageBox.Show(Error);
@@ -145,7 +145,7 @@ namespace WindowsFormsApplication1
 
         public static String GetConnection()
         {
-            // ; return ConnectionString;
+
 
 
             return ConnectionString;
@@ -614,7 +614,7 @@ namespace WindowsFormsApplication1
                 if (dsMaster.Tables[0].Rows.Count > 0)
                 {
                     ReportGrid.DataSource = dsMaster.Tables[0];
-                    //ReportGrid.BestFit();
+                    ReportGrid.BestFit();
                 }
                 else
                 {
@@ -630,7 +630,7 @@ namespace WindowsFormsApplication1
                 var parent = ctrl.Parent;
                 while (!(parent is Form))
                 {
-                     p.Offset(parent.Location.X, parent.Location.Y);
+                    p.Offset(parent.Location.X, parent.Location.Y);
                     parent = parent.Parent;
                 }
                 return p;
@@ -875,38 +875,7 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        //public static void MakeCrystalData(ReportDocument Rpt)
-        //{
-        //    var crconnectioninfo = new ConnectionInfo();
-        //    var crtablelogoninfo = new TableLogOnInfo();
-        //    Tables CrTables = Rpt.Database.Tables;
-        //    var ConnectionString = ProjectFunctions.GetConnection();
-        //    var Temp = ConnectionString.Split(';');
-        //    var TempServerName = Temp[0].Split('=');
-        //    var TempDataBaseName = Temp[1].Split('=');
-        //    var TempUserName = Temp[2].Split('=');
-        //    var TempPassword = Temp[3].Split('=');
-        //    crconnectioninfo.ServerName = TempServerName[1];
-        //    crconnectioninfo.DatabaseName = TempDataBaseName.Last();
-        //    crconnectioninfo.UserID = TempUserName.Last();
-        //    crconnectioninfo.Password = TempPassword.Last();
-        //    foreach (Table CrTable in CrTables)
-        //    {
-        //        crtablelogoninfo = CrTable.LogOnInfo;
-        //        crtablelogoninfo.ConnectionInfo = crconnectioninfo;
-        //        CrTable.ApplyLogOnInfo(crtablelogoninfo);
-        //    }
 
-        //    foreach (ReportDocument subrep in Rpt.Subreports)
-        //    {
-        //        foreach (Table table in subrep.Database.Tables)
-        //        {
-        //            crtablelogoninfo = table.LogOnInfo;
-        //            crtablelogoninfo.ConnectionInfo = crconnectioninfo;
-        //            table.ApplyLogOnInfo(crtablelogoninfo);
-        //        }
-        //    }
-        //}
         public static void CreatePopUpForOneBox(String Query, String WhereClause, TextEdit TextBox1, TextEdit TextBox2, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView)
         {
             ReportGrid.Text = TextBox1.Name;
@@ -952,33 +921,7 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        //public static Decimal ReplacementTaxCalculatioData(decimal TAXRATE, decimal SURCHARGERATE, decimal QUANTITY, decimal RATE, decimal RDC, decimal REPL, decimal WSB, decimal ForQuantity, decimal freeQuantity)
-        //{
-        //    decimal s7, s2, s3, s4, s5, s6, s8, s9, s10, taxableamount, NetRateR;
-        //    s7 = Convert.ToDecimal(RATE);
-        //    s2 = Convert.ToDecimal(REPL);
-        //    s3 = Convert.ToDecimal(RDC);
-        //    s4 = Convert.ToDecimal(WSB);
-        //    s5 = Convert.ToDecimal(ForQuantity) + Convert.ToDecimal(freeQuantity);
-        //    s6 = Convert.ToDecimal(ForQuantity);
-        //    s7 = (s7 - (s7 * s2 / 100));
-        //    s8 = (s7 - (s7 * s3 / 100));
-        //    s9 = (s8 - (s8 * s4 / 100));
-        //    if (Convert.ToInt32(ForQuantity) == 0)
-        //    {
-        //        s10 = s9;
-        //    }
-        //    else
-        //    {
-        //        s10 = (s9 * (s6 / s5));
-        //    }
-        //    NetRateR = Math.Round(s10, 2);
-        //    taxableamount = Math.Round(s10, 2) * Convert.ToDecimal(QUANTITY);
-        //    var taxamount = Math.Round((taxableamount * TAXRATE / 100), 2);
-        //    var surchargeamount = Math.Round((taxamount * SURCHARGERATE / 100), 2);
 
-        //    return NetRateR;
-        //}
         public static void CreatePopUpForTwoBoxes(String Query, String WhereClause, TextEdit TextBox1, TextEdit TextBox2, TextEdit TextBox3, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1379,97 +1322,7 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        ////public static void MakePopUp(String TableName, String[] TableColumns, String[] TableWhereColumns, String OrderByColumn, DevExpress.XtraGrid.GridControl ReportGrid, DevExpress.XtraGrid.Views.Grid.GridView ReportGridView, TextEdit TextBoxToBeFocused, TextEdit TextBoxFocused, TextEdit TextBoxDescription)
-        ////{
-        ////    String Query = "Select ";
-        ////    foreach (String St in TableColumns)
-        ////    {
-        ////        if (TableColumns.First().ToString().ToUpper() == St.ToUpper())
-        ////        {
-        ////            Query = Query + St;
-        ////        }
-        ////        else
-        ////        {
-        ////            if (TableColumns.Last().ToString().ToUpper() == St.ToUpper())
-        ////            {
-        ////                Query = Query + "," + St + " FROM " + TableName;
-        ////            }
-        ////            else
-        ////            {
-        ////                Query = Query + "," + St;
-        ////            }
-        ////        }
 
-        ////    }
-        ////    if (OrderByColumn != "") { } else { Query = Query + " Order By " + OrderByColumn; }
-        ////    if (TextBoxFocused.Text.Trim().Length == 0)
-        ////    {
-        ////        DataSet ds = ProjectFunctions.GetDataSet(Query);
-        ////        if (ds.Tables[0].Rows.Count > 0)
-        ////        {
-        ////            ReportGrid.DataSource = ds.Tables[0];
-        ////            ReportGrid.Visible = true;
-        ////            ReportGrid.Show();
-        ////            ReportGrid.Focus();
-        ////            ReportGridView.BestFitColumns();
-        ////        }
-        ////    }
-        ////    else
-        ////    {
-        ////        String Query1 = "Select ";
-        ////        foreach (String St in TableColumns)
-        ////        {
-        ////            if (TableColumns.First().ToString().ToUpper() == St.ToUpper())
-        ////            {
-        ////                Query1 = Query1 + St;
-        ////            }
-        ////            else
-        ////            {
-        ////                if (TableColumns.Last().ToString().ToUpper() == St.ToUpper())
-        ////                {
-        ////                    Query1 = Query1 + "," + St + " FROM " + TableName;
-        ////                }
-        ////                else
-        ////                {
-        ////                    Query1 = Query1 + "," + St;
-        ////                }
-        ////            }
-        ////        }
-
-
-        ////        if (TableWhereColumns.Count() > 0)
-        ////        {
-        ////            Query1 = Query1 + " Where ";
-        ////            foreach (String St in TableWhereColumns)
-        ////            {
-        ////                if (TableWhereColumns.First().ToString().ToUpper() == St.ToUpper())
-        ////                {
-        ////                    Query1 = Query1 + St;
-        ////                }
-
-        ////                else
-        ////                {
-        ////                    Query1 = Query1 + " And " + St;
-        ////                }
-
-        ////                DataSet ds1 = GetDataSet(Query1);
-        ////                if (ds1.Tables[0].Rows.Count > 0)
-        ////                {
-        ////                    TextBoxDescription.Text = ds1.Tables[0].Rows[0][0].ToString();
-        ////                    TextBoxFocused.Text = ds1.Tables[0].Rows[0][0].ToString();
-        ////                    TextBoxToBeFocused.Focus();
-        ////                }
-        ////                else
-        ////                {
-        ////                    ReportGrid.DataSource = ds1.Tables[0];
-        ////                    ReportGrid.Show();
-        ////                    ReportGrid.Focus();
-        ////                    ReportGridView.BestFitColumns();
-        ////                }
-        ////            }
-        ////        }
-        ////    }
-        //}
 
         public static bool CheckAllPossible(String ArticleID, Decimal MRP, String ColorID, String SizeID)
         {
@@ -1546,10 +1399,7 @@ namespace WindowsFormsApplication1
                     thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
                     thiscontrol.EnterMoveNextControl = true;
                     thiscontrol.Properties.CharacterCasing = CharacterCasing.Upper;
-                    //if (thiscontrol.Properties.Mask.MaskType == DevExpress.XtraEditors.Mask.MaskType.Numeric)
-                    //{
-                    //    thiscontrol.Properties.Mask.EditMask = "N2";
-                    //}
+
                     thiscontrol.Enter += (o, e) =>
                     {
                         thiscontrol.SelectAll();
@@ -1742,31 +1592,6 @@ namespace WindowsFormsApplication1
 
 
 
-                    //frmXtraReportViewer frm = new frmXtraReportViewer();
-                    //frm.documentViewer1.DocumentSource = Report;
-                    //frm.ShowDialog();
-
-
-
-                    //Report.ShowPreviewDialog();
-
-
-                    //DevExpress.
-
-                    //Report.ShowRibbonPreviewDialog();
-
-                    //PrintToolBase tool = new PrintToolBase(Report.PrintingSystem);
-                    //tool.Print("THERMAL Receipt Printer");
-
-                    //using (var pt = new ReportPrintTool(Report))
-                    //{
-                    //    pt.PrinterSettings.PrinterName = "";
-                    //    pt.PrinterSettings.
-
-                    //    pt.Print();
-                    //    pt.Dispose();
-
-                    //}
                 }
             }
 
@@ -1873,36 +1698,37 @@ namespace WindowsFormsApplication1
             }
         }
         public static void DatePickerVisualize(Control C)
-        {
-            foreach (Control c in C.Controls)
             {
-                if (c.GetType() == typeof(DateEdit))
+                foreach (Control c in C.Controls)
                 {
-                    var thiscontrol = (DateEdit)c;
-                    thiscontrol.EditValue = null;
-                    thiscontrol.EnterMoveNextControl = true;
-                    thiscontrol.Properties.Mask.BeepOnError = true;
-                    thiscontrol.Properties.Mask.EditMask = "dd/MM/yyyy";
-                    thiscontrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
-                    thiscontrol.Properties.Mask.UseMaskAsDisplayFormat = true;
-                    thiscontrol.Properties.Appearance.BorderColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-                    thiscontrol.Properties.Appearance.Options.UseBorderColor = true;
-                    thiscontrol.Properties.AppearanceFocused.BackColor = Color.AliceBlue;
-                    thiscontrol.Properties.AppearanceFocused.BorderColor = Color.FromArgb(0x15, 0x60, 0xA9);
-                    thiscontrol.Properties.AppearanceDisabled.BackColor = Color.Bisque;
-                    thiscontrol.Properties.AppearanceDisabled.Options.UseBackColor = true;
-                    thiscontrol.Properties.AppearanceDisabled.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-                    thiscontrol.Properties.AppearanceFocused.Options.UseBackColor = true;
-                    thiscontrol.Properties.AppearanceFocused.Options.UseBorderColor = true;
-                    thiscontrol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-                    thiscontrol.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-                    thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
-                    thiscontrol.Enter += (o, e) =>
+                    if (c.GetType() == typeof(DateEdit))
                     {
-                        thiscontrol.SelectAll();
-                    };
+                        var thiscontrol = (DateEdit)c;
+                        thiscontrol.EditValue = null;
+                        thiscontrol.EnterMoveNextControl = true;
+                        thiscontrol.Properties.Mask.BeepOnError = true;
+                        thiscontrol.Properties.Mask.EditMask = "dd/MM/yyyy";
+                        thiscontrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+                        thiscontrol.Properties.Mask.UseMaskAsDisplayFormat = true;
+                        thiscontrol.Properties.Appearance.BorderColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+                        thiscontrol.Properties.Appearance.Options.UseBorderColor = true;
+                        thiscontrol.Properties.AppearanceFocused.BackColor = Color.AliceBlue;
+                        thiscontrol.Properties.AppearanceFocused.BorderColor = Color.FromArgb(0x15, 0x60, 0xA9);
+                        thiscontrol.Properties.AppearanceDisabled.BackColor = Color.Bisque;
+                        thiscontrol.Properties.AppearanceDisabled.Options.UseBackColor = true;
+                        thiscontrol.Properties.AppearanceDisabled.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                        thiscontrol.Properties.AppearanceFocused.Options.UseBackColor = true;
+                        thiscontrol.Properties.AppearanceFocused.Options.UseBorderColor = true;
+                        thiscontrol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                        thiscontrol.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+                        thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+                        thiscontrol.Enter += (o, e) =>
+                        {
+                            thiscontrol.SelectAll();
+                        };
+                    }
                 }
             }
-        }
+        
     }
 }

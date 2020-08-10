@@ -8,8 +8,6 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
-using WindowsFormsApplication1;
 using WindowsFormsApplication1.FormReports;
 
 namespace WindowsFormsApplication1.Forms_Transaction
@@ -24,7 +22,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
         public string employee_code { get; set; }
         public string attendance_date { get; set; }
 
-        private string securityPassword = "";
+        private string securityPassword = string.Empty;
 
 
         public frmGatePassTimeAddEdit()
@@ -108,7 +106,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
 
             try
             {
-                string str = "sp_GatePassData_Single '" + _employee_code + "', '" + ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(_attendance_date)) + "', " + _serial_id + "";
+                string str = "sp_GatePassData_Single '" + _employee_code + "', '" + ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(_attendance_date)) + "', " + _serial_id + string.Empty;
 
                 PrintLogWin.PrintLog(str);
 
@@ -436,7 +434,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
                 ColumnView detailView = (ColumnView)gridControl_GatePassData.FocusedView;
 
                 int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));
-                string date_value = detailView.GetFocusedRowCellValue("Date") + "";
+                string date_value = detailView.GetFocusedRowCellValue("Date") + string.Empty;
 
 
                 SetFormValues(0, employee_code, date_value, cellValue_serial_id);
@@ -457,12 +455,12 @@ namespace WindowsFormsApplication1.Forms_Transaction
                 txtEmpCode.Text,
                 ConvertTo.IntVal(txtEmpCode.Tag),
                 txtEmpCodeDesc.Text,
-                txtEmpCodeDesc.Tag + "",
-                txtStatusCode.Tag + "",
-                "",
+                txtEmpCodeDesc.Tag + string.Empty,
+                txtStatusCode.Tag + string.Empty,
+string.Empty,
                 txtStatusCodeDesc.Text,
-                timeEdit_Time_Out.EditValue + "",
-                timeEdit_Time_In.EditValue + "",
+                timeEdit_Time_Out.EditValue + string.Empty,
+                timeEdit_Time_In.EditValue + string.Empty,
                 pictureBox1.Image
                 );
 
@@ -501,12 +499,12 @@ namespace WindowsFormsApplication1.Forms_Transaction
                 txtEmpCode.Text,
                 ConvertTo.IntVal(txtEmpCode.Tag),
                 txtEmpCodeDesc.Text,
-                txtEmpCodeDesc.Tag + "",
-                txtStatusCode.Tag + "",
-                "",
+                txtEmpCodeDesc.Tag + string.Empty,
+                txtStatusCode.Tag + string.Empty,
+string.Empty,
                 txtStatusCodeDesc.Text,
-                timeEdit_Time_Out.EditValue + "",
-                timeEdit_Time_In.EditValue + "",
+                timeEdit_Time_Out.EditValue + string.Empty,
+                timeEdit_Time_In.EditValue + string.Empty,
                 pictureBox1.Image
                 );
             ReportPrintTool printTool = new ReportPrintTool(report);
