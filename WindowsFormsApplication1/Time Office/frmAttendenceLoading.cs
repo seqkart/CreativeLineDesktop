@@ -125,7 +125,7 @@ namespace WindowsFormsApplication1.Forms_Master
                         SerialId = dr[Col.EmployeeAttendance.serial_id],
                         //EntryDate = dr[Col.EmployeeAttendance.entry_date],
                         AttendanceDate = ConvertTo.DateFormatApp(dr[Col.EmployeeAttendance.attendance_date]),
-                        EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
+                        //EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
                         //Shift = dr[Col.DailyShifts.shift_name],
                         Status = dr[Col.AttendanceStatus.status],
                         TimeIn_First = dr[Col.EmployeeAttendance.attendance_in_first],
@@ -134,6 +134,7 @@ namespace WindowsFormsApplication1.Forms_Master
                         TimeOut_Last = dr[Col.EmployeeAttendance.attendance_out_last],
                         WorkingHours = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.working_hours]),                        
                         OverTime = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.ot_deducton_time]),
+                        OverTime_1 = ConvertTo.IntVal(dr[Col.EmployeeAttendance.ot_deducton_time]),
                         GatePassTime = dr[Col.EmployeeAttendance.gate_pass_time],
                         Source = dr[Col.AttendanceSource.source_name],
                         RowStyle = dr[Col.GridStyle.Row_Style]
@@ -152,10 +153,84 @@ namespace WindowsFormsApplication1.Forms_Master
                 {
                     gridView_AttendanceData.Columns["RowStyle"].Visible = false;
                 }
-                
-                
+                if (gridView_AttendanceData.Columns["OverTime_1"] != null)
+                {
+                    gridView_AttendanceData.Columns["OverTime_1"].Visible = false;
+                }
+
+                if (binding_list.Count > 0)
+                {
+                    //GridColumnSummaryItem item1 = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Max, "GatePassTime", "MAX GatePassTime={0}");
+                    //GridColumnSummaryItem item2 = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Min, "GatePassTime", "MIN GatePassTime={0}");
+                    //gridView_AttendanceData.Columns["GatePassTime"].Summary.Add(item1);
+                    //gridView_AttendanceData.Columns["GatePassTime"].Summary.Add(item2);
+
+                    //gridView_AttendanceData.Columns["WorkingHours"].Summary.Add(DevExpress.Data.SummaryItemType.Average, "WorkingHours", "Avg={0:n2}");
+                    //gridView_AttendanceData.Columns["WorkingHours"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "WorkingHours", "Sum={0}");
+                    //GridColumnSummaryItem item = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Max, "WorkingHours", "Max={0}");
+                    //gridView_AttendanceData.Columns["WorkingHours"].Summary.Add(item);
+
+                    //gridView_AttendanceData.Columns["OverTime"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "OverTime_1", "Total OverTime={0}",);
+                    /*
+                                        GridColumnSummaryItem item = new GridColumnSummaryItem();
+                                        item.SummaryType = DevExpress.Data.SummaryItemType.Custom;
+
+                                        item.Tag = "OverTime_Summary";
+                                        gridView_AttendanceData.Columns["OverTime"].Summary.Add(item);
+                    */
+                    //item = new GridColumnSummaryItem();
+                    //item.SummaryType = DevExpress.Data.SummaryItemType.Custom;
+                    //item.Tag = "2";
+                    //gridView_AttendanceData.Columns["OverTime"].Summary.Add(item);
+
+                    gridView_AttendanceData.Columns["OverTime_1"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "OverTime_1", string.Empty);
+                    gridView_AttendanceData.Columns["OverTime"].Summary.Add(DevExpress.Data.SummaryItemType.Custom);
+
+                    gridView_AttendanceData.UpdateTotalSummary();
+
+                }
+
             }
             
+        }
+
+        
+        private void gridView_AttendanceData_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.IsTotalSummary && (e.Item as GridSummaryItem).FieldName == "OverTime")
+            {
+                GridSummaryItem item = e.Item as GridSummaryItem;
+                if (item.FieldName == "OverTime")
+                {
+                    e.TotalValue = "Over Time : " + ConvertTo.MinutesToHours(view.Columns["OverTime_1"].SummaryText);
+                }
+            }
+            
+        }
+        bool IsInvalidValue(object value)
+        {
+            return true;
+        }
+        private void gridView_AttendanceData_CustomDrawFooterCell(object sender, DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventArgs e)
+        {
+            if (IsInvalidValue(e.Info.Value))
+            {
+                /*
+                StringFormat format = new StringFormat();
+                format.Alignment = StringAlignment.Near;
+                Rectangle r = e.Bounds;
+                r.Inflate(-2, 0);
+                Font f = new System.Drawing.Font("Tahoma", 8.25f, FontStyle.Bold);
+
+                e.Appearance.BackColor = Color.FromArgb(50, 255, 0, 0);
+                e.Appearance.DrawString(e.Cache, e.Info.DisplayText, r, f, format);
+                */
+
+                e.Appearance.BackColor = Color.FromArgb(50, 255, 0, 0);
+                e.Appearance.FillRectangle(e.Cache, e.Bounds);
+                e.Info.AllowDrawBackground = false;
+            }
         }
 
         private void OpenAttendanceForm(int _serial_id, string _employee_code, string _attendance_date)

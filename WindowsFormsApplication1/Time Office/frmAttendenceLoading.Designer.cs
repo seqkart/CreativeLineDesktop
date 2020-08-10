@@ -300,7 +300,12 @@ namespace WindowsFormsApplication1.Forms_Master
             // 
             this.gridView_AttendanceData.GridControl = this.gridControl_AttendanceData;
             this.gridView_AttendanceData.Name = "gridView_AttendanceData";
+            this.gridView_AttendanceData.OptionsMenu.ShowFooterItem = true;
+            this.gridView_AttendanceData.OptionsMenu.ShowSummaryItemMode = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView_AttendanceData.OptionsView.ShowFooter = true;
+            this.gridView_AttendanceData.CustomDrawFooterCell += new DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventHandler(this.gridView_AttendanceData_CustomDrawFooterCell);
             this.gridView_AttendanceData.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView_AttendanceData_RowStyle);
+            this.gridView_AttendanceData.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView_AttendanceData_CustomSummaryCalculate);
             // 
             // gridControl_AttendanceData
             // 
@@ -335,7 +340,6 @@ namespace WindowsFormsApplication1.Forms_Master
             this.DtStartDate.Properties.MaxLength = 6;
             this.DtStartDate.Size = new System.Drawing.Size(90, 20);
             this.DtStartDate.TabIndex = 1;
-                      //this.DtStartDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtStartDate_KeyDown);
             // 
             // label13
             // 
