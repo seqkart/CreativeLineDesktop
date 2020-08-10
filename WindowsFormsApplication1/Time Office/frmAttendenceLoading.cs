@@ -206,6 +206,7 @@ namespace WindowsFormsApplication1.Forms_Master
                     e.TotalValue = "Over Time : " + ConvertTo.MinutesToHours(view.Columns["OverTime_1"].SummaryText);
                 }
             }
+
             
         }
         bool IsInvalidValue(object value)
