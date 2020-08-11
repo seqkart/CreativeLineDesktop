@@ -47,7 +47,6 @@
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource_EmpMST = new System.Windows.Forms.BindingSource(this.components);
             this.DetailReport2 = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail3 = new DevExpress.XtraReports.UI.DetailBand();
@@ -150,12 +149,13 @@
             this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTableCell48 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel36 = new DevExpress.XtraReports.UI.XRLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_EmpMST)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -380,10 +380,6 @@
             this.xrLabel11.Text = "Employee Code";
             this.xrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
-            // bindingSource2
-            // 
-            this.bindingSource2.DataSource = typeof(SeqKartLibrary.Models.EmployeeAttendanceDetails_Model);
-            // 
             // DetailReport2
             // 
             this.DetailReport2.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -480,6 +476,7 @@
             this.xrTableCell2.StylePriority.UseFont = false;
             this.xrTableCell2.Text = "xrTableCell2";
             this.xrTableCell2.Weight = 1D;
+            this.xrTableCell2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel_TimeIn_Out_BeforePrint);
             // 
             // xrTableCell3
             // 
@@ -491,6 +488,7 @@
             this.xrTableCell3.StylePriority.UseFont = false;
             this.xrTableCell3.Text = "xrTableCell3";
             this.xrTableCell3.Weight = 1D;
+            this.xrTableCell3.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel_TimeIn_Out_BeforePrint);
             // 
             // xrTableCell19
             // 
@@ -587,6 +585,7 @@
             this.xrTableCell5.StylePriority.UseFont = false;
             this.xrTableCell5.Text = "xrTableCell5";
             this.xrTableCell5.Weight = 1D;
+            this.xrTableCell5.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel_TimeIn_Out_BeforePrint);
             // 
             // xrTableCell6
             // 
@@ -598,6 +597,7 @@
             this.xrTableCell6.StylePriority.UseFont = false;
             this.xrTableCell6.Text = "xrTableCell6";
             this.xrTableCell6.Weight = 1D;
+            this.xrTableCell6.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel_TimeIn_Out_BeforePrint);
             // 
             // xrTableCell20
             // 
@@ -896,7 +896,7 @@
             // xrLabel39
             // 
             this.xrLabel39.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[EmployeesSalaryList].[SalaryGenerationBasic]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[EmpSalary]")});
             this.xrLabel39.Font = new System.Drawing.Font("Calibri Light", 10F, System.Drawing.FontStyle.Bold);
             this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrLabel39.Name = "xrLabel39";
@@ -992,7 +992,7 @@
             // xrLabel43
             // 
             this.xrLabel43.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SalaryGenerationBasic]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SalaryEarn]")});
             this.xrLabel43.Font = new System.Drawing.Font("Calibri Light", 10F, System.Drawing.FontStyle.Bold);
             this.xrLabel43.LocationFloat = new DevExpress.Utils.PointFloat(0F, 6.357829E-05F);
             this.xrLabel43.Multiline = true;
@@ -1503,6 +1503,10 @@
             this.xrLabel36.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             this.xrLabel36.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel_All_BeforePrint);
             // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(SeqKartLibrary.Models.EmployeeAttendanceDetails_Model);
+            // 
             // XtraReport_EmployeeAttendance
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1522,12 +1526,12 @@
             this.PageHeight = 850;
             this.PageWidth = 1100;
             this.Version = "20.1";
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_EmpMST)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

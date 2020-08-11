@@ -68,6 +68,7 @@ namespace WindowsFormsApplication1.Forms_Master
             this.btnPrintPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnExportXsls = new DevExpress.XtraEditors.SimpleButton();
+            this.lblemp = new DevExpress.XtraEditors.LabelControl();
             this.Menu_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SFeedingGridView)).BeginInit();
@@ -300,9 +301,8 @@ namespace WindowsFormsApplication1.Forms_Master
             // 
             this.gridView_AttendanceData.GridControl = this.gridControl_AttendanceData;
             this.gridView_AttendanceData.Name = "gridView_AttendanceData";
-            this.gridView_AttendanceData.OptionsMenu.ShowFooterItem = true;
-            this.gridView_AttendanceData.OptionsMenu.ShowSummaryItemMode = DevExpress.Utils.DefaultBoolean.True;
             this.gridView_AttendanceData.OptionsView.ShowFooter = true;
+            this.gridView_AttendanceData.OptionsView.ShowGroupPanel = false;
             this.gridView_AttendanceData.CustomDrawFooterCell += new DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventHandler(this.gridView_AttendanceData_CustomDrawFooterCell);
             this.gridView_AttendanceData.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView_AttendanceData_RowStyle);
             this.gridView_AttendanceData.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView_AttendanceData_CustomSummaryCalculate);
@@ -321,52 +321,62 @@ namespace WindowsFormsApplication1.Forms_Master
             // 
             // btnLoad_Data
             // 
-            this.btnLoad_Data.Location = new System.Drawing.Point(592, 52);
+            this.btnLoad_Data.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLoad_Data.ImageOptions.Image")));
+            this.btnLoad_Data.Location = new System.Drawing.Point(606, 49);
             this.btnLoad_Data.Name = "btnLoad_Data";
-            this.btnLoad_Data.Size = new System.Drawing.Size(95, 20);
+            this.btnLoad_Data.Size = new System.Drawing.Size(110, 30);
             this.btnLoad_Data.TabIndex = 3;
             this.btnLoad_Data.Text = "Load";
             this.btnLoad_Data.Click += new System.EventHandler(this.btnLoad_Data_Click);
             // 
             // DtStartDate
             // 
-            this.DtStartDate.Location = new System.Drawing.Point(110, 52);
+            this.DtStartDate.EnterMoveNextControl = true;
+            this.DtStartDate.Location = new System.Drawing.Point(126, 38);
             this.DtStartDate.Name = "DtStartDate";
+            this.DtStartDate.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtStartDate.Properties.Appearance.Options.UseFont = true;
             this.DtStartDate.Properties.EditFormat.FormatString = "MM-yyyy";
             this.DtStartDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DtStartDate.Properties.Mask.EditMask = "MM-yyyy";
             this.DtStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
             this.DtStartDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.DtStartDate.Properties.MaxLength = 6;
-            this.DtStartDate.Size = new System.Drawing.Size(90, 20);
+            this.DtStartDate.Size = new System.Drawing.Size(90, 24);
             this.DtStartDate.TabIndex = 1;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 56);
+            this.label13.BackColor = System.Drawing.Color.White;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(4, 42);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(99, 13);
+            this.label13.Size = new System.Drawing.Size(119, 17);
             this.label13.TabIndex = 357;
             this.label13.Text = "Select Month/Year";
             // 
             // splitter1
             // 
+            this.splitter1.BackColor = System.Drawing.Color.White;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 27);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(1073, 75);
             this.splitter1.TabIndex = 196;
             this.splitter1.TabStop = false;
+            this.splitter1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter1_SplitterMoved);
             // 
             // txtEmpCode
             // 
             this.txtEmpCode.EnterMoveNextControl = true;
-            this.txtEmpCode.Location = new System.Drawing.Point(285, 52);
+            this.txtEmpCode.Location = new System.Drawing.Point(126, 64);
             this.txtEmpCode.Name = "txtEmpCode";
+            this.txtEmpCode.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmpCode.Properties.Appearance.Options.UseFont = true;
             this.txtEmpCode.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmpCode.Properties.MaxLength = 6;
-            this.txtEmpCode.Size = new System.Drawing.Size(90, 20);
+            this.txtEmpCode.Size = new System.Drawing.Size(90, 24);
             this.txtEmpCode.TabIndex = 2;
             this.txtEmpCode.EditValueChanged += new System.EventHandler(this.txtEmpCode_EditValueChanged);
             this.txtEmpCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpCode_KeyDown);
@@ -374,15 +384,17 @@ namespace WindowsFormsApplication1.Forms_Master
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(223, 56);
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(57, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(66, 17);
             this.label1.TabIndex = 359;
             this.label1.Text = "EmpCode";
             // 
             // HelpGrid
             // 
-            this.HelpGrid.Location = new System.Drawing.Point(285, 76);
+            this.HelpGrid.Location = new System.Drawing.Point(243, 213);
             this.HelpGrid.MainView = this.HelpGridView;
             this.HelpGrid.Name = "HelpGrid";
             this.HelpGrid.Size = new System.Drawing.Size(359, 160);
@@ -409,49 +421,68 @@ namespace WindowsFormsApplication1.Forms_Master
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(386, 56);
+            this.label2.Location = new System.Drawing.Point(59, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 362;
             this.label2.Text = "Emp Name";
+            this.label2.Visible = false;
             // 
             // txtEmpName
             // 
             this.txtEmpName.EnterMoveNextControl = true;
-            this.txtEmpName.Location = new System.Drawing.Point(453, 52);
+            this.txtEmpName.Location = new System.Drawing.Point(126, 67);
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmpName.Properties.MaxLength = 6;
             this.txtEmpName.Properties.ReadOnly = true;
             this.txtEmpName.Size = new System.Drawing.Size(90, 20);
             this.txtEmpName.TabIndex = 361;
+            this.txtEmpName.Visible = false;
             // 
             // btnPrintPreview
             // 
-            this.btnPrintPreview.Location = new System.Drawing.Point(697, 52);
+            this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
+            this.btnPrintPreview.Location = new System.Drawing.Point(719, 49);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(95, 20);
+            this.btnPrintPreview.Size = new System.Drawing.Size(110, 30);
             this.btnPrintPreview.TabIndex = 363;
             this.btnPrintPreview.Text = "Print Preview";
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(802, 52);
+            this.btnPrint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.ImageOptions.Image")));
+            this.btnPrint.Location = new System.Drawing.Point(832, 49);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(95, 20);
+            this.btnPrint.Size = new System.Drawing.Size(110, 30);
             this.btnPrint.TabIndex = 364;
             this.btnPrint.Text = "Print";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnExportXsls
             // 
-            this.btnExportXsls.Location = new System.Drawing.Point(907, 52);
+            this.btnExportXsls.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportXsls.ImageOptions.Image")));
+            this.btnExportXsls.Location = new System.Drawing.Point(945, 49);
             this.btnExportXsls.Name = "btnExportXsls";
-            this.btnExportXsls.Size = new System.Drawing.Size(95, 20);
+            this.btnExportXsls.Size = new System.Drawing.Size(110, 30);
             this.btnExportXsls.TabIndex = 365;
             this.btnExportXsls.Text = "Export To XLS";
             this.btnExportXsls.Click += new System.EventHandler(this.btnExportXsls_Click);
+            // 
+            // lblemp
+            // 
+            this.lblemp.Appearance.BackColor = System.Drawing.Color.White;
+            this.lblemp.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblemp.Appearance.Options.UseBackColor = true;
+            this.lblemp.Appearance.Options.UseFont = true;
+            this.lblemp.Location = new System.Drawing.Point(222, 68);
+            this.lblemp.Name = "lblemp";
+            this.lblemp.Size = new System.Drawing.Size(9, 17);
+            this.lblemp.TabIndex = 366;
+            this.lblemp.Text = "...";
+            this.lblemp.ToolTip = "EMPLOYEE NAME";
+            this.lblemp.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             // 
             // frmAttendenceLaoding
             // 
@@ -459,12 +490,11 @@ namespace WindowsFormsApplication1.Forms_Master
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1073, 477);
             this.ControlBox = false;
+            this.Controls.Add(this.HelpGrid);
+            this.Controls.Add(this.lblemp);
             this.Controls.Add(this.btnExportXsls);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnPrintPreview);
-            this.Controls.Add(this.HelpGrid);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtEmpName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtEmpCode);
             this.Controls.Add(this.gridControl_AttendanceData);
@@ -474,6 +504,8 @@ namespace WindowsFormsApplication1.Forms_Master
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.SFeedingGrid);
             this.Controls.Add(this.Menu_ToolStrip);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtEmpName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmAttendenceLaoding";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -535,5 +567,6 @@ namespace WindowsFormsApplication1.Forms_Master
         private DevExpress.XtraEditors.SimpleButton btnPrintPreview;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.SimpleButton btnExportXsls;
+        private DevExpress.XtraEditors.LabelControl lblemp;
     }
 }

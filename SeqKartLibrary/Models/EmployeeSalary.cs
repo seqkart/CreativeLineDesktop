@@ -16,11 +16,12 @@ namespace SeqKartLibrary.Models
         public double SalaryPerHour { get; set; }
         public int AttendanceDays { get; set; }
         public int EmployeeLeaves { get; set; }
+        public double SalaryEarn { get; set; }
         public int OT_Time { get; set; }
         public double OT_Salary { get; set; }
         public int DeductionTime { get; set; }
         public double DeductionSalary { get; set; }
-        public double SalaryGenerationBasic { get; set; }
+        public double SalaryGenerateBasic { get; set; }
         public double AdvanceSalary { get; set; }
         public double Loan { get; set; }
         public double SalaryCalculated { get; set; }

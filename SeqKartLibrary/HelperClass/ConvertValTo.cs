@@ -91,6 +91,37 @@ namespace SeqKartLibrary.HelperClass
             return DateTime.Now;
         }
 
+        public static string TimeSpanString(object val)
+        {
+            try
+            {
+                if (val == DBNull.Value)
+                {
+                    return ("");
+                }
+                if (val == null)
+                {
+                    return ("");
+                }
+                if ((val + "").Equals(""))
+                {
+                    return ("");
+                }
+                if ((val + "").Equals("0"))
+                {
+                    return ("");
+                }
+                return ConvertTo.TimeSpanVal(val).ToString(@"hh\:mm");
+            }
+            catch(Exception ex)
+            {
+                PrintLogWinForms.PrintLog("ConvertTo => TimeSpanString => Exception : " + ex);
+
+            }
+
+            return ("");
+        }
+
         public static TimeSpan TimeSpanVal(object val)
         {
             try

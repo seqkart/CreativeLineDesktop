@@ -22,7 +22,8 @@ namespace WindowsFormsApplication1.Prints
             if (label.Text.Length > 0)
             {
                 label.Text = label.Text.Replace("-", "\r\n");// "address line 1" + Environment.NewLine + "address line 2";
-            }           
+            }
+           
         }
 
         private void xrLabel_Date_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -41,6 +42,12 @@ namespace WindowsFormsApplication1.Prints
         {
             XRLabel label = (XRLabel)sender;
             label.Text = ConvertTo.MinutesToHours(label.Text);
+        }
+
+        private void xrLabel_TimeIn_Out_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            XRLabel label = (XRLabel)sender;
+            label.Text = ConvertTo.TimeSpanString(label.Text);
         }
 
         private void xrPictureBox1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)

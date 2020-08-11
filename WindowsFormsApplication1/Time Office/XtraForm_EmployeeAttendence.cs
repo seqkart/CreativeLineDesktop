@@ -1,21 +1,33 @@
-﻿using Dapper;
-using DevExpress.XtraBars.Docking2010;
-using DevExpress.XtraEditors;
-using SeqKartLibrary;
-using SeqKartLibrary.CrudTask;
-using SeqKartLibrary.HelperClass;
-using SeqKartLibrary.Models;
-using SeqKartLibrary.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Text;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using DevExpress.XtraLayout.Helpers;
+using DevExpress.XtraLayout;
+using DevExpress.XtraBars.Docking2010;
+using System.Data.SqlClient;
+using HumanResourceManagementSystem;
+using SeqKartLibrary;
+using SeqKartLibrary.CrudTask;
+using System.Globalization;
+using SeqKartLibrary.HelperClass;
+using SeqKartLibrary.Models;
+using static SeqKartLibrary.CrudTask.CrudAction;
 using WindowsFormsApplication1.Forms_Master;
+using SeqKartLibrary.Repository;
+using Dapper;
+using System.Threading;
+using DevExpress.XtraEditors.Mask;
+using DevExpress.CodeParser;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace WindowsFormsApplication1.Time_Office
 {
@@ -27,10 +39,10 @@ namespace WindowsFormsApplication1.Time_Office
 
         //private string selected_employee_code = "";
         public int selected_serial_id = 0;// { get; set; }
-        public string come_from = string.Empty;// { get; set; }
+        public string come_from = "";// { get; set; }
 
-        public string selected_employee_code = string.Empty;
-        public string selected_attendance_date = string.Empty;
+        public string selected_employee_code = "";
+        public string selected_attendance_date = "";
 
         private bool next_date_after_save = false;
 
@@ -43,20 +55,20 @@ namespace WindowsFormsApplication1.Time_Office
             this._frmAttendenceLaoding = parent;
             this.selected_serial_id = _selected_serial_id;
             this.selected_employee_code = _selected_employee_code;
-            this.selected_attendance_date = _selected_attendance_date;
+            this.selected_attendance_date = _selected_attendance_date;            
 
             this.come_from = _come_from;
-
+            
 
             PrintLogWin.PrintLog("selected_serial_id 1 => " + selected_serial_id);
 
-
+            
         }
 
         private void ReloadDataGrid_Parent()
         {
             ThresholdReachedEventArgs eventArgs = new ThresholdReachedEventArgs();
-            eventArgs.EmpCode = GetEditValue(txtEmpID) + string.Empty;
+            eventArgs.EmpCode = GetEditValue(txtEmpID) + "";
             eventArgs.AttendanceDate = dateAttendance.Value;
 
             _frmAttendenceLaoding.ReloadDataGrid(null, eventArgs);
@@ -103,9 +115,16 @@ namespace WindowsFormsApplication1.Time_Office
             lblDayName.Text = today.ToString("dddd");
 
             employeeFormData_Load(selected_employee_code);
-            ProjectFunctions.DatePickerVisualize(this);
 
 
+        }
+
+        private void editor_EditValueChanged(object sender, EventArgs e)
+        {
+            if ((sender as BaseEdit).Tag == null)
+            {
+                //My event handler  
+            }
         }
 
         public object GetEditValue(BaseEdit editor)
@@ -116,8 +135,8 @@ namespace WindowsFormsApplication1.Time_Office
             }
             finally
             {
-
-            }
+                
+            }            
         }
 
         public void SetComboSelectedValue(System.Windows.Forms.ComboBox combo, object newEditValue)
@@ -125,7 +144,7 @@ namespace WindowsFormsApplication1.Time_Office
             try
             {
                 combo.Tag = 0;
-                ControllerUtils.SelectItemByValue(combo, newEditValue + string.Empty);
+                ControllerUtils.SelectItemByValue(combo, newEditValue + "");
             }
             finally
             {
@@ -136,12 +155,12 @@ namespace WindowsFormsApplication1.Time_Office
         public void SetComboSelectedValue_NullTag(System.Windows.Forms.ComboBox combo, object newEditValue)
         {
             try
-            {
-                ControllerUtils.SelectItemByValue(combo, newEditValue + string.Empty);
+            {                
+                ControllerUtils.SelectItemByValue(combo, newEditValue + "");
             }
             finally
             {
-
+                
             }
         }
 
@@ -161,12 +180,12 @@ namespace WindowsFormsApplication1.Time_Office
         public void SetEditValue_NullTag(BaseEdit editor, object newEditValue)
         {
             try
-            {
+            {                
                 editor.EditValue = newEditValue;
             }
             finally
             {
-
+                
             }
         }
 
@@ -228,19 +247,19 @@ namespace WindowsFormsApplication1.Time_Office
             {
 
             }
-
+            
         }
         private void employeeFormData_Load(string EmpCode)
         {
             windowsUIButtonPanelMain.Enabled = false;
 
-            PrintLogWin.PrintLog("********************* 2");
+            PrintLogWin.PrintLog("********************* 2");            
 
             RepList<EmployeeMasterModel> lista = new RepList<EmployeeMasterModel>();
             DynamicParameters param = new DynamicParameters();
             param.Add("@EmpCode", EmpCode);
 
-
+           
             EmployeeMasterModel empData = lista.returnClass_SP(SQL_QUERIES._sp_EmployeeDetails(), param);
 
             PrintLogWin.PrintLog("employeeFormData_Load 1 => SQL => ******************** sp_EmployeeDetails '" + EmpCode + "'");
@@ -264,10 +283,10 @@ namespace WindowsFormsApplication1.Time_Office
 
                 SetProfilePicture(empData.EmpImage);
 
-                SetDailyWageControls(empData.DailyWage, empData.DailyWageMinutes, empData.DailyWageRate);
+                SetDailyWageControls(empData.DailyWage, empData.DailyWageMinutes, empData.DailyWageRate);                
 
                 PrintLogWin.PrintLog("employeeFormData_Load 2 => ********************");
-
+                
 
                 LoadAttendanceData();
             }
@@ -321,7 +340,7 @@ namespace WindowsFormsApplication1.Time_Office
             dailyShift.shift_id = 1;
             dailyShift.shift_name = "Daily Shift";
             dailyShifts_List.Add(dailyShift);
-
+            
             if (ComparisonUtils.IsNotNull_List(dailyShifts_List))
             {
                 comboBox_Shift.DataSource = dailyShifts_List;
@@ -376,14 +395,14 @@ namespace WindowsFormsApplication1.Time_Office
 
                 SetEditValue(txtStatusType, query_attendance.status_type);
                 //////////////////////////////////////
-
+                
                 SetEditValue_NullTag(totalWorkingHours_Text, query_attendance.working_hours);
                 SetEditValue(timeEdit_GatePassTime, query_attendance.gate_pass_time);
                 SetEditValue_NullTag(txtOvertimeHours, query_attendance.ot_deducton_time);
 
                 //ControllerUtils.SelectItemByValue(comboBox_Status, "2");
                 //ControllerUtils.SelectItemByValue(comboBox_Status, query_attendance.status_id + "");
-
+                
 
                 //ControllerUtils.SelectItemByValue(comboBox_Shift, query_attendance.shift_id + "");
 
@@ -404,7 +423,7 @@ namespace WindowsFormsApplication1.Time_Office
                     radioButtonMachine.Checked = true;
                 }
 
-
+                
                 if (query_attendance.DailyWage)
                 {
                     //////////////
@@ -414,17 +433,17 @@ namespace WindowsFormsApplication1.Time_Office
                 {
                     CalculateDUtyHours("calculate_on_load");
                 }
-
+                    
             }
             else
             {
                 form_loaded = true;
 
                 SetEditValue(txtSerial_ID, 0);
-
+                
 
                 labelDate_Current.Text = ConvertTo.DateFormatApp(DateTime.Now);//culture                
-
+                
                 SetEditValue_NullTag(totalWorkingHours_Text, 0);
                 SetEditValue(timeEdit_GatePassTime, 0);
                 SetEditValue_NullTag(txtOvertimeHours, 0);
@@ -455,24 +474,24 @@ namespace WindowsFormsApplication1.Time_Office
                 SetStatusByWeekdays();
                 SetComboSelectedValue(comboBox_Shift, "1");
 
-
+                
             }
             PrintLogWin.PrintLog("********************* 1 ");
-
+            
             ReloadDataGrid_Parent();
 
             windowsUIButtonPanelMain.Enabled = true;
 
         }
 
-        private void SetStatusByWeekdays()
+        private void  SetStatusByWeekdays()
         {
             int status_id = 1;
             DateTime today = dateAttendance.Value;
 
             if (IsString.IsEqualTo(today.ToString("dddd"), "Sunday"))
             {
-                foreach (var item in attendanceStatu_List)
+                foreach(var item in attendanceStatu_List)
                 {
                     if (IsString.IsEqualTo(item.status_code, "RR"))
                     {
@@ -492,7 +511,7 @@ namespace WindowsFormsApplication1.Time_Office
                     SetComboSelectedValue_NullTag(comboBox_Status, status_id);
                 }
                 SetEditValue(txtStatusType, "0000");
-            }
+            }            
             else
             {
                 if (next_date_after_save)
@@ -505,14 +524,14 @@ namespace WindowsFormsApplication1.Time_Office
                     else
                     {
                         SetComboSelectedValue(comboBox_Status, "1");
-                    }
+                    }                        
                 }
                 else
                 {
                     SetComboSelectedValue_NullTag(comboBox_Status, "10");
                     Thread.Sleep(100);
                     SetComboSelectedValue_NullTag(comboBox_Status, "1");
-                }
+                }                
                 SetEditValue(txtStatusType, "1111");
             }
             PrintLogWin.PrintLog("SetStatusByWeekdays => " + today);
@@ -521,9 +540,9 @@ namespace WindowsFormsApplication1.Time_Office
             //Console.WriteLine(today.ToString("dddd"));      // Outputs "Thursday"
             //Console.WriteLine(today.ToString("ddd"));       // Outputs "Thu"
         }
+        
 
-
-
+       
         //private 
         private void LoadControls()
         {
@@ -531,7 +550,7 @@ namespace WindowsFormsApplication1.Time_Office
             txtEmpID.Properties.ReadOnly = false;
             txtDepartment.Properties.ReadOnly = true;
             txtDesignation.Properties.ReadOnly = true;
-            textUnit.Properties.ReadOnly = true;
+            textUnit.Properties.ReadOnly = true;            
 
             radioButtonManual.Checked = true;
             radioButtonMachine.Checked = false;
@@ -568,6 +587,28 @@ namespace WindowsFormsApplication1.Time_Office
             //radioButtonMachine.
         }
 
+        //private void txtEmpCode_EditValueChanged(object sender, EventArgs e)
+        //{
+        //    //txtEmpCodeDesc.Text = string.Empty;
+
+        //    //if (txtEmpCode.Text.Length >= 4 && DtDate.Text.Length >= 8)
+        //    //{
+        //    //    LoadGatePassDataGrid();
+        //    //}
+
+            
+        //}
+
+        private void cbEmpID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (cbEmpID.SelectedItem != null)
+            //{
+            //    employeeFormData_Load(cbEmpID.SelectedItem.ToString());
+
+            //}
+            
+        }
+        
 
         async void windowsUIButtonPanelMain_ButtonClick(object sender, ButtonEventArgs e)
         {
@@ -597,7 +638,7 @@ namespace WindowsFormsApplication1.Time_Office
                     //selected_serial_id = 0;
                     //LoadAttendanceData();
 
-                    break;
+                    break;                
                 case "reset":
                     /* Navigate to page D */
                     form_loaded = false;
@@ -616,7 +657,7 @@ namespace WindowsFormsApplication1.Time_Office
                             _frmAttendenceLaoding.LoadAttendanceDataGrid();
 
                             dateAttendance.Value = dateAttendance.Value.AddDays(-1);
-
+                           
                         }
                     }
 
@@ -639,12 +680,12 @@ namespace WindowsFormsApplication1.Time_Office
         private ExecuteResult DeleteEmployeeAttendanceDetails()
         {
             ExecuteResult executeResult = new ExecuteResult();
-
+            
             if (ConvertTo.IntVal(GetEditValue(txtSerial_ID)) != 0)
-            {
+            {               
                 executeResult = AttendanceData.DeleteAttendance(ConvertTo.IntVal(GetEditValue(txtSerial_ID)));
             }
-
+            
 
             if (executeResult.Status == ExecuteStatus.OK)
             {
@@ -664,7 +705,7 @@ namespace WindowsFormsApplication1.Time_Office
         {
             //var result = Task.Run(() => SaveEmployeeAttendanceDetails().Result).Result;
             //Task.Run(() => SaveEmployeeAttendanceDetails());
-            await SaveEmployeeAttendanceDetails();
+           await SaveEmployeeAttendanceDetails();
         }
 
         private async Task SaveEmployeeAttendanceDetails()
@@ -703,7 +744,7 @@ namespace WindowsFormsApplication1.Time_Office
 
                 if (existing_serial_id != 0)
                 {
-
+                    
                     //selected_serial_id = 0;
                     //crudAction = CrudAction.Create;
                     if (XtraMessageBox.Show("Attendance already entered on this date. Do you want to update this record?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -720,7 +761,7 @@ namespace WindowsFormsApplication1.Time_Office
                         //MessageBox.Show("crudAction : " + crudAction);
                         //this.Close();
 
-
+                        
                     }
                 }
                 else
@@ -745,12 +786,12 @@ namespace WindowsFormsApplication1.Time_Office
 
             //MessageBox.Show(isValidate + "");
 
-            if (isValidate && !isDebug)
+            if (isValidate && !isDebug)            
             {
-
+                
                 //await Task.Delay(100);
                 //ProjectFunctions.SpeakError("Record has been saved");
-
+               
                 bool isDailyWager = ConvertTo.BooleanVal(txtDailyWager.EditValue);
 
                 //if (crudAction == CrudAction.Create)
@@ -792,14 +833,14 @@ namespace WindowsFormsApplication1.Time_Office
                         employeeAttendance.working_hours = ConvertTo.IntVal(totalWorkingHours_Text.Text);
                     }
 
-
+                    
                     employeeAttendance.shift_id = ConvertTo.IntVal(comboBox_Shift.SelectedValue);
                     int att_source = AttendanceSource(radioButtonManual.Checked, radioButtonMachine.Checked);
                     employeeAttendance.attendance_source = att_source;
                     employeeAttendance.gate_pass_time = ConvertTo.IntVal(timeEdit_GatePassTime.EditValue);
                     employeeAttendance.ot_deducton_time = ConvertTo.IntVal(txtOvertimeHours.EditValue);
 
-
+                    
                     string str = "sp_EmployeeAttendance_AddEdit";
                     RepGen reposGen = new RepGen();
                     DynamicParameters param = new DynamicParameters();
@@ -839,7 +880,7 @@ namespace WindowsFormsApplication1.Time_Office
                     }
                     next_date_after_save = true;
                     dateAttendance.Value = dateAttendance.Value.AddDays(1);
-
+                    
                     PrintLogWin.PrintLog("Insert => attendance_in_first : " + employeeAttendance.attendance_in_first);
                     PrintLogWin.PrintLog("Insert => attendance_out_first : " + employeeAttendance.attendance_out_first);
                     PrintLogWin.PrintLog("Insert => attendance_in_last : " + employeeAttendance.attendance_in_last);
@@ -860,7 +901,7 @@ namespace WindowsFormsApplication1.Time_Office
                 if (ConvertTo.IntVal(GetEditValue(txtSerial_ID)) != 0)
                 {
 
-                    string str = "sp_EmployeeAttendance_AddEdit";
+                    string str = "sp_EmployeeAttendance_AddEdit";                    
 
                     EmployeeAttendance employeeAttendance = new EmployeeAttendance();
 
@@ -921,7 +962,7 @@ namespace WindowsFormsApplication1.Time_Office
                     param.Add("@output", dbType: DbType.Int32, direction: ParameterDirection.Output);
                     param.Add("@Returnvalue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-
+                    
                     string intResult = await reposGen.executeNonQuery_SP_Async(str, param);
                     if (intResult.Equals("0"))
                     {
@@ -976,8 +1017,8 @@ namespace WindowsFormsApplication1.Time_Office
         }
 
         private bool Validate_Form()
-        {
-
+        {           
+            
             if (ComparisonUtils.IsEmpty(txtEmpID.Text))
             {
                 //MessageBox.Show("Please select an Employee ID first");
@@ -1041,7 +1082,7 @@ namespace WindowsFormsApplication1.Time_Office
                     }
 
                 }
-
+                
                 if (IsString.IsEqualTo(txtStatusType.EditValue, "1100"))
                 {
                     PrintLogWin.PrintLog("+++++++++++++ G");
@@ -1061,7 +1102,7 @@ namespace WindowsFormsApplication1.Time_Office
                         return false;
                     }
                 }
-                if (IsString.IsEqualTo(txtStatusType.EditValue, "0011"))
+                if (IsString.IsEqualTo(txtStatusType.EditValue, "0011"))                
                 {
                     if (ComparisonUtils.IsEmpty(timeEdit_Time_In_Last.EditValue) ||
                         ComparisonUtils.IsEmpty(timeEdit_Time_Out_Last.EditValue))
@@ -1095,12 +1136,12 @@ namespace WindowsFormsApplication1.Time_Office
                 PrintLogWin.PrintLog("2 => " + TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_Last.EditValue)));
                 PrintLogWin.PrintLog("3 => " + TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue)));
 
-
+              
                 if (ComparisonUtils.IsNotEmpty(timeEdit_Time_In_First.EditValue) &&
                         ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_First.EditValue))
                 {
                     PrintLogWin.PrintLog("A-1-1");
-                    if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_First.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.EditValue)) > -1)
+                    if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_First.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.EditValue)) > -1)                    
                     {
                         PrintLogWin.PrintLog("A-1-2");
 
@@ -1115,7 +1156,7 @@ namespace WindowsFormsApplication1.Time_Office
                         ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_Last.EditValue))
                 {
                     PrintLogWin.PrintLog("b-1-1");
-                    if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_Last.EditValue)) > -1)
+                    if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_Last.EditValue)) > -1)                        
                     {
                         PrintLogWin.PrintLog("b-1-2");
 
@@ -1133,7 +1174,7 @@ namespace WindowsFormsApplication1.Time_Office
                 {
                     PrintLogWin.PrintLog("c-1-1");
                     if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue)) == 1)
-
+                        
                     {
                         PrintLogWin.PrintLog("c-1-2");
                         ProjectFunctionsUtils.SpeakError("Time In Last should be greater than Time Out First");
@@ -1142,58 +1183,67 @@ namespace WindowsFormsApplication1.Time_Office
                         return false;
                     }
                 }
-                /*
-                  if (ComparisonUtils.IsNotEmpty(timeEdit_Time_In_First.EditValue) &&
-                          ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_First.EditValue) &&
-                          ComparisonUtils.IsNotEmpty(timeEdit_Time_In_Last.EditValue) &&
-                          ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_Last.EditValue))
-                  {
-                      if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_First_Main.EditValue)) == 1)
-                      {
-                          ProjectFunctionsUtils.SpeakError("Time Out First should be less than " + GetEditValue(timeEdit_Time_Out_First_Main) + "");
+              /*
+                if (ComparisonUtils.IsNotEmpty(timeEdit_Time_In_First.EditValue) &&
+                        ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_First.EditValue) &&
+                        ComparisonUtils.IsNotEmpty(timeEdit_Time_In_Last.EditValue) &&
+                        ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_Last.EditValue))
+                {
+                    if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_First_Main.EditValue)) == 1)
+                    {
+                        ProjectFunctionsUtils.SpeakError("Time Out First should be less than " + GetEditValue(timeEdit_Time_Out_First_Main) + "");
 
-                          timeEdit_Time_Out_First.Focus();
-                          return false;
-                      }
+                        timeEdit_Time_Out_First.Focus();
+                        return false;
+                    }
 
-                      if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_In_Last_Main.EditValue)) == -1)
-                      {
-                          ProjectFunctionsUtils.SpeakError("Time In Last should be greater than " + GetEditValue(timeEdit_Time_In_Last_Main) + "");
+                    if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_In_Last_Main.EditValue)) == -1)
+                    {
+                        ProjectFunctionsUtils.SpeakError("Time In Last should be greater than " + GetEditValue(timeEdit_Time_In_Last_Main) + "");
 
-                          timeEdit_Time_In_Last.Focus();
-                          return false;
-                      }
-                  }
+                        timeEdit_Time_In_Last.Focus();
+                        return false;
+                    }
+                }
 
-                  if (ComparisonUtils.IsNotEmpty(timeEdit_Time_In_First.EditValue) && ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_First.EditValue) &&
-                          (ComparisonUtils.IsEmpty(timeEdit_Time_In_Last.EditValue) || ComparisonUtils.IsEmpty(timeEdit_Time_Out_Last.EditValue)))
-                  {
-                      if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_First_Main.EditValue)) == 1)
-                      {
-                          ProjectFunctionsUtils.SpeakError("Time Out First should be less than " + GetEditValue(timeEdit_Time_Out_First_Main) + "");
+                if (ComparisonUtils.IsNotEmpty(timeEdit_Time_In_First.EditValue) && ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_First.EditValue) &&
+                        (ComparisonUtils.IsEmpty(timeEdit_Time_In_Last.EditValue) || ComparisonUtils.IsEmpty(timeEdit_Time_Out_Last.EditValue)))
+                {
+                    if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_Out_First.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_Out_First_Main.EditValue)) == 1)
+                    {
+                        ProjectFunctionsUtils.SpeakError("Time Out First should be less than " + GetEditValue(timeEdit_Time_Out_First_Main) + "");
 
-                          timeEdit_Time_Out_First.Focus();
-                          return false;
-                      }
+                        timeEdit_Time_Out_First.Focus();
+                        return false;
+                    }
+                    
+                }
 
-                  }
+                if ((ComparisonUtils.IsEmpty(timeEdit_Time_In_First.EditValue) || ComparisonUtils.IsEmpty(timeEdit_Time_Out_First.EditValue)) &&
+                        (ComparisonUtils.IsNotEmpty(timeEdit_Time_In_Last.EditValue) && ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_Last.EditValue)))
+                {
+                    if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_In_Last_Main.EditValue)) == -1)
+                    {
+                        ProjectFunctionsUtils.SpeakError("Time In Last should be greater than " + GetEditValue(timeEdit_Time_In_Last_Main) + "");
 
-                  if ((ComparisonUtils.IsEmpty(timeEdit_Time_In_First.EditValue) || ComparisonUtils.IsEmpty(timeEdit_Time_Out_First.EditValue)) &&
-                          (ComparisonUtils.IsNotEmpty(timeEdit_Time_In_Last.EditValue) && ComparisonUtils.IsNotEmpty(timeEdit_Time_Out_Last.EditValue)))
-                  {
-                      if (TimeSpan.Compare(ConvertTo.TimeSpanVal(timeEdit_Time_In_Last.EditValue), ConvertTo.TimeSpanVal(timeEdit_Time_In_Last_Main.EditValue)) == -1)
-                      {
-                          ProjectFunctionsUtils.SpeakError("Time In Last should be greater than " + GetEditValue(timeEdit_Time_In_Last_Main) + "");
-
-                          timeEdit_Time_In_Last.Focus();
-                          return false;
-                      }
-                  }
-                */
+                        timeEdit_Time_In_Last.Focus();
+                        return false;
+                    }
+                }
+              */
             }
 
 
             return true;
+        }
+              
+
+        private void windowsUIButtonPanelCloseButton_Click(object sender, ButtonEventArgs e)
+        {
+            string tag = ((WindowsUIButton)e.Button).Tag.ToString();
+
+            this.Close();            
+
         }
 
         private void radioButtonManual_CheckedChanged(object sender, EventArgs e)
@@ -1205,17 +1255,17 @@ namespace WindowsFormsApplication1.Time_Office
                 panelControl_Machine_In.BackColor = Color.White;
 
                 /////////////////////////////////////////
-
+                
                 timeEdit_Time_In_First.ReadOnly = false;
                 timeEdit_Time_Out_First.ReadOnly = false;
                 timeEdit_Time_In_Last.ReadOnly = false;
                 timeEdit_Time_Out_Last.ReadOnly = false;
-
+                
                 timeEdit_Time_In_First.BackColor = Color.FromArgb(255, 255, 192);
                 timeEdit_Time_Out_First.BackColor = Color.FromArgb(255, 255, 192);
                 timeEdit_Time_In_Last.BackColor = Color.FromArgb(255, 255, 192);
                 timeEdit_Time_Out_Last.BackColor = Color.FromArgb(255, 255, 192);
-
+                
                 //timeEdit_Time_In_First.EditValue = null;
                 //timeEdit_Time_Out_First.EditValue = null;
                 //timeEdit_Time_In_Last.EditValue = null;
@@ -1269,7 +1319,7 @@ namespace WindowsFormsApplication1.Time_Office
         }
 
         private void timeEdit_Time_Out_DW_EditValueChanged(object sender, EventArgs e)
-        {
+        {            
             if ((sender as BaseEdit).Tag == null)
             {
                 CalculateDutyHours_DailyWager();
@@ -1282,7 +1332,7 @@ namespace WindowsFormsApplication1.Time_Office
             {
                 PrintLogWin.PrintLog("========= TimeEditSpan => EditValue " + timeEdit_Time_In_First_Testing.EditValue);
                 PrintLogWin.PrintLog("========= TimeEditSpan => Text " + timeEdit_Time_In_First_Testing.Text);
-            }
+            }            
         }
 
         private void timeEdit_Time_In_First_EditValueChanged(object sender, EventArgs e)
@@ -1290,7 +1340,7 @@ namespace WindowsFormsApplication1.Time_Office
             if ((sender as BaseEdit).Tag == null)
             {
                 CalculateDUtyHours("first_in");
-            }
+            }            
         }
 
         private void timeEdit_Time_Out_First_EditValueChanged(object sender, EventArgs e)
@@ -1298,14 +1348,14 @@ namespace WindowsFormsApplication1.Time_Office
             if ((sender as BaseEdit).Tag == null)
             {
                 CalculateDUtyHours("first_out");
-            }
+            }  
         }
         private void timeEdit_Time_In_Last_EditValueChanged(object sender, EventArgs e)
         {
             if ((sender as BaseEdit).Tag == null)
             {
                 CalculateDUtyHours("last_in");
-            }
+            }            
         }
 
         private void timeEdit_Time_Out_Last_EditValueChanged(object sender, EventArgs e)
@@ -1314,8 +1364,22 @@ namespace WindowsFormsApplication1.Time_Office
             {
                 PrintLogWin.PrintLog("--------------- X " + timeEdit_Time_Out_Last.EditValue);
                 CalculateDUtyHours("last_out");
-            }
+            }            
         }
+
+        private bool hasInputTime(object input)
+        {
+            if ((input + "").Equals(""))
+            {
+
+            }
+            return false;
+        }
+
+        bool first_in = false;
+        bool first_out = false;
+        bool last_in = false;
+        bool last_out = false;
 
         private void CalculateDutyHours_DailyWager()
         {
@@ -1334,8 +1398,8 @@ namespace WindowsFormsApplication1.Time_Office
                     if (ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_DW.EditValue) != null &&
                         ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_DW.EditValue) != null)
                     {
-                        DateTime dateTime_In_2 = ConvertTo.TimeToDate(timeEdit_Time_In_DW.Text + string.Empty);
-                        DateTime dateTime_Out_2 = ConvertTo.TimeToDate(timeEdit_Time_Out_DW.Text + string.Empty);
+                        DateTime dateTime_In_2 = ConvertTo.TimeToDate(timeEdit_Time_In_DW.Text + "");
+                        DateTime dateTime_Out_2 = ConvertTo.TimeToDate(timeEdit_Time_Out_DW.Text + "");
 
                         PrintLogWin.PrintLog("========= A");
                         if (dateTime_Out_2 < dateTime_In_2)
@@ -1365,7 +1429,7 @@ namespace WindowsFormsApplication1.Time_Office
 
                     //totalWorkingHours_Text_DW.Text = (totalHrs_FullDay).ToString();
 
-                    PrintLogWin.PrintLog("========= totalHrs_First : " + totalHrs_First);
+                    PrintLogWin.PrintLog("========= totalHrs_First : " + totalHrs_First);                    
 
                     if (ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_DW.EditValue) == null &&
                         ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_DW.EditValue) == null)
@@ -1388,29 +1452,29 @@ namespace WindowsFormsApplication1.Time_Office
                     }
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + string.Empty);
+                MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + "");
             }
         }
         private void CalculateDUtyHours(string entry)
         {
-
+           
             PrintLogWin.PrintLog("************* CalculateDUtyHours => entry : " + entry);
-
+            
 
             try
             {
-                string firstChar = string.Empty;
-                string clearStr = string.Empty;
+                string firstChar = "";
+                string clearStr = "";
                 if (ComparisonUtils.IsNotEmpty(GetEditValue(txtStatusType)))
                 {
                     firstChar = GetEditValue(txtStatusType).ToString().Substring(0, 1);
 
-                    clearStr = GetEditValue(txtStatusType).ToString().Replace("-", string.Empty).Replace("+", string.Empty);
+                    clearStr = GetEditValue(txtStatusType).ToString().Replace("-", "").Replace("+", "");
                 }
 
-                PrintLogWin.PrintLog("************* form_loaded => " + form_loaded + string.Empty);
+                PrintLogWin.PrintLog("************* form_loaded => " + form_loaded + "");
 
 
 
@@ -1427,8 +1491,8 @@ namespace WindowsFormsApplication1.Time_Office
                     if (ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_First.EditValue) != null &&
                         ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_First.EditValue) != null)
                     {
-                        DateTime dateTime_In_2 = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + string.Empty);
-                        DateTime dateTime_Out_2 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + string.Empty);
+                        DateTime dateTime_In_2 = ConvertTo.TimeToDate(timeEdit_Time_In_First.Text + "");
+                        DateTime dateTime_Out_2 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
 
                         PrintLogWin.PrintLog("========= A");
 
@@ -1456,8 +1520,8 @@ namespace WindowsFormsApplication1.Time_Office
                     if (ConvertTo.TimeSpanVal_Null(timeEdit_Time_In_Last.EditValue) != null &&
                         ConvertTo.TimeSpanVal_Null(timeEdit_Time_Out_Last.EditValue) != null)
                     {
-                        DateTime dateTime_In_Last = ConvertTo.TimeToDate(timeEdit_Time_In_Last.Text + string.Empty);
-                        DateTime dateTime_Out_Last = ConvertTo.TimeToDate(timeEdit_Time_Out_Last.Text + string.Empty);
+                        DateTime dateTime_In_Last = ConvertTo.TimeToDate(timeEdit_Time_In_Last.Text + "");
+                        DateTime dateTime_Out_Last = ConvertTo.TimeToDate(timeEdit_Time_Out_Last.Text + "");
 
                         PrintLogWin.PrintLog("========= D");
 
@@ -1465,7 +1529,7 @@ namespace WindowsFormsApplication1.Time_Office
                         {
                             PrintLogWin.PrintLog("========= E");
 
-                            DateTime dateTime_Out_1 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + string.Empty);
+                            DateTime dateTime_Out_1 = ConvertTo.TimeToDate(timeEdit_Time_Out_First.Text + "");
 
                             if (dateTime_In_Last < dateTime_Out_1)
                             {
@@ -1522,7 +1586,7 @@ namespace WindowsFormsApplication1.Time_Office
                         PrintLogWin.PrintLog("========= ZZ");
                     }
 
-
+                    
                     double totalHrs_FullDay = totalHrs_First + totalHrs_Last;
                     PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% totalHrs_FullDay => A : " + totalHrs_FullDay);
                     /*
@@ -1555,10 +1619,10 @@ namespace WindowsFormsApplication1.Time_Office
                         PrintLogWin.PrintLog("========= D-3 : clearStr : " + clearStr);
                         //////////////////////////////////////////////
                         /////////////////////////////////////////////////
-                        double lunch_no_tea_no_add_minutes = 60;
+                        double lunch_no_tea_no_add_minutes = 60; 
                         double lunch_no_tea_yes_add_minutes = ConvertTo.DoubleVal(txtTeaBreakTime.EditValue);
-                        double lunch_yes_tea_no_add_minutes = 30;
-                        //  double lunch_yes_tea_no_add_minutes = 30;
+                        double lunch_yes_tea_no_add_minutes = 30; 
+                      //  double lunch_yes_tea_no_add_minutes = 30;
                         ///////////////////////////////
                         /***DAILY WAGER ALSO CHECK***************************/
                         ///////////////////////////////
@@ -1618,7 +1682,7 @@ namespace WindowsFormsApplication1.Time_Office
                             PrintLogWin.PrintLog("========= DDDD-4 => " + comboBox_Status.SelectedValue);
 
                             if (IsString.IsEqualTo(clearStr, "0000"))
-                            {
+                            {                                
                                 SetEditValue_NullTag(txtOvertimeHours, totalHrs_FullDay);
                             }
                             else
@@ -1638,13 +1702,13 @@ namespace WindowsFormsApplication1.Time_Office
                             PrintLogWin.PrintLog("========= txtOvertimeHours B : " + txtOvertimeHours.EditValue);
                         }
                     }
-
-
+                       
+                   
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + string.Empty);
+                MessageBox.Show(timeEdit_Time_In_First.EditValue + "\n\n" + ex + "");
             }
         }
 
@@ -1669,7 +1733,7 @@ namespace WindowsFormsApplication1.Time_Office
                 timeEdit_Time_Out_Last.Enabled = true;
             }
         }
-
+        
         private void comboBox_Status_SelectedValueChanged(object sender, EventArgs e)
         {
             PrintLogWin.PrintLog("--------------- comboBox_Status : " + comboBox_Status.SelectedValue);
@@ -1686,8 +1750,8 @@ namespace WindowsFormsApplication1.Time_Office
                 timeEdit_Time_Out_First.Enabled = true;
                 timeEdit_Time_In_Last.Enabled = true;
 
-                string status_type = string.Empty;
-                string status_code = string.Empty;
+                string status_type = "";
+                string status_code = "";
                 foreach (AttendanceStatu item in attendanceStatu_List)
                 {
                     if (item.status_id == ConvertTo.IntVal(comboBox_Status.SelectedValue))
@@ -1700,11 +1764,11 @@ namespace WindowsFormsApplication1.Time_Office
 
                 PrintLogWin.PrintLog("--------------- comboBox_Status => status_code : " + status_code);
 
-                if (!status_type.Equals(string.Empty))
+                if (!status_type.Equals(""))
                 {
                     string firstChar = status_type.Substring(0, 1);
-                    string clearStr = status_type.Replace("-", string.Empty).Replace("+", string.Empty);
-
+                    string clearStr = status_type.Replace("-", "").Replace("+", "");
+                    
                     SetEditValue(txtStatusType, status_type);
 
                     PrintLogWin.PrintLog("--------------- status_code : " + status_code);
@@ -1713,7 +1777,7 @@ namespace WindowsFormsApplication1.Time_Office
                     if (IsString.IsEqualTo(clearStr, "0000"))
                     {
                         if (status_code.Equals("RR") || status_code.Equals("RR", StringComparison.InvariantCultureIgnoreCase))
-                        {
+                        { 
 
                             if (ConvertTo.IntVal(txtLunchBreak.EditValue) == 0)
                             {
@@ -1836,7 +1900,7 @@ namespace WindowsFormsApplication1.Time_Office
                 }
                 else
                 {
-
+                    
 
                     txtStatusType.EditValue = null;
 
@@ -1847,15 +1911,15 @@ namespace WindowsFormsApplication1.Time_Office
                     input_fields_empty = false;
                 }
             }
-
+            
         }
 
         private void txtLunchBreak_EditValueChanged(object sender, EventArgs e)
         {
-            string clearStr = string.Empty;
+            string clearStr = "";
             if (GetEditValue(txtStatusType) != null)
             {
-                clearStr = GetEditValue(txtStatusType).ToString().Replace("-", string.Empty).Replace("+", string.Empty);
+                clearStr = GetEditValue(txtStatusType).ToString().Replace("-", "").Replace("+", "");
             }
 
             PrintLogWin.PrintLog("========= txtLunchBreak_EditValueChanged => clearStr : " + clearStr);
@@ -1895,9 +1959,15 @@ namespace WindowsFormsApplication1.Time_Office
 
         }
 
+        private void textEmpType_EditValueChanged(object sender, EventArgs e)
+        {
+            
+
+        }
+
         private void totalWorkingHours_Text_EditValueChanged(object sender, EventArgs e)
         {
-
+            
             if ((sender as BaseEdit).Tag == null)
             {
                 totalWorkingHours_Label.Text = ConvertTo.MinutesToHours(totalWorkingHours_Text.EditValue);
@@ -1911,7 +1981,32 @@ namespace WindowsFormsApplication1.Time_Office
             {
                 lblOvertimeHours.Text = ConvertTo.MinutesToHours(txtOvertimeHours.EditValue);
             }
+            
+        }
 
+        private void PrepareEmpGrid()
+        {
+            HelpGridView.Columns.Clear();
+            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+            HelpGridView.Columns[0].Visible = true;
+            HelpGridView.Columns[0].Caption = "Description";
+            HelpGridView.Columns[0].FieldName = "Description";
+            HelpGridView.Columns[0].OptionsColumn.AllowEdit = false;
+            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+            HelpGridView.Columns[1].Visible = true;
+            HelpGridView.Columns[1].Caption = "EmpFHName";
+            HelpGridView.Columns[1].FieldName = "EmpFHName";
+            HelpGridView.Columns[1].OptionsColumn.AllowEdit = false;
+            HelpGridView.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn());
+            HelpGridView.Columns[2].Visible = true;
+            HelpGridView.Columns[2].Caption = "Code";
+            HelpGridView.Columns[2].FieldName = "Code";
+            HelpGridView.Columns[2].OptionsColumn.AllowEdit = false;
+        }
+
+        private void dateAttendance_Leave(object sender, EventArgs e)
+        {
+            
         }
 
         private void dateAttendance_ValueChanged(object sender, EventArgs e)
@@ -1923,7 +2018,7 @@ namespace WindowsFormsApplication1.Time_Office
         }
 
         private void txtEmpCode_EditValueChanged(object sender, EventArgs e)
-        {
+        {            
 
             if ((sender as BaseEdit).Tag == null)
             {
@@ -1933,6 +2028,70 @@ namespace WindowsFormsApplication1.Time_Office
                 }
             }
 
+        }
+
+        private void txtEmpCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                PrepareEmpGrid();
+                var strQry = string.Empty;
+                HelpGrid.Text = "txtEmpCode";
+                var ds = new DataSet();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtEmpID.Text.Length == 0)
+                    {
+                        strQry = strQry + "select Empcode as Code,Empname as Description,EmpImage, DailyWage, DailyWageRate, DailyWageMinutes from EmpMst  order by Empname";
+                        ds = ProjectFunctions.GetDataSet(strQry);
+                        HelpGrid.DataSource = ds.Tables[0];
+                        HelpGridView.BestFitColumns();
+                        HelpGrid.Show();
+                        HelpGrid.Focus();
+                    }
+                    else
+                    {
+                        strQry = strQry + "select empcode as Code,empname as Description,EmpImage, DailyWage, DailyWageRate, DailyWageMinutes from EmpMst wHERE  empcode= '" + txtEmpID.Text.ToString().Trim() + "' ";
+
+                        ds = ProjectFunctions.GetDataSet(strQry);
+                        if (ds.Tables[0].Rows.Count > 0)
+
+                        {
+                            DataRow dr = ds.Tables[0].Rows[0];
+                            //txtEmpID.Text = dr["Code"].ToString().Trim().ToUpper();
+                            //txtFName.Text = dr["Description"].ToString().Trim().ToUpper();
+
+                            SetEditValue(txtEmpID, dr["Code"]);
+                            SetEditValue(txtFName, dr["Description"]);
+
+                            pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])dr["EmpImage"]);
+
+                            
+
+                            SetDailyWageControls(Convert.ToBoolean(dr["DailyWage"]), ConvertTo.IntVal(dr["DailyWageMinutes"]), Convert.ToDecimal(dr["DailyWageRate"]));
+
+
+                            comboBox_Status.Focus();
+
+                        }
+                        else
+                        {
+                            var strQry1 = string.Empty;
+                            strQry1 = strQry1 + "select empcode as Code,empname as Description,EmpImage, DailyWage, DailyWageRate, DailyWageMinutes from EmpMst  order by Empname";
+                            var ds1 = ProjectFunctions.GetDataSet(strQry1);
+                            HelpGrid.DataSource = ds1.Tables[0];
+                            HelpGridView.BestFitColumns();
+                            HelpGrid.Show();
+                            HelpGrid.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            e.Handled = true;
         }
 
         private void HelpGrid_KeyDown(object sender, KeyEventArgs e)
@@ -1960,7 +2119,7 @@ namespace WindowsFormsApplication1.Time_Office
                 SetEditValue(txtFName, dr["Description"]);
 
                 pictureBox1.Image = ImageUtils.ConvertBinaryToImage((byte[])dr["EmpImage"]);
-
+               
 
                 SetDailyWageControls(Convert.ToBoolean(dr["DailyWage"]), ConvertTo.IntVal(dr["DailyWageMinutes"]), Convert.ToDecimal(dr["DailyWageRate"]));
 
@@ -2018,14 +2177,7 @@ namespace WindowsFormsApplication1.Time_Office
             //}
         }
 
-      
-    
-
-
-
-
-
-
+        
 
         /*
         static List<Employee> GetDataSource()

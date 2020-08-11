@@ -125,13 +125,13 @@ namespace WindowsFormsApplication1.Forms_Master
                         SerialId = dr[Col.EmployeeAttendance.serial_id],
                         //EntryDate = dr[Col.EmployeeAttendance.entry_date],
                         AttendanceDate = ConvertTo.DateFormatApp(dr[Col.EmployeeAttendance.attendance_date]),
-                        //EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
+                        EmployeeCode = dr[Col.EmployeeAttendance.employee_code],
                         //Shift = dr[Col.DailyShifts.shift_name],
                         Status = dr[Col.AttendanceStatus.status],
-                        TimeIn_First = dr[Col.EmployeeAttendance.attendance_in_first],
-                        TimeOut_First = dr[Col.EmployeeAttendance.attendance_out_first],
-                        TimeIn_Last = dr[Col.EmployeeAttendance.attendance_in_last],
-                        TimeOut_Last = dr[Col.EmployeeAttendance.attendance_out_last],
+                        TimeIn_First = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_in_first]),
+                        TimeOut_First = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_out_first]),
+                        TimeIn_Last = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_in_last]),
+                        TimeOut_Last = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_out_last]),
                         WorkingHours = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.working_hours]),                        
                         OverTime = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.ot_deducton_time]),
                         OverTime_1 = ConvertTo.IntVal(dr[Col.EmployeeAttendance.ot_deducton_time]),
@@ -148,6 +148,10 @@ namespace WindowsFormsApplication1.Forms_Master
                 if (gridView_AttendanceData.Columns["SerialId"] != null)
                 {
                     gridView_AttendanceData.Columns["SerialId"].Visible = false;
+                }
+                if (gridView_AttendanceData.Columns["EmployeeCode"] != null)
+                {
+                    gridView_AttendanceData.Columns["EmployeeCode"].Visible = false;
                 }
                 if (gridView_AttendanceData.Columns["RowStyle"] != null)
                 {
@@ -194,7 +198,6 @@ namespace WindowsFormsApplication1.Forms_Master
             
         }
 
-        
         private void gridView_AttendanceData_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
         {
             GridView view = sender as GridView;
@@ -207,7 +210,7 @@ namespace WindowsFormsApplication1.Forms_Master
                 }
             }
 
-            
+
         }
         bool IsInvalidValue(object value)
         {
@@ -280,29 +283,37 @@ namespace WindowsFormsApplication1.Forms_Master
 
         private void OnClickRow()
         {
-            //DataRow CurrentRow = gridView_AttendanceData.GetDataRow(gridView_AttendanceData.FocusedRowHandle);
-            int row = (gridControl_AttendanceData.FocusedView as ColumnView).FocusedRowHandle;
-            ColumnView detailView = (ColumnView)gridControl_AttendanceData.FocusedView;
-            int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
-            //
-            string employee_code = detailView.GetFocusedRowCellValue("EmployeeCode").ToString();
-            string attendance_date = ConvertTo.DateFormatDb(detailView.GetFocusedRowCellValue("AttendanceDate").ToString());
+            try
+            {
+                //DataRow CurrentRow = gridView_AttendanceData.GetDataRow(gridView_AttendanceData.FocusedRowHandle);
+                int row = (gridControl_AttendanceData.FocusedView as ColumnView).FocusedRowHandle;
+                ColumnView detailView = (ColumnView)gridControl_AttendanceData.FocusedView;
+                int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
+                                                                                                          //
+                string employee_code = detailView.GetFocusedRowCellValue("EmployeeCode").ToString();
+                string attendance_date = ConvertTo.DateFormatDb(detailView.GetFocusedRowCellValue("AttendanceDate").ToString());
 
-            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
-            PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row
-                );
+                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
+                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row);
 
-            //MessageBox.Show(CurrentRow[0] + "");
+                //MessageBox.Show(CurrentRow[0] + "");
 
 
-            OpenAttendanceForm(cellValue_serial_id, employee_code, attendance_date);
+                OpenAttendanceForm(cellValue_serial_id, employee_code, attendance_date);
+            }
+            catch(Exception ex)
+            {
+                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% => Exception : " + ex);
+            }
+            
         }
 
         private void gridControl_AttendanceData_DoubleClick(object sender, EventArgs e)
         {
-            gridView_AttendanceData.SetMasterRowExpanded(0, false);
-            gridView_AttendanceData.SetMasterRowExpanded(1, true);
-            DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(gridControl_AttendanceData, e).Handled = true;
+
+            //gridView_AttendanceData.SetMasterRowExpanded(0, false);
+            //gridView_AttendanceData.SetMasterRowExpanded(1, true);
+            //DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(gridControl_AttendanceData, e).Handled = true;
 
             PrintLogWin.PrintLog("*[ gridControl_AttendanceData_DoubleClick ]*");
 
