@@ -992,7 +992,7 @@
             // xrLabel43
             // 
             this.xrLabel43.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SalaryEarn]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SalaryEarned]")});
             this.xrLabel43.Font = new System.Drawing.Font("Calibri Light", 10F, System.Drawing.FontStyle.Bold);
             this.xrLabel43.LocationFloat = new DevExpress.Utils.PointFloat(0F, 6.357829E-05F);
             this.xrLabel43.Multiline = true;

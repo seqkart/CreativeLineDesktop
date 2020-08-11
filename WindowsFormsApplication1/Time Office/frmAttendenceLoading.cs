@@ -206,7 +206,7 @@ namespace WindowsFormsApplication1.Forms_Master
                 GridSummaryItem item = e.Item as GridSummaryItem;
                 if (item.FieldName == "OverTime")
                 {
-                    e.TotalValue = "Over Time : " + ConvertTo.MinutesToHours(view.Columns["OverTime_1"].SummaryText);
+                    e.TotalValue = ConvertTo.MinutesToHours(view.Columns["OverTime_1"].SummaryText);
                 }
             }
 

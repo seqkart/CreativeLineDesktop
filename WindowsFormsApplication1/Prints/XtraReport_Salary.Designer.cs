@@ -535,7 +535,7 @@
             // xrLabel45
             // 
             this.xrLabel45.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SalaryEarn]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SalaryEarned]")});
             this.xrLabel45.Font = new System.Drawing.Font("Calibri Light", 10F, System.Drawing.FontStyle.Bold);
             this.xrLabel45.LocationFloat = new DevExpress.Utils.PointFloat(542.4768F, 3.504753E-05F);
             this.xrLabel45.Multiline = true;
@@ -881,7 +881,7 @@
             // xrLabel9
             // 
             this.xrLabel9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([SalaryEarn])")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([SalaryEarned])")});
             this.xrLabel9.Font = new System.Drawing.Font("Calibri Light", 10F, System.Drawing.FontStyle.Bold);
             this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(542.4768F, 3.504753E-05F);
             this.xrLabel9.Multiline = true;
@@ -1094,7 +1094,7 @@
             // xrLabel41
             // 
             this.xrLabel41.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([EmployeesSalaryList].[AdvanceSalary])")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([SalaryEarned])")});
             this.xrLabel41.Font = new System.Drawing.Font("Calibri Light", 10F, System.Drawing.FontStyle.Bold);
             this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(621.6434F, 0F);
             this.xrLabel41.Name = "xrLabel41";
