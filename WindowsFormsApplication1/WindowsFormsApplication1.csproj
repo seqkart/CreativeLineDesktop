@@ -303,8 +303,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\BNPL\nEzee\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="SeqKartLibrary">
-      <HintPath>..\..\Creative Line Desktop\SeqKartLibrary\bin\Debug\SeqKartLibrary.dll</HintPath>
+    <Reference Include="SeqKartLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SeqKartLibrary\bin\Debug\SeqKartLibrary.dll</HintPath>
     </Reference>
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>

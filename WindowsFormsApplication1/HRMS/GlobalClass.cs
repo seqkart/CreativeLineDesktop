@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace HumanResourceManagementSystem
+namespace WindowsFormsApplication1.HRMS
 {
     class GlobalClass
     {

@@ -14,7 +14,6 @@ using DevExpress.XtraLayout.Helpers;
 using DevExpress.XtraLayout;
 using DevExpress.XtraBars.Docking2010;
 using System.Data.SqlClient;
-using HumanResourceManagementSystem;
 using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
 using System.Globalization;
