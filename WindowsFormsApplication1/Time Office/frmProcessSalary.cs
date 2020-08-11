@@ -96,6 +96,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
             }
         }
 
+
         private void fillGrid()
         {
             //DECLARE @Salary_Month DATETIME = '2020-06-01 00:00:00';

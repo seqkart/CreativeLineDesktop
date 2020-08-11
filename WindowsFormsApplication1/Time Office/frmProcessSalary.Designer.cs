@@ -461,5 +461,6 @@
         private System.Windows.Forms.BindingSource salaryInfoBindingSource;
         private DevExpress.XtraEditors.SimpleButton btnExportXsls;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
-    }
+      //  this.gridView_PROCESS.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView_AttendanceData_CustomSummaryCalculate);
+        }
 }

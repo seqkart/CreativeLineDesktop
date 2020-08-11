@@ -40,12 +40,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.MSFlexGridLib">
-      <HintPath>..\..\Creative Line Desktop\biomach\SEQKARTBIO\bin\x86\Debug\AxInterop.MSFlexGridLib.dll</HintPath>
-    </Reference>
-    <Reference Include="AxInterop.SBXPCLib">
-      <HintPath>..\..\Creative Line Desktop\biomach\SEQKARTBIO\bin\x86\Debug\AxInterop.SBXPCLib.dll</HintPath>
-    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -73,7 +67,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UUjfatWMXw">
-      <HintPath>..\..\Creative Line Desktop\SeqKartSecurity\bin\Debug\UUjfatWMXw.dll</HintPath>
+      <HintPath>..\SeqKartSecurity\bin\Debug\UUjfatWMXw.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

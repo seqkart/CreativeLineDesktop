@@ -206,7 +206,7 @@ namespace WindowsFormsApplication1.Forms_Master
                 GridSummaryItem item = e.Item as GridSummaryItem;
                 if (item.FieldName == "OverTime")
                 {
-                    e.TotalValue = "Over Time : " + ConvertTo.MinutesToHours(view.Columns["OverTime_1"].SummaryText);
+                    e.TotalValue =ConvertTo.MinutesToHours(view.Columns["OverTime_1"].SummaryText);
                 }
             }
 
@@ -311,13 +311,13 @@ namespace WindowsFormsApplication1.Forms_Master
         private void gridControl_AttendanceData_DoubleClick(object sender, EventArgs e)
         {
 
-            //gridView_AttendanceData.SetMasterRowExpanded(0, false);
-            //gridView_AttendanceData.SetMasterRowExpanded(1, true);
-            //DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(gridControl_AttendanceData, e).Handled = true;
+            ////gridView_AttendanceData.SetMasterRowExpanded(0, false);
+            ////gridView_AttendanceData.SetMasterRowExpanded(1, true);
+            ////DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(gridControl_AttendanceData, e).Handled = true;
 
-            PrintLogWin.PrintLog("*[ gridControl_AttendanceData_DoubleClick ]*");
+            //PrintLogWin.PrintLog("*[ gridControl_AttendanceData_DoubleClick ]*");
 
-            OnClickRow();
+            //OnClickRow();
         }
 
         private void gridView_AttendanceData_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)

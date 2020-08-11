@@ -47,7 +47,8 @@ namespace WindowsFormsApplication1.Prints
         private void xrLabel_TimeIn_Out_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             XRLabel label = (XRLabel)sender;
-            label.Text = ConvertTo.TimeSpanString(label.Text);
+            label.Text = ConvertTo.
+                TimeSpanString(label.Text);
         }
 
         private void xrPictureBox1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
