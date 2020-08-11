@@ -1,16 +1,11 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using DevExpress.XtraEditors;
-using DevExpress.XtraPrinting.Native;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Prints.PartyLedger.rpt;
-using WindowsFormsApplication1.Prints.Rpt_BankBook.rpt;
-using WindowsFormsApplication1.Prints.rpt_BankReco.rpt;
-using WindowsFormsApplication1.Prints.rpt_CashBook.rpt;
-using WindowsFormsApplication1.Prints.rpt_DayBook.rpt;
+using WindowsFormsApplication1.Prints;
 
 namespace WindowsFormsApplication1.Crystal_Reports
 {
@@ -30,21 +25,9 @@ namespace WindowsFormsApplication1.Crystal_Reports
 
         #endregion
 
-        private CheckedComboBoxEdit Cmb_LocationsPayRegN;
-
-
-        string qr = string.Empty;
-
         public String Title { get; set; }
         public bool IsCrystal { get; set; }
-        private readonly object _locker = new object();
         private RangeSelector _RangeSelector;
-
-        private ComboBoxEdit Cmb_EmpPayment;
-
-        private LabelControl Lbl_EmpPayment;
-
-        ReflectorBar reflectorBar;
 
 
         CheckEdit Chk_Selected = new CheckEdit();
@@ -130,11 +113,6 @@ namespace WindowsFormsApplication1.Crystal_Reports
             {
                 ProjectFunctions.SpeakError(ex.Message);
             }
-        }
-
-        void Selected_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnLoad_Click(object sender, EventArgs e)
