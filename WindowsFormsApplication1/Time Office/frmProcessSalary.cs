@@ -41,7 +41,7 @@ namespace BNPL.Forms_Transaction
         {
             DtStartDate.EditValue = StartDate.Date;
 
-            //gridView_Style_List = ProjectFunctionsUtils.GridView_Style("frmProcessSalary", "gridControl_SalaryProcess");
+            
 
             SetMyControls();
             fillGrid();
