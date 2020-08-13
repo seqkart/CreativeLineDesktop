@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1.Forms_Transaction
+﻿namespace BNPL.Forms_Transaction
 {
     partial class frmProcessSalary
     {
@@ -88,7 +88,7 @@
             this.ChoiceSelect.Location = new System.Drawing.Point(709, 69);
             this.ChoiceSelect.Name = "ChoiceSelect";
             this.ChoiceSelect.Properties.Caption = "Select &All";
-            this.ChoiceSelect.Size = new System.Drawing.Size(75, 20);
+            this.ChoiceSelect.Size = new System.Drawing.Size(75, 18);
             this.ChoiceSelect.TabIndex = 349;
             this.ChoiceSelect.Visible = false;
             this.ChoiceSelect.CheckedChanged += new System.EventHandler(this.ChoiceSelect_CheckedChanged);
@@ -337,6 +337,7 @@
             this.gridView_SalaryProcess.OptionsView.ShowFooter = true;
             this.gridView_SalaryProcess.OptionsView.ShowGroupPanel = false;
             this.gridView_SalaryProcess.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView_SalaryProcess_CustomDrawCell);
+            this.gridView_SalaryProcess.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView_SalaryProcess_RowCellStyle);
             this.gridView_SalaryProcess.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView_SalaryProcess_RowStyle);
             this.gridView_SalaryProcess.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView_SalaryProcess_ShowingEditor);
             this.gridView_SalaryProcess.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_SalaryProcess_KeyDown);
@@ -461,6 +462,5 @@
         private System.Windows.Forms.BindingSource salaryInfoBindingSource;
         private DevExpress.XtraEditors.SimpleButton btnExportXsls;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
-      //  this.gridView_PROCESS.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView_AttendanceData_CustomSummaryCalculate);
-        }
+    }
 }

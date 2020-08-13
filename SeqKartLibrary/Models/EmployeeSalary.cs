@@ -27,6 +27,7 @@ namespace SeqKartLibrary.Models
         public double SalaryCalculated { get; set; }
         public double SalaryPaid { get; set; }
         public double Arrears { get; set; }
+        public double Balance { get; set; }
         public int SalaryLocked { get; set; }
         public string CatgCode { get; set; }
         public string CatgDesc { get; set; }

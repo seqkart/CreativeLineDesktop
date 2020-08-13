@@ -1,15 +1,23 @@
 ﻿using Dapper;
+using DevExpress.Charts.Native;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraReports.UI;
 using HumanResourceManagementSystem;
 using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
 using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
+using SeqKartLibrary.Repository;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
@@ -17,7 +25,10 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
+using WindowsFormsApplication1;
+using WindowsFormsApplication1.Models;
 using WindowsFormsApplication1.Prints;
 using WindowsFormsApplication1.Time_Office;
 
@@ -53,6 +64,18 @@ namespace WindowsFormsApplication1.Forms_Master
 
 
 
+        }
+
+        private void SetMyControls1()
+        {
+            //panelControl1.Location = new Point(ClientSize.Width / 2 - panelControl1.Size.Width / 2, ClientSize.Height / 2 - panelControl1.Size.Height / 2);
+            ProjectFunctions.TextBoxVisualize(this);
+            ProjectFunctions.DatePickerVisualize(this);
+            ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
+            ProjectFunctions.TextBoxVisualize(this);
+            ProjectFunctions.ButtonVisualize(this);
+            //ProjectFunctions.GroupCtrlVisualize(panelControl1);
+            ProjectFunctions.XtraFormVisualize(this);
         }
         private void btnQuit_Click(object sender, EventArgs e)
         {
@@ -109,7 +132,7 @@ namespace WindowsFormsApplication1.Forms_Master
                         TimeOut_First = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_out_first]),
                         TimeIn_Last = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_in_last]),
                         TimeOut_Last = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_out_last]),
-                        WorkingHours = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.working_hours]),
+                        WorkingHours = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.working_hours]),                        
                         OverTime = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.ot_deducton_time]),
                         OverTime_1 = ConvertTo.IntVal(dr[Col.EmployeeAttendance.ot_deducton_time]),
                         GatePassTime = dr[Col.EmployeeAttendance.gate_pass_time],
@@ -172,7 +195,7 @@ namespace WindowsFormsApplication1.Forms_Master
                 }
 
             }
-
+            
         }
 
         private void gridView_AttendanceData_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
@@ -252,22 +275,49 @@ namespace WindowsFormsApplication1.Forms_Master
                     btnLoad_Data.PerformClick();//.Focus();
                 }
             }
-
+            
 
             //LoadAttendanceDataGrid();
             PrintLogWin.PrintLog("---------------------------------");
         }
 
+        private void OnClickRow()
+        {
+            try
+            {
+                //DataRow CurrentRow = gridView_AttendanceData.GetDataRow(gridView_AttendanceData.FocusedRowHandle);
+                int row = (gridControl_AttendanceData.FocusedView as ColumnView).FocusedRowHandle;
+                ColumnView detailView = (ColumnView)gridControl_AttendanceData.FocusedView;
+                int cellValue_serial_id = ConvertTo.IntVal(detailView.GetFocusedRowCellValue("SerialId"));//.GetRowCellValue(row, "Edit_Link").ToString();
+                                                                                                          //
+                string employee_code = detailView.GetFocusedRowCellValue("EmployeeCode").ToString();
+                string attendance_date = ConvertTo.DateFormatDb(detailView.GetFocusedRowCellValue("AttendanceDate").ToString());
+
+                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + cellValue_serial_id);
+                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%%" + row);
+
+                //MessageBox.Show(CurrentRow[0] + "");
+
+
+                OpenAttendanceForm(cellValue_serial_id, employee_code, attendance_date);
+            }
+            catch(Exception ex)
+            {
+                PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% => Exception : " + ex);
+            }
+            
+        }
+
         private void gridControl_AttendanceData_DoubleClick(object sender, EventArgs e)
         {
 
-            ////gridView_AttendanceData.SetMasterRowExpanded(0, false);
-            ////gridView_AttendanceData.SetMasterRowExpanded(1, true);
-            ////DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(gridControl_AttendanceData, e).Handled = true;
+            //gridView_AttendanceData.SetMasterRowExpanded(0, false);
+            //gridView_AttendanceData.SetMasterRowExpanded(1, true);
+            //DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(gridControl_AttendanceData, e).Handled = true;
 
-            //PrintLogWin.PrintLog("*[ gridControl_AttendanceData_DoubleClick ]*");
+            PrintLogWin.PrintLog("*[ gridControl_AttendanceData_DoubleClick ]*");
 
-            //OnClickRow();
+            OnClickRow();
         }
 
         private void gridView_AttendanceData_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
@@ -315,11 +365,11 @@ namespace WindowsFormsApplication1.Forms_Master
                     //}
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
 
             }
-
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -329,7 +379,7 @@ namespace WindowsFormsApplication1.Forms_Master
 
         private void btnAdd2_Click(object sender, EventArgs e)
         {
-
+            
             //XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { s1 = btnAdd.Text, Text = "User Addition" }; ;
 
 
@@ -353,7 +403,7 @@ namespace WindowsFormsApplication1.Forms_Master
 
             //txtPreviousInstlmnt.Text = "0";
 
-
+            
         }
 
         private void txtEmpCode_KeyDown(object sender, KeyEventArgs e)
@@ -569,11 +619,89 @@ namespace WindowsFormsApplication1.Forms_Master
             SFeedingGrid.DataSource = null;
         }
 
+
+
+        private void gridControl_AttendanceData_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show("show");
+        }
+
+        ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////
+        private void gridControl_AttendanceData_Load(object sender, EventArgs e)
+        {
+
+            //ProjectFunctions.ToolstripVisualize(Menu_ToolStrip);
+            //ProjectFunctions.GirdViewVisualize(gridView_UserMaster);
+            //FillDataToGrid();
+        }
+
         private void SetMyControls2()
         {
             DtStartDate.EditValue = DateTime.Now;
             ProjectFunctions.GirdViewVisualize(gridView_AttendanceData);
             GridEvents();
+        }
+        private void FillDataToGrid()
+        {
+            PrintLogWin.PrintLog("FillGrid ******************** " + GlobalVariables.ProgCode);
+            try
+            {
+                DataSet ds = ProjectFunctions.GetDataSet("Select ProgProcName,ProgDesc from ProgramMaster Where ProgCode='" + GlobalVariables.ProgCode + "'");
+                string ProcedureName = ds.Tables[0].Rows[0]["ProgProcName"].ToString();
+
+                PrintLogWin.PrintLog("FillGrid => ProcedureName ******************** " + ProcedureName);
+
+                DataSet dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName);
+                FillTable(dsMaster);
+                AddUnboundColumn();
+                AddButtonToGrid();
+
+                //toolStrip_lbl.Text = ds.Tables[0].Rows[0]["ProgDesc"].ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox_Debug.ShowBox("frmMaster => FillGrid() => " + ex);
+            }
+        }
+
+        private void FillTable(DataSet dsMaster)
+        {
+            gridView_AttendanceData.Columns.Clear();
+
+            using (SEQKARTNewEntities db = new SEQKARTNewEntities())
+            {
+                BindingList<EmployeeAttendance> binding_list = new BindingList<EmployeeAttendance>();
+
+                List<EmployeeAttendance> employeeAttendances_List = db.EmployeeAttendances.OrderByDescending(s => s.entry_date).ToList();
+                gridControl_AttendanceData.DataSource = employeeAttendances_List;
+                gridView_AttendanceData.BestFitColumns();
+
+                foreach (var item in employeeAttendances_List)
+                {
+                    EmployeeAttendance employeeAttendance = new EmployeeAttendance();
+                    employeeAttendance.serial_id = item.serial_id;
+                    employeeAttendance.shift_id = item.shift_id;
+                    employeeAttendance.status_id = item.status_id;
+                    employeeAttendance.employee_code = item.employee_code;
+                    employeeAttendance.attendance_date = item.attendance_date;
+                    employeeAttendance.attendance_in_first = item.attendance_in_first;
+                    employeeAttendance.attendance_out_first = item.attendance_out_first;
+                    employeeAttendance.attendance_source = item.attendance_source;
+
+                    employeeAttendances_List.Add(employeeAttendance);
+                }
+                gridControl_AttendanceData.DataSource = binding_list;
+
+            }
+        }
+
+        private void AddUnboundColumn()
+        {
+            GridColumn unbColumn = gridView_AttendanceData.Columns.AddField("Action");
+            unbColumn.VisibleIndex = gridView_AttendanceData.Columns.Count;
+            unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
         }
 
 
@@ -593,6 +721,50 @@ namespace WindowsFormsApplication1.Forms_Master
             gridView_AttendanceData.DoubleClick += gridControl_AttendanceData_DoubleClick;
 
 
+        }
+
+        private void AddButtonToGrid()
+        {
+            PrintLogWin.PrintLog("*[ AddButtonToGrid ]*");
+
+            //In Editable Mode
+            //gridView_UserMaster.ShownEditor += gridView_ShownEditor;
+
+            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            edit.ButtonClick += edit_ButtonClick;
+            edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+
+            EditorButton button = edit.Buttons[0];
+
+            button.ImageOptions.Image = WindowsFormsApplication1.Properties.Resources.Edit_16x16;
+            button.ImageOptions.Location = ImageLocation.MiddleCenter;
+            button.Caption = "Edit";
+            button.Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
+
+            button.Appearance.BackColor = Color.Red;
+            button.Appearance.Options.UseBackColor = true;
+            button.Appearance.BorderColor = Color.Transparent;
+            //edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+
+            button.Appearance.Options.UseBackColor = true;
+            button.Appearance.BackColor = Color.Transparent;
+
+            GridColumn actionColumn = gridView_AttendanceData.Columns["Action"];
+            actionColumn.ColumnEdit = edit;
+            actionColumn.OptionsColumn.AllowEdit = true;
+        }
+
+        private void gridView_DoubleClick(object sender, EventArgs e)
+        {
+            DXMouseEventArgs ea = e as DXMouseEventArgs;
+            GridView view = sender as GridView;
+            GridHitInfo info = view.CalcHitInfo(ea.Location);
+            if (info.InRow || info.InRowCell)
+            {
+                string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
+            }
         }
 
         //https://supportcenter.devexpress.com/ticket/details/a2934/how-to-handle-a-double-click-on-a-grid-row-or-cell
@@ -615,6 +787,41 @@ namespace WindowsFormsApplication1.Forms_Master
             }
         }
 
+        BaseEdit editor;
+        private void gridView_ShownEditor(object sender, EventArgs e)
+        {
+            GridView view = sender as GridView;
+            editor = view.ActiveEditor;
+            editor.DoubleClick += editor_DoubleClick;
+        }
+
+        void gridView_HiddenEditor(object sender, EventArgs e)
+        {
+            editor.DoubleClick -= editor_DoubleClick;
+            editor = null;
+        }
+
+        void editor_DoubleClick(object sender, EventArgs e)
+        {
+            BaseEdit editor = (BaseEdit)sender;
+            GridControl grid = editor.Parent as GridControl;
+            GridView view = grid.FocusedView as GridView;
+            Point pt = grid.PointToClient(Control.MousePosition);
+            GridHitInfo info = view.CalcHitInfo(pt);
+            if (info.InRow || info.InRowCell)
+            {
+                string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
+            }
+        }
+
+        void edit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            PrintLogWin.PrintLog("*[ edit_ButtonClick ]*");
+            OnClickRow();
+
+        }
+
         private void btnLoad_Data_Click(object sender, EventArgs e)
         {
             if (ValidateData_GridLoad())
@@ -622,7 +829,7 @@ namespace WindowsFormsApplication1.Forms_Master
                 LoadAttendanceDataGrid();
 
             }
-
+            
         }
 
         private bool ValidateData_GridLoad()
@@ -652,16 +859,16 @@ namespace WindowsFormsApplication1.Forms_Master
             param.Add("@Attendance_Month", DtStartDate.EditValue);
 
             DynamicParameters paramEmp = new DynamicParameters();
-            paramEmp.Add("@EmpCode", txtEmpCode.EditValue);
+            paramEmp.Add("@EmpCode", txtEmpCode.EditValue);            
 
             ProgramMasterModel programMaster = ProgramMasterData.GetProgramMasterModel(GlobalVariables.ProgCode);
 
-
-
+            
+            
             EmployeeAttendanceDetails_Model employeeAttendanceDetails_Model = new EmployeeAttendanceDetails_Model();
             employeeAttendanceDetails_Model.EmpCode = txtEmpCode.EditValue + "";
-            employeeAttendanceDetails_Model.AttendanceMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
-            employeeAttendanceDetails_Model.EmployeeAttendance_Get_List = EmployeeData.EmployeeAttendance_Get(programMaster.ProgProcName, param);
+            employeeAttendanceDetails_Model.AttendanceMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);            
+            employeeAttendanceDetails_Model.EmployeeAttendance_Get_List = EmployeeData.EmployeeAttendance_Get(programMaster.ProgProcName, param);            
             employeeAttendanceDetails_Model.EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", paramSalary);
             employeeAttendanceDetails_Model.EmployeeMasterDataList = EmployeeData.GetEmployeeMasterDataList("sp_LoadEmpMstFEditing", paramEmp);
             //EmployeeMasterModel
@@ -681,7 +888,7 @@ namespace WindowsFormsApplication1.Forms_Master
             {
                 tool.PrintDialog();
             }
-
+            
 
         }
 
@@ -696,7 +903,7 @@ namespace WindowsFormsApplication1.Forms_Master
             {
                 Report_Print_Preview("preview");
             }
-
+            
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -710,7 +917,7 @@ namespace WindowsFormsApplication1.Forms_Master
             {
                 Report_Print_Preview("print");
             }
-
+            
         }
 
         private void btnExportXsls_Click(object sender, EventArgs e)
@@ -727,7 +934,13 @@ namespace WindowsFormsApplication1.Forms_Master
                 // Open the created XLSX file with the default application.
                 Process.Start(path);
             }
+            
+        }
 
+
+        private void DtStartDate_KeyDown(object sender, KeyEventArgs e)
+        {
+         
         }
 
         private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)

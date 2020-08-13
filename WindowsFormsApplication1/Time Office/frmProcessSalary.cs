@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
@@ -17,9 +18,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+
+using WindowsFormsApplication1;
 using WindowsFormsApplication1.Prints;
 
-namespace WindowsFormsApplication1.Forms_Transaction
+namespace BNPL.Forms_Transaction
 {
     public partial class frmProcessSalary : DevExpress.XtraEditors.XtraForm
     {
@@ -68,6 +71,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
 
         private void gridControl_SalaryProcess_DoubleClick(object sender, EventArgs e)
         {
+            /*
             //Sender is actually of type GridControl  
             GridControl gridControl = (GridControl)sender;
 
@@ -91,8 +95,8 @@ namespace WindowsFormsApplication1.Forms_Transaction
                 ReportPrintTool tool = new ReportPrintTool(report_employeeSalaryDetails);
                 tool.ShowPreview();
             }
+            */
         }
-
 
         private void fillGrid()
         {
@@ -102,12 +106,14 @@ namespace WindowsFormsApplication1.Forms_Transaction
             PrintLogWin.PrintLog(str);
 
             DataSet ds = ProjectFunctionsUtils.GetDataSet(str);
-            ds.Tables[0].Columns.Add(new DataColumn("Arrears_1"));
-            ds.Tables[0].Columns.Add(new DataColumn("Loan_1"));
-            ds.Tables[0].Columns.Add(new DataColumn("SalaryCalculated_1"));
+            ds.Tables[0].Columns.Add(new DataColumn("Balance_1", typeof(Double)));
+            ds.Tables[0].Columns.Add(new DataColumn("Arrears_1", typeof(Double)));
+            ds.Tables[0].Columns.Add(new DataColumn("Loan_1", typeof(Double)));
+            ds.Tables[0].Columns.Add(new DataColumn("SalaryCalculated_1", typeof(Double)));
 
             for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
             {
+                ds.Tables[0].Rows[i]["Balance_1"] = ConvertTo.DoubleVal(ds.Tables[0].Rows[i]["Balance"]);
                 ds.Tables[0].Rows[i]["Arrears_1"] = ds.Tables[0].Rows[i]["Arrears"];
                 ds.Tables[0].Rows[i]["Loan_1"] = ds.Tables[0].Rows[i]["Loan"];
                 ds.Tables[0].Rows[i]["SalaryCalculated_1"] = ds.Tables[0].Rows[i]["SalaryCalculated"];
@@ -127,9 +133,9 @@ namespace WindowsFormsApplication1.Forms_Transaction
             }
 
             /////////////////////////////////////
-
-
-
+            
+            
+           
             //////////////////////////////////////////////
             // Create an unbound column.
             /*
@@ -175,59 +181,50 @@ namespace WindowsFormsApplication1.Forms_Transaction
 
                 }
             }
+
+            SetGridViewStyle();
+
             /*
             for (int rowHandle = 0; rowHandle < gridView_SalaryProcess.RowCount; rowHandle++)
             {
+                //DevExpress.XtraGrid.Columns.GridColumn col = View.Columns.ColumnByFieldName("Price");
                 foreach (GridColumn gc in gridView_SalaryProcess.Columns)
                 {
 
-                    int _SalaryLocked = 0;
+                    //int _SalaryLocked = 0;
                     if (gc.FieldName == "SalaryLocked")
                     {
-                        _SalaryLocked = ConvertTo.IntVal(gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gc));
+                        int _SalaryLocked = ConvertTo.IntVal(gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gc));
 
-                        PrintLogWin.PrintLog("========> SalaryLocked : " + gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gc));
+                        PrintLogWin.PrintLog("%%%%%%%%> SalaryLocked : " + _SalaryLocked);
                         //gridView_SalaryProcess.Columns["Arrears"].OptionsColumn
                         PrintLogWin.PrintLog("========> Loan : " + gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gridView_SalaryProcess.Columns["Loan"]));
                         PrintLogWin.PrintLog("========> SalaryPaid : " + gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gridView_SalaryProcess.Columns["SalaryPaid"]));
 
                         if(_SalaryLocked == 1)
                         {
-                            gridView_SalaryProcess.Columns["Loan"].OptionsColumn.AllowEdit = false;
-                            gridView_SalaryProcess.Columns["SalaryPaid"].OptionsColumn.AllowEdit = false;
+                            string hex = "#ff0000";
+                            Color color = System.Drawing.ColorTranslator.FromHtml(hex);
+                            gc.AppearanceCell.BackColor = color;
                         }
                         else
                         {
-                            gridView_SalaryProcess.Columns["Loan"].OptionsColumn.AllowEdit = true;
-                            gridView_SalaryProcess.Columns["SalaryPaid"].OptionsColumn.AllowEdit = true;
+                            //gc.AppearanceCell.BackColor = Color.Transparent;
                         }
                     }
-                    //if (gc.FieldName == "SalaryPaid" || gc.FieldName == "Loan")
-                    //{
-                    //    PrintLogWin.PrintLog("========> SalaryPaid : Loan : " + gridView_SalaryProcess.GetRowCellDisplayText(rowHandle, gc));
-                    //}
-                    //else
-                    //{
-                    //    gc.OptionsColumn.AllowEdit = false;
-                    //}
+                    
 
                 }
                     
             }
             */
 
-
-
-
-
-            SetGridViewStyle();
         }
 
         public static void CustomDrawCell(GridControl gridControl, GridView gridView)
         {
             // Handle this event to paint cells manually
-            gridView.CustomDrawCell += (s, e) =>
-            {
+            gridView.CustomDrawCell += (s, e) => {
                 if (e.Column.VisibleIndex != 2)
                 {
                     return;
@@ -238,14 +235,34 @@ namespace WindowsFormsApplication1.Forms_Transaction
             };
         }
 
+        private void gridView_SalaryProcess_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            bool _mark = ConvertTo.IntVal(view.GetRowCellValue(e.RowHandle, "SalaryLocked")) == 1 ? true : false;;
+            if (e.Column.FieldName == "SalaryLocked")
+            {
+                string hexBackColor = "#eb4d46";
+                Color colorLoked_BackColor = System.Drawing.ColorTranslator.FromHtml(hexBackColor);
+
+                string hexForeColor = "#ffffff";
+                Color colorLoked_ForeColor = System.Drawing.ColorTranslator.FromHtml(hexForeColor);
+
+                e.Appearance.BackColor = _mark ? colorLoked_BackColor : Color.Transparent;
+                e.Appearance.ForeColor = _mark ? colorLoked_ForeColor : Color.Black;
+                //e.Appearance.TextOptions.HAlignment = _mark ? HorzAlignment.Far : HorzAlignment.Near;
+            }
+        }
+
         private void gridView_SalaryProcess_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
         {
+            /*
             GridView View = sender as GridView;
 
             //string cellValue = View.GetRowCellValue(View.FocusedRowHandle, gridView_SalaryProcess.Columns["SalaryLocked"]).ToString();
 
             if (e.Column.FieldName == "SalaryLocked")
             {
+                Color currentColor = View.Columns["SalaryPaid"].AppearanceCell.BackColor;
                 //e.DefaultDraw();
                 if (Convert.ToInt32(e.CellValue) == 1)
                 {
@@ -258,10 +275,15 @@ namespace WindowsFormsApplication1.Forms_Transaction
                     //View.GetDataRow(e.RowHandle).Field("Loan",)
                     //dr["SalaryPaid"].
                     //string cellValue = View.GetRowCellValue(e.RowHandle, View.Columns["SalaryLocked"]).ToString();
-
+                    
                     //e.Cache.DrawImage(warningImage, e.Bounds.Location);
                 }
+                else
+                {
+                    View.Columns["SalaryPaid"].AppearanceCell.BackColor = currentColor;
+                }
             }
+            */
         }
 
         private void gridView_SalaryProcess_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
@@ -273,7 +295,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
             string cellValue = View.GetRowCellValue(View.FocusedRowHandle, gridView_SalaryProcess.Columns["SalaryLocked"]).ToString();
             if (cellValue == "1")
             {
-
+                
                 //string hex = "#eeeeee";
                 //Color color = System.Drawing.ColorTranslator.FromHtml(hex);
                 //View.Columns["SalaryPaid"].AppearanceCell.BackColor = color;
@@ -283,17 +305,40 @@ namespace WindowsFormsApplication1.Forms_Transaction
             }
         }
 
+        /*
+        // Returns the total amount for a specific row.
+        private object getTotalValue(int listSourceRowIndex)
+        {
+            DataRow row = gridView_SalaryProcess.GetDataRow(listSourceRowIndex);// nwindDataSet.Tables["Order Details"].Rows[listSourceRowIndex];
+            //decimal unitPrice = ConvertTo.DecimalVal(row["UnitPrice"]);
+            //decimal quantity = ConvertTo.DecimalVal(row["Quantity"]);
+            //decimal arrears = ConvertTo.DecimalVal(row["Arrears"]);
+            return row["Arrears"];
+        }
+        private void gridView_SalaryProcess_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e)
+        {
+            if (e.Column.FieldName == "Arrears_1" && e.IsGetData)
+            {
+                e.Value = ConvertTo.DecimalVal(getTotalValue(e.ListSourceRowIndex));
+            }
+        }
+        */
+        private void gridView_SalaryProcess_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e)
+        {
+
+        }
+
         private void SetGridViewStyle()
         {
             gridView_Style_List = ProjectFunctionsUtils.GridView_Style("frmProcessSalary", "gridControl_SalaryProcess");
 
             if (gridView_Style_List != null)
             {
-                foreach (DevExpress.XtraGrid.Columns.GridColumn Col in gridView_SalaryProcess.Columns)
+                int rowIndex = 0;
+                foreach (GridColumn Col in gridView_SalaryProcess.Columns)
                 {
                     try
                     {
-
 
                         if (gridView_Style_List.Exists(x => x.column_name.Equals(Col.FieldName)))
                         {
@@ -332,6 +377,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
                                         Color color = System.Drawing.ColorTranslator.FromHtml(hex);
                                         Col.AppearanceCell.BackColor = color;
                                     }
+
                                 }
                                 catch (Exception ex)
                                 {
@@ -373,6 +419,12 @@ namespace WindowsFormsApplication1.Forms_Transaction
                     //    Col.AppearanceCell.FontStyleDelta = FontStyle.Bold;
 
                     //}
+                    if (Col.FieldName == "SalaryLocked")
+                    {
+                        //e.DefaultDraw();
+                        
+                    }
+                    rowIndex++;
                 }
             }
 
@@ -389,28 +441,29 @@ namespace WindowsFormsApplication1.Forms_Transaction
 
                 if (salary_locked == 0)
                 {
-                    decimal arrears_old = ConvertTo.DecimalVal(focusRowView["Arrears_1"]);
+                    //decimal balance_old = ConvertTo.DecimalVal(focusRowView["Balance_1"]);
+                    //decimal arrears_old = ConvertTo.DecimalVal(focusRowView["Arrears_1"]);
                     decimal salary_paying = ConvertTo.DecimalVal(e.Value);
 
                     decimal salary_calculated = ConvertTo.DecimalVal(focusRowView["SalaryCalculated"]);
 
                     decimal salary_calculated_and_paying_difference = salary_calculated - salary_paying;
-                    decimal arrears_new = arrears_old + salary_calculated_and_paying_difference;
+                    decimal balance_new = salary_calculated_and_paying_difference;
 
-                    PrintLogWin.PrintLog("******* arrears_old A " + arrears_old);
-                    PrintLogWin.PrintLog("******* arrears_old B " + focusRowView["Arrears"]);
+                    //PrintLogWin.PrintLog("******* balance_old A " + balance_old);
+                    PrintLogWin.PrintLog("******* balance_old B " + focusRowView["Balance"]);
 
                     PrintLogWin.PrintLog("******* salary_paying " + salary_paying);
 
                     PrintLogWin.PrintLog("******* salary_calculated " + salary_calculated);
                     PrintLogWin.PrintLog("******* salary_calculated_and_paying_difference " + salary_calculated_and_paying_difference);
-                    PrintLogWin.PrintLog("******* arrears_new " + arrears_new);
+                    PrintLogWin.PrintLog("******* balance_new " + balance_new);
 
-                    view.SetRowCellValue(view.FocusedRowHandle, view.Columns["Arrears"], arrears_new);
+                    view.SetRowCellValue(view.FocusedRowHandle, view.Columns["Balance"], balance_new);
                 }
                 else
                 {
-                    //view.SetRowCellValue(view.FocusedRowHandle, view.Columns["SalaryPaid"], arrears_new);
+                    //view.SetRowCellValue(view.FocusedRowHandle, view.Columns["SalaryPaid"], balance_new);
                 }
             }
 
@@ -436,24 +489,25 @@ namespace WindowsFormsApplication1.Forms_Transaction
                 /////////////////////////////////////////////////////////////
                 if (salary_paid > 0)
                 {
-                    decimal arrears_old = ConvertTo.DecimalVal(focusRowView["Arrears_1"]);
+                    //decimal balance_old = ConvertTo.DecimalVal(focusRowView["Balance_1"]);
+                    //decimal arrears_old = ConvertTo.DecimalVal(focusRowView["Arrears_1"]);
                     decimal salary_paying = ConvertTo.DecimalVal(focusRowView["SalaryPaid"]);
 
                     decimal salary_calculated = ConvertTo.DecimalVal(focusRowView["SalaryCalculated"]);
 
                     decimal salary_calculated_and_paying_difference = salary_calculated - salary_paying;
-                    decimal arrears_new = arrears_old + salary_calculated_and_paying_difference;
+                    decimal balance_new = salary_calculated_and_paying_difference;
 
-                    PrintLogWin.PrintLog("******* arrears_old A " + arrears_old);
-                    PrintLogWin.PrintLog("******* arrears_old B " + focusRowView["Arrears"]);
+                    //PrintLogWin.PrintLog("******* balance_old A " + balance_old);
+                    PrintLogWin.PrintLog("******* balance_old B " + focusRowView["Balance"]);
 
                     PrintLogWin.PrintLog("******* salary_paying " + salary_paying);
 
                     PrintLogWin.PrintLog("******* salary_calculated " + salary_calculated);
                     PrintLogWin.PrintLog("******* salary_calculated_and_paying_difference " + salary_calculated_and_paying_difference);
-                    PrintLogWin.PrintLog("******* arrears_new " + arrears_new);
+                    PrintLogWin.PrintLog("******* balance_new " + balance_new);
 
-                    view.SetRowCellValue(view.FocusedRowHandle, view.Columns["Arrears"], arrears_new);
+                    view.SetRowCellValue(view.FocusedRowHandle, view.Columns["Balance"], balance_new);
                 }
                 //if (view.FocusedColumn.FieldName == "SalaryLocked")
                 //{
@@ -475,6 +529,103 @@ namespace WindowsFormsApplication1.Forms_Transaction
             }
         }
 
+        private void gridView_SalaryProcess_CellValueChanging(object sender, CellValueChangedEventArgs e)
+        {
+            /*
+            var view = sender as GridView;
+            var focusRowView = (DataRowView)gridView_SalaryProcess.GetFocusedRow();
+            if (view == null)
+            {
+                return;
+            }
+
+            if (view.FocusedColumn.FieldName == "Loan")
+            {
+
+                decimal oldValue = ConvertTo.DecimalVal(focusRowView["Loan"]);
+                decimal newValue = ConvertTo.DecimalVal(e.Value);
+
+                decimal salary_calculated = ConvertTo.DecimalVal(gridView_SalaryProcess.GetRowCellValue(e.RowHandle, gridView_SalaryProcess.Columns["SalaryCalculated"]).ToString());
+
+                decimal new_salary_calculated = (salary_calculated + oldValue) - newValue;
+
+                PrintLogWin.PrintLog("******* oldValue " + oldValue);
+                PrintLogWin.PrintLog("******* newValue " + newValue);
+
+                PrintLogWin.PrintLog("******* salary_calculated " + salary_calculated);
+                PrintLogWin.PrintLog("******* new_salary_calculated " + new_salary_calculated);
+
+                gridView_SalaryProcess.SetRowCellValue(e.RowHandle, gridView_SalaryProcess.Columns["SalaryCalculated"], new_salary_calculated);
+            }
+            */
+            /*
+             * 
+            if (view.FocusedColumn.FieldName == "SalaryPaid")
+            {
+                //gridView_SalaryProcess.CellValueChanging -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridView_SalaryProcess_CellValueChanging);
+
+                decimal arrears_old = ConvertTo.DecimalVal(focusRowView["Arrears"]);
+                decimal salary_paying = ConvertTo.DecimalVal(e.Value);
+
+                decimal salary_calculated = ConvertTo.DecimalVal(gridView_SalaryProcess.GetRowCellValue(e.RowHandle, gridView_SalaryProcess.Columns["SalaryCalculated"]).ToString());
+                //decimal arrears_old = ConvertTo.DecimalVal(gridView_SalaryProcess.GetRowCellValue(e.RowHandle, gridView_SalaryProcess.Columns["Arrears"]).ToString());
+
+                decimal salary_calculated_and_paying_difference = salary_calculated - salary_paying;
+
+                decimal arrears_new = arrears_old + salary_calculated_and_paying_difference;
+                //
+
+                //PrintLogWin.PrintLog("******* oldValue " + oldValue);
+                PrintLogWin.PrintLog("******* salary_paying " + salary_paying);
+
+                PrintLogWin.PrintLog("******* salary_calculated " + salary_calculated);
+                PrintLogWin.PrintLog("******* salary_calculated_and_paying_difference " + salary_calculated_and_paying_difference);
+                PrintLogWin.PrintLog("******* arrears_new " + arrears_new);
+
+                gridView_SalaryProcess.SetRowCellValue(e.RowHandle, gridView_SalaryProcess.Columns["Arrears"], arrears_new);
+
+                //gridView_SalaryProcess.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridView_SalaryProcess_CellValueChanging);
+            }
+            */
+            //PrintLogWin.PrintLog("******* A1");
+            //if (e.Column.FieldName == "Loan")
+            //{
+            //    gridView_SalaryProcess.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridView_SalaryProcess_CellValueChanged);
+
+
+
+            //    decimal salary_calculated = ConvertTo.DecimalVal(gridView_SalaryProcess.GetRowCellValue(e.RowHandle, gridView_SalaryProcess.Columns["SalaryCalculated"]).ToString());
+
+            //    //gridView_SalaryProcess.SetRowCellValue(e.RowHandle, e.Column, salary_calculated - (decimal)(e.Value));
+            //    gridView_SalaryProcess.SetRowCellValue(e.RowHandle, gridView_SalaryProcess.Columns["SalaryCalculated"], salary_calculated - (decimal)(e.Value));
+
+            //    gridView_SalaryProcess.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridView_SalaryProcess_CellValueChanged);
+            //}
+        }
+
+        private void gridView_SalaryProcess_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+
+
+            /*BandedGridView view = sender as BandedGridView;
+            if (view == null)
+            {
+                return;
+            }
+            PrintLogWin.PrintLog("******* B1");
+
+            if (e.Column.Caption != "Loan")
+            {
+                return;
+            }
+            PrintLogWin.PrintLog("******* C1");
+            decimal cellValue = ConvertTo.DecimalVal(view.GetRowCellValue(e.RowHandle, view.Columns["SalaryPaid"])) - ConvertTo.DecimalVal(e.Value);// e.Value.ToString() + " " + ConvertTo.DecimalVal(view.GetRowCellValue(e.RowHandle, view.Columns["SalaryPaid"]));
+            view.SetRowCellValue(e.RowHandle, view.Columns["SalaryPaid"], cellValue);
+
+            PrintLogWin.PrintLog("******* D1");
+            */
+        }
+
         private void gridView_SalaryProcess_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.FieldName == "OT_Time")
@@ -488,7 +639,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
             if (e.Column.FieldName == "DeductionTime")
             {
                 if (e.Value != DBNull.Value)
-                {
+                {                    
                     e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
                 }
             }
@@ -549,12 +700,12 @@ namespace WindowsFormsApplication1.Forms_Transaction
             {
                 try
                 {
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("EmpCode", typeof(string));
-                    dt.Columns.Add("SalaryMonth", typeof(DateTime));
-                    dt.Columns.Add("SalaryPaid", typeof(decimal));
-                    dt.Columns.Add("LoanInstallment", typeof(decimal));
-                    dt.Columns.Add("SalaryCalculated", typeof(decimal));
+                    DataTable dtProcessSalary = new DataTable();
+                    dtProcessSalary.Columns.Add("EmpCode", typeof(string));
+                    dtProcessSalary.Columns.Add("SalaryMonth", typeof(DateTime));
+                    dtProcessSalary.Columns.Add("SalaryPaid", typeof(decimal));
+                    dtProcessSalary.Columns.Add("LoanInstallment", typeof(decimal));
+                    dtProcessSalary.Columns.Add("SalaryCalculated", typeof(decimal));
 
 
                     for (int rowIndex = 0; rowIndex != gridView_SalaryProcess.RowCount; rowIndex++)
@@ -573,6 +724,10 @@ namespace WindowsFormsApplication1.Forms_Transaction
                         //PrintLogWin.PrintLog("strSalaryCalculated => " + strSalaryCalculated);
                         //PrintLogWin.PrintLog("------------------------------");
 
+                        PrintLogWin.PrintLog("----- btnProcessSalary_Click => strSalaryMonth: " + strSalaryMonth);
+                        PrintLogWin.PrintLog("----- btnProcessSalary_Click => strEmpCode: " + strEmpCode);
+
+                        //if (strSalaryPaid != null && strEmpCode.Equals("0030") && ConvertTo.DateTimeVal(strSalaryMonth).Month == 6)
                         if (strSalaryPaid != null)
                         {
                             if (ConvertTo.DecimalVal(strSalaryPaid) > 0)
@@ -585,14 +740,18 @@ namespace WindowsFormsApplication1.Forms_Transaction
                                 PrintLogWin.PrintLog("------------------------------");
 
                                 //dt.Rows.Add(strEmpCode, ConvertTo.DateTimeVal(strSalaryMonth), ConvertTo.DecimalVal(strSalaryPaid));
-                                dt.Rows.Add(
+                                dtProcessSalary.Rows.Add(
                                 strEmpCode,
                                 ConvertTo.DateFormatDb(strSalaryMonth),
                                 ConvertTo.DecimalVal(strSalaryPaid),
                                 ConvertTo.DecimalVal(strLoanInstallment),
                                 ConvertTo.DecimalVal(strSalaryCalculated)
                                 );
+
+                                PrintLogWin.PrintLog("***** btnProcessSalary_Click => strSalaryMonth: " + strSalaryMonth);
+                                PrintLogWin.PrintLog("***** btnProcessSalary_Click => strEmpCode: " + strEmpCode);
                             }
+                            
                         }
 
 
@@ -600,14 +759,14 @@ namespace WindowsFormsApplication1.Forms_Transaction
                     }
 
                     PrintLogWin.PrintLog("*******************************" + "");
-
+                    
                     using (SqlConnection con = new SqlConnection(ProjectFunctionsUtils.ConnectionString))
                     {
                         con.Open();
                         using (SqlCommand com = new SqlCommand("sp_UpdateSalaryPaid", con))
                         {
                             com.CommandType = CommandType.StoredProcedure;
-                            com.Parameters.AddWithValue("@TableParam", dt);
+                            com.Parameters.AddWithValue("@TableParam", dtProcessSalary);
                             com.ExecuteNonQuery();
 
                             ProjectFunctions.SpeakError("Salary Has Been Processed");
@@ -615,6 +774,8 @@ namespace WindowsFormsApplication1.Forms_Transaction
                         }
 
                     }
+                    
+
                 }
                 catch (Exception ex)
                 {
@@ -625,6 +786,56 @@ namespace WindowsFormsApplication1.Forms_Transaction
             
             */
 
+        }
+        /*
+        private void gridControl_SalaryProcess_ProcessGridKey(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        // Fires when no in-place editor is active
+        private void gridView_SalaryProcess_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+        // Fires when an in-place editor is active
+        private void gridControl_SalaryProcess_EditorKeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+        */
+        private void fillGrid_OLD()
+        {
+            _Mnthyr = String.Format("{0}{1}", DtStartDate.Text.Substring(0, 2), DtStartDate.Text.Substring(DtStartDate.Text.Length - 2, 2));
+
+            var ds = new DataSet();
+            //var str = "SELECT DeptMst.DeptDesc,payFinal.EmpCode,EmpName,RTrim(EmpFHRelationTag) As 'F/H',empFHname As 'F/H Name', payFinal.EmpNetPaid,B.EmpPymtMode,payFinal.EmpLockTag As IsLock, Cast(0 As Bit) As Sel,payFinal.EmpSalLocTag as Locked from PayFinal INNER JOIN  DeptMst ON payFinal.EmpDeptCode = DeptMst.DeptCode inner join AtnData B on payfinal.EmpCode=B.EmpCode and B.MonthYear= '" + _Mnthyr + "'";
+            //str = str + " where PayFinal.monthyear= '" + _Mnthyr + "'  Union select DeptMst.DeptDesc,EmpMst.EmpCode,EmpMst.EmpName,EmpFHRelationTag,EmpMst.empFHname, '' as EmpNetPaid,C.EmpPymtMode,";
+            //str = str + "  '' as EmpLockTag, Cast(0 As Bit) As Sel,'' as Locked from empmst INNER JOIN  DeptMst ON EmpMst.EmpDeptCode = DeptMst.DeptCode  inner join AtnData C on EmpMst.EmpCode=C.EmpCode and C.MonthYear= '" + _Mnthyr + "' WHERE EmpMst.empcode NOT IN (SELECT empcode from PayFinal    where monthyear= '" + _Mnthyr + "' )  ";
+            //str = str + " And EmpMst.empcode IN (SELECT empcode from AtnData    where monthyear='" + _Mnthyr + "' )  ";
+            //str = str + "   and (empleft<>'Y' or empleft is null or EmpDOL>'" + Convert.ToDateTime(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "')  ";
+            //str = str + " order by PayFinal.EmpLockTag DESC ,PayFinal.empcode ";
+            var str = "sp_LoadSalaryMstFProcess '" + _Mnthyr + "','" + Convert.ToDateTime(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "'";
+
+            PrintLogWin.PrintLog(str);
+
+
+            ds = ProjectFunctions.GetDataSet(str);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                SalaryGrid.DataSource = ds.Tables[0];
+                SalaryGridView.BestFitColumns();
+            }
+            SalaryGridView.OptionsBehavior.Editable = true;
+
+            foreach (DevExpress.XtraGrid.Columns.GridColumn Col in SalaryGridView.Columns)
+            
+            {
+                if (Col.FieldName != "Sel")
+                {
+                    Col.OptionsColumn.AllowEdit = false;
+                }
+            }
         }
 
 
@@ -699,7 +910,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
                                                 int Month = Convert.ToInt32(Convert.ToDateTime(DtStartDate.Text).ToString("MM"));
                                                 int numberOfSundays = NumberOfParticularDaysInMonth(Year, Month, DayOfWeek.Sunday);
 
-                                                ProjectFunctions.GetDataSet(String.Format("Sp_PayCalc '{0}','{1}','{2}'", Dr["EmpCode"], _Mnthyr, numberOfSundays));
+                                                //ProjectFunctions.GetDataSet(String.Format("Sp_PayCalc '{0}','{1}','{2}'", Dr["EmpCode"], _Mnthyr, numberOfSundays));
                                             }
                                         }
                                     }
@@ -823,7 +1034,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
             {
                 Report_Print_Preview("preview");
             }
-
+            
         }
 
         private void btnPrintReport_Click(object sender, EventArgs e)
@@ -837,7 +1048,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
             {
                 Report_Print_Preview("print");
             }
-
+            
         }
 
         private void btnExportXsls_Click(object sender, EventArgs e)
@@ -854,8 +1065,10 @@ namespace WindowsFormsApplication1.Forms_Transaction
                 // Open the created XLSX file with the default application.
                 Process.Start(path);
             }
-
+            
         }
+
+        
     }
 
 }
