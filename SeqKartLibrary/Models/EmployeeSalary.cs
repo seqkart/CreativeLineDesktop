@@ -17,9 +17,11 @@ namespace SeqKartLibrary.Models
         public int AttendanceDays { get; set; }
         public int EmployeeLeaves { get; set; }
         public double SalaryEarned { get; set; }
-        public int OT_Time { get; set; }
+        public string OT_Time { get; set; }
+        public int OT_Time_1 { get; set; }
         public double OT_Salary { get; set; }
-        public int DeductionTime { get; set; }
+        public string DeductionTime { get; set; }
+        public int DeductionTime_1 { get; set; }
         public double DeductionSalary { get; set; }
         public double SalaryGenerateBasic { get; set; }
         public double AdvanceSalary { get; set; }

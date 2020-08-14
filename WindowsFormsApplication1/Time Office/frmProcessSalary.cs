@@ -22,7 +22,7 @@ using System.Windows.Forms;
 using WindowsFormsApplication1;
 using WindowsFormsApplication1.Prints;
 
-namespace BNPL.Forms_Transaction
+namespace WindowsFormsApplication1.Forms_Transaction
 {
     public partial class frmProcessSalary : DevExpress.XtraEditors.XtraForm
     {
@@ -633,14 +633,14 @@ namespace BNPL.Forms_Transaction
                 if (e.Value != DBNull.Value)
                 {
                     //e.DisplayText = ConvertTo.MinutesToHours(e.Value) + " | " + e.Value;
-                    e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
+                    //e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
                 }
             }
             if (e.Column.FieldName == "DeductionTime")
             {
                 if (e.Value != DBNull.Value)
                 {                    
-                    e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
+                    //e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
                 }
             }
             if (e.Column.FieldName == "EmpSalary")

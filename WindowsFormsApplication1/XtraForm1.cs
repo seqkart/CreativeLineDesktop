@@ -1,4 +1,4 @@
-﻿using BNPL.Forms_Transaction;
+﻿using WindowsFormsApplication1.Forms_Transaction;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using System;
