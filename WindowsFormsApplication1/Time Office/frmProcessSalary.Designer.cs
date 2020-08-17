@@ -1,4 +1,4 @@
-﻿namespace BNPL.Forms_Transaction
+﻿namespace WindowsFormsApplication1.Forms_Transaction
 {
     partial class frmProcessSalary
     {
@@ -80,7 +80,6 @@
             this.btnLock.Size = new System.Drawing.Size(95, 25);
             this.btnLock.TabIndex = 351;
             this.btnLock.Text = "Lock";
-            this.btnLock.Visible = false;
             this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
             // 
             // ChoiceSelect
@@ -337,8 +336,10 @@
             this.gridView_SalaryProcess.OptionsView.ShowFooter = true;
             this.gridView_SalaryProcess.OptionsView.ShowGroupPanel = false;
             this.gridView_SalaryProcess.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView_SalaryProcess_CustomDrawCell);
+            this.gridView_SalaryProcess.CustomDrawFooterCell += new DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventHandler(this.gridView_SalaryProcess_CustomDrawFooterCell);
             this.gridView_SalaryProcess.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView_SalaryProcess_RowCellStyle);
             this.gridView_SalaryProcess.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView_SalaryProcess_RowStyle);
+            this.gridView_SalaryProcess.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView_SalaryProcess_CustomSummaryCalculate);
             this.gridView_SalaryProcess.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView_SalaryProcess_ShowingEditor);
             this.gridView_SalaryProcess.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_SalaryProcess_KeyDown);
             this.gridView_SalaryProcess.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView_SalaryProcess_ValidatingEditor);

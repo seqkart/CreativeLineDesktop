@@ -2,7 +2,10 @@
 using DevExpress.XtraReports.Import.Import.PRINTS;
 using DevExpress.XtraReports.UI;
 using SeqKartLibrary;
+using SeqKartLibrary.CrudTask;
+using SeqKartLibrary.Models;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -13,7 +16,7 @@ namespace WindowsFormsApplication1
 {
     public partial class frmTransaction : DevExpress.XtraEditors.XtraForm
     {
-        RangeSelector _RangeSelector = new RangeSelector() { StartDate = DateTime.Now, EndDate = DateTime.Now };
+        RangeSelector _RangeSelector = new RangeSelector() { StartDate = DateTime.Now.AddYears(-1), EndDate = DateTime.Now };
 
         public frmTransaction()
         {
@@ -24,11 +27,27 @@ namespace WindowsFormsApplication1
         {
             this.Close();
         }
+
+        private  async Task FillGrid_1()
+        {
+            try
+            {
+                List<EmployeeMasterModel> getEmployeeMasterDataList = await EmployeeData.GetEmployeeMasterDataList_Async("sp_LoadEmpMstFEditing", null);
+                MessageBox.Show("getEmployeeMasterDataList : " + getEmployeeMasterDataList.Count);
+            }
+            catch(Exception ex)
+            {
+                PrintLogWin.PrintLog("FillGrid_1 => Exception : " + ex);
+            }
+        }
         private void FillGrid()
         {
+
+            //Task.Run(async () => { await FillGrid_1(); });
+
             if (_RangeSelector.DtFrom.Text.Length == 0 || _RangeSelector.DtEnd.Text.Length == 0)
             {
-                _RangeSelector.DtFrom.EditValue = DateTime.Now.AddDays(-1);
+                _RangeSelector.DtFrom.EditValue = DateTime.Now.AddYears(-1);
                 _RangeSelector.DtEnd.EditValue = DateTime.Now;
             }
 
@@ -1143,7 +1162,7 @@ namespace WindowsFormsApplication1
         private async void BtnLoad_Click(object sender, EventArgs e)
         {
             _RangeSelector.Visible = false;
-
+            await Task.Delay(10);
             //await TransactionTask();
             FillGrid();
         }

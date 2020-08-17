@@ -6,7 +6,7 @@ using System.Data;
 using System.Drawing;
 using Image = System.Drawing.Image;
 
-namespace WindowsFormsApplication1.DataBindings
+namespace DataBindings
 {
     public class UserMaster_Data : INotifyPropertyChanged
     {

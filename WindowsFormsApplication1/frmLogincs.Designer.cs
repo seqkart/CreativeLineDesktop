@@ -47,8 +47,13 @@
             this.txtFNYear = new System.Windows.Forms.ComboBox();
             this.btnBackup = new DevExpress.XtraEditors.SimpleButton();
             this.stepProgressBarItem1 = new DevExpress.XtraEditors.StepProgressBarItem();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUserName
@@ -76,7 +81,7 @@
             // txtPassword
             // 
             this.txtPassword.EnterMoveNextControl = true;
-            this.txtPassword.Location = new System.Drawing.Point(163, 71);
+            this.txtPassword.Location = new System.Drawing.Point(163, 74);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPassword.Properties.MaxLength = 30;
@@ -88,7 +93,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(106, 75);
+            this.label1.Location = new System.Drawing.Point(106, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 23;
@@ -102,7 +107,7 @@
             this.btnClose.Appearance.Options.UseBackColor = true;
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.Appearance.Options.UseForeColor = true;
-            this.btnClose.Location = new System.Drawing.Point(254, 204);
+            this.btnClose.Location = new System.Drawing.Point(254, 264);
             this.btnClose.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnClose.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnClose.Name = "btnClose";
@@ -119,7 +124,7 @@
             this.btnLogin.Appearance.Options.UseBackColor = true;
             this.btnLogin.Appearance.Options.UseFont = true;
             this.btnLogin.Appearance.Options.UseForeColor = true;
-            this.btnLogin.Location = new System.Drawing.Point(163, 204);
+            this.btnLogin.Location = new System.Drawing.Point(163, 264);
             this.btnLogin.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnLogin.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnLogin.Name = "btnLogin";
@@ -136,7 +141,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(107, 103);
+            this.label2.Location = new System.Drawing.Point(107, 163);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 23;
@@ -146,7 +151,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(133, 128);
+            this.label4.Location = new System.Drawing.Point(133, 188);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 13);
             this.label4.TabIndex = 23;
@@ -156,7 +161,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(86, 154);
+            this.label5.Location = new System.Drawing.Point(86, 214);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 13);
             this.label5.TabIndex = 23;
@@ -166,7 +171,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(99, 181);
+            this.label6.Location = new System.Drawing.Point(99, 241);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 13);
             this.label6.TabIndex = 23;
@@ -174,7 +179,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(163, 176);
+            this.dateTimePicker1.Location = new System.Drawing.Point(163, 236);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(229, 22);
             this.dateTimePicker1.TabIndex = 55;
@@ -183,7 +188,7 @@
             // 
             this.txtCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtCompany.FormattingEnabled = true;
-            this.txtCompany.Location = new System.Drawing.Point(163, 100);
+            this.txtCompany.Location = new System.Drawing.Point(163, 160);
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.Size = new System.Drawing.Size(229, 21);
             this.txtCompany.TabIndex = 2;
@@ -194,7 +199,7 @@
             // 
             this.txtUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtUnit.FormattingEnabled = true;
-            this.txtUnit.Location = new System.Drawing.Point(163, 125);
+            this.txtUnit.Location = new System.Drawing.Point(163, 185);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Size = new System.Drawing.Size(229, 21);
             this.txtUnit.TabIndex = 3;
@@ -204,7 +209,7 @@
             // 
             this.txtFNYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtFNYear.FormattingEnabled = true;
-            this.txtFNYear.Location = new System.Drawing.Point(163, 149);
+            this.txtFNYear.Location = new System.Drawing.Point(163, 209);
             this.txtFNYear.Name = "txtFNYear";
             this.txtFNYear.Size = new System.Drawing.Size(229, 21);
             this.txtFNYear.TabIndex = 4;
@@ -220,7 +225,7 @@
             this.btnBackup.Appearance.Options.UseFont = true;
             this.btnBackup.Appearance.Options.UseForeColor = true;
             this.btnBackup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBackup.ImageOptions.SvgImage")));
-            this.btnBackup.Location = new System.Drawing.Point(12, 244);
+            this.btnBackup.Location = new System.Drawing.Point(12, 280);
             this.btnBackup.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnBackup.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnBackup.Name = "btnBackup";
@@ -234,6 +239,53 @@
             this.stepProgressBarItem1.ContentBlock2.Caption = "Item1";
             this.stepProgressBarItem1.Name = "stepProgressBarItem1";
             // 
+            // textEdit1
+            // 
+            this.textEdit1.EnterMoveNextControl = true;
+            this.textEdit1.Location = new System.Drawing.Point(163, 120);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textEdit1.Properties.MaxLength = 30;
+            this.textEdit1.Properties.PasswordChar = '*';
+            this.textEdit1.Size = new System.Drawing.Size(136, 20);
+            this.textEdit1.TabIndex = 57;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(134, 124);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(28, 13);
+            this.label7.TabIndex = 58;
+            this.label7.Text = "OTP";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(264, 100);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 13);
+            this.label8.TabIndex = 59;
+            this.label8.Text = "OR";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseForeColor = true;
+            this.simpleButton1.Location = new System.Drawing.Point(307, 118);
+            this.simpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.simpleButton1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(85, 23);
+            this.simpleButton1.TabIndex = 60;
+            this.simpleButton1.Text = "Send OTP";
+            // 
             // frmLogincs
             // 
             this.Appearance.BackColor = System.Drawing.Color.Gainsboro;
@@ -242,8 +294,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Stretch;
             this.BackgroundImageStore = global::WindowsFormsApplication1.Properties.Resources.login;
-            this.ClientSize = new System.Drawing.Size(575, 307);
+            this.ClientSize = new System.Drawing.Size(575, 345);
             this.ControlBox = false;
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textEdit1);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnBackup);
             this.Controls.Add(this.txtFNYear);
             this.Controls.Add(this.txtUnit);
@@ -265,6 +321,7 @@
             this.Load += new System.EventHandler(this.frmLogincs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,5 +346,9 @@
         private System.Windows.Forms.ComboBox txtFNYear;
         private DevExpress.XtraEditors.SimpleButton btnBackup;
         private DevExpress.XtraEditors.StepProgressBarItem stepProgressBarItem1;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

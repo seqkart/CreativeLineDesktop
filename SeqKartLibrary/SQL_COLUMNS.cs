@@ -104,8 +104,11 @@ namespace SeqKartLibrary
             public const string attendance_in_last = "attendance_in_last";
             public const string attendance_out_last = "attendance_out_last";
             public const string working_hours = "working_hours";
+            public const string working_hours_1 = "working_hours_1";
             public const string gate_pass_time = "gate_pass_time";
+            public const string gate_pass_time_1 = "gate_pass_time_1";
             public const string ot_deducton_time = "ot_deducton_time";
+            public const string ot_deducton_time_1 = "ot_deducton_time_1";
         }
 
         public static class AttendanceSource

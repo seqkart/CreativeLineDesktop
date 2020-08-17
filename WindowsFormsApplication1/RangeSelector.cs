@@ -28,7 +28,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-
         private void RangeSelector_Load(object sender, EventArgs e)
         {
             ProjectFunctions.DatePickerVisualize(this);

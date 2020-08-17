@@ -16,6 +16,15 @@ namespace WindowsFormsApplication1.Prints
             XRLabel label = (XRLabel)sender;
             label.Text = ConvertTo.MinutesToHours(label.Text);
         }
-        
+        /*
+        private string FormatHoursForDisplay(Double value)
+        {
+
+            Double Hrs = Math.Floor(value);
+            Double Mins = (value - Hrs) * 60;
+
+            return String.Format("{0:0}:{1:00}", Hrs, Mins);
+        }
+        */
     }
 }

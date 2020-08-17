@@ -1,9 +1,13 @@
 ﻿using Dapper;
+using DevExpress.Export.Xl;
+using DevExpress.Utils;
+using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using SeqKartLibrary;
@@ -16,13 +20,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 
 using WindowsFormsApplication1;
 using WindowsFormsApplication1.Prints;
 
-namespace BNPL.Forms_Transaction
+namespace WindowsFormsApplication1.Forms_Transaction
 {
     public partial class frmProcessSalary : DevExpress.XtraEditors.XtraForm
     {
@@ -41,7 +46,7 @@ namespace BNPL.Forms_Transaction
         {
             DtStartDate.EditValue = StartDate.Date;
 
-            
+            //gridView_Style_List = ProjectFunctionsUtils.GridView_Style("frmProcessSalary", "gridControl_SalaryProcess");
 
             SetMyControls();
             fillGrid();
@@ -49,6 +54,63 @@ namespace BNPL.Forms_Transaction
         private void btnLoad_Click(object sender, EventArgs e)
         {
             fillGrid();
+        }
+
+        private void gridView_SalaryProcess_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.IsTotalSummary && (e.Item as GridSummaryItem).FieldName == "EmpSalary")
+            {
+                GridSummaryItem item = e.Item as GridSummaryItem;
+                if (item.FieldName == "EmpSalary")
+                {
+                    //e.TotalValue = ConvertTo.MinutesToHours(view.Columns["EmpSalary"].SummaryText);
+                }
+            }
+
+
+        }
+        bool IsInvalidValue(object value)
+        {
+            return true;
+        }
+        private void gridView_SalaryProcess_CustomDrawFooterCell(object sender, DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventArgs e)
+        {
+            if (IsInvalidValue(e.Info.Value))
+            {
+                int dx = e.Bounds.Height;
+                Brush brush = e.Cache.GetGradientBrush(e.Bounds, Color.Wheat, Color.FloralWhite, LinearGradientMode.Vertical);
+                Rectangle r = e.Bounds;
+                //Draw a 3D border
+                BorderPainter painter = BorderHelper.GetPainter(DevExpress.XtraEditors.Controls.BorderStyles.Style3D);
+                AppearanceObject borderAppearance = new AppearanceObject(e.Appearance);
+                borderAppearance.BorderColor = Color.DarkGray;
+                painter.DrawObject(new BorderObjectInfoArgs(e.Cache, borderAppearance, r));
+                //Fill the inner region of the cell
+                r.Inflate(-1, -1);
+                e.Cache.FillRectangle(brush, r);
+                //Draw a summary value
+                r.Inflate(-2, 0);
+                e.Appearance.DrawString(e.Cache, e.Info.DisplayText, r);
+                //Prevent default drawing of the cell
+                e.Handled = true;
+
+                /*
+                StringFormat format = new StringFormat();
+                format.Alignment = StringAlignment.Near;
+                Rectangle r = e.Bounds;
+                r.Inflate(-2, 0);
+                Font f = new System.Drawing.Font("Tahoma", 8.25f, FontStyle.Bold);
+
+                e.Appearance.BackColor = Color.FromArgb(50, 255, 0, 0);
+                e.Appearance.DrawString(e.Cache, e.Info.DisplayText, r, f, format);
+                */
+                /*
+                e.Appearance.BackColor = Color.FromArgb(50, 255, 0, 0);
+                e.Appearance.FillRectangle(e.Cache, e.Bounds);
+                e.Info.AllowDrawBackground = false;
+                */
+            }
         }
 
         private void SetMyControls()
@@ -66,7 +128,21 @@ namespace BNPL.Forms_Transaction
             DtStartDate.EditValue = DateTime.Now;
 
             MainFormButtons.Roles(GlobalVariables.ProgCode, GlobalVariables.CurrentUser, btnAdd);
+            /*
+            EmpSalary
 
+            Salary Earned
+            OT Salar
+            Deduction Salary
+            Salary Generated
+            Adance
+
+            Loan
+            Salary Calculated
+            Salary Paid
+            Balance
+            Arrears
+            */
         }
 
         private void gridControl_SalaryProcess_DoubleClick(object sender, EventArgs e)
@@ -98,8 +174,16 @@ namespace BNPL.Forms_Transaction
             */
         }
 
+        private void clearGrid()
+        {
+            gridControl_SalaryProcess.DataSource = null;
+            gridView_SalaryProcess.Columns.Clear();
+        }
+
         private void fillGrid()
         {
+            clearGrid();
+
             //DECLARE @Salary_Month DATETIME = '2020-06-01 00:00:00';
             var str = "sp_Salary_Process '','" + ConvertTo.DateFormatDb(ConvertTo.DateTimeVal(DtStartDate.EditValue)) + "', 1, 1";
 
@@ -125,6 +209,21 @@ namespace BNPL.Forms_Transaction
                 {
                     gridControl_SalaryProcess.DataSource = ds.Tables[0];
                     gridView_SalaryProcess.BestFitColumns();
+
+                    gridView_SalaryProcess.Columns["EmpSalary"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "EmpSalary", string.Empty);
+                    gridView_SalaryProcess.Columns["SalaryEarned"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "SalaryEarned", string.Empty);
+                    gridView_SalaryProcess.Columns["OT_Salary"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "OT_Salary", string.Empty);
+                    gridView_SalaryProcess.Columns["DeductionSalary"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "DeductionSalary", string.Empty);
+                    gridView_SalaryProcess.Columns["SalaryGenerateBasic"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "SalaryGenerateBasic", string.Empty);
+                    gridView_SalaryProcess.Columns["AdvanceSalary"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "AdvanceSalary", string.Empty);
+                    gridView_SalaryProcess.Columns["Loan"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "Loan", string.Empty);
+                    gridView_SalaryProcess.Columns["SalaryCalculated"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "SalaryCalculated", string.Empty);
+                    gridView_SalaryProcess.Columns["SalaryPaid"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "SalaryPaid", string.Empty);
+                    gridView_SalaryProcess.Columns["Balance"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "Balance", string.Empty);
+                    gridView_SalaryProcess.Columns["Arrears"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "Arrears", string.Empty);
+                    //gridView_SalaryProcess.Columns["EmpSalary"].Summary.Add(DevExpress.Data.SummaryItemType.Custom);
+
+                    gridView_SalaryProcess.UpdateTotalSummary();
                 }
             }
             else
@@ -250,6 +349,14 @@ namespace BNPL.Forms_Transaction
                 e.Appearance.BackColor = _mark ? colorLoked_BackColor : Color.Transparent;
                 e.Appearance.ForeColor = _mark ? colorLoked_ForeColor : Color.Black;
                 //e.Appearance.TextOptions.HAlignment = _mark ? HorzAlignment.Far : HorzAlignment.Near;
+            }
+            if (e.Column.FieldName == "OT_Time")
+            {
+                e.Appearance.TextOptions.HAlignment = HorzAlignment.Far;
+            }
+            if (e.Column.FieldName == "DeductionTime")
+            {
+                e.Appearance.TextOptions.HAlignment = HorzAlignment.Far;
             }
         }
 
@@ -633,14 +740,15 @@ namespace BNPL.Forms_Transaction
                 if (e.Value != DBNull.Value)
                 {
                     //e.DisplayText = ConvertTo.MinutesToHours(e.Value) + " | " + e.Value;
-                    e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
+                    //e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
+                    //e.Value = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
                 }
             }
             if (e.Column.FieldName == "DeductionTime")
             {
                 if (e.Value != DBNull.Value)
                 {                    
-                    e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
+                    //e.DisplayText = ConvertTo.MinutesToHours(e.Value, EmptyReturn.DbNull) + "";
                 }
             }
             if (e.Column.FieldName == "EmpSalary")
@@ -691,6 +799,93 @@ namespace BNPL.Forms_Transaction
 
 
             //canShowEditor = e.KeyData == Keys.Enter;
+        }
+        private void btnLock_Click(object sender, EventArgs e)
+        {
+            DateTime salaryMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);
+            if (ProjectFunctions.SpeakConfirmation("Do you want to lock Salary for month [ " + salaryMonth.ToString("MMMM yyyy") + " ]", "Confirmation", MessageBoxButtons.YesNo) != DialogResult.No)
+            {
+                try
+                {
+                    DataTable dtProcessSalary = new DataTable();
+                    dtProcessSalary.Columns.Add("EmpCode", typeof(string));
+                    dtProcessSalary.Columns.Add("SalaryMonth", typeof(DateTime));
+                    dtProcessSalary.Columns.Add("SalaryPaid", typeof(decimal));
+                    dtProcessSalary.Columns.Add("LoanInstallment", typeof(decimal));
+                    dtProcessSalary.Columns.Add("SalaryCalculated", typeof(decimal));
+
+
+                    for (int rowIndex = 0; rowIndex != gridView_SalaryProcess.RowCount; rowIndex++)
+                    {
+                        int intRow = gridView_SalaryProcess.GetVisibleRowHandle(rowIndex);
+                        string strSalaryMonth = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryMonth").ToString();
+                        string strEmpCode = gridView_SalaryProcess.GetRowCellValue(intRow, "EmpCode").ToString();
+                        string strSalaryPaid = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryPaid").ToString();
+                        string strLoanInstallment = gridView_SalaryProcess.GetRowCellValue(intRow, "Loan").ToString();
+                        string strSalaryCalculated = gridView_SalaryProcess.GetRowCellValue(intRow, "SalaryCalculated").ToString();
+                        
+
+                        PrintLogWin.PrintLog("----- btnProcessSalary_Click => strSalaryMonth: " + strSalaryMonth);
+                        PrintLogWin.PrintLog("----- btnProcessSalary_Click => strEmpCode: " + strEmpCode);
+
+                        if (strSalaryPaid != null && strEmpCode.Equals("0030") && ConvertTo.DateTimeVal(strSalaryMonth).Month == 6)
+                        //if (strSalaryPaid != null)
+                        {
+                            if (ConvertTo.DecimalVal(strSalaryPaid) > 0)
+                            {
+                                PrintLogWin.PrintLog("strSalaryMonth => " + strSalaryMonth);
+                                PrintLogWin.PrintLog("strEmpCode => " + strEmpCode);
+                                PrintLogWin.PrintLog("strSalaryPaid => " + strSalaryPaid);
+                                PrintLogWin.PrintLog("strLoanInstallment => " + strLoanInstallment);
+                                PrintLogWin.PrintLog("strSalaryCalculated => " + strSalaryCalculated);
+                                PrintLogWin.PrintLog("------------------------------");
+
+                                //dt.Rows.Add(strEmpCode, ConvertTo.DateTimeVal(strSalaryMonth), ConvertTo.DecimalVal(strSalaryPaid));
+                                dtProcessSalary.Rows.Add(
+                                strEmpCode,
+                                ConvertTo.DateFormatDb(strSalaryMonth),
+                                ConvertTo.DecimalVal(strSalaryPaid),
+                                ConvertTo.DecimalVal(strLoanInstallment),
+                                ConvertTo.DecimalVal(strSalaryCalculated)
+                                );
+
+                                PrintLogWin.PrintLog("***** btnProcessSalary_Click => strSalaryMonth: " + strSalaryMonth);
+                                PrintLogWin.PrintLog("***** btnProcessSalary_Click => strEmpCode: " + strEmpCode);
+                            }
+
+                        }
+
+
+                        //cn.Execute(@"Insert INTO #routineUpdatedRecords VALUES('" + strEmpCode + "', '" + strSalaryMonth + "', " + strSalaryPaid + ")");
+                    }
+
+                    PrintLogWin.PrintLog("*******************************" + "");
+
+                    using (SqlConnection con = new SqlConnection(ProjectFunctionsUtils.ConnectionString))
+                    {
+                        con.Open();
+                        using (SqlCommand com = new SqlCommand("sp_LockSalaryPaid", con))
+                        {
+                            com.CommandType = CommandType.StoredProcedure;
+                            com.Parameters.AddWithValue("@TableParam", dtProcessSalary);
+                            com.ExecuteNonQuery();
+
+                            ProjectFunctions.SpeakError("Salary Has Been Locked");
+                            fillGrid();
+                        }
+
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    PrintLogWin.PrintLog(ex);
+                }
+            }
+            /*
+            
+            */
         }
 
         private void btnProcessSalary_Click(object sender, EventArgs e)
@@ -955,7 +1150,8 @@ namespace BNPL.Forms_Transaction
 
             return answer;
         }
-        private void btnLock_Click(object sender, EventArgs e)
+        
+        private void btnLock_Click_OLD(object sender, EventArgs e)
         {
             _Mnthyr = String.Format("{0}{1}", DtStartDate.Text.Substring(0, 2), DtStartDate.Text.Substring(DtStartDate.Text.Length - 2, 2));
 #pragma warning disable CS0618 // 'GridControl.KeyboardFocusView' is obsolete: 'Use the FocusedView property instead.'
@@ -1061,14 +1257,35 @@ namespace BNPL.Forms_Transaction
             else
             {
                 string path = "Salary_For_Month_" + ConvertTo.DateFormatDb(DtStartDate.EditValue) + ".xlsx";
-                gridControl_SalaryProcess.ExportToXlsx(path);
+                //gridControl_SalaryProcess.ExportToXlsx(path);
                 // Open the created XLSX file with the default application.
+                //Process.Start(path);
+
+
+                XlsxExportOptionsEx options = new XlsxExportOptionsEx();
+                options.CustomizeCell += Options_CustomizeCell;
+                gridControl_SalaryProcess.ExportToXlsx(path, options);
                 Process.Start(path);
             }
             
         }
 
-        
+        private void Options_CustomizeCell(DevExpress.Export.CustomizeCellEventArgs e)
+        {
+            if (e.ColumnFieldName == "OT_Time")
+            {
+                //return;
+                e.Formatting.NumberFormat = XlNumberFormat.General;
+                e.Handled = true;
+
+            }
+            
+            //or  
+            //e.Formatting.NumberFormat = XlNumberFormat.Text;  
+            
+        }
+
+
     }
 
 }

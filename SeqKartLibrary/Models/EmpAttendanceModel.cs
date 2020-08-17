@@ -34,10 +34,13 @@ namespace SeqKartLibrary.Models
         public TimeSpan attendance_out_first { get; set; }
         public TimeSpan attendance_in_last { get; set; }
         public TimeSpan attendance_out_last { get; set; }
-        public int working_hours { get; set; }
+        public string working_hours { get; set; }
+        public int working_hours_1 { get; set; }
         public string source_name { get; set; }
-        public int gate_pass_time { get; set; }
-        public int ot_deducton_time { get; set; }
+        public string gate_pass_time { get; set; }
+        public int gate_pass_time_1 { get; set; }
+        public string ot_deducton_time { get; set; }
+        public int ot_deducton_time_1 { get; set; }
         public string Row_Style { get; set; }
 
 

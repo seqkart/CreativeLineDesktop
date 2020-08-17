@@ -20,6 +20,16 @@ namespace SeqKartLibrary.HelperClass
 
             return false;
         }
+        public static string StringVal(object val)
+        {
+            try
+            {
+                return val + "";
+            }
+            catch { }
+
+            return "";
+        }
         public static int IntVal(object val)
         {
             try
@@ -113,7 +123,7 @@ namespace SeqKartLibrary.HelperClass
                 }
                 return ConvertTo.TimeSpanVal(val).ToString(@"hh\:mm");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PrintLogWinForms.PrintLog("ConvertTo => TimeSpanString => Exception : " + ex);
 

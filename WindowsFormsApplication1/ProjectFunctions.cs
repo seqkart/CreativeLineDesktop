@@ -1430,8 +1430,7 @@ namespace WindowsFormsApplication1
         {
             C.RowCellClick += new RowCellClickEventHandler(C_RowCellClick);
             C.GridControl.LookAndFeel.UseDefaultLookAndFeel = true;
-            C.OptionsBehavior.Editable = true
-                ;
+            C.OptionsBehavior.Editable = true;
             C.OptionsBehavior.AllowIncrementalSearch = true;
             C.OptionsSelection.EnableAppearanceFocusedCell = true;
             C.FocusRectStyle = DrawFocusRectStyle.RowFocus;

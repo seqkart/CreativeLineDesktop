@@ -54,5 +54,22 @@ namespace SeqKartLibrary.CrudTask
 
             return employeeMaster_List;
         }
+
+        public static async Task<List<EmployeeMasterModel>> GetEmployeeMasterDataList_Async(string sp_query, DynamicParameters param)
+        {
+            RepList<EmployeeMasterModel> repList = new RepList<EmployeeMasterModel>();
+            List<EmployeeMasterModel> employeeMaster_List = await repList.returnListClass_SP_Async(sp_query, param);
+
+            return employeeMaster_List;
+        }
+
+
+        //public static bool IsSalaryLocked(string sql_query, DynamicParameters param)
+        //{
+        //    RepList<EmployeeSalary> repList = new RepList<EmployeeSalary>();
+        //    EmployeeSalary employeeSalary = repList.returnClass_SP(sql_query, param);
+
+        //    return employeeSalary;
+        //}
     }
 }

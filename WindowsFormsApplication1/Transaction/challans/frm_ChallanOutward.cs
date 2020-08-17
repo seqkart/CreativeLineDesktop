@@ -1,4 +1,9 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
+﻿using Dapper;
+using DevExpress.XtraGrid.Views.Grid;
+using SeqKartLibrary;
+using SeqKartLibrary.CrudTask;
+using SeqKartLibrary.HelperClass;
+using SeqKartLibrary.Repository;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -40,7 +45,7 @@ namespace WindowsFormsApplication1.Transaction.challans
 
 
 
-            dsPopUps = ProjectFunctions.GetDataSet("sp_LoadBarPrintPopUps");
+            dsPopUps = ProjectFunctionsUtils.GetDataSet("sp_LoadBarPrintPopUps");
         }
 
         private void TxtDebitPartyCode_EditValueChanged(object sender, EventArgs e)
@@ -50,7 +55,8 @@ namespace WindowsFormsApplication1.Transaction.challans
             txtBillingAddress2.Text = String.Empty;
             txtBillingAddress3.Text = String.Empty;
             txtBillingCity.Text = String.Empty;
-            txtBillingAddress1.Text = String.Empty;
+            txtBillingState.Text = String.Empty;
+            txtBillingZIP.Text = String.Empty;
 
         }
 
@@ -80,7 +86,7 @@ namespace WindowsFormsApplication1.Transaction.challans
                 }
                 else
                 {
-                    DataSet ds = ProjectFunctions.GetDataSet(" sp_LoadActMstHelpWithCode '" + txtDebitPartyCode.Text.Trim() + "'");
+                    DataSet ds = ProjectFunctions.GetDataSet("sp_LoadActMstHelp '" + txtDebitPartyCode.Text.Trim() + "'");//sp_LoadActMstHelpWithCode
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         txtDebitPartyCode.Text = ds.Tables[0].Rows[0]["AccCode"].ToString();
@@ -90,6 +96,92 @@ namespace WindowsFormsApplication1.Transaction.challans
                         txtBillingAddress3.Text = ds.Tables[0].Rows[0]["AccAddress3"].ToString();
 
                         txtBillingCity.Text = ds.Tables[0].Rows[0]["CTNAME"].ToString();
+                        txtBillingState.Text = ds.Tables[0].Rows[0]["STNAME"].ToString();
+                        txtBillingZIP.Text = ds.Tables[0].Rows[0]["AccZipCode"].ToString();
+
+                        txtContactDetails.Focus();
+                        panelControl1.Visible = false;
+                    }
+
+                    else
+                    {
+                        DataSet ds1 = ProjectFunctions.GetDataSet("sp_LoadActMstHelp");
+                        if (ds1.Tables[0].Rows.Count > 0)
+                        {
+                            HelpGrid.DataSource = ds.Tables[0];
+                            HelpGrid.Show();
+                            panelControl1.Visible = true;
+                            HelpGrid.Visible = true;
+                            HelpGrid.Focus();
+                            HelpGridView.BestFitColumns();
+                        }
+                        else
+                        {
+                            ProjectFunctions.SpeakError("No Records To Display");
+                        }
+                    }
+                }
+            }
+            e.Handled = true;
+        }
+
+        private void txtChallanNo_EditValueChanged(object sender, EventArgs e)
+        {
+            txtContactDetails.Text = String.Empty;
+            txtIssuedBy.Text = String.Empty;
+            txtApprovedBy.Text = String.Empty;
+            txtTransporterCode.Text = String.Empty;
+            txtTransporterName.Text = String.Empty;
+            
+
+        }
+
+        private void txtChallanNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            PrintLogWin.PrintLog("txtChallanNo_KeyDown => A");
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                PrintLogWin.PrintLog("txtChallanNo_KeyDown => B");
+
+                PrepareActMstHelpGrid();
+                HelpGrid.Text = "txtDebitPartyCode";
+                if (txtDebitPartyCode.Text.Trim().Length == 0)
+                {
+                    PrintLogWin.PrintLog("txtChallanNo_KeyDown => C");
+
+                    DataSet ds = ProjectFunctions.GetDataSet("sp_LoadActMstHelp");
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        HelpGrid.DataSource = ds.Tables[0];
+                        HelpGrid.Show();
+                        panelControl1.Visible = true;
+                        HelpGrid.Visible = true;
+                        HelpGrid.Focus();
+                        HelpGridView.BestFitColumns();
+                    }
+                    else
+                    {
+                        ProjectFunctions.SpeakError("No Records To Display");
+                    }
+                }
+                else
+                {
+                    PrintLogWin.PrintLog("txtChallanNo_KeyDown => D : " + "sp_LoadActMstHelp '" + txtDebitPartyCode.Text.Trim() + "'");
+
+                    DataSet ds = ProjectFunctions.GetDataSet("sp_LoadActMstHelp '" + txtDebitPartyCode.Text.Trim() + "'");//sp_LoadActMstHelpWithCode
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        txtDebitPartyCode.Text = ds.Tables[0].Rows[0]["AccCode"].ToString();
+                        txtDebitPartyName.Text = ds.Tables[0].Rows[0]["AccName"].ToString();
+                        txtBillingAddress1.Text = ds.Tables[0].Rows[0]["AccAddress1"].ToString();
+                        txtBillingAddress2.Text = ds.Tables[0].Rows[0]["AccAddress2"].ToString();
+                        txtBillingAddress3.Text = ds.Tables[0].Rows[0]["AccAddress3"].ToString();
+
+                        txtBillingCity.Text = ds.Tables[0].Rows[0]["CTNAME"].ToString();
+                        txtBillingState.Text = ds.Tables[0].Rows[0]["STNAME"].ToString();
+                        txtBillingZIP.Text = ds.Tables[0].Rows[0]["AccZipCode"].ToString();
+
                         txtContactDetails.Focus();
                         panelControl1.Visible = false;
                     }
@@ -119,6 +211,7 @@ namespace WindowsFormsApplication1.Transaction.challans
 
         private void PrepareActMstHelpGrid()
         {
+            
             HelpGridView.Columns.Clear();
             DevExpress.XtraGrid.Columns.GridColumn col1 = new DevExpress.XtraGrid.Columns.GridColumn();
             col1.FieldName = "AccName";
@@ -157,6 +250,17 @@ namespace WindowsFormsApplication1.Transaction.challans
             //col6.VisibleIndex = 5;
             HelpGridView.Columns.Add(col6);
 
+            DevExpress.XtraGrid.Columns.GridColumn col7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            col7.FieldName = "STNAME";
+            col7.Visible = false;            
+            HelpGridView.Columns.Add(col7);
+
+            DevExpress.XtraGrid.Columns.GridColumn col8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            col8.FieldName = "AccZipCode";
+            col8.Visible = false;
+            HelpGridView.Columns.Add(col8);
+
+
         }
 
         private void HelpGrid_DoubleClick(object sender, EventArgs e)
@@ -183,6 +287,8 @@ namespace WindowsFormsApplication1.Transaction.challans
                 txtBillingAddress3.Text = row["AccAddress3"].ToString();
 
                 txtBillingCity.Text = row["CTNAME"].ToString();
+                txtBillingState.Text = row["STNAME"].ToString();
+                txtBillingZIP.Text = row["AccZipCode"].ToString();
 
                 HelpGrid.Visible = false;
                 panelControl1.Visible = false;
@@ -378,6 +484,11 @@ namespace WindowsFormsApplication1.Transaction.challans
                         txtBillingAddress1.Text = ds.Tables[0].Rows[0]["AccAddress1"].ToString();
                         txtBillingAddress2.Text = ds.Tables[0].Rows[0]["AccAddress2"].ToString();
                         txtBillingAddress3.Text = ds.Tables[0].Rows[0]["AccAddress3"].ToString();
+                        txtBillingCity.Text = ds.Tables[0].Rows[0]["CTNAME"].ToString();
+                        txtBillingState.Text = ds.Tables[0].Rows[0]["STNAME"].ToString();
+                        txtBillingZIP.Text = ds.Tables[0].Rows[0]["AccZipCode"].ToString();
+
+
                         txtApprovedBy.Text = ds.Tables[0].Rows[0]["CHOAPPROVEDBY"].ToString();
                         txtIssuedBy.Text = ds.Tables[0].Rows[0]["CHOISSUEDBY"].ToString();
                         txtContactDetails.Text = ds.Tables[0].Rows[0]["CHOCONTDETAILS"].ToString();
@@ -403,7 +514,271 @@ namespace WindowsFormsApplication1.Transaction.challans
         {
             this.Close();
         }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dt.AcceptChanges();
+                if (ValidateDataForSaving())
+                {
+                    
 
+                    using (var sqlcon = new SqlConnection(ProjectFunctions.GetConnection()))
+                    {
+                        sqlcon.Open();
+                        var sqlcom = sqlcon.CreateCommand();
+                        sqlcom.Connection = sqlcon;
+                        sqlcom.CommandType = CommandType.StoredProcedure;
+                        sqlcom.CommandType = CommandType.Text;
+                        if (s1 == "&Add" || s1 == "Edit")
+                        {
+                            int CHONO_New = 0;
+                            if (s1 == "Edit")
+                            {
+                                CHONO_New = ConvertTo.IntVal(txtChallanNo.Text);
+                            }
+
+                            DataTable dt_ActMstAddInf = new DataTable();
+                            dt_ActMstAddInf.Columns.Add("AccCode", typeof(String));
+                            dt_ActMstAddInf.Columns.Add("AccAddress1", typeof(String));
+                            dt_ActMstAddInf.Columns.Add("AccAddress2", typeof(String));
+                            dt_ActMstAddInf.Columns.Add("AccAddress3", typeof(String));
+                            dt_ActMstAddInf.Columns.Add("AccZipCode", typeof(String));
+
+                            dt_ActMstAddInf.Rows.Add(
+                                ConvertTo.StringVal(txtDebitPartyCode.Text),
+                                ConvertTo.StringVal(txtBillingAddress1.Text),
+                                ConvertTo.StringVal(txtBillingAddress2.Text),
+                                ConvertTo.StringVal(txtBillingAddress3.Text),
+                                ConvertTo.StringVal(txtBillingZIP.Text));
+
+                            DataTable dtCH_Out = new DataTable();
+                            dtCH_Out.Columns.Add("CHOFYR", typeof(String));
+                            dtCH_Out.Columns.Add("CHONO", typeof(Int32));
+                            dtCH_Out.Columns.Add("CHOTYPE", typeof(String));
+                            dtCH_Out.Columns.Add("CHODATE", typeof(DateTime));
+                            dtCH_Out.Columns.Add("CHOREMARKS", typeof(String));
+                            dtCH_Out.Columns.Add("UnitCode", typeof(String));
+                            dtCH_Out.Columns.Add("CHOPrdCode", typeof(Int32));
+                            dtCH_Out.Columns.Add("CHOManualDesc", typeof(String));
+                            dtCH_Out.Columns.Add("CHOArtID", typeof(Int32));
+                            dtCH_Out.Columns.Add("CHOColID", typeof(Int32));
+                            dtCH_Out.Columns.Add("CHOSizeID", typeof(Int32));
+                            dtCH_Out.Columns.Add("CHOLotNo", typeof(String));
+                            dtCH_Out.Columns.Add("CHOTotQtyKgs", typeof(Decimal));
+                            dtCH_Out.Columns.Add("CHOUom", typeof(String));
+                            dtCH_Out.Columns.Add("CHOKgsType", typeof(String));
+                            dtCH_Out.Columns.Add("CHOTotQty", typeof(Decimal));
+
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                                dtCH_Out.Rows.Add(
+                                    ConvertTo.StringVal(GlobalVariables.FinancialYear),
+
+                                    ConvertTo.IntVal(txtChallanNo.Text),
+                                    ConvertTo.StringVal(txtChallanType.Text),
+                                    ConvertTo.DateFormatDb(txtChallanDate.Text),
+                                    ConvertTo.StringVal(txtMainRemarks.Text),
+                                    ConvertTo.StringVal(GlobalVariables.CUnitID),
+                                    ConvertTo.IntVal(dr["CHOPrdCode"]),
+                                    ConvertTo.StringVal(dr["CHOManualDesc"]),
+                                    ConvertTo.IntVal(dr["CHOArtID"]),
+                                    ConvertTo.IntVal(dr["CHOColID"]),
+                                    ConvertTo.IntVal(dr["CHOSizeID"]),
+                                    ConvertTo.StringVal(dr["CHOLotNo"]),
+                                    ConvertTo.StringVal(dr["CHOTotQtyKgs"]),
+                                    ConvertTo.StringVal(dr["CHOUom"]),
+                                    ConvertTo.StringVal(dr["CHOKgsType"]),
+                                    ConvertTo.DecimalVal(dr["CHOTotQty"])
+                                    );
+                            }
+                            ///////////////////////////////////////////////////////////////////
+
+                            string str = "sp_ChallanOut_Add_Edit";
+
+                            RepGen reposGen = new RepGen();
+                            DynamicParameters param = new DynamicParameters();                            
+
+                            param.Add("@CHOFYR", GlobalVariables.FinancialYear, DbType.String);
+                            param.Add("@CHONO", CHONO_New, DbType.Int32);
+                            param.Add("@CHOTYPE", txtChallanType.Text, DbType.String);
+                            param.Add("@CHODATE", ConvertTo.DateFormatDb(txtChallanDate.Text), DbType.Date);
+                            param.Add("@CHOPARTYCODE", ConvertTo.IntVal(txtDebitPartyCode.Text), DbType.Int32);
+                            param.Add("@CHOCONTDETAILS", txtContactDetails.Text, DbType.String);
+                            param.Add("@CHOISSUEDBY", txtIssuedBy.Text, DbType.String);
+                            param.Add("@CHOAPPROVEDBY", txtApprovedBy.Text, DbType.String);
+                            param.Add("@CHOREMARKS", txtMainRemarks.Text, DbType.String);
+                            param.Add("@UnitCode", GlobalVariables.CUnitID, DbType.String);
+                            param.Add("@CHOTRPID", ConvertTo.IntVal(txtTransporterCode.Text), DbType.Int32);
+                            param.Add("@CHOTRPID", ConvertTo.IntVal(txtTransporterCode.Text), DbType.Int32);
+                            param.Add("@TableParam", dtCH_Out, DbType.Object);
+                            param.Add("@TableParam_ActMstAddInf", dt_ActMstAddInf, DbType.Object);
+                            param.Add("@output", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                            param.Add("@Returnvalue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                            string intResult = reposGen.executeNonQuery_SP(str, param);
+
+                            if (intResult.Equals("0"))
+                            {
+                                int outputVal = param.Get<int>("@output");
+                                int returnVal = param.Get<int>("@Returnvalue");
+
+                                PrintLogWin.PrintLog("outputVal => " + outputVal);
+                                PrintLogWin.PrintLog("returnVal => " + returnVal);
+
+                                ProjectFunctions.SpeakError("Record has been saved");
+                            }
+                            else
+                            {
+                                ProjectFunctions.SpeakError("Error in save record.");
+                                PrintLogWin.PrintLog(intResult);
+                            }
+                            BarCodeGridView.CloseEditor();
+                            BarCodeGridView.UpdateCurrentRow();
+                            /*
+                            //DynamicParameters param = new DynamicParameters();
+                            //param.Add("@id", _user.id);
+                            //param.Add("@name", _user.name);
+                            //param.Add("@address", _user.address);
+                            int ChalanID = ConvertTo.IntVal(ChallanData.GetScalarValue("Select isnull(Max(CHONO),0)+1 from CHOUTMain WHere CHOFYR='" + GlobalVariables.FinancialYear + "' ANd UnitCode='" + GlobalVariables.CUnitID + "' And CHOTYPE='" + txtChallanType.Text + "'", new Dapper.DynamicParameters()));
+
+                            txtChallanNo.Text = ChalanID + "";// ProjectFunctions.GetDataSet("Select isnull(Max(CHONO),0)+1 from CHOUTMain WHere CHOFYR='" + GlobalVariables.FinancialYear + "' ANd UnitCode='" + GlobalVariables.CUnitID + "' And CHOTYPE='" + txtChallanType.Text + "'").Tables[0].Rows[0][0].ToString();
+
+                            sqlcom.CommandText = " Insert into CHOUTMain "
+                                                        + " (CHOFYR,CHONO,CHOTYPE,CHODATE,CHOPARTYCODE,CHOCONTDETAILS,CHOISSUEDBY,CHOAPPROVEDBY,CHOREMARKS,UnitCode,CHOTRPID)values("
+                                                        + " @CHOFYR,@CHONO,@CHOTYPE,@CHODATE,@CHOPARTYCODE,@CHOCONTDETAILS,@CHOISSUEDBY,@CHOAPPROVEDBY,@CHOREMARKS,@UnitCode,@CHOTRPID)";
+                            sqlcom.Parameters.Add("@CHOFYR", SqlDbType.NVarChar).Value = GlobalVariables.FinancialYear;
+                            sqlcom.Parameters.Add("@CHONO", SqlDbType.NVarChar).Value = txtChallanNo.Text;
+                            sqlcom.Parameters.Add("@CHOTYPE", SqlDbType.NVarChar).Value = txtChallanType.Text;
+                            sqlcom.Parameters.Add("@CHODATE", SqlDbType.NVarChar).Value = Convert.ToDateTime(txtChallanDate.Text).ToString("yyyy-MM-dd");
+                            sqlcom.Parameters.Add("@CHOPARTYCODE", SqlDbType.NVarChar).Value = txtDebitPartyCode.Text;
+                            sqlcom.Parameters.Add("@CHOCONTDETAILS", SqlDbType.NVarChar).Value = txtContactDetails.Text;
+                            sqlcom.Parameters.Add("@CHOISSUEDBY", SqlDbType.NVarChar).Value = txtIssuedBy.Text;
+                            sqlcom.Parameters.Add("@CHOAPPROVEDBY", SqlDbType.NVarChar).Value = txtApprovedBy.Text;
+                            sqlcom.Parameters.Add("@CHOREMARKS", SqlDbType.NVarChar).Value = txtMainRemarks.Text;
+                            sqlcom.Parameters.Add("@UnitCode", SqlDbType.NVarChar).Value = GlobalVariables.CUnitID;
+                            sqlcom.Parameters.Add("@CHOTRPID", SqlDbType.NVarChar).Value = txtTransporterCode.Text;
+                            sqlcom.ExecuteNonQuery();
+                            sqlcom.Parameters.Clear();
+                            */
+                        }
+                        /*
+                        if (s1 == "Edit______")
+                        {
+                            sqlcom.CommandText = " update CHOUTMain Set  "
+                                                        + "CHOFYR=@CHOFYR,CHONO=@CHONO,CHOTYPE=@CHOTYPE,"
+                                                        + " CHODATE=@CHODATE,CHOPARTYCODE=@CHOPARTYCODE,CHOCONTDETAILS=@CHOCONTDETAILS,CHOISSUEDBY=@CHOISSUEDBY,CHOAPPROVEDBY=@CHOAPPROVEDBY,CHOREMARKS=@CHOREMARKS,UnitCode=@UnitCode,CHOTRPID=@CHOTRPID where CHONO='" + txtChallanNo.Text + "' And CHODATE='" + Convert.ToDateTime(txtChallanDate.Text).ToString("yyyy-MM-dd") + "' And UnitCode='" + GlobalVariables.CUnitID + "'";
+                            sqlcom.Parameters.Add("@CHOFYR", SqlDbType.NVarChar).Value = GlobalVariables.FinancialYear;
+                            sqlcom.Parameters.Add("@CHONO", SqlDbType.NVarChar).Value = txtChallanNo.Text;
+                            sqlcom.Parameters.Add("@CHOTYPE", SqlDbType.NVarChar).Value = txtChallanType.Text;
+                            sqlcom.Parameters.Add("@CHODATE", SqlDbType.NVarChar).Value = Convert.ToDateTime(txtChallanDate.Text).ToString("yyyy-MM-dd");
+                            sqlcom.Parameters.Add("@CHOPARTYCODE", SqlDbType.NVarChar).Value = txtDebitPartyCode.Text;
+                            sqlcom.Parameters.Add("@CHOCONTDETAILS", SqlDbType.NVarChar).Value = txtContactDetails.Text;
+                            sqlcom.Parameters.Add("@CHOISSUEDBY", SqlDbType.NVarChar).Value = txtIssuedBy.Text;
+                            sqlcom.Parameters.Add("@CHOAPPROVEDBY", SqlDbType.NVarChar).Value = txtApprovedBy.Text;
+                            sqlcom.Parameters.Add("@CHOREMARKS", SqlDbType.NVarChar).Value = txtMainRemarks.Text;
+                            sqlcom.Parameters.Add("@UnitCode", SqlDbType.NVarChar).Value = GlobalVariables.CUnitID;
+                            sqlcom.Parameters.Add("@CHOTRPID", SqlDbType.NVarChar).Value = txtTransporterCode.Text;
+                            sqlcom.ExecuteNonQuery();
+                            sqlcom.Parameters.Clear();
+                            ProjectFunctions.GetDataSet("Delete from CHOUT Where CHONO='" + txtChallanNo.Text + "' And CHODATE='" + Convert.ToDateTime(txtChallanDate.Text).ToString("yyyy-MM-dd") + "' And UnitCode='" + GlobalVariables.CUnitID + "'");
+                        }
+                        */
+                        //BarCodeGridView.CloseEditor();
+                        //BarCodeGridView.UpdateCurrentRow();
+
+                        
+                        /*
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            //dtCH_Out.Rows.Add(
+                            //    GlobalVariables.FinancialYear,
+                            //    ConvertTo.IntVal(txtChallanNo.Text),
+                            //    txtChallanType.Text,
+                            //    ConvertTo.DateFormatDb(txtChallanDate.Text),
+                            //    txtMainRemarks.Text,
+                            //    GlobalVariables.CUnitID,
+                            //    ConvertTo.IntVal(dr["CHOPrdCode"].ToString()),
+                            //    dr["CHOManualDesc"].ToString(),
+                            //    ConvertTo.IntVal(dr["CHOArtID"]),
+                            //    ConvertTo.IntVal(dr["CHOColID"].ToString()),
+                            //    ConvertTo.IntVal(dr["CHOSizeID"].ToString()),
+                            //    dr["CHOLotNo"].ToString(),
+                            //    dr["CHOTotQtyKgs"].ToString(),
+                            //    dr["CHOUom"].ToString(),
+                            //    dr["CHOKgsType"].ToString(),
+                            //    ConvertTo.DecimalVal(dr["CHOTotQty"].ToString())
+                            //    );
+
+                            sqlcom.CommandText = " Insert into CHOUT "
+                                                    + " (CHOFYR,CHONO,CHOTYPE,CHODATE,CHOPrdCode,CHOManualDesc,"
+                                                    + " CHOArtID,CHOColID,CHOSizeID,CHOLotNo,CHOTotQtyKgs,CHOUom,CHORemarks,CHOKgsType,CHOTotQty,UnitCode)"
+                                                    + " values(@CHOFYR,@CHONO,@CHOTYPE,@CHODATE,@CHOPrdCode,@CHOManualDesc,"
+                                                    + " @CHOArtID,@CHOColID,@CHOSizeID,@CHOLotNo,@CHOTotQtyKgs,@CHOUom,@CHORemarks,@CHOKgsType,@CHOTotQty,@UnitCode)";
+                            sqlcom.Parameters.Add("@CHOFYR", SqlDbType.NVarChar).Value = GlobalVariables.FinancialYear;
+                            sqlcom.Parameters.Add("@CHONO", SqlDbType.NVarChar).Value = txtChallanNo.Text;
+                            sqlcom.Parameters.Add("@CHOTYPE", SqlDbType.NVarChar).Value = txtChallanType.Text;
+                            sqlcom.Parameters.Add("@CHODATE", SqlDbType.NVarChar).Value = Convert.ToDateTime(txtChallanDate.Text).ToString("yyyy-MM-dd");
+                            if (dr["CHOPrdCode"].ToString() == string.Empty)
+                            {
+                                dr["CHOPrdCode"] = "0";
+                            }
+                            sqlcom.Parameters.Add("@CHOPrdCode", SqlDbType.NVarChar).Value = dr["CHOPrdCode"].ToString();
+                            sqlcom.Parameters.Add("@CHOManualDesc", SqlDbType.NVarChar).Value = dr["CHOManualDesc"].ToString();
+
+                            if (dr["CHOArtID"].ToString() == string.Empty)
+                            {
+                                dr["CHOArtID"] = "0";
+                            }
+
+
+                            sqlcom.Parameters.Add("@CHOArtID", SqlDbType.NVarChar).Value = dr["CHOArtID"].ToString();
+                            if (dr["CHOColID"].ToString() == string.Empty)
+                            {
+                                dr["CHOColID"] = "0";
+                            }
+                            sqlcom.Parameters.Add("@CHOColID", SqlDbType.NVarChar).Value = dr["CHOColID"].ToString();
+                            if (dr["CHOSizeID"].ToString() == string.Empty)
+                            {
+                                dr["CHOSizeID"] = "0";
+                            }
+                            sqlcom.Parameters.Add("@CHOSizeID", SqlDbType.NVarChar).Value = dr["CHOSizeID"].ToString();
+                            sqlcom.Parameters.Add("@CHOLotNo", SqlDbType.NVarChar).Value = dr["CHOLotNo"].ToString();
+                            if (dr["CHOTotQtyKgs"].ToString() == string.Empty)
+                            {
+                                dr["CHOTotQtyKgs"] = "0";
+                            }
+                            sqlcom.Parameters.Add("@CHOTotQtyKgs", SqlDbType.NVarChar).Value = dr["CHOTotQtyKgs"].ToString();
+                            sqlcom.Parameters.Add("@CHOUom", SqlDbType.NVarChar).Value = dr["CHOUom"].ToString();
+                            sqlcom.Parameters.Add("@CHOKgsType", SqlDbType.NVarChar).Value = dr["CHOKgsType"].ToString();
+
+                            sqlcom.Parameters.Add("@CHORemarks", SqlDbType.NVarChar).Value = dr["CHORemarks"].ToString();
+                            if (dr["CHOTotQty"].ToString() == string.Empty)
+                            {
+                                dr["CHOTotQty"] = "0";
+                            }
+                            sqlcom.Parameters.Add("@CHOTotQty", SqlDbType.NVarChar).Value = dr["CHOTotQty"].ToString();
+                            sqlcom.Parameters.Add("@UnitCode", SqlDbType.NVarChar).Value = GlobalVariables.CUnitID;
+                            sqlcom.ExecuteNonQuery();
+                            sqlcom.Parameters.Clear();
+
+
+                        }
+
+                        ProjectFunctions.SpeakError(" Challan Saved Successfully");
+                        sqlcon.Close();
+                        */
+                        this.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                PrintLogWin.PrintLog("btnSave_Click => " + ex);
+                ProjectFunctions.SpeakError(ex.Message);
+            }
+        }
+        /*
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -420,7 +795,14 @@ namespace WindowsFormsApplication1.Transaction.challans
                         sqlcom.CommandType = CommandType.Text;
                         if (s1 == "&Add")
                         {
-                            txtChallanNo.Text = ProjectFunctions.GetDataSet("Select isnull(Max(CHONO),0)+1 from CHOUTMain WHere CHOFYR='" + GlobalVariables.FinancialYear + "' ANd UnitCode='" + GlobalVariables.CUnitID + "' And CHOTYPE='" + txtChallanType.Text + "'").Tables[0].Rows[0][0].ToString();
+                            //DynamicParameters param = new DynamicParameters();
+                            //param.Add("@id", _user.id);
+                            //param.Add("@name", _user.name);
+                            //param.Add("@address", _user.address);
+                            int ChalanID = ConvertTo.IntVal(ChallanData.GetScalarValue("Select isnull(Max(CHONO),0)+1 from CHOUTMain WHere CHOFYR='" + GlobalVariables.FinancialYear + "' ANd UnitCode='" + GlobalVariables.CUnitID + "' And CHOTYPE='" + txtChallanType.Text + "'", new Dapper.DynamicParameters()));
+
+                            txtChallanNo.Text = ChalanID + "";// ProjectFunctions.GetDataSet("Select isnull(Max(CHONO),0)+1 from CHOUTMain WHere CHOFYR='" + GlobalVariables.FinancialYear + "' ANd UnitCode='" + GlobalVariables.CUnitID + "' And CHOTYPE='" + txtChallanType.Text + "'").Tables[0].Rows[0][0].ToString();
+
                             sqlcom.CommandText = " Insert into CHOUTMain "
                                                         + " (CHOFYR,CHONO,CHOTYPE,CHODATE,CHOPARTYCODE,CHOCONTDETAILS,CHOISSUEDBY,CHOAPPROVEDBY,CHOREMARKS,UnitCode,CHOTRPID)values("
                                                         + " @CHOFYR,@CHONO,@CHOTYPE,@CHODATE,@CHOPARTYCODE,@CHOCONTDETAILS,@CHOISSUEDBY,@CHOAPPROVEDBY,@CHOREMARKS,@UnitCode,@CHOTRPID)";
@@ -530,7 +912,7 @@ namespace WindowsFormsApplication1.Transaction.challans
                 ProjectFunctions.SpeakError(ex.Message);
             }
         }
-
+        */
         private void HelpGrid_KeyDown(object sender, KeyEventArgs e)
         {
             try

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data.SqlClient;
 using Dapper;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace SeqKartLibrary.Repository
 {
@@ -15,6 +16,27 @@ namespace SeqKartLibrary.Repository
         {
             con = new SqlConnection(ProjectFunctionsUtils.ConnectionString);
         }
+
+        public object returnScalar(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open(); 
+
+                object rtn = SqlMapper.Query<object>(con, query, param, null, true, null, commandType: CommandType.Text);
+                con.Close();
+
+                return rtn;
+            }
+            catch (Exception ex)
+            {
+                PrintLogWinForms.PrintLog("returnScalar => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnScalar => Exception => " + ex);
+            }
+            return null;
+        }
+
         public List<T> returnListClass(string query, DynamicParameters param)
         {
             try
@@ -40,6 +62,24 @@ namespace SeqKartLibrary.Repository
                 connection();
                 con.Open();
                 IList<T> Tlista = SqlMapper.Query<T>(con, query, param, null, true, null, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+                return Tlista.ToList();
+            }
+            catch (Exception ex)
+            {
+                PrintLogWinForms.PrintLog("returnListClass_SP => Exception => query : " + query);
+                PrintLogWinForms.PrintLog("returnListClass_SP => Exception => " + ex);
+            }
+            return null;
+        }
+
+        public async Task<List<T>> returnListClass_SP_Async(string query, DynamicParameters param)
+        {
+            try
+            {
+                connection();
+                con.Open();
+                var Tlista = await SqlMapper.QueryAsync<T>(con, query, param, null, null, commandType: CommandType.StoredProcedure);
                 con.Close();
                 return Tlista.ToList();
             }

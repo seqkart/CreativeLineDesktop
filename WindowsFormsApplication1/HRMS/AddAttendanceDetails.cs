@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
-using WindowsFormsApplication1.HRMS;
 
 namespace HumanResourceManagementSystem
 {

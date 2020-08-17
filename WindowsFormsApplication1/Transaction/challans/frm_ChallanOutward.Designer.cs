@@ -53,7 +53,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtChallanDate = new DevExpress.XtraEditors.DateEdit();
             this.txtChallanType = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
+            this.txtChallanScan = new DevExpress.XtraEditors.TextEdit();
             this.txtChallanNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtMainRemarks = new DevExpress.XtraEditors.TextEdit();
@@ -84,6 +84,10 @@
             this.HelpGrid = new DevExpress.XtraGrid.GridControl();
             this.HelpGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtSearchBox = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.txtBillingState = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.txtBillingZIP = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTransporterName.Properties)).BeginInit();
@@ -100,7 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtChallanDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChallanDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChallanType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChallanScan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChallanNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMainRemarks.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarCodeGrid)).BeginInit();
@@ -112,11 +116,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.HelpGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HelpGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBillingState.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBillingZIP.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
             this.groupControl1.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("groupControl1.CaptionImageOptions.SvgImage")));
+            this.groupControl1.Controls.Add(this.labelControl13);
+            this.groupControl1.Controls.Add(this.txtBillingZIP);
+            this.groupControl1.Controls.Add(this.labelControl10);
+            this.groupControl1.Controls.Add(this.txtBillingState);
             this.groupControl1.Controls.Add(this.labelControl24);
             this.groupControl1.Controls.Add(this.txtTransporterName);
             this.groupControl1.Controls.Add(this.txtTransporterCode);
@@ -140,13 +150,13 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.txtChallanDate);
             this.groupControl1.Controls.Add(this.txtChallanType);
-            this.groupControl1.Controls.Add(this.textEdit6);
+            this.groupControl1.Controls.Add(this.txtChallanScan);
             this.groupControl1.Controls.Add(this.txtChallanNo);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.groupControl1.Location = new System.Drawing.Point(7, 40);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(922, 198);
+            this.groupControl1.Size = new System.Drawing.Size(922, 225);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Challan Details";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.GroupControl1_Paint);
@@ -239,10 +249,10 @@
             // 
             // txtBillingCity
             // 
-            this.txtBillingCity.Enabled = false;
             this.txtBillingCity.Location = new System.Drawing.Point(67, 165);
             this.txtBillingCity.Name = "txtBillingCity";
-            this.txtBillingCity.Size = new System.Drawing.Size(303, 20);
+            this.txtBillingCity.Properties.ReadOnly = true;
+            this.txtBillingCity.Size = new System.Drawing.Size(120, 20);
             this.txtBillingCity.TabIndex = 7;
             this.txtBillingCity.TabStop = false;
             // 
@@ -256,7 +266,6 @@
             // 
             // txtBillingAddress3
             // 
-            this.txtBillingAddress3.Enabled = false;
             this.txtBillingAddress3.Location = new System.Drawing.Point(67, 139);
             this.txtBillingAddress3.Name = "txtBillingAddress3";
             this.txtBillingAddress3.Size = new System.Drawing.Size(303, 20);
@@ -265,7 +274,6 @@
             // 
             // txtBillingAddress2
             // 
-            this.txtBillingAddress2.Enabled = false;
             this.txtBillingAddress2.Location = new System.Drawing.Point(67, 113);
             this.txtBillingAddress2.Name = "txtBillingAddress2";
             this.txtBillingAddress2.Size = new System.Drawing.Size(303, 20);
@@ -274,12 +282,10 @@
             // 
             // txtBillingAddress1
             // 
-            this.txtBillingAddress1.Enabled = false;
             this.txtBillingAddress1.Location = new System.Drawing.Point(67, 87);
             this.txtBillingAddress1.Name = "txtBillingAddress1";
             this.txtBillingAddress1.Size = new System.Drawing.Size(303, 20);
             this.txtBillingAddress1.TabIndex = 4;
-            this.txtBillingAddress1.TabStop = false;
             // 
             // labelControl4
             // 
@@ -295,7 +301,6 @@
             this.txtDebitPartyName.Location = new System.Drawing.Point(144, 61);
             this.txtDebitPartyName.Name = "txtDebitPartyName";
             this.txtDebitPartyName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDebitPartyName.Properties.ReadOnly = true;
             this.txtDebitPartyName.Size = new System.Drawing.Size(226, 20);
             this.txtDebitPartyName.TabIndex = 3;
             this.txtDebitPartyName.TabStop = false;
@@ -363,13 +368,13 @@
             this.txtChallanType.TabIndex = 1;
             this.txtChallanType.TabStop = false;
             // 
-            // textEdit6
+            // txtChallanScan
             // 
-            this.textEdit6.Location = new System.Drawing.Point(602, 34);
-            this.textEdit6.Name = "textEdit6";
-            this.textEdit6.Size = new System.Drawing.Size(222, 20);
-            this.textEdit6.TabIndex = 2;
-            this.textEdit6.TabStop = false;
+            this.txtChallanScan.Location = new System.Drawing.Point(602, 34);
+            this.txtChallanScan.Name = "txtChallanScan";
+            this.txtChallanScan.Size = new System.Drawing.Size(222, 20);
+            this.txtChallanScan.TabIndex = 2;
+            this.txtChallanScan.TabStop = false;
             // 
             // txtChallanNo
             // 
@@ -378,6 +383,8 @@
             this.txtChallanNo.Size = new System.Drawing.Size(100, 20);
             this.txtChallanNo.TabIndex = 2;
             this.txtChallanNo.TabStop = false;
+            this.txtChallanNo.EditValueChanged += new System.EventHandler(this.txtChallanNo_EditValueChanged);
+            this.txtChallanNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChallanNo_KeyDown);
             // 
             // labelControl2
             // 
@@ -389,14 +396,14 @@
             // 
             // txtMainRemarks
             // 
-            this.txtMainRemarks.Location = new System.Drawing.Point(101, 543);
+            this.txtMainRemarks.Location = new System.Drawing.Point(101, 583);
             this.txtMainRemarks.Name = "txtMainRemarks";
             this.txtMainRemarks.Size = new System.Drawing.Size(693, 20);
             this.txtMainRemarks.TabIndex = 2;
             // 
             // BarCodeGrid
             // 
-            this.BarCodeGrid.Location = new System.Drawing.Point(8, 244);
+            this.BarCodeGrid.Location = new System.Drawing.Point(8, 284);
             this.BarCodeGrid.MainView = this.BarCodeGridView;
             this.BarCodeGrid.Name = "BarCodeGrid";
             this.BarCodeGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -583,7 +590,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(25, 546);
+            this.labelControl9.Location = new System.Drawing.Point(25, 586);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(72, 13);
             this.labelControl9.TabIndex = 684;
@@ -631,7 +638,7 @@
             // 
             this.panelControl1.Controls.Add(this.HelpGrid);
             this.panelControl1.Controls.Add(this.txtSearchBox);
-            this.panelControl1.Location = new System.Drawing.Point(161, 231);
+            this.panelControl1.Location = new System.Drawing.Point(161, 10);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(643, 235);
             this.panelControl1.TabIndex = 727;
@@ -675,11 +682,44 @@
             this.txtSearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchBox_KeyDown);
             this.txtSearchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchBox_KeyPress);
             // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(220, 169);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(26, 13);
+            this.labelControl10.TabIndex = 560;
+            this.labelControl10.Text = "State";
+            // 
+            // txtBillingState
+            // 
+            this.txtBillingState.Location = new System.Drawing.Point(250, 165);
+            this.txtBillingState.Name = "txtBillingState";
+            this.txtBillingState.Properties.ReadOnly = true;
+            this.txtBillingState.Size = new System.Drawing.Size(120, 20);
+            this.txtBillingState.TabIndex = 559;
+            this.txtBillingState.TabStop = false;
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Location = new System.Drawing.Point(18, 195);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(45, 13);
+            this.labelControl13.TabIndex = 562;
+            this.labelControl13.Text = "ZIP Code";
+            // 
+            // txtBillingZIP
+            // 
+            this.txtBillingZIP.Location = new System.Drawing.Point(67, 191);
+            this.txtBillingZIP.Name = "txtBillingZIP";
+            this.txtBillingZIP.Size = new System.Drawing.Size(120, 20);
+            this.txtBillingZIP.TabIndex = 561;
+            this.txtBillingZIP.TabStop = false;
+            // 
             // frm_ChallanOutward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(943, 587);
+            this.ClientSize = new System.Drawing.Size(943, 618);
             this.ControlBox = false;
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.Menu_ToolStrip);
@@ -708,7 +748,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtChallanDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChallanDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChallanType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChallanScan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChallanNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMainRemarks.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarCodeGrid)).EndInit();
@@ -721,6 +761,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.HelpGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HelpGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBillingState.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBillingZIP.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -755,7 +797,7 @@
         private DevExpress.XtraEditors.TextEdit txtTransporterName;
         private DevExpress.XtraEditors.TextEdit txtTransporterCode;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.TextEdit textEdit6;
+        private DevExpress.XtraEditors.TextEdit txtChallanScan;
         private DevExpress.XtraGrid.GridControl BarCodeGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView BarCodeGridView;
         private DevExpress.XtraEditors.LabelControl labelControl9;
@@ -783,5 +825,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.TextEdit txtBillingState;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.TextEdit txtBillingZIP;
     }
 }

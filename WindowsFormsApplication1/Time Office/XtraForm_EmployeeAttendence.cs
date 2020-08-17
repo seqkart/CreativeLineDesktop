@@ -14,6 +14,7 @@ using DevExpress.XtraLayout.Helpers;
 using DevExpress.XtraLayout;
 using DevExpress.XtraBars.Docking2010;
 using System.Data.SqlClient;
+using HumanResourceManagementSystem;
 using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
 using System.Globalization;
@@ -90,7 +91,6 @@ namespace WindowsFormsApplication1.Time_Office
         private bool form_loaded = false;
         private void XtraForm_EmployeeAttendence_Load(object sender, EventArgs e)
         {
-            
             //timeEdit_Time_In_First_1.Properties.Mask.MaskType = MaskType.DateTime;
             //timeEdit_Time_In_First_1.Properties.Mask.EditMask = "HH:mm";
             //timeEdit_Time_In_First_1.MaskBox.Mask.UseMaskAsDisplayFormat = true;

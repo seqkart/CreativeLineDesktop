@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DevExpress.Charts.Native;
 using DevExpress.Utils;
+using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
@@ -24,6 +25,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -112,13 +114,14 @@ namespace WindowsFormsApplication1.Forms_Master
             gridView_AttendanceData.Columns.Clear();
 
             string _params = "'" + txtEmpCode.EditValue + "', '" + ConvertTo.DateTimeVal(DtStartDate.EditValue).ToString("yyyy-MM-dd") + "'";
-            DataSet att_ds = ProgramMasterData.GetData(GlobalVariables.ProgCode, _params);
+            DataSet att_ds = ProgramMasterData.GetData(GlobalVariables.ProgCode, _params, "_v2");
 
             if (ComparisonUtils.IsNotNull_DataSet(att_ds))
             {
                 BindingList<object> binding_list = new BindingList<object>();
 
                 foreach (DataRow dr in att_ds.Tables[0].Rows)
+
                 {
                     var employeeAttendance = new
                     {
@@ -132,9 +135,9 @@ namespace WindowsFormsApplication1.Forms_Master
                         TimeOut_First = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_out_first]),
                         TimeIn_Last = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_in_last]),
                         TimeOut_Last = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_out_last]),
-                        WorkingHours = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.working_hours]),                        
-                        OverTime = ConvertTo.MinutesToHours(dr[Col.EmployeeAttendance.ot_deducton_time]),
-                        OverTime_1 = ConvertTo.IntVal(dr[Col.EmployeeAttendance.ot_deducton_time]),
+                        WorkingHours = dr[Col.EmployeeAttendance.working_hours],                        
+                        OverTime = dr[Col.EmployeeAttendance.ot_deducton_time],
+                        OverTime_1 = ConvertTo.IntVal(dr[Col.EmployeeAttendance.ot_deducton_time_1]),
                         GatePassTime = dr[Col.EmployeeAttendance.gate_pass_time],
                         Source = dr[Col.AttendanceSource.source_name],
                         RowStyle = dr[Col.GridStyle.Row_Style]
@@ -220,6 +223,23 @@ namespace WindowsFormsApplication1.Forms_Master
         {
             if (IsInvalidValue(e.Info.Value))
             {
+                int dx = e.Bounds.Height;
+                Brush brush = e.Cache.GetGradientBrush(e.Bounds, Color.Wheat, Color.FloralWhite, LinearGradientMode.Vertical);
+                Rectangle r = e.Bounds;
+                //Draw a 3D border
+                BorderPainter painter = BorderHelper.GetPainter(DevExpress.XtraEditors.Controls.BorderStyles.Style3D);
+                AppearanceObject borderAppearance = new AppearanceObject(e.Appearance);
+                borderAppearance.BorderColor = Color.DarkGray;
+                painter.DrawObject(new BorderObjectInfoArgs(e.Cache, borderAppearance, r));
+                //Fill the inner region of the cell
+                r.Inflate(-1, -1);
+                e.Cache.FillRectangle(brush, r);
+                //Draw a summary value
+                r.Inflate(-2, 0);
+                e.Appearance.DrawString(e.Cache, e.Info.DisplayText, r);
+                //Prevent default drawing of the cell
+                e.Handled = true;
+
                 /*
                 StringFormat format = new StringFormat();
                 format.Alignment = StringAlignment.Near;
@@ -230,10 +250,11 @@ namespace WindowsFormsApplication1.Forms_Master
                 e.Appearance.BackColor = Color.FromArgb(50, 255, 0, 0);
                 e.Appearance.DrawString(e.Cache, e.Info.DisplayText, r, f, format);
                 */
-
+                /*
                 e.Appearance.BackColor = Color.FromArgb(50, 255, 0, 0);
                 e.Appearance.FillRectangle(e.Cache, e.Bounds);
                 e.Info.AllowDrawBackground = false;
+                */
             }
         }
 
@@ -868,7 +889,7 @@ namespace WindowsFormsApplication1.Forms_Master
             EmployeeAttendanceDetails_Model employeeAttendanceDetails_Model = new EmployeeAttendanceDetails_Model();
             employeeAttendanceDetails_Model.EmpCode = txtEmpCode.EditValue + "";
             employeeAttendanceDetails_Model.AttendanceMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);            
-            employeeAttendanceDetails_Model.EmployeeAttendance_Get_List = EmployeeData.EmployeeAttendance_Get(programMaster.ProgProcName, param);            
+            employeeAttendanceDetails_Model.EmployeeAttendance_Get_List = EmployeeData.EmployeeAttendance_Get(programMaster.ProgProcName + "_v2", param);            
             employeeAttendanceDetails_Model.EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", paramSalary);
             employeeAttendanceDetails_Model.EmployeeMasterDataList = EmployeeData.GetEmployeeMasterDataList("sp_LoadEmpMstFEditing", paramEmp);
             //EmployeeMasterModel

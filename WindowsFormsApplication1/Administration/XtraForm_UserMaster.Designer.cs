@@ -1,6 +1,4 @@
-﻿using WindowsFormsApplication1.DataBindings;
-
-namespace WindowsFormsApplication1.Administration
+﻿namespace WindowsFormsApplication1.Administration
 {
     partial class XtraForm_UserMaster
     {
@@ -110,7 +108,7 @@ namespace WindowsFormsApplication1.Administration
             // 
             // userMasterBindingSource
             // 
-            this.userMasterBindingSource.DataSource = typeof(UserMaster_Data);
+            this.userMasterBindingSource.DataSource = typeof(DataBindings.UserMaster_Data);
             // 
             // gridView_UserMaster
             // 
