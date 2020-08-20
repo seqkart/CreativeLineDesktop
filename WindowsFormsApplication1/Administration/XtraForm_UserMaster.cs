@@ -14,7 +14,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Models;
@@ -63,10 +62,12 @@ namespace WindowsFormsApplication1.Administration
             BindingList<UserInfo> list = new BindingList<UserInfo>();
             foreach (DataRow dr in dsMaster.Tables[0].Rows)
             {
-                UserInfo userInfo = new UserInfo();
-                userInfo.UserName = dr[SQL_COLUMNS.USER_MASTER._UserName] + string.Empty;
-                userInfo.Login_As = dr[SQL_COLUMNS.USER_MASTER._LoginAs] + string.Empty;
-                userInfo.UserActive = dr[SQL_COLUMNS.USER_MASTER._UserActive] + string.Empty;
+                UserInfo userInfo = new UserInfo
+                {
+                    UserName = dr[SQL_COLUMNS.USER_MASTER._UserName] + string.Empty,
+                    Login_As = dr[SQL_COLUMNS.USER_MASTER._LoginAs] + string.Empty,
+                    UserActive = dr[SQL_COLUMNS.USER_MASTER._UserActive] + string.Empty
+                };
 
 
                 list.Add(userInfo);
@@ -97,8 +98,10 @@ namespace WindowsFormsApplication1.Administration
             //In Editable Mode
             //gridView_UserMaster.ShownEditor += gridView_ShownEditor;
 
-            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
-            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit
+            {
+                TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+            };
             edit.ButtonClick += edit_ButtonClick;
             edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
 
@@ -248,9 +251,11 @@ namespace WindowsFormsApplication1.Administration
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream myStream = myAssembly.GetManifestResourceStream("WindowsFormsApplication1.Resources.edit_icon.png" +
 string.Empty);
-            Bitmap bmp = new Bitmap(myStream);
-            bmp.Tag = "edit_link" +
-string.Empty;
+            Bitmap bmp = new Bitmap(myStream)
+            {
+                Tag = "edit_link" +
+string.Empty
+            };
 
             foreach (DataRow dr in dsMaster.Tables[0].Rows)
             {

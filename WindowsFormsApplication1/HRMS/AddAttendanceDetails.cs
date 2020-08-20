@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace HumanResourceManagementSystem
@@ -50,8 +49,10 @@ namespace HumanResourceManagementSystem
                 int res;
                 SqlCommand1.Parameters.Add("@empid", SqlDbType.VarChar, 10);
                 SqlCommand1.Parameters[0].Value = cbEmpID.SelectedItem;
-                da = new SqlDataAdapter();
-                da.SelectCommand = SqlCommand1;
+                da = new SqlDataAdapter
+                {
+                    SelectCommand = SqlCommand1
+                };
                 myDataSet = new System.Data.DataSet();
                 res = da.Fill(myDataSet, "EmployeeDetails");
 
@@ -214,8 +215,10 @@ namespace HumanResourceManagementSystem
                         SqlCommand1.Parameters[1].Value = date;
                         SqlCommand1.Parameters[2].Value = month;
                         SqlCommand1.Parameters[3].Value = year;
-                        da = new SqlDataAdapter();
-                        da.SelectCommand = SqlCommand1;
+                        da = new SqlDataAdapter
+                        {
+                            SelectCommand = SqlCommand1
+                        };
                         myDataSet = new System.Data.DataSet();
                         res = da.Fill(myDataSet, "AttendanceDetails");
                         if (res >= 1)

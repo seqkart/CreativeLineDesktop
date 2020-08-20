@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Dapper;
+﻿using Dapper;
 using SeqKartLibrary.Models;
 using SeqKartLibrary.Repository;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace SeqKartLibrary.CrudTask
 {
@@ -36,7 +32,7 @@ namespace SeqKartLibrary.CrudTask
 
                 RepList<object> repObj = new RepList<object>();
                 ProgramMasterModel storedProcObj = GetProgramMasterModel(_ProgCode);
-                List<T> list = repObj.returnListClass_SP_1<T>(storedProcObj.ProgProcName, param);                
+                List<T> list = repObj.returnListClass_SP_1<T>(storedProcObj.ProgProcName, param);
 
                 return list;
             }
@@ -65,7 +61,7 @@ namespace SeqKartLibrary.CrudTask
                 }
                 System.Diagnostics.Debug.WriteLine("ProcedureName ********** " + ProcedureName + _Parameters);
                 //PrintLogWin.PrintLog("ProcedureName ********** " + ProcedureName + _Parameters);
-                dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName + version + _Parameters);               
+                dsMaster = ProjectFunctionsUtils.GetDataSet(ProcedureName + version + _Parameters);
             }
             catch (Exception)
             {

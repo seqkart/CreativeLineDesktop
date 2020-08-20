@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using DevExpress.Charts.Native;
 using DevExpress.Utils;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
@@ -16,7 +15,6 @@ using SeqKartLibrary;
 using SeqKartLibrary.CrudTask;
 using SeqKartLibrary.HelperClass;
 using SeqKartLibrary.Models;
-using SeqKartLibrary.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,10 +25,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
-using WindowsFormsApplication1;
-using WindowsFormsApplication1.Models;
 using WindowsFormsApplication1.Prints;
 using WindowsFormsApplication1.Time_Office;
 
@@ -135,7 +130,7 @@ namespace WindowsFormsApplication1.Forms_Master
                         TimeOut_First = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_out_first]),
                         TimeIn_Last = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_in_last]),
                         TimeOut_Last = ConvertTo.TimeSpanString(dr[Col.EmployeeAttendance.attendance_out_last]),
-                        WorkingHours = dr[Col.EmployeeAttendance.working_hours],                        
+                        WorkingHours = dr[Col.EmployeeAttendance.working_hours],
                         OverTime = dr[Col.EmployeeAttendance.ot_deducton_time],
                         OverTime_1 = ConvertTo.IntVal(dr[Col.EmployeeAttendance.ot_deducton_time_1]),
                         GatePassTime = dr[Col.EmployeeAttendance.gate_pass_time],
@@ -198,7 +193,7 @@ namespace WindowsFormsApplication1.Forms_Master
                 }
 
             }
-            
+
         }
 
         private void gridView_AttendanceData_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
@@ -228,8 +223,10 @@ namespace WindowsFormsApplication1.Forms_Master
                 Rectangle r = e.Bounds;
                 //Draw a 3D border
                 BorderPainter painter = BorderHelper.GetPainter(DevExpress.XtraEditors.Controls.BorderStyles.Style3D);
-                AppearanceObject borderAppearance = new AppearanceObject(e.Appearance);
-                borderAppearance.BorderColor = Color.DarkGray;
+                AppearanceObject borderAppearance = new AppearanceObject(e.Appearance)
+                {
+                    BorderColor = Color.DarkGray
+                };
                 painter.DrawObject(new BorderObjectInfoArgs(e.Cache, borderAppearance, r));
                 //Fill the inner region of the cell
                 r.Inflate(-1, -1);
@@ -261,8 +258,10 @@ namespace WindowsFormsApplication1.Forms_Master
         private void OpenAttendanceForm(int _serial_id, string _employee_code, string _attendance_date)
         {
 
-            XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence(this, _serial_id, "frmAttendenceLoading => Add Button", _employee_code, _attendance_date);
-            xtraForm_EmployeeAttendence.StartPosition = FormStartPosition.CenterScreen;
+            XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence(this, _serial_id, "frmAttendenceLoading => Add Button", _employee_code, _attendance_date)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
 
             xtraForm_EmployeeAttendence.ShowDialog(Parent);
 
@@ -296,7 +295,7 @@ namespace WindowsFormsApplication1.Forms_Master
                     btnLoad_Data.PerformClick();//.Focus();
                 }
             }
-            
+
 
             //LoadAttendanceDataGrid();
             PrintLogWin.PrintLog("---------------------------------");
@@ -322,11 +321,11 @@ namespace WindowsFormsApplication1.Forms_Master
 
                 OpenAttendanceForm(cellValue_serial_id, employee_code, attendance_date);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PrintLogWin.PrintLog("%%%%%%%%%%%%%%%% => Exception : " + ex);
             }
-            
+
         }
 
         private void gridControl_AttendanceData_DoubleClick(object sender, EventArgs e)
@@ -386,11 +385,11 @@ namespace WindowsFormsApplication1.Forms_Master
                     //}
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
-            
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -400,7 +399,7 @@ namespace WindowsFormsApplication1.Forms_Master
 
         private void btnAdd2_Click(object sender, EventArgs e)
         {
-            
+
             //XtraForm_EmployeeAttendence xtraForm_EmployeeAttendence = new XtraForm_EmployeeAttendence() { s1 = btnAdd.Text, Text = "User Addition" }; ;
 
 
@@ -424,7 +423,7 @@ namespace WindowsFormsApplication1.Forms_Master
 
             //txtPreviousInstlmnt.Text = "0";
 
-            
+
         }
 
         private void txtEmpCode_KeyDown(object sender, KeyEventArgs e)
@@ -614,8 +613,10 @@ namespace WindowsFormsApplication1.Forms_Master
                 using (var con = new SqlConnection(ProjectFunctions.ConnectionString))
                 {
                     con.Open();
-                    var cmd = new SqlCommand();
-                    cmd.Connection = con;
+                    var cmd = new SqlCommand
+                    {
+                        Connection = con
+                    };
 
                     for (var i = 0; i < MaxRow; i++)
                     {
@@ -701,15 +702,17 @@ namespace WindowsFormsApplication1.Forms_Master
 
                 foreach (var item in employeeAttendances_List)
                 {
-                    EmployeeAttendance employeeAttendance = new EmployeeAttendance();
-                    employeeAttendance.serial_id = item.serial_id;
-                    employeeAttendance.shift_id = item.shift_id;
-                    employeeAttendance.status_id = item.status_id;
-                    employeeAttendance.employee_code = item.employee_code;
-                    employeeAttendance.attendance_date = item.attendance_date;
-                    employeeAttendance.attendance_in_first = item.attendance_in_first;
-                    employeeAttendance.attendance_out_first = item.attendance_out_first;
-                    employeeAttendance.attendance_source = item.attendance_source;
+                    EmployeeAttendance employeeAttendance = new EmployeeAttendance
+                    {
+                        serial_id = item.serial_id,
+                        shift_id = item.shift_id,
+                        status_id = item.status_id,
+                        employee_code = item.employee_code,
+                        attendance_date = item.attendance_date,
+                        attendance_in_first = item.attendance_in_first,
+                        attendance_out_first = item.attendance_out_first,
+                        attendance_source = item.attendance_source
+                    };
 
                     employeeAttendances_List.Add(employeeAttendance);
                 }
@@ -751,8 +754,10 @@ namespace WindowsFormsApplication1.Forms_Master
             //In Editable Mode
             //gridView_UserMaster.ShownEditor += gridView_ShownEditor;
 
-            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
-            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit
+            {
+                TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+            };
             edit.ButtonClick += edit_ButtonClick;
             edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
 
@@ -850,7 +855,7 @@ namespace WindowsFormsApplication1.Forms_Master
                 LoadAttendanceDataGrid();
 
             }
-            
+
         }
 
         private bool ValidateData_GridLoad()
@@ -880,18 +885,20 @@ namespace WindowsFormsApplication1.Forms_Master
             param.Add("@Attendance_Month", DtStartDate.EditValue);
 
             DynamicParameters paramEmp = new DynamicParameters();
-            paramEmp.Add("@EmpCode", txtEmpCode.EditValue);            
+            paramEmp.Add("@EmpCode", txtEmpCode.EditValue);
 
             ProgramMasterModel programMaster = ProgramMasterData.GetProgramMasterModel(GlobalVariables.ProgCode);
 
-            
-            
-            EmployeeAttendanceDetails_Model employeeAttendanceDetails_Model = new EmployeeAttendanceDetails_Model();
-            employeeAttendanceDetails_Model.EmpCode = txtEmpCode.EditValue + "";
-            employeeAttendanceDetails_Model.AttendanceMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue);            
-            employeeAttendanceDetails_Model.EmployeeAttendance_Get_List = EmployeeData.EmployeeAttendance_Get(programMaster.ProgProcName + "_v2", param);            
-            employeeAttendanceDetails_Model.EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", paramSalary);
-            employeeAttendanceDetails_Model.EmployeeMasterDataList = EmployeeData.GetEmployeeMasterDataList("sp_LoadEmpMstFEditing", paramEmp);
+
+
+            EmployeeAttendanceDetails_Model employeeAttendanceDetails_Model = new EmployeeAttendanceDetails_Model
+            {
+                EmpCode = txtEmpCode.EditValue + "",
+                AttendanceMonth = ConvertTo.DateTimeVal(DtStartDate.EditValue),
+                EmployeeAttendance_Get_List = EmployeeData.EmployeeAttendance_Get(programMaster.ProgProcName + "_v2", param),
+                EmployeesSalaryList = EmployeeData.GetEmployeesSalaryList("sp_Salary_Process", paramSalary),
+                EmployeeMasterDataList = EmployeeData.GetEmployeeMasterDataList("sp_LoadEmpMstFEditing", paramEmp)
+            };
             //EmployeeMasterModel
             attendanceBindingSource.DataSource = employeeAttendanceDetails_Model;
 
@@ -909,7 +916,7 @@ namespace WindowsFormsApplication1.Forms_Master
             {
                 tool.PrintDialog();
             }
-            
+
 
         }
 
@@ -924,7 +931,7 @@ namespace WindowsFormsApplication1.Forms_Master
             {
                 Report_Print_Preview("preview");
             }
-            
+
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -938,7 +945,7 @@ namespace WindowsFormsApplication1.Forms_Master
             {
                 Report_Print_Preview("print");
             }
-            
+
         }
 
         private void btnExportXsls_Click(object sender, EventArgs e)
@@ -955,13 +962,13 @@ namespace WindowsFormsApplication1.Forms_Master
                 // Open the created XLSX file with the default application.
                 Process.Start(path);
             }
-            
+
         }
 
 
         private void DtStartDate_KeyDown(object sender, KeyEventArgs e)
         {
-         
+
         }
 
         private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)

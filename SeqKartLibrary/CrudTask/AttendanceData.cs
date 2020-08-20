@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Dapper;
+﻿using Dapper;
 using SeqKartLibrary.Models;
 using SeqKartLibrary.Repository;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SeqKartLibrary.CrudTask
 {
@@ -27,7 +23,7 @@ namespace SeqKartLibrary.CrudTask
             //param.Add("@shift_id", attendanceModel.shift_id);
             //param.Add("@attendance_source", attendanceModel.attendance_source);
             param.Add("@gate_pass_time", attendanceModel.gate_pass_time);
-            param.Add("@ot_deducton_time", attendanceModel.ot_deducton_time);            
+            param.Add("@ot_deducton_time", attendanceModel.ot_deducton_time);
             param.Add("@AddEditTag", AddEditTag);
 
             return await reposGen.executeNonQuery_Async("sp_EmployeeAttendance", param);

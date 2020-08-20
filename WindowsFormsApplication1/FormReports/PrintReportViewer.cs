@@ -1,6 +1,5 @@
 ﻿using DevExpress.XtraReports.UI;
 using System;
-using System.Linq;
 using WindowsFormsApplication1;
 namespace payroll.FormReports
 {

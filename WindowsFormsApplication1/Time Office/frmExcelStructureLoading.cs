@@ -277,8 +277,10 @@ namespace WindowsFormsApplication1.Forms_Master
                     using (var con = new SqlConnection(ProjectFunctions.ConnectionString))
                     {
                         con.Open();
-                        var cmd = new SqlCommand();
-                        cmd.Connection = con;
+                        var cmd = new SqlCommand
+                        {
+                            Connection = con
+                        };
 
                         for (var i = 0; i < MaxRow; i++)
                         {

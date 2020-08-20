@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1.Forms_Master
 {
@@ -219,8 +218,10 @@ namespace WindowsFormsApplication1.Forms_Master
                     using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
                     {
                         sqlcon.Open();
-                        var sqlcom = new SqlCommand(strQry, sqlcon);
-                        sqlcom.CommandType = CommandType.Text;
+                        var sqlcom = new SqlCommand(strQry, sqlcon)
+                        {
+                            CommandType = CommandType.Text
+                        };
                         sqlcom.ExecuteNonQuery();
                         //UpDateLoanInstlmnt();
                         ProjectFunctions.SpeakError("Data has been Added");
@@ -242,8 +243,10 @@ namespace WindowsFormsApplication1.Forms_Master
                     using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
                     {
                         sqlcon.Open();
-                        var sqlcom = new SqlCommand(strQry, sqlcon);
-                        sqlcom.CommandType = CommandType.Text;
+                        var sqlcom = new SqlCommand(strQry, sqlcon)
+                        {
+                            CommandType = CommandType.Text
+                        };
                         sqlcom.ExecuteNonQuery();
                         //UpDateLoanInstlmnt();
                         ProjectFunctions.SpeakError("Data has been Updated");

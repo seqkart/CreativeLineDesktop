@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WindowsFormsApplication1.Prints
+﻿namespace WindowsFormsApplication1.Prints
 {
     public partial class InvoicePrintBT : DevExpress.XtraReports.UI.XtraReport
     {

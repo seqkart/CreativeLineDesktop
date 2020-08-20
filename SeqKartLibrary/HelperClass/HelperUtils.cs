@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SeqKartLibrary.HelperClass
+﻿namespace SeqKartLibrary.HelperClass
 {
     public class HelperUtils
     {

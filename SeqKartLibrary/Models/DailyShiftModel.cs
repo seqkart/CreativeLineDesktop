@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SeqKartLibrary.Models
+﻿namespace SeqKartLibrary.Models
 {
     //public class DailyShift
     //{

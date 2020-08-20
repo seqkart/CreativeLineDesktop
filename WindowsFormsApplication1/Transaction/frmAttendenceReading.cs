@@ -1,6 +1,5 @@
 ﻿using DevExpress.XtraEditors;
 using System;
-using System.Linq;
 
 namespace WindowsFormsApplication1.Transaction
 {

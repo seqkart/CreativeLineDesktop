@@ -3,8 +3,6 @@ using System;
 using System.Data;
 using System.Drawing;
 
-using System.Linq;
-
 namespace WindowsFormsApplication1
 {
     public partial class frmProcessSMCommission : DevExpress.XtraEditors.XtraForm

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Master
@@ -39,10 +38,12 @@ namespace WindowsFormsApplication1.Master
 
                 foreach (DataRow dr in dsLoadMeasurement.Tables[0].Rows)
                 {
-                    DevExpress.XtraEditors.Controls.CheckedListBoxItem item = new DevExpress.XtraEditors.Controls.CheckedListBoxItem();
-                    item.Description = dr["MCode"].ToString();
-                    item.Value = dr["MDesc"].ToString();
-                    item.CheckState = CheckState.Unchecked;
+                    DevExpress.XtraEditors.Controls.CheckedListBoxItem item = new DevExpress.XtraEditors.Controls.CheckedListBoxItem
+                    {
+                        Description = dr["MCode"].ToString(),
+                        Value = dr["MDesc"].ToString(),
+                        CheckState = CheckState.Unchecked
+                    };
                     txtMeasurement.Properties.Items.Add(item);
                 }
                 if (dsData.Tables[0].Rows.Count > 0)
@@ -58,29 +59,37 @@ namespace WindowsFormsApplication1.Master
                 txtSize.Properties.Items.Clear();
                 InfoGridView.Columns.Clear();
 
-                DevExpress.XtraGrid.Columns.GridColumn FieldA = new DevExpress.XtraGrid.Columns.GridColumn();
-                FieldA.Caption = "MCode";
-                FieldA.FieldName = "MCode";
-                FieldA.Visible = true;
+                DevExpress.XtraGrid.Columns.GridColumn FieldA = new DevExpress.XtraGrid.Columns.GridColumn
+                {
+                    Caption = "MCode",
+                    FieldName = "MCode",
+                    Visible = true
+                };
                 InfoGridView.Columns.Add(FieldA);
-                DevExpress.XtraGrid.Columns.GridColumn FieldB = new DevExpress.XtraGrid.Columns.GridColumn();
-                FieldB.Caption = "MDesc";
-                FieldB.FieldName = "MDesc";
-                FieldB.Visible = true;
+                DevExpress.XtraGrid.Columns.GridColumn FieldB = new DevExpress.XtraGrid.Columns.GridColumn
+                {
+                    Caption = "MDesc",
+                    FieldName = "MDesc",
+                    Visible = true
+                };
                 InfoGridView.Columns.Add(FieldB);
 
                 foreach (DataRow dr in dsSize.Tables[0].Rows)
                 {
-                    DevExpress.XtraEditors.Controls.CheckedListBoxItem item = new DevExpress.XtraEditors.Controls.CheckedListBoxItem();
-                    item.Description = dr["SZNAME"].ToString();
-                    item.Value = dr["SZSYSID"].ToString();
-                    item.CheckState = CheckState.Unchecked;
+                    DevExpress.XtraEditors.Controls.CheckedListBoxItem item = new DevExpress.XtraEditors.Controls.CheckedListBoxItem
+                    {
+                        Description = dr["SZNAME"].ToString(),
+                        Value = dr["SZSYSID"].ToString(),
+                        CheckState = CheckState.Unchecked
+                    };
                     txtSize.Properties.Items.Add(item);
 
-                    DevExpress.XtraGrid.Columns.GridColumn Field = new DevExpress.XtraGrid.Columns.GridColumn();
-                    Field.Caption = dr["SZNAME"].ToString();
-                    Field.FieldName = dr["SZSYSID"].ToString();
-                    Field.Visible = false;
+                    DevExpress.XtraGrid.Columns.GridColumn Field = new DevExpress.XtraGrid.Columns.GridColumn
+                    {
+                        Caption = dr["SZNAME"].ToString(),
+                        FieldName = dr["SZSYSID"].ToString(),
+                        Visible = false
+                    };
                     InfoGridView.Columns.Add(Field);
                 }
 

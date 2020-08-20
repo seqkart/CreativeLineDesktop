@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DevExpress.XtraReports.Import.Import.PRINTS
+﻿namespace DevExpress.XtraReports.Import.Import.PRINTS
 {
     public partial class challanoutward : DevExpress.XtraReports.UI.XtraReport
     {

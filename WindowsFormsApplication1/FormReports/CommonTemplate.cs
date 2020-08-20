@@ -4,7 +4,6 @@ using DevExpress.XtraPrinting.Native;
 using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Prints.PartyLedger.rpt;
 using WindowsFormsApplication1.Prints.Rpt_BankBook.rpt;

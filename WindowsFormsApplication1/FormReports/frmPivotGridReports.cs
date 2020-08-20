@@ -3,7 +3,6 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraPivotGrid;
 using System;
 using System.Drawing;
-using System.Linq;
 
 
 namespace WindowsFormsApplication1.FormReports

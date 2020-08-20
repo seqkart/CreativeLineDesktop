@@ -189,10 +189,12 @@ namespace WindowsFormsApplication1
 
 
                     SqlTransaction trans = con.BeginTransaction();
-                    var cmd = new SqlCommand();
-                    cmd.Connection = con;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Transaction = trans;
+                    var cmd = new SqlCommand
+                    {
+                        Connection = con,
+                        CommandType = CommandType.Text,
+                        Transaction = trans
+                    };
 
 
                     try

@@ -186,8 +186,10 @@ namespace WindowsFormsApplication1
                         using (var sqlcon = new SqlConnection(ProjectFunctions.GetConnection()))
                         {
                             sqlcon.Open();
-                            var sqlcom = new SqlCommand(strQry, sqlcon);
-                            sqlcom.CommandType = CommandType.Text;
+                            var sqlcom = new SqlCommand(strQry, sqlcon)
+                            {
+                                CommandType = CommandType.Text
+                            };
                             sqlcom.ExecuteNonQuery();
                             sqlcon.Close();
                             ProjectFunctions.SpeakError("Data Saved Successfully");
@@ -208,8 +210,10 @@ namespace WindowsFormsApplication1
                         using (var sqlcon = new SqlConnection(ProjectFunctions.GetConnection()))
                         {
                             sqlcon.Open();
-                            var sqlcom = new SqlCommand(strQry, sqlcon);
-                            sqlcom.CommandType = CommandType.Text;
+                            var sqlcom = new SqlCommand(strQry, sqlcon)
+                            {
+                                CommandType = CommandType.Text
+                            };
                             sqlcom.ExecuteNonQuery();
                             sqlcon.Close();
                             ProjectFunctions.SpeakError("Data Saved Successfully");
@@ -230,8 +234,10 @@ namespace WindowsFormsApplication1
                         using (var sqlcon = new SqlConnection(ProjectFunctions.GetConnection()))
                         {
                             sqlcon.Open();
-                            var sqlcom = new SqlCommand(strQry, sqlcon);
-                            sqlcom.CommandType = CommandType.Text;
+                            var sqlcom = new SqlCommand(strQry, sqlcon)
+                            {
+                                CommandType = CommandType.Text
+                            };
                             sqlcom.ExecuteNonQuery();
                             sqlcon.Close();
                             ProjectFunctions.SpeakError("Data Saved Successfully");
@@ -252,8 +258,10 @@ namespace WindowsFormsApplication1
                         using (var sqlcon = new SqlConnection(ProjectFunctions.GetConnection()))
                         {
                             sqlcon.Open();
-                            var sqlcom = new SqlCommand(strQry, sqlcon);
-                            sqlcom.CommandType = CommandType.Text;
+                            var sqlcom = new SqlCommand(strQry, sqlcon)
+                            {
+                                CommandType = CommandType.Text
+                            };
                             sqlcom.ExecuteNonQuery();
                             sqlcon.Close();
                             ProjectFunctions.SpeakError("Data Saved Successfully");

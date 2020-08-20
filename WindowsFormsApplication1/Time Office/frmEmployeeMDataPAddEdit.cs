@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 namespace WindowsFormsApplication1.Forms_Master
 {
     public partial class frmEmployeeMDataPAddEdit : DevExpress.XtraEditors.XtraForm
@@ -98,16 +97,20 @@ namespace WindowsFormsApplication1.Forms_Master
             using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
             {
                 sqlcon.Open();
-                var sqlcom = new SqlCommand(Str1, sqlcon);
-                sqlcom.CommandType = CommandType.Text;
+                var sqlcom = new SqlCommand(Str1, sqlcon)
+                {
+                    CommandType = CommandType.Text
+                };
                 sqlcom.ExecuteNonQuery();
             }
             var Str2 = "Update EMPMST_MDATA set EmpPassbyUser='" + GlobalVariables.CurrentUser + "',EmpPassbyOn='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm") + "' Where EmpCode='" + empcode + "' And EmpDDate='" + Convert.ToDateTime(empdate).ToString("yyyy-MM-dd") + "'";
             using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
             {
                 sqlcon.Open();
-                var sqlcom = new SqlCommand(Str2, sqlcon);
-                sqlcom.CommandType = CommandType.Text;
+                var sqlcom = new SqlCommand(Str2, sqlcon)
+                {
+                    CommandType = CommandType.Text
+                };
                 sqlcom.ExecuteNonQuery();
             }
             ProjectFunctions.SpeakError("Salary Structure Has Been Passed");

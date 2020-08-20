@@ -28,14 +28,14 @@ namespace WindowsFormsApplication1
             this.Close();
         }
 
-        private  async Task FillGrid_1()
+        private async Task FillGrid_1()
         {
             try
             {
                 List<EmployeeMasterModel> getEmployeeMasterDataList = await EmployeeData.GetEmployeeMasterDataList_Async("sp_LoadEmpMstFEditing", null);
                 MessageBox.Show("getEmployeeMasterDataList : " + getEmployeeMasterDataList.Count);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PrintLogWin.PrintLog("FillGrid_1 => Exception : " + ex);
             }
@@ -859,8 +859,10 @@ namespace WindowsFormsApplication1
                                 DataTable dt = new DataTable();
                                 DataSet ds = ProjectFunctions.GetDataSet("sp_LoadPackingSLipPrint '" + dr["PSWSNO"].ToString() + "','" + dr["SIDBOXNO"].ToString() + "','" + GlobalVariables.FinancialYear + "','" + GlobalVariables.CUnitID + "'");
                                 ds.Tables[0].WriteXmlSchema("C://Temp//abc.xml");
-                                Prints.Packingslip rpt = new Prints.Packingslip();
-                                rpt.DataSource = ds.Tables[0];
+                                Prints.Packingslip rpt = new Prints.Packingslip
+                                {
+                                    DataSource = ds.Tables[0]
+                                };
                                 rpt.CreateDocument();
 
                                 payroll.FormReports.PrintReportViewer frm = new payroll.FormReports.PrintReportViewer() { pkInstalledPrinters = @"\\bhupinder-pc\EPSON L210 Series" };
@@ -1218,8 +1220,10 @@ namespace WindowsFormsApplication1
                                 DataTable dt = new DataTable();
                                 DataSet ds = ProjectFunctions.GetDataSet("sp_LoadChallanOutPrint '" + dr["CHONO"].ToString() + "','" + Convert.ToDateTime(dr["CHODATE"]).ToString("yyyy-MM-dd") + "','" + GlobalVariables.CUnitID + "'");
                                 ds.WriteXmlSchema("C://Temp//abc.xml");
-                                challanoutward rpt = new challanoutward();
-                                rpt.DataSource = ds.Tables[0];
+                                challanoutward rpt = new challanoutward
+                                {
+                                    DataSource = ds.Tables[0]
+                                };
                                 rpt.lblCopy.Text = CopyText;
                                 rpt.lblGrossWeight.Text = ds.Tables[1].Rows[0]["GrossWeight"].ToString();
                                 rpt.lblNetWeight.Text = ds.Tables[1].Rows[0]["NetWeight"].ToString();

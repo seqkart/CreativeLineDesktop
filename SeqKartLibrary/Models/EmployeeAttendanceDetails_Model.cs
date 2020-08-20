@@ -12,7 +12,7 @@ namespace SeqKartLibrary.Models
         public List<EmployeeMasterModel> EmployeeMasterDataList { get; set; }
 
         public List<EmployeeAttendance_Get_Model> EmployeeAttendance_Get_List { get; set; }
-        
+
 
         public List<EmployeeSalary> EmployeesSalaryList { get; set; }
     }

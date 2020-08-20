@@ -37,24 +37,30 @@ namespace WindowsFormsApplication1
                                       select dRow["ProginMenu"]).Distinct();
                     foreach (var NameItemPage in ProgInMenu)
                     {
-                        DevExpress.XtraBars.Navigation.AccordionControlElement OuterElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-                        OuterElement.Text = NameItemPage.ToString();
+                        DevExpress.XtraBars.Navigation.AccordionControlElement OuterElement = new DevExpress.XtraBars.Navigation.AccordionControlElement
+                        {
+                            Text = NameItemPage.ToString()
+                        };
                         accordionControl1.Elements.Add(OuterElement);
 
                         var ProginMenuGroup = (from DataRow dRow in MyTempTable.Select("ProginMenu='" + OuterElement.Text + "'")
                                                select dRow["ProginMenuGroup"].ToString().ToUpper()).Distinct();
                         foreach (var NameSubItem in ProginMenuGroup)
                         {
-                            DevExpress.XtraBars.Navigation.AccordionControlElement InnerElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-                            InnerElement.Text = NameSubItem.ToUpper();
+                            DevExpress.XtraBars.Navigation.AccordionControlElement InnerElement = new DevExpress.XtraBars.Navigation.AccordionControlElement
+                            {
+                                Text = NameSubItem.ToUpper()
+                            };
                             OuterElement.Elements.Add(InnerElement);
 
                             var Drs = MyTempTable.Select(String.Format("ProginMenu='{0}' and ProginMenuGroup='{1}'", OuterElement.Text, NameSubItem));
                             foreach (DataRow R in Drs)
                             {
-                                DevExpress.XtraBars.Navigation.AccordionControlElement InnerMostElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-                                InnerMostElement.Text = R["ProgDesc"].ToString();
-                                InnerMostElement.Name = R["ProgCode"].ToString();
+                                DevExpress.XtraBars.Navigation.AccordionControlElement InnerMostElement = new DevExpress.XtraBars.Navigation.AccordionControlElement
+                                {
+                                    Text = R["ProgDesc"].ToString(),
+                                    Name = R["ProgCode"].ToString()
+                                };
                                 InnerElement.Elements.Add(InnerMostElement);
                                 InnerMostElement.Click += InnerMostElement_Click;
 
@@ -71,9 +77,10 @@ namespace WindowsFormsApplication1
             _ribbonControl.Minimized = true;
 
 
-            DevExpress.XtraTab.XtraTabPage Page = new DevExpress.XtraTab.XtraTabPage();
-
-            Page.ShowCloseButton = DevExpress.Utils.DefaultBoolean.True;
+            DevExpress.XtraTab.XtraTabPage Page = new DevExpress.XtraTab.XtraTabPage
+            {
+                ShowCloseButton = DevExpress.Utils.DefaultBoolean.True
+            };
 
 
             //xtraTabControl1.TabPages.Add(Page);
@@ -156,9 +163,10 @@ namespace WindowsFormsApplication1
                     return;
                 }
             }
-            DevExpress.XtraTab.XtraTabPage Page = new DevExpress.XtraTab.XtraTabPage();
-
-            Page.ShowCloseButton = DevExpress.Utils.DefaultBoolean.True;
+            DevExpress.XtraTab.XtraTabPage Page = new DevExpress.XtraTab.XtraTabPage
+            {
+                ShowCloseButton = DevExpress.Utils.DefaultBoolean.True
+            };
 
 
             xtraTabControl1.TabPages.Add(Page);

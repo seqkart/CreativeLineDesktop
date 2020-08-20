@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Data.SqlClient;
-using Dapper;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SeqKartLibrary.Repository
 {
     public class RepList<T> where T : class
     {
-        
+
         public SqlConnection con;
         private void connection()
         {
@@ -22,7 +22,7 @@ namespace SeqKartLibrary.Repository
             try
             {
                 connection();
-                con.Open(); 
+                con.Open();
 
                 object rtn = SqlMapper.Query<object>(con, query, param, null, true, null, commandType: CommandType.Text);
                 con.Close();
@@ -130,12 +130,12 @@ namespace SeqKartLibrary.Repository
         }
 
         public T1 returnClass_1<T1>(string query, DynamicParameters param)
-        {            
+        {
             try
             {
                 connection();
                 con.Open();
-                
+
                 T1 Tlista = SqlMapper.Query<T1>(con, query, param, null, true, null, commandType: CommandType.Text).FirstOrDefault();
                 con.Close();
                 return Tlista;
@@ -149,7 +149,7 @@ namespace SeqKartLibrary.Repository
         }
 
         public List<T1> returnListClass_1<T1>(string query, DynamicParameters param)
-        {            
+        {
             try
             {
                 connection();

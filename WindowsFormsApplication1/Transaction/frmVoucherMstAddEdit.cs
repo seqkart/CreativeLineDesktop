@@ -3,7 +3,6 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1.Transaction
 {
@@ -305,8 +304,10 @@ namespace WindowsFormsApplication1.Transaction
             using (var con = new SqlConnection(ProjectFunctions.GetConnection()))
             {
                 con.Open();
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
+                var cmd = new SqlCommand
+                {
+                    Connection = con
+                };
                 var transaction = con.BeginTransaction("SaveTransaction");
                 cmd.Transaction = transaction;
                 try
@@ -374,8 +375,10 @@ namespace WindowsFormsApplication1.Transaction
             using (var con = new SqlConnection(ProjectFunctions.GetConnection()))
             {
                 con.Open();
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
+                var cmd = new SqlCommand
+                {
+                    Connection = con
+                };
                 var transaction = con.BeginTransaction("SaveTransaction");
                 cmd.Transaction = transaction;
                 try

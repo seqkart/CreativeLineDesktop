@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Transaction
@@ -393,40 +392,52 @@ namespace WindowsFormsApplication1.Transaction
         private void PrepareActMstHelpGrid()
         {
             HelpGridView.Columns.Clear();
-            DevExpress.XtraGrid.Columns.GridColumn col1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            col1.FieldName = "AccName";
-            col1.Visible = true;
-            col1.VisibleIndex = 0;
+            DevExpress.XtraGrid.Columns.GridColumn col1 = new DevExpress.XtraGrid.Columns.GridColumn
+            {
+                FieldName = "AccName",
+                Visible = true,
+                VisibleIndex = 0
+            };
             HelpGridView.Columns.Add(col1);
 
-            DevExpress.XtraGrid.Columns.GridColumn col2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            col2.FieldName = "AccCode";
-            col2.Visible = true;
-            col2.VisibleIndex = 1;
+            DevExpress.XtraGrid.Columns.GridColumn col2 = new DevExpress.XtraGrid.Columns.GridColumn
+            {
+                FieldName = "AccCode",
+                Visible = true,
+                VisibleIndex = 1
+            };
             HelpGridView.Columns.Add(col2);
 
-            DevExpress.XtraGrid.Columns.GridColumn col3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            col3.FieldName = "AccAddress1";
-            col3.Visible = false;
+            DevExpress.XtraGrid.Columns.GridColumn col3 = new DevExpress.XtraGrid.Columns.GridColumn
+            {
+                FieldName = "AccAddress1",
+                Visible = false
+            };
             //col3.VisibleIndex = 2;
             HelpGridView.Columns.Add(col3);
 
-            DevExpress.XtraGrid.Columns.GridColumn col4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            col4.FieldName = "AccAddress2";
-            col4.Visible = false;
+            DevExpress.XtraGrid.Columns.GridColumn col4 = new DevExpress.XtraGrid.Columns.GridColumn
+            {
+                FieldName = "AccAddress2",
+                Visible = false
+            };
             //col4.VisibleIndex = 3;
             HelpGridView.Columns.Add(col4);
 
-            DevExpress.XtraGrid.Columns.GridColumn col5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            col5.FieldName = "AccAddress3";
-            col5.Visible = false;
+            DevExpress.XtraGrid.Columns.GridColumn col5 = new DevExpress.XtraGrid.Columns.GridColumn
+            {
+                FieldName = "AccAddress3",
+                Visible = false
+            };
             //col5.VisibleIndex = 4;
             HelpGridView.Columns.Add(col5);
 
 
-            DevExpress.XtraGrid.Columns.GridColumn col6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            col6.FieldName = "CTNAME";
-            col6.Visible = false;
+            DevExpress.XtraGrid.Columns.GridColumn col6 = new DevExpress.XtraGrid.Columns.GridColumn
+            {
+                FieldName = "CTNAME",
+                Visible = false
+            };
             //col6.VisibleIndex = 5;
             HelpGridView.Columns.Add(col6);
 

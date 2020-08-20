@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Windows.Forms;
 
 
@@ -430,8 +429,10 @@ namespace WindowsFormsApplication1
                         txtBomNo.Text = getNewInvoiceDocumentNo().PadLeft(4, '0');
                     }
                     con.Open();
-                    var cmd = new SqlCommand();
-                    cmd.Connection = con;
+                    var cmd = new SqlCommand
+                    {
+                        Connection = con
+                    };
 #pragma warning disable CS0618 // 'GridControl.KeyboardFocusView' is obsolete: 'Use the FocusedView property instead.'
                     var MaxRow = ((InfoGrid.KeyboardFocusView as GridView).RowCount);
 #pragma warning restore CS0618 // 'GridControl.KeyboardFocusView' is obsolete: 'Use the FocusedView property instead.'

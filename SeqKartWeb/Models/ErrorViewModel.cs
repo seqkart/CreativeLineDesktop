@@ -1,5 +1,3 @@
-using System;
-
 namespace SeqKartWeb.Models
 {
     public class ErrorViewModel

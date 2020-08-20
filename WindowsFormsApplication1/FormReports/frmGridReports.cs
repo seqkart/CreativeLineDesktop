@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 
 namespace WindowsFormsApplication1.FormReports
 {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 
 #pragma warning disable CS0105 // The using directive for 'System.Data' appeared previously in this namespace
 #pragma warning restore CS0105 // The using directive for 'System.Data' appeared previously in this namespace
@@ -46,8 +45,10 @@ namespace WindowsFormsApplication1.Transaction
             using (var con = new SqlConnection(ProjectFunctions.GetConnection()))
             {
                 con.Open();
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
+                var cmd = new SqlCommand
+                {
+                    Connection = con
+                };
                 var transaction = con.BeginTransaction("SaveTransaction");
                 cmd.Transaction = transaction;
                 try

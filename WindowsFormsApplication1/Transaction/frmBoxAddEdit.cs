@@ -4,7 +4,6 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Transaction
@@ -43,8 +42,10 @@ namespace WindowsFormsApplication1.Transaction
                 {
                     Byte[] MyData = new byte[0];
                     MyData = (Byte[])dsImage.Tables[0].Rows[0]["ARTIMAGE"];
-                    MemoryStream stream = new MemoryStream(MyData);
-                    stream.Position = 0;
+                    MemoryStream stream = new MemoryStream(MyData)
+                    {
+                        Position = 0
+                    };
 
                     ArticleImageBox.Image = System.Drawing.Image.FromStream(stream);
                 }
@@ -340,9 +341,11 @@ namespace WindowsFormsApplication1.Transaction
                         dtFinal.AcceptChanges();
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertBoxData";
-                        SqlParameter param = new SqlParameter();
-                        param.ParameterName = "@BoxTable";
-                        param.Value = dtFinal;
+                        SqlParameter param = new SqlParameter
+                        {
+                            ParameterName = "@BoxTable",
+                            Value = dtFinal
+                        };
                         sqlcom.Parameters.Add(param);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();

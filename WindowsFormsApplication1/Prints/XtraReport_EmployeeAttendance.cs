@@ -1,10 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using DevExpress.XtraReports.UI;
-using System.IO;
-using DevExpress.XtraPrinting.Drawing;
+﻿using DevExpress.XtraReports.UI;
 using SeqKartLibrary.HelperClass;
 
 namespace WindowsFormsApplication1.Prints
@@ -23,7 +17,7 @@ namespace WindowsFormsApplication1.Prints
             {
                 label.Text = label.Text.Replace("-", "\r\n");// "address line 1" + Environment.NewLine + "address line 2";
             }
-           
+
         }
 
         private void xrLabel_Date_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)

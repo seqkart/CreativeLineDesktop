@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SeqKartLibrary
+﻿namespace SeqKartLibrary
 {
     public class SQL_COLUMNS
     {
@@ -33,7 +27,7 @@ namespace SeqKartLibrary
         {
             public const string _UNITID = "UNITID";
             public const string _UNITNAME = "UNITNAME";
-            
+
         }
 
         public static class USER_MASTER
@@ -56,7 +50,7 @@ namespace SeqKartLibrary
         {
             public const string _shift_id = "shift_id";
             public const string _shift_name = "shift_name";
-        }        
+        }
 
         public static class _EmployeeAttendance
         {
@@ -68,11 +62,11 @@ namespace SeqKartLibrary
             public const string _eattendance_out = "attendance_out";
             public const string _gate_pass_time = "gate_pass_time";
             public const string _ot_deducton_time = "ot_deducton_time";
-        } 
+        }
 
         public static class _AttendanceSource
         {
-            public const string _source_name = "source_name";            
+            public const string _source_name = "source_name";
         }
 
 

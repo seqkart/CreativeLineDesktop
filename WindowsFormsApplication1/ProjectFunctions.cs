@@ -449,10 +449,12 @@ namespace WindowsFormsApplication1
             using (var sqlcon = new SqlConnection(GetConnection()))
             {
                 sqlcon.Open();
-                var sqlcom = new SqlCommand();
-                sqlcom.CommandType = CommandType.StoredProcedure;
-                sqlcom.CommandText = ProcedureName;
-                sqlcom.Connection = sqlcon;
+                var sqlcom = new SqlCommand
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandText = ProcedureName,
+                    Connection = sqlcon
+                };
                 if (dsMaster.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow dr in dsMaster.Tables[0].Rows)
@@ -478,8 +480,10 @@ namespace WindowsFormsApplication1
             using (var sqlcon = new SqlConnection(GetConnection()))
             {
                 sqlcon.Open();
-                var sqlcom = new SqlCommand();
-                sqlcom.Connection = sqlcon;
+                var sqlcom = new SqlCommand
+                {
+                    Connection = sqlcon
+                };
                 if (dsMaster.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow dtOuter in dtFinal.Rows)
@@ -558,8 +562,10 @@ namespace WindowsFormsApplication1
                 {
                     Byte[] MyData = new byte[0];
                     MyData = (Byte[])dsImage.Tables[0].Rows[0]["ARTIMAGE"];
-                    MemoryStream stream = new MemoryStream(MyData);
-                    stream.Position = 0;
+                    MemoryStream stream = new MemoryStream(MyData)
+                    {
+                        Position = 0
+                    };
 
                     PictureBox.Image = System.Drawing.Image.FromStream(stream);
                 }
@@ -585,11 +591,13 @@ namespace WindowsFormsApplication1
                 {
                     foreach (DataColumn dr in dsMaster.Tables[0].Columns)
                     {
-                        DevExpress.XtraPivotGrid.PivotGridField Field = new DevExpress.XtraPivotGrid.PivotGridField();
-                        Field.Area = DevExpress.XtraPivotGrid.PivotArea.FilterArea;
-                        Field.Caption = dr.ColumnName;
-                        Field.FieldName = dr.ColumnName;
-                        Field.Name = "F" + dr.ColumnName;
+                        DevExpress.XtraPivotGrid.PivotGridField Field = new DevExpress.XtraPivotGrid.PivotGridField
+                        {
+                            Area = DevExpress.XtraPivotGrid.PivotArea.FilterArea,
+                            Caption = dr.ColumnName,
+                            FieldName = dr.ColumnName,
+                            Name = "F" + dr.ColumnName
+                        };
                         if (dr.DataType.ToString().ToUpper().Contains("DECIMAL"))
                         {
                             Field.CellFormat.FormatString = "n2";
@@ -1499,10 +1507,12 @@ namespace WindowsFormsApplication1
             using (var sqlcon = new SqlConnection(GetConnection()))
             {
                 sqlcon.Open();
-                var sqlcom = new SqlCommand();
-                sqlcom.CommandType = CommandType.StoredProcedure;
-                sqlcom.CommandText = "sp_InsertEventData";
-                sqlcom.Connection = sqlcon;
+                var sqlcom = new SqlCommand
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandText = "sp_InsertEventData",
+                    Connection = sqlcon
+                };
                 sqlcom.Parameters.AddWithValue("@ProgCode", GlobalVariables.ProgCode);
                 sqlcom.Parameters.AddWithValue("@EventDesc", ProcessName);
                 sqlcom.Parameters.AddWithValue("@UserName", GlobalVariables.CurrentUser);
@@ -1697,37 +1707,37 @@ namespace WindowsFormsApplication1
             }
         }
         public static void DatePickerVisualize(Control C)
+        {
+            foreach (Control c in C.Controls)
             {
-                foreach (Control c in C.Controls)
+                if (c.GetType() == typeof(DateEdit))
                 {
-                    if (c.GetType() == typeof(DateEdit))
+                    var thiscontrol = (DateEdit)c;
+                    thiscontrol.EditValue = null;
+                    thiscontrol.EnterMoveNextControl = true;
+                    thiscontrol.Properties.Mask.BeepOnError = true;
+                    thiscontrol.Properties.Mask.EditMask = "dd/MM/yyyy";
+                    thiscontrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+                    thiscontrol.Properties.Mask.UseMaskAsDisplayFormat = true;
+                    thiscontrol.Properties.Appearance.BorderColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+                    thiscontrol.Properties.Appearance.Options.UseBorderColor = true;
+                    thiscontrol.Properties.AppearanceFocused.BackColor = Color.AliceBlue;
+                    thiscontrol.Properties.AppearanceFocused.BorderColor = Color.FromArgb(0x15, 0x60, 0xA9);
+                    thiscontrol.Properties.AppearanceDisabled.BackColor = Color.Bisque;
+                    thiscontrol.Properties.AppearanceDisabled.Options.UseBackColor = true;
+                    thiscontrol.Properties.AppearanceDisabled.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    thiscontrol.Properties.AppearanceFocused.Options.UseBackColor = true;
+                    thiscontrol.Properties.AppearanceFocused.Options.UseBorderColor = true;
+                    thiscontrol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                    thiscontrol.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+                    thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+                    thiscontrol.Enter += (o, e) =>
                     {
-                        var thiscontrol = (DateEdit)c;
-                        thiscontrol.EditValue = null;
-                        thiscontrol.EnterMoveNextControl = true;
-                        thiscontrol.Properties.Mask.BeepOnError = true;
-                        thiscontrol.Properties.Mask.EditMask = "dd/MM/yyyy";
-                        thiscontrol.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
-                        thiscontrol.Properties.Mask.UseMaskAsDisplayFormat = true;
-                        thiscontrol.Properties.Appearance.BorderColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-                        thiscontrol.Properties.Appearance.Options.UseBorderColor = true;
-                        thiscontrol.Properties.AppearanceFocused.BackColor = Color.AliceBlue;
-                        thiscontrol.Properties.AppearanceFocused.BorderColor = Color.FromArgb(0x15, 0x60, 0xA9);
-                        thiscontrol.Properties.AppearanceDisabled.BackColor = Color.Bisque;
-                        thiscontrol.Properties.AppearanceDisabled.Options.UseBackColor = true;
-                        thiscontrol.Properties.AppearanceDisabled.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-                        thiscontrol.Properties.AppearanceFocused.Options.UseBackColor = true;
-                        thiscontrol.Properties.AppearanceFocused.Options.UseBorderColor = true;
-                        thiscontrol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-                        thiscontrol.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-                        thiscontrol.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
-                        thiscontrol.Enter += (o, e) =>
-                        {
-                            thiscontrol.SelectAll();
-                        };
-                    }
+                        thiscontrol.SelectAll();
+                    };
                 }
             }
-        
+        }
+
     }
 }

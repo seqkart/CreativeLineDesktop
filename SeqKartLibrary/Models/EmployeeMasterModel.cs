@@ -1,10 +1,8 @@
-﻿using SeqKartLibrary.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace SeqKartLibrary.Models
 {
-    public class EmployeeMasterModel 
+    public class EmployeeMasterModel
     {
         public int ID { get; set; }
         public string EmpCode { get; set; }
@@ -146,7 +144,7 @@ namespace SeqKartLibrary.Models
         public byte[] EmpImage { get; set; }
         /////////////////////
         public string CatgCode { get; set; }
-        public string CatgDesc { get; set; }        
+        public string CatgDesc { get; set; }
 
         public string DeptCode { get; set; }
         public string DeptDesc { get; set; }

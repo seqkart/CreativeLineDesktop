@@ -88,8 +88,10 @@ namespace DataBindings
             BindingList<UserMaster_Data> records = new BindingList<UserMaster_Data>();
             foreach (DataRow dr in dsMaster.Tables[0].Rows)
             {
-                HyperLinkEdit hyperLink = new HyperLinkEdit();
-                hyperLink.Text = "Edit";
+                HyperLinkEdit hyperLink = new HyperLinkEdit
+                {
+                    Text = "Edit"
+                };
 
                 records.Add(new UserMaster_Data()
                 {

@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 
 namespace WindowsFormsApplication1.FormReports
 {
@@ -56,9 +55,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds1.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertArticleData";
-                        SqlParameter param1 = new SqlParameter();
-                        param1.ParameterName = "@ArticleTable";
-                        param1.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param1 = new SqlParameter
+                        {
+                            ParameterName = "@ArticleTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param1);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -79,9 +80,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds2.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertCASHTENDERData";
-                        SqlParameter param2 = new SqlParameter();
-                        param2.ParameterName = "@CASHTENDERTable";
-                        param2.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param2 = new SqlParameter
+                        {
+                            ParameterName = "@CASHTENDERTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param2);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -98,9 +101,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds3.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertCOLOURSData";
-                        SqlParameter param3 = new SqlParameter();
-                        param3.ParameterName = "@COLOURSTable";
-                        param3.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param3 = new SqlParameter
+                        {
+                            ParameterName = "@COLOURSTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param3);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -116,9 +121,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds4.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertPSWSLDETData";
-                        SqlParameter param4 = new SqlParameter();
-                        param4.ParameterName = "@PSWSLDETTable";
-                        param4.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param4 = new SqlParameter
+                        {
+                            ParameterName = "@PSWSLDETTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param4);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -135,9 +142,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds5.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertPSWSLMAINData";
-                        SqlParameter param5 = new SqlParameter();
-                        param5.ParameterName = "@PSWSLMAINTable";
-                        param5.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param5 = new SqlParameter
+                        {
+                            ParameterName = "@PSWSLMAINTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param5);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -154,9 +163,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds6.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertSaleInvDetData";
-                        SqlParameter param6 = new SqlParameter();
-                        param6.ParameterName = "@SaleInvDetTable";
-                        param6.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param6 = new SqlParameter
+                        {
+                            ParameterName = "@SaleInvDetTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param6);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -172,9 +183,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds7.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertSALEINVMAINData";
-                        SqlParameter param7 = new SqlParameter();
-                        param7.ParameterName = "@SALEINVMAINTable";
-                        param7.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param7 = new SqlParameter
+                        {
+                            ParameterName = "@SALEINVMAINTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param7);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -190,9 +203,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds8.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertSFDETSData";
-                        SqlParameter param8 = new SqlParameter();
-                        param8.ParameterName = "@SFDETTable";
-                        param8.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param8 = new SqlParameter
+                        {
+                            ParameterName = "@SFDETTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param8);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -208,9 +223,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds10.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertSFMAINData";
-                        SqlParameter param10 = new SqlParameter();
-                        param10.ParameterName = "@SFMAINTable";
-                        param10.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param10 = new SqlParameter
+                        {
+                            ParameterName = "@SFMAINTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param10);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();
@@ -226,9 +243,11 @@ namespace WindowsFormsApplication1.FormReports
                         gridControl1.DataSource = ds11.Tables[0];
                         sqlcom.CommandType = CommandType.StoredProcedure;
                         sqlcom.CommandText = "sp_InsertSKUData";
-                        SqlParameter param11 = new SqlParameter();
-                        param11.ParameterName = "@SKUTable";
-                        param11.Value = (gridControl1.DataSource as DataTable);
+                        SqlParameter param11 = new SqlParameter
+                        {
+                            ParameterName = "@SKUTable",
+                            Value = (gridControl1.DataSource as DataTable)
+                        };
                         sqlcom.Parameters.Add(param11);
                         sqlcom.ExecuteNonQuery();
                         sqlcom.Parameters.Clear();

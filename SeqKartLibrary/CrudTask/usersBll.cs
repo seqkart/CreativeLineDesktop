@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Dapper;
+﻿using Dapper;
 using SeqKartLibrary.Models;
 using SeqKartLibrary.Repository;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SeqKartLibrary.CrudTask
 {
     partial class users
     {
 
-        public async Task<string> insertUpdate( user _user)
+        public async Task<string> insertUpdate(user _user)
         {
-            RepGen  reposGen = new Repository.RepGen();
+            RepGen reposGen = new Repository.RepGen();
             DynamicParameters param = new DynamicParameters();
             param.Add("@id", _user.id);
             param.Add("@name", _user.name);

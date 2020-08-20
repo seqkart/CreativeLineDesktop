@@ -1,5 +1,4 @@
-﻿using DevExpress.Utils.Menu;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using SeqKartLibrary.Repository;
 using SeqKartSecurity.Connections;
 using System;
@@ -7,9 +6,6 @@ using System.Collections.Generic;
 using System.Data;
 
 using System.Data.SqlClient;
-using System.Drawing;
-
-using System.IO;
 //using CrystalDecisions.;
 using System.Linq;
 //using CrystalDecisions.CrystalReports.Engine;
@@ -188,7 +184,7 @@ namespace SeqKartLibrary
         {
             return (finyear.Substring(2, 2) + finyear.Substring(7, 2));
         }
-        
+
         public static string ClipFYearBarCode(string finyear)
         {
             return (finyear.Substring(2, 2));
@@ -279,7 +275,7 @@ namespace SeqKartLibrary
                         adp.Fill(ds);
                         adp.Dispose();
                         dbconn.Dispose();
-                    }                    
+                    }
                 }
 
             }
@@ -318,7 +314,7 @@ namespace SeqKartLibrary
             bool hasData = false;
             try
             {
-                if (ds!= null)
+                if (ds != null)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
@@ -363,7 +359,7 @@ namespace SeqKartLibrary
             }
             catch// (Exception ex)
             {
-                
+
             }
             return intResult;
         }
@@ -375,10 +371,10 @@ namespace SeqKartLibrary
             try
             {
                 gridView_Style_List = repList.returnListClass_1<GridView_Style_Model>("SELECT * FROM GridViewStyle_Master WHERE form_name='" + form_name + "' AND gridview_name='" + gridview_name + "'", null);
-                
+
                 //ds = ProjectFunctionsUtils.GetDataSet("SELECT * FROM GridViewStyle_Master WHERE form_name='" + form_name + "' AND gridview_name='" + gridview_name + "'");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -470,7 +466,7 @@ namespace SeqKartLibrary
             if (dsMaster.Tables[0].Rows.Count > 0)
             { return dsMaster; }
             return null;
-        }        
+        }
         /*
         public static void SaveNewMasterRecord(String ProcedureName, XtraForm FormName)
         {
@@ -507,8 +503,10 @@ namespace SeqKartLibrary
             using (var sqlcon = new SqlConnection(GetConnection()))
             {
                 sqlcon.Open();
-                var sqlcom = new SqlCommand();
-                sqlcom.Connection = sqlcon;
+                var sqlcom = new SqlCommand
+                {
+                    Connection = sqlcon
+                };
                 if (dsMaster.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow dtOuter in dtFinal.Rows)
@@ -576,7 +574,7 @@ namespace SeqKartLibrary
             }
             return Value;
         }
-       
+
         public static string GetNewTransactionCode(String Query)
         {
             String s2 = String.Empty;
@@ -588,7 +586,7 @@ namespace SeqKartLibrary
             }
             return s2;
         }
-       
+
         public static Decimal RoundFive(Decimal No)
         {
             No = ((int)(No / 5)) * 5;
@@ -639,7 +637,7 @@ namespace SeqKartLibrary
             return true;
 
         }
-        
+
 
 
         public static void EventTracker(String ProcessName, string ProgCode, string CurrentUser)
@@ -647,10 +645,12 @@ namespace SeqKartLibrary
             using (var sqlcon = new SqlConnection(GetConnection()))
             {
                 sqlcon.Open();
-                var sqlcom = new SqlCommand();
-                sqlcom.CommandType = CommandType.StoredProcedure;
-                sqlcom.CommandText = "sp_InsertEventData";
-                sqlcom.Connection = sqlcon;
+                var sqlcom = new SqlCommand
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandText = "sp_InsertEventData",
+                    Connection = sqlcon
+                };
                 sqlcom.Parameters.AddWithValue("@ProgCode", ProgCode);
                 sqlcom.Parameters.AddWithValue("@EventDesc", ProcessName);
                 sqlcom.Parameters.AddWithValue("@UserName", CurrentUser);

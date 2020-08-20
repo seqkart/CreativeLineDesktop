@@ -90,7 +90,7 @@ namespace SeqKartLibrary.HelperClass
         public static DateTime TimeToDate(string time_In)
         {
             try
-            { 
+            {
                 TimeSpan timeSpan_In = TimeSpan.Parse(time_In);
                 DateTime dateTime_In = DateTime.Today.Add(timeSpan_In);
 
@@ -157,7 +157,7 @@ namespace SeqKartLibrary.HelperClass
                     return null;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PrintLogWinForms.PrintLog("ConvertValueTo.TimeSpanVal_Null => Exception => val " +
                     ": " + val + "" + "");
@@ -239,7 +239,7 @@ namespace SeqKartLibrary.HelperClass
             string sign = "";
             Int32 totalMinute = IntVal(_totalMinute);
             if (totalMinute == 0)
-            {                
+            {
                 return "0";
             }
             Int32 Minute = default(Int32);
@@ -301,7 +301,7 @@ namespace SeqKartLibrary.HelperClass
 
             {
                 functionReturnValue = sign + "0" + i.ToString();
-            }            
+            }
             else
             {
                 functionReturnValue = sign + i.ToString();

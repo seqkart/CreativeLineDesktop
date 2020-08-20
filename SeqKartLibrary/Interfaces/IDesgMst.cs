@@ -1,14 +1,9 @@
 ﻿using SeqKartLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeqKartLibrary.Interfaces
 {
-    public class IDesgMst: DesgMst
+    public class IDesgMst : DesgMst
     {
-        
+
     }
 }

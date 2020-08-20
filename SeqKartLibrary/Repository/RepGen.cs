@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using Dapper;
 
 namespace SeqKartLibrary.Repository
 {
@@ -106,7 +106,7 @@ namespace SeqKartLibrary.Repository
         {
             try
             {
-                
+
                 connection();
                 con.Open();
                 con.Execute(query, param, commandType: CommandType.StoredProcedure);

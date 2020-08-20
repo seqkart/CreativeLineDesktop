@@ -201,8 +201,10 @@ string.Empty;
                         using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
                         {
                             sqlcon.Open();
-                            var sqlcom = new SqlCommand(str, sqlcon);
-                            sqlcom.CommandType = CommandType.Text;
+                            var sqlcom = new SqlCommand(str, sqlcon)
+                            {
+                                CommandType = CommandType.Text
+                            };
                             sqlcom.ExecuteNonQuery();
                             sqlcom.Parameters.Clear();
 
@@ -227,8 +229,10 @@ string.Empty;
                         using (var sqlcon = new SqlConnection(ProjectFunctions.ConnectionString))
                         {
                             sqlcon.Open();
-                            var sqlcom = new SqlCommand(str, sqlcon);
-                            sqlcom.CommandType = CommandType.Text;
+                            var sqlcom = new SqlCommand(str, sqlcon)
+                            {
+                                CommandType = CommandType.Text
+                            };
                             sqlcom.ExecuteNonQuery();
                             sqlcom.Parameters.Clear();
 

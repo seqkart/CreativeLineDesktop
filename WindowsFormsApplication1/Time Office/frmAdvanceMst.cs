@@ -1,7 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Forms_Transaction

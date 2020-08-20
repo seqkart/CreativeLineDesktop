@@ -109,8 +109,10 @@ namespace WindowsFormsApplication1
                             {
                                 var group = new RibbonPageGroup(NameSubItem.ToUpper()) { ShowCaptionButton = false, Text = string.Empty };
                                 ItemPage.Groups.Add(group);
-                                var container = new BarLinkContainerItem();
-                                container.Caption = NameSubItem;
+                                var container = new BarLinkContainerItem
+                                {
+                                    Caption = NameSubItem
+                                };
                                 group.ItemLinks.Add(container);
                                 var Drs = MyTempTable.Select(String.Format("ProginMenu='{0}' and ProginMenuGroup='{1}'", ItemPage.Text, NameSubItem));
                                 foreach (DataRow R in Drs)

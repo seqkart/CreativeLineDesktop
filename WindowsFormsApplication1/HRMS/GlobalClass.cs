@@ -1,6 +1,4 @@
 ﻿using SeqKartLibrary;
-using System;
-using System.Linq;
 
 namespace HumanResourceManagementSystem
 {

@@ -515,8 +515,10 @@ namespace WindowsFormsApplication1.Forms_Master
                 using (var con = new SqlConnection(ProjectFunctions.ConnectionString))
                 {
                     con.Open();
-                    var cmd = new SqlCommand();
-                    cmd.Connection = con;
+                    var cmd = new SqlCommand
+                    {
+                        Connection = con
+                    };
 
                     for (var i = 0; i < MaxRow; i++)
                     {
@@ -602,15 +604,17 @@ namespace WindowsFormsApplication1.Forms_Master
 
                 foreach (var item in employeeAttendances_List)
                 {
-                    EmployeeAttendance employeeAttendance = new EmployeeAttendance();
-                    employeeAttendance.serial_id = item.serial_id;
-                    employeeAttendance.shift_id = item.shift_id;
-                    employeeAttendance.status_id = item.status_id;
-                    employeeAttendance.employee_code = item.employee_code;
-                    employeeAttendance.attendance_date = item.attendance_date;
-                    employeeAttendance.attendance_in_first = item.attendance_in_first;
-                    employeeAttendance.attendance_out_first = item.attendance_out_first;
-                    employeeAttendance.attendance_source = item.attendance_source;
+                    EmployeeAttendance employeeAttendance = new EmployeeAttendance
+                    {
+                        serial_id = item.serial_id,
+                        shift_id = item.shift_id,
+                        status_id = item.status_id,
+                        employee_code = item.employee_code,
+                        attendance_date = item.attendance_date,
+                        attendance_in_first = item.attendance_in_first,
+                        attendance_out_first = item.attendance_out_first,
+                        attendance_source = item.attendance_source
+                    };
 
                     employeeAttendances_List.Add(employeeAttendance);
                 }
@@ -652,8 +656,10 @@ namespace WindowsFormsApplication1.Forms_Master
             //In Editable Mode
             //gridView_UserMaster.ShownEditor += gridView_ShownEditor;
 
-            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
-            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit
+            {
+                TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+            };
             edit.ButtonClick += edit_ButtonClick;
             edit.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
 

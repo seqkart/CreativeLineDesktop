@@ -18,12 +18,12 @@ namespace SeqKartLibrary.Models
         public int OverTime { get; set; }
         public int GatePassTime { get; set; }
         public double Source { get; set; }
-    
+
 
     }
 
     public class EmployeeAttendance_Get_Model
-    {        
+    {
         public int serial_id { get; set; }
         public DateTime entry_date { get; set; }
         public string shift_name { get; set; }

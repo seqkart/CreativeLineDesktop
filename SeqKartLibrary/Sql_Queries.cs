@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeqKartLibrary
 {
@@ -38,7 +34,7 @@ namespace SeqKartLibrary
                 }
 
                 string sql = "SELECT RIGHT('0000' + CAST((ISNULL(MAX(CAST(EmpCode AS INT)), 0) + 1) AS VARCHAR(4)), 4) AS NewCode FROM EmpMst";
-                
+
                 return sql;
             }
 

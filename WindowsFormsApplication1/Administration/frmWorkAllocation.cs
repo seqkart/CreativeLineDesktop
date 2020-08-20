@@ -241,8 +241,10 @@ namespace WindowsFormsApplication1
                 using (var con = new SqlConnection(ProjectFunctions.GetConnection()))
                 {
                     con.Open();
-                    var cmd = new SqlCommand();
-                    cmd.Connection = con;
+                    var cmd = new SqlCommand
+                    {
+                        Connection = con
+                    };
                     var Dt = (WorkAllocationGrid.DataSource as DataTable).GetChanges();
 
                     var MaxRow = Dt.Rows.Count;
@@ -512,8 +514,10 @@ namespace WindowsFormsApplication1
                     OptionsGridView.CloseEditor();
 
                     con.Open();
-                    var cmd = new SqlCommand();
-                    cmd.Connection = con;
+                    var cmd = new SqlCommand
+                    {
+                        Connection = con
+                    };
                     var Dt = (OptionsGrid.DataSource as DataTable).GetChanges();
 
                     var MaxRow = Dt.Rows.Count;
