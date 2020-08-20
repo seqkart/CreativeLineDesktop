@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WindowsFormsApplication1</RootNamespace>
     <AssemblyName>SEQKART-ERP</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -29,6 +30,8 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,7 +42,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <FileAlignment>2048</FileAlignment>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
@@ -65,234 +68,246 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxInterop.MSFlexGridLib">
-      <HintPath>..\..\..\..\..\..\t6sdk\t6sdk\SDK_T6-11-32-36-14-26_10aug12\SDK_T6-11-32-36-14-26_10aug12\P2P sdk (s100)\P2P sdk (s100)\C#_SBXPCSample\Backup\SBXPCSampleCSharp\bin\x86\Debug\AxInterop.MSFlexGridLib.dll</HintPath>
+      <HintPath>..\..\..\..\SeqKart\Creative Line Desktop\Creative Line Desktop\WindowsFormsApplication1\libs\AxInterop.MSFlexGridLib.dll</HintPath>
     </Reference>
     <Reference Include="AxInterop.SBXPCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\t6sdk\t6sdk\SDK_T6-11-32-36-14-26_10aug12\SDK_T6-11-32-36-14-26_10aug12\P2P sdk (s100)\P2P sdk (s100)\C#_SBXPCSample\Backup\SBXPCSampleCSharp\bin\x86\Debug\AxInterop.SBXPCLib.dll</HintPath>
+      <HintPath>..\..\..\..\SeqKart\Creative Line Desktop\Creative Line Desktop\WindowsFormsApplication1\libs\AxInterop.SBXPCLib.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.CrystalReports.Engine.1.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\happy\Desktop\New folder (4)\BNPL\2016-09-30\BNPL\BNPL\bin\Debug\CrystalDecisions.Data.AdoDotNetInterop.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.ReportAppServer.1.0.0\lib\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.ReportAppServer.1.0.0\lib\CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.ReportAppServer.1.0.0\lib\CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.ReportSource.1.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.Prompting, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>C:\BNPL\nEzee\CrystalDecisions.ReportAppServer.Prompting.dll</HintPath>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.Shared.1.0.0\lib\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.BonusSkins.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.Windows.Forms.1.0.0\lib\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.CodeParser.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.TreeMap.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraTreeMap.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.TreeMap.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Dashboard.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraTreeMap.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Dashboard.v19.2.Win, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Dashboard.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Data.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Dashboard.v20.1.Win, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Docs.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.DataAccess.v20.1.UI, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Docs.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Win.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Win.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Map.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Map.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v19.2.Drawing, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Pdf.v20.1.Drawing, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Persistent.Base.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v19.2.Export, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.PivotGrid.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v20.1.Export, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Snap.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Snap.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Spreadsheet.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Utils.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Spreadsheet.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v20.1.UI, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpo.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v19.2.Extensions, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v20.1.Extensions, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v20.1.UI, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v20.1.Wizard, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraGauges.v19.2.Presets, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraGauges.v19.2.Win, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGauges.v20.1.Presets, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGauges.v20.1.Win, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraMap.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraPdfViewer.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraMap.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraPivotGrid.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPdfViewer.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPivotGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v19.2.Extensions, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Images.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v20.1.Extensions, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Images.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraRichEdit.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v19.2.Reporting, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraScheduler.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v19.2.Reporting.Extensions, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraScheduler.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraSpreadsheet.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraScheduler.v20.1.Reporting, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraVerticalGrid.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraScheduler.v20.1.Reporting.Extensions, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraWizard.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop.MSFlexGridLib">
-      <HintPath>..\..\..\..\..\..\t6sdk\t6sdk\SDK_T6-11-32-36-14-26_10aug12\SDK_T6-11-32-36-14-26_10aug12\P2P sdk (s100)\P2P sdk (s100)\C#_SBXPCSample\Backup\SBXPCSampleCSharp\bin\x86\Debug\Interop.MSFlexGridLib.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Interop.SBXPCLib">
-      <HintPath>..\..\..\..\..\..\t6sdk\t6sdk\SDK_T6-11-32-36-14-26_10aug12\SDK_T6-11-32-36-14-26_10aug12\P2P sdk (s100)\P2P sdk (s100)\C#_SBXPCSample\Backup\SBXPCSampleCSharp\bin\x86\Debug\Interop.SBXPCLib.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86">
+    <Reference Include="DevExpress.XtraSpreadsheet.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\BNPL\nEzee\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraVerticalGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\BNPL\nEzee\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\BNPL\nEzee\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    <Reference Include="DevExpress.XtraWizard.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\BNPL\nEzee\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.5\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\BNPL\nEzee\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="SeqKartLibrary">
+      <HintPath>..\SeqKartLibrary\bin\Debug\SeqKartLibrary.dll</HintPath>
     </Reference>
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -300,9 +315,26 @@
       <HintPath>C:\BNPL\nEzee\stdole.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -364,11 +396,11 @@
     <Compile Include="Administration\frm_Chng_Pswd.designer.cs">
       <DependentUpon>frm_Chng_Pswd.cs</DependentUpon>
     </Compile>
-    <Compile Include="BarPrintOut.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Administration\XtraForm_UserMaster.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BarPrintOut.Designer.cs">
-      <DependentUpon>BarPrintOut.cs</DependentUpon>
+    <Compile Include="Administration\XtraForm_UserMaster.Designer.cs">
+      <DependentUpon>XtraForm_UserMaster.cs</DependentUpon>
     </Compile>
     <Compile Include="Crystals\SalePrint.cs">
       <SubType>Component</SubType>
@@ -376,12 +408,10 @@
     <Compile Include="Crystals\SalePrint.Designer.cs">
       <DependentUpon>SalePrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard1.cs">
+    <Compile Include="CustomControls\MyDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Dashboard1.Designer.cs">
-      <DependentUpon>Dashboard1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DataBindings\UserMaster_Data.cs" />
     <Compile Include="FormReports\BasePrint.cs" />
     <Compile Include="FormReports\CommonTemplate.cs">
       <SubType>Form</SubType>
@@ -437,6 +467,43 @@
     <Compile Include="FormReports\ReportFormatName.designer.cs">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelperClass\CustomArguments.cs" />
+    <Compile Include="Master\FRMBRANCHMASTER.CS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FRMBRANCHMASTER.CS.Designer.cs">
+      <DependentUpon>FRMBRANCHMASTER.CS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prints\EmployeeSalaryDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\EmployeeSalaryDetails.Designer.cs">
+      <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prints\XtraReport_EmployeesSalaryList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\XtraReport_EmployeesSalaryList.Designer.cs">
+      <DependentUpon>XtraReport_EmployeesSalaryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prints\XtraReport_EmployeeAttendance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\XtraReport_EmployeeAttendance.Designer.cs">
+      <DependentUpon>XtraReport_EmployeeAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prints\salaryregister.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>salaryregister.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\XtraReportGatePass.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\XtraReportGatePass.designer.cs">
+      <DependentUpon>XtraReportGatePass.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDataTransfer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -448,12 +515,6 @@
     </Compile>
     <Compile Include="frmLogincs.Designer.cs">
       <DependentUpon>frmLogincs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmMainDashBoard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMainDashBoard.Designer.cs">
-      <DependentUpon>frmMainDashBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMaster.cs">
       <SubType>Form</SubType>
@@ -467,23 +528,11 @@
     <Compile Include="frmMainScreen.Designer.cs">
       <DependentUpon>frmMainScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmQueryBuilder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmQueryBuilder.Designer.cs">
-      <DependentUpon>frmQueryBuilder.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmSaleReportF2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSaleReportF2.Designer.cs">
       <DependentUpon>frmSaleReportF2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmShowRoomDashBoard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmShowRoomDashBoard.Designer.cs">
-      <DependentUpon>frmShowRoomDashBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTransaction.cs">
       <SubType>Form</SubType>
@@ -499,6 +548,23 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GlobalVariables.cs" />
+    <Compile Include="HelperClass\ComparisonUtilsWin.cs" />
+    <Compile Include="HelperClass\ImageUtils.cs" />
+    <Compile Include="HelperClass\MessageBox_Debug.cs" />
+    <Compile Include="HelperClass\PrintLogWin.cs" />
+    <Compile Include="HRMS\AddAttendanceDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HRMS\AddAttendanceDetails.designer.cs">
+      <DependentUpon>AddAttendanceDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HRMS\GlobalClass.cs" />
+    <Compile Include="main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="main.Designer.cs">
+      <DependentUpon>main.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmAccountMstAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -559,23 +625,11 @@
     <Compile Include="Master\frmCompanyMaster.Designer.cs">
       <DependentUpon>frmCompanyMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmCostMstAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmCostMstAddEdit.designer.cs">
-      <DependentUpon>frmCostMstAddEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Master\frmCustomerMst.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Master\frmCustomerMst.designer.cs">
       <DependentUpon>frmCustomerMst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmDealerMstAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmDealerMstAddEdit.designer.cs">
-      <DependentUpon>frmDealerMstAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmDepartmentAddUpdate.cs">
       <SubType>Form</SubType>
@@ -594,12 +648,6 @@
     </Compile>
     <Compile Include="Master\frmEmloyeeMstAddEdit.designer.cs">
       <DependentUpon>frmEmloyeeMstAddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmExpenseHeadAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmExpenseHeadAddEdit.designer.cs">
-      <DependentUpon>frmExpenseHeadAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmGroupMstAddEdit.cs">
       <SubType>Form</SubType>
@@ -637,35 +685,11 @@
     <Compile Include="Master\frmProductMstAddEdit.designer.cs">
       <DependentUpon>frmProductMstAddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmRateFeeding.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmRateFeeding.Designer.cs">
-      <DependentUpon>frmRateFeeding.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmRetailerMaster.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmRetailerMaster.Designer.cs">
-      <DependentUpon>frmRetailerMaster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmRouteMstAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmRouteMstAddEdit.designer.cs">
-      <DependentUpon>frmRouteMstAddEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Master\frmSizeMMaster.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Master\frmSizeMMaster.designer.cs">
       <DependentUpon>frmSizeMMaster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmSupplierMaster.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmSupplierMaster.Designer.cs">
-      <DependentUpon>frmSupplierMaster.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmTaxMasterAddEdit.cs">
       <SubType>Form</SubType>
@@ -685,17 +709,11 @@
     <Compile Include="Master\frmTransporterMaster.designer.cs">
       <DependentUpon>frmTransporterMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmUnitAddEdit.cs">
+    <Compile Include="Master\frmUOMAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\frmUnitAddEdit.designer.cs">
-      <DependentUpon>frmUnitAddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Master\frmVehicleAddEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Master\frmVehicleAddEdit.designer.cs">
-      <DependentUpon>frmVehicleAddEdit.cs</DependentUpon>
+    <Compile Include="Master\frmUOMAddEdit.designer.cs">
+      <DependentUpon>frmUOMAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmWorkerMaster.cs">
       <SubType>Form</SubType>
@@ -703,21 +721,7 @@
     <Compile Include="Master\frmWorkerMaster.designer.cs">
       <DependentUpon>frmWorkerMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Pos\ApprovaLIssue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -868,6 +872,12 @@
     <Compile Include="Prints\TAXDETAILSUBREPORT.Designer.cs">
       <DependentUpon>TAXDETAILSUBREPORT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Prints\XtraReport_Salary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Prints\XtraReport_Salary.Designer.cs">
+      <DependentUpon>XtraReport_Salary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -894,8 +904,11 @@
     <Compile Include="Resources\frmImportImage.Designer.cs">
       <DependentUpon>frmImportImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="SKU.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Time Office\frmGatePassTimeAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Time Office\frmGatePassTimeAddEdit.Designer.cs">
+      <DependentUpon>frmGatePassTimeAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Time Office\frmAdvanceAddEdit.cs">
       <SubType>Form</SubType>
@@ -908,6 +921,12 @@
     </Compile>
     <Compile Include="Time Office\frmAdvanceMst.Designer.cs">
       <DependentUpon>frmAdvanceMst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Time Office\frmGatePassLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Time Office\frmGatePassLoading.Designer.cs">
+      <DependentUpon>frmGatePassLoading.cs</DependentUpon>
     </Compile>
     <Compile Include="Time Office\frmAttendenceLoading.cs">
       <SubType>Form</SubType>
@@ -981,11 +1000,11 @@
     <Compile Include="Time Office\frm_EmpSalAddUpdate.designer.cs">
       <DependentUpon>frm_EmpSalAddUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Time Office\frm_EmpsalMst.cs">
+    <Compile Include="Time Office\XtraForm_EmployeeAttendence.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Time Office\frm_EmpsalMst.designer.cs">
-      <DependentUpon>frm_EmpsalMst.cs</DependentUpon>
+    <Compile Include="Time Office\XtraForm_EmployeeAttendence.Designer.cs">
+      <DependentUpon>XtraForm_EmployeeAttendence.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\Cashmemo.cs">
       <SubType>Form</SubType>
@@ -1035,12 +1054,6 @@
     <Compile Include="Transaction\frmBoxAddEdit.Designer.cs">
       <DependentUpon>frmBoxAddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transaction\frmCRDataData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmCRDataData.Designer.cs">
-      <DependentUpon>frmCRDataData.cs</DependentUpon>
-    </Compile>
     <Compile Include="Transaction\frmDayClose.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1052,12 +1065,6 @@
     </Compile>
     <Compile Include="Transaction\frmDealerOrderMaster.Designer.cs">
       <DependentUpon>frmDealerOrderMaster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmGeneralInvoiceMst.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmGeneralInvoiceMst.Designer.cs">
-      <DependentUpon>frmGeneralInvoiceMst.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\frmGSTPurchase.cs">
       <SubType>Form</SubType>
@@ -1113,35 +1120,11 @@
     <Compile Include="Transaction\frmProcessSMCommission.designer.cs">
       <DependentUpon>frmProcessSMCommission.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transaction\frmProductionData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmProductionData.Designer.cs">
-      <DependentUpon>frmProductionData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmPackingDespatch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmPackingDespatch.Designer.cs">
-      <DependentUpon>frmPackingDespatch.cs</DependentUpon>
-    </Compile>
     <Compile Include="Transaction\frmPurchaseFromHO.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transaction\frmPurchaseFromHO.Designer.cs">
       <DependentUpon>frmPurchaseFromHO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmReplMstAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmReplMstAdd.designer.cs">
-      <DependentUpon>frmReplMstAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmReturnCrates.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmReturnCrates.Designer.cs">
-      <DependentUpon>frmReturnCrates.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\frmSchemeMstAddEdit.cs">
       <SubType>Form</SubType>
@@ -1155,35 +1138,11 @@
     <Compile Include="Transaction\frmShowRoomBarCodeImport.Designer.cs">
       <DependentUpon>frmShowRoomBarCodeImport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transaction\frmStockOutData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmStockOutData.Designer.cs">
-      <DependentUpon>frmStockOutData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmSupplierStock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmSupplierStock.Designer.cs">
-      <DependentUpon>frmSupplierStock.cs</DependentUpon>
-    </Compile>
     <Compile Include="Transaction\frmTdsDeductionAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transaction\frmTdsDeductionAddEdit.designer.cs">
       <DependentUpon>frmTdsDeductionAddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmUnsoldMstAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmUnsoldMstAdd.designer.cs">
-      <DependentUpon>frmUnsoldMstAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction\frmUpdateTimings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transaction\frmUpdateTimings.Designer.cs">
-      <DependentUpon>frmUpdateTimings.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\FRMVIEWLEDERS.cs">
       <SubType>Form</SubType>
@@ -1245,6 +1204,7 @@
     <Compile Include="Transaction\frm_SupplierPaymentVoucherAdd_Upd.designer.cs">
       <DependentUpon>frm_SupplierPaymentVoucherAdd_Upd.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserRoles\MainFormButtons.cs" />
     <Compile Include="WaitForm1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1278,14 +1238,11 @@
     <EmbeddedResource Include="Administration\frm_Chng_Pswd.resx">
       <DependentUpon>frm_Chng_Pswd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BarPrintOut.resx">
-      <DependentUpon>BarPrintOut.cs</DependentUpon>
+    <EmbeddedResource Include="Administration\XtraForm_UserMaster.resx">
+      <DependentUpon>XtraForm_UserMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Crystals\SalePrint.resx">
       <DependentUpon>SalePrint.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard1.resx">
-      <DependentUpon>Dashboard1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReports\CommonTemplate.resx">
       <DependentUpon>CommonTemplate.cs</DependentUpon>
@@ -1314,14 +1271,30 @@
     <EmbeddedResource Include="FormReports\ReportFormatName.resx">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\FRMBRANCHMASTER.CS.resx">
+      <DependentUpon>FRMBRANCHMASTER.CS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prints\EmployeeSalaryDetails.resx">
+      <DependentUpon>EmployeeSalaryDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prints\XtraReport_EmployeesSalaryList.resx">
+      <DependentUpon>XtraReport_EmployeesSalaryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prints\XtraReport_EmployeeAttendance.resx">
+      <DependentUpon>XtraReport_EmployeeAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prints\salaryregister.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>salaryregister.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prints\XtraReportGatePass.resx">
+      <DependentUpon>XtraReportGatePass.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDataTransfer.resx">
       <DependentUpon>frmDataTransfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogincs.resx">
       <DependentUpon>frmLogincs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMainDashBoard.resx">
-      <DependentUpon>frmMainDashBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMaster.resx">
       <DependentUpon>frmMaster.cs</DependentUpon>
@@ -1329,20 +1302,20 @@
     <EmbeddedResource Include="frmMainScreen.resx">
       <DependentUpon>frmMainScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmQueryBuilder.resx">
-      <DependentUpon>frmQueryBuilder.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmSaleReportF2.resx">
       <DependentUpon>frmSaleReportF2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmShowRoomDashBoard.resx">
-      <DependentUpon>frmShowRoomDashBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmXtraReportViewer.resx">
       <DependentUpon>frmXtraReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HRMS\AddAttendanceDetails.resx">
+      <DependentUpon>AddAttendanceDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="main.resx">
+      <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmAccountMstAddEdit.resx">
       <DependentUpon>frmAccountMstAddEdit.cs</DependentUpon>
@@ -1374,14 +1347,8 @@
     <EmbeddedResource Include="Master\frmCompanyMaster.resx">
       <DependentUpon>frmCompanyMaster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmCostMstAddEdit.resx">
-      <DependentUpon>frmCostMstAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmCustomerMst.resx">
       <DependentUpon>frmCustomerMst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmDealerMstAddEdit.resx">
-      <DependentUpon>frmDealerMstAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmDepartmentAddUpdate.resx">
       <DependentUpon>frmDepartmentAddUpdate.cs</DependentUpon>
@@ -1391,9 +1358,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmEmloyeeMstAddEdit.resx">
       <DependentUpon>frmEmloyeeMstAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmExpenseHeadAddEdit.resx">
-      <DependentUpon>frmExpenseHeadAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmGroupMstAddEdit.resx">
       <DependentUpon>frmGroupMstAddEdit.cs</DependentUpon>
@@ -1413,20 +1377,8 @@
     <EmbeddedResource Include="Master\frmProductMstAddEdit.resx">
       <DependentUpon>frmProductMstAddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmRateFeeding.resx">
-      <DependentUpon>frmRateFeeding.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmRetailerMaster.resx">
-      <DependentUpon>frmRetailerMaster.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmRouteMstAddEdit.resx">
-      <DependentUpon>frmRouteMstAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmSizeMMaster.resx">
       <DependentUpon>frmSizeMMaster.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmSupplierMaster.resx">
-      <DependentUpon>frmSupplierMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmTaxMasterAddEdit.resx">
       <DependentUpon>frmTaxMasterAddEdit.cs</DependentUpon>
@@ -1437,11 +1389,8 @@
     <EmbeddedResource Include="Master\frmTransporterMaster.resx">
       <DependentUpon>frmTransporterMaster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmUnitAddEdit.resx">
-      <DependentUpon>frmUnitAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmVehicleAddEdit.resx">
-      <DependentUpon>frmVehicleAddEdit.cs</DependentUpon>
+    <EmbeddedResource Include="Master\frmUOMAddEdit.resx">
+      <DependentUpon>frmUOMAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmWorkerMaster.resx">
       <DependentUpon>frmWorkerMaster.cs</DependentUpon>
@@ -1526,6 +1475,9 @@
     <EmbeddedResource Include="Prints\TAXDETAILSUBREPORT.resx">
       <DependentUpon>TAXDETAILSUBREPORT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Prints\XtraReport_Salary.resx">
+      <DependentUpon>XtraReport_Salary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1541,11 +1493,17 @@
     <EmbeddedResource Include="Resources\frmImportImage.resx">
       <DependentUpon>frmImportImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Time Office\frmGatePassTimeAddEdit.resx">
+      <DependentUpon>frmGatePassTimeAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Time Office\frmAdvanceAddEdit.resx">
       <DependentUpon>frmAdvanceAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Time Office\frmAdvanceMst.resx">
       <DependentUpon>frmAdvanceMst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Time Office\frmGatePassLoading.resx">
+      <DependentUpon>frmGatePassLoading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Time Office\frmAttendenceLoading.resx">
       <DependentUpon>frmAttendenceLoading.cs</DependentUpon>
@@ -1583,8 +1541,8 @@
     <EmbeddedResource Include="Time Office\frm_EmpSalAddUpdate.resx">
       <DependentUpon>frm_EmpSalAddUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Time Office\frm_EmpsalMst.resx">
-      <DependentUpon>frm_EmpsalMst.cs</DependentUpon>
+    <EmbeddedResource Include="Time Office\XtraForm_EmployeeAttendence.resx">
+      <DependentUpon>XtraForm_EmployeeAttendence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\Cashmemo.resx">
       <DependentUpon>Cashmemo.cs</DependentUpon>
@@ -1610,17 +1568,11 @@
     <EmbeddedResource Include="Transaction\frmBoxAddEdit.resx">
       <DependentUpon>frmBoxAddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmCRDataData.resx">
-      <DependentUpon>frmCRDataData.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmDayClose.resx">
       <DependentUpon>frmDayClose.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmDealerOrderMaster.resx">
       <DependentUpon>frmDealerOrderMaster.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmGeneralInvoiceMst.resx">
-      <DependentUpon>frmGeneralInvoiceMst.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmGSTPurchase.resx">
       <DependentUpon>frmGSTPurchase.cs</DependentUpon>
@@ -1649,20 +1601,8 @@
     <EmbeddedResource Include="Transaction\frmProcessSMCommission.resx">
       <DependentUpon>frmProcessSMCommission.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmProductionData.resx">
-      <DependentUpon>frmProductionData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmPackingDespatch.resx">
-      <DependentUpon>frmPackingDespatch.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmPurchaseFromHO.resx">
       <DependentUpon>frmPurchaseFromHO.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmReplMstAdd.resx">
-      <DependentUpon>frmReplMstAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmReturnCrates.resx">
-      <DependentUpon>frmReturnCrates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmSchemeMstAddEdit.resx">
       <DependentUpon>frmSchemeMstAddEdit.cs</DependentUpon>
@@ -1670,20 +1610,8 @@
     <EmbeddedResource Include="Transaction\frmShowRoomBarCodeImport.resx">
       <DependentUpon>frmShowRoomBarCodeImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmStockOutData.resx">
-      <DependentUpon>frmStockOutData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmSupplierStock.resx">
-      <DependentUpon>frmSupplierStock.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\frmTdsDeductionAddEdit.resx">
       <DependentUpon>frmTdsDeductionAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmUnsoldMstAdd.resx">
-      <DependentUpon>frmUnsoldMstAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transaction\frmUpdateTimings.resx">
-      <DependentUpon>frmUpdateTimings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FRMVIEWLEDERS.resx">
       <DependentUpon>FRMVIEWLEDERS.cs</DependentUpon>
@@ -1728,14 +1656,11 @@
       <DependentUpon>BreadDataSet.xsd</DependentUpon>
     </None>
     <None Include="app.config" />
-    <EntityDeploy Include="Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DataBindings.UserMaster_Data.datasource" />
+    <None Include="Properties\DataSources\SeqKartLibrary.Models.EmployeeAttendanceDetails_Model.datasource" />
+    <None Include="Properties\DataSources\SeqKartLibrary.Models.EmployeeSalary.datasource" />
+    <None Include="Properties\DataSources\SeqKartLibrary.Models.MonthlySalaryDetails_Model.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1754,21 +1679,221 @@
     <None Include="bin\Debug\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
+    <None Include="Resources\Zoom.png" />
+    <None Include="Resources\Yes.png" />
+    <None Include="Resources\Wrench.png" />
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\3d bar chart.png" />
+    <None Include="Resources\Abort.png" />
+    <None Include="Resources\About.png" />
+    <None Include="Resources\Add_16x16.png" />
+    <None Include="Resources\Add_32x32.png" />
+    <None Include="Resources\AddFile_16x16.png" />
+    <None Include="Resources\AddFile_32x32.png" />
+    <None Include="Resources\AddItem_16x16.png" />
+    <None Include="Resources\AddItem_32x32.png" />
     <Content Include="Resources\AMExpress.png" />
+    <EmbeddedResource Include="Resources\close_button.png" />
+    <None Include="Resources\Anchor.png" />
+    <None Include="Resources\Application.png" />
+    <None Include="Resources\Apply.png" />
+    <None Include="Resources\Back.png" />
+    <None Include="Resources\Bad mark.png" />
+    <None Include="Resources\Blue key.png" />
+    <None Include="Resources\Blue tag.png" />
+    <None Include="Resources\Boss.png" />
+    <None Include="Resources\Bottom.png" />
+    <None Include="Resources\Calculator.png" />
+    <None Include="Resources\Calendar.png" />
+    <None Include="Resources\Car key.png" />
+    <None Include="Resources\CD.png" />
+    <None Include="Resources\Clipboard.png" />
+    <None Include="Resources\Clock.png" />
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\Compass.png" />
+    <None Include="Resources\Component.png" />
+    <None Include="Resources\Copy.png" />
+    <None Include="Resources\Create.png" />
+    <None Include="Resources\Cut.png" />
+    <None Include="Resources\Danger.png" />
+    <None Include="Resources\Database.png" />
+    <None Include="Resources\Delete.png" />
+    <None Include="Resources\Delivery.png" />
+    <None Include="Resources\Dial.png" />
+    <None Include="Resources\Delete_16x16.png" />
+    <None Include="Resources\Delete_32x32.png" />
+    <None Include="Resources\Apply_16x16.png" />
+    <None Include="Resources\Apply_32x32.png" />
+    <None Include="Resources\Cancel_16x16.png" />
+    <None Include="Resources\Cancel_32x32.png" />
+    <None Include="Resources\Clear_16x16.png" />
+    <None Include="Resources\Clear_32x32.png" />
+    <None Include="Resources\ClearFormatting_16x16.png" />
+    <None Include="Resources\ClearFormatting_32x32.png" />
+    <None Include="Resources\ClearTableStyle_16x16.png" />
+    <None Include="Resources\ClearTableStyle_32x32.png" />
+    <None Include="Resources\Clip_16x16.png" />
+    <None Include="Resources\Clip_32x32.png" />
+    <None Include="Resources\Close_16x16.png" />
+    <None Include="Resources\Close_32x32.png" />
+    <None Include="Resources\Convert_16x16.png" />
+    <None Include="Resources\Convert_32x32.png" />
+    <None Include="Resources\DeleteList_16x16.png" />
+    <None Include="Resources\DeleteList_32x32.png" />
+    <None Include="Resources\DeleteList2_16x16.png" />
+    <None Include="Resources\DeleteList2_32x32.png" />
     <Content Include="Resources\DINNER.png" />
+    <EmbeddedResource Include="Resources\edit_icon.png" />
+    <None Include="Resources\Disaster.png" />
+    <None Include="Resources\Dollar.png" />
+    <None Include="Resources\Down.png" />
+    <None Include="Resources\Download.png" />
+    <None Include="Resources\Eject.png" />
+    <None Include="Resources\E-mail.png" />
+    <None Include="Resources\Erase.png" />
+    <None Include="Resources\Error.png" />
+    <None Include="Resources\Euro.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\Fall.png" />
+    <None Include="Resources\Fast-forward.png" />
+    <None Include="Resources\Favourites.png" />
+    <None Include="Resources\Female.png" />
+    <None Include="Resources\Filter.png" />
+    <None Include="Resources\Find.png" />
+    <None Include="Resources\First record.png" />
+    <None Include="Resources\First.png" />
+    <None Include="Resources\Flag.png" />
+    <None Include="Resources\Edit_16x16.png" />
+    <None Include="Resources\Edit_32x32.png" />
+    <None Include="Resources\Download_16x16.png" />
+    <None Include="Resources\Download_32x32.png" />
     <Content Include="Resources\fm.jpg" />
+    <None Include="Resources\Folder.png" />
+    <None Include="Resources\Forbidden.png" />
+    <None Include="Resources\Forward.png" />
+    <None Include="Resources\Free bsd.png" />
+    <None Include="Resources\Go back.png" />
+    <None Include="Resources\Go forward.png" />
+    <None Include="Resources\Go.png" />
+    <None Include="Resources\Good-mark.png" />
+    <None Include="Resources\Green tag.png" />
+    <None Include="Resources\Heart.png" />
+    <None Include="Resources\Help book 3d.png" />
+    <None Include="Resources\Help book.png" />
+    <None Include="Resources\Help.png" />
+    <None Include="Resources\Hint.png" />
+    <None Include="Resources\Home.png" />
+    <None Include="Resources\How-to.png" />
+    <None Include="Resources\Hungup.png" />
+    <None Include="Resources\Info.png" />
+    <None Include="Resources\Key.png" />
+    <None Include="Resources\Last recor.png" />
+    <None Include="Resources\Last.png" />
+    <None Include="Resources\Left-right.png" />
+    <None Include="Resources\Lightning.png" />
+    <None Include="Resources\Linux.png" />
+    <None Include="Resources\List.png" />
+    <None Include="Resources\Load.png" />
+    <None Include="Resources\Lock.png" />
+    <None Include="Resources\Low rating.png" />
     <Content Include="Resources\Maestro.png" />
+    <None Include="Resources\Mail.png" />
+    <None Include="Resources\Male.png" />
     <Content Include="Resources\MASTERCARD.png" />
+    <EmbeddedResource Include="Resources\pencil_edit_button.png" />
+    <EmbeddedResource Include="Resources\pencil_edit_button_s.jpg" />
+    <None Include="Resources\Medium rating.png" />
+    <None Include="Resources\Message.png" />
+    <None Include="Resources\Mobile-phone.png" />
+    <None Include="Resources\Modify.png" />
+    <None Include="Resources\Movie.png" />
+    <None Include="Resources\Music.png" />
+    <None Include="Resources\New document.png" />
+    <None Include="Resources\New.png" />
+    <None Include="Resources\Next track.png" />
+    <None Include="Resources\Next.png" />
+    <None Include="Resources\No.png" />
+    <None Include="Resources\No-entry.png" />
+    <None Include="Resources\Notes.png" />
+    <None Include="Resources\OK.png" />
+    <None Include="Resources\Paste.png" />
+    <None Include="Resources\Pause.png" />
+    <None Include="Resources\People.png" />
+    <None Include="Resources\Person.png" />
+    <None Include="Resources\Phone number.png" />
+    <None Include="Resources\Pie chart.png" />
+    <None Include="Resources\Pinion.png" />
+    <None Include="Resources\Play.png" />
+    <None Include="Resources\Playback.png" />
+    <None Include="Resources\Play-music.png" />
+    <None Include="Resources\Previous record.png" />
+    <None Include="Resources\Previous.png" />
+    <None Include="Resources\Problem.png" />
+    <None Include="Resources\Question.png" />
+    <None Include="Resources\Raise.png" />
+    <None Include="Resources\Record.png" />
+    <None Include="Resources\Red mark.png" />
+    <None Include="Resources\Red star.png" />
+    <None Include="Resources\Red tag.png" />
+    <None Include="Resources\Redo.png" />
+    <None Include="Resources\Refresh.png" />
+    <None Include="Resources\Remove.png" />
+    <None Include="Resources\Repair.png" />
+    <None Include="Resources\Report.png" />
+    <None Include="Resources\Retort.png" />
+    <None Include="Resources\Rewind.png" />
+    <None Include="Resources\Sad.png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\Search.png" />
+    <None Include="Resources\Shopping cart.png" />
+    <None Include="Resources\Smile.png" />
+    <None Include="Resources\Sound.png" />
+    <None Include="Resources\Stop sign.png" />
+    <None Include="Resources\Stop.png" />
+    <None Include="Resources\Sync.png" />
+    <None Include="Resources\Table.png" />
+    <None Include="Resources\Target.png" />
+    <None Include="Resources\Taxi.png" />
+    <None Include="Resources\Terminate.png" />
+    <None Include="Resources\Text preview.png" />
+    <None Include="Resources\Text.png" />
+    <None Include="Resources\Thumbs down.png" />
+    <None Include="Resources\Thumbs up.png" />
+    <None Include="Resources\Top.png" />
+    <None Include="Resources\Turn off.png" />
+    <None Include="Resources\Undo.png" />
+    <None Include="Resources\Unlock.png" />
+    <None Include="Resources\Up.png" />
+    <None Include="Resources\Update.png" />
+    <None Include="Resources\Up-down.png" />
+    <None Include="Resources\Upload.png" />
+    <None Include="Resources\User group.png" />
+    <None Include="Resources\View.png" />
+    <None Include="Resources\profile-icon.png" />
+    <None Include="Resources\profile-icon.jpg" />
+    <None Include="Resources\Trash_32x32.png" />
+    <None Include="Resources\New_16x16.png" />
+    <None Include="Resources\New_32x32.png" />
+    <None Include="Resources\Refresh_16x16.png" />
+    <None Include="Resources\Refresh_32x32.png" />
+    <None Include="Resources\Refresh2_16x16.png" />
+    <None Include="Resources\Refresh2_32x32.png" />
+    <None Include="Resources\Remove_16x16.png" />
+    <None Include="Resources\Remove_32x32.png" />
+    <None Include="Resources\RemoveItem_16x16.png" />
+    <None Include="Resources\RemoveItem_32x32.png" />
+    <None Include="Resources\Reset_16x16.png" />
+    <None Include="Resources\Reset_32x32.png" />
+    <None Include="Resources\Reset2_16x16.png" />
+    <None Include="Resources\Reset2_32x32.png" />
+    <None Include="Resources\Trash_16x16.png" />
+    <None Include="Resources\Print_32x32.png" />
+    <None Include="Resources\Preview_16x16.png" />
+    <None Include="Resources\Preview_32x32.png" />
+    <None Include="Resources\Print_16x16.png" />
+    <None Include="Resources\photo.jpg" />
+    <None Include="Resources\profile_icon.jpg" />
     <Content Include="Resources\VISA.png" />
     <None Include="Resources\fm1.jpg" />
     <Content Include="Resources\login.jpg" />
@@ -1787,9 +1912,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CrudTask\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Inventory\" />
     <Folder Include="Promotion\" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
