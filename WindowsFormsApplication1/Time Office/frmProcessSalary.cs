@@ -635,6 +635,7 @@ namespace WindowsFormsApplication1.Forms_Transaction
 
 
             }
+
         }
 
         private void gridView_SalaryProcess_CellValueChanging(object sender, CellValueChangedEventArgs e)

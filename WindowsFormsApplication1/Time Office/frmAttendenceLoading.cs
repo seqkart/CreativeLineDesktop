@@ -286,7 +286,7 @@ namespace WindowsFormsApplication1.Forms_Master
                     txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
                     txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
 
-                    lblemp.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                    //lblemp.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
 
 
 
@@ -447,7 +447,7 @@ namespace WindowsFormsApplication1.Forms_Master
                     {
                         txtEmpCode.Text = ds.Tables[0].Rows[0]["EmpCode"].ToString();
                         txtEmpName.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
-                        lblemp.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                        //lblemp.Text = ds.Tables[0].Rows[0]["EmpName"].ToString();
                         //txtDept.Text = ds.Tables[0].Rows[0]["DeptDesc"].ToString();
 
                         //LastInstlmnt();
@@ -475,7 +475,7 @@ namespace WindowsFormsApplication1.Forms_Master
             {
                 txtEmpCode.Text = row["EmpCode"].ToString();
                 txtEmpName.Text = row["EmpName"].ToString();
-                lblemp.Text = row["EmpName"].ToString();
+                //                lblemp.Text = row["EmpName"].ToString();
                 //txtDept.Text = row["DeptDesc"].ToString();
                 HelpGrid.Visible = false;
                 btnLoad_Data.Focus();
