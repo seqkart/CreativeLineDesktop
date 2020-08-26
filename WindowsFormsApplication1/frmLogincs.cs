@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
         static extern bool SetForegroundWindow(IntPtr hWnd);
 
 
-        private bool isDebug = true;
+        private bool isDebug = false;
         public frmLogincs()
         {
             InitializeComponent();
