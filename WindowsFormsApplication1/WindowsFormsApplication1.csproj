@@ -468,6 +468,12 @@
       <DependentUpon>ReportFormatName.cs</DependentUpon>
     </Compile>
     <Compile Include="HelperClass\CustomArguments.cs" />
+    <Compile Include="Master\CITYMASTER.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\CITYMASTER.Designer.cs">
+      <DependentUpon>CITYMASTER.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\FRMBRANCHMASTER.CS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1270,6 +1276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReports\ReportFormatName.resx">
       <DependentUpon>ReportFormatName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\CITYMASTER.resx">
+      <DependentUpon>CITYMASTER.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FRMBRANCHMASTER.CS.resx">
       <DependentUpon>FRMBRANCHMASTER.CS.cs</DependentUpon>
